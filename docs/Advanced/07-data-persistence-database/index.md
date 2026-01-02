@@ -3,8 +3,48 @@ title: "第七章：数据持久化与数据库"
 ---
 
 
-![07-data-persistence-database_index.png](../../public/images/Advanced/07-data-persistence-database_index.png)
+!07-data-persistence-database_index.png (../../public/images/Advanced/07-data-persistence-database_index.png)
 # 第七章：数据持久化与数据库
+
+## 本章目录
+
+```
+### 7.1 数据存储演进 (./01-数据存储演进.md)
+从内存存储到数据库的演进路径,各种存储方式的对比和适用场景。
+
+### 7.2 关系型数据库基础 (./02-关系型数据库基础.md)
+数据库的核心概念:表、主键、外键、关系、约束、索引等。
+
+### 7.3 后端方案选择 (./03-后端方案选择.md) 🟡
+BaaS、Serverless、Traditional Backend 三种方案的对比和选择指南。
+
+### 7.4 数据库设计的核心理念 (./04-数据库设计的核心理念.md) 🟡
+从 PRD 到数据库设计的完整流程,如何识别实体、定义关系、优化结构。
+
+### 7.5 Prisma 入门 (./05-Prisma入门.md)
+Prisma ORM 的安装、Schema 定义、迁移管理、Client 初始化。
+
+### 7.6 数据库迁移实战 (./06-数据库迁移实战.md)
+迁移工作流、常见迁移场景、生产环境迁移、数据迁移策略。
+
+### 7.7 CRUD 操作详解 (./07-CRUD操作详解.md)
+Create、Read、Update、Delete 的完整用法,查询优化,事务操作。
+
+### 7.8 Supabase 配置与使用 (./08-Supabase配置与使用.md) 🟡
+Supabase 平台的快速上手,数据库操作、身份认证、实时订阅、文件存储。
+
+### 7.9 数据库选择决策 (./09-数据库选择决策.md) 🟡
+PostgreSQL、MySQL、MongoDB、SQLite 等主流数据库的对比和选择建议。
+
+### 7.10 数据库备份策略 (./10-数据库备份策略.md)
+备份类型、策略选择、自动化备份、灾难恢复演练。
+
+### 7.11 数据库性能优化 (./11-数据库性能优化.md)
+查询优化、索引优化、连接池配置、缓存策略、性能监控。
+
+### 7.12 实战避坑案例 (./12-实战避坑案例.md)
+10 个常见错误及解决方案,最佳实践总结。
+```
 
 
 

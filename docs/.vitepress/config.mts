@@ -1,4 +1,4 @@
-import { defineConfig, type HeadConfig } from 'vitepress'
+import { defineConfigWithTheme, type HeadConfig, type DefaultTheme } from 'vitepress'
 import { generateSidebar } from 'vitepress-sidebar'
 import { withMermaid } from 'vitepress-plugin-mermaid'
 // @ts-ignore
@@ -30,6 +30,25 @@ function resolveSiteUrl(): string {
 }
 
 const SITE_URL = resolveSiteUrl();
+
+type BroadcastRule = {
+  paths: string[]
+  text?: string
+  color?: string
+}
+
+type BroadcastConfig = {
+  default?: {
+    text: string
+    color: string
+  }
+  rules?: BroadcastRule[]
+  exclude?: string[]
+}
+
+type ThemeConfigWithBroadcast = DefaultTheme.Config & {
+  broadcast?: BroadcastConfig
+}
 
 function urlPathForPage(relativePath: string): string {
   const p = relativePath.replace(/\\/g, '/');
@@ -154,7 +173,7 @@ function buildBreadcrumbList(urlPath: string, fullUrl: string): Record<string, u
 }
 
 
-export default withMermaid(defineConfig({
+export default withMermaid(defineConfigWithTheme<ThemeConfigWithBroadcast>({
   lang: 'zh-CN',
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
@@ -384,6 +403,7 @@ export default withMermaid(defineConfig({
 
   vite: {
     plugins: [
+      
       VitePWA({
         registerType: 'autoUpdate',
         injectRegister: 'auto',
@@ -420,6 +440,7 @@ export default withMermaid(defineConfig({
           ]
         }
       })
+      
     ],
     ssr: {
       noExternal: ['vitepress-plugin-mermaid', 'mermaid']
@@ -442,7 +463,7 @@ export default withMermaid(defineConfig({
       {
         text: '基础篇',
         items: [
-          { text: '导览', link: '/Basic/' },
+          { text: '欢迎来到基础版', link: '/Basic/' },
           { text: '0. 序章', link: '/Basic/00-preface/' },
           { text: '1. 觉醒：为什么现在是编程最好的时代', link: '/Basic/01-awakening/' },
           { text: '2. 心法：像产品经理一样思考', link: '/Basic/02-mindset/' },
@@ -458,7 +479,7 @@ export default withMermaid(defineConfig({
       {
         text: '进阶篇',
         items: [
-          { text: '导览', link: '/Advanced/' },
+          { text: '从想法到产品的100小时', link: '/Advanced/' },
           { text: '01-环境搭建与代码运行基础', link: '/Advanced/01-environment-setup/' },
           { text: '02-AI使用说明书', link: '/Advanced/02-ai-tuning-guide/' },
           { text: '03-PRD与文档驱动', link: '/Advanced/03-prd-doc-driven/' },
@@ -482,7 +503,7 @@ export default withMermaid(defineConfig({
       {
         text: '实践篇',
         items: [
-          { text: '导览', link: '/Practice/' },
+          { text: '序言', link: '/Practice/' },
           { text: '文科生/商科生项目', link: '/Practice/01-for-liberal-arts/' },
           { text: '理工科学生项目', link: '/Practice/02-for-stem/' },
           { text: '职场人士项目', link: '/Practice/03-for-professionals/' },
@@ -496,7 +517,7 @@ export default withMermaid(defineConfig({
       {
         text: '优质文章篇',
         items: [
-          { text: '导览', link: '/Articles/' },
+          { text: '序言', link: '/Articles/' },
           { text: '知名公司博客', link: '/Articles/01-company-blogs/' },
           { text: '优质播客', link: '/Articles/02-podcasts/' },
           { text: '研究报告', link: '/Articles/03-research-reports/' },
@@ -593,6 +614,19 @@ export default withMermaid(defineConfig({
     // footer: {
     //   message: '',
     //   copyright: ''
-    // }
+    // },
+
+    // 广播横幅配置
+    broadcast: {
+      // 默认配置（全局生效，除非被 exclude 排除）
+      default: {
+        text: '🚧 抢先预览版，内容建设中，不代表最终品质 🚧',
+        color: '#e6a23c'
+      },
+      // 按路径自定义配置（支持 glob 模式，匹配到的路径会覆盖 default）
+      rules: [],
+      // 排除路径（这些页面不显示横幅）
+      exclude: []
+    }
   }
 }))

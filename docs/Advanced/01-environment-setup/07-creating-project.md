@@ -6,6 +6,11 @@ chapter: "第一章"
 
 # 1.7 创建项目
 
+> **阅读完本节后，你将会收获：**
+> - 掌握文件夹命名规范，避免中文路径导致的开发问题
+> - 学会使用官方脚手架快速创建标准项目结构
+> - 理解 Next.js 全栈项目的标准目录结构和各文件夹职责
+> - 了解文件路径的概念，准确定位项目文件
 
 > 新手最容易犯的错误是：拿到 AI 生成的代码，逐个文件手动创建，然后运行。这种方式在简单 Demo 上没问题，但一遇到复杂项目就会崩溃。正确的做法是使用项目模板，或者让 AI 通过命令行工具帮你创建标准项目。
 
@@ -56,7 +61,7 @@ my-projects/          ← 总文件夹（放在英文路径下）
 | **Windows** | 在文件夹空白处按住 `Shift + 右键` → "在此处打开 PowerShell 窗口" |
 | **Windows 11** | 文件夹空白处右键 → "在终端中打开" |
 | **Mac** | Finder → 服务 → 新建位于文件夹位置的终端窗口（需先设置） |
-| **Mac 推荐** | 安装 [OpenInTerminal](https://github.com/Ji4n1ng/OpenInTerminal) 右键菜单工具 |
+| **Mac 推荐** | 安装 OpenInTerminal (https://github.com/Ji4n1ng/OpenInTerminal) 右键菜单工具 |
 
 **方式二：AI IDE 打开文件夹**
 
@@ -466,6 +471,6 @@ graph TB
 
 ## 相关内容
 
-- 详见：[1.5 Node.js环境与包管理](./05-nodejs-package-manager.md)
-- 详见：[1.8 Localhost与端口](./08-localhost-and-ports.md)
-- 后续：[第2章 AI使用说明书](../02-ai-tuning-guide/index.md)
+- 详见：[1.5 Node.js环境与包管理]
+- 详见：[1.8 Localhost与端口]
+- 后续：[第2章 AI调教指南]

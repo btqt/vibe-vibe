@@ -7,11 +7,17 @@ priority: "🟡"
 
 # 2.4 项目规则配置 🟡
 
+> **阅读完本节后，你将会收获：**
+> - 理解项目配置文件的作用和使用场景
+> - 掌握 CLAUDE.md 和 settings.json 的配置方法
+> - 学会团队协作/多机开发的配置共享方案
+> - 了解如何处理配置中的敏感信息
+
 > **本节通常可以跳过**。个人开发时，AI 能从对话和项目文档中理解项目，无需额外配置。
 >
 > **团队协作/多机开发**：需要统一环境、规范、MCP、插件等配置时，本节内容非常有用。
 
-::: warning 重要：个人开发通常不需要配置
+::: warning 个人开发通常不需要配置
 
 在折腾配置文件之前，请先了解：
 
@@ -99,7 +105,7 @@ graph TB
 - 需要统一代码风格和 MCP 服务器
 ```
 
-::: tip
+:::
 
 AI 知道如何写配置文件，你只需要提供项目信息即可。
 
@@ -314,7 +320,7 @@ settings.json 是 Claude Code 的系统配置文件，控制权限模式、环�
 
 ::: details Hooks 配置
 
-Hooks 在特定事件时自动执行脚本，详见 [2.2 VibeCoding 工作流 - Hooks 自动化](./02-vibecoding-workflow.md#hooks-自动化)。
+Hooks 在特定事件时自动执行脚本，详见 2.2 VibeCoding 工作流 - Hooks 自动化 (./02-vibecoding-workflow.md)。
 
 **基本结构**：
 
@@ -586,6 +592,8 @@ git pull
 
 ## 相关内容
 
-- 前置：[2.2 VibeCoding工作流](./02-vibecoding-workflow.md)
-- 详见：[2.3 MCP、插件与 Skills](./03-mcp-skills.md)
-- 后续：[第三章 PRD与文档驱动](../03-prd-doc-driven/index.md)
+- 前置：2.2 VibeCoding工作流详解
+- 详见：2.3 MCP、插件与 Skills
+- 详见：10.10 Skills 团队知识共享
+- 详见：10.11 Agent Skills 团队协作
+- 后续：第三章 PRD文档驱动开发

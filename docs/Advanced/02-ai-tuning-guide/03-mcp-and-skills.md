@@ -7,6 +7,13 @@ priority: "🟡"
 
 # 2.3 MCP、插件与 Skills 🟡
 
+> **阅读完本节后，你将会收获：**
+> - 理解 MCP、插件、Skills 三种扩展方式的区别和使用场景，学会按需选择
+> - 掌握插件商店安装方法，了解常用插件（typescript-lsp、frontend-design、feature-dev 等）
+> - 学会 MCP 服务器配置和身份验证，能够连接数据库、API、GitHub 等外部服务
+> - 理解 Skills 的工作原理和创作要点，能够创建可复用的技能包
+> - 建立安全意识，学会为 MCP 和插件配置合理的权限限制
+
 > 序言中提到的"Skills 定义专属指令"和"MCP 让 AI 连接外部工具"。大部分情况下，你只需要**安装和使用现有的 MCP 服务器**，不需要自己开发。
 
 ::: tip 新手路径建议
@@ -22,80 +29,55 @@ priority: "🟡"
 
 :::
 
+**资源导航**：
+- 插件市场：[claude-plugins.dev](https://claude-plugins.dev/) - 浏览和搜索插件
+- Skills 市场：[skillsmp.com](https://skillsmp.com/zh) - 2300+ Skills 搜索目录
+- Agent Skills：[agentskills.io](https://agentskills.io/home) - Agent Skills 规范和市场
+- 官方插件库：[GitHub - anthropics/claude-code/plugins](https://github.com/anthropics/claude-code/tree/main/plugins)
+- 官方 Skills 库：[GitHub - anthropics/skills](https://github.com/anthropics/skills)
+
 ## 前置知识
 
 ::: tip 什么是 MCP
 
-MCP (Model Context Protocol) 是 AI 连接外部数据源和服务的标准协议。通过安装 MCP 服务器，AI 可以访问数据库、API、文件系统等外部资源。
+**MCP** = 外部工具连接
+
+MCP (Model Context Protocol) 让 AI 能连接外部服务（数据库、API、文件系统等）。MCP 可以独立配置，也可以打包在插件中。
 
 :::
 
 ::: tip 什么是 插件
 
-插件（Plugins）是通过插件商店安装的扩展，功能和 MCP 类似——都是扩展 AI 的能力边界。两者的区别在于安装方式：
+**插件** = 扩展容器（分发单位）
 
-| 特性 | MCP | 插件 |
-|------|-----|------|
-| **安装方式** | 配置文件 + CLI 命令 | 插件商店一键安装 |
-| **来源** | 社区开源 | 官方/第三方 |
-| **配置** | 手动编辑 JSON | 图形界面 |
-| **包含内容** | 仅 MCP 服务器 | 可包含命令、代理、Skills、Hooks、MCP |
+插件是功能包，可以包含 Skills、Commands、Agents、Hooks、MCP Servers。通过插件商店一键安装，比手动配置 MCP 更简单。
 
-**功能上两者是一样的**：都让 AI 能连接外部服务（数据库、GitHub、网络搜索等）。选择哪种方式取决于你的工具支持。
+| 需求 | 推荐方式 |
+|------|----------|
+| 代码智能（LSP） | 安装插件 |
+| 连接外部服务 | 配置 MCP 或安装包含 MCP 的插件 |
+| 自动化工作流 | 创建或安装 Skills |
+| 一键安装多个功能 | 安装插件 |
+
+**核心原则**：能用插件的就不手动配置 MCP，能用内置的就不扩展。
 
 :::
 
 ::: tip 什么是 Skills
 
-Skills 是 AI 的自定义指令文件（`.md` 格式），定义特定工作流。
+**Skills** = AI 的可复用技能包
 
-**重要**：Skills 和插件是两个独立概念。
-
-| 特性 | Skills | 插件 |
-|------|--------|------|
-| **本质** | 一个 `.md` 文件 | 一个 npm 包 |
-| **包含** | YAML frontmatter + 指令内容 | 可包含 Skills、斜杠命令、Hooks、MCP、子代理等 |
-| **安装** | 手动创建文件 | `npx claude-plugins install` |
-| **关系** | 插件可以包含多个 Skills | 一个插件是功能的集合 |
+Skills 通过 `SKILL.md` 文件定义特定能力，Claude 根据请求内容自动判断是否使用。
 
 **调用方式**：
-- **Skills**：模型调用（Model-invoked）—— AI 根据请求和描述自动决定何时使用
-- **斜杠命令**：用户调用（User-invoked）—— 用户显式输入 `/command` 触发
+- **Skills**：模型调用 —— AI 根据描述自动决定
+- **斜杠命令**：用户调用 —— 用户显式输入触发
 
 :::
 
-## 核心概念
+### 你必须知道的 AI 能力范围
 
-### Skills vs MCP
-
-```mermaid
-graph TB
-    A[AI 扩展能力] --> B[Skills<br/>内部工作流]
-    A --> C[MCP/插件<br/>外部连接]
-
-    B --> D[定义指令]
-    B --> E[自动化流程]
-
-    C --> F[连接数据库]
-    C --> G[调用 API]
-    C --> H[读取文件]
-```
-
-**Skills**：
-- 定义 AI 的工作方式
-- 自动化重复任务
-- 不涉及外部服务
-- **模型调用**（AI 自动识别需要时调用）
-
-**MCP/插件**：
-- 连接外部数据源
-- 调用外部 API
-- 扩展 AI 能力边界
-- 需要用户安装配置
-
-### 边界：你需要知道什么？
-
-**AI 能做的**（能力边界）：
+**AI 能做的**：
 
 | AI 能做 | AI 不能做 |
 |--------|----------|
@@ -103,22 +85,22 @@ graph TB
 | 运行你允许的命令 | 执行需要图形界面的操作 |
 | 理解代码结构和逻辑 | "记住"上次对话的内容 |
 | 连接你配置的外部服务 | 绕过系统安全限制 |
-| 自动选择合适的工具 | 猜测你心里想什么（请明确说） |
+| 自动选择合适的工具 | 猜测你心里想什么（所以请明确说） |
 
-**关键理解**：你只需要告诉 AI 你想做什么，AI 会自动选择合适的方法。你不需要知道 AI 用的是 Read、Edit 还是 Bash。
-
-**你不需要记住的**（工具细节）：
+:::tip 关键认知
+**你只需要告诉 AI 你想做什么，AI 会自动选择合适的方法。你不需要知道 AI 用的是 Read（读取文件）、Edit（编辑文件） 、Grep（搜索内容）、Glob（查找文件） 还是 Bash（运行命令），甚至是 Python（运行复制脚本）。**
+:::
+**你不需要记住工具细节**
 
 | 不需要记住 | 原因 |
 |-----------|------|
 | 工具的名字（Read、Edit、Grep...） | AI 会自动选择 |
-| MCP 和插件的区别 | 功能一样，安装方式不同 |
-| 具体的配置语法 | 让 AI 帮你生成 |
+| 具体的配置语法 | 让 AI 参考官方文档帮你生成 |
 | 所有可用的 MCP/插件服务器 | 按需搜索安装 |
 
-**你需要记住的只有一件事**：用自然语言描述你想做的事情。
+**你只需要用自然语言清晰地描述你想做的事情。**
 
-## 先检查 AI 内置能力
+##  AI 有哪些能力
 
 在配置 MCP 或 Skills 之前，记住：**AI 已经有很多内置能力**。
 
@@ -184,21 +166,20 @@ mindmap
 | TypeScript/JavaScript 类型检查、跳转定义 | typescript-lsp | "这个函数在哪里定义的？" |
 | Python 类型检查、代码补全 | pyright-lsp | "这个类的类型是什么？" |
 
-::: tip 代码智能需要安装插件
+
 
 LSP（语言服务器）能力**不是内置**，需要通过插件额外安装：
 
 ```bash
-# TypeScript/JavaScript 支持
-npx claude-plugins install @anthropics/claude-plugins-official/typescript-lsp
+# 打开插件管理界面
+/plugin
 
-# Python 支持
-npx claude-plugins install @anthropics/claude-plugins-official/pyright-lsp
+# 搜索 typescript-lsp 或 pyright-lsp 并安装
 ```
 
-支持的语言包括：TypeScript、JavaScript、Python、Rust、Go、C/C++、C#、PHP、Java、Ruby、Swift 等。详见下文"常用插件推荐"。
+支持的语言包括：TypeScript、JavaScript、Python、Rust、Go、C/C++、C#、PHP、Java、Ruby、Swift 等。
 
-:::
+
 
 **5. 项目理解** - 自动分析
 
@@ -214,7 +195,7 @@ npx claude-plugins install @anthropics/claude-plugins-official/pyright-lsp
 | 网络搜索 | Web Search MCP | ✅ |
 | 读取 GitHub 仓库 | ZRead MCP | ✅ |
 
-::: tip 网页读取的限制
+
 
 **AI 能读取的**：
 - ✅ 公开的网页链接（通过 MCP/插件）
@@ -226,7 +207,7 @@ npx claude-plugins install @anthropics/claude-plugins-official/pyright-lsp
 - ❌ 本地文件路径（非项目目录）
 - ❌ 被防火墙阻挡的网站
 
-:::
+
 
 **7. 任务管理** - AI 自动使用，你只需看到效果
 
@@ -271,7 +252,7 @@ npx claude-plugins install @anthropics/claude-plugins-official/pyright-lsp
 
 ::: tip 插件 vs MCP
 
-**插件（Plugins）**是通过插件商店安装的扩展，功能和 MCP 类似，但安装更简单：
+插件（Plugins）是通过插件商店安装的扩展，功能和 MCP 类似，但安装更简单：
 
 | 特性 | MCP | 插件 |
 |------|-----|------|
@@ -289,24 +270,18 @@ npx claude-plugins install @anthropics/claude-plugins-official/pyright-lsp
 **方式 1：通过插件商店（推荐）**
 
 ```bash
-# 打开插件管理界面
-/plugin
-
-# 搜索需要的插件
-# 按空格选中，按 i 安装
+/plugin 
+# 打开插件管理界面，搜索需要的插件，按空格选中，按 i 安装
 ```
 
 **方式 2：通过命令安装**
 
 ```bash
-# 直接安装指定插件
-npx claude-plugins install <插件名称>
-
 # 示例
-npx claude-plugins install @anthropics/claude-code-plugins/frontend-design
+/plugin install frontend-design@anthropics
 ```
 
-**方式 3：添加市场**
+**如果找不到你需要的插件，可以考虑添加插件所在的市场**
 
 ```bash
 # 添加市场
@@ -316,6 +291,106 @@ npx claude-plugins install @anthropics/claude-code-plugins/frontend-design
 /plugin
 ```
 
+### 常用插件推荐
+
+::: tip 推荐插件（新手必读）
+
+对于新手，推荐从这些插件开始：
+
+**基础开发**：
+- `typescript-lsp` - TypeScript/JavaScript 类型检查、代码补全、跳转定义
+- `pyright-lsp` - Python 类型检查和代码智能
+- `frontend-design` - 生成高质量前端界面
+
+**工作流**：
+- `feature-dev` - 完整的功能开发工作流
+- `pr-review-toolkit` - PR 审查工具包
+- `commit-commands` - Git 提交工作流
+
+**安装方式**：
+```bash
+# 打开插件管理界面，搜索上述插件并安装
+/plugin
+```
+
+:::
+
+
+
+::: details 查看完整插件推荐列表
+
+#### LSP 语言服务器（代码智能）
+
+| 插件 | 功能 |
+|------|------|
+| **typescript-lsp** | TypeScript/JavaScript 类型检查、代码补全、跳转定义 |
+| **pyright-lsp** | Python 类型检查和代码智能 |
+| **rust-analyzer-lsp** | Rust 语言服务器，代码智能和分析 |
+| **gopls-lsp** | Go 语言服务器，代码智能和重构 |
+| **clangd-lsp** | C/C++ 语言服务器，代码智能 |
+| **csharp-lsp** | C# 语言服务器，代码智能 |
+| **php-lsp** | PHP 语言服务器（Intelephense），代码智能 |
+| **swift-lsp** | Swift 语言服务器（SourceKit-LSP），代码智能 |
+| **jdtls-lsp** | Java 语言服务器，代码智能 |
+| **lua-lsp** | Lua 语言服务器，代码智能 |
+
+#### 开发工作流
+
+| 插件 | 功能 |
+|------|------|
+| **frontend-design** | 生成高质量前端界面，避免通用 AI 美学 |
+| **feature-dev** | 完整的功能开发工作流（7 阶段：发现、探索、澄清、设计、实现、审查、总结） |
+| **pr-review-toolkit** | PR 审查工具包，专注代码质量、测试、错误处理 |
+| **commit-commands** | Git 工作流简化，提交、推送、创建 PR 一键完成 |
+| **ralph-wiggum** | 迭代式 AI 开发循环技术 |
+
+#### 代码质量与安全
+
+| 插件 | 功能 |
+|------|------|
+| **code-review** | 自动代码审查，多专业代理并行分析，基于置信度评分过滤误报 |
+| **security-guidance** | 安全提醒 Hook，警告命令注入、XSS、不安全代码模式 |
+| **hookify** | 自动创建 Hooks，通过分析对话模式或明确指令防止不良行为 |
+
+#### 开发工具包
+
+| 插件 | 功能 |
+|------|------|
+| **agent-sdk-dev** | Agent SDK 开发工具包，创建和验证 Python/TypeScript Agent SDK 应用 |
+| **plugin-dev** | 插件开发工具包，Hooks、MCP 集成、插件结构、市场发布指导 |
+
+#### 输出风格
+
+| 插件 | 功能 |
+|------|------|
+| **explanatory-output-style** | 解释性输出风格，详细解释 AI 的思考和决策过程 |
+| **learning-output-style** | 学习导向输出，结合交互式学习和教育见解 |
+
+#### 示例与模板
+
+| 插件 | 功能 |
+|------|------|
+| **example-plugin** | 插件开发示例模板 |
+
+**安装方式**：输入 `/plugin` 后搜索并安装所需插件。
+
+:::
+
+
+### 使用插件
+
+安装后，插件会自动集成到 AI 的能力中，无需额外配置：
+
+```bash
+# 前端设计（安装 frontend-design 后）
+"创建一个用户登录页面，要求现代设计风格"
+
+# 功能开发（安装 feature-dev 后）
+"使用 feature-dev 工作流开发用户评论功能"
+
+# 代码审查（安装 pr-review-toolkit 后）
+"用 PR 审查工具检查这段代码"
+```
 ### 插件结构
 
 ::: details 插件目录结构
@@ -348,83 +423,13 @@ my-plugin/
 - **.mcp.json**：MCP 服务器配置
 
 :::
-
-### 常用插件推荐
-
-::: tip 推荐插件（新手必读）
-
-对于新手，推荐从这些插件开始：
-
-**基础开发**：
-- `typescript-lsp` - TypeScript/JavaScript 类型检查
-- `pyright-lsp` - Python 类型检查
-- `frontend-design` - 生成高质量前端界面
-
-**工作流**：
-- `feature-dev` - 完整的功能开发工作流
-- `commit-commands` - Git 提交工作流
-
-**安全**：
-- `security-guidance` - 安全提醒 Hook
-
-:::
-
-::: details 查看完整插件推荐列表
-
-#### LSP 语言服务器（代码智能）
-
-| 插件 | 功能 | 安装命令 |
-|------|------|----------|
-| **typescript-lsp** | TypeScript/JavaScript 类型检查、代码补全、跳转定义 | `npx claude-plugins install @anthropics/claude-plugins-official/typescript-lsp` |
-| **pyright-lsp** | Python 类型检查和代码智能 | `npx claude-plugins install @anthropics/claude-plugins-official/pyright-lsp` |
-| **rust-analyzer-lsp** | Rust 语言服务器，代码智能和分析 | `npx claude-plugins install @anthropics/claude-plugins-official/rust-analyzer-lsp` |
-| **gopls-lsp** | Go 语言服务器，代码智能和重构 | `npx claude-plugins install @anthropics/claude-plugins-official/gopls-lsp` |
-| **clangd-lsp** | C/C++ 语言服务器，代码智能 | `npx claude-plugins install @anthropics/claude-plugins-official/clangd-lsp` |
-| **csharp-lsp** | C# 语言服务器，代码智能 | `npx claude-plugins install @anthropics/claude-plugins-official/csharp-lsp` |
-| **php-lsp** | PHP 语言服务器（Intelephense），代码智能 | `npx claude-plugins install @anthropics/claude-plugins-official/php-lsp` |
-| **swift-lsp** | Swift 语言服务器（SourceKit-LSP），代码智能 | `npx claude-plugins install @anthropics/claude-plugins-official/swift-lsp` |
-
-#### 开发工作流
-
-| 插件 | 功能 | 安装命令 |
-|------|------|----------|
-| **frontend-design** | 生成高质量前端界面，避免通用 AI 美学 | `npx claude-plugins install @anthropics/claude-code-plugins/frontend-design` |
-| **feature-dev** | 完整的功能开发工作流，包含代码探索、架构设计、质量审查 | `npx claude-plugins install @anthropics/claude-code-plugins/feature-dev` |
-| **pr-review-toolkit** | PR 审查工具包，专注代码质量、测试、错误处理 | `npx claude-plugins install @anthropics/claude-code-plugins/pr-review-toolkit` |
-| **commit-commands** | Git 提交工作流，包括 commit、push、PR 创建 | `npx claude-plugins install @anthropics/claude-code-plugins/commit-commands` |
-| **security-guidance** | 安全提醒 Hook，警告命令注入、XSS 等安全问题 | `npx claude-plugins install @anthropics/claude-code-plugins/security-guidance` |
-| **javascript-typescript** | JavaScript/TypeScript 开发，ES6+、React、现代框架 | `npx claude-plugins install @wshobson/claude-code-workflows/javascript-typescript` |
-| **backend-development** | 后端 API 设计、GraphQL 架构、TDD 开发 | `npx claude-plugins install @wshobson/claude-code-workflows/backend-development` |
-| **python-development** | 现代 Python 开发，Django、FastAPI、异步模式 | `npx claude-plugins install @wshobson/claude-code-workflows/python-development` |
-| **database-design** | 数据库架构、Schema 设计、SQL 优化 | `npx claude-plugins install @wshobson/claude-code-workflows/database-design` |
-| **code-documentation** | 文档生成、代码解释、技术写作 | `npx claude-plugins install @wshobson/claude-code-workflows/code-documentation` |
-| **supabase-toolkit** | Supabase 完整工作流，包含命令、代理、MCP 集成 | `npx claude-plugins install @davila7/claude-code-templates/supabase-toolkit` |
-| **chrome-devtools-mcp** | Chrome 调试、性能分析、Puppeteer 自动化 | `npx claude-plugins install @ChromeDevTools/chrome-devtools-plugins/chrome-devtools-mcp` |
-
-:::
-
-### 使用插件
-
-安装后，插件会自动集成到 AI 的能力中，无需额外配置：
-
-```bash
-# 前端设计（安装 frontend-design 后）
-"创建一个用户登录页面，要求现代设计风格"
-
-# 功能开发（安装 feature-dev 后）
-"使用 feature-dev 工作流开发用户评论功能"
-
-# 代码审查（安装 pr-review-toolkit 后）
-"用 PR 审查工具检查这段代码"
-```
-
 ### 插件管理
 
 ::: details 管理命令
 
 ```bash
 # 查看已安装的插件
-/plugin list
+/plugin
 
 # 启用已禁用的插件
 /plugin enable plugin-name@marketplace-name
@@ -434,9 +439,6 @@ my-plugin/
 
 # 卸载插件
 /plugin uninstall plugin-name@marketplace-name
-
-# 更新插件
-npx claude-plugins update <插件名称>
 ```
 
 :::
@@ -503,221 +505,44 @@ npx claude-plugins update <插件名称>
 
 ### 热门 MCP 服务器
 
-::: details 查看完整 MCP 服务器列表
+| 分类 | MCP | 功能 |
+|------|-----|------|
+| **开发调试** | [GitHub MCP](https://github.com/github/github-mcp-server) | 操作代码仓库、PR、Issue 和 CI 流程 |
+| | [Chrome DevTools MCP](https://github.com/ChromeDevTools/chrome-devtools-mcp) | 操控浏览器进行页面调试、网络分析和自动化检查 |
+| | [ShadCN MCP](https://www.shadcn.com.cn/docs/mcp) | 生成可直接使用的 React + Tailwind UI 组件 |
+| | [Semgrep MCP](https://semgrep.dev/docs/mcp) | 代码静态安全扫描和规则检测 |
+| **数据库** | [PostgreSQL MCP](https://github.com/crystaldba/postgres-mcp) | 可配置的读写访问和性能分析 |
+| | [Neon MCP](https://neon.com/docs/ai/neon-mcp-server) | 按需创建和管理 Serverless PostgreSQL 数据库 |
+| | [Supabase MCP](https://supabase.com/docs/guides/getting-started/mcp) | 认证、数据库、存储、实时能力的一体化后端 |
+| **部署托管** | [Vercel MCP](https://vercel.com/docs/mcp) | 自动部署前端应用并生成预览环境 |
+| | [Cloudflare MCP](https://github.com/cloudflare/mcp-server-cloudflare) | 管理边缘计算资源（Workers、KV、R2） |
+| **设计与媒体** | [Figma MCP](https://developers.figma.com/docs/figma-mcp-server/remote-server-installation/) | 读取和修改 Figma 设计稿，实现设计到代码自动化 |
+| | [Replicate MCP](https://mcp.replicate.com/) | 调用图片生成接口，生成配图 |
+| **文档与上下文** | [Context7 MCP](https://context7.com/docs/overview) | 将官方实时最新文档转化为可靠上下文 |
+| | [Ref MCP](https://ref.tools/mcp) | 类似 Context7，减少 AI 幻觉 |
+| **支付** | [Stripe MCP](https://docs.stripe.com/mcp) | 自动化创建支付、订阅及 Webhook |
 
-| 分类 | MCP | 功能 | 需要 API Key |
-|------|-----|------|-------------|
-| **开发调试** | Chrome DevTools MCP | 操控浏览器进行页面调试、网络分析和自动化检查 | ❌ |
-| | GitHub MCP | 操作代码仓库、PR、Issue 和 CI 流程 | ✅ |
-| | ShadCN MCP | 生成可直接使用的 React + Tailwind UI 组件 | ❌ |
-| | Semgrep MCP | 代码静态安全扫描和规则检测 | ❌ |
-| **数据库** | PostgreSQL MCP | 查询数据库 | ❌ |
-| | Neon MCP | 按需创建和管理 Serverless PostgreSQL 数据库 | ✅ |
-| | Supabase MCP | 认证、数据库、存储、实时能力的一体化后端 | ✅ |
-| **部署托管** | Vercel MCP | 自动部署前端应用并生成预览环境 | ✅ |
-| | EdgeOne Pages MCP | 国内友好的前端静态站点托管与发布 | ✅ |
-| | Cloudflare MCP | 管理边缘计算资源（Workers、KV、R2） | ✅ |
-| **设计与媒体** | Figma MCP | 读取和修改 Figma 设计稿，实现设计到代码自动化 | ✅ |
-| | Replicate MCP | 调用图片生成接口，生成配图 | ✅ |
-| **文档与上下文** | Context7 MCP | 将官方实时最新文档转化为可靠上下文 | ❌ |
-| | Ref MCP | 类似 Context7，减少 AI 幻觉 | ❌ |
-| **支付** | Stripe MCP | 自动化创建支付、订阅及 Webhook | ✅ |
-| **开发工具** | MCP SDK | 开发自定义 MCP 工具的官方开发包 | ❌ |
+**注意**：部分 MCP 需要 API Key 才能使用。更多 MCP 服务器请访问 [MCP 合集](https://github.com/modelcontextprotocol/servers)。
 
 :::
-
-::: tip 查找更多 MCP 服务器
-
-- [MCP 官方仓库](https://github.com/modelcontextprotocol/servers)
-- [MCP 第三方服务器列表](https://github.com/modelcontextprotocol/awesome-mcp-servers)
-- 使用 `/plugin` 命令浏览插件商店（插件可包含 MCP）
-
+由于 MCP 服务器更新频繁，建议点击上方链接或搜索官网查询最新使用方式。
 :::
 
-### 三种安装方式
-
-::: details 安装方式详解
-
-#### 选项 1：添加远程 HTTP 服务器（推荐）
-
-HTTP 服务器是连接到远程 MCP 服务器的推荐选项。这是云服务最广泛支持的传输方式。
+### 使用 MCP
 
 ```bash
-# 基本语法
-claude mcp add --transport http <name> <url>
+# 查询数据库
+"查询 PostgreSQL：获取最近 7 天的注册用户数"
 
-# 真实示例：连接到 Notion
-claude mcp add --transport http notion https://mcp.notion.com/mcp
+# 读取 GitHub
+"查看仓库状态：最近 5 个 PR"
 
-# 带有 Bearer 令牌的示例
-claude mcp add --transport http secure-api https://api.example.com/mcp \
-  --header "Authorization: Bearer your-token"
+# 网络搜索
+"搜索：Next.js 16 的新特性"
+
+# 读取文件
+"读取 /path/to/file.md 并总结内容"
 ```
-
-#### 选项 2：添加远程 SSE 服务器
-
-::: warning
-SSE（Server-Sent Events）传输已弃用。请在可用的地方使用 HTTP 服务器。
-:::
-
-```bash
-# 基本语法
-claude mcp add --transport sse <name> <url>
-
-# 真实示例：连接到 Asana
-claude mcp add --transport sse asana https://mcp.asana.com/sse
-
-# 带有身份验证标头的示例
-claude mcp add --transport sse private-api https://api.company.com/sse \
-  --header "X-API-Key: your-key-here"
-```
-
-#### 选项 3：添加本地 stdio 服务器
-
-Stdio 服务器作为本地进程在您的计算机上运行。它们非常适合需要直接系统访问或自定义脚本的工具。
-
-```bash
-# 基本语法
-claude mcp add --transport stdio <name> <command> [args...]
-
-# 真实示例：添加 Airtable 服务器
-claude mcp add --transport stdio airtable --env AIRTABLE_API_KEY=YOUR_KEY \
-  -- npx -y airtable-mcp-server
-```
-
-::: tip 理解 "--" 参数
-
-`--`（双破折号）将 CLI 工具的标志与传递给 MCP 服务器的命令和参数分开。`--` 之前的所有内容都是工具的选项（如 `--env`、`--scope`），`--` 之后的所有内容都是运行 MCP 服务器的实际命令。
-
-例如：
-- `claude mcp add --transport stdio myserver -- npx server` → 运行 `npx server`
-- `claude mcp add --transport stdio myserver --env KEY=value -- python server.py --port 8080` → 运行 `python server.py --port 8080`，环境中设置 `KEY=value`
-
-这可以防止工具的标志与服务器标志之间的冲突。
-
-:::
-
-::: warning Windows 用户
-
-在本机 Windows（不是 WSL）上，使用 `npx` 的本地 MCP 服务器需要 `cmd /c` 包装器以确保正确执行。
-
-```bash
-# 这创建了 Windows 可以执行的 command="cmd"
-claude mcp add --transport stdio my-server -- cmd /c npx -y @some/package
-```
-
-没有 `cmd /c` 包装器，您会遇到"连接已关闭"错误，因为 Windows 无法直接执行 `npx`。
-
-:::
-
-:::
-
-### 管理您的服务器
-
-::: details 管理命令与高级选项
-
-配置后，您可以使用以下命令管理 MCP 服务器：
-
-```bash
-# 列出所有已配置的服务器
-claude mcp list
-
-# 获取特定服务器的详细信息
-claude mcp get github
-
-# 删除服务器
-claude mcp remove github
-
-# （在 Claude Code 中）检查服务器状态
-/mcp
-```
-
-**高级选项**：
-
-- **scope 选项**：指定配置的存储位置
-  - `local`（默认）：仅在当前项目中对您可用
-  - `project`：通过 `.mcp.json` 文件与项目中的所有人共享
-  - `user`：在所有项目中对您可用
-
-::: tip
-
-**交互式选择**：如果不指定 `--scope`，执行命令时会自动弹出选择菜单，供你选择存储位置。
-
-:::
-
-- **环境变量**：使用 `--env` 标志设置环境变量（例如 `--env KEY=value`）
-
-- **超时配置**：使用 `MCP_TIMEOUT` 环境变量配置 MCP 服务器启动超时（例如 `MCP_TIMEOUT=10000 claude` 设置 10 秒超时）
-
-- **输出限制**：当 MCP 工具输出超过 10,000 个令牌时，Claude Code 将显示警告。要增加此限制，请设置 `MAX_MCP_OUTPUT_TOKENS` 环境变量（例如 `MAX_MCP_OUTPUT_TOKENS=50000`）
-
-:::
-
-::: details Claude Desktop 配置（非 Claude Code）
-
-**配置文件位置**：
-
-**Claude Desktop** (`claude_desktop_config.json`)：
-- macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
-- Windows: `%APPDATA%/Claude/claude_desktop_config.json`
-
-**Claude Code** (`.claude/settings.json`)：
-- 项目根目录: `.claude/settings.json`
-
-**配置示例**（Claude Desktop）：
-
-```json
-{
-  "mcpServers": {
-    "postgres": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://user:pass@localhost/db"]
-    },
-    "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
-      "env": {
-        "GITHUB_TOKEN": "your-github-token"
-      }
-    },
-    "filesystem": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/allowed"]
-    },
-    "brave-search": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-brave-search"]
-    }
-  }
-}
-```
-
-:::
-
-### MCP 身份验证
-
-::: details OAuth 认证配置
-
-许多基于云的 MCP 服务器需要身份验证。Claude Code 支持 OAuth 2.0 以实现安全连接。
-
-```bash
-# 1. 添加需要身份验证的服务器
-claude mcp add --transport http sentry https://mcp.sentry.dev/mcp
-
-# 2. 在 Claude Code 中使用 /mcp 命令
-> /mcp
-
-# 3. 按照浏览器中的步骤登录
-```
-
-::: tip
-- 身份验证令牌存储安全且自动刷新
-- 在 `/mcp` 菜单中使用"清除身份验证"撤销访问权限
-- 如果浏览器不会自动打开，请复制提供的 URL
-- OAuth 身份验证适用于 HTTP 服务器
-:::
-
-:::
 
 ### 其他安装方式
 
@@ -738,47 +563,112 @@ claude mcp add-json local-weather '{"type":"stdio","command":"/path/to/weather-c
 
 :::
 
-::: details 从 Claude Desktop 导入
 
-如果您已在 Claude Desktop 中配置了 MCP 服务器，可以导入它们：
+::: details 查看安装与配置
+
+### 三种安装方式
+
+
+
+#### 选项 1：添加远程 HTTP 服务器（推荐）
+
+HTTP 服务器是连接到远程 MCP 服务器的推荐选项。这是云服务最广泛支持的传输方式。
 
 ```bash
 # 基本语法
-claude mcp add-from-claude-desktop
+claude mcp add --transport http <name> <url>
 
-# 运行命令后，您将看到一个交互式对话框，允许您选择要导入的服务器
+# 真实示例：连接到 Notion
+claude mcp add --transport http notion https://mcp.notion.com/mcp
+
+# 带有 Bearer 令牌的示例
+claude mcp add --transport http secure-api https://api.example.com/mcp \
+  --header "Authorization: Bearer your-token"
 ```
 
-::: tip
-- 此功能仅适用于 macOS 和 Windows Subsystem for Linux (WSL)
-- 它从这些平台上的标准位置读取 Claude Desktop 配置文件
-- 使用 `--scope user` 标志将服务器添加到您的用户配置
-- 导入的服务器将具有与 Claude Desktop 中相同的名称
-:::
 
-:::
+#### 选项 2：添加本地 stdio 服务器
 
-### 使用 MCP
+Stdio 服务器作为本地进程在您的计算机上运行。它们非常适合需要直接系统访问或自定义脚本的工具。
 
 ```bash
-# 查询数据库
-"查询 PostgreSQL：获取最近 7 天的注册用户数"
+# 基本语法
+claude mcp add --transport stdio <name> <command> [args...]
 
-# 读取 GitHub
-"查看仓库状态：最近 5 个 PR"
-
-# 网络搜索
-"搜索：Next.js 16 的新特性"
-
-# 读取文件
-"读取 /path/to/file.md 并总结内容"
+# 真实示例：添加 Airtable 服务器
+claude mcp add --transport stdio airtable --env AIRTABLE_API_KEY=YOUR_KEY \
+  -- npx -y airtable-mcp-server
 ```
 
-### MCP 资源和提示
 
-::: details 使用 MCP 资源
 
-MCP 服务器可以暴露资源，您可以使用 @ 提及来引用这些资源，类似于引用文件的方式。
+##### tip 理解 "--" 参数
+
+`--`（双破折号）将 CLI 工具的标志与传递给 MCP 服务器的命令和参数分开。`--` 之前的所有内容都是工具的选项（如 `--env`、`--scope`），`--` 之后的所有内容都是运行 MCP 服务器的实际命令。
+
+例如：
+- `claude mcp add --transport stdio myserver -- npx server` → 运行 `npx server`
+- `claude mcp add --transport stdio myserver --env KEY=value -- python server.py --port 8080` → 运行 `python server.py --port 8080`，环境中设置 `KEY=value`
+
+这可以防止工具的标志与服务器标志之间的冲突。
+
+
+
+##### Windows 用户
+
+在本机 Windows（不是 WSL）上，使用 `npx` 的本地 MCP 服务器需要 `cmd /c` 包装器以确保正确执行。
+
+```bash
+# 这创建了 Windows 可以执行的 command="cmd"
+claude mcp add --transport stdio my-server -- cmd /c npx -y @some/package
+```
+
+没有 `cmd /c` 包装器，您会遇到"连接已关闭"错误，因为 Windows 无法直接执行 `npx`。
+
+
+
+:::
+
+### 管理 MCP 服务器
+
+直接输入 `/mcp` 后按照提示操作即可。
+
+:::
+
+### MCP 身份验证
+
+::: details OAuth 认证配置
+
+许多基于云的 MCP 服务器需要身份验证。Claude Code 支持 OAuth 2.0 以实现安全连接。
+
+```bash
+# 1. 添加需要身份验证的服务器
+claude mcp add --transport http sentry https://mcp.sentry.dev/mcp
+
+# 2. 在 Claude Code 中使用 /mcp 命令
+> /mcp
+
+# 3. 按照浏览器中的步骤登录
+```
+
+:::
+- 身份验证令牌存储安全且自动刷新
+- 在 `/mcp` 菜单中使用"清除身份验证"撤销访问权限
+- 如果浏览器不会自动打开，请复制提供的 URL
+- OAuth 身份验证适用于 HTTP 服务器
+:::
+
+
+
+
+
+
+
+### MCP 提示
+
+::: details @ MCP 
+
+您可以使用 @ 提及来引用 MCP 资源，类似于引用文件的方式。
 
 **引用格式**：`@server:protocol://resource/path`
 
@@ -791,11 +681,10 @@ MCP 服务器可以暴露资源，您可以使用 @ 提及来引用这些资源�
 > "比较 @postgres:schema://users 和 @docs:file://database/user-model"
 ```
 
-::: tip
-- 引用时会自动获取资源并将其作为附件包含
+- 引用时会自动获取资源并将其作为附件
 - 资源路径在 @ 提及自动完成中可进行模糊搜索
 - 当服务器支持时，Claude Code 会自动提供工具来列出和读取 MCP 资源
-:::
+
 
 :::
 
@@ -814,47 +703,33 @@ MCP 服务器可以暴露提示，这些提示在 Claude Code 中作为斜杠命
 > /mcp__jira__create_issue "登录流中的错误" high
 ```
 
-::: tip
+:::
 - MCP 提示从连接的服务器动态发现
 - 参数根据提示的定义参数进行解析
 - 提示结果直接注入到对话中
 - 服务器和提示名称被规范化（空格变为下划线）
 :::
 
-:::
 
-### 实战场景
-
-**场景 1：数据库查询**
-
-配置 PostgreSQL MCP 后：
-```bash
-"查询用户表：获取活跃用户列表"
-"统计每个分类的文章数量"
-```
-
-**场景 2：GitHub 集成**
-
-配置 GitHub MCP 后：
-```bash
-"查看仓库 vibecorp/app 的 Issues"
-"显示最近合并的 PR"
-```
-
-**场景 3：网络搜索**
-
-配置 Brave Search MCP 后：
-```bash
-"搜索：TypeScript 5.8 的新特性"
-"查找：如何解决 React hydration 错误"
-```
 
 ## Skills：自定义工作流
+::: tip 什么是 Skills
 
-::: tip Skills 优先级说明
+**Skills** = AI 的可复用技能包
+
+Skills 通过 `SKILL.md` 文件定义特定能力，Claude 根据请求内容自动判断是否使用。
+
+**调用方式**：
+- **Skills**：模型调用 —— AI 根据描述自动决定
+- **斜杠命令**：用户调用 —— 用户显式输入触发
+
+**Skills 资源**：
+- [skillsmp.com](https://skillsmp.com/zh) - 2300+ Skills 搜索目录（中文）
+- [agentskills.io](https://agentskills.io/home) - Agent Skills 规范和市场
+- [github.com/anthropics/skills](https://github.com/anthropics/skills) - 官方 Skills 库
 
 **对于新手**：
-1. 优先使用插件自带的 Skills（开箱即用）
+1. 优先使用插件自带或者下载的 Skills（开箱即用）
 2. 需要时再创建自己的 Skills（进阶）
 3. 记住：Skills 是 AI 自动调用的，不需要手动触发
 
@@ -865,23 +740,8 @@ MCP 服务器可以暴露提示，这些提示在 Claude Code 中作为斜杠命
 
 :::
 
-### 前置知识
 
-::: tip 什么是 Skills
 
-Skills 是 AI 的自定义指令集，定义特定工作流。与斜杠命令不同：
-
-| 特性 | Skills | 斜杠命令 |
-|------|--------|----------|
-| **触发方式** | AI 自动识别需要时调用（模型调用） | 用户手动输入（用户调用） |
-| **作用域** | 全局可用 | 当前会话 |
-| **来源** | 自己创建或插件附带 | 内置或自己创建 |
-
-**核心区别**：
-- **Skills**：模型调用（Model-invoked）—— AI 根据请求和描述自动决定何时使用
-- **斜杠命令**：用户调用（User-invoked）—— 用户显式输入 `/command` 触发
-
-:::
 
 ### Skills 的获取方式
 
@@ -891,7 +751,7 @@ Skills 是 AI 的自定义指令集，定义特定工作流。与斜杠命令不
 
 ```bash
 # 安装插件后，插件包含的 Skills 会自动加载
-npx claude-plugins install @anthropics/claude-code-plugins/feature-dev
+/plugin install feature-dev@anthropics
 ```
 
 **自己创建**（进阶）
@@ -904,45 +764,7 @@ npx claude-plugins install @anthropics/claude-code-plugins/feature-dev
 | 创建 SKILL.md 文件 | 长期使用，多项目共享 |
 
 ### 创建 Skills
-
-**Skills 存放位置**：
-
-```bash
-# 个人 Skills（所有项目可用）
-~/.claude/skills/
-
-# 项目 Skills（仅当前项目）
-.claude/skills/
-
-# 插件 Skills（通过插件分发）
-plugin-name/skills/
-```
-
-**使用场景**：
-
-| 位置 | 使用场景 |
-|------|----------|
-| **个人 Skills** | 您的个人工作流和偏好、实验性 Skills、个人生产力工具 |
-| **项目 Skills** | 团队工作流和约定、项目特定专业知识、共享的实用程序和脚本 |
-| **插件 Skills** | 通过插件分发，安装插件时自动可用 |
-
-::: details 快速复制别人的 Skills
-
-**最简单的获取方式**：直接复制现成的 Skills 到你的目录。
-
-```bash
-# 将别人的 Skill 复制到你的项目
-cp -r other-project/.claude/skills/test-runner .claude/skills/
-
-# 从插件复制 Skills
-cp -r node_modules/plugin-name/skills/* ~/.claude/skills/
-
-# 重启工具后生效
-```
-
-:::
-
-::: details SKILL.md 文件结构（进阶）
+::: tip SKILL.md 文件结构
 
 ```yaml
 ---
@@ -994,6 +816,28 @@ This Skill provides read-only file access.
 ```
 
 :::
+**Skills 存放位置**：
+
+```bash
+# 个人 Skills（所有项目可用）
+~/.claude/skills/
+
+# 项目 Skills（仅当前项目）
+.claude/skills/
+
+# 插件 Skills（安装插件时自动可用）
+# 插件包内的 skills/ 目录
+```
+
+**使用场景**：
+
+| 位置 | 使用场景 |
+|------|----------|
+| **个人 Skills** | 您的个人工作流和偏好、实验性 Skills、个人生产力工具 |
+| **项目 Skills** | 团队工作流和约定、项目特定专业知识、共享的实用程序和脚本 |
+| **插件 Skills** | 安装插件时自动可用，插件包内的 skills/ 目录 |
+
+
 
 ### 与团队共享 Skills ⭐
 
@@ -1059,7 +903,7 @@ git pull
 
 ```bash
 # 安装插件
-npx claude-plugins install @anthropics/claude-code-plugins/feature-dev
+/plugin install feature-dev@anthropics
 
 # AI 会自动识别并使用插件包含的 Skills
 # 无需手动操作
@@ -1074,20 +918,6 @@ npx claude-plugins install @anthropics/claude-code-plugins/feature-dev
 # 测试 Skill
 "测试 test-runner skill"
 ```
-
-### Skills vs 斜杠命令
-
-| 特性 | Skills | 斜杠命令 |
-|------|--------|----------|
-| **触发** | AI 自动（模型调用） | 用户手动（用户调用） |
-| **配置** | SKILL.md 文件 | 配置文件 |
-| **灵活性** | 高（可包含复杂逻辑） | 中（预设命令） |
-| **推荐场景** | 重复性复杂流程 | 快捷操作 |
-
-**选择建议**：
-- 需要自动触发 → Skills
-- 手动快速执行 → 斜杠命令
-- 复杂多步骤流程 → Skills
 
 ## 安全注意事项
 
@@ -1149,8 +979,8 @@ npx claude-plugins install @anthropics/claude-code-plugins/feature-dev
 
 **A**: 访问官方资源：
 
-- [MCP 官方仓库](https://github.com/modelcontextprotocol/servers)
-- [MCP 第三方服务器列表](https://github.com/modelcontextprotocol/awesome-mcp-servers)
+- MCP 官方仓库 (https://github.com/modelcontextprotocol/servers)
+- MCP 第三方服务器列表 (https://github.com/modelcontextprotocol/awesome-mcp-servers)
 - 使用 `/plugin` 命令浏览插件商店
 
 ### Q4: MCP/插件会泄露我的数据吗？
@@ -1199,8 +1029,8 @@ graph TB
 
 ## 相关内容
 
-- 前置：[2.2 VibeCoding 工作流](./02-vibecoding-workflow.md)
-- 详见：[2.4 项目规则配置](./04-project-rules.md)
+- 前置：2.2 VibeCoding 工作流
+- 详见：2.4 项目规则配置
 - 扩展：[MCP 官方仓库](https://github.com/modelcontextprotocol/servers)
-- 扩展：[插件官方文档](https://code.claude.com/docs/plugins)
-- 扩展：[Agent Skills 官方文档](https://code.claude.com/docs/skills)
+- 扩展：[插件官方文档](hhttps://github.com/anthropics/claude-plugins-official)
+- 扩展：[Agent Skills 官方文档](https://code.claude.com/docs/zh-CN/skills)

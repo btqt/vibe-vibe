@@ -3,7 +3,7 @@ title: "第十章：Git 版本控制与跨平台协作"
 ---
 
 
-![10-git-collaboration_index.png](../../public/images/Advanced/10-git-collaboration_index.png)
+!10-git-collaboration_index.png (../../public/images/Advanced/10-git-collaboration_index.png)
 # 第十章：Git 版本控制与跨平台协作
 
 
@@ -162,3 +162,110 @@ PR还带来两个好处：**自动化检查**（平台自动运行测试，不�
 AI 会帮你完美合并代码，你只需要把修复后的代码复制回去，再次提交即可。
 
 通过 Git，你和朋友可以同步代码了。但老师傅告诉你，除了代码，你们团队的许多"隐性知识"——命名约定、工作流程、调试技巧——也需要共享。这些还可以通过 **Agent Skills** 来编码成可复用的知识单元。把 Skills 提交到 Git，队友拉取代码后，他们的 AI 就自动学会了这些团队约定。有关 Skills 的开发与使用，我们会在后续内容中讲解。
+
+::: tip Git 工作流最佳实践
+
+**日常开发三件套**：
+```bash
+git add .                    # 暂存所有修改
+git commit -m "描述"         # 提交到本地
+git push                     # 推送到远程
+```
+
+**提交信息规范（Conventional Commits）**：
+- `feat:` 新功能
+- `fix:` 修复 Bug
+- `docs:` 文档更新
+- `style:` 代码格式
+- `refactor:` 重构
+- `test:` 测试
+- `chore:` 构建/工具
+
+**示例**：
+```bash
+git commit -m "feat(auth): 添加用户登录功能"
+git commit -m "fix(api): 修复登录接口超时问题"
+```
+:::
+
+::: tip 团队协作黄金法则
+
+**跨平台协作三原则**：
+1. **配置 .gitignore**：防止污染队友环境
+   - ❌ 绝不提交：`node_modules`、`.env`、密钥文件
+   - ❌ 系统垃圾：`.DS_Store`、`Thumbs.db`
+   - ✅ 使用模板：github/gitignore
+
+2. **统一换行符**：避免假 diff
+   ```bash
+   # Git 配置
+   git config --global core.autocrlf input   # Mac/Linux
+   git config --global core.autocrlf true    # Windows
+   ```
+
+3. **统一路径分隔符**：永远使用 `/`
+   ```javascript
+   // ✅ 正确
+   import { Button } from 'src/components/Button';
+   // ❌ 错误
+   import { Button } from 'src\\components\\Button';
+   ```
+:::
+
+::: warning Git 安全警告
+
+**⚠️ 绝对不能提交的内容**：
+- ❌ API 密钥、Token、证书
+- ❌ 数据库密码、连接字符串
+- ❌ 私钥（`.pem`、`.key`、`id_rsa`）
+- ❌ 环境变量文件（`.env`、`.env.local`）
+- ❌ 个人敏感信息
+
+**检查清单**：
+```bash
+# 提交前检查
+git diff --cached --name-only | grep -E '\.(env|pem|key)$'
+```
+
+**如果已提交？立即撤销**：
+```bash
+# 从历史中彻底删除（危险操作）
+git filter-branch --force --index-filter \
+  "git rm --cached --ignore-unmatch .env" \
+  --prune-empty --tag-name-filter cat -- --all
+git push origin --force --all
+```
+:::
+
+::: tip 常见协作问题速查
+
+| 问题 | 原因 | 解决方案 |
+|------|------|----------|
+| **推送失败** | 远程有新提交 | `git pull --rebase` |
+| **拉取冲突** | 两人修改同一处 | 见"冲突解决"章节 |
+| **Windows 提交 CRLF** | 未配置 autocrlf | `git config core.autocrlf true` |
+| **文件找不到** | 大小写问题 | 统一使用小写命名 |
+| **node_modules 污染** | 未配置 .gitignore | 添加 `node_modules/` |
+
+**冲突解决提示**：
+```
+"把冲突内容发给 AI，说：解决这个 Git 冲突，
+保留我和远程最新的逻辑，如果逻辑冲突，请以我的为准"
+```
+:::
+
+## 小节导航
+
+```
+- 10.1 Git数据流向 (./01-Git数据流向.md) 🔴 - 理解 Git 的三区模型和数据流转
+- 10.2 GitHub/Gitee仓库创建 (./02-GitHub-Gitee仓库创建.md) 🔴 - 从零开始创建和配置云端代码仓库
+- 10.3 SSH详解 (./03-SSH详解.md) 🔴 - 理解 SSH 原理、配置和故障排查
+- 10.4 跨平台协作问题 (./04-跨平台协作问题.md) 🔴 - 解决 Windows、Mac、Linux 之间的协作差异
+- 10.5 Git常用命令 (./05-Git常用命令.md) 🔴 - 掌握日常开发中最常用的 Git 命令
+- 10.6 回滚操作实战 (./06-回滚操作实战.md) 🔴 - 掌握各种回滚场景的解决方案
+- 10.7 分支管理 (./07-分支管理.md) 🔴 - 理解分支模型和团队协作策略
+- 10.8 冲突解决实战 (./08-冲突解决实战.md) 🔴 - 从容应对 Git 合并冲突
+- 10.9 Pull Request工作流 (./09-Pull-Request工作流.md) 🔴 - 理解 PR 流程和代码审查
+- 10.10 Skills团队知识共享 (./10-Skills团队知识共享.md) 🟡 - 使用 Skills 编码和共享团队规范
+- 10.11 Agent Skills团队协作 (./11-Agent-Skills团队协作.md) 🟡 - 使用 Agent Skills 构建智能团队工作流
+```

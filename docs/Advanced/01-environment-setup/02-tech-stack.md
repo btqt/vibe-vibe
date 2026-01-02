@@ -6,6 +6,12 @@ chapter: "第一章"
 
 # 1.2 技术栈概念
 
+> **阅读完本节后，你将会收获：**
+> - 理解什么是技术栈以及前端、后端、数据库的分层架构
+> - 了解本教程采用的 AI 原生全栈技术栈及其选择原因
+> - 掌握通过 package.json 快速识别项目技术栈的方法
+> - 理解为什么这套技术栈更适合 AI 辅助开发和产品快速落地
+> - 知道各技术（Next.js、TypeScript、Prisma、PostgreSQL 等）的作用
 
 > 序言中提到的 TypeScript、Next.js 等名词，构成了现代 Web 开发的技术栈。
 
@@ -29,34 +35,27 @@ chapter: "第一章"
 
 现代 Web 应用的技术分层：
 
-```mermaid
-graph TB
-    subgraph 用户["用户界面"]
-        A1["浏览器"]
-        A2["移动端"]
-    end
-
-    subgraph 前端["前端框架"]
-        B1["Next.js"]
-        B2["TypeScript"]
-        B3["Tailwind CSS"]
-    end
-
-    subgraph 后端["后端服务"]
-        C1["API Routes"]
-        C2["Server Actions"]
-        C3["Middleware"]
-    end
-
-    subgraph 数据["数据存储"]
-        D1["Prisma ORM"]
-        D2["PostgreSQL"]
-        D3["Supabase"]
-    end
-
-    用户 --> 前端
-    前端 --> 后端
-    后端 --> 数据
+```
+用户界面
+  ├─ 浏览器
+  └─ 移动端
+        ↓
+全栈框架（Next.js 等）
+        ↓
+前端层
+  ├─ React 组件
+  ├─ TypeScript
+  └─ Tailwind CSS
+        ↓
+后端层
+  ├─ API Routes
+  ├─ Server Actions
+  └─ Middleware
+        ↓
+数据存储
+  ├─ Prisma ORM
+  ├─ PostgreSQL
+  └─ Supabase
 ```
 
 ### 全栈技术栈
@@ -228,19 +227,7 @@ AI 会负责写代码，你只需要：
 
 ### Q2: 为什么不直接用 JavaScript，要用 TypeScript？
 
-**A**: TypeScript 在开发阶段就能发现错误。
-
-```typescript
-// TypeScript 写代码时会指出类型不匹配
-const count: number = "hello";  // ❌ 编辑器会标红
-
-// JavaScript 要运行后才报错
-const count = "hello";
-count.toFixed(2);  // 💥 运行时崩溃
-```
-
-**对你的影响**：AI 会用 TypeScript 写代码，因为它能减少错误。你只需要看到类型标注（如 `: string`）时知道这是 TypeScript 即可。
-
+**A**: TypeScript 在开发阶段就能发现错误。AI 会用 TypeScript 写代码，因为它能减少错误。你只需要看到后缀（如 `.ts`）时知道这是 TypeScript 即可。
 ## 核心理念
 
 **这套技术栈的核心优势：让 AI 高效，让你省钱。**
@@ -267,6 +254,6 @@ graph TB
 
 ## 相关内容
 
-- 详见：[1.1 代码格式演变](./01-code-evolution.md)
-- 详见：[1.3 浏览器与服务器基础](./03-browser-server-basics.md)
-- 后续：[1.5 Node.js 环境与包管理](./05-nodejs-package-manager.md)
+- 详见：[1.1 代码格式演变]
+- 详见：[1.3 浏览器与服务器基础]
+- 后续：[1.5 Node.js 环境与包管理]

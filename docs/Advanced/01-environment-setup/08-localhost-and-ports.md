@@ -6,6 +6,11 @@ chapter: "第一章"
 
 # 1.8 Localhost 与端口
 
+> **阅读完本节后，你将会收获：**
+> - 理解 localhost、IP 地址和端口的概念及相互关系
+> - 掌握启动开发服务器并通过浏览器访问的方法
+> - 学会排查端口占用问题，处理 EADDRINUSE 错误
+> - 了解开发环境与生产环境的网络配置差异
 
 > 序言中提到的 `localhost:3000`，是本地开发服务器的地址。
 
@@ -303,7 +308,7 @@ sequenceDiagram
 
 ## 相关内容
 
-- 详见：[1.4 Terminal终端入门](./04-terminal-basics.md)
-- 详见：[第9章 Localhost与公网访问](/Advanced/09-localhost-public-access/)
-- 前置：[1.3 浏览器与服务器基础](./03-browser-server-basics.md)
-- 前置：[1.7 创建项目](./07-creating-projects.md)
+- 详见：[1.4 Terminal终端入门]
+- 详见：[第9章 Localhost与公网访问]
+- 前置：[1.3 浏览器与服务器基础]
+- 前置：[1.7 创建项目]
