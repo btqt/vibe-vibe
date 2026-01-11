@@ -215,7 +215,7 @@ features:
 | 想提升效率的开发者 | 基础篇 + 进阶篇 | 系统学习 AI 辅助开发工作流 |
 
 <!-- 备案期间暂时隐藏贡献者信息 -->
-了解更多项目详情与贡献者信息，请前往 [GitHub 仓库](https://github.com/datawhalechina/vibe-vibe)。
+了解更多项目信息，请前往 [GitHub 仓库](https://github.com/datawhalechina/vibe-vibe)。
 
 <!-- 
 ## 贡献者名单
