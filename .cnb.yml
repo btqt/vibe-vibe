@@ -4,14 +4,14 @@ $:
     - runner:
         cpus: 8
       docker:
-        image: docker.cnb.cool/eyre921/default-dev-env:latest
+        image: docker.cnb.cool/nfeyre/default-dev-env:latest
       services:
         - vscode
         - docker
       # 开发环境启动后会执行的任务
       imports:
-        - https://cnb.cool/eyre921/secret/-/blob/main/edgeone-pages-env.yml
-        - https://cnb.cool/eyre921/secret/-/blob/main/dk.yml
+        - https://cnb.cool/nfeyre/secret/-/blob/main/edgeone-pages-env.yml
+        - https://cnb.cool/nfeyre/secret/-/blob/main/dk.yml
       stages:
         - name: start 1P
           script: 1pctl start all
@@ -24,11 +24,11 @@ master:
   push:
     - &docs_deploy_pipeline
       imports:
-        - https://cnb.cool/eyre921/secret/-/blob/main/edgeone-pages-env.yml
+        - https://cnb.cool/nfeyre/secret/-/blob/main/edgeone-pages-env.yml
       runner:
         cpus: 8
       docker:
-        image: docker.cnb.cool/eyre921/default-dev-env:latest
+        image: docker.cnb.cool/nfeyre/default-dev-env:latest
       env:
         EDGEONE_PROJECT_NAME: vibe-vibe-production
       
@@ -56,7 +56,7 @@ develop:
       runner:
         cpus: 8
       docker:
-        image: docker.cnb.cool/eyre921/default-dev-env:latest
+        image: docker.cnb.cool/nfeyre/default-dev-env:latest
       stages:
         - name: prepare pnpm
           script:
@@ -73,7 +73,7 @@ develop:
       runner:
         cpus: 8
       docker:
-        image: docker.cnb.cool/eyre921/default-dev-env:latest
+        image: docker.cnb.cool/nfeyre/default-dev-env:latest
       stages:
         - name: auto merge
           type: git:auto-merge
