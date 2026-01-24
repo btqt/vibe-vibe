@@ -979,8 +979,7 @@ git pull
 
 **A**: 访问官方资源：
 
-- MCP 官方仓库 (https://github.com/modelcontextprotocol/servers)
-- MCP 第三方服务器列表 (https://github.com/modelcontextprotocol/awesome-mcp-servers)
+- MCP 仓库 (https://github.com/modelcontextprotocol/servers)
 - 使用 `/plugin` 命令浏览插件商店
 
 ### Q4: MCP/插件会泄露我的数据吗？

@@ -151,7 +151,7 @@ AI IDE 在此基础上集成了 AI Agent。这些 Agent 可以使用内置终端
 | 工具 | 用途 | 官网 |
 |------|------|------|
 | **DBeaver** | 通用数据库客户端（开源） | https://dbeaver.io |
-| **Drizzle Studio** | 可视化 Drizzle 数据库 | https://orm.drizzle.team/studio |
+| **Drizzle Studio** | 可视化 Drizzle 数据库 | https://orm.drizzle.team/drizzle-studio/overview |
 | **TablePlus** | 通用数据库客户端 | https://tableplus.com |
 | **Beekeeper Studio** | 开源数据库客户端 | https://www.beekeeperstudio.io |
 | **HeidiSQL** | Windows 开源数据库工具 | https://www.heidisql.com |
