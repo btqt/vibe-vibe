@@ -50,6 +50,8 @@ pnpm 是 Node.js 的包管理器，用于安装项目依赖（第三方代码包
 
 ### Windows 用户
 
+#### 方案 A：使用 nvm（推荐）
+
 下载 nvm-windows 安装包：https://nvm.uihtm.com/nvm-1.2.2-setup.zip
 
 下载后解压，运行 `.exe` 安装程序。
@@ -83,6 +85,32 @@ pnpm config set registry https://registry.npmmirror.com/
 # 验证
 pnpm -v
 ```
+
+::: warning nvm install 失败？
+
+如果 `nvm install lts` 因网络问题失败，可以**直接安装本教程推荐的 Node.js 24 LTS**：
+
+```powershell
+# 1. 从国内镜像下载 Node.js 24 LTS 安装包
+# 访问：https://npmmirror.com/mirrors/node/v24.13.0/node-v24.13.0-x64.msi
+# 下载后双击安装，一路"下一步"即可
+
+# 2. 安装完成后，打开新的 PowerShell 窗口验证
+node -v  # 应显示 v24.13.0 或类似版本
+
+# 3. 配置 npm 国内源并安装 pnpm
+npm config set registry https://registry.npmmirror.com/
+npm install -g pnpm
+pnpm setup
+pnpm config set registry https://registry.npmmirror.com/
+
+# 4. 验证
+pnpm -v
+```
+
+直接安装 Node.js 后无法像 nvm 那样轻松切换版本，但对于学习本教程完全够用。如果未来需要多版本管理，可以再安装 nvm。
+
+:::
 
 ### Mac 用户
 
