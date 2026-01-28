@@ -322,5 +322,5 @@ JSON 标准不支持注释。需要注释可以用 JSONC（JSON with Comments）
 ## 相关内容
 
 - 前置：[4.2 PRD与技术文档的关系](./02-prd-and-tech-docs.md)
-- 前置：[4.5 API集成实战](./05-api-integration.md)
-- 详见：[4.7 项目说明书结构](./07-readme-structure.md)
+- 前置：[4.6 API集成实战](./06-api-integration.md)
+- 详见：[4.8 项目说明书结构](./08-readme-structure.md)

@@ -3,16 +3,16 @@ import { onMounted, watch, nextTick, h, type VNode, defineComponent, ref } from 
 import { useRoute, useData } from 'vitepress'
 import mediumZoom from 'medium-zoom'
 import Giscus from '@giscus/vue'
-// Chapter 01: Environment Setup (flat naming: 1-0 for preface, 1-1 for main content)
-import InteractiveDemo from './components/1-0-InteractiveDemo.vue'
-import NodeVersionManager from './components/1-0-NodeVersionManager.vue'
-import TerminalPro from './components/1-0-TerminalPro.vue'
-import TerminalSimulator from './components/1-0-TerminalSimulator.vue'
-import FileSystemTree from './components/1-1-FileSystemTree.vue'
-import NetworkPorts from './components/1-1-NetworkPorts.vue'
-import PackageEcosystem from './components/1-1-PackageEcosystem.vue'
-import PackageManagerCompare from './components/1-1-PackageManagerCompare.vue'
-import TypeScriptCompiler from './components/1-1-TypeScriptCompiler.vue'
+// Chapter 01: Environment Setup (flat naming: 01-0 for preface, 01-1 for main content)
+import InteractiveDemo from './components/01-0-InteractiveDemo.vue'
+import NodeVersionManager from './components/01-0-NodeVersionManager.vue'
+import TerminalPro from './components/01-0-TerminalPro.vue'
+import TerminalSimulator from './components/01-0-TerminalSimulator.vue'
+import FileSystemTree from './components/01-1-FileSystemTree.vue'
+import NetworkPorts from './components/01-1-NetworkPorts.vue'
+import PackageEcosystem from './components/01-1-PackageEcosystem.vue'
+import PackageManagerCompare from './components/01-1-PackageManagerCompare.vue'
+import TypeScriptCompiler from './components/01-1-TypeScriptCompiler.vue'
 
 // 引入时间线样式
 import "vitepress-markdown-timeline/dist/theme/index.css";

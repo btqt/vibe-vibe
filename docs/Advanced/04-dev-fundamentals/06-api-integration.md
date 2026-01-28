@@ -284,6 +284,6 @@ flowchart TD
 
 ## 相关内容
 
-- 前置：[4.3 API与HTTP基础](./03-api-and-http.md)
-- 前置：[4.4 前后端分离概念](./04-frontend-backend-separation.md)
-- 详见：[4.6 配置文件格式](./06-config-formats.md)
+- 前置：[4.4 API与HTTP基础](./04-api-and-http.md)
+- 前置：[4.5 前后端分离概念](./05-frontend-backend-separation.md)
+- 详见：[4.7 配置文件格式](./07-config-formats.md)

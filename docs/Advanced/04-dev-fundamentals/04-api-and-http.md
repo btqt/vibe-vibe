@@ -1,11 +1,11 @@
 ---
-title: "4.3 API 与 HTTP 基础"
+title: "4.4 API 与 HTTP 基础"
 description: "掌握 API 和 HTTP 协议的工作原理"
 chapter: "第四章"
 priority: "🟢"
 ---
 
-# 4.3 API 与 HTTP 基础 🟢
+# 4.4 API 与 HTTP 基础 🟢
 
 > **阅读完本节后，你将会收获：**
 > - 理解 API 的概念和作用
@@ -24,7 +24,21 @@ priority: "🟢"
 
 在 Web 开发中，API 通常指 **Web API** 或 **HTTP API**，即通过 HTTP 协议进行通信的接口。前端通过调用后端的 API 来获取数据或提交操作。
 
-::: tip API 的类比
+::: tip API 就像函数
+
+还记得上一节讲的函数吗？API 本质上就是**远程的函数**。
+
+- **函数**：定义在代码里，接收参数，返回结果
+- **API**：定义在服务器上，接收 HTTP 请求（参数），返回 HTTP 响应（结果）
+
+调用 API 就像调用函数：
+- 函数调用：`calculatePrice(100, 2)` → 返回 `200`
+- API 调用：`GET /api/price?unit=100&quantity=2` → 返回 `{ "total": 200 }`
+
+两者的区别只在于：函数运行在本地，API 运行在远程服务器上。
+:::
+
+::: tip API 的餐厅类比
 
 把 API 想象成餐厅的菜单：
 - 前端是顾客
@@ -317,5 +331,5 @@ HTTPS 是加密的 HTTP，数据在传输过程中被加密，更安全。现代
 ## 相关内容
 
 - 前置：[1.3 浏览器与服务器基础](../01-environment-setup/03-browser-server.md)
-- 前置：[4.2 PRD与技术文档的关系](./02-prd-and-tech-docs.md)
-- 详见：[4.4 前后端分离概念](./04-frontend-backend-separation.md)
+- 前置：[4.3 编程的基本构件](./03-programming-basics.md)
+- 详见：[4.5 前后端分离概念](./05-frontend-backend-separation.md)

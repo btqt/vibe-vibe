@@ -371,5 +371,5 @@ README 是项目的"入口"和"概览"，技术文档是详细的实现说明。
 ## 相关内容
 
 - 前置：[4.2 PRD与技术文档的关系](./02-prd-and-tech-docs.md)
-- 前置：[4.6 配置文件格式](./06-config-formats.md)
+- 前置：[4.7 配置文件格式](./07-config-formats.md)
 - 详见：[第五章 代码运行的三种状态](../05-build-and-runtime-modes/index.md)

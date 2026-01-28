@@ -247,5 +247,5 @@ Next.js 的服务端组件（Server Components）在服务器渲染，可以安�
 ## 相关内容
 
 - 前置：[1.3 浏览器与服务器基础](../01-environment-setup/03-browser-server.md)
-- 前置：[4.3 API与HTTP基础](./03-api-and-http.md)
-- 详见：[4.5 API集成实战](./05-api-integration.md)
+- 前置：[4.4 API与HTTP基础](./04-api-and-http.md)
+- 详见：[4.6 API集成实战](./06-api-integration.md)
