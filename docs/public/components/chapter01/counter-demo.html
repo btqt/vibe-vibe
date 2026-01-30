@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>单文件 HTML 演示</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .demo-container {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 { color: #333; margin-bottom: 10px; font-size: 24px; }
+    .subtitle { color: #666; margin-bottom: 30px; font-size: 14px; }
+    .counter {
+      font-size: 72px;
+      font-weight: bold;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 20px 0;
+      transition: transform 0.2s;
+    }
+    .counter.pop { transform: scale(1.2); }
+    .buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102,126,234,0.4); }
+    .btn-secondary {
+      background: #f0f0f0;
+      color: #333;
+    }
+    .btn-secondary:hover { background: #e0e0e0; }
+    .code-block {
+      background: #1a1a2e;
+      color: #00ff88;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: "Courier New", monospace;
+      font-size: 12px;
+      text-align: left;
+      margin-top: 20px;
+      overflow-x: auto;
+    }
+    .particles {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      width: 10px; height: 10px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 50%;
+      animation: float 3s ease-in infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+  <div class="demo-container">
+    <h1>🚀 单文件 HTML</h1>
+    <p class="subtitle">一个文件包含所有代码</p>
+    <div class="counter" id="counter">0</div>
+    <div class="buttons">
+      <button class="btn-primary" onclick="increment()">+1</button>
+      <button class="btn-secondary" onclick="decrement()">-1</button>
+      <button class="btn-secondary" onclick="reset()">重置</button>
+    </div>
+    <div class="code-block" id="codeDisplay">let count = 0;</div>
+  </div>
+
+  <script>
+    let count = 0;
+    const counter = document.getElementById("counter");
+    const codeDisplay = document.getElementById("codeDisplay");
+    const colors = ["#667eea", "#764ba2", "#f093fb", "#f5576c", "#4facfe", "#00f2fe"];
+
+    function updateDisplay() {
+      counter.textContent = count;
+      codeDisplay.textContent = "let count = " + count + ";";
+      counter.classList.add("pop");
+      setTimeout(() => counter.classList.remove("pop"), 200);
+    }
+
+    function increment() {
+      count++;
+      updateDisplay();
+      createParticles();
+    }
+
+    function decrement() {
+      count--;
+      updateDisplay();
+    }
+
+    function reset() {
+      count = 0;
+      updateDisplay();
+    }
+
+    function createParticles() {
+      const container = document.getElementById("particles");
+      for (let i = 0; i < 5; i++) {
+        const p = document.createElement("div");
+        p.className = "particle";
+        p.style.left = Math.random() * 100 + "%";
+        p.style.background = colors[Math.floor(Math.random() * colors.length)];
+        p.style.animationDelay = Math.random() * 0.5 + "s";
+        p.style.animationDuration = (2 + Math.random() * 2) + "s";
+        container.appendChild(p);
+        setTimeout(() => p.remove(), 4000);
+      }
+    }
+  </script>
+</body>
+</html>

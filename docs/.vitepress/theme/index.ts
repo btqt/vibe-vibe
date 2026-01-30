@@ -3,6 +3,19 @@ import { onMounted, watch, nextTick, h, type VNode, defineComponent, ref } from 
 import { useRoute, useData } from 'vitepress'
 import mediumZoom from 'medium-zoom'
 import Giscus from '@giscus/vue'
+// Chapter 01: Environment Setup (flat naming: 01-0 for preface, 01-1 for main content)
+import InteractiveDemo from './components/01-0-InteractiveDemo.vue'
+import NodeVersionManager from './components/01-0-NodeVersionManager.vue'
+import TerminalPro from './components/01-0-TerminalPro.vue'
+import TerminalSimulator from './components/01-0-TerminalSimulator.vue'
+import FileSystemTree from './components/01-1-FileSystemTree.vue'
+import NetworkPorts from './components/01-1-NetworkPorts.vue'
+import PackageEcosystem from './components/01-1-PackageEcosystem.vue'
+import TypeScriptCompiler from './components/01-1-TypeScriptCompiler.vue'
+import CodeFormatEvolution from './components/01-1-CodeFormatEvolution.vue'
+import TechStackLayers from './components/01-1-TechStackArchitecture.vue'
+import BrowserServerFlow from './components/01-1-BrowserServerFlow.vue'
+import TerminalTroubleshoot from './components/01-1-TerminalTroubleshoot.vue'
 
 // 引入时间线样式
 import "vitepress-markdown-timeline/dist/theme/index.css";
@@ -87,6 +100,20 @@ const PwaInstallButton = defineComponent({
 
 export default {
   extends: DefaultTheme,
+  enhanceApp({ app }) {
+    app.component('TerminalSimulator', TerminalSimulator)
+    app.component('TerminalPro', TerminalPro)
+    app.component('InteractiveDemo', InteractiveDemo)
+    app.component('NodeVersionManager', NodeVersionManager)
+    app.component('NetworkPorts', NetworkPorts)
+    app.component('FileSystemTree', FileSystemTree)
+    app.component('PackageEcosystem', PackageEcosystem)
+    app.component('TypeScriptCompiler', TypeScriptCompiler)
+    app.component('CodeFormatEvolution', CodeFormatEvolution)
+    app.component('TechStackLayers', TechStackLayers)
+    app.component('BrowserServerFlow', BrowserServerFlow)
+    app.component('TerminalTroubleshoot', TerminalTroubleshoot)
+  },
   
   // 1. 布局扩展：注入 Giscus 评论
   Layout: () => {

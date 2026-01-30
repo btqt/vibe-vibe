@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terminal 模拟器</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "SF Mono", "Monaco", "Inconsolata", "Fira Code", monospace;
+      background: #1a1a2e;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .terminal {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #16213e;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .terminal-header {
+      background: #0f3460;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-red { background: #ff5f56; }
+    .dot-yellow { background: #ffbd2e; }
+    .dot-green { background: #27c93f; }
+    .terminal-title { color: #a0a0a0; font-size: 13px; margin-left: 10px; }
+    .terminal-body {
+      padding: 16px;
+      min-height: 300px;
+      max-height: 400px;
+      overflow-y: auto;
+      color: #00ff88;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .output-line { margin: 4px 0; white-space: pre-wrap; word-break: break-all; }
+    .prompt-line { display: flex; align-items: center; margin-top: 8px; }
+    .prompt { color: #00d4ff; margin-right: 8px; white-space: nowrap; }
+    .input {
+      background: transparent;
+      border: none;
+      color: #00ff88;
+      font-family: inherit;
+      font-size: 14px;
+      flex: 1;
+      outline: none;
+      min-width: 50px;
+    }
+    .command { color: #ffd700; }
+    .error { color: #ff6b6b; }
+    .success { color: #51cf66; }
+    .info { color: #74c0fc; }
+    .hint {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 52, 96, 0.9);
+      color: #a0a0a0;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal">
+    <div class="terminal-header">
+      <span class="dot dot-red"></span>
+      <span class="dot dot-yellow"></span>
+      <span class="dot dot-green"></span>
+      <span class="terminal-title">bash — Terminal Simulator</span>
+    </div>
+    <div class="terminal-body" id="terminal">
+      <div class="output-line info">Welcome to Terminal Simulator!</div>
+      <div class="output-line info">Type "help" for available commands.</div>
+      <div class="prompt-line">
+        <span class="prompt" id="prompt">➜ ~</span>
+        <input type="text" class="input" id="input" autofocus autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+  </div>
+  <div class="hint">支持: help, ls, pwd, cd, clear</div>
+
+  <script>
+    const terminal = document.getElementById("terminal");
+    const input = document.getElementById("input");
+    const promptEl = document.getElementById("prompt");
+    let currentDir = "~";
+    const dirs = {
+      "~": ["Documents", "Downloads", "Projects", ".config"],
+      "Documents": ["work", "personal", "temp"],
+      "Projects": ["my-app", "demo", "test"]
+    };
+
+    input.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        const cmd = input.value.trim();
+        processCommand(cmd);
+        input.value = "";
+      }
+    });
+
+    function processCommand(cmd) {
+      const parts = cmd.split(" ").filter(p => p);
+      const command = parts[0] || "";
+      const arg = parts[1];
+
+      // Show command
+      const cmdLine = document.createElement("div");
+      cmdLine.className = "output-line";
+      cmdLine.innerHTML = `<span class="prompt">➜ ${currentDir}</span> <span class="command">${escapeHtml(cmd)}</span>`;
+      terminal.insertBefore(cmdLine, terminal.lastElementChild);
+
+      // Process command
+      let output = "";
+      let outputClass = "info";
+
+      switch(command) {
+        case "":
+          break;
+        case "help":
+          output = `Available commands:
+  ls              List directory contents
+  pwd             Print working directory
+  cd [dir]        Change directory
+  cd ..           Go to parent directory
+  clear           Clear terminal screen
+  help            Show this help message`;
+          break;
+        case "ls":
+          const items = dirs[currentDir] || [];
+          output = items.length > 0 ? items.join("  ") : "(empty directory)";
+          outputClass = "success";
+          break;
+        case "pwd":
+          output = `/home/user${currentDir === "~" ? "" : "/" + currentDir}`;
+          outputClass = "success";
+          break;
+        case "cd":
+          if (!arg || arg === "~") {
+            currentDir = "~";
+          } else if (arg === "..") {
+            currentDir = "~";
+          } else {
+            const targetDir = arg.replace(/^\.\//, "");
+            const availableDirs = dirs[currentDir] || [];
+            if (availableDirs.includes(targetDir) || dirs[targetDir]) {
+              currentDir = targetDir;
+            } else {
+              output = `cd: no such file or directory: ${arg}`;
+              outputClass = "error";
+            }
+          }
+          updatePrompt();
+          break;
+        case "clear":
+          const lines = terminal.querySelectorAll(".output-line");
+          lines.forEach(line => line.remove());
+          return;
+        default:
+          output = `command not found: ${command}`;
+          outputClass = "error";
+      }
+
+      if (output) {
+        const outLine = document.createElement("div");
+        outLine.className = `output-line ${outputClass}`;
+        outLine.textContent = output;
+        terminal.insertBefore(outLine, terminal.lastElementChild);
+      }
+
+      terminal.scrollTop = terminal.scrollHeight;
+    }
+
+    function updatePrompt() {
+      promptEl.textContent = `➜ ${currentDir}`;
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Keep focus on input
+    document.addEventListener("click", () => input.focus());
+    input.focus();
+  </script>
+</body>
+</html>

@@ -223,9 +223,11 @@ git diff --cached --name-only | grep -E '\.(env|pem|key)$'
 **如果已提交？立即撤销**：
 ```bash
 # 从历史中彻底删除（危险操作）
-git filter-branch --force --index-filter \
-  "git rm --cached --ignore-unmatch .env" \
-  --prune-empty --tag-name-filter cat -- --all
+# 推荐使用 BFG Repo-Cleaner 或 git filter-repo（比 filter-branch 更快更安全）
+# 例如使用 BFG：
+# bfg --delete-files .env
+# git reflog expire --expire=now --all
+# git gc --prune=now --aggressive
 git push origin --force --all
 ```
 :::
@@ -250,15 +252,15 @@ git push origin --force --all
 ## 小节导航
 
 ```
-- 10.1 Git数据流向 (./01-Git数据流向.md) 🔴 - 理解 Git 的三区模型和数据流转
-- 10.2 GitHub/Gitee仓库创建 (./02-GitHub-Gitee仓库创建.md) 🔴 - 从零开始创建和配置云端代码仓库
-- 10.3 SSH详解 (./03-SSH详解.md) 🔴 - 理解 SSH 原理、配置和故障排查
-- 10.4 跨平台协作问题 (./04-跨平台协作问题.md) 🔴 - 解决 Windows、Mac、Linux 之间的协作差异
-- 10.5 Git常用命令 (./05-Git常用命令.md) 🔴 - 掌握日常开发中最常用的 Git 命令
-- 10.6 回滚操作实战 (./06-回滚操作实战.md) 🔴 - 掌握各种回滚场景的解决方案
-- 10.7 分支管理 (./07-分支管理.md) 🔴 - 理解分支模型和团队协作策略
-- 10.8 冲突解决实战 (./08-冲突解决实战.md) 🔴 - 从容应对 Git 合并冲突
-- 10.9 Pull Request工作流 (./09-Pull-Request工作流.md) 🔴 - 理解 PR 流程和代码审查
-- 10.10 Skills团队知识共享 (./10-Skills团队知识共享.md) 🟡 - 使用 Skills 编码和共享团队规范
-- 10.11 Agent Skills团队协作 (./11-Agent-Skills团队协作.md) 🟡 - 使用 Agent Skills 构建智能团队工作流
+- 11.1 Git数据流向 (./01-Git数据流向.md) 🔴 - 理解 Git 的三区模型和数据流转
+- 11.2 GitHub/Gitee仓库创建 (./02-GitHub-Gitee仓库创建.md) 🔴 - 从零开始创建和配置云端代码仓库
+- 11.3 SSH详解 (./03-SSH详解.md) 🔴 - 理解 SSH 原理、配置和故障排查
+- 11.4 跨平台协作问题 (./04-跨平台协作问题.md) 🔴 - 解决 Windows、Mac、Linux 之间的协作差异
+- 11.5 Git常用命令 (./05-Git常用命令.md) 🔴 - 掌握日常开发中最常用的 Git 命令
+- 11.6 回滚操作实战 (./06-回滚操作实战.md) 🔴 - 掌握各种回滚场景的解决方案
+- 11.7 分支管理 (./07-分支管理.md) 🔴 - 理解分支模型和团队协作策略
+- 11.8 冲突解决实战 (./08-冲突解决实战.md) 🔴 - 从容应对 Git 合并冲突
+- 11.9 Pull Request工作流 (./09-Pull-Request工作流.md) 🔴 - 理解 PR 流程和代码审查
+- 11.10 Skills团队知识共享 (./10-Skills团队知识共享.md) 🟡 - 使用 Skills 编码和共享团队规范
+- 11.11 Agent Skills团队协作 (./11-Agent-Skills团队协作.md) 🟡 - 使用 Agent Skills 构建智能团队工作流
 ```

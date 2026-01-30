@@ -742,7 +742,6 @@ Skills 通过 `SKILL.md` 文件定义特定能力，Claude 根据请求内容自
 
 
 
-
 ### Skills 的获取方式
 
 **从插件获取**（推荐新手）
@@ -979,8 +978,7 @@ git pull
 
 **A**: 访问官方资源：
 
-- MCP 官方仓库 (https://github.com/modelcontextprotocol/servers)
-- MCP 第三方服务器列表 (https://github.com/modelcontextprotocol/awesome-mcp-servers)
+- MCP 仓库 (https://github.com/modelcontextprotocol/servers)
 - 使用 `/plugin` 命令浏览插件商店
 
 ### Q4: MCP/插件会泄露我的数据吗？
