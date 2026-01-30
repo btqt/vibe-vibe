@@ -1,0 +1,365 @@
+---
+title: "A. Bảng tra cứu mẫu tư duy"
+---
+
+![02-mindset_appendix_A-templates.png](../../../public/images/Basic/02-mindset_appendix_A-templates.png)
+
+# A. Bảng tra cứu mẫu tư duy
+
+Phụ lục này tổng hợp các mẫu cốt lõi của bảy mô hình tư duy trong Chương 2, mỗi mẫu đều đi kèm ví dụ điền mẫu và hướng dẫn bối cảnh sử dụng.
+
+## Đề xuất thứ tự sử dụng mẫu
+
+```
+Phát hiện vấn đề → JTBD → Tư duy ngược → Tư duy phép trừ → Tư duy câu chuyện → Ba câu hỏi linh hồn → Thích ứng bối cảnh
+        ↓           ↓          ↓               ↓                 ↓                  ↓
+   Tìm vấn đề   Định nghĩa   Phòng ngừa      Tập trung          Hiểu            Tự kiểm tra
+                nhiệm vụ      thất bại          MVP           người dùng         cuối cùng
+```
+
+Không nhất thiết lần nào cũng phải đi hết quy trình. Các dự án đơn giản có thể bỏ qua một số bước, nhưng **Ba câu hỏi linh hồn** là bước kiểm tra giới hạn cuối cùng.
+
+## 1. Mẫu mô tả nhiệm vụ JTBD
+
+**Bối cảnh áp dụng**: Sử dụng khi bạn có một ý tưởng và cần xác định rõ "người dùng thực sự muốn hoàn thành nhiệm vụ gì".
+
+### Mẫu
+
+```markdown
+Khi [Loại người dùng] ở trong [Bối cảnh cụ thể],
+Muốn [Nhiệm vụ cần hoàn thành],
+Để [Kết quả hoặc cảm nhận đạt được].
+```
+
+### Ví dụ điền mẫu
+
+```markdown
+Khi Người mới đi làm ở trong Buổi sáng đến công ty bắt đầu làm việc,
+Muốn Ghi nhanh những việc cần làm hôm nay,
+Để Không bỏ sót nhiệm vụ quan trọng, có thể yên tâm đầu tư vào công việc.
+```
+
+### Nâng cao: Ba tầng nhiệm vụ
+
+| Tầng nhiệm vụ      | Câu hỏi                                 | Ví dụ                                    |
+| :----------------- | :-------------------------------------- | :--------------------------------------- |
+| Nhiệm vụ chức năng | Cần hoàn thành việc cụ thể gì?          | Ghi chép và xem các việc cần làm         |
+| Nhiệm vụ cảm xúc   | Muốn cảm nhận điều gì?                  | Giảm bớt lo âu, cảm thấy yên tâm         |
+| Nhiệm vụ xã hội    | Muốn được người khác nhìn nhận thế nào? | Tỏ ra đáng tin cậy trước mặt đồng nghiệp |
+
+## 2. Mẫu diễn tập thất bại Pre-mortem
+
+**Bối cảnh áp dụng**: Trước khi bắt đầu dự án, sử dụng tư duy ngược để nhận diện trước các yếu tố có thể dẫn đến thất bại.
+
+### Mẫu
+
+```markdown
+## Phân tích Pre-mortem
+
+Giả sử [Thời gian] sau dự án thất bại, nguyên nhân có thể là:
+
+| Nguyên nhân thất bại | Khả năng(Cao/Trung bình/Thấp) | Nghiêm trọng(Cao/Trung bình/Thấp) | Biện pháp phòng ngừa |
+| :------------------- | :---------------------------- | :-------------------------------- | :------------------- |
+| 1.                   |                               |                                   |                      |
+| 2.                   |                               |                                   |                      |
+| 3.                   |                               |                                   |                      |
+
+Rủi ro cần cảnh giác nhất (Khả năng cao + Nghiêm trọng cao):
+
+---
+
+Hành động cụ thể tương ứng:
+
+---
+```
+
+### Ví dụ điền mẫu
+
+```markdown
+## Phân tích Pre-mortem
+
+Giả sử 3 tháng sau dự án thất bại, nguyên nhân có thể là:
+
+| Nguyên nhân thất bại                | Khả năng   | Nghiêm trọng | Biện pháp phòng ngừa                                     |
+| :---------------------------------- | :--------- | :----------- | :------------------------------------------------------- |
+| Tính năng quá nhiều, làm không xong | Cao        | Cao          | Phiên bản đầu chỉ làm 3 tính năng cốt lõi                |
+| Dùng còn phiền hơn giấy nhớ         | Trung bình | Cao          | Thêm nhiệm vụ phải hoàn thành trong 3 giây               |
+| Làm xong chính mình cũng không dùng | Trung bình | Cao          | Dùng danh sách giấy một tuần để xác minh thói quen trước |
+
+Rủi ro cần cảnh giác nhất: Tính năng quá nhiều, làm không xong
+
+Hành động cụ thể tương ứng: Xác định rõ tính năng P0 chỉ có 3 cái, còn lại đều cho vào "Danh sách không làm"
+```
+
+## 3. Mẫu thiết kế MVP
+
+**Bối cảnh áp dụng**: Sử dụng khi bạn cần xác định phiên bản đầu tiên sẽ làm gì và không làm gì.
+
+### Mẫu
+
+```markdown
+## Thiết kế MVP
+
+**Giả thiết cốt lõi**: ******\_\_\_******
+(Dùng một câu mô tả giả thiết quan trọng nhất bạn muốn xác minh)
+
+**Tiêu chuẩn xác minh**: ******\_\_\_******
+(Kết quả gì chứng minh giả thiết thành lập?)
+
+**Tính năng P0 (Bắt buộc có, trong vòng 3 cái)**:
+
+1. ***
+2. ***
+3. ***
+
+**Danh sách không làm (Xác định rõ những việc không làm)**:
+
+- Không làm ******\_\_\_****** , vì ******\_\_\_******
+- Không làm ******\_\_\_****** , vì ******\_\_\_******
+- Không làm ******\_\_\_****** , vì ******\_\_\_******
+```
+
+### Ví dụ điền mẫu
+
+```markdown
+## Thiết kế MVP
+
+**Giả thiết cốt lõi**: Một danh sách việc cần làm mỗi ngày cực giản, dùng tốt hơn giấy nhớ và ghi chú điện thoại
+
+**Tiêu chuẩn xác minh**: Bản thân sử dụng liên tục 7 ngày, ngày nào cũng dùng nó ghi và hoàn thành nhiệm vụ
+
+**Tính năng P0 (Bắt buộc có)**:
+
+1. Thêm nhiệm vụ
+2. Hoàn thành nhiệm vụ (đánh dấu)
+3. Xem nhiệm vụ hôm nay
+
+**Danh sách không làm**:
+
+- Không làm Đồng bộ nhiều thiết bị, vì Cần phát triển backend, tăng độ phức tạp rất nhiều
+- Không làm Thẻ phân loại nhiệm vụ, vì Không phải cốt lõi của trải nghiệm cực giản
+- Không làm Nhắc nhở hạn chót, vì Xác minh giá trị cốt lõi "ghi chép" trước
+```
+
+## 4. Mẫu câu chuyện người dùng (Chân dung ba chiều)
+
+**Bối cảnh áp dụng**: Sử dụng khi bạn cần mô tả rõ ràng "người dùng là ai".
+
+### Mẫu
+
+```markdown
+## Chân dung người dùng
+
+**Tên người dùng**: ******\_\_\_****** (Đặt cho họ một cái tên)
+
+**Mô tả một câu**: ******\_\_\_******
+
+| Chiều             | Nội dung                                                  |
+| :---------------- | :-------------------------------------------------------- |
+| Thuộc tính bề mặt | Tuổi tác, nghề nghiệp, mỗi ngày xử lý bao nhiêu việc      |
+| Thói quen hành vi | Hàng ngày dùng công cụ gì, dùng khi nào, dùng thế nào     |
+| Động cơ sâu xa    | Sợ cái gì, theo đuổi cái gì, muốn trở thành người thế nào |
+
+**Bối cảnh sử dụng**:
+
+- Bối cảnh 1: ******\_\_\_******
+- Bối cảnh 2: ******\_\_\_******
+- Bối cảnh 3: ******\_\_\_******
+```
+
+### Ví dụ điền mẫu
+
+```markdown
+## Chân dung người dùng
+
+**Tên người dùng**: Tiểu Lý
+
+**Mô tả một câu**: 25 tuổi, người mới đi làm, sợ sót nhiệm vụ bị sếp phê bình
+
+| Chiều             | Nội dung                                                                              |
+| :---------------- | :------------------------------------------------------------------------------------ |
+| Thuộc tính bề mặt | 25 tuổi, vận hành công ty Internet, mỗi ngày xử lý 10-15 việc                         |
+| Thói quen hành vi | Sáng đến công ty xem email trước, dùng ghi chú điện thoại ghi việc nhưng hay quên xem |
+| Động cơ sâu xa    | Sợ sót nhiệm vụ bị phê bình, muốn trở thành người đáng tin cậy                        |
+
+**Bối cảnh sử dụng**:
+
+- Bối cảnh 1: Sáng đến công ty, mở máy tính, ghi nhanh những việc cần làm hôm nay
+- Bối cảnh 2: Đang làm việc nhớ ra một chuyện, cần ghi lại trong vòng 3 giây
+- Bối cảnh 3: Trước khi tan làm, kiểm tra xem việc hôm nay đã xong hết chưa
+```
+
+## 5. Mẫu tự kiểm tra Ba câu hỏi linh hồn
+
+**Bối cảnh áp dụng**: Thực hiện lần tự kiểm tra cuối cùng trước khi bắt tay vào làm. Ba đèn xanh mới được bắt đầu.
+
+### Mẫu
+
+```markdown
+## Tự kiểm tra Ba câu hỏi linh hồn
+
+**Tên dự án**: ******\_\_\_******
+
+| Câu hỏi           | Trả lời            | Trạng thái |
+| :---------------- | :----------------- | :--------- |
+| Người dùng là ai? | ******\_\_\_****** | 🟢/🟡/🔴   |
+| Nỗi đau ở đâu?    | ******\_\_\_****** | 🟢/🟡/🔴   |
+| Tại sao chọn tôi? | ******\_\_\_****** | 🟢/🟡/🔴   |
+
+**Giải thích trạng thái**:
+
+- 🟢 Đèn xanh: Có thể trả lời rõ ràng bằng một câu
+- 🟡 Đèn vàng: Có ý tưởng nhưng nói không rõ
+- 🔴 Đèn đỏ: Hoàn toàn không trả lời được
+
+**Kết luận**: □ Có thể bắt đầu (Toàn xanh) □ Cần hoàn thiện (Có vàng) □ Dừng lại đã (Có đỏ)
+```
+
+### Ví dụ điền mẫu
+
+```markdown
+## Tự kiểm tra Ba câu hỏi linh hồn
+
+**Tên dự án**: Danh sách việc cần làm cực giản
+
+| Câu hỏi           | Trả lời                                                                                     | Trạng thái |
+| :---------------- | :------------------------------------------------------------------------------------------ | :--------- |
+| Người dùng là ai? | Tiểu Lý —— 25 tuổi, người mới đi làm, sợ sót nhiệm vụ                                       | 🟢         |
+| Nỗi đau ở đâu?    | Thường xuyên quên việc bị phê bình, công cụ hiện có hoặc quá phức tạp hoặc dễ quên xem      | 🟢         |
+| Tại sao chọn tôi? | Mở ra là thấy việc cần làm hôm nay, 3 giây thêm nhiệm vụ, thuận tay hơn giấy nhớ và ghi chú | 🟢         |
+
+**Kết luận**: ☑ Có thể bắt đầu (Toàn xanh)
+```
+
+## 6. Mẫu nhật ký phiền não
+
+**Bối cảnh áp dụng**: Khi bạn không biết làm dự án gì, dùng phương pháp này để phát hiện vấn đề đáng giải quyết.
+
+### Mẫu
+
+```markdown
+## Nhật ký phiền não
+
+**Ngày tháng**: ******\_\_\_******
+
+**Khoảnh khắc phiền não**: ******\_\_\_****** (Một câu mô tả chuyện gì đã xảy ra)
+
+**Đang làm gì lúc đó**: ******\_\_\_******
+
+**Tại sao phiền**: □ Quá chậm □ Quá phiền phức □ Dễ sai sót □ Khác: \_\_\_
+
+**Cuối cùng tôi giải quyết thế nào**: □ Chịu đựng làm cho xong □ Nhờ người giúp □ Bỏ cuộc □ Khác: \_\_\_
+
+**Việc này bao lâu xảy ra một lần**: □ Mỗi ngày □ Mỗi tuần □ Mỗi tháng □ Thỉnh thoảng
+```
+
+### Ví dụ điền mẫu
+
+```markdown
+## Nhật ký phiền não
+
+**Ngày tháng**: Thứ Tư
+
+**Khoảnh khắc phiền não**: Lại phải tổng hợp dữ liệu từ 5 file Excel làm báo cáo tuần
+
+**Đang làm gì lúc đó**: Chuẩn bị báo cáo bộ phận vào thứ Sáu
+
+**Tại sao phiền**: ☑ Quá phiền phức (mỗi lần đều phải mở 5 file, copy paste, kiểm tra có sai không)
+
+**Cuối cùng tôi giải quyết thế nào**: ☑ Chịu đựng làm cho xong (mất 40 phút)
+
+**Việc này bao lâu xảy ra một lần**: ☑ Mỗi tuần
+```
+
+## 7. Bảng chấm điểm sàng lọc vấn đề
+
+**Bối cảnh áp dụng**: Khi bạn có nhiều vấn đề/ý tưởng, dùng bảng này để lọc ra vấn đề phù hợp nhất dùng Vibe Coding giải quyết.
+
+### Mẫu
+
+```markdown
+## Bảng chấm điểm sàng lọc vấn đề
+
+| Vấn đề | Lặp lại | Quy tắc | Khả kiểm | Không nhạy cảm | Chịu lỗi cao | Tổng điểm |
+| :----- | :------ | :------ | :------- | :------------- | :----------- | :-------- |
+|        | /5      | /5      | /5       | /5             | /5           | /25       |
+
+**Tiêu chuẩn chấm điểm**:
+
+- Tính lặp lại: Vấn đề này bao lâu xảy ra một lần? (Hàng ngày 5 điểm, hàng tuần 4 điểm, hàng tháng 2 điểm, thỉnh thoảng 1 điểm)
+- Tính quy tắc: Có thể mô tả bằng quy tắc rõ ràng không? (Hoàn toàn được 5 điểm, đa phần được 3 điểm, nói không rõ 1 điểm)
+- Tính khả kiểm: Tự dùng là xác minh được hiệu quả không? (Tự dùng 5 điểm, cần người khác 3 điểm, khó xác minh 1 điểm)
+- Không nhạy cảm: Không liên quan quyền riêng tư và tiền bạc? (Hoàn toàn không liên quan 5 điểm, hơi liên quan 3 điểm, nhạy cảm cao 1 điểm)
+- Tính chịu lỗi cao: Sai có dễ phát hiện và sửa chữa không? (Rất dễ 5 điểm, bình thường 3 điểm, sai là phiền phức to 1 điểm)
+
+**Đề xuất**: Vấn đề có Tổng điểm ≥ 18 điểm thích hợp dùng Vibe Coding giải quyết
+```
+
+### Ví dụ điền mẫu
+
+```markdown
+## Bảng chấm điểm sàng lọc vấn đề
+
+| Vấn đề            | Lặp lại | Quy tắc | Khả kiểm | Không nhạy cảm | Chịu lỗi cao | Tổng điểm |
+| :---------------- | :------ | :------ | :------- | :------------- | :----------- | :-------- |
+| Bỏ sót việc       | 5       | 4       | 5        | 5              | 4            | 23 ✓      |
+| Tổng hợp Excel    | 4       | 5       | 5        | 4              | 4            | 22 ✓      |
+| Quyết định đầu tư | 2       | 2       | 1        | 2              | 1            | 8 ✗       |
+
+Kết luận: "Bỏ sót việc" và "Tổng hợp Excel" thích hợp làm, "Quyết định đầu tư" không thích hợp
+```
+
+## 8. Mẫu nhu cầu theo bối cảnh
+
+**Bối cảnh áp dụng**: Mô tả nhu cầu dựa theo bối cảnh khác nhau (phân tích dữ liệu, script tự động hóa, v.v.).
+
+### Mẫu nhu cầu phân tích dữ liệu
+
+```markdown
+**Bối cảnh**: Tôi là ******\_\_\_******, cần báo cáo cho ******\_\_\_******
+
+**Vấn đề cốt lõi**: Tôi muốn trả lời câu hỏi "******\_\_\_******"
+
+**Phân tích cần thiết**:
+
+1. ***
+2. ***
+3. ***
+
+**Nguồn dữ liệu**: ******\_\_\_******
+
+**Yêu cầu đầu ra**: ******\_\_\_****** (Biểu đồ/Bảng/Báo cáo văn bản)
+```
+
+### Mẫu nhu cầu script tự động hóa
+
+```markdown
+**Nhiệm vụ lặp lại của tôi**: ******\_\_\_******
+
+**Hiện tại tôi làm thế nào**:
+
+1. ******\_\_\_****** (Tốn \_\_\_ phút)
+2. ******\_\_\_****** (Tốn \_\_\_ phút)
+3. ******\_\_\_****** (Tốn \_\_\_ phút)
+
+**Phần tôi hy vọng tự động hóa**: ******\_\_\_******
+
+**Đầu vào là gì**: ******\_\_\_******
+
+**Đầu ra là gì**: ******\_\_\_******
+
+**Tình huống có thể lỗi**: ******\_\_\_******
+```
+
+## Hướng dẫn tra cứu nhanh
+
+| Vấn đề của bạn                            | Dùng mẫu nào                                       |
+| :---------------------------------------- | :------------------------------------------------- |
+| Không biết làm dự án gì                   | Nhật ký phiền não + Bảng chấm điểm sàng lọc vấn đề |
+| Muốn biết rõ người dùng cần hoàn thành gì | Mẫu mô tả nhiệm vụ JTBD                            |
+| Lo lắng dự án sẽ thất bại                 | Mẫu Pre-mortem                                     |
+| Không biết phiên bản đầu làm gì           | Mẫu thiết kế MVP                                   |
+| Không rõ người dùng là ai                 | Mẫu câu chuyện người dùng                          |
+| Không chắc đã sẵn sàng bắt đầu chưa       | Mẫu tự kiểm tra Ba câu hỏi linh hồn                |
+| Muốn làm phân tích dữ liệu                | Mẫu nhu cầu phân tích dữ liệu                      |
+| Muốn làm script tự động hóa               | Mẫu nhu cầu script tự động hóa                     |
