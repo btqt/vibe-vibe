@@ -97,20 +97,33 @@ claude
 
 ---
 
-> **Mac/Linux 用户？** [点击跳转到 Mac/Linux 安装指南](#mac-linux-users)
-
----
-
 ## Mac/Linux 用户 {#mac-linux-users}
 
-### 1. 打开终端
+### 1. 安装 Git
+
+**macOS**：
+- 首次在终端输入 `git` 会提示安装 Xcode 命令行工具，点击安装即可
+- 或主动执行：`xcode-select --install`
+- 如需最新版本，可用 Homebrew：`brew install git`
+
+**Linux**：
+
+```bash
+# Ubuntu/Debian
+sudo apt update && sudo apt install git -y
+
+# CentOS/RHEL
+sudo yum install git -y
+```
+
+### 2. 打开终端
 
 - **Mac**：按 `Cmd + Space`，输入 "Terminal"
 - **Linux**：按 `Ctrl + Alt + T`
 
-### 2. 执行环境初始化脚本
+### 3. 执行环境初始化脚本
 
-此脚本将自动安装 Git、Node.js、pnpm，并配置国内镜像源：
+此脚本将自动安装 Node.js、pnpm，并配置国内镜像源：
 
 ```bash
 curl -fsSL https://cnb.cool/vibevibe/scripts/-/git/raw/main/init_git_node.sh | bash
@@ -118,7 +131,7 @@ curl -fsSL https://cnb.cool/vibevibe/scripts/-/git/raw/main/init_git_node.sh | b
 
 脚本执行完成后，**请重新打开终端窗口**（或执行 `source ~/.bashrc` / `source ~/.zshrc`）使配置生效。
 
-这个脚本会自动完成以下配置：**Git**（版本控制工具，用于记录代码变更）、**nvm**（Node 版本管理器，用于切换 Node.js 版本）、**Node.js**（JavaScript 运行环境，用于执行 TypeScript 代码）、**pnpm**（包管理器，比 npm 更快更省空间），以及**国内镜像源**（配置淘宝镜像，加速依赖下载）。
+这个脚本会自动完成以下配置：**nvm**（Node 版本管理器，用于切换 Node.js 版本）、**Node.js**（JavaScript 运行环境，用于执行 TypeScript 代码）、**pnpm**（包管理器，比 npm 更快更省空间），以及**国内镜像源**（配置淘宝镜像，加速依赖下载）。
 
 ### 3. 验证安装
 
