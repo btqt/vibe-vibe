@@ -497,7 +497,6 @@ export default withMermaid(defineConfigWithTheme<ThemeConfigWithBroadcast>({
           { text: '15-SEO、分享与数据统计', link: '/Advanced/15-seo-analytics/' },
           { text: '16-用户反馈与产品迭代', link: '/Advanced/16-user-feedback-iteration/' },
           { text: 'Next Level', link: '/Advanced/99-next-level/' },
-          { text: '旧进阶篇（完整）', link: '/Advanced-old/' },
         ]
       },
 
@@ -540,7 +539,7 @@ export default withMermaid(defineConfigWithTheme<ThemeConfigWithBroadcast>({
       frontmatterOrderDefaultValue: 9999,
       
       manualSortFileNameByPriority: [
-        'Basic', 'Advanced', 'Advanced-old', 'Practice', 'Articles',
+        'Basic', 'Advanced', 'Practice', 'Articles',
         'Basic/00-preface', 'Basic/01-awakening', 'Basic/02-mindset', 'Basic/03-technique',
         'Basic/04-practice-0-to-1', 'Basic/05-advanced', 'Basic/06-learning-paths',
         'Basic/99-appendix', 'Basic/100-epilogue', 'Basic/101-next-part',
