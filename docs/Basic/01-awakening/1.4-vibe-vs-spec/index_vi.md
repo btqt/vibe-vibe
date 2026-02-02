@@ -19,12 +19,12 @@ Cả hai là một phổ liên tục, không phải đối lập tuyệt đối.
 
 ## Nội dung chương này
 
-| Phần nhỏ | Nội dung cốt lõi                                 | Thu hoạch trọng tâm                                 |
-| -------- | ------------------------------------------------ | --------------------------------------------------- |
-| 1.4.1    | [Vibe Coding](./1.4.1-what-is-Vibe-Coding.md)    | Phát triển tương tác, khám phá nhu cầu              |
-| 1.4.2    | [Spec Coding](./1.4.2-what-is-spec-Coding.md)    | Phát triển ổn định, hướng quy chuẩn                 |
-| 1.4.3    | [Chiến lược lựa chọn](./1.4.3-vibe-vs-spec.md)   | Khung ra quyết định dựa trên độ rõ ràng của nhu cầu |
-| 1.4.4    | [Quản lý Context](./1.4.4-context-management.md) | Kỹ năng duy trì ngữ cảnh cho đối thoại dài và dự án |
+| Phần nhỏ | Nội dung cốt lõi                                    | Thu hoạch trọng tâm                                 |
+| -------- | --------------------------------------------------- | --------------------------------------------------- |
+| 1.4.1    | [Vibe Coding](./1.4.1-what-is-Vibe-Coding_vi.md)    | Phát triển tương tác, khám phá nhu cầu              |
+| 1.4.2    | [Spec Coding](./1.4.2-what-is-spec-Coding_vi.md)    | Phát triển ổn định, hướng quy chuẩn                 |
+| 1.4.3    | [Chiến lược lựa chọn](./1.4.3-vibe-vs-spec_vi.md)   | Khung ra quyết định dựa trên độ rõ ràng của nhu cầu |
+| 1.4.4    | [Quản lý Context](./1.4.4-context-management_vi.md) | Kỹ năng duy trì ngữ cảnh cho đối thoại dài và dự án |
 
 ## Lộ trình học tập
 
@@ -39,4 +39,4 @@ Cả hai là một phổ liên tục, không phải đối lập tuyệt đối.
 - Điều chỉnh phương pháp linh hoạt theo tiến độ dự án
 - Duy trì chất lượng ngữ cảnh, để AI trở thành đối tác phát triển thực thụ
 
-Hãy bắt đầu tìm hiểu sâu hơn từ [Vibe Coding](./1.4.1-what-is-Vibe-Coding.md).
+Hãy bắt đầu tìm hiểu sâu hơn từ [Vibe Coding](./1.4.1-what-is-Vibe-Coding_vi.md).
