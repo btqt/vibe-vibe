@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "Phụ lục: Thư viện mẫu Prompt thường dùng"</h2>
+<p><img alt="03-technique_appendix_index.png" src="../../../public/images/Basic/03-technique_appendix_index.png" /></p>
+<h1>Phụ lục: Thư viện mẫu Prompt thường dùng</h1>
+<p>Phụ lục này cung cấp một loạt mẫu Prompt có thể sao chép trực tiếp để sử dụng, bao phủ bốn ngữ cảnh lớn: tạo dự án, sửa đổi code, giải quyết vấn đề và tạo tài liệu.</p>
+<h2>Cách sử dụng thư viện mẫu này</h2>
+<ol>
+<li><strong>Tìm ngữ cảnh của bạn</strong>: Dựa vào bảng chỉ mục bên dưới, nhanh chóng định vị mẫu phù hợp với bạn</li>
+<li><strong>Sao chép mẫu</strong>: Sao chép mẫu vào cửa sổ chat với AI</li>
+<li><strong>Thay thế placeholder</strong>: Thay thế <code>[nội dung trong ngoặc vuông]</code> thành tình huống thực tế của bạn</li>
+<li><strong>Cắt giảm theo nhu cầu</strong>: Nếu một số trường không áp dụng, có thể xóa đi</li>
+</ol>
+<h2>Chỉ mục theo ngữ cảnh: Tôi muốn làm gì → Dùng mẫu nào</h2>
+<table>
+<thead>
+<tr>
+<th>Bạn muốn làm gì</th>
+<th>Mẫu đề xuất</th>
+<th>Chương tương ứng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Làm một ứng dụng web từ con số 0</td>
+<td>Mẫu tạo ứng dụng web</td>
+<td>A.1</td>
+</tr>
+<tr>
+<td>Dùng Python phân tích một bộ dữ liệu</td>
+<td>Mẫu dự án phân tích dữ liệu</td>
+<td>A.1</td>
+</tr>
+<tr>
+<td>Viết một script tự động hóa xử lý file</td>
+<td>Mẫu script tự động hóa</td>
+<td>A.1</td>
+</tr>
+<tr>
+<td>Thêm chức năng mới trên code hiện có</td>
+<td>Mẫu mở rộng chức năng</td>
+<td>A.2</td>
+</tr>
+<tr>
+<td>Tối ưu hiệu năng hoặc cấu trúc code</td>
+<td>Mẫu tái cấu trúc code</td>
+<td>A.2</td>
+</tr>
+<tr>
+<td>Code báo lỗi, cần sửa chữa</td>
+<td>Mẫu rà soát lỗi thời gian chạy</td>
+<td>A.3</td>
+</tr>
+<tr>
+<td>Code chạy được nhưng kết quả sai</td>
+<td>Mẫu phân tích lỗi logic</td>
+<td>A.3</td>
+</tr>
+<tr>
+<td>Không biết nên dùng công nghệ/thư viện nào</td>
+<td>Mẫu tư vấn lựa chọn kỹ thuật</td>
+<td>A.3</td>
+</tr>
+<tr>
+<td>Thêm chú thích cho code</td>
+<td>Mẫu tạo chú thích code</td>
+<td>A.4</td>
+</tr>
+<tr>
+<td>Viết tài liệu mô tả dự án</td>
+<td>Mẫu tạo README</td>
+<td>A.4</td>
+</tr>
+</tbody>
+</table>
+<h2>Danh sách kiểm tra trước khi dùng mẫu</h2>
+<p>Trước khi gửi Prompt, kiểm tra nhanh:</p>
+<ul>
+<li>[ ] <strong>Thông tin bối cảnh đầy đủ chưa?</strong> Loại dự án, stack kỹ thuật, tiến độ hiện tại</li>
+<li>[ ] <strong>Mô tả nhiệm vụ rõ ràng chưa?</strong> Cụ thể phải làm gì, đầu vào đầu ra là gì</li>
+<li>[ ] <strong>Điều kiện ràng buộc viết chưa?</strong> Hạn chế bắt buộc tuân thủ, không được làm gì</li>
+<li>[ ] <strong>Placeholder đã thay thế hết chưa?</strong> Không còn sót lại nội dung <code>[ngoặc vuông]</code></li>
+<li>[ ] <strong>Định dạng kỳ vọng đã nói chưa?</strong> Cần code hoàn chỉnh hay giải thích</li>
+</ul>
+<h2>Cấu trúc phụ lục này</h2>
+<pre><code>A.1 Mẫu tạo dự án     → Dựng dự án từ con số 0
+A.2 Mẫu sửa đổi code  → Sửa đổi, mở rộng, tái cấu trúc code hiện có
+A.3 Mẫu giải quyết vấn đề → Rà soát lỗi, lựa chọn kỹ thuật, giải thích khái niệm
+A.4 Mẫu tạo tài liệu   → Chú thích, README, tài liệu API
+</code></pre>
+<h2>Mối quan hệ với chính văn</h2>
+<p>Phụ lục này là <strong>hộp công cụ thực dụng</strong> cho các phần nội dung của Chương 3:</p>
+<table>
+<thead>
+<tr>
+<th>Chương chính văn</th>
+<th>Tương ứng phụ lục</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3.2 Khung cấu trúc</td>
+<td>Mẫu phụ lục được thiết kế dựa trên khung S.C.A.F.F.</td>
+</tr>
+<tr>
+<td>3.3 Kỹ thuật nâng cao</td>
+<td>Một số mẫu tích hợp kỹ thuật Few-shot, CoT</td>
+</tr>
+<tr>
+<td>3.4 Mẫu PRD</td>
+<td>A.1 Mẫu tạo dự án bổ sung cho PRD</td>
+</tr>
+<tr>
+<td>3.6 Xử lý vấn đề</td>
+<td>A.3 Mẫu giải quyết vấn đề cung cấp định dạng chuẩn hóa</td>
+</tr>
+<tr>
+<td>3.7 Danh sách kiểm tra nhanh</td>
+<td>Phụ lục cung cấp bản mẫu đầy đủ chi tiết hơn</td>
+</tr>
+</tbody>
+</table>
+<p>Bây giờ, chúng ta hãy đi vào thư viện mẫu cụ thể.</p>
+</body>
+</html>

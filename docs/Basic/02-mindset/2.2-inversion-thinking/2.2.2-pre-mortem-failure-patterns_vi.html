@@ -1,0 +1,431 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.2.2 Pre Mortem Failure Patterns</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "2.2.2 Phân tích mô hình thất bại Pre-mortem: Hướng dẫn tránh hố cho dự án Vibe Coding"</h2>
+<p><img alt="02-mindset_2.2-inversion-thinking_2.2.2-pre-mortem-failure-patterns.png" src="../../../public/images/Basic/02-mindset_2.2-inversion-thinking_2.2.2-pre-mortem-failure-patterns.png" /></p>
+<h1>2.2.2 Phân tích mô hình thất bại Pre-mortem: Hướng dẫn tránh hố cho dự án Vibe Coding</h1>
+<p>Dựa trên kinh nghiệm thực tế phong phú, những nguyên nhân thất bại thường gặp nhất của dự án Vibe Coding có thể chia thành vài loại lớn. Hiểu rõ những "cái hố người đi trước đã giẫm phải" này, có thể giúp bạn suy nghĩ toàn diện hơn khi làm Pre-mortem.</p>
+<h2>Mô hình thất bại ở tầng nhu cầu</h2>
+<h3>Mô hình 1: Nhu cầu không rõ ràng</h3>
+<p><strong>Biểu hiện điển hình:</strong></p>
+<ul>
+<li>"Giúp tôi làm một App dùng tốt"</li>
+<li>"Tôi muốn một công cụ có thể nâng cao hiệu suất"</li>
+</ul>
+<p><strong>Cơ chế thất bại:</strong>
+AI không thể đọc được suy nghĩ. "Dùng tốt" đối với bạn có nghĩa là gì? "Nâng cao hiệu suất" cụ thể chỉ khâu nào? Đầu vào mơ hồ sẽ chỉ nhận được đầu ra mơ hồ. AI sẽ thực hiện theo cách hiểu của nó, mà cách hiểu của nó rất có thể hoàn toàn khác với suy nghĩ của bạn.</p>
+<p><strong>Tình huống thực tế:</strong>
+Người dùng bảo AI "làm một App ghi chú". AI làm ra một trình soạn thảo Markdown đầy đủ chức năng, hỗ trợ tô sáng cú pháp, xuất PDF, thư mục nhiều cấp... nhưng người dùng chỉ muốn một nơi để ghi lại cảm hứng nhanh chóng, một câu là đủ.</p>
+<p><strong>Tín hiệu cảnh báo Pre-mortem:</strong></p>
+<ul>
+<li>Mô tả nhu cầu đầy rẫy tính từ (dùng tốt, hiệu quả cao, mạnh mẽ)</li>
+<li>Không có tình huống sử dụng cụ thể</li>
+<li>Thiếu tiêu chuẩn thành công có thể đo lường</li>
+</ul>
+<p><strong>Biện pháp phòng ngừa:</strong></p>
+<ol>
+<li>Mô tả cụ thể hóa: Làm cái gì, trong tình huống nào, phục vụ cho ai</li>
+<li>Sử dụng khung JTBD làm rõ nhiệm vụ "thuê"</li>
+<li>Thiết lập tiêu chuẩn nghiệm thu có thể đo lường</li>
+</ol>
+<h3>Mô hình 2: Bùng nổ độ phức tạp chức năng</h3>
+<p><strong>Biểu hiện điển hình:</strong></p>
+<ul>
+<li>Phiên bản đầu tiên đã đòi 20 chức năng</li>
+<li>"Giống sản phẩm XX, nhưng phải có những cải tiến này..."</li>
+</ul>
+<p><strong>Cơ chế thất bại:</strong>
+Sự gia tăng độ phức tạp là theo cấp số nhân, không phải tuyến tính.</p>
+<ul>
+<li>Giữa 2 chức năng có thể có 1 mối quan hệ tương tác</li>
+<li>Giữa 5 chức năng có thể có 10 mối quan hệ tương tác</li>
+<li>Giữa 20 chức năng có thể có 190 mối quan hệ tương tác</li>
+</ul>
+<p>AI khi xử lý hệ thống phức tạp dễ mắc lỗi hơn, cũng khó phát hiện và định vị vấn đề hơn.</p>
+<p><strong>Tình huống thực tế:</strong>
+Một người dùng yêu cầu AI thực hiện một lần "đăng ký người dùng, đăng nhập, trung tâm cá nhân, quản lý nhiệm vụ, cộng tác nhóm, kiểm soát quyền hạn, thống kê dữ liệu, thông báo tin nhắn". Kết quả code càng sửa càng loạn, ba ngày sau cả dự án biến thành một đống mì Ý không thể bảo trì.</p>
+<p><strong>Tín hiệu cảnh báo Pre-mortem:</strong></p>
+<ul>
+<li>Danh sách chức năng vượt quá 10 mục</li>
+<li>Giữa các chức năng thiếu độ ưu tiên rõ ràng</li>
+<li>Cố gắng thỏa mãn nhu cầu của tất cả người dùng trong một lần</li>
+</ul>
+<p><strong>Biện pháp phòng ngừa:</strong></p>
+<ol>
+<li>Hạn chế nghiêm ngặt chức năng cốt lõi (3-5 cái)</li>
+<li>Sử dụng tư duy MVP, kiểm chứng giá trị cốt lõi trước</li>
+<li>Thiết lập "danh sách không làm" rõ ràng</li>
+</ol>
+<h3>Mô hình 3: Chức năng và nhiệm vụ tách rời</h3>
+<p><strong>Biểu hiện điển hình:</strong></p>
+<ul>
+<li>"Tôi muốn làm một công cụ chức năng toàn diện"</li>
+<li>"Tham khảo sản phẩm XX, nhưng phải có những đặc sắc này"</li>
+</ul>
+<p><strong>Cơ chế thất bại:</strong>
+Không xuất phát từ nhu cầu thực tế của người dùng, mà là đang nhồi nhét chức năng.</p>
+<p><strong>Tình huống thực tế:</strong>
+Một người dùng muốn làm "công cụ quản lý dự án", tham khảo Jira và các công cụ khác. Nhưng anh ta không phân tích quy trình làm việc thực tế của nhóm mình, kết quả làm ra công cụ tuy chức năng toàn diện, nhưng không phù hợp thói quen của nhóm, cuối cùng vẫn quay về dùng Excel + nhóm WeChat.</p>
+<p><strong>Tín hiệu cảnh báo Pre-mortem:</strong></p>
+<ul>
+<li>Lấy "tham khảo sản phẩm nào đó" làm điểm bắt đầu thiết kế</li>
+<li>Mô tả chức năng tách rời tình huống sử dụng cụ thể</li>
+<li>Không có chân dung người dùng cốt lõi rõ ràng</li>
+</ul>
+<p><strong>Biện pháp phòng ngừa:</strong></p>
+<ol>
+<li>Phân tích sâu nhiệm vụ thực sự của người dùng</li>
+<li>Tìm hiểu ưu nhược điểm của phương án thay thế hiện có trước</li>
+<li>Xuất phát từ việc giải quyết vấn đề cụ thể, chứ không phải sao chép chức năng</li>
+</ol>
+<h2>Mô hình thất bại ở tầng kỹ thuật</h2>
+<h3>Mô hình 1: Lựa chọn kỹ thuật không phù hợp</h3>
+<p><strong>Biểu hiện điển hình:</strong></p>
+<ul>
+<li>"Tôi muốn dùng stack kỹ thuật mới nhất"</li>
+<li>"Kiến trúc này tiên tiến hơn"</li>
+</ul>
+<p><strong>Cơ chế thất bại:</strong>
+Theo đuổi "mới" và "ngầu" thay vì "phù hợp". Kỹ thuật mới có thể:</p>
+<ul>
+<li>Tài liệu và tài nguyên cộng đồng không đủ</li>
+<li>Vấn đề tương thích với công cụ AI</li>
+<li>Chi phí học tập quá cao, dự án đình trệ</li>
+</ul>
+<p><strong>Tình huống thực tế:</strong>
+Một người dùng kiên quyết sử dụng framework frontend mới nhất, kết quả phát hiện:</p>
+<ul>
+<li>Code do AI tạo ra thường xuyên xuất hiện vấn đề tương thích</li>
+<li>Khi gặp bug, trên Stack Overflow gần như không có giải pháp</li>
+<li>Dự án sau hai tháng phải từ bỏ vì nợ kỹ thuật quá nhiều</li>
+</ul>
+<p><strong>Tín hiệu cảnh báo Pre-mortem:</strong></p>
+<ul>
+<li>Lý do chọn kỹ thuật là "mới", "ngầu", "tiên tiến"</li>
+<li>Đánh giá không đủ về độ khó học tập kỹ thuật</li>
+<li>Không cân nhắc tính tương thích với công cụ AI</li>
+</ul>
+<p><strong>Biện pháp phòng ngừa:</strong></p>
+<ol>
+<li>Chọn kỹ thuật trưởng thành, có tài liệu tốt</li>
+<li>Ưu tiên cân nhắc độ hỗ trợ của công cụ AI</li>
+<li>Đánh giá thời gian học tập và chi phí bảo trì của bản thân</li>
+</ol>
+<h3>Mô hình 2: Phụ thuộc quá mức vào AI</h3>
+<p><strong>Biểu hiện điển hình:</strong></p>
+<ul>
+<li>"Hoàn toàn làm theo gợi ý của AI, không điều chỉnh gì cả"</li>
+<li>"AI nói không vấn đề gì, vậy chắc chắn không vấn đề gì"</li>
+</ul>
+<p><strong>Cơ chế thất bại:</strong>
+AI không phải là toàn tri. Nó sẽ:</p>
+<ul>
+<li>Đôi khi "quên" bối cảnh phía trước</li>
+<li>Đưa ra gợi ý sai lầm trong một số vấn đề phức tạp</li>
+<li>Thiếu sự hiểu biết về nhu cầu nghiệp vụ</li>
+</ul>
+<p><strong>Tình huống thực tế:</strong>
+Một người dùng hoàn toàn thiết kế cấu trúc cơ sở dữ liệu theo gợi ý của AI, nhưng không tiến hành kiểm chứng tính hợp lý. Kết quả phát hiện vấn đề hiệu suất trong môi trường sản xuất, lượng dữ liệu vừa tăng lên là bị treo.</p>
+<p><strong>Tín hiệu cảnh báo Pre-mortem:</strong></p>
+<ul>
+<li>Hoàn toàn tin tưởng đầu ra của AI, không kiểm chứng</li>
+<li>Khi gặp lỗi không tiến hành phân tích nhân tạo</li>
+<li>Thiếu năng lực phán đoán kỹ thuật cơ bản</li>
+</ul>
+<p><strong>Biện pháp phòng ngừa:</strong></p>
+<ol>
+<li>Giữ thái độ "tin tưởng nhưng kiểm chứng"</li>
+<li>Học năng lực phán đoán kỹ thuật cơ bản</li>
+<li>Xây dựng khung ra quyết định của riêng mình, AI chỉ là công cụ hỗ trợ</li>
+</ol>
+<h3>Mô hình 3: Thiếu phán đoán kỹ thuật cơ bản</h3>
+<p><strong>Biểu hiện điển hình:</strong></p>
+<ul>
+<li>"AI nói code này chạy được, vậy chắc chắn không vấn đề gì"</li>
+<li>"Tôi không thấy báo lỗi, chắc là không sao đâu nhỉ?"</li>
+</ul>
+<p><strong>Cơ chế thất bại:</strong>
+Thiếu năng lực phán đoán kỹ thuật cơ bản:</p>
+<ul>
+<li>Không thể nhận diện vấn đề bảo mật tiềm ẩn</li>
+<li>Không thể hiểu ảnh hưởng hiệu suất của code</li>
+<li>Khi gặp lỗi không thể debug hiệu quả</li>
+</ul>
+<p><strong>Tình huống thực tế:</strong>
+Trang web của một người dùng sau vài tháng vận hành bị hacker tấn công. Nguyên nhân là code do AI tạo ra tồn tại lỗ hổng SQL injection, nhưng người dùng không có nền tảng kỹ thuật để nhận ra.</p>
+<p><strong>Tín hiệu cảnh báo Pre-mortem:</strong></p>
+<ul>
+<li>Hoàn toàn không biết gì về bảo mật, hiệu suất của code</li>
+<li>Khi gặp vấn đề hoàn toàn dựa vào AI</li>
+<li>Thiếu thói quen kiểm thử và kiểm chứng cơ bản</li>
+</ul>
+<p><strong>Biện pháp phòng ngừa:</strong></p>
+<ol>
+<li>Học kiến thức cơ bản về bảo mật và hiệu suất</li>
+<li>Thiết lập quy trình kiểm thử kiểm chứng</li>
+<li>Tìm kiếm ý kiến chuyên gia khi gặp tình huống không chắc chắn</li>
+</ol>
+<h2>Mô hình thất bại ở tầng bối cảnh (Scenario)</h2>
+<h3>Mô hình 1: Nhận định sai nhóm người dùng</h3>
+<p><strong>Biểu hiện điển hình:</strong></p>
+<ul>
+<li>"Tất cả mọi người đều có thể dùng"</li>
+<li>"Nhu cầu thị trường này rất lớn"</li>
+</ul>
+<p><strong>Cơ chế thất bại:</strong>
+Định nghĩa người dùng mục tiêu quá rộng, dẫn đến:</p>
+<ul>
+<li>Xung đột nhu cầu, không thể thỏa mãn tất cả mọi người</li>
+<li>Sản phẩm thiếu tính nhắm đích, không có nhóm người dùng cốt lõi</li>
+<li>Chiến lược tiếp thị và quảng bá không hiệu quả</li>
+</ul>
+<p><strong>Tình huống thực tế:</strong>
+Một người dùng muốn làm "công cụ học tập cho sinh viên", nhưng không phân chia nhỏ. Kết quả phát hiện:</p>
+<ul>
+<li>Nhu cầu của sinh viên năm nhất và năm cuối hoàn toàn khác nhau</li>
+<li>Cách học của sinh viên khối xã hội và khối tự nhiên khác nhau</li>
+<li>Sự sắp xếp thời gian của sinh viên vừa học vừa làm và sinh viên toàn thời gian khác nhau</li>
+</ul>
+<p>Sản phẩm cuối cùng thất bại vì "ai cũng không hài lòng lắm".</p>
+<p><strong>Tín hiệu cảnh báo Pre-mortem:</strong></p>
+<ul>
+<li>Mô tả người dùng mục tiêu mơ hồ ("tất cả mọi người", "công chúng", v.v.)</li>
+<li>Không có chân dung người dùng cụ thể</li>
+<li>Cố gắng giải quyết tất cả vấn đề của tất cả mọi người</li>
+</ul>
+<p><strong>Biện pháp phòng ngừa:</strong></p>
+<ol>
+<li>Phân chia nhỏ nhóm người dùng mục tiêu</li>
+<li>Xây dựng chân dung người dùng cụ thể</li>
+<li>Phục vụ một nhóm nhỏ trước, sau khi kiểm chứng nhu cầu mới mở rộng</li>
+</ol>
+<h3>Mô hình 2: Giả định bối cảnh sai lầm</h3>
+<p><strong>Biểu hiện điển hình:</strong></p>
+<ul>
+<li>"Người dùng sẽ dùng chức năng này mỗi ngày"</li>
+<li>"Chức năng này chắc chắn sẽ được yêu thích"</li>
+</ul>
+<p><strong>Cơ chế thất bại:</strong>
+Không đưa ra giả định bối cảnh dựa trên quan sát thực tế.</p>
+<p><strong>Tình huống thực tế:</strong>
+Một người dùng cho rằng "nhân viên văn phòng sẽ dùng App ghi chép vận động mỗi ngày". Nhưng khảo sát thực tế phát hiện:</p>
+<ul>
+<li>Đa số mọi người chỉ vận động cuối tuần</li>
+<li>Ngày làm việc hoàn toàn không có thời gian và sức lực</li>
+<li>Ghi chép vận động mang tính xã giao nhiều hơn, chứ không phải thói quen cá nhân</li>
+</ul>
+<p><strong>Tín hiệu cảnh báo Pre-mortem:</strong></p>
+<ul>
+<li>Giả định bối cảnh dựa trên tưởng tượng của bản thân</li>
+<li>Không tiến hành khảo sát hoặc quan sát thực tế</li>
+<li>Phớt lờ thói quen sinh hoạt thực tế của người dùng</li>
+</ul>
+<p><strong>Biện pháp phòng ngừa:</strong></p>
+<ol>
+<li>Tiến hành khảo sát người dùng thực tế</li>
+<li>Quan sát hành vi thực tế của người dùng mục tiêu</li>
+<li>Đưa ra giả định dựa trên dữ liệu thay vì tưởng tượng</li>
+</ol>
+<h3>Mô hình 3: Đánh giá không đủ về phương án thay thế</h3>
+<p><strong>Biểu hiện điển hình:</strong></p>
+<ul>
+<li>"Công cụ hiện tại quá khó dùng"</li>
+<li>"Phương án của tôi tốt hơn hiện tại nhiều"</li>
+</ul>
+<p><strong>Cơ chế thất bại:</strong>
+Đánh giá thấp giá trị của phương án hiện có và thói quen người dùng.</p>
+<p><strong>Tình huống thực tế:</strong>
+Một người dùng cho rằng "dùng bảng Excel quản lý thông tin khách hàng quá phiền phức", muốn làm công cụ CRM chuyên dụng. Nhưng anh ta không cân nhắc đến:</p>
+<ul>
+<li>Chức năng Excel đã đủ đáp ứng nhu cầu cơ bản</li>
+<li>Người dùng đã hình thành thói quen sử dụng lâu dài</li>
+<li>Học công cụ mới cần thời gian và chi phí</li>
+<li>Sự phức tạp của việc di chuyển dữ liệu</li>
+</ul>
+<p>Kết quả công cụ CRM phát triển xong, nhưng người dùng vẫn quen dùng Excel.</p>
+<p><strong>Tín hiệu cảnh báo Pre-mortem:</strong></p>
+<ul>
+<li>Hạ thấp quá mức phương án hiện có</li>
+<li>Đánh giá thấp sức mạnh của thói quen người dùng</li>
+<li>Bỏ qua chi phí chuyển đổi và chi phí học tập</li>
+</ul>
+<p><strong>Biện pháp phòng ngừa:</strong></p>
+<ol>
+<li>Phân tích sâu ưu nhược điểm của phương án hiện có</li>
+<li>Hiểu nguyên nhân người dùng sử dụng phương án hiện có</li>
+<li>Đánh giá chi phí và lợi ích chuyển đổi</li>
+</ol>
+<h2>Mô hình thất bại ở tầng thói quen</h2>
+<h3>Mô hình 1: Đánh giá cao ý nguyện sử dụng liên tục</h3>
+<p><strong>Biểu hiện điển hình:</strong></p>
+<ul>
+<li>"Tôi chắc chắn sẽ kiên trì sử dụng"</li>
+<li>"Công cụ này quá hữu ích, sẽ không từ bỏ đâu"</li>
+</ul>
+<p><strong>Cơ chế thất bại:</strong>
+Quá lạc quan về ý nguyện sử dụng liên tục công cụ mới.</p>
+<p><strong>Tình huống thực tế:</strong>
+Một người dùng phát triển một "App quản lý thời gian hoàn hảo", chức năng mạnh mẽ, giao diện tinh tế. Nhưng một tháng sau phát hiện:</p>
+<ul>
+<li>Trong điện thoại đã có rất nhiều App tương tự, chức năng chồng chéo</li>
+<li>App mới cần nhập dữ liệu thủ công, trong khi các App khác có thể tự động đồng bộ</li>
+<li>Cuối cùng vẫn quay về với công cụ cũ quen thuộc nhất</li>
+</ul>
+<p><strong>Tín hiệu cảnh báo Pre-mortem:</strong></p>
+<ul>
+<li>Dựa trên sở thích cá nhân thay vì phản hồi người dùng</li>
+<li>Phớt lờ cạnh tranh thị trường và phương án thay thế</li>
+<li>Đánh giá thấp sức mạnh của thói quen</li>
+</ul>
+<p><strong>Biện pháp phòng ngừa:</strong></p>
+<ol>
+<li>Cân nhắc tình hình cạnh tranh thị trường</li>
+<li>Đánh giá ưu thế so với phương án hiện có</li>
+<li>Làm kiểm thử quy mô nhỏ để kiểm chứng ý nguyện người dùng</li>
+</ol>
+<h3>Mô hình 2: Đánh giá thấp chi phí chuyển đổi</h3>
+<p><strong>Biểu hiện điển hình:</strong></p>
+<ul>
+<li>"Di chuyển dữ liệu đơn giản lắm"</li>
+<li>"Chỉ cần nhập xuất là được rồi"</li>
+</ul>
+<p><strong>Cơ chế thất bại:</strong>
+Đánh giá thấp chi phí di chuyển từ phương án hiện có sang phương án mới.</p>
+<p><strong>Tình huống thực tế:</strong>
+Một người dùng cho rằng "chuyển từ Notion sang công cụ ghi chú mới rất đơn giản". Nhưng trong quá trình thực tế phát hiện:</p>
+<ul>
+<li>Định dạng dữ liệu không tương thích, cần sắp xếp lại thủ công</li>
+<li>Mất các mối quan hệ liên kết cơ sở dữ liệu của Notion</li>
+<li>Quyền hạn và quy trình cộng tác nhóm cần xây dựng lại</li>
+<li>Thời gian di chuyển tốn gấp 3 lần dự kiến</li>
+</ul>
+<p><strong>Tín hiệu cảnh báo Pre-mortem:</strong></p>
+<ul>
+<li>Nhận thức không đủ về độ phức tạp của quá trình di chuyển</li>
+<li>Bỏ qua sự khác biệt về định dạng dữ liệu và chức năng</li>
+<li>Đánh giá thấp sự đầu tư tình cảm của người dùng</li>
+</ul>
+<p><strong>Biện pháp phòng ngừa:</strong></p>
+<ol>
+<li>Phân tích chi tiết quá trình di chuyển</li>
+<li>Cung cấp công cụ và hướng dẫn di chuyển</li>
+<li>Cân nhắc chiến lược di chuyển dần dần</li>
+</ol>
+<h3>Mô hình 3: Phớt lờ chi phí học tập</h3>
+<p><strong>Biểu hiện điển hình:</strong></p>
+<ul>
+<li>"Giao diện rất đơn giản, nhìn cái biết dùng ngay"</li>
+<li>"Chức năng không nhiều, rất dễ học"</li>
+</ul>
+<p><strong>Cơ chế thất bại:</strong>
+Đánh giá thấp chi phí nhận thức khi người dùng học công cụ mới.</p>
+<p><strong>Tình huống thực tế:</strong>
+Giao diện do một người dùng thiết kế trông "rất đơn giản trực quan" dưới góc nhìn của nhà phát triển. Nhưng người dùng mục tiêu phản hồi:</p>
+<ul>
+<li>Không tìm thấy nút chức năng chính</li>
+<li>Không hiểu ý nghĩa biểu tượng</li>
+<li>Không biết làm thế nào để hoàn thành thao tác cơ bản</li>
+</ul>
+<p>Cuối cùng bị từ bỏ vì "quá khó dùng".</p>
+<p><strong>Tín hiệu cảnh báo Pre-mortem:</strong></p>
+<ul>
+<li>Đánh giá tính dễ dùng dựa trên sự hiểu biết kỹ thuật của bản thân</li>
+<li>Thiếu kiểm thử sử dụng với người dùng mục tiêu</li>
+<li>Phớt lờ sự khác biệt về nền tảng kiến thức của người dùng</li>
+</ul>
+<p><strong>Biện pháp phòng ngừa:</strong></p>
+<ol>
+<li>Tiến hành kiểm thử người dùng, quan sát quá trình sử dụng thực tế</li>
+<li>Cung cấp hướng dẫn sử dụng và giáo trình chi tiết</li>
+<li>Thiết kế lộ trình học tập dần dần</li>
+</ol>
+<h2>Danh sách kiểm tra mô hình thất bại</h2>
+<h3>Kiểm tra trước khi khởi động</h3>
+<p>Trước khi bắt đầu dự án, đối chiếu các câu hỏi sau để kiểm tra:</p>
+<p><strong>Tầng nhu cầu:</strong></p>
+<ul>
+<li>[ ] Mô tả nhu cầu của tôi có đủ cụ thể không?</li>
+<li>[ ] Tôi có biết giải quyết vấn đề gì cho ai không?</li>
+<li>[ ] Chức năng cốt lõi có kiểm soát trong khoảng 3-5 cái không?</li>
+<li>[ ] Tôi có "danh sách không làm" rõ ràng không?</li>
+</ul>
+<p><strong>Tầng kỹ thuật:</strong></p>
+<ul>
+<li>[ ] Kỹ thuật tôi chọn có phù hợp với nhu cầu hiện tại không?</li>
+<li>[ ] Tôi có hiểu biết về rủi ro kỹ thuật cơ bản không?</li>
+<li>[ ] Tôi có quy trình review code và kiểm thử không?</li>
+<li>[ ] Tôi có biết cách kiểm chứng code do AI tạo ra không?</li>
+</ul>
+<p><strong>Tầng bối cảnh:</strong></p>
+<ul>
+<li>[ ] Nhóm người dùng mục tiêu của tôi đủ cụ thể không?</li>
+<li>[ ] Tôi đã làm khảo sát người dùng thực tế chưa?</li>
+<li>[ ] Tôi có hiểu phương án thay thế hiện có không?</li>
+<li>[ ] Tôi đã đánh giá chi phí chuyển đổi chưa?</li>
+</ul>
+<p><strong>Tầng thói quen:</strong></p>
+<ul>
+<li>[ ] Tôi đã cân nhắc ý nguyện sử dụng liên tục của người dùng chưa?</li>
+<li>[ ] Tôi đã đánh giá chi phí học tập chưa?</li>
+<li>[ ] Tôi có kế hoạch quảng bá và giữ chân không?</li>
+<li>[ ] Tôi đã làm kiểm chứng quy mô nhỏ chưa?</li>
+</ul>
+<h3>Kiểm tra trong quá trình thực hiện</h3>
+<p>Trong quá trình thực hiện dự án, định kỳ kiểm tra:</p>
+<ul>
+<li>[ ] Phản hồi người dùng có nhất quán với dự kiến không?</li>
+<li>[ ] Vấn đề kỹ thuật có nằm trong phạm vi kiểm soát không?</li>
+<li>[ ] Tình huống sử dụng thực tế của người dùng có phù hợp với giả định không?</li>
+<li>[ ] Tiến độ dự án có tiến hành theo kế hoạch không?</li>
+</ul>
+<h2>Hướng dẫn học tập từ mô hình thất bại</h2>
+<h3>Học từ thất bại</h3>
+<ol>
+<li><strong>Ghi lại tình huống thất bại</strong>: Ghi lại chi tiết tình hình của mỗi dự án thất bại</li>
+<li><strong>Phân tích nguyên nhân gốc rễ</strong>: Tìm ra nguyên nhân sâu xa đằng sau vấn đề bề mặt</li>
+<li><strong>Tổng kết kinh nghiệm bài học</strong>: Đúc kết bài học có thể áp dụng cho dự án tương lai</li>
+<li><strong>Xây dựng danh sách kiểm tra</strong>: Chuyển hóa bài học thành biện pháp phòng ngừa cụ thể</li>
+</ol>
+<h3>Xây dựng kho tình huống thất bại</h3>
+<p>Khuyên bạn nên xây dựng một kho tình huống thất bại cá nhân, bao gồm:</p>
+<ul>
+<li>Bối cảnh và mục tiêu dự án</li>
+<li>Biểu hiện cụ thể của thất bại</li>
+<li>Phân tích nguyên nhân thất bại</li>
+<li>Bài học học được</li>
+<li>Biện pháp phòng ngừa</li>
+</ul>
+<h3>Định kỳ xem lại và cập nhật</h3>
+<p>Định kỳ xem lại kho tình huống thất bại:</p>
+<ul>
+<li>Xem lại mỗi quý một lần</li>
+<li>Cập nhật tình huống dựa trên trải nghiệm mới</li>
+<li>Chia sẻ cho thành viên nhóm cùng học tập</li>
+<li>Chuyển hóa bài học thành quy trình và chế độ cụ thể</li>
+</ul>
+<h2>Bước tiếp theo</h2>
+<p>Sau khi nắm vững các mô hình thất bại thường gặp, tiếp theo chúng ta sẽ học:</p>
+<ul>
+<li><strong><a href="./2.2.3-pre-mortem-practical-guide_vi.html">2.2.3 Hướng dẫn thực chiến Pre-mortem</a></strong> - Học các bước thao tác, mẫu và công cụ cụ thể</li>
+</ul>
+<p>Thông qua việc hiểu những mô hình thất bại này, bạn có thể nhận diện rủi ro tiềm ẩn ngay trước khi khởi động dự án, nâng cao đáng kể tỷ lệ thành công của dự án. Hãy nhớ: <strong>Hiểu thất bại là để thành công tốt hơn</strong>.</p>
+</body>
+</html>

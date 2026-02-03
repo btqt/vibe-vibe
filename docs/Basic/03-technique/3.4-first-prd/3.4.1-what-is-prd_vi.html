@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.4.1 What Is Prd</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.4.1 PRD là gì, tại sao Vibe Coding cần nó"</h2>
+<p><img alt="03-technique_3.4-first-prd_3.4.1-what-is-prd.png" src="../../../public/images/Basic/03-technique_3.4-first-prd_3.4.1-what-is-prd.png" /></p>
+<h1>3.4.1 PRD là gì, tại sao Vibe Coding cần nó</h1>
+<h2>Một tình huống khó xử thực tế</h2>
+<p>Tiểu Lý đã suy nghĩ kỹ ở Chương 2: Cậu ấy muốn làm một danh sách việc cần làm cực giản, giúp người đi làm quản lý nhiệm vụ hàng ngày. Cậu mở công cụ AI lên, nhập vào:</p>
+<blockquote>
+<p>"Giúp tôi làm một ứng dụng danh sách việc cần làm"</p>
+</blockquote>
+<p>AI trả lời với một đoạn code dài ngoằng. Tiểu Lý hào hứng chạy thử, kết quả phát hiện:</p>
+<ul>
+<li>AI làm một hệ thống phức tạp có cả đăng nhập đăng ký (Cậu ấy chỉ muốn dùng một mình)</li>
+<li>Có chế độ xem lịch, phân loại thẻ, làm việc nhóm (Cậu ấy chỉ cần thêm và tích chọn đơn giản nhất)</li>
+<li>Giao diện tiếng Anh (Cậu ấy muốn tiếng Việt)</li>
+<li>Dùng tech stack mà cậu ấy hoàn toàn không hiểu</li>
+</ul>
+<p>Tiểu Lý mất hai tiếng đồng hồ để debug, cuối cùng bỏ cuộc.</p>
+<p><strong>Vấn đề nằm ở đâu?</strong></p>
+<p>Không phải AI không đủ thông minh, mà là Tiểu Lý đã không diễn đạt những gì cậu ấy nghĩ rõ trong đầu, bằng cách mà AI có thể hiểu được.</p>
+<h2>PRD là gì</h2>
+<p>PRD (Product Requirements Document), dịch nghĩa đen là "Tài liệu Yêu cầu Sản phẩm".</p>
+<p>Nói một cách dân dã: <strong>PRD là một bản mô tả nhiệm vụ, nói cho người thực hiện (AI hoặc lập trình viên) biết cần làm cái gì, làm cho ai, làm ra hình thù thế nào.</strong></p>
+<p>Một ví dụ so sánh: Bạn vào nhà hàng gọi món, "Cho chút gì ăn đi" và "Một phần trứng xào cà chua ít dầu ít muối, không hành", cái nào có khả năng nhận được kết quả bạn muốn cao hơn?</p>
+<p>PRD chính là cái thực đơn chi tiết đó.</p>
+<h2>PRD truyền thống vs PRD Vibe Coding</h2>
+<p>Trong phát triển phần mềm truyền thống, PRD thường là một tài liệu chính thức dài vài chục trang, bao gồm phân tích thị trường, so sánh đối thủ, kiến trúc kỹ thuật v.v.</p>
+<p>Nhưng trong Vibe Coding, <strong>mục đích của PRD hoàn toàn khác</strong>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Chiều</th>
+<th style="text-align: left;">PRD truyền thống</th>
+<th style="text-align: left;">PRD Vibe Coding</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Đối tượng đọc</strong></td>
+<td style="text-align: left;">Product Manager, team Dev, Sếp</td>
+<td style="text-align: left;">AI</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Mục đích cốt lõi</strong></td>
+<td style="text-align: left;">Đồng bộ nhận thức của team, làm căn cứ hợp đồng</td>
+<td style="text-align: left;">Để AI hiểu chính xác ý đồ của bạn</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Độ dài</strong></td>
+<td style="text-align: left;">Vài chục trang, chi tiết toàn diện</td>
+<td style="text-align: left;">20-50 dòng, tinh gọn rõ ràng</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Định dạng</strong></td>
+<td style="text-align: left;">Word/PPT, hình ảnh và văn bản</td>
+<td style="text-align: left;">Markdown thuần văn bản, cấu trúc hóa</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tần suất cập nhật</strong></td>
+<td style="text-align: left;">Viết một lần khi lập dự án</td>
+<td style="text-align: left;">Có thể điều chỉnh sau mỗi vòng đối thoại</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Yêu cầu chuyên môn</strong></td>
+<td style="text-align: left;">Cần kỹ năng Product Manager</td>
+<td style="text-align: left;">Chỉ cần nói rõ bạn muốn gì</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Insight cốt lõi</strong>: PRD của Vibe Coding không phải là "báo cáo" cho người xem, mà là "bản nhiệm vụ" cho AI.</p>
+<h2>3 vấn đề mà PRD giải quyết</h2>
+<h3>Vấn đề 1: AI luôn "tự do phát huy"</h3>
+<p>Khi không có PRD, AI sẽ dựa vào "sự hiểu biết" của chính nó để lấp đầy những phần bạn không nói. Nó có thể:</p>
+<ul>
+<li>Thêm chức năng bạn không cần</li>
+<li>Dùng công nghệ bạn không quen</li>
+<li>Làm ra thứ hoàn toàn khác với tưởng tượng của bạn</li>
+</ul>
+<p>Có PRD, bạn nói rõ với AI: "Chỉ làm những cái này, không làm những cái kia", giảm thiểu đáng kể việc làm đi làm lại.</p>
+<h3>Vấn đề 2: Làm một hồi quên mất mục đích ban đầu</h3>
+<p>Trong quá trình phát triển, bạn có thể bị cuốn đi bởi đủ loại chi tiết, quên mất ban đầu mình định giải quyết vấn đề gì.</p>
+<p>PRD là một "mỏ neo". Mỗi lần hoang mang, quay lại nhìn PRD: "Lúc đầu tôi định giải quyết vấn đề gì? Việc đang làm bây giờ có giải quyết vấn đề đó không?"</p>
+<h3>Vấn đề 3: Không biết khi nào thì tính là "làm xong"</h3>
+<p>Khi không có PRD, bạn có thể rơi vào vòng lặp vô tận "thêm một tính năng nữa".</p>
+<p>"Chức năng cốt lõi" và "Tiêu chuẩn thành công" trong PRD nói cho bạn biết: <strong>Làm được những cái này là đủ rồi, có thể dừng lại để kiểm chứng rồi.</strong></p>
+<h2>Prompt dở vs Prompt tốt</h2>
+<p>Hãy xem vấn đề của Tiểu Lý được giải quyết thế nào bằng PRD:</p>
+<p>❌ <strong>Prompt dở</strong>:</p>
+<pre><code>Giúp tôi làm một ứng dụng danh sách việc cần làm
+</code></pre>
+<p>Vấn đề:</p>
+<ul>
+<li>AI không biết người dùng là ai (Dùng cá nhân hay dùng cho nhóm?)</li>
+<li>AI không biết chức năng cốt lõi là gì (Cần lịch không? Cần nhắc nhở không?)</li>
+<li>AI không biết ràng buộc kỹ thuật (Dùng ngôn ngữ gì? Cần cơ sở dữ liệu không?)</li>
+<li>AI không biết thế nào là hoàn thành</li>
+</ul>
+<p>✅ <strong>Prompt tốt (Dạng PRD)</strong>:</p>
+<pre><code class="language-markdown"># Danh sách việc cần làm cực giản
+
+## Mô tả một câu
+
+Một trang web danh sách việc cần làm chỉ có chức năng thêm và tích chọn, dùng cho cá nhân
+
+## Người dùng mục tiêu
+
+Chính tôi (Người đi làm, xử lý 5-10 việc mỗi ngày)
+
+## Vấn đề cần giải quyết
+
+Sợ bỏ sót việc quan trọng, cần một công cụ dễ kiên trì sử dụng hơn giấy nhớ
+
+## Chức năng cốt lõi (Chỉ làm những cái này)
+
+- Thêm nhiệm vụ (Ô nhập liệu + Nút bấm)
+- Xem danh sách nhiệm vụ
+- Bấm tích chọn hoàn thành
+- Xóa nhiệm vụ
+
+## Chức năng KHÔNG làm
+
+- Không đăng nhập đăng ký
+- Không chế độ xem lịch
+- Không thẻ phân loại
+- Không làm việc nhóm
+- Không đồng bộ đám mây (Lưu cục bộ là được)
+
+## Ràng buộc kỹ thuật
+
+- Thuần Frontend, dùng HTML + CSS + JavaScript
+- Dữ liệu lưu trong localStorage trình duyệt
+- Giao diện tiếng Việt
+
+## Tiêu chuẩn thành công
+
+Mở trang web có thể thêm nhiệm vụ, tích chọn hoàn thành, xóa nhiệm vụ, refresh lại dữ liệu vẫn còn
+</code></pre>
+<p><strong>Đây chính là một bản PRD Vibe Coding.</strong> Không cần vài chục trang, chỉ cần viết rõ thông tin then chốt.</p>
+<h2>Tại sao "viết trước làm sau" hiệu quả hơn</h2>
+<p>Có thể bạn sẽ nghĩ: Nói thẳng với AI là được rồi, cần gì phải viết tài liệu trước?</p>
+<p>Ba lý do:</p>
+<p><strong>1. Viết là quá trình tư duy</strong></p>
+<p>Khi bạn chuyển ý tưởng thành con chữ, sẽ phát hiện rất nhiều chỗ mơ hồ. "Làm một danh sách việc cần làm dễ dùng" —— thế nào gọi là "dễ dùng"? Quá trình viết PRD sẽ ép bạn biến những ý tưởng mơ hồ trở nên rõ ràng.</p>
+<p><strong>2. Giảm thiểu sửa đi sửa lại</strong></p>
+<p>Theo dữ liệu của ChatPRD (một công ty chuyên về AI hỗ trợ PRD), các nhà phát triển sử dụng PRD cấu trúc hóa giảm trung bình 60% số lần phải làm lại.</p>
+<p><strong>3. Có thể tái sử dụng, có thể cải tiến</strong></p>
+<p>PRD viết xong có thể dùng nhiều lần:</p>
+<ul>
+<li>Lần này AI làm chưa tốt? Điều chỉnh PRD thử lại</li>
+<li>Đổi công cụ AI khá? Copy thẳng PRD sang</li>
+<li>Lần sau làm dự án tương tự? Sửa trên nền PRD này</li>
+</ul>
+<h2>Trọng điểm cốt lõi bài này</h2>
+<ul>
+<li>✅ PRD là "bản nhiệm vụ" cho AI, không phải "báo cáo" cho sếp xem</li>
+<li>✅ PRD của Vibe Coding chỉ cần 20-50 dòng, cốt lõi là cấu trúc rõ ràng, thông tin đầy đủ</li>
+<li>✅ PRD giải quyết 3 vấn đề: Ngăn AI tự do phát huy, giữ vững mục đích ban đầu, định nghĩa tiêu chuẩn hoàn thành</li>
+<li>✅ "Viết trước làm sau" có thể giảm thiểu làm đi làm lại, giúp quy trình phát triển hiệu quả hơn</li>
+</ul>
+<p>Tiếp theo, chúng ta sẽ học cách đưa thành quả tư duy của Chương 2 vào trong PRD.</p>
+</body>
+</html>

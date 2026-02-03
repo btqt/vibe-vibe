@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.6.1 Core Insight</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "2.6.1 Insight cốt lõi: Một tư duy, đa bối cảnh"</h2>
+<p><img alt="02-mindset_2.6-scenario-application_2.6.1-core-insight.png" src="../../../public/images/Basic/02-mindset_2.6-scenario-application_2.6.1-core-insight.png" /></p>
+<h1>2.6.1 Insight cốt lõi: Một tư duy, đa bối cảnh</h1>
+<h2>Tại sao công cụ tư duy không phải là "độc quyền của giám đốc sản phẩm"</h2>
+<p>Năm bài trước nói về công cụ tư duy, nghe tê có vẻ rất "sản phẩm hóa": JTBD, MVP, chân dung người dùng, PRD...</p>
+<p>Nhưng nếu bạn nhìn kỹ bản chất của chúng, sẽ phát hiện một điểm chung:</p>
+<p><strong>Chúng đều giải quyết cùng một vấn đề —— làm thế nào để biến ý tưởng mơ hồ thành định nghĩa rõ ràng.</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Công cụ tư duy</th>
+<th style="text-align: left;">Nhìn bề ngoài là</th>
+<th style="text-align: left;">Bản chất là</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tư duy JTBD</td>
+<td style="text-align: left;">Hiểu nhu cầu người dùng</td>
+<td style="text-align: left;">Làm rõ "tôi muốn hoàn thành nhiệm vụ gì"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tư duy ngược</td>
+<td style="text-align: left;">Ngăn ngừa sản phẩm thất bại</td>
+<td style="text-align: left;">Nghĩ trước "cái gì sẽ sai"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tư duy phép trừ</td>
+<td style="text-align: left;">Cắt bỏ tính năng không cần thiết</td>
+<td style="text-align: left;">Nhận diện "cái gì thực sự quan trọng"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tư duy câu chuyện</td>
+<td style="text-align: left;">Thiết kế hành trình người dùng</td>
+<td style="text-align: left;">Mô tả "ai làm gì trong tình huống nào"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Ba câu hỏi linh hồn</td>
+<td style="text-align: left;">Xác minh phương hướng sản phẩm</td>
+<td style="text-align: left;">Xác nhận "định nghĩa vấn đề đã rõ ràng chưa"</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Năng lực "định nghĩa vấn đề" này, bất kể bạn làm gì cũng đều cần.</strong></p>
+<p>Bạn làm phân tích dữ liệu, cần định nghĩa "phân tích này cần trả lời câu hỏi gì".
+Bạn viết script tự động hóa, cần định nghĩa "script này giải quyết lao động lặp lại nào".
+Bạn tự làm công cụ cho mình, cần định nghĩa "nỗi đau thực sự của tôi là gì".
+Bạn làm trang web cho người nhà, cần định nghĩa "họ sẽ dùng trong bối cảnh nào".</p>
+<h2>Một ví dụ xuyên suốt: Cùng một người, bốn bối cảnh</h2>
+<p>Hãy dùng một nhân vật hư cấu là "Tiểu Vương" để minh họa cách một bộ công cụ tư duy áp dụng cho các bối cảnh khác nhau như thế nào.</p>
+<p><strong>Tiểu sử Tiểu Vương</strong>: 28 tuổi, làm vận hành tại một công ty thương mại điện tử, biết dùng Excel, không biết viết code. Gần đây bắt đầu thử dùng công cụ lập trình AI.</p>
+<h3>Bối cảnh A: Tiểu Vương muốn làm một bản phân tích dữ liệu</h3>
+<p><strong>Tình huống</strong>: Sếp yêu cầu Tiểu Vương phân tích "tại sao tỷ lệ trả hàng tháng trước tăng cao".</p>
+<p><strong>Khi không có công cụ tư duy</strong>, Tiểu Vương có thể nói với AI thế này:</p>
+<pre><code>Giúp tôi phân tích dữ liệu trả hàng này
+</code></pre>
+<p>AI sẽ tạo ra một đống biểu đồ, nhưng Tiểu Vương không biết nên xem cái nào, cũng không biết báo cáo với sếp thế nào.</p>
+<p><strong>Sau khi dùng công cụ tư duy</strong>, Tiểu Vương sẽ tự hỏi trước:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Câu hỏi</th>
+<th style="text-align: left;">Câu trả lời của Tiểu Vương</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Ai cần xem phân tích này? (Ba câu hỏi linh hồn)</td>
+<td style="text-align: left;">Sếp, ổng cần báo cáo cho CEO trong cuộc họp tuần</td>
+</tr>
+<tr>
+<td style="text-align: left;">Họ cần ra quyết định gì? (Tư duy JTBD)</td>
+<td style="text-align: left;">Quyết định có điều chỉnh chính sách trả hàng hay không</td>
+</tr>
+<tr>
+<td style="text-align: left;">Điều gì khiến phân tích này vô dụng? (Tư duy ngược)</td>
+<td style="text-align: left;">Chỉ nói "tỷ lệ trả hàng tăng" nhưng không nói nguyên nhân</td>
+</tr>
+<tr>
+<td style="text-align: left;">Vấn đề cốt lõi nhất là gì? (Tư duy phép trừ)</td>
+<td style="text-align: left;">Nguyên nhân chính khiến tỷ lệ trả hàng tăng là gì?</td>
+</tr>
+</tbody>
+</table>
+<p>Sau đó Tiểu Vương sẽ nói với AI thế này:</p>
+<pre><code>Tôi là nhân viên vận hành thương mại điện tử, sếp cần báo cáo cho CEO trong cuộc họp tuần về &quot;nguyên nhân tỷ lệ trả hàng tháng trước tăng&quot;.
+
+Vấn đề cốt lõi: Nguyên nhân chính khiến tỷ lệ trả hàng tăng là gì?
+
+Phân tích cần có:
+1. Phân tích theo danh mục hàng hóa, loại nào trả hàng nhiều nhất
+2. Phân tích theo lý do trả hàng, 3 lý do phổ biến nhất
+3. So sánh với tháng trước và tháng kia, chỉ số nào thay đổi lớn nhất
+
+Yêu cầu đầu ra: 3 biểu đồ, mỗi biểu đồ kèm một câu kết luận, cuối cùng đưa ra 2-3 giả thuyết nguyên nhân khả thi.
+
+Dữ liệu ở đây: [Tải lên Excel]
+</code></pre>
+<h3>Bối cảnh B: Tiểu Vương muốn viết một script tự động hóa</h3>
+<p><strong>Tình huống</strong>: Mỗi sáng Tiểu Vương phải tải dữ liệu bán hàng từ 5 nền tảng, tổng hợp thủ công vào một bảng, mất khoảng 40 phút.</p>
+<p><strong>Khi không có công cụ tư duy</strong>, Tiểu Vương có thể nói với AI thế này:</p>
+<pre><code>Giúp tôi viết một script Python, tự động tổng hợp dữ liệu bán hàng
+</code></pre>
+<p>AI sẽ hỏi "dữ liệu từ đâu đến", "định dạng là gì", Tiểu Vương không trả lời được, dự án bị tắc.</p>
+<p><strong>Sau khi dùng công cụ tư duy</strong>, Tiểu Vương sẽ đánh giá trước:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Câu hỏi</th>
+<th style="text-align: left;">Câu trả lời của Tiểu Vương</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Nhiệm vụ này bao lâu làm một lần? (Tần suất)</td>
+<td style="text-align: left;">Mỗi ngày</td>
+</tr>
+<tr>
+<td style="text-align: left;">Mỗi lần tốn bao nhiêu thời gian? (Thời gian)</td>
+<td style="text-align: left;">40 phút</td>
+</tr>
+<tr>
+<td style="text-align: left;">Các bước có cố định không? (Quy tắc)</td>
+<td style="text-align: left;">Có, ngày nào cũng giống nhau</td>
+</tr>
+<tr>
+<td style="text-align: left;">Trường hợp nào sẽ bị lỗi? (Tư duy ngược)</td>
+<td style="text-align: left;">Một nền tảng nào đó thay đổi giao diện, định dạng file thay đổi</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tự động hóa bước nào trước? (Tư duy phép trừ)</td>
+<td style="text-align: left;">Làm "gộp 5 Excel" trước, tải xuống tạm thời làm thủ công</td>
+</tr>
+</tbody>
+</table>
+<p>Sau đó Tiểu Vương sẽ nói với AI thế này:</p>
+<pre><code>Nhiệm vụ lặp lại của tôi: Mỗi sáng tải Excel dữ liệu bán hàng từ 5 nền tảng, gộp thủ công vào một bảng tổng hợp.
+
+Quy trình làm việc hiện tại của tôi:
+1. Tải thủ công 5 Excel (tạm thời không tự động hóa)
+2. Mở từng Excel, copy 4 cột &quot;Ngày&quot;, &quot;Tên sản phẩm&quot;, &quot;Doanh số&quot;, &quot;Số tiền&quot;
+3. Paste vào bảng tổng hợp
+4. Sắp xếp theo ngày
+
+Phần muốn tự động hóa:
+Bước 2-4, gộp 5 Excel thành một bảng tổng hợp.
+
+Mô tả file:
+- 5 Excel đều để trong thư mục D:\SalesData\Daily\
+- Định dạng tên file: TenNenTang_Ngay.xlsx (Ví dụ TaoBao_20241201.xlsx)
+- Dữ liệu mỗi file ở Sheet1, dòng đầu tiên là tiêu đề
+
+Hãy giúp tôi viết một script Python, thực hiện việc gộp tự động.
+</code></pre>
+<h3>Bối cảnh C: Tiểu Vương muốn tự làm một công cụ nhỏ</h3>
+<p><strong>Tình huống</strong>: Tiểu Vương muốn làm một công cụ "Review mỗi ngày", ghi lại hôm nay đã làm gì, học được gì.</p>
+<p><strong>Khi không có công cụ tư duy</strong>, Tiểu Vương có thể nghĩ:</p>
+<pre><code>Tôi muốn làm công cụ review, cần có:
+- Ghi chép hàng ngày
+- Tạo báo cáo tuần
+- Thống kê tháng
+- Phân loại thẻ (tag)
+- Chức năng tìm kiếm
+- Xuất dữ liệu
+- Biểu đồ trực quan hóa
+...
+</code></pre>
+<p>Và rồi dự án này mãi mãi làm không xong.</p>
+<p><strong>Sau khi dùng công cụ tư duy</strong>, Tiểu Vương sẽ tự hỏi trước:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Câu hỏi</th>
+<th style="text-align: left;">Câu trả lời của Tiểu Vương</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Nỗi đau thực sự của tôi là gì? (Ba câu hỏi linh hồn)</td>
+<td style="text-align: left;">Mỗi ngày bận rộn xong không biết thời gian đi đâu mất, hôm sau lại lặp lại sai lầm cũ</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tôi sẽ dùng trong bối cảnh nào? (Tư duy câu chuyện)</td>
+<td style="text-align: left;">Buổi tối trước khi ngủ, nằm trên giường dùng điện thoại, mất 2 phút ghi chép</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tính năng nào bắt buộc phải có ngay ngày đầu tiên? (Tư duy phép trừ)</td>
+<td style="text-align: left;">Có thể ghi nhanh "hôm nay làm gì", "ngày mai cải thiện gì"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Điều gì sẽ khiến tôi làm xong mà không dùng? (Tư duy ngược)</td>
+<td style="text-align: left;">Quá phức tạp, mở chậm, phải điền nhiều thứ</td>
+</tr>
+</tbody>
+</table>
+<p>Sau đó Tiểu Vương sẽ nói với AI thế này:</p>
+<pre><code>Tôi muốn làm một trang web review mỗi ngày cực giản.
+
+Bối cảnh sử dụng:
+- Mở bằng điện thoại buổi tối trước khi ngủ
+- Hoàn thành ghi chép trong 2 phút
+- Không cần đăng nhập
+
+Tính năng cốt lõi (chỉ cần những cái này):
+1. Hai ô nhập liệu: &quot;Hôm nay đã làm gì&quot;, &quot;Ngày mai cải thiện gì&quot;
+2. Một nút Lưu
+3. Xem được ghi chép 7 ngày gần nhất
+4. Dữ liệu lưu trong Local Storage của trình duyệt
+
+Tính năng không cần:
+- Không cần phân loại thẻ
+- Không cần tìm kiếm
+- Không cần biểu đồ thống kê
+- Không cần xuất dữ liệu
+</code></pre>
+<h3>Bối cảnh D: Tiểu Vương muốn làm công cụ cho bố mẹ</h3>
+<p><strong>Tình huống</strong>: Mẹ Tiểu Vương 60 tuổi, thường xuyên quên giờ gọi video với bạn cũ.</p>
+<p><strong>Khi không có công cụ tư duy</strong>, Tiểu Vương có thể làm một "App quản lý lịch trình" đầy đủ chức năng —— nhưng mẹ hoàn toàn không biết dùng.</p>
+<p><strong>Sau khi dùng công cụ tư duy</strong>, Tiểu Vương sẽ quan sát và hỏi han trước:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Câu hỏi</th>
+<th style="text-align: left;">Câu trả lời của Tiểu Vương</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Mẹ là ai? Trình độ công nghệ thế nào? (Tư duy câu chuyện)</td>
+<td style="text-align: left;">60 tuổi, chỉ biết dùng Zalo, không biết cài App</td>
+</tr>
+<tr>
+<td style="text-align: left;">Nỗi đau thực sự của bà là gì? (Ba câu hỏi linh hồn)</td>
+<td style="text-align: left;">Không phải "quản lý lịch trình", mà là "nhớ chiều thứ tư 3 giờ gọi video với dì Lý"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Điều gì khiến bà không dùng được? (Tư duy ngược)</td>
+<td style="text-align: left;">Chữ quá nhỏ, nhiều bước, cần đăng nhập</td>
+</tr>
+<tr>
+<td style="text-align: left;">Bà sẽ dùng trong bối cảnh nào? (Tư duy câu chuyện)</td>
+<td style="text-align: left;">Chiều thứ tư, xem trước một cái xem hôm nay phải làm gì</td>
+</tr>
+</tbody>
+</table>
+<p>Sau đó Tiểu Vương sẽ nói với AI thế này:</p>
+<pre><code>Tôi muốn làm cho mẹ một trang web &quot;Nhắc nhở hôm nay&quot;.
+
+Tình hình người dùng:
+- 60 tuổi, chỉ biết dùng Zalo
+- Không biết cài App, nhưng biết bấm vào link trong Zalo
+- Thị lực bình thường, cần chữ to
+
+Bối cảnh sử dụng:
+- Tôi gửi link trang web vào nhóm gia đình
+- Mẹ bấm vào là thấy &quot;hôm nay phải làm gì&quot;
+
+Tính năng cốt lõi (chỉ cần những cái này):
+1. Hiển thị chữ to &quot;Hôm nay là thứ X&quot;
+2. Hiển thị việc cần nhớ hôm nay (như &quot;3 giờ chiều gọi video với dì Lý&quot;)
+3. Tôi có thể thêm/sửa nhắc nhở từ xa
+
+Yêu cầu thiết kế:
+- Cỡ chữ ít nhất 20px
+- Nút phải to, dễ bấm
+- Không cần đăng nhập
+- Mở trang ra là thấy thông tin, không cần thao tác gì
+</code></pre>
+<h2>Điểm chung: Đều đang "định nghĩa vấn đề"</h2>
+<p>Bốn bối cảnh, nhìn bề ngoài hoàn toàn khác nhau:</p>
+<ul>
+<li>Bối cảnh A là phân tích dữ liệu</li>
+<li>Bối cảnh B là script tự động hóa</li>
+<li>Bối cảnh C là công cụ cá nhân</li>
+<li>Bối cảnh D là làm công cụ cho người nhà</li>
+</ul>
+<p>Nhưng công cụ tư duy được sử dụng hoàn toàn giống nhau:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bước</th>
+<th style="text-align: left;">Công cụ tư duy</th>
+<th style="text-align: left;">Đều hỏi trong cả bốn bối cảnh</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Bước 1</td>
+<td style="text-align: left;">JTBD + Ba câu hỏi linh hồn</td>
+<td style="text-align: left;">Cái này giúp ai hoàn thành nhiệm vụ gì?</td>
+</tr>
+<tr>
+<td style="text-align: left;">Bước 2</td>
+<td style="text-align: left;">Tư duy câu chuyện</td>
+<td style="text-align: left;">Sử dụng trong bối cảnh nào?</td>
+</tr>
+<tr>
+<td style="text-align: left;">Bước 3</td>
+<td style="text-align: left;">Tư duy ngược</td>
+<td style="text-align: left;">Trường hợp nào sẽ thất bại/lỗi/không dùng được?</td>
+</tr>
+<tr>
+<td style="text-align: left;">Bước 4</td>
+<td style="text-align: left;">Tư duy phép trừ</td>
+<td style="text-align: left;">Tính năng cốt lõi nhất là gì? Làm cái nào trước?</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Công cụ tư duy là "hệ điều hành", bối cảnh chỉ là "ứng dụng".</strong></p>
+<p>Nắm vững công cụ tư duy, bạn có thể ứng phó với bất kỳ bối cảnh nào.</p>
+<h2>Tiếp theo</h2>
+<p>Trong bốn phần nhỏ tiếp theo, chúng ta sẽ đi sâu vào từng bối cảnh:</p>
+<ul>
+<li>Thách thức đặc thù của bối cảnh là gì</li>
+<li>Dùng công cụ tư duy cụ thể như thế nào</li>
+<li>Mẫu Prompt hoàn chỉnh</li>
+<li>Lầm tưởng thường gặp và hướng dẫn tránh bẫy</li>
+</ul>
+<p>Hãy bắt đầu từ "Bối cảnh phân tích dữ liệu".</p>
+</body>
+</html>

@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.3.1 Zero Shot</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.3.1 Zero-shot Prompting: Nghệ thuật hỏi trực tiếp"</h2>
+<p><img alt="03-technique_3.3-advanced-techniques_3.3.1-zero-shot.png" src="../../../public/images/Basic/03-technique_3.3-advanced-techniques_3.3.1-zero-shot.png" /></p>
+<h1>3.3.1 Zero-shot Prompting: Nghệ thuật hỏi trực tiếp</h1>
+<h2>Sau bài học này, bạn sẽ nắm được</h2>
+<ul>
+<li>Định nghĩa và nguyên lý hoạt động của Zero-shot</li>
+<li>Các bối cảnh phù hợp để sử dụng Zero-shot</li>
+<li>Cách viết Prompt Zero-shot chất lượng cao</li>
+<li>Hạn chế của Zero-shot và phương pháp đối phó</li>
+</ul>
+<h2>Zero-shot Prompting là gì</h2>
+<p>Zero-shot (Không mẫu/Không ví dụ) nghĩa là: <strong>Không đưa ra bất kỳ ví dụ nào, trực tiếp yêu cầu AI thực hiện nhiệm vụ</strong>.</p>
+<p>Đây là cách đặt câu hỏi trực tiếp nhất. Bạn mô tả nhiệm vụ, AI dựa vào kiến thức đã học trong quá trình huấn luyện để đưa ra câu trả lời trực tiếp.</p>
+<pre><code>Chuyển đổi đoạn code Python 2 sau sang cú pháp Python 3:
+print &quot;Hello, World!&quot;
+</code></pre>
+<p>AI không cần bạn diễn giải "chuyển đổi như thế nào", nó đã "biết" sự khác biệt giữa Python 2 và Python 3. Đây chính là cốt lõi của Zero-shot: <strong>Tận dụng kiến thức có sẵn của AI để hoàn thành nhiệm vụ</strong>.</p>
+<h2>Tại sao Zero-shot hiệu quả</h2>
+<p>Các mô hình AI hiện đại đã "nhìn thấy" lượng dữ liệu khổng lồ trong quá trình huấn luyện: code, tài liệu, hướng dẫn, hỏi đáp. Đối với các nhiệm vụ phổ biến, nó đã có khả năng thực thi, chỉ cần bạn <strong>mô tả nhiệm vụ rõ ràng</strong>.</p>
+<p>Giống như nhờ một đồng nghiệp có nhiều kinh nghiệm giúp đỡ —— bạn không cần dạy anh ấy cách viết code, chỉ cần nói rõ bạn muốn gì.</p>
+<h2>Bối cảnh phù hợp</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bối cảnh</th>
+<th style="text-align: left;">Ví dụ</th>
+<th style="text-align: left;">Tại sao phù hợp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Chuyển đổi code</td>
+<td style="text-align: left;">Python 2 → Python 3</td>
+<td style="text-align: left;">AI quen thuộc với cả hai cú pháp</td>
+</tr>
+<tr>
+<td style="text-align: left;">Phân loại văn bản</td>
+<td style="text-align: left;">Phán đoán cảm xúc của bình luận</td>
+<td style="text-align: left;">Nhiệm vụ NLP phổ biến</td>
+</tr>
+<tr>
+<td style="text-align: left;">Chuyển đổi định dạng</td>
+<td style="text-align: left;">JSON → YAML</td>
+<td style="text-align: left;">Định dạng chuẩn, quy tắc rõ ràng</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tạo nội dung</td>
+<td style="text-align: left;">Viết một đoạn mô tả sản phẩm</td>
+<td style="text-align: left;">Nhiệm vụ sáng tạo, không cần ví dụ</td>
+</tr>
+<tr>
+<td style="text-align: left;">Giải thích code</td>
+<td style="text-align: left;">Giải thích đoạn code này làm gì</td>
+<td style="text-align: left;">AI có khả năng hiểu code mạnh</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Phán đoán bằng một câu</strong>: Nếu nhiệm vụ này "AI chắc là biết", thì dùng Zero-shot.</p>
+<h2>Prompt dở vs Prompt tốt</h2>
+<h3>❌ Prompt dở</h3>
+<pre><code>Giúp tôi xử lý dữ liệu này
+</code></pre>
+<p><strong>Vấn đề</strong>: Nhiệm vụ không rõ ràng. Xử lý nghĩa là gì? Làm sạch? Chuyển đổi? Phân tích?</p>
+<h3>✅ Prompt tốt</h3>
+<pre><code>Chuyển đổi dữ liệu CSV sau sang định dạng JSON, mỗi dòng là một đối tượng:
+
+name,age,city
+Trương Tam,25,Bắc Kinh
+Lý Tứ,30,Thượng Hải
+</code></pre>
+<p><strong>Điểm cải tiến</strong>:</p>
+<ul>
+<li>Nhiệm vụ rõ ràng: CSV → JSON</li>
+<li>Định dạng rõ ràng: Mỗi dòng một đối tượng</li>
+<li>Cung cấp dữ liệu đầu vào</li>
+</ul>
+<h3>So sánh đầu ra</h3>
+<p>Prompt dở có thể nhận được: "Vui lòng cung cấp dữ liệu cụ thể và nhu cầu xử lý" (AI không thể thực thi)</p>
+<p>Prompt tốt nhận được:</p>
+<pre><code class="language-json">[
+  { &quot;name&quot;: &quot;Trương Tam&quot;, &quot;age&quot;: 25, &quot;city&quot;: &quot;Bắc Kinh&quot; },
+  { &quot;name&quot;: &quot;Lý Tứ&quot;, &quot;age&quot;: 30, &quot;city&quot;: &quot;Thượng Hải&quot; }
+]
+</code></pre>
+<h2>4 yếu tố để viết tốt Zero-shot</h2>
+<h3>1. Động từ nhiệm vụ rõ ràng</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Mơ hồ</th>
+<th style="text-align: left;">Rõ ràng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Xử lý đoạn code này</td>
+<td style="text-align: left;"><strong>Refactor</strong> đoạn code này, tách logic lặp lại thành hàm</td>
+</tr>
+<tr>
+<td style="text-align: left;">Xem dữ liệu này</td>
+<td style="text-align: left;"><strong>Phân tích</strong> giá trị bất thường của dữ liệu này</td>
+</tr>
+<tr>
+<td style="text-align: left;">Làm lại định dạng</td>
+<td style="text-align: left;"><strong>Chuyển đổi</strong> sang định dạng bảng Markdown</td>
+</tr>
+</tbody>
+</table>
+<h3>2. Yêu cầu đầu ra cụ thể</h3>
+<pre><code>❌ &quot;Cho tôi một hàm&quot;
+✅ &quot;Cho tôi một hàm JavaScript, nhận tham số mảng, trả về mảng đã loại bỏ phần tử trùng lặp&quot;
+</code></pre>
+<h3>3. Điều kiện ràng buộc cần thiết</h3>
+<pre><code>❌ &quot;Viết một thuật toán sắp xếp&quot;
+✅ &quot;Viết một thuật toán sắp xếp, yêu cầu: Độ phức tạp thời gian O(n log n), không dùng phương thức sort có sẵn&quot;
+</code></pre>
+<h3>4. Dữ liệu đầu vào rõ ràng</h3>
+<p>Nếu nhiệm vụ cần xử lý dữ liệu, hãy cung cấp trực tiếp trong Prompt.</p>
+<h2>Kỹ thuật nâng cao: Tăng cường hiệu quả Zero-shot</h2>
+<h3>Thiết lập vai trò (Role Prompting)</h3>
+<p>Gán cho AI một vai trò, có thể khiến nó trả lời câu hỏi từ một góc nhìn cụ thể.</p>
+<pre><code>Bạn là một kỹ sư Frontend có 10 năm kinh nghiệm.
+Vui lòng xem xét code React sau đây, chỉ ra các vấn đề hiệu năng tiềm ẩn:
+[Code]
+</code></pre>
+<h3>Chỉ định định dạng đầu ra</h3>
+<p>Nói rõ cho AI biết định dạng bạn muốn.</p>
+<pre><code>Phân tích phản hồi người dùng sau đây, trích xuất các vấn đề then chốt.
+Định dạng đầu ra:
+- Vấn đề 1: [Mô tả]
+- Vấn đề 2: [Mô tả]
+...
+</code></pre>
+<h2>Ví dụ thực chiến: Dự án danh sách việc cần làm</h2>
+<p>Tiểu Lý muốn nhờ AI viết giúp cậu ấy một hàm định dạng ngày tháng.</p>
+<h3>Prompt Zero-shot</h3>
+<pre><code>Viết một hàm JavaScript formatDate, chức năng như sau:
+- Đầu vào: Đối tượng Date
+- Đầu ra: Chuỗi đã định dạng, định dạng là &quot;YYYY năm MM tháng DD ngày&quot;
+- Ví dụ: Đầu vào new Date('2024-03-15'), đầu ra &quot;2024 năm 03 tháng 15 ngày&quot;
+- Yêu cầu: Tháng và ngày nếu thiếu hai chữ số thì thêm số 0
+</code></pre>
+<h3>Đầu ra của AI</h3>
+<pre><code class="language-javascript">function formatDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, &quot;0&quot;);
+  const day = String(date.getDate()).padStart(2, &quot;0&quot;);
+  return `${year} năm ${month} tháng ${day} ngày`;
+}
+</code></pre>
+<h2>Hạn chế của Zero-shot</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Hạn chế</th>
+<th style="text-align: left;">Biểu hiện</th>
+<th style="text-align: left;">Giải pháp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Định dạng không ổn định</td>
+<td style="text-align: left;">Mỗi lần xuất ra định dạng không thống nhất</td>
+<td style="text-align: left;">Dùng Few-shot cung cấp ví dụ</td>
+</tr>
+<tr>
+<td style="text-align: left;">Suy luận phức tạp bị lỗi</td>
+<td style="text-align: left;">Logic nhiều bước dễ bị nhảy cóc</td>
+<td style="text-align: left;">Dùng Chain of Thought</td>
+</tr>
+<tr>
+<td style="text-align: left;">Không hiểu nhu cầu đặc thù</td>
+<td style="text-align: left;">Đầu ra không phù hợp quy phạm dự án</td>
+<td style="text-align: left;">Bổ sung ngữ cảnh trong Prompt</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tiêu chuẩn phán đoán</strong>: Nếu Zero-shot liên tục hai lần cho đầu ra không ưng ý, hãy cân nhắc đổi sang kỹ thuật khác.</p>
+<h2>Mẫu có thể sao chép</h2>
+<h3>Mẫu chuyển đổi code</h3>
+<pre><code class="language-markdown">Chuyển đổi code [Ngôn ngữ nguồn/Phiên bản] sau đây sang [Ngôn ngữ mục tiêu/Phiên bản]:
+
+[Nội dung code]
+
+Yêu cầu:
+
+- Giữ nguyên chức năng
+- Tuân thủ Best Practice của [Ngôn ngữ mục tiêu]
+</code></pre>
+<h3>Mẫu tạo nội dung</h3>
+<pre><code class="language-markdown">Bạn là [Định vị vai trò].
+
+Nhiệm vụ: [Mô tả nhiệm vụ cụ thể]
+
+Yêu cầu:
+
+- [Yêu cầu 1]
+- [Yêu cầu 2]
+
+Định dạng đầu ra: [Giải thích định dạng]
+</code></pre>
+<h3>Mẫu review code</h3>
+<pre><code class="language-markdown">Review code sau đây, chỉ ra vấn đề từ góc độ [Chiều review]:
+
+[Nội dung code]
+
+Định dạng đầu ra:
+
+1. Vấn đề: [Mô tả] | Vị trí: [Số dòng] | Đề xuất: [Phương án sửa đổi]
+</code></pre>
+<h2>Trọng điểm bài học</h2>
+<p>✓ <strong>Bản chất của Zero-shot</strong>: Tận dụng kiến thức có sẵn của AI, thực hiện trực tiếp nhiệm vụ</p>
+<p>✓ <strong>Bối cảnh áp dụng</strong>: Nhiệm vụ mà AI "chắc là biết" —— chuyển đổi, phân loại, tạo nội dung</p>
+<p>✓ <strong>Chìa khóa viết tốt Zero-shot</strong>: Động từ rõ ràng + Đầu ra cụ thể + Ràng buộc cần thiết</p>
+<p>✓ <strong>Hạn chế</strong>: Định dạng không ổn định, suy luận phức tạp dễ sai</p>
+<p>✓ <strong>Kỹ thuật tăng cường</strong>: Thiết lập vai trò, chỉ định định dạng đầu ra</p>
+<p>Bài sau, chúng ta sẽ học cách dùng ví dụ để "dạy" AI —— Few-shot Prompting.</p>
+</body>
+</html>

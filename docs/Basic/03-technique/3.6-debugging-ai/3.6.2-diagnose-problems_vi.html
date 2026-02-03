@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.6.2 Diagnose Problems</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.6.2 Chẩn đoán vấn đề: AI sai ở đâu"</h2>
+<p><img alt="03-technique_3.6-debugging-ai_3.6.2-diagnose-problems.png" src="../../../public/images/Basic/03-technique_3.6-debugging-ai_3.6.2-diagnose-problems.png" /></p>
+<h1>3.6.2 Chẩn đoán vấn đề: AI sai ở đâu</h1>
+<h2>Qua phần học này, bạn sẽ nắm vững</h2>
+<ul>
+<li>Sử dụng "Phương pháp chẩn đoán nhanh 3 phút" để định vị vấn đề</li>
+<li>Phân biệt "Tôi nói không rõ" và "Năng lực AI không đủ"</li>
+<li>Chọn chiến lược ứng phó đúng đắn dựa trên loại vấn đề</li>
+<li>Có được một cây quyết định chẩn đoán</li>
+</ul>
+<h2>Vấn đề cốt lõi của chẩn đoán</h2>
+<p>Khi output của AI không đạt kỳ vọng, trước tiên bạn phải trả lời một câu hỏi:</p>
+<blockquote>
+<p><strong>Là tôi nói không rõ, hay là AI làm không đúng?</strong></p>
+</blockquote>
+<p>Câu trả lời cho vấn đề này quyết định bạn nên làm gì tiếp theo:
+- Nếu là bạn nói không rõ → Bổ sung ngữ cảnh, mô tả lại
+- Nếu là AI làm không đúng → Đổi cách hỏi, hoặc đổi chiến lược</p>
+<h2>Phương pháp chẩn đoán nhanh 3 phút</h2>
+<p>Trước khi phân tích sâu, dùng 3 bước này để rà soát nhanh, có thể bắt được khoảng 60% vấn đề thường gặp:</p>
+<h3>Bước 1: Chạy kiểm tra code (30 giây)</h3>
+<pre><code class="language-bash"># Nếu là dự án JavaScript/TypeScript
+npx eslint &lt;tên_file&gt;   # Kiểm tra vấn đề cú pháp và định dạng
+npx tsc --noEmit      # Kiểm tra lỗi kiểu (nếu dùng TypeScript)
+</code></pre>
+<p><strong>Các vấn đề có thể phát hiện</strong>:
+- Lỗi cú pháp (thiếu ngoặc, sai chính tả từ khóa)
+- Kiểu không khớp
+- Biến chưa định nghĩa</p>
+<h3>Bước 2: Kiểm tra dependency và API (60 giây)</h3>
+<p>Đối chiếu câu lệnh import trong code, kiểm tra:</p>
+<ul>
+<li>[ ] Gói được import có tồn tại không? (Dùng phương pháp xác minh ở 3.6.1)</li>
+<li>[ ] Phương thức được gọi có thực sự tồn tại trong gói đó không?</li>
+<li>[ ] Phiên bản có khớp không?</li>
+</ul>
+<p><strong>Các vấn đề có thể phát hiện</strong>:
+- Ảo giác gói
+- Ảo giác API
+- Vấn đề tương thích phiên bản</p>
+<h3>Bước 3: Chạy test hiện có (90 giây)</h3>
+<p>Nếu dự án có các trường hợp test (test case):</p>
+<pre><code class="language-bash">npm test           # Hoặc lệnh test của dự án bạn
+</code></pre>
+<p><strong>Các vấn đề có thể phát hiện</strong>:
+- Thay đổi hành vi (chức năng cũ đang chạy tốt bị sửa hỏng)
+- Lỗi logic
+- Xử lý trường hợp biên không thỏa đáng</p>
+<h2>Bốn góc phần tư phân tích nguyên nhân gốc rễ</h2>
+<p>Nếu chẩn đoán 3 phút không định vị được vấn đề, dùng biểu đồ bốn góc phần tư này để phân tích nguyên nhân gốc rễ:</p>
+<pre><code>                    Tôi nói rõ ràng
+                        ↑
+          ┌─────────────┼─────────────┐
+          │             │             │
+          │   AI sai    │ Bổ sung ngữ │
+          │             │    cảnh     │
+ Nhiệm vụ │ → Đổi cách  │ → Mô tả lại │  Nhiệm vụ
+ đơn giản │    hỏi      │             │  phức tạp
+          │             │             │
+          ├─────────────┼─────────────┤
+          │             │             │
+          │  Tách nhỏ   │ Mô tả lại + │
+          │  nhiệm vụ   │  Tách nhỏ   │
+          │ → Làm từng  │ → Giảm độ   │
+          │    bước     │   phức tạp  │
+          │             │             │
+          └─────────────┴─────────────┘
+                        ↓
+                    Tôi nói không rõ
+</code></pre>
+<h3>Góc phần tư 1: Nhiệm vụ đơn giản + Tôi nói rõ ràng → AI sai</h3>
+<p><strong>Đặc điểm</strong>:
+- Nhiệm vụ rất rõ ràng, không nên có sự mơ hồ
+- Thông tin bạn đưa đủ hoàn chỉnh
+- Nhưng output của AI rõ ràng là sai</p>
+<p><strong>Chiến lược ứng phó</strong>:
+- Đổi một cách hỏi khác để mô tả lại
+- Đưa ra ví dụ đúng để AI tham khảo
+- Thử công cụ AI khác</p>
+<p><strong>Ví dụ</strong>:</p>
+<pre><code>Prompt gốc: Viết một hàm nhận biết năm nhuận
+
+Vấn đề: Logic AI đưa không đúng
+
+Đổi cách hỏi:
+&quot;Hãy viết một hàm JavaScript nhận biết năm nhuận.
+Quy tắc năm nhuận:
+1. Chia hết cho 4 nhưng không chia hết cho 100 là năm nhuận
+2. Chia hết cho 400 cũng là năm nhuận
+Hãy thực hiện nghiêm ngặt theo quy tắc này.&quot;
+</code></pre>
+<h3>Góc phần tư 2: Nhiệm vụ đơn giản + Tôi nói không rõ → Bổ sung ngữ cảnh</h3>
+<p><strong>Đặc điểm</strong>:
+- Bản thân nhiệm vụ không phức tạp
+- Nhưng bạn giả định AI biết bối cảnh nào đó
+- AI làm theo cách hiểu của nó, và khác với suy nghĩ của bạn</p>
+<p><strong>Chiến lược ứng phó</strong>:
+- Bổ sung bối cảnh dự án
+- Nói rõ stack kỹ thuật và ràng buộc
+- Nói rõ định dạng đầu ra bạn mong muốn</p>
+<p><strong>Ví dụ</strong>:</p>
+<pre><code>Prompt gốc: Viết một xác thực form
+
+Vấn đề: AI dùng thư viện xác thực mà dự án bạn không có
+
+Bổ sung ngữ cảnh:
+&quot;Dự án của tôi sử dụng React + Zod để xác thực form.
+Hãy dùng Zod viết một schema xác thực form đăng ký người dùng, bao gồm:
+- Xác thực định dạng email
+- Mật khẩu ít nhất 8 ký tự
+- Xác nhận mật khẩu phải khớp&quot;
+</code></pre>
+<h3>Góc phần tư 3: Nhiệm vụ phức tạp + Tôi nói rõ ràng → Tách nhỏ nhiệm vụ</h3>
+<p><strong>Đặc điểm</strong>:
+- Nhiệm vụ liên quan đến nhiều bước hoặc module
+- Bạn mô tả rất rõ ràng
+- Nhưng chất lượng output của AI không ổn định, cái đúng cái sai</p>
+<p><strong>Chiến lược ứng phó</strong>:
+- Tách nhiệm vụ lớn thành nhiệm vụ nhỏ
+- Mỗi lần chỉ để AI làm một việc
+- Hoàn thành từng bước rồi tích hợp lại</p>
+<p><strong>Ví dụ</strong>:</p>
+<pre><code>Prompt gốc (quá lớn):
+&quot;Thực hiện một hệ thống xác thực người dùng hoàn chỉnh, bao gồm đăng ký, đăng nhập, tìm lại mật khẩu, quản lý JWT token&quot;
+
+Sau khi tách nhỏ:
+Vòng 1: &quot;Trước tiên thực hiện chức năng đăng ký người dùng, chỉ cần email và mật khẩu&quot;
+Vòng 2: &quot;Bây giờ thêm chức năng đăng nhập, trả về JWT token&quot;
+Vòng 3: &quot;Thêm middleware xác thực token&quot;
+Vòng 4: &quot;Cuối cùng thêm chức năng tìm lại mật khẩu&quot;
+</code></pre>
+<h3>Góc phần tư 4: Nhiệm vụ phức tạp + Tôi nói không rõ → Mô tả lại + Tách nhỏ</h3>
+<p><strong>Đặc điểm</strong>:
+- Nhiệm vụ phức tạp
+- Bản thân bạn có thể cũng chưa nghĩ thông suốt hoàn toàn
+- Output của AI khác xa với suy nghĩ của bạn</p>
+<p><strong>Chiến lược ứng phó</strong>:
+- Lùi lại một bước, làm rõ nhu cầu của mình
+- Dùng phương pháp PRD học ở phần 3.4 để sắp xếp suy nghĩ
+- Sau đó tách thành nhiệm vụ nhỏ và hoàn thành từng cái một</p>
+<p><strong>Ví dụ</strong>:</p>
+<pre><code>Prompt gốc (mơ hồ và phức tạp):
+&quot;Giúp tôi làm một ứng dụng ghi chú giống Notion&quot;
+
+Sau khi làm rõ nhu cầu:
+&quot;Tôi muốn làm một ứng dụng ghi chú cá nhân, phiên bản MVP chỉ cần:
+1. Tạo/Sửa/Xóa ghi chú
+2. Trang danh sách ghi chú
+3. Lưu trữ cục bộ (Local Storage)
+
+Trước tiên giúp tôi thực hiện chức năng đầu tiên: Tạo và hiển thị danh sách ghi chú.
+Stack kỹ thuật: React + localStorage&quot;
+</code></pre>
+<h2>Prompt chẩn đoán: Để AI thuật lại sự hiểu biết</h2>
+<p>Trước khi bắt đầu nhiệm vụ, hoặc sau khi phát hiện vấn đề, có thể dùng Prompt này để AI thuật lại sự hiểu biết của nó:</p>
+<pre><code class="language-markdown">Trước khi tiếp tục, hãy trả lời các câu hỏi sau:
+
+1. **Mục tiêu nhiệm vụ bạn hiểu là gì?**
+   (Mô tả bằng một câu)
+
+2. **Bạn định sử dụng giải pháp kỹ thuật nào?**
+   (Liệt kê các điểm kỹ thuật then chốt)
+
+3. **Có chỗ nào bạn không chắc chắn, cần tôi làm rõ không?**
+   (Nếu không có thì nói &quot;Không&quot;)
+
+Hãy trả lời các câu hỏi này trước, xác nhận hiểu thống nhất rồi mới bắt đầu viết code.
+</code></pre>
+<p><strong>Tại sao chiêu này hiệu quả</strong>:
+- Bộc lộ sớm sự hiểu lầm của AI
+- Giúp bạn phát hiện vấn đề trước khi viết code
+- Chi phí thấp hơn nhiều so với việc sửa đổi sau khi đã làm xong</p>
+<h2>Định vị nhanh các vấn đề thường gặp</h2>
+<table>
+<thead>
+<tr>
+<th>Triệu chứng</th>
+<th>Nguyên nhân khả năng cao nhất</th>
+<th>Bước tiếp theo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Code không chạy được, báo lỗi cú pháp</td>
+<td>AI tạo ra code không hoàn chỉnh</td>
+<td>Bảo AI đưa code hoàn chỉnh</td>
+</tr>
+<tr>
+<td>Chạy báo lỗi "undefined"</td>
+<td>Thiếu định nghĩa biến hoặc vấn đề bất đồng bộ</td>
+<td>Kiểm tra luồng dữ liệu, bổ sung khởi tạo</td>
+</tr>
+<tr>
+<td>Chức năng không khớp mô tả</td>
+<td>AI hiểu sai nhu cầu</td>
+<td>Dùng ngôn ngữ cụ thể hơn để mô tả lại</td>
+</tr>
+<tr>
+<td>Dùng thư viện lạ</td>
+<td>AI phát huy quá đà</td>
+<td>Xác định ràng buộc, chỉ định chỉ dùng một số thư viện</td>
+</tr>
+<tr>
+<td>Code chạy được nhưng kết quả sai</td>
+<td>Ảo giác logic</td>
+<td>Dùng kiểm thử biên để xác minh, để AI tự kiểm tra</td>
+</tr>
+<tr>
+<td>Biên dịch báo lỗi kiểu (type error)</td>
+<td>Ảo giác API hoặc vấn đề phiên bản</td>
+<td>Tra cứu tài liệu chính thức xác nhận API</td>
+</tr>
+<tr>
+<td>Sửa chỗ này hỏng chỗ kia</td>
+<td>Nhiệm vụ quá lớn, ngữ cảnh bị mất</td>
+<td>Tách nhỏ nhiệm vụ, tiến hành từng bước</td>
+</tr>
+</tbody>
+</table>
+<h2>Điểm cốt yếu phần này</h2>
+<p>✓ <strong>Vấn đề cốt lõi</strong>: Trước tiên phán đoán là "tôi nói không rõ" hay "AI làm không đúng"</p>
+<p>✓ <strong>Chẩn đoán 3 phút</strong>: Chạy kiểm tra → Xác minh dependency → Chạy test, bắt được 60% vấn đề</p>
+<p>✓ <strong>Phân tích bốn góc phần tư</strong>: Dựa trên độ phức tạp nhiệm vụ × độ rõ ràng mô tả, chọn chiến lược khác nhau</p>
+<p>✓ <strong>Kỹ thuật thuật lại</strong>: Để AI nói rõ sự hiểu biết trước khi bắt tay làm, phát hiện sớm sai lệch</p>
+<p>Sau khi định vị được vấn đề, phần tiếp theo chúng ta sẽ học chiến lược sửa chữa cụ thể — làm thế nào để AI sửa code cho đúng.</p>
+</body>
+</html>

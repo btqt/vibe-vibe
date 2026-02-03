@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.4.2 Integrate Chapter2</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.4.2 Từ thành quả Chương 2 đến PRD: Tích hợp tư duy của bạn"</h2>
+<p><img alt="03-technique_3.4-first-prd_3.4.2-integrate-chapter2.png" src="../../../public/images/Basic/03-technique_3.4-first-prd_3.4.2-integrate-chapter2.png" /></p>
+<h1>3.4.2 Từ thành quả Chương 2 đến PRD: Tích hợp tư duy của bạn</h1>
+<p>Nếu bạn đã hoàn thành nghiêm túc các bài tập ở Chương 2, xin chúc mừng —— bạn đã sở hữu tất cả nguyên liệu cần thiết để viết PRD.</p>
+<p>Nhiệm vụ của bài này là: <strong>"Chuyển" những thành quả tư duy này vào đúng vị trí trong PRD.</strong></p>
+<h2>Bảng đối chiếu Thành quả Chương 2 → Trường thông tin PRD</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Công cụ Chương 2</th>
+<th style="text-align: left;">Tư duy bạn đã hoàn thành</th>
+<th style="text-align: left;">Trường thông tin PRD tương ứng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">3 câu hỏi linh hồn 2.5.2</td>
+<td style="text-align: left;">Người dùng là ai</td>
+<td style="text-align: left;"><strong>Người dùng mục tiêu</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">3 câu hỏi linh hồn 2.5.3</td>
+<td style="text-align: left;">Nỗi đau ở đâu</td>
+<td style="text-align: left;"><strong>Vấn đề cần giải quyết</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">3 câu hỏi linh hồn 2.5.4</td>
+<td style="text-align: left;">Tại sao chọn bạn</td>
+<td style="text-align: left;"><strong>Mô tả một câu</strong> (Sự khác biệt)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tư duy phép trừ 2.3</td>
+<td style="text-align: left;">Danh sách tính năng P0</td>
+<td style="text-align: left;"><strong>Chức năng cốt lõi</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">Tư duy phép trừ 2.3.5</td>
+<td style="text-align: left;">"Danh sách KHÔNG làm"</td>
+<td style="text-align: left;"><strong>Chức năng KHÔNG làm</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">Hành trình người dùng 2.4.4</td>
+<td style="text-align: left;">Các bước then chốt</td>
+<td style="text-align: left;"><strong>Quy trình người dùng</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">Tư duy kể chuyện 2.4</td>
+<td style="text-align: left;">Chân dung người dùng</td>
+<td style="text-align: left;">Hòa vào mô tả <strong>Người dùng mục tiêu</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Insight cốt lõi</strong>: PRD không phải viết từ con số 0, mà là "phiên dịch" tư duy của Chương 2 thành định dạng mà AI có thể thực thi.</p>
+<h2>Ví dụ đối chiếu của Tiểu Lý</h2>
+<p>Hãy xem Tiểu Lý đã thực hiện những tư duy nào trong Chương 2, và điền vào PRD như thế nào:</p>
+<h3>Chương 2: Câu trả lời cho 3 câu hỏi linh hồn</h3>
+<pre><code>Người dùng là ai?
+→ Chính tôi, nhân viên văn phòng 28 tuổi, mỗi ngày xử lý 5-10 việc
+
+Nỗi đau ở đâu?
+→ Sợ bỏ sót việc quan trọng, giấy nhớ dễ mất, ghi chú điện thoại không đủ trực quan
+
+Tại sao chọn phương án của tôi?
+→ Khó mất hơn giấy nhớ, đơn giản dễ kiên trì hơn App danh sách việc cần làm phức tạp
+</code></pre>
+<h3>Chương 2: Thành quả của tư duy phép trừ</h3>
+<pre><code>P0 (Bắt buộc có): Thêm nhiệm vụ, xem danh sách, đánh dấu hoàn thành
+P1 (Nên có): Xóa nhiệm vụ, đếm số nhiệm vụ
+P2 (Có thể có): Thẻ phân loại, đánh dấu ưu tiên
+Danh sách KHÔNG làm: Đăng ký đăng nhập, đồng bộ đám mây, làm việc nhóm, xem lịch
+</code></pre>
+<h3>Chương 2: Các bước then chốt của hành trình người dùng</h3>
+<pre><code>1. Mở trang web → Thấy danh sách nhiệm vụ
+2. Nhập nhiệm vụ mới → Bấm thêm
+3. Hoàn thành nhiệm vụ → Bấm tích chọn
+4. Đóng trang web → Lần sau mở lại dữ liệu vẫn còn
+</code></pre>
+<h3>Sau khi điền vào PRD</h3>
+<pre><code class="language-markdown">## Người dùng mục tiêu
+
+Chính tôi (Nhân viên văn phòng 28 tuổi, mỗi ngày xử lý 5-10 việc)
+
+## Vấn đề cần giải quyết
+
+Sợ bỏ sót việc quan trọng. Giấy nhớ dễ mất, ghi chú điện thoại không đủ trực quan,
+cần một công cụ cực giản &quot;mở ra là dùng, tắt đi dữ liệu vẫn còn&quot;.
+
+## Mô tả một câu
+
+Một trang web danh sách việc cần làm bền vững hơn giấy nhớ, đơn giản hơn App phức tạp
+
+## Chức năng cốt lõi (P0)
+
+- Thêm nhiệm vụ
+- Xem danh sách nhiệm vụ
+- Đánh dấu nhiệm vụ hoàn thành
+
+## Chức năng KHÔNG làm
+
+- Đăng ký đăng nhập
+- Đồng bộ đám mây
+- Làm việc nhóm
+- Xem lịch
+- Thẻ phân loại (P2, tạm thời không làm)
+
+## Quy trình người dùng
+
+1. Mở trang web → Thấy danh sách nhiệm vụ
+2. Nhập nhiệm vụ → Bấm nút thêm
+3. Hoàn thành nhiệm vụ → Bấm tích chọn
+4. Đóng trang web → Lần sau mở lại dữ liệu vẫn còn
+</code></pre>
+<p>Thấy chưa? Mỗi phần của PRD đều có nguồn gốc, không cần phải bịa đặt từ không trung.</p>
+<h2>Đề xuất trình tự điền</h2>
+<p>Không phải tất cả các trường thông tin đều quan trọng như nhau. Trình tự điền đề xuất:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Trình tự</th>
+<th style="text-align: left;">Trường thông tin</th>
+<th style="text-align: left;">Lý do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Vấn đề cần giải quyết</td>
+<td style="text-align: left;">Đây là cốt lõi, quyết định tất cả nội dung khác</td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Người dùng mục tiêu</td>
+<td style="text-align: left;">Vấn đề của ai?</td>
+</tr>
+<tr>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Chức năng cốt lõi</td>
+<td style="text-align: left;">Cần chức năng gì để giải quyết vấn đề?</td>
+</tr>
+<tr>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Chức năng KHÔNG làm</td>
+<td style="text-align: left;">Quan trọng tương đương, ngăn chặn phạm vi lan rộng</td>
+</tr>
+<tr>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Quy trình người dùng</td>
+<td style="text-align: left;">Người dùng sử dụng các chức năng này như thế nào?</td>
+</tr>
+<tr>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">Ràng buộc kỹ thuật</td>
+<td style="text-align: left;">Có điều kiện hạn chế gì?</td>
+</tr>
+<tr>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">Tiêu chuẩn thành công</td>
+<td style="text-align: left;">Thế nào tính là làm xong?</td>
+</tr>
+<tr>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">Mô tả một câu</td>
+<td style="text-align: left;">Cuối cùng tóm tắt cô đọng lại</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tại sao "Vấn đề cần giải quyết" xếp đầu tiên?</strong></p>
+<p>Bởi vì chức năng phục vụ cho vấn đề. Nếu bạn viết chức năng trước, rất dễ rơi vào tình trạng nhồi nhét tính năng "tôi muốn cái này, cái kia". Viết vấn đề trước, mỗi chức năng đều phải trả lời: "Chức năng này đang giải quyết vấn đề gì?"</p>
+<h2>Lỗi thường gặp</h2>
+<h3>Lỗi 1: Bỏ qua vấn đề, viết thẳng chức năng</h3>
+<p>❌ Làm sai:</p>
+<pre><code class="language-markdown">## Chức năng cốt lõi
+
+- Thêm nhiệm vụ
+- Xóa nhiệm vụ
+- Thẻ phân loại
+- Xem lịch
+- Thông báo nhắc nhở
+</code></pre>
+<p>Vấn đề: Những chức năng này giải quyết vấn đề gì? Tại sao cần xem lịch?</p>
+<p>✅ Làm đúng:</p>
+<pre><code class="language-markdown">## Vấn đề cần giải quyết
+
+Sợ bỏ sót việc quan trọng
+
+## Chức năng cốt lõi
+
+- Thêm nhiệm vụ (Ghi lại việc cần làm)
+- Xem danh sách (Biết còn việc gì chưa làm)
+- Đánh dấu hoàn thành (Đạt được cảm giác thành tựu)
+</code></pre>
+<h3>Lỗi 2: Coi "Danh sách KHÔNG làm" là vật trang trí</h3>
+<p>Rất nhiều người khi viết PRD, phần "Danh sách KHÔNG làm" hoặc để trống, hoặc điền đại khái vài cái.</p>
+<p>Nhưng đây chính lại là thông tin AI cần biết nhất. Không có biên giới rõ ràng, AI sẽ "tận tình" giúp bạn thêm đủ loại chức năng.</p>
+<p>✅ "Danh sách KHÔNG làm" tốt:</p>
+<pre><code class="language-markdown">## Chức năng KHÔNG làm
+
+- Không đăng ký đăng nhập (Đây là công cụ cá nhân)
+- Không đồng bộ đám mây (Lưu cục bộ đủ dùng)
+- Không phân loại thẻ (Giữ sự tối giản)
+- Không đánh dấu ưu tiên (Phiên bản đầu chưa cần)
+- Không thích ứng di động (Làm bản desktop trước)
+</code></pre>
+<h3>Lỗi 3: Chân dung người dùng quá chi tiết</h3>
+<p>Chân dung người dùng 3 chiều ở Chương 2 là để giúp bạn hiểu sâu người dùng. Nhưng trong PRD không cần chi tiết đến thế.</p>
+<p>❌ Quá chi tiết:</p>
+<pre><code class="language-markdown">## Người dùng mục tiêu
+
+Tiểu Lý, 28 tuổi, làm vận hành tại công ty internet, mỗi ngày đi làm mất 1.5 tiếng,
+thích uống cà phê, cuối tuần đi tập gym, mắc chứng lo âu nhẹ...
+</code></pre>
+<p>✅ Bản tinh gọn:</p>
+<pre><code class="language-markdown">## Người dùng mục tiêu
+
+Nhân viên văn phòng, mỗi ngày xử lý 5-10 công việc, cần công cụ theo dõi nhiệm vụ đơn giản
+</code></pre>
+<p>Mô tả người dùng trong PRD chỉ cần giữ lại <strong>những đặc điểm liên quan đến sản phẩm</strong>.</p>
+<h2>Chưa làm Chương 2 thì sao</h2>
+<p>Nếu bạn nhảy cóc đến đây, chưa hoàn thành tư duy ở Chương 2, cũng không cần quay lại học từ đầu.</p>
+<p>Bạn có thể dùng danh sách tự kiểm tra nhanh này:</p>
+<ul>
+<li>[ ] Tôi có thể dùng một câu nói rõ "cái này làm cho ai dùng" không?</li>
+<li>[ ] Tôi có thể nói ra vấn đề cụ thể mà người dùng gặp phải không?</li>
+<li>[ ] Tôi có thể liệt kê 3 chức năng cốt lõi bắt buộc phải có không?</li>
+<li>[ ] Tôi có thể liệt kê 3 chức năng chắc chắn không làm không?</li>
+</ul>
+<p>Nếu cả 4 câu hỏi này bạn đều trả lời được, thì có thể tiếp tục. Nếu có bất kỳ câu nào không trả lời được, đề xuất dành 10 phút lướt nhanh phần 2.3 (Tư duy phép trừ) và 2.5 (3 câu hỏi linh hồn) của Chương 2.</p>
+<h2>Trọng điểm cốt lõi bài này</h2>
+<ul>
+<li>✅ Nội dung PRD đến từ thành quả tư duy Chương 2, không phải bịa đặt</li>
+<li>✅ Viết "Vấn đề cần giải quyết" trước, rồi mới viết chức năng</li>
+<li>✅ "Danh sách KHÔNG làm" và "Chức năng cốt lõi" quan trọng như nhau</li>
+<li>✅ Mô tả người dùng chỉ giữ lại đặc điểm liên quan đến sản phẩm, không cần chân dung đầy đủ</li>
+</ul>
+<p>Tiếp theo, chúng ta sẽ học mẫu PRD cụ thể và hướng dẫn điền.</p>
+</body>
+</html>

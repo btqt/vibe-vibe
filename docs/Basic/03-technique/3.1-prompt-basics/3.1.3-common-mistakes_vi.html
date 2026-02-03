@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.1.3 Common Mistakes</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.1.3 Năm sai lầm người mới thường gặp"</h2>
+<p><img alt="03-technique_3.1-prompt-basics_3.1.3-common-mistakes.png" src="../../../public/images/Basic/03-technique_3.1-prompt-basics_3.1.3-common-mistakes.png" /></p>
+<h1>3.1.3 Năm sai lầm người mới thường gặp</h1>
+<h2>Sau bài học này, bạn sẽ nắm được</h2>
+<ul>
+<li>Nhận diện 5 sai lầm Prompt thường gặp nhất</li>
+<li>Hiểu mỗi sai lầm "dở ở chỗ nào"</li>
+<li>Học phương pháp sửa lỗi tương ứng</li>
+<li>Có được một danh sách tự kiểm tra có thể dùng nhiều lần</li>
+</ul>
+<h2>Tại sao phải học "ví dụ sai"</h2>
+<p>Thay vì bảo bạn "thế nào là Prompt tốt", chi bằng xem trước "thế nào là Prompt dở".</p>
+<p>Lý do rất đơn giản: Tránh sai lầm dễ làm hơn theo đuổi sự hoàn hảo, hiệu quả cũng thấy ngay lập tức.</p>
+<p>Dưới đây là 5 sai lầm người mới thường gặp nhất, mỗi sai lầm đều đi kèm trường hợp thực tế và cách sửa lỗi.</p>
+<h2>Sai lầm 1: Nói quá nhiều cùng một lúc (Quá tải thông tin)</h2>
+<h3>Bối cảnh vấn đề</h3>
+<p>Bạn muốn nhờ AI làm một ứng dụng danh sách việc cần làm, thế là bạn trút tất cả ý tưởng ra một lượt:</p>
+<h3>❌ Prompt dở</h3>
+<pre><code>Giúp tôi làm một ứng dụng danh sách việc cần làm, phải có thêm nhiệm vụ, xóa nhiệm vụ, sửa nhiệm vụ,
+đánh dấu hoàn thành, thiếp lập độ ưu tiên, thiết lập hạn chót, thẻ phân loại, chức năng tìm kiếm,
+thống kê dữ liệu, chức năng xuất file, lại còn phải có chế độ tối, tốt nhất là đồng bộ được lên mây,
+hỗ trợ dùng nhiều thiết bị, giao diện phải đẹp, dùng React viết, phải có hiệu ứng động.
+</code></pre>
+<h3>Phân tích vấn đề</h3>
+<ul>
+<li>AI đối mặt với 15+ nhu cầu, không thể phán đoán độ ưu tiên</li>
+<li>Dễ rơi vào cảnh cái này được cái kia mất, tính năng nào cũng làm không trọn vẹn</li>
+<li>Code bạn nhận được sẽ vô cùng phức tạp, khó hiểu và khó sửa</li>
+<li>Vi phạm "Tư duy phép trừ" đã học ở Chương 2</li>
+</ul>
+<h3>✅ Cách sửa: Chia nhỏ từng bước</h3>
+<pre><code>【Bước 1: Làm tính năng cốt lõi trước】
+Giúp tôi thực hiện chức năng thêm nhiệm vụ cho danh sách việc cần làm.
+Yêu cầu:
+- Ô nhập liệu + Nút thêm
+- Bấm Enter cũng thêm được
+- Sau khi thêm thì xóa trắng ô nhập liệu
+- Nội dung rỗng không được thêm
+
+Tech stack: React + TypeScript
+Trước mắt chỉ làm chức năng này, các chức năng khác tính sau.
+</code></pre>
+<h3>📌 Nguyên tắc một câu</h3>
+<p><strong>Mỗi lần chỉ bảo AI làm một việc. Nhiệm vụ phức tạp chia thành đối thoại nhiều vòng.</strong></p>
+<h2>Sai lầm 2: Nói quá ít cùng một lúc (Thiếu ngữ cảnh)</h2>
+<h3>Bối cảnh vấn đề</h3>
+<p>Bạn muốn nhờ AI viết một đoạn code, nhưng chỉ nói nhu cầu đơn giản nhất:</p>
+<h3>❌ Prompt dở</h3>
+<pre><code>Viết một trang đăng nhập
+</code></pre>
+<h3>Phân tích vấn đề</h3>
+<ul>
+<li>AI không biết dùng công nghệ gì (HTML? React? Vue?)</li>
+<li>AI không biết muốn kiểu dáng gì (Tối giản? Ngầu lòi? Phong cách doanh nghiệp?)</li>
+<li>AI không biết có chức năng gì (Chỉ đăng nhập? Còn đăng ký? Quên mật khẩu?)</li>
+<li>AI không biết trình độ kỹ thuật của bạn (Đưa code phức tạp bạn không hiểu)</li>
+</ul>
+<p>Kết quả: AI chỉ có thể đưa cho bạn một "mẫu chung chung", xác suất cao không phải thứ bạn muốn.</p>
+<h3>✅ Cách sửa: Bổ sung ngữ cảnh ba tầng</h3>
+<pre><code>【Bối cảnh dự án】
+Tôi đang làm một trang web blog cá nhân, cần một trang đăng nhập quản trị viên đơn giản.
+Tech stack: Next.js + Tailwind CSS
+Phong cách: Tối giản sạch sẽ, nền trắng, bố cục dạng thẻ căn giữa
+
+【Nhu cầu chức năng】
+- Chỉ cần hai ô nhập liệu là tên đăng nhập và mật khẩu
+- Một nút đăng nhập
+- Không cần chức năng đăng ký, quên mật khẩu v.v.
+- Ô nhập liệu cần có thông báo kiểm tra cơ bản (không được để trống)
+
+【Về tôi】
+Tôi là người mới học Frontend, xin hãy cho tôi code hoàn chỉnh chạy được, phần quan trọng thêm chú thích.
+</code></pre>
+<h3>📌 Nguyên tắc một câu</h3>
+<p><strong>Coi AI như thực tập sinh vừa vào làm: Bạn không nói rõ, nó chỉ có thể đoán.</strong></p>
+<h2>Sai lầm 3: Mong đợi AI đọc được suy nghĩ (Không nói rõ mục tiêu)</h2>
+<h3>Bối cảnh vấn đề</h3>
+<p>Bạn nhờ AI tối ưu code giúp bạn, nhưng không nói "tối ưu" nghĩa là gì:</p>
+<h3>❌ Prompt dở</h3>
+<pre><code>Giúp tôi tối ưu đoạn code này một chút:
+[Dán vào một đoạn code]
+</code></pre>
+<h3>Phân tích vấn đề</h3>
+<ul>
+<li>"Tối ưu" có thể hiểu theo rất nhiều cách:</li>
+<li>Làm code chạy nhanh hơn (tối ưu hiệu năng)?</li>
+<li>Làm code dễ đọc hơn (tối ưu khả năng đọc)?</li>
+<li>Làm code ngắn hơn (tinh giản code)?</li>
+<li>Làm code an toàn hơn (tối ưu bảo mật)?</li>
+<li>Làm code dễ bảo trì hơn (tối ưu kiến trúc)?</li>
+</ul>
+<p>AI không biết bạn muốn kiểu "tối ưu" nào, chỉ có thể làm theo cách hiểu của nó.</p>
+<h3>✅ Cách sửa: Xác định rõ mục tiêu và tiêu chuẩn nghiệm thu</h3>
+<pre><code>Giúp tôi tối ưu khả năng đọc của đoạn code này:
+
+[Dán code]
+
+Mục tiêu tối ưu:
+1. Để lập trình viên khác có thể nhanh chóng hiểu đoạn code này đang làm gì
+2. Đặt tên biến rõ ràng hơn
+3. Thêm chú thích cần thiết
+4. Nếu có logic lặp lại, tách ra thành hàm
+
+Vui lòng giữ nguyên chức năng, chỉ cải thiện cấu trúc code.
+</code></pre>
+<h3>📌 Nguyên tắc một câu</h3>
+<p><strong>Nói rõ "thế nào là hoàn thành". Cho AI một tiêu chuẩn nghiệm thu để đối chiếu kiểm tra.</strong></p>
+<h2>Sai lầm 4: Phớt lờ yêu cầu định dạng (Để AI tự do thể hiện)</h2>
+<h3>Bối cảnh vấn đề</h3>
+<p>Bạn nhờ AI tổng hợp một số thông tin, nhưng không nói muốn định dạng gì:</p>
+<h3>❌ Prompt dở</h3>
+<pre><code>Giúp tôi tổng hợp các Hooks thường dùng của React
+</code></pre>
+<h3>Phân tích vấn đề</h3>
+<p>AI có thể đưa cho bạn:</p>
+<ul>
+<li>Một đoạn văn bản mô tả dài ngoằng</li>
+<li>Hoặc một danh sách đơn giản</li>
+<li>Hoặc hướng dẫn quá chi tiết</li>
+<li>Hoặc chỉ có tên mà không có giải thích</li>
+</ul>
+<p>Mỗi lần kết quả đều khác nhau, có thể đều không phải định dạng bạn muốn.</p>
+<h3>✅ Cách sửa: Chỉ định định dạng đầu ra</h3>
+<pre><code>Giúp tôi tổng hợp 5 Hooks thường dùng nhất của React.
+
+Định dạng đầu ra:
+| Tên Hook | Giải thích một câu | Bối cảnh sử dụng |
+| :--- | :--- | :--- |
+
+Yêu cầu:
+- Chỉ liệt kê 5 cái thường dùng nhất, đừng nhiều quá
+- Giải thích phải dễ hiểu, người mới đọc hiểu được
+- Bối cảnh sử dụng đưa ra ví dụ cụ thể
+</code></pre>
+<h3>📌 Nguyên tắc một câu</h3>
+<p><strong>Muốn định dạng gì, thì vẽ trước "dáng vẻ" của định dạng đó cho AI xem.</strong></p>
+<h2>Sai lầm 5: Không đặt ràng buộc (AI dễ "tự biên tự diễn")</h2>
+<h3>Bối cảnh vấn đề</h3>
+<p>Bạn chỉ cần một chức năng đơn giản, nhưng AI đưa cho bạn một đống thứ thừa thãi:</p>
+<h3>❌ Prompt dở</h3>
+<pre><code>Giúp tôi viết một component hiển thị thời gian hiện tại
+</code></pre>
+<h3>AI có thể "tự biên tự diễn"</h3>
+<ul>
+<li>Thêm chức năng chọn múi giờ</li>
+<li>Thêm chuyển đổi 12/24 giờ</li>
+<li>Thêm chức năng định dạng tùy chỉnh</li>
+<li>Thêm thích ứng chế độ tối</li>
+<li>Dùng thư viện bên thứ ba bạn chưa nghe bao giờ</li>
+</ul>
+<p>Bạn chỉ muốn một cái đồng hồ đơn giản, lại nhận được một "trình quản lý thời gian toàn năng".</p>
+<h3>✅ Cách sửa: Dùng "Danh sách không làm" để giới hạn phạm vi</h3>
+<pre><code>Giúp tôi viết một React component hiển thị thời gian hiện tại.
+
+Cần:
+- Hiển thị giờ:phút:giây (ví dụ 14:30:45)
+- Tự động cập nhật mỗi giây
+
+Không cần:
+- Không cần chọn múi giờ
+- Không cần chuyển đổi định dạng
+- Không dùng bất kỳ thư viện bên thứ ba nào
+- Không cần thêm style (tôi tự thêm)
+
+Cho tôi cách thực hiện đơn giản nhất, càng đơn giản càng tốt.
+</code></pre>
+<h3>📌 Nguyên tắc một câu</h3>
+<p><strong>Nói rõ cho AI "không cần gì", cũng quan trọng như "cần gì".</strong></p>
+<h2>Bảng tra cứu nhanh 5 sai lầm lớn</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Sai lầm</th>
+<th style="text-align: left;">Triệu chứng</th>
+<th style="text-align: left;">Nguyên tắc sửa lỗi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Nói quá nhiều một lúc</td>
+<td style="text-align: left;">AI đầu ra rất dài nhưng tính năng nào cũng không trọn vẹn</td>
+<td style="text-align: left;">Mỗi lần chỉ bảo AI làm một việc</td>
+</tr>
+<tr>
+<td style="text-align: left;">Nói quá ít một lúc</td>
+<td style="text-align: left;">AI đưa "mẫu chung chung" không hợp bối cảnh</td>
+<td style="text-align: left;">Bổ sung ngữ cảnh ba tầng</td>
+</tr>
+<tr>
+<td style="text-align: left;">Mong chờ đọc suy nghĩ</td>
+<td style="text-align: left;">AI hiểu khác với bạn nghĩ</td>
+<td style="text-align: left;">Nói rõ tiêu chuẩn nghiệm thu</td>
+</tr>
+<tr>
+<td style="text-align: left;">Phớt lờ định dạng</td>
+<td style="text-align: left;">Định dạng đầu ra mỗi lần mỗi khác</td>
+<td style="text-align: left;">Vẽ trước "dáng vẻ" của định dạng</td>
+</tr>
+<tr>
+<td style="text-align: left;">Không đặt ràng buộc</td>
+<td style="text-align: left;">AI "tự biên tự diễn", làm rất nhiều thứ bạn không cần</td>
+<td style="text-align: left;">Dùng "Danh sách không làm" giới hạn phạm vi</td>
+</tr>
+</tbody>
+</table>
+<h2>Danh sách tự kiểm tra trước khi đặt câu hỏi</h2>
+<p>Trước khi nhấn nút gửi, lướt nhanh qua một lượt:</p>
+<ul>
+<li>[ ] <strong>Phạm vi có tập trung không</strong>: Lần này chỉ bảo AI làm một việc chứ?</li>
+<li>[ ] <strong>Ngữ cảnh có đủ không</strong>: AI có đủ thông tin nền tảng chưa?</li>
+<li>[ ] <strong>Mục tiêu có rõ ràng không</strong>: Đã nói rõ "thế nào là hoàn thành" chưa?</li>
+<li>[ ] <strong>Định dạng có chỉ định không</strong>: Đã bảo AI muốn định dạng đầu ra thế nào chưa?</li>
+<li>[ ] <strong>Ranh giới có rõ ràng không</strong>: Đã nói rõ "không cần gì" chưa?</li>
+</ul>
+<p>Không cần lần nào cũng hoàn hảo, nhưng tránh được 5 sai lầm thường gặp này, chất lượng đối thoại với AI của bạn sẽ tăng lên một bậc lớn.</p>
+<h2>Trọng điểm bài học</h2>
+<p>✓ <strong>Sai lầm 1</strong>: Nói quá nhiều một lúc → Chia nhỏ từng bước, mỗi lần chỉ làm một việc</p>
+<p>✓ <strong>Sai lầm 2</strong>: Nói quá ít một lúc → Bổ sung ngữ cảnh ba tầng, coi AI như thực tập sinh</p>
+<p>✓ <strong>Sai lầm 3</strong>: Mong chờ đọc suy nghĩ → Xác định rõ mục tiêu, đưa ra tiêu chuẩn nghiệm thu</p>
+<p>✓ <strong>Sai lầm 4</strong>: Phớt lờ định dạng → Vẽ trước "dáng vẻ" của định dạng</p>
+<p>✓ <strong>Sai lầm 5</strong>: Không đặt ràng buộc → Dùng "Danh sách không làm" hạn chế không gian tự do của AI</p>
+<h2>Bước tiếp theo</h2>
+<p>Bạn đã nắm được nguyên lý cơ bản của kỹ thuật Prompt, biết nên nói cho AI cái gì, cũng biết cần tránh những cái hố nào.</p>
+<p>Nhưng có thể bạn vẫn đang nghĩ: Có phương pháp nào hệ thống hơn không, để lần nào tôi cũng viết được Prompt chất lượng cao?</p>
+<p>Bài sau, chúng ta sẽ học <strong>Khung Prompt cấu trúc hóa</strong> —— một bộ "công thức" có thể áp dụng trực tiếp, giúp bạn nâng cấp từ "nói tùy tiện" lên "có bài có bản".</p>
+</body>
+</html>

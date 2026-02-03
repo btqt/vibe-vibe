@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.3.1 Tool Overview</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "1.3.1 Bức tranh toàn cảnh công cụ lập trình AI (Phiên bản 2025)"</h2>
+<p><img alt="01-awakening_1.3-tools-guide_1.3.1-tool-overview.png" src="../../../public/images/Basic/01-awakening_1.3-tools-guide_1.3.1-tool-overview.png" /></p>
+<h1>1.3.1 Bức tranh toàn cảnh công cụ lập trình AI (Phiên bản 2025)</h1>
+<p>Công cụ lập trình AI năm 2025 nhiều như ứng dụng đặt đồ ăn vậy. Đừng hoảng, không cần phải hiểu hết tất cả.</p>
+<p>Phần này giúp bạn nhanh chóng xây dựng một "bản đồ", biết có những công cụ nào, chúng đại khái dùng để làm gì. Đợi khi nào cần, quay lại tra cứu là được.</p>
+<h2>Tổng quan năm loại công cụ</h2>
+<p>Các công cụ lập trình AI trên thị trường có thể chia thành năm loại, giống như năm loại phương tiện giao thông khác nhau:</p>
+<p><img alt="Phân loại năm công cụ lập trình AI" src="../../../public/images/5ways.png" /></p>
+<h2>AI hội thoại: Điểm xuất phát đơn giản nhất</h2>
+<p><strong>Là gì</strong>: Chính là các chatbot quen thuộc như ChatGPT, Claude.</p>
+<p><strong>Dùng thế nào</strong>: Mở trang web, dùng ngôn ngữ tự nhiên nói cho nó biết bạn muốn làm gì, nó sẽ trực tiếp đưa code.</p>
+<table>
+<thead>
+<tr>
+<th>Công cụ</th>
+<th>Đặc điểm</th>
+<th>Hạn mức miễn phí</th>
+<th>Trang chủ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ChatGPT</strong></td>
+<td>Nổi tiếng nhất, hỗ trợ đa nhiệm</td>
+<td>Có bản miễn phí</td>
+<td><a href="https://chat.openai.com">chat.openai.com</a></td>
+</tr>
+<tr>
+<td><strong>Claude</strong></td>
+<td>Chất lượng code cao, giỏi xử lý văn bản dài</td>
+<td>Có bản miễn phí</td>
+<td><a href="https://claude.ai">claude.ai</a></td>
+</tr>
+<tr>
+<td><strong>Gemini</strong></td>
+<td>Google sản xuất, tích hợp tìm kiếm</td>
+<td>Có bản miễn phí</td>
+<td><a href="https://gemini.google.com">gemini.google.com</a></td>
+</tr>
+<tr>
+<td><strong>Kimi</strong></td>
+<td>Thân thiện với tiếng Trung, hỗ trợ tài liệu dài</td>
+<td>Có bản miễn phí</td>
+<td><a href="https://kimi.moonshot.cn">kimi.moonshot.cn</a></td>
+</tr>
+<tr>
+<td><strong>DeepSeek</strong></td>
+<td>Niềm tự hào nội địa (Trung Quốc), hiệu suất/giá thành cao</td>
+<td>Có bản miễn phí</td>
+<td><a href="https://chat.deepseek.com">chat.deepseek.com</a></td>
+</tr>
+<tr>
+<td><strong>Doubao</strong></td>
+<td>ByteDance sản xuất, trải nghiệm tiếng Trung tốt</td>
+<td>Có bản miễn phí</td>
+<td><a href="https://www.doubao.com">doubao.com</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Phù hợp với ai</strong>: Người hoàn toàn chưa có nền tảng. Dùng cái này thử trước, cảm nhận trải nghiệm "dùng ngôn ngữ tự nhiên viết code" là như thế nào.</p>
+<blockquote>
+<p><strong>Mẹo nhỏ</strong>: Nếu chỉ muốn trải nghiệm lập trình AI, hãy mở Claude.ai hoặc ChatGPT, nhập "Giúp tôi viết một trang web hiển thị thời gian hiện tại", là bạn đã hoàn thành lần lập trình AI đầu tiên trong đời.</p>
+</blockquote>
+<h2>Trình soạn thảo mã AI: Công cụ chuyên nghiệp cài đặt độc lập</h2>
+<p><strong>Là gì</strong>: Môi trường phát triển hoàn chỉnh cần tải về và cài đặt, tích hợp sẵn năng lực AI mạnh mẽ.</p>
+<p><strong>Dùng thế nào</strong>: Sau khi cài đặt thì mở ra, giống như dùng Word vậy, nhưng nó có thể hiểu toàn bộ dự án, giúp tạo, sửa đổi, giải thích code.</p>
+<table>
+<thead>
+<tr>
+<th>Công cụ</th>
+<th>Đặc điểm</th>
+<th>Giá cả</th>
+<th>Trang chủ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cursor</strong></td>
+<td>Chức năng mạnh nhất, cộng đồng sôi nổi, nhiều tài nguyên hướng dẫn</td>
+<td>$20/tháng, có hạn mức miễn phí</td>
+<td><a href="https://cursor.com">cursor.com</a></td>
+</tr>
+<tr>
+<td><strong>Windsurf</strong></td>
+<td>Mức độ tự động hóa cao, hiệu suất/giá thành tốt</td>
+<td>$15/tháng, bản miễn phí đủ dùng</td>
+<td><a href="https://codeium.com/windsurf">codeium.com/windsurf</a></td>
+</tr>
+<tr>
+<td><strong>Trae bản Quốc tế</strong></td>
+<td>ByteDance sản xuất, hỗ trợ Gemini-3-Pro-Preview và các mô hình hàng đầu</td>
+<td>Tháng đầu $3, sau đó $10/tháng</td>
+<td><a href="https://trae.ai">trae.ai</a></td>
+</tr>
+<tr>
+<td><strong>Trae bản Trung Quốc</strong></td>
+<td>ByteDance sản xuất, thân thiện tiếng Trung, dùng mô hình nội địa</td>
+<td>Cá nhân miễn phí, doanh nghiệp 69 tệ/ghế/tháng</td>
+<td><a href="https://trae.com.cn">trae.com.cn</a></td>
+</tr>
+<tr>
+<td><strong>Qoder</strong></td>
+<td>Ngôi sao mới nội địa (Trung Quốc), chức năng toàn diện</td>
+<td>Bản miễn phí dùng được</td>
+<td><a href="https://qoder.ai">qoder.ai</a></td>
+</tr>
+<tr>
+<td><strong>Kiro</strong></td>
+<td>Amazon sản xuất, hướng tới quy chuẩn, viết tài liệu trước rồi mới viết code</td>
+<td>Miễn phí</td>
+<td><a href="https://kiro.dev">kiro.dev</a></td>
+</tr>
+<tr>
+<td><strong>Zed</strong></td>
+<td>Hiệu năng cao, chức năng cộng tác mạnh</td>
+<td>Có bản miễn phí</td>
+<td><a href="https://zed.dev">zed.dev</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Phù hợp với ai</strong>: Muốn học lập trình AI nghiêm túc, sẵn sàng bỏ vài phút cài đặt phần mềm. Loại công cụ này có thể hiểu toàn bộ dự án, giúp đỡ chính xác hơn.</p>
+<blockquote>
+<p><strong>Giải thích về Trae</strong>: Phân thành bản Trung Quốc (trae.com.cn) và bản Quốc tế (trae.ai). Bản quốc tế hỗ trợ các mô hình hàng đầu như Gemini-3-Pro-Preview, GPT-4o; bản Trung Quốc sử dụng các mô hình nội địa như Doubao, DeepSeek, cá nhân hoàn toàn miễn phí.</p>
+<p><strong>Lựa chọn hot năm 2025</strong>: Cursor và Windsurf là hai lựa chọn phổ biến nhất hiện nay. Cursor chức năng mạnh mẽ, Windsurf giá cả thân thiện. Người mới có thể thử bản miễn phí của Windsurf hoặc Trae trước.</p>
+</blockquote>
+<h2>Plugin/Tiện ích mở rộng IDE: Thêm AI cho trình soạn thảo hiện có</h2>
+<p><strong>Là gì</strong>: Cài đặt một plugin AI vào trình soạn thảo code đã có (như VS Code, JetBrains).</p>
+<p><strong>Dùng thế nào</strong>: Không cần đổi trình soạn thảo, cài một plugin là có năng lực AI. Vừa viết code vừa trò chuyện với AI, nó có thể nhìn thấy toàn bộ dự án.</p>
+<table>
+<thead>
+<tr>
+<th>Công cụ</th>
+<th>Đặc điểm</th>
+<th>Giá cả</th>
+<th>Trang chủ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GitHub Copilot</strong></td>
+<td>Lâu đời ổn định, hệ sinh thái đầy đủ nhất</td>
+<td>Từ $10/tháng</td>
+<td><a href="https://github.com/features/copilot">github.com/copilot</a></td>
+</tr>
+<tr>
+<td><strong>Augment</strong></td>
+<td>Cấp doanh nghiệp, giỏi xử lý kho code lớn (ngữ cảnh 200K)</td>
+<td>Từ $20/tháng, có bản miễn phí</td>
+<td><a href="https://www.augmentcode.com">augmentcode.com</a></td>
+</tr>
+<tr>
+<td><strong>Cline</strong></td>
+<td>Mã nguồn mở miễn phí, độ linh hoạt cao</td>
+<td>Miễn phí (cần tự chuẩn bị API)</td>
+<td><a href="https://cline.bot">cline.bot</a></td>
+</tr>
+<tr>
+<td><strong>Continue.dev</strong></td>
+<td>Mã nguồn mở, khả năng tùy biến cao</td>
+<td>Miễn phí (cần tự chuẩn bị API)</td>
+<td><a href="https://continue.dev">continue.dev</a></td>
+</tr>
+<tr>
+<td><strong>Tabnine</strong></td>
+<td>Lâu đời, hỗ trợ mô hình chạy cục bộ</td>
+<td>Có bản miễn phí</td>
+<td><a href="https://www.tabnine.com">tabnine.com</a></td>
+</tr>
+<tr>
+<td><strong>Amazon Q Developer</strong></td>
+<td>Tích hợp AWS tốt</td>
+<td>Có bản miễn phí</td>
+<td><a href="https://aws.amazon.com/q/developer">aws.amazon.com/q</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Phù hợp với ai</strong>: Đang dùng VS Code hoặc JetBrains, không muốn đổi trình soạn thảo, chỉ muốn thêm một trợ lý AI.</p>
+<h2>Lập trình AI trên nền tảng web: Giải pháp một cửa không cần cài đặt</h2>
+<p><strong>Là gì</strong>: Mở trình duyệt, mô tả mong muốn, AI trực tiếp tạo ra một dự án hoàn chỉnh, còn có thể xem trước kết quả thời gian thực.</p>
+<p><strong>Dùng thế nào</strong>: Không cần cài đặt, mở web là dùng được. Nhập nhu cầu, vài phút sau là thấy một trang web chạy được.</p>
+<table>
+<thead>
+<tr>
+<th>Công cụ</th>
+<th>Đặc điểm</th>
+<th>Giá cả</th>
+<th>Trang chủ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Doubao AI Coding</strong></td>
+<td>Truy cập trong nước (Trung Quốc) mượt mà, hỗ trợ xem trước code</td>
+<td>Miễn phí</td>
+<td><a href="https://www.doubao.com/chat/coding">doubao.com/chat/coding</a></td>
+</tr>
+<tr>
+<td><strong>Bolt.new</strong></td>
+<td>Tạo ứng dụng Full-stack, triển khai một chạm</td>
+<td>Từ $20/tháng, có hạn mức miễn phí</td>
+<td><a href="https://bolt.new">bolt.new</a></td>
+</tr>
+<tr>
+<td><strong>v0.dev</strong></td>
+<td>Vercel sản xuất, chất lượng UI component cực cao</td>
+<td>Từ $20/tháng, có hạn mức miễn phí</td>
+<td><a href="https://v0.dev">v0.dev</a></td>
+</tr>
+<tr>
+<td><strong>Lovable</strong></td>
+<td>Tốc độ nhanh nhất, 12 phút ra MVP</td>
+<td>Từ $25/tháng</td>
+<td><a href="https://lovable.dev">lovable.dev</a></td>
+</tr>
+<tr>
+<td><strong>Replit</strong></td>
+<td>Hỗ trợ 50+ ngôn ngữ, thân thiện với giáo dục</td>
+<td>Có bản miễn phí hào phóng</td>
+<td><a href="https://replit.com">replit.com</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Phù hợp với ai</strong>: Muốn nhanh chóng thấy thành quả, không muốn cài bất kỳ phần mềm nào. Mở web là có thể bắt đầu làm đồ.</p>
+<blockquote>
+<p><strong>Ưu tiên cho người dùng trong nước (Trung Quốc)</strong>: Doubao AI Coding, truy cập mượt mà, miễn phí, hỗ trợ tiếng Trung tốt. Bolt.new chức năng đầy đủ hơn nhưng cần công cụ vượt tường lửa.</p>
+</blockquote>
+<h2>Công cụ dòng lệnh: Thần khí hiệu suất của nhà phát triển</h2>
+<p><strong>Là gì</strong>: Trực tiếp đối thoại với AI trong terminal (cửa sổ đen đen đó).</p>
+<p><strong>Dùng thế nào</strong>: Nhập lệnh, AI giúp sửa code, chạy test, sửa Bug. Hiệu suất cực cao, nhưng cần nền tảng nhất định.</p>
+<table>
+<thead>
+<tr>
+<th>Công cụ</th>
+<th>Đặc điểm</th>
+<th>Giá cả</th>
+<th>Trang chủ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Claude Code</strong></td>
+<td>Anthropic chính chủ, năng lực mạnh</td>
+<td>Tính phí theo lượng dùng</td>
+<td><a href="https://claude.ai/code">claude.ai/code</a></td>
+</tr>
+<tr>
+<td><strong>Droid (Factory)</strong></td>
+<td>Hỗ trợ đa mô hình, có thể tự mang API, phân công Droid chuyên môn hóa</td>
+<td>Có bản miễn phí</td>
+<td><a href="https://www.factory.ai">factory.ai</a></td>
+</tr>
+<tr>
+<td><strong>Aider</strong></td>
+<td>Mã nguồn mở miễn phí, cộng đồng sôi nổi</td>
+<td>Miễn phí (cần tự chuẩn bị API)</td>
+<td><a href="https://aider.chat">aider.chat</a></td>
+</tr>
+<tr>
+<td><strong>Codex CLI</strong></td>
+<td>OpenAI sản xuất</td>
+<td>Tính phí theo lượng dùng</td>
+<td><a href="https://github.com/openai/codex-cli">github.com/openai/codex</a></td>
+</tr>
+<tr>
+<td><strong>Gemini CLI</strong></td>
+<td>Google sản xuất</td>
+<td>Có hạn mức miễn phí</td>
+<td><a href="https://github.com/google-gemini/gemini-cli">github.com/google-gemini/gemini-cli</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Phù hợp với ai</strong>: Nhà phát triển có nền tảng lập trình nhất định, theo đuổi hiệu suất. Người mới có thể bỏ qua loại này trước.</p>
+<h2>Một hình vẽ hiểu ngay cách chọn</h2>
+<p><img alt="Hướng dẫn chọn công cụ" src="../../../public/images/choose.png" /></p>
+<h2>Tóm tắt phần này</h2>
+<ul>
+<li>Công cụ lập trình AI chia thành năm loại lớn, mỗi loại có công dụng riêng</li>
+<li><strong>Ưu tiên cho người chưa có nền tảng</strong>: AI hội thoại (Claude/ChatGPT) hoặc công cụ nền tảng web (Bolt.new/Doubao)</li>
+<li><strong>Muốn học sâu</strong>: Trình soạn thảo mã AI (Cursor/Windsurf/Trae)</li>
+<li><strong>Không cần học hết</strong>: Chọn một cái thuận tay, dùng quen rồi đổi sau</li>
+<li>Tất cả công cụ đều có bản miễn phí hoặc hạn mức miễn phí, không cần tốn tiền cũng trải nghiệm được</li>
+</ul>
+<blockquote>
+<p>Phần tiếp theo, hãy cùng xem những công cụ này có "siêu năng lực chung" nào——hiểu được những điều này, dùng bất kỳ công cụ nào cũng có thể bắt nhịp.</p>
+</blockquote>
+</body>
+</html>

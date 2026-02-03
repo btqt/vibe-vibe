@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.3.4 Tree Of Thoughts</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.3.4 Tree of Thoughts: Khám phá nhiều con đường suy luận"</h2>
+<p><img alt="03-technique_3.3-advanced-techniques_3.3.4-tree-of-thoughts.png" src="../../../public/images/Basic/03-technique_3.3-advanced-techniques_3.3.4-tree-of-thoughts.png" /></p>
+<h1>3.3.4 Tree of Thoughts: Khám phá nhiều con đường suy luận</h1>
+<blockquote>
+<p><strong>Định vị</strong>: Đây là một kỹ thuật nâng cao tùy chọn. Trong Vibe Coding hàng ngày, đa số các bối cảnh dùng Zero-shot, Few-shot, CoT là đã đủ. Tree of Thoughts chủ yếu dùng cho <strong>lựa chọn kỹ thuật, quyết định kiến trúc</strong>... những bối cảnh cần so sánh nhiều phương án, chiếm khoảng 5% công việc hàng ngày. Nếu bạn mới nhập môn, có thể tạm thời bỏ qua bài này, khi nào cần thì quay lại tra cứu.</p>
+</blockquote>
+<h2>Sau bài học này, bạn sẽ nắm được</h2>
+<ul>
+<li>Định nghĩa và bối cảnh áp dụng của Tree of Thoughts (ToT)</li>
+<li>Sự khác biệt giữa ToT và Chain of Thought</li>
+<li>Cách sử dụng ToT bản đầy đủ và bản đơn giản hóa</li>
+<li>Khi nào cần ToT, khi nào không cần</li>
+</ul>
+<h2>Tree of Thoughts là gì</h2>
+<p>Tư tưởng cốt lõi của Tree of Thoughts (Cây suy nghĩ, gọi tắt là ToT) là: <strong>Để AI khám phá nhiều con đường khả thi, so sánh rồi mới chọn phương án tối ưu</strong>.</p>
+<p>Nếu ví Chain of Thought như "đi một đường đến cùng", thì Tree of Thoughts là "xem thử có mấy con đường, so sánh một chút rồi mới quyết định đi đường nào".</p>
+<pre><code>Chain of Thought (Tuyến tính):
+Vấn đề → Bước 1 → Bước 2 → Bước 3 → Đáp án
+
+Tree of Thoughts (Dạng cây):
+Vấn đề → Phương án A → Đánh giá A
+     → Phương án B → Đánh giá B  → So sánh → Đề xuất tối ưu
+     → Phương án C → Đánh giá C
+</code></pre>
+<h2>Sự khác biệt giữa ToT và CoT</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Chiều</th>
+<th style="text-align: left;">Chain of Thought</th>
+<th style="text-align: left;">Tree of Thoughts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Đường suy luận</td>
+<td style="text-align: left;">Một đường duy nhất</td>
+<td style="text-align: left;">Nhiều đường song song</td>
+</tr>
+<tr>
+<td style="text-align: left;">Bối cảnh áp dụng</td>
+<td style="text-align: left;">Vấn đề có đáp án tiêu chuẩn</td>
+<td style="text-align: left;">Quyết định cần cân nhắc so sánh</td>
+</tr>
+<tr>
+<td style="text-align: left;">Hình thức đầu ra</td>
+<td style="text-align: left;">Suy luận từng bước ra kết luận</td>
+<td style="text-align: left;">So sánh nhiều phương án rồi đề xuất</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tiêu tốn Token</td>
+<td style="text-align: left;">Trung bình</td>
+<td style="text-align: left;">Khá cao</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tần suất sử dụng</td>
+<td style="text-align: left;">Cao (khoảng 30%)</td>
+<td style="text-align: left;">Thấp (khoảng 5%)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Đề xuất lựa chọn</strong>:</p>
+<ul>
+<li>Nếu vấn đề có "đáp án đúng" → Dùng CoT</li>
+<li>Nếu cần "chọn phương án tối ưu" → Dùng ToT</li>
+</ul>
+<h2>Bối cảnh cốt lõi</h2>
+<p>ToT thích hợp nhất cho các bối cảnh sau:</p>
+<h3>1. Lựa chọn kỹ thuật</h3>
+<p>Chọn cơ sở dữ liệu, framework, dịch vụ bên thứ ba v.v.</p>
+<h3>2. Quyết định kiến trúc</h3>
+<p>Thiết kế kiến trúc hệ thống, phong cách API, mô hình dữ liệu v.v.</p>
+<h3>3. So sánh phương án</h3>
+<p>Phân tích ưu nhược điểm của nhiều cách thực hiện.</p>
+<h3>4. Phân giải vấn đề phức tạp</h3>
+<p>Vấn đề cần tiếp cận từ nhiều góc độ.</p>
+<h2>Prompt dở vs Prompt tốt</h2>
+<h3>Bối cảnh: Chọn phương án lưu trữ dữ liệu cho danh sách việc cần làm</h3>
+<h3>❌ Prompt dở</h3>
+<pre><code>Ứng dụng danh sách việc cần làm của tôi nên dùng cách nào để lưu trữ dữ liệu?
+</code></pre>
+<p><strong>Vấn đề</strong>: AI có thể chỉ đề xuất một phương án, không có phân tích so sánh.</p>
+<h3>✅ Prompt tốt (Sử dụng ToT)</h3>
+<pre><code>Tôi đang làm một ứng dụng danh sách việc cần làm cá nhân, cần chọn phương án lưu trữ dữ liệu.
+
+Bối cảnh dự án:
+- Lượng người dùng: Chỉ mình tôi dùng
+- Lượng dữ liệu: Dự kiến vài trăm nhiệm vụ
+- Cách triển khai: Static web hosting (như Vercel)
+- Tech stack: React + TypeScript
+
+Vui lòng đưa ra 3 phương án lưu trữ khác nhau, đối với mỗi phương án hãy phân tích:
+1. Độ phức tạp khi thực hiện (1-5 điểm, 5 điểm phức tạp nhất)
+2. Tính bền vững của dữ liệu
+3. Có cần backend không
+4. Bối cảnh phù hợp
+
+Cuối cùng, dựa trên tình hình dự án của tôi, đề xuất phương án phù hợp nhất và giải thích lý do.
+</code></pre>
+<h3>Đầu ra của AI cho Prompt tốt</h3>
+<pre><code>## Phân tích phương án
+
+### Phương án 1: localStorage
+- Độ phức tạp: 1 điểm
+- Tính bền vững: Chỉ lưu trên trình duyệt máy hiện tại, đổi thiết bị là mất
+- Có cần backend: Không
+- Bối cảnh phù hợp: Công cụ cá nhân, kiểm chứng prototype
+
+### Phương án 2: IndexedDB
+- Độ phức tạp: 3 điểm
+- Tính bền vững: Lưu trên trình duyệt, hỗ trợ lượng dữ liệu lớn hơn
+- Có cần backend: Không
+- Bối cảnh phù hợp: Ứng dụng local cần lưu lượng dữ liệu có cấu trúc lớn
+
+### Phương án 3: Supabase (Cơ sở dữ liệu đám mây)
+- Độ phức tạp: 3 điểm
+- Tính bền vững: Lưu trên mây, đồng bộ đa thiết bị
+- Có cần backend: Không (Dịch vụ BaaS)
+- Bối cảnh phù hợp: Cần đồng bộ đa thiết bị, có kế hoạch mở rộng
+
+## Phương án đề xuất
+
+Dựa trên tình hình của bạn (chỉ mình dùng, vài trăm dữ liệu, hosting tĩnh), đề xuất **Phương án 1: localStorage**.
+
+Lý do:
+1. Thực hiện đơn giản nhất, vài dòng code là xong
+2. Lượng dữ liệu nhỏ, localStorage dư sức chứa
+3. Không cần dịch vụ phụ trợ, phù hợp yêu cầu hosting tĩnh
+4. Dùng làm MVP để kiểm chứng nhanh, sau này cần thì nâng cấp
+
+Nếu sau này cần đồng bộ đa thiết bị, có thể di chuyển sang Supabase sau.
+</code></pre>
+<h2>Ví dụ thực chiến: Chọn phương án đăng nhập</h2>
+<p>Danh sách việc cần làm của Tiểu Lý cần thêm chức năng đăng nhập, cậu ấy muốn so sánh vài cách thực hiện.</p>
+<h3>Prompt ToT</h3>
+<pre><code>Ứng dụng danh sách việc cần làm của tôi cần thêm chức năng đăng nhập người dùng.
+
+Bối cảnh dự án:
+- Dự án cá nhân, lượng người dùng dự kiến &lt; 100
+- Tech stack: Next.js + TypeScript
+- Triển khai trên Vercel
+- Mong muốn thực hiện càng đơn giản càng tốt
+
+Vui lòng phân tích 3 phương án đăng nhập sau:
+1. Đăng nhập truyền thống bằng tên người dùng + mật khẩu
+2. Đăng nhập bằng mã xác thực qua điện thoại
+3. Đăng nhập qua bên thứ ba OAuth (như GitHub, Google)
+
+Đối với mỗi phương án hãy phân tích:
+- Độ phức tạp thực hiện
+- Trải nghiệm người dùng
+- Tính bảo mật
+- Chi phí bảo trì
+
+Cuối cùng đề xuất một phương án và giải thích lý do.
+</code></pre>
+<h3>Trọng điểm đầu ra của AI</h3>
+<p>AI sẽ phân tích ưu nhược điểm của 3 phương án, và dựa trên bối cảnh "dự án cá nhân, người dùng ít, muốn đơn giản", đề xuất phương án phù hợp nhất (có thể là OAuth bên thứ ba, vì không cần tự quản lý mật khẩu).</p>
+<h2>ToT bản đơn giản hóa: Dùng nhanh hàng ngày</h2>
+<p>Nếu không cần so sánh đa phương án đầy đủ, có thể dùng bản đơn giản hóa:</p>
+<pre><code>Vui lòng đưa ra 2-3 hướng thực hiện khác nhau, so sánh tóm tắt ưu nhược điểm rồi đề xuất một hướng.
+</code></pre>
+<p>Cách này đầu ra gọn gàng hơn, thích hợp cho việc ra quyết định nhanh hàng ngày.</p>
+<h3>Ví dụ bản đơn giản hóa</h3>
+<pre><code>Tôi muốn thực hiện chức năng kéo thả sắp xếp nhiệm vụ, vui lòng đưa ra 2-3 hướng thực hiện, so sánh tóm tắt rồi đề xuất một hướng.
+Tech stack: React + TypeScript
+</code></pre>
+<h3>Đầu ra bản đơn giản hóa</h3>
+<pre><code>Ba hướng thực hiện:
+
+1. react-beautiful-dnd
+   Ưu điểm: Chức năng hoàn thiện, animation mượt mà
+   Nhược điểm: Dung lượng gói lớn, đã ngừng bảo trì
+
+2. @dnd-kit
+   Ưu điểm: Thiết kế hiện đại, dung lượng nhỏ, bảo trì tích cực
+   Nhược điểm: Đường cong học tập hơi dốc
+
+3. HTML5 Drag API nguyên bản
+   Ưu điểm: Không phụ thuộc
+   Nhược điểm: Cần viết nhiều code, hiệu ứng animation phải tự làm
+
+Đề xuất: @dnd-kit
+Lý do: Hiện đại, nhẹ, cộng đồng sôi nổi, thích hợp cho dự án bảo trì lâu dài.
+</code></pre>
+<h2>Khi nào không cần ToT</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bối cảnh</th>
+<th style="text-align: left;">Dùng ToT?</th>
+<th style="text-align: left;">Lý do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Thực hiện một tính năng cụ thể</td>
+<td style="text-align: left;">❌</td>
+<td style="text-align: left;">Viết code trực tiếp là được</td>
+</tr>
+<tr>
+<td style="text-align: left;">Sửa một Bug</td>
+<td style="text-align: left;">❌</td>
+<td style="text-align: left;">Dùng CoT rà soát từng bước</td>
+</tr>
+<tr>
+<td style="text-align: left;">Đầu ra định dạng hóa</td>
+<td style="text-align: left;">❌</td>
+<td style="text-align: left;">Dùng Few-shot</td>
+</tr>
+<tr>
+<td style="text-align: left;">Lựa chọn kỹ thuật</td>
+<td style="text-align: left;">✅</td>
+<td style="text-align: left;">Cần so sánh nhiều lựa chọn</td>
+</tr>
+<tr>
+<td style="text-align: left;">Thiết kế kiến trúc</td>
+<td style="text-align: left;">✅</td>
+<td style="text-align: left;">Cần cân nhắc nhiều phương án</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tiêu chuẩn phán đoán</strong>: Nếu trong lòng bạn đã có hướng đi đại khái, chỉ muốn xác nhận lại, không cần ToT. Nếu bạn cần AI giúp bạn "lựa chọn", hãy dùng ToT.</p>
+<h2>Mẫu có thể sao chép</h2>
+<h3>Mẫu ToT đầy đủ</h3>
+<pre><code class="language-markdown">Tôi cần [Nội dung quyết định].
+
+Bối cảnh dự án:
+
+- [Thông tin bối cảnh 1]
+- [Thông tin bối cảnh 2]
+- [Ràng buộc then chốt]
+
+Vui lòng đưa ra [Số lượng] phương án khác nhau, đối với mỗi phương án hãy phân tích:
+
+1. [Chiều đánh giá 1]
+2. [Chiều đánh giá 2]
+3. [Chiều đánh giá 3]
+4. [Chiều đánh giá 4]
+
+Cuối cùng, dựa trên tình hình dự án của tôi, đề xuất phương án phù hợp nhất và giải thích lý do.
+</code></pre>
+<h3>Mẫu ToT đơn giản hóa</h3>
+<pre><code class="language-markdown">Tôi muốn [Mục tiêu thực hiện].
+Bối cảnh: [Bối cảnh tóm tắt]
+
+Vui lòng đưa ra 2-3 hướng đi khác nhau, so sánh tóm tắt ưu nhược điểm rồi đề xuất một hướng.
+</code></pre>
+<h3>Mẫu chuyên dụng cho lựa chọn kỹ thuật</h3>
+<pre><code class="language-markdown">Tôi cần lựa chọn [Loại lựa chọn: Cơ sở dữ liệu/Framework/Dịch vụ bên thứ ba].
+
+Tình hình dự án:
+
+- Quy mô: [Lượng người dùng/Lượng dữ liệu]
+- Tech stack: [Công nghệ hiện có]
+- Cách triển khai: [Môi trường triển khai]
+- Tình hình team: [Trình độ kỹ thuật/Số người]
+
+Chiều đánh giá:
+
+- Độ phức tạp thực hiện
+- Hiệu năng
+- Chi phí bảo trì
+- Hệ sinh thái cộng đồng
+
+Vui lòng so sánh [Danh sách phương án ứng viên], đề xuất lựa chọn phù hợp nhất.
+</code></pre>
+<h2>Trọng điểm bài học</h2>
+<p>✓ <strong>Bản chất của ToT</strong>: Khám phá nhiều con đường, so sánh rồi chọn phương án tối ưu</p>
+<p>✓ <strong>Khác biệt với CoT</strong>: CoT là suy luận đơn tuyến, ToT là so sánh đa phương án</p>
+<p>✓ <strong>Bối cảnh áp dụng</strong>: Lựa chọn kỹ thuật, quyết định kiến trúc, so sánh phương án (khoảng 5%)</p>
+<p>✓ <strong>Bản đơn giản hóa</strong>: Dùng nhanh hàng ngày "đưa ra 2-3 hướng, so sánh rồi đề xuất"</p>
+<p>✓ <strong>Đừng lạm dụng</strong>: Nếu đã có hướng đi, thực thi trực tiếp là được</p>
+<p>Bài sau, chúng ta sẽ học cách để AI tự kiểm tra —— Self-Critique.</p>
+</body>
+</html>

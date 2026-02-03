@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.4.5 Prd Practice</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.4.5 PRD Thực chiến: Từ ý tưởng đến tài liệu"</h2>
+<p><img alt="03-technique_3.4-first-prd_3.4.5-prd-practice.png" src="../../../public/images/Basic/03-technique_3.4-first-prd_3.4.5-prd-practice.png" /></p>
+<h1>3.4.5 PRD Thực chiến: Từ ý tưởng đến tài liệu</h1>
+<p>Phần này thông qua một trường hợp nghiên cứu đầy đủ, trình bày toàn bộ quá trình từ "Tôi muốn làm một..." đến "PRD viết xong, có thể bắt đầu phát triển".</p>
+<h2>Tổng quan quy trình thực chiến</h2>
+<pre><code>1. Bắt đầu từ ý tưởng mơ hồ
+      ↓
+2. Trả lời nhanh 3 câu hỏi linh hồn
+      ↓
+3. Phân chia mức độ ưu tiên tính năng
+      ↓
+4. Điền mẫu PRD
+      ↓
+5. Để AI kiểm tra PRD
+      ↓
+6. Xác minh sự hiểu biết của AI
+      ↓
+7. Bắt đầu vòng phát triển đầu tiên
+</code></pre>
+<h2>Trường hợp đầy đủ: Danh sách việc cần làm của Tiểu Lý</h2>
+<h3>Bước 1: Bắt đầu từ ý tưởng mơ hồ</h3>
+<p>Ý tưởng của Tiểu Lý rất đơn giản:</p>
+<blockquote>
+<p>"Tôi có rất nhiều việc phải làm mỗi ngày, thường hay quên. Muốn làm một danh sách việc cần làm."</p>
+</blockquote>
+<p>Ý tưởng này quá mơ hồ. Nếu nói trực tiếp với AI, sẽ nhận được đủ loại phiên bản khác nhau.</p>
+<h3>Bước 2: Trả lời nhanh 3 câu hỏi linh hồn (3 phút)</h3>
+<p>Tiểu Lý dùng 3 câu hỏi linh hồn đã học ở chương 2 để sắp xếp nhanh:</p>
+<table>
+<thead>
+<tr>
+<th>Câu hỏi</th>
+<th>Câu trả lời của Tiểu Lý</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Người dùng là ai?</strong></td>
+<td>Chính tôi, người đi làm, mỗi ngày 5-10 việc</td>
+</tr>
+<tr>
+<td><strong>Nỗi đau ở đâu?</strong></td>
+<td>Sợ bỏ sót việc quan trọng. Giấy ghi chú dễ mất, ghi chú điện thoại phiền phức</td>
+</tr>
+<tr>
+<td><strong>Tại sao chọn bạn?</strong></td>
+<td>Bền hơn giấy ghi chú, đơn giản hơn App phức tạp</td>
+</tr>
+</tbody>
+</table>
+<h3>Bước 3: Phân chia mức độ ưu tiên tính năng (2 phút)</h3>
+<p>Tiểu Lý dùng tư duy phép trừ ở chương 2, chia các tính năng nghĩ ra làm ba loại:</p>
+<p><strong>P0 (Phải có, không có thì không dùng được)</strong>
+- Thêm nhiệm vụ
+- Xem danh sách nhiệm vụ
+- Đánh dấu hoàn thành</p>
+<p><strong>P1 (Nên có, làm cho sản phẩm dùng tốt hơn)</strong>
+- Xóa nhiệm vụ
+- Đếm nhiệm vụ</p>
+<p><strong>P2 (Có thể có, thêm hoa trên gấm)</strong>
+- Nhãn phân loại
+- Đánh dấu ưu tiên
+- Nhắc nhở định kỳ</p>
+<p><strong>Danh sách không làm</strong>
+- Đăng nhập đăng ký
+- Đồng bộ đám mây
+- Hợp tác nhóm
+- Chế độ xem lịch</p>
+<h3>Bước 4: Điền mẫu PRD (5 phút)</h3>
+<p>Tiểu Lý mở mẫu ở 3.4.3, bắt đầu điền:</p>
+<pre><code class="language-markdown"># Việc cần làm tối giản
+
+## Mô tả một câu
+Một trang web danh sách việc cần làm tối giản dùng cho bản thân, chỉ có tính năng thêm và đánh dấu chọn
+
+## Người dùng mục tiêu
+Chính tôi (người đi làm, xử lý 5-10 việc mỗi ngày)
+
+## Vấn đề cần giải quyết
+Sợ bỏ sót việc quan trọng.
+Giấy ghi chú dễ mất, ghi chú điện thoại mở ra quá phiền,
+Cần một công cụ tối giản &quot;mở trình duyệt là dùng được ngay&quot;.
+
+## Tính năng cốt lõi (P0)
+- [ ] Thêm nhiệm vụ: Ô nhập liệu + Nút thêm
+- [ ] Xem nhiệm vụ: Hiển thị danh sách tất cả việc cần làm
+- [ ] Hoàn thành nhiệm vụ: Nhấn đánh dấu, hiển thị gạch ngang
+
+## Tính năng không làm
+- Không đăng nhập đăng ký (công cụ cá nhân không cần)
+- Không đồng bộ đám mây (lưu trữ cục bộ đủ dùng)
+- Không nhãn phân loại (giữ tối giản)
+- Không chế độ xem lịch (không phải công cụ quản lý lịch trình)
+- Không nhắc nhở định kỳ (sau này thêm)
+- Không tính năng xóa (P1, vòng sau làm)
+
+## Quy trình người dùng
+1. Mở trang web → Thấy danh sách nhiệm vụ (hoặc gợi ý trạng thái rỗng)
+2. Nhập nhiệm vụ → Nhấn thêm → Nhiệm vụ xuất hiện trong danh sách
+3. Hoàn thành nhiệm vụ → Nhấn đánh dấu → Hiển thị gạch ngang
+4. Đóng trang web → Lần sau mở → Dữ liệu vẫn còn
+
+## Ràng buộc kỹ thuật
+- Thuần Frontend: HTML + CSS + JavaScript
+- Lưu trữ dữ liệu: localStorage trình duyệt
+- Ngôn ngữ giao diện: Tiếng Trung
+- Kiểu dáng: Đơn giản đẹp mắt, nền trắng chữ đen
+
+## Tiêu chuẩn thành công
+- [ ] Có thể thêm nhiệm vụ và hiển thị trong danh sách
+- [ ] Có thể đánh dấu nhiệm vụ là hoàn thành
+- [ ] Làm mới trang dữ liệu không bị mất
+</code></pre>
+<h3>Bước 5: Để AI kiểm tra PRD</h3>
+<p>Sau khi viết xong PRD, Tiểu Lý nhờ AI kiểm tra giúp:</p>
+<pre><code class="language-markdown">Hãy giúp tôi kiểm tra PRD này xem có bỏ sót hay gây hiểu lầm gì không.
+
+[Dán PRD ở trên]
+
+Hãy trả lời:
+1. PRD này có đủ rõ ràng không, bạn có thể hiểu chính xác tôi muốn gì không?
+2. Có chỗ nào bạn không chắc chắn phải làm thế nào không?
+3. Có trường hợp biên nào tôi có thể đã bỏ sót không?
+</code></pre>
+<p><strong>Phản hồi của AI</strong>:</p>
+<blockquote>
+<ol>
+<li>Tổng thể rõ ràng, tôi có thể hiểu bạn muốn làm một danh sách việc cần làm tối giản.</li>
+<li>Có vài điểm không chắc chắn:</li>
+<li>Khi nhiệm vụ trống, nút thêm có bị vô hiệu hóa không?</li>
+<li>Nhiệm vụ đã hoàn thành đặt ở vị trí nào trong danh sách (cuối/vị trí cũ)?</li>
+<li>Gợi ý trạng thái rỗng cụ thể hiển thị chữ gì?</li>
+<li>Trường hợp biên có thể bị bỏ sót:</li>
+<li>Chữ nhiệm vụ quá dài xử lý thế nào?</li>
+<li>Giới hạn số lượng nhiệm vụ?</li>
+</ol>
+</blockquote>
+<p>Tiểu Lý xem phản hồi của AI, bổ sung vài điểm:</p>
+<pre><code class="language-markdown">## Bổ sung giải thích
+- Khi nhiệm vụ trống, nút thêm có thể nhấn nhưng không thêm (không báo lỗi)
+- Nhiệm vụ đã hoàn thành giữ nguyên vị trí, chỉ hiển thị gạch ngang
+- Trạng thái rỗng hiển thị &quot;Tạm không có nhiệm vụ, thử thêm một cái xem&quot;
+- Chữ nhiệm vụ quá dài tự động xuống dòng
+- Phiên bản đầu không thiết lập giới hạn số lượng
+</code></pre>
+<h3>Bước 6: Xác minh sự hiểu biết của AI</h3>
+<p>Tiểu Lý để AI thuật lại sự hiểu biết, đảm bảo hai bên đồng bộ:</p>
+<pre><code class="language-markdown">Hãy dùng lời của bạn mô tả một chút, bạn hiểu tôi muốn làm sản phẩm gì?
+Bao gồm: Người dùng là ai, giải quyết vấn đề gì, có những tính năng nào, không có những tính năng nào.
+</code></pre>
+<p><strong>AI thuật lại</strong>:</p>
+<blockquote>
+<p>Bạn muốn làm một trang web danh sách việc cần làm tối giản, cho bản thân (người đi làm) dùng.</p>
+<p>Vấn đề giải quyết: Sợ bỏ sót việc quan trọng, cần một công cụ bền hơn giấy ghi chú, tiện lợi hơn ghi chú điện thoại.</p>
+<p>Tính năng cốt lõi (P0):
+- Thêm nhiệm vụ (Ô nhập liệu + Nút)
+- Xem danh sách nhiệm vụ
+- Đánh dấu hoàn thành (Hiển thị gạch ngang)</p>
+<p>Xác định không làm:
+- Đăng nhập đăng ký, đồng bộ đám mây, nhãn phân loại, lịch, nhắc nhở, tính năng xóa</p>
+<p>Giải pháp kỹ thuật: Thuần Frontend (HTML+CSS+JS), dữ liệu lưu localStorage, giao diện tiếng Trung.</p>
+</blockquote>
+<p>Tiểu Lý xác nhận hiểu đúng, có thể bắt đầu phát triển rồi.</p>
+<h3>Bước 7: Bắt đầu vòng phát triển đầu tiên</h3>
+<p>Tiểu Lý theo phương pháp ở 3.4.4, bắt đầu vòng hội thoại đầu tiên:</p>
+<pre><code class="language-markdown">Hãy dựa vào PRD này thực hiện phiên bản đầu, chỉ làm tính năng P0.
+
+[Dán PRD hoàn chỉnh]
+
+Đặc biệt nhấn mạnh: Chỉ làm 3 tính năng được liệt kê trong phần tính năng cốt lõi, không thêm bất kỳ tính năng bổ sung nào.
+</code></pre>
+<p>Sau khi AI trả về mã, Tiểu Lý kiểm tra theo danh sách xác minh, sau khi xác nhận không có lỗi thì chuyển sang phát triển P1.</p>
+<h2>Bài tập của bạn: Chọn một trong ba kịch bản</h2>
+<p>Bây giờ đến lượt bạn. Hãy chọn một trong ba kịch bản dưới đây, hoàn thành bản PRD đầu tiên của bạn:</p>
+<h3>Kịch bản A: Công cụ cá nhân</h3>
+<blockquote>
+<p>"Tôi muốn làm một công cụ điểm danh hàng ngày, ghi lại mỗi ngày mình uống bao nhiêu cốc nước."</p>
+</blockquote>
+<p><strong>Gợi ý</strong>:
+- Người dùng là ai? (Chính bạn)
+- Tính năng cốt lõi là gì? (Ghi chép, xem)
+- Không cần cái gì? (Biểu đồ thống kê? Chia sẻ mạng xã hội?)</p>
+<h3>Kịch bản B: Phân tích dữ liệu</h3>
+<blockquote>
+<p>"Tôi muốn phân tích dữ liệu bán hàng tháng trước của công ty, xem kênh nào hiệu quả tốt nhất."</p>
+</blockquote>
+<p><strong>Gợi ý</strong>:
+- Phân tích cho ai xem? (Sếp? Chính mình?)
+- Cần trả lời câu hỏi gì? (Kênh nào ROI cao nhất?)
+- Dữ liệu từ đâu đến? (Excel?)
+- Đầu ra hình thức gì? (Biểu đồ? Bảng?)</p>
+<h3>Kịch bản C: Script tự động hóa</h3>
+<blockquote>
+<p>"Mỗi tuần tôi đều phải gộp 10 file Excel thành một, muốn làm cho quá trình này tự động hóa."</p>
+</blockquote>
+<p><strong>Gợi ý</strong>:
+- Đầu vào là gì? (10 file Excel, đặt ở thư mục nào đó)
+- Đầu ra là gì? (Một file Excel sau khi gộp)
+- Logic xử lý là gì? (Gộp theo thứ tự nào?)</p>
+<h2>Danh sách tự kiểm tra PRD</h2>
+<p>Sau khi viết xong PRD, dùng danh sách này để kiểm tra:</p>
+<h3>Tính toàn vẹn nội dung</h3>
+<ul>
+<li>[ ] Mô tả một câu rõ ràng "cho ai dùng" và "làm cái gì"</li>
+<li>[ ] Người dùng mục tiêu đã mô tả các đặc điểm liên quan đến sản phẩm</li>
+<li>[ ] Vấn đề cần giải quyết đã mô tả nỗi đau, chứ không phải giải pháp</li>
+<li>[ ] Tính năng cốt lõi (P0) không quá 5 cái</li>
+<li>[ ] "Danh sách không làm" đã liệt kê rõ ràng ranh giới</li>
+<li>[ ] Quy trình người dùng bao phủ các bước then chốt</li>
+<li>[ ] Ràng buộc kỹ thuật đã giải thích các hạn chế kỹ thuật</li>
+<li>[ ] Tiêu chuẩn thành công là có thể xác minh</li>
+</ul>
+<h3>Khả năng đọc của AI</h3>
+<ul>
+<li>[ ] Đã sử dụng định dạng Markdown</li>
+<li>[ ] Dùng danh sách thay vì đoạn văn</li>
+<li>[ ] Không có cách diễn đạt mơ hồ (như "đẹp", "tiện lợi")</li>
+<li>[ ] Ranh giới của "không làm" đủ rõ ràng</li>
+</ul>
+<h3>Sự kết nối với chương 2</h3>
+<ul>
+<li>[ ] Câu trả lời của 3 câu hỏi linh hồn đã hòa nhập vào phần "người dùng" và "vấn đề"</li>
+<li>[ ] Phân chia P0/P1/P2 đến từ tư duy phép trừ</li>
+<li>[ ] Quy trình người dùng đơn giản hóa từ bản đồ hành trình người dùng</li>
+</ul>
+<h2>Điểm cốt lõi phần này</h2>
+<ul>
+<li>✅ Từ ý tưởng mơ hồ đến PRD, chỉ cần 10 phút</li>
+<li>✅ 3 câu hỏi linh hồn + tư duy phép trừ = Nội dung cốt lõi của PRD</li>
+<li>✅ Sau khi viết xong để AI kiểm tra, bổ sung trường hợp biên bị bỏ sót</li>
+<li>✅ Để AI thuật lại sự hiểu biết, đảm bảo hai bên đồng bộ</li>
+<li>✅ Sau khi xác nhận PRD không có lỗi, mới bắt đầu vòng phát triển đầu tiên</li>
+</ul>
+<h2>Tổng kết chương</h2>
+<p>Chúc mừng bạn đã hoàn thành việc học phần 3.4. Bây giờ bạn đã nắm vững:</p>
+<ol>
+<li><strong>PRD là gì</strong>: Bản nhiệm vụ cho AI, không phải báo cáo cho sếp</li>
+<li><strong>Nội dung từ đâu đến</strong>: Tích hợp 3 câu hỏi linh hồn, tư duy phép trừ, hành trình người dùng của chương 2</li>
+<li><strong>Viết thế nào</strong>: Dùng mẫu phiên bản tinh gọn, 8 trường cốt lõi</li>
+<li><strong>Dùng thế nào</strong>: Phát triển phân giai đoạn P0→P1→P2</li>
+<li><strong>Xác minh thế nào</strong>: Để AI kiểm tra, thuật lại, xác nhận</li>
+</ol>
+<p>Bạn đã sở hữu phương pháp luận hoàn chỉnh từ "ý tưởng" đến "AI bắt đầu thực thi".</p>
+<p>Phần tiếp theo, chúng ta sẽ học nghệ thuật hội thoại lặp lại - khi phiên bản đầu tiên của AI không hoàn hảo, làm thế nào thông qua nhiều vòng hội thoại để từng bước tiến gần đến kết quả lý tưởng.</p>
+</body>
+</html>

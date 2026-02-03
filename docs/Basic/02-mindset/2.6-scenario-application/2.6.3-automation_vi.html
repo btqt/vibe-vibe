@@ -1,0 +1,427 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.6.3 Automation</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "2.6.3 Bối cảnh script tự động hóa: Nhận diện nhiệm vụ đáng để tự động hóa"</h2>
+<p><img alt="02-mindset_2.6-scenario-application_2.6.3-automation.png" src="../../../public/images/Basic/02-mindset_2.6-scenario-application_2.6.3-automation.png" /></p>
+<h1>2.6.3 Bối cảnh script tự động hóa: Nhận diện nhiệm vụ đáng để tự động hóa</h1>
+<h2>Công thức giá trị của tự động hóa</h2>
+<p>Không phải tất cả các nhiệm vụ lặp đi lặp lại đều đáng để tự động hóa. Trước khi bắt tay vào làm, hãy tính toán một chút:</p>
+<blockquote>
+<p><strong>Giá trị tự động hóa = Tần suất × Thời gian tiêu tốn mỗi lần × Số năm duy trì</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Nhiệm vụ</th>
+<th style="text-align: left;">Tần suất</th>
+<th style="text-align: left;">Thời gian mỗi lần</th>
+<th style="text-align: left;">Số năm duy trì</th>
+<th style="text-align: left;">Thời gian tiết kiệm hàng năm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tổng hợp Excel của 5 bộ phận mỗi tuần</td>
+<td style="text-align: left;">1 lần/tuần</td>
+<td style="text-align: left;">2 tiếng</td>
+<td style="text-align: left;">3 năm</td>
+<td style="text-align: left;">104 tiếng/năm</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gửi email báo cáo hàng ngày</td>
+<td style="text-align: left;">1 lần/ngày</td>
+<td style="text-align: left;">10 phút</td>
+<td style="text-align: left;">2 năm</td>
+<td style="text-align: left;">61 tiếng/năm</td>
+</tr>
+<tr>
+<td style="text-align: left;">Sắp xếp hóa đơn hàng tháng</td>
+<td style="text-align: left;">1 lần/tháng</td>
+<td style="text-align: left;">3 tiếng</td>
+<td style="text-align: left;">5 năm</td>
+<td style="text-align: left;">36 tiếng/năm</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tổng kết cuối năm mỗi năm một lần</td>
+<td style="text-align: left;">1 lần/năm</td>
+<td style="text-align: left;">8 tiếng</td>
+<td style="text-align: left;">10 năm</td>
+<td style="text-align: left;">8 tiếng/năm</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nói chung, nhiệm vụ nào có thể tiết kiệm trên 20 tiếng/năm thì đáng để dành thời gian tự động hóa.</strong></p>
+<h2>Ứng dụng công cụ tư duy trong tự động hóa</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Công cụ tư duy</th>
+<th style="text-align: left;">Câu hỏi cần đặt ra trong tự động hóa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tư duy JTBD</td>
+<td style="text-align: left;">Nhiệm vụ này giúp tôi hoàn thành cái gì? Hiện tại tôi đang làm thế nào? Mỗi lần mất bao lâu?</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tư duy ngược</td>
+<td style="text-align: left;">Trường hợp nào tự động hóa sẽ bị lỗi? Định dạng file thay đổi? Website thay đổi giao diện? Xử lý ngoại lệ thế nào?</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tư duy phép trừ</td>
+<td style="text-align: left;">Tự động hóa bước đau nhất, thường xuyên nhất trước, chứ không phải tự động hóa toàn bộ quy trình một lần</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tư duy câu chuyện</td>
+<td style="text-align: left;">Mô tả đầy đủ bối cảnh sử dụng: Chạy khi nào? Chạy ở đâu? Kết quả lưu vào đâu?</td>
+</tr>
+<tr>
+<td style="text-align: left;">Ba câu hỏi linh hồn</td>
+<td style="text-align: left;">Ai dùng script này? Nhiệm vụ nào đau nhất? Tại sao đáng dành thời gian tự động hóa?</td>
+</tr>
+</tbody>
+</table>
+<h2>Đặc điểm của nhiệm vụ đáng tự động hóa</h2>
+<p>Tự hỏi ba câu hỏi này, mỗi câu chấm điểm (1-5 điểm):</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Chiều đánh giá</th>
+<th style="text-align: left;">1 điểm</th>
+<th style="text-align: left;">3 điểm</th>
+<th style="text-align: left;">5 điểm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Tần suất</strong></td>
+<td style="text-align: left;">Một hai lần mỗi năm</td>
+<td style="text-align: left;">Vài lần mỗi tháng</td>
+<td style="text-align: left;">Mỗi ngày/Mỗi tuần</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Thời gian mỗi lần</strong></td>
+<td style="text-align: left;">Dưới 5 phút</td>
+<td style="text-align: left;">15-30 phút</td>
+<td style="text-align: left;">Trên 30 phút</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tính quy tắc</strong></td>
+<td style="text-align: left;">Mỗi lần mỗi khác</td>
+<td style="text-align: left;">Đại khái giống nhau nhưng có thay đổi</td>
+<td style="text-align: left;">Các bước hoàn toàn cố định</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tổng điểm trên 12 điểm: Rất đáng tự động hóa</strong>
+<strong>Tổng điểm 9-11 điểm: Có thể cân nhắc tự động hóa</strong>
+<strong>Tổng điểm dưới 8 điểm: Có thể không đáng dành thời gian</strong></p>
+<h3>Ví dụ đánh giá</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Nhiệm vụ</th>
+<th style="text-align: left;">Tần suất</th>
+<th style="text-align: left;">Thời gian</th>
+<th style="text-align: left;">Quy tắc</th>
+<th style="text-align: left;">Tổng điểm</th>
+<th style="text-align: left;">Đề xuất</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tổng hợp Excel bộ phận hàng tuần</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">14</td>
+<td style="text-align: left;">Tự động hóa ngay</td>
+</tr>
+<tr>
+<td style="text-align: left;">Kiểm tra email và chuyển tiếp email cụ thể hàng ngày</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">Có thể tự động hóa</td>
+</tr>
+<tr>
+<td style="text-align: left;">Thỉnh thoảng cần đổi tên file hàng loạt</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">Có thể làm, nhưng ưu tiên không cao</td>
+</tr>
+<tr>
+<td style="text-align: left;">Làm PPT tổng kết cuối năm mỗi năm</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">Không đáng tự động hóa lắm</td>
+</tr>
+</tbody>
+</table>
+<h2>Cạm bẫy thường gặp: Tự động hóa toàn bộ quy trình một lần</h2>
+<p>❌ <strong>Cách làm sai</strong>:</p>
+<p>"Mỗi ngày tôi phải tải dữ liệu từ 5 nền tảng, gộp thành một bảng, tạo biểu đồ, rồi gửi email cho sếp. Tôi muốn tự động hóa toàn bộ quy trình này."</p>
+<p>Vấn đề:</p>
+<ul>
+<li>Cách tải của 5 nền tảng có thể khác nhau hoàn toàn</li>
+<li>Có cái cần đăng nhập, có cái có mã xác nhận</li>
+<li>Một khi mắt xích nào đó bị lỗi, cả quy trình sẽ tắc nghẽn</li>
+<li>Độ khó phát triển quá cao, cuối cùng làm không xong</li>
+</ul>
+<p>✅ <strong>Cách làm đúng</strong>:</p>
+<p><strong>Tự động hóa bước đau nhất trước.</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bước</th>
+<th style="text-align: left;">Thời gian</th>
+<th style="text-align: left;">Độ khó</th>
+<th style="text-align: left;">Đề xuất</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tải dữ liệu 5 nền tảng</td>
+<td style="text-align: left;">15 phút</td>
+<td style="text-align: left;">Cao (cần đăng nhập, chống crawl)</td>
+<td style="text-align: left;">Tạm thời thủ công</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gộp thành một bảng</td>
+<td style="text-align: left;">30 phút</td>
+<td style="text-align: left;">Thấp (định dạng cố định)</td>
+<td style="text-align: left;"><strong>Tự động hóa bước này trước</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;">Tạo biểu đồ</td>
+<td style="text-align: left;">10 phút</td>
+<td style="text-align: left;">Trung bình</td>
+<td style="text-align: left;">Tự động hóa bước 2</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gửi email</td>
+<td style="text-align: left;">5 phút</td>
+<td style="text-align: left;">Thấp</td>
+<td style="text-align: left;">Tự động hóa bước 3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tự động hóa việc "gộp Excel" trước, có thể tiết kiệm ngay một nửa thời gian. Những cái còn lại tính sau.</strong></p>
+<h2>Mẫu mô tả nhu cầu tự động hóa</h2>
+<pre><code class="language-markdown">## Bối cảnh nhiệm vụ
+
+- Nhiệm vụ này bao lâu tôi làm một lần: [Mỗi ngày/Mỗi tuần/Mỗi tháng]
+- Mỗi lần tốn bao nhiêu thời gian: [X phút/tiếng]
+- Tôi đã làm bao lâu rồi: [X tháng/năm]
+- Dự kiến sẽ còn làm bao lâu nữa: [X tháng/năm]
+
+## Quy trình công việc hiện tại
+
+Hãy mô tả chi tiết cách bạn hoàn thành nhiệm vụ này từng bước một:
+
+1. Bước 1: [Thao tác cụ thể]
+2. Bước 2: [Thao tác cụ thể]
+3. ...
+
+## Phần muốn tự động hóa
+
+Lần này chỉ tự động hóa: [Chọn 1-2 bước đau nhất]
+Tạm thời không tự động hóa: [Các bước khác, giải thích lý do]
+
+## Mô tả file/dữ liệu
+
+- Đầu vào: [Vị trí file, định dạng, quy tắc đặt tên]
+- Đầu ra: [Vị trí đầu ra mong muốn, định dạng]
+
+## Các trường hợp có thể lỗi
+
+- Trường hợp 1: [Ví dụ: một file nào đó không tồn tại]
+- Trường hợp 2: [Ví dụ: định dạng file không đúng]
+  Cách xử lý mong muốn: [Bỏ qua / Báo lỗi / ...]
+</code></pre>
+<h2>Trường hợp thực chiến: Tổng hợp Excel báo cáo tuần</h2>
+<h3>Bối cảnh</h3>
+<p>Tiểu Trương là trợ lý bộ phận, thứ Hai hàng tuần phải gộp Excel báo cáo tuần của 5 nhóm thành một bảng tổng hợp, gửi cho trưởng bộ phận.</p>
+<h3>Đánh giá của Tiểu Trương</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Chiều</th>
+<th style="text-align: left;">Điểm</th>
+<th style="text-align: left;">Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tần suất</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Mỗi tuần một lần</td>
+</tr>
+<tr>
+<td style="text-align: left;">Thời gian</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Khoảng 40 phút</td>
+</tr>
+<tr>
+<td style="text-align: left;">Quy tắc</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Thao tác hoàn toàn giống nhau mỗi tuần</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tổng điểm</td>
+<td style="text-align: left;">14</td>
+<td style="text-align: left;">Rất đáng tự động hóa</td>
+</tr>
+</tbody>
+</table>
+<h3>Quy trình hiện tại của Tiểu Trương</h3>
+<ol>
+<li>Mở thư mục "Báo cáo tuần", tìm Excel 5 nhóm gửi đến tuần này</li>
+<li>Mở từng cái, copy hai cột "Hoàn thành tuần này", "Kế hoạch tuần sau"</li>
+<li>Paste vào dòng tương ứng trong bảng tổng hợp</li>
+<li>Chỉnh sửa định dạng (font chữ, đường viền)</li>
+<li>Lưu, gửi email cho trưởng bộ phận</li>
+</ol>
+<h3>Prompt Tiểu Trương gửi cho AI</h3>
+<pre><code class="language-markdown">## Bối cảnh nhiệm vụ
+
+- Tần suất: Sáng thứ Hai hàng tuần
+- Thời gian: Khoảng 40 phút
+- Đã làm 1 năm, dự kiến còn làm trên 2 năm nữa
+
+## Quy trình công việc hiện tại
+
+1. Mở thư mục D:\Work\WeeklyReport\2024\Dec\
+2. Trong đó có 5 file Excel, định dạng tên: GroupXX_Weekly_1209.xlsx
+3. Sheet1 của mỗi Excel đều có cấu trúc giống nhau:
+   - Cột A: Tên
+   - Cột B: Hoàn thành tuần này
+   - Cột C: Kế hoạch tuần sau
+   - Dòng đầu tiên là tiêu đề
+4. Tôi cần gộp nội dung 5 Excel này vào một bảng tổng hợp
+5. Bảng tổng hợp cần chia khối theo nhóm, giữa các nhóm cách một dòng
+
+## Phần muốn tự động hóa
+
+Tự động gộp 5 file Excel, tạo bảng tổng hợp.
+
+Tạm thời không tự động hóa: Gửi email (tôi muốn tự kiểm tra lại rồi mới gửi)
+
+## Mô tả file
+
+- Đầu vào: Tất cả file .xlsx trong D:\Work\WeeklyReport\2024\Dec\
+- Đầu ra: Tạo &quot;Weekly_Summary_1209.xlsx&quot; trong cùng thư mục
+
+## Các trường hợp có thể lỗi
+
+- Một nhóm nào đó chưa nộp báo cáo (file không tồn tại) → Hy vọng bỏ qua, nhưng cuối cùng nhắc tôi
+- Một file nào đó định dạng không đúng (không có 3 cột này) → Hy vọng bỏ qua, và nhắc tôi
+
+Hãy giúp tôi viết một script Python, chạy xong tự động hoàn thành việc tổng hợp.
+</code></pre>
+<h3>Prompt này tốt ở đâu</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Đặc điểm</th>
+<th style="text-align: left;">Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tần suất và thời gian rõ ràng</td>
+<td style="text-align: left;">AI biết đây là nhiệm vụ đáng làm</td>
+</tr>
+<tr>
+<td style="text-align: left;">Quy trình hiện tại chi tiết</td>
+<td style="text-align: left;">AI biết cần copy cột nào, định dạng thế nào</td>
+</tr>
+<tr>
+<td style="text-align: left;">Vị trí file rõ ràng</td>
+<td style="text-align: left;">AI biết đọc từ đâu, ghi vào đâu</td>
+</tr>
+<tr>
+<td style="text-align: left;">Xử lý ngoại lệ rõ ràng</td>
+<td style="text-align: left;">AI biết gặp vấn đề thì làm thế nào</td>
+</tr>
+<tr>
+<td style="text-align: left;">Phạm vi rõ ràng</td>
+<td style="text-align: left;">Chỉ tự động hóa việc gộp, không tự động hóa việc gửi email</td>
+</tr>
+</tbody>
+</table>
+<h2>Bối cảnh nâng cao</h2>
+<h3>Bối cảnh 1: Đổi tên file hàng loạt</h3>
+<pre><code class="language-markdown">## Nhiệm vụ
+
+Tôi có 200 tấm ảnh, tên là IMG_0001.jpg đến IMG_0200.jpg.
+Tôi muốn đổi tên chúng thành định dạng &quot;2024-12-001.jpg&quot;.
+
+## Kết quả mong muốn
+
+- IMG_0001.jpg → 2024-12-001.jpg
+- IMG_0002.jpg → 2024-12-002.jpg
+- ...
+
+## Vị trí file
+
+D:\Photos\ToOrganize\
+
+Hãy viết một script Python, chạy xong tự động đổi tên.
+Trước khi chạy hãy liệt kê &quot;các file sẽ được đổi tên&quot; để tôi xác nhận.
+</code></pre>
+<h3>Bối cảnh 2: Nhắc nhở định kỳ</h3>
+<pre><code class="language-markdown">## Nhiệm vụ
+
+Mỗi ngày 5 giờ chiều, nhắc tôi &quot;đến giờ viết tổng kết ngày rồi&quot;.
+
+## Cách thức
+
+Hiện một thông báo hệ thống là được.
+
+## Môi trường
+
+Windows 11, đã cài Python.
+
+Hãy cho tôi biết cách thiết lập để nhắc nhở này tự động chạy mỗi ngày.
+</code></pre>
+<h2>Danh sách tự kiểm tra tự động hóa</h2>
+<p>Trước khi chạy script, hãy kiểm tra những điểm sau:</p>
+<ul>
+<li>[ ] Tôi đã test script chạy đúng trong "tình huống bình thường" chưa?</li>
+<li>[ ] Tôi đã test biểu hiện của script trong "tình huống bất thường" (như file không tồn tại) chưa?</li>
+<li>[ ] Tôi có backup file gốc để phòng trường hợp script bị lỗi không?</li>
+<li>[ ] Sau khi script chạy, tôi có kiểm tra kết quả rồi mới làm bước tiếp theo không?</li>
+<li>[ ] Tôi có hiểu script làm gì không, hay là "cứ dùng được là được"?</li>
+</ul>
+<h2>Các điểm cốt lõi</h2>
+<p>✓ Trước khi tự động hóa hãy tính toán: Tần suất × Thời gian × Số năm, đáng giá mới làm</p>
+<p>✓ Đừng tự động hóa toàn bộ quy trình một lần, hãy làm bước đau nhất trước</p>
+<p>✓ Viết chi tiết các bước thủ công hiện tại, AI mới biết cần tự động hóa cái gì</p>
+<p>✓ Nghĩ rõ "các trường hợp có thể lỗi", script mới vững chắc</p>
+</body>
+</html>

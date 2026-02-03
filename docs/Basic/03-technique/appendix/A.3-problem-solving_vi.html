@@ -1,0 +1,446 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.3 Problem Solving</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "A.3 Mẫu giải quyết vấn đề"</h2>
+<p><img alt="03-technique_appendix_A.3-problem-solving.png" src="../../../public/images/Basic/03-technique_appendix_A.3-problem-solving.png" /></p>
+<h1>A.3 Mẫu giải quyết vấn đề</h1>
+<p>Phần này cung cấp các mẫu Prompt để rà soát vấn đề và tìm kiếm sự trợ giúp, bao gồm các tình huống rà soát lỗi, lựa chọn kỹ thuật, giải thích khái niệm.</p>
+<h2>Mẫu 1: Rà soát lỗi thời gian chạy (Runtime Error)</h2>
+<p>Thích hợp cho: Code báo lỗi, chương trình bị crash, console báo đỏ</p>
+<pre><code class="language-markdown">## Thông tin lỗi
+
+Gặp lỗi sau khi chạy:
+
+</code></pre>
+<p>[Dán đầy đủ thông tin lỗi, bao gồm stack trace]</p>
+<pre><code>
+## Bối cảnh kích hoạt
+
+**Các bước thao tác**:
+1. [Bước 1 đã làm gì]
+2. [Bước 2 đã làm gì]
+3. [Sau đó thì báo lỗi]
+
+**Tần suất kích hoạt**: [Luôn báo lỗi/Thỉnh thoảng báo lỗi/Báo lỗi trong điều kiện cụ thể]
+
+## Code liên quan
+
+Code mà lỗi trỏ tới:
+```[Ngôn ngữ]
+Code trong thông tin lỗi, và ngữ cảnh xung quanh]
+</code></pre>
+<h2>Thông tin môi trường</h2>
+<ul>
+<li>Môi trường chạy: [Phiên bản trình duyệt/Phiên bản Node.js/Phiên bản Python]</li>
+<li>Phiên bản framework: [React 18/Vue 3/...]</li>
+<li>Hệ điều hành: [Windows/Mac/Linux]</li>
+</ul>
+<h2>Phương pháp đã thử</h2>
+<ol>
+<li>[Đã thử 1]: Kết quả [Thành công/Thất bại/Giải quyết một phần]</li>
+<li>[Đã thử 2]: Kết quả [Thành công/Thất bại/Giải quyết một phần]</li>
+</ol>
+<h2>Hãy giúp tôi</h2>
+<ol>
+<li>Phân tích nguyên nhân gốc rễ của lỗi</li>
+<li>Đưa ra phương án sửa chữa</li>
+<li>Giải thích tại sao lại xuất hiện vấn đề này (để giúp tôi hiểu)</li>
+</ol>
+<pre><code>
+### Ví dụ điền mẫu
+
+```markdown
+## Thông tin lỗi
+
+Gặp lỗi sau khi chạy:
+
+</code></pre>
+<p>TypeError: Cannot read properties of undefined (reading 'map')
+    at TaskList (TaskList.tsx:15:23)
+    at renderWithHooks (react-dom.development.js:14985:18)
+    at mountIndeterminateComponent (react-dom.development.js:17811:13)</p>
+<pre><code>
+## Bối cảnh kích hoạt
+
+**Các bước thao tác**:
+1. Mở trang chủ ứng dụng
+2. Báo lỗi ngay khi tải trang
+3. Danh sách nhiệm vụ không hiển thị
+
+**Tần suất kích hoạt**: Luôn báo lỗi mỗi lần refresh trang
+
+## Code liên quan
+
+Code mà lỗi trỏ tới:
+```tsx
+// TaskList.tsx
+function TaskList({ tasks }) {
+  return (
+    &lt;ul&gt;
+      {tasks.map(task =&gt; (          // Dòng 15
+        &lt;li key={task.id}&gt;{task.title}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+
+// Gọi trong App.tsx
+function App() {
+  const [tasks, setTasks] = useState();  // Chú ý chỗ này
+
+  return &lt;TaskList tasks={tasks} /&gt;;
+}
+</code></pre>
+<h2>Thông tin môi trường</h2>
+<ul>
+<li>Môi trường chạy: Chrome 120</li>
+<li>Phiên bản framework: React 18.2.0 + TypeScript 5.0</li>
+<li>Hệ điều hành: Mac</li>
+</ul>
+<h2>Phương pháp đã thử</h2>
+<ol>
+<li>Kiểm tra dữ liệu tasks: console.log thấy là undefined</li>
+<li>Refresh trang: Vấn đề vẫn còn</li>
+</ol>
+<h2>Hãy giúp tôi</h2>
+<ol>
+<li>Phân tích nguyên nhân gốc rễ của lỗi</li>
+<li>Đưa ra phương án sửa chữa</li>
+<li>Giải thích tại sao lại xuất hiện vấn đề này</li>
+</ol>
+<pre><code>
+## Mẫu 2: Phân tích lỗi logic
+
+Thích hợp cho: Code chạy được nhưng kết quả sai
+
+```markdown
+## Mô tả vấn đề
+
+Code chạy được, nhưng kết quả không như kỳ vọng.
+
+**Hành vi kỳ vọng**: [Kết quả nên là gì]
+**Hành vi thực tế**: [Kết quả thực tế là gì]
+
+## Test case
+
+| Đầu vào | Đầu ra kỳ vọng | Đầu ra thực tế | Đúng/Sai |
+|-----|---------|---------|---------|
+| [Đầu vào 1] | [Kỳ vọng 1] | [Thực tế 1] | ❌ |
+| [Đầu vào 2] | [Kỳ vọng 2] | [Thực tế 2] | ❌ |
+| [Đầu vào 3] | [Kỳ vọng 3] | [Thực tế 3] | ✅ |
+
+## Code liên quan
+
+```[Ngôn ngữ]
+[Dán code liên quan]
+</code></pre>
+<h2>Phân tích của tôi</h2>
+<p>Tôi nghi ngờ vấn đề có thể nằm ở: [Dự đoán của bạn]</p>
+<h2>Hãy giúp tôi</h2>
+<ol>
+<li>Tìm ra chỗ sai logic</li>
+<li>Giải thích tại sao logic hiện tại lại sinh ra kết quả sai</li>
+<li>Đưa ra code sau khi sửa</li>
+</ol>
+<pre><code>
+### Ví dụ điền mẫu
+
+```markdown
+## Mô tả vấn đề
+
+Code chạy được, nhưng kết quả không như kỳ vọng.
+
+**Hành vi kỳ vọng**: Khi tính tổng giá giỏ hàng, nếu trên 100 thì giảm 20
+**Hành vi thực tế**: Bất kể số tiền bao nhiêu đều giảm 20
+
+## Test case
+
+| Đầu vào (Tổng giá hàng) | Đầu ra kỳ vọng | Đầu ra thực tế | Đúng/Sai |
+|---------------|---------|---------|---------|
+| 150 | 130 | 130 | ✅ |
+| 80 | 80 | 60 | ❌ |
+| 100 | 80 | 80 | ✅ |
+
+## Code liên quan
+
+```javascript
+function calculateTotal(items) {
+  let total = items.reduce((sum, item) =&gt; sum + item.price, 0);
+
+  // Trên 100 giảm 20
+  if (total &gt; 100) {
+    total = total - 20;
+  } else {
+    total = total - 20;  // Có thể vấn đề ở đây?
+  }
+
+  return total;
+}
+</code></pre>
+<h2>Phân tích của tôi</h2>
+<p>Tôi nghi ngờ vấn đề có thể nằm ở: Nhánh else cũng giảm 20, chắc là lỗi copy paste quên xóa</p>
+<h2>Hãy giúp tôi</h2>
+<ol>
+<li>Xác nhận phân tích của tôi có đúng không</li>
+<li>Đưa ra code sau khi sửa</li>
+<li>Gợi ý cách tránh lỗi copy paste kiểu này</li>
+</ol>
+<pre><code>
+## Mẫu 3: Tư vấn lựa chọn kỹ thuật
+
+Thích hợp cho: Không biết chọn thư viện, framework, công cụ nào
+
+```markdown
+## Bối cảnh dự án
+
+**Loại dự án**: [Tóm tắt dự án làm gì]
+**Stack kỹ thuật**: [Công nghệ đang dùng]
+**Tình hình team**: [Dự án cá nhân/Quy mô team/Trình độ kỹ thuật]
+
+## Nhu cầu lựa chọn
+
+Tôi cần chọn một [Loại] để thực hiện [Chức năng].
+
+**Nhu cầu cốt lõi**:
+- [Nhu cầu 1]
+- [Nhu cầu 2]
+- [Nhu cầu 3]
+
+**Yếu tố cân nhắc**:
+| Yếu tố | Mức độ quan trọng | Giải thích |
+|-----|---------|------|
+| Chi phí học tập | Cao/Trung bình/Thấp | [Giải thích] |
+| Độ sôi động cộng đồng | Cao/Trung bình/Thấp | [Giải thích] |
+| Hiệu năng | Cao/Trung bình/Thấp | [Giải thích] |
+| Dung lượng gói | Cao/Trung bình/Thấp | [Giải thích] |
+| Bảo trì lâu dài | Cao/Trung bình/Thấp | [Giải thích] |
+
+## Ứng viên đã biết (Tùy chọn)
+
+Tôi hiện biết các lựa chọn sau:
+1. [Lựa chọn A]: [Ấn tượng đơn giản]
+2. [Lựa chọn B]: [Ấn tượng đơn giản]
+3. [Lựa chọn C]: [Ấn tượng đơn giản]
+
+## Hãy giúp tôi
+
+1. Bổ sung phương án ứng viên tôi có thể bỏ sót
+2. So sánh ưu nhược điểm các phương án từ nhiều chiều
+3. Đưa ra phương án đề xuất và lý do
+4. Giải thích trường hợp nào nên chọn phương án khác
+</code></pre>
+<h3>Ví dụ điền mẫu</h3>
+<pre><code class="language-markdown">## Bối cảnh dự án
+
+**Loại dự án**: Website blog cá nhân
+**Stack kỹ thuật**: Next.js + TypeScript
+**Tình hình team**: Dự án cá nhân, frontend thạo, backend mới học
+
+## Nhu cầu lựa chọn
+
+Tôi cần chọn một phương án cơ sở dữ liệu để lưu trữ bài viết blog.
+
+**Nhu cầu cốt lõi**:
+- Lưu nội dung bài viết (định dạng Markdown)
+- Hỗ trợ phân loại và gắn thẻ
+- Có thể truy vấn sắp xếp theo thời gian
+
+**Yếu tố cân nhắc**:
+| Yếu tố | Mức độ quan trọng | Giải thích |
+|-----|---------|------|
+| Chi phí học tập | Cao | Backend không thạo, muốn dễ tiếp cận |
+| Hạn ngạch miễn phí | Cao | Dự án cá nhân, không muốn tốn tiền |
+| Tích hợp với Next.js | Trung bình | Hy vọng có hướng dẫn sẵn |
+| Hiệu năng | Thấp | Lượng truy cập blog không lớn |
+
+## Ứng viên đã biết
+
+Tôi hiện biết các lựa chọn sau:
+1. Supabase: Nghe nói thay thế được Firebase
+2. MongoDB Atlas: Cơ sở dữ liệu NoSQL
+3. PlanetScale: Dịch vụ đám mây MySQL
+
+## Hãy giúp tôi
+
+1. Bổ sung phương án ứng viên tôi có thể bỏ sót
+2. So sánh ưu nhược điểm các phương án từ nhiều chiều
+3. Đưa ra phương án đề xuất và lý do
+4. Giải thích trường hợp nào nên chọn phương án khác
+</code></pre>
+<h2>Mẫu 4: Giải thích khái niệm</h2>
+<p>Thích hợp cho: Không hiểu khái niệm kỹ thuật nào đó</p>
+<pre><code class="language-markdown">## Khái niệm muốn tìm hiểu
+
+Tôi muốn hiểu [Tên khái niệm].
+
+## Thắc mắc hiện tại
+
+**Cách hiểu hiện tại của tôi**: [Bạn đang nghĩ nó là gì]
+**Chỗ thắc mắc**: [Không hiểu chỗ nào]
+
+## Cách giải thích mong muốn
+
+**Độ sâu kỹ thuật**: [Chỉ cần biết dùng thế nào/Muốn hiểu nguyên lý/Cần đi sâu chi tiết]
+**Sở thích loại so sánh**: [Thích so sánh đời sống/Thích so sánh kỹ thuật/Giải thích trực tiếp là được]
+
+## Bối cảnh liên quan
+
+**Nền tảng kỹ thuật của tôi**: [Thạo công nghệ/ngôn ngữ nào]
+**Tại sao cần tìm hiểu cái này**: [Ngữ cảnh ứng dụng]
+
+## Hãy giúp tôi
+
+1. Giải thích khái niệm này bằng ngôn ngữ dễ hiểu
+2. Đưa ra một ví dụ code đơn giản
+3. Giải thích khi nào thì dùng đến nó
+4. Chỉ ra các hiểu lầm thường gặp
+</code></pre>
+<h3>Ví dụ điền mẫu</h3>
+<pre><code class="language-markdown">## Khái niệm muốn tìm hiểu
+
+Tôi muốn hiểu useEffect trong React.
+
+## Thắc mắc hiện tại
+
+**Cách hiểu hiện tại của tôi**: Hình như dùng để xử lý &quot;tác dụng phụ&quot; (side effect), nhưng không biết gì được tính là tác dụng phụ
+**Chỗ thắc mắc**:
+- Khi nào cần dùng useEffect?
+- Mảng dependency dùng làm gì?
+- Tại sao thỉnh thoảng lại bị &quot;vòng lặp vô hạn&quot;?
+
+## Cách giải thích mong muốn
+
+**Độ sâu kỹ thuật**: Chỉ cần biết dùng thế nào là được, nguyên lý tính sau
+**Sở thích loại so sánh**: Thích so sánh đời sống
+
+## Bối cảnh liên quan
+
+**Nền tảng kỹ thuật của tôi**: Biết JavaScript cơ bản, đang học React
+**Tại sao cần tìm hiểu cái này**: Muốn lấy dữ liệu khi component load
+
+## Hãy giúp tôi
+
+1. Giải thích useEffect bằng ngôn ngữ dễ hiểu
+2. Đưa ra ví dụ code &quot;lấy dữ liệu&quot;
+3. Giải thích tác dụng của mảng dependency
+4. Giải thích tại sao lại bị &quot;vòng lặp vô hạn&quot; và cách tránh
+</code></pre>
+<h2>Mẫu 5: Review code</h2>
+<p>Thích hợp cho: Nhờ AI kiểm tra chất lượng code</p>
+<pre><code class="language-markdown">## Mục tiêu review
+
+Hãy giúp tôi review đoạn code sau:
+
+```[Ngôn ngữ]
+[Dán code]
+</code></pre>
+<h2>Khía cạnh review</h2>
+<p>Vui lòng kiểm tra theo các khía cạnh sau:</p>
+<ul>
+<li>[ ] <strong>Tính chính xác chức năng</strong>: Logic có đúng không, các trường hợp biên có xử lý không</li>
+<li>[ ] <strong>Bảo mật</strong>: Có lỗ hổng bảo mật nào không (XSS, SQL Injection,...)</li>
+<li>[ ] <strong>Hiệu năng</strong>: Có vấn đề hiệu năng rõ ràng nào không</li>
+<li>[ ] <strong>Khả năng đọc</strong>: Đặt tên có rõ ràng không, cấu trúc có hợp lý không</li>
+<li>[ ] <strong>Khả năng bảo trì</strong>: Có dễ mở rộng và sửa đổi không</li>
+<li>[ ] <strong>Xử lý lỗi</strong>: Các tình huống bất thường có được xử lý thỏa đáng không</li>
+</ul>
+<h2>Bối cảnh code</h2>
+<p><strong>Tác dụng của đoạn code này</strong>: [Tóm tắt chức năng]
+<strong>Ngữ cảnh sử dụng</strong>: [Chạy trong tình huống nào]</p>
+<h2>Định dạng đầu ra</h2>
+<p>Vui lòng xuất theo định dạng sau:</p>
+<ol>
+<li><strong>Danh sách vấn đề</strong>: Liệt kê các vấn đề phát hiện, sắp xếp theo mức độ nghiêm trọng</li>
+<li><strong>Gợi ý cải tiến</strong>: Đưa ra gợi ý cụ thể cho từng vấn đề</li>
+<li><strong>Code sau tối ưu</strong>: Đưa ra code hoàn chỉnh sau khi cải tiến</li>
+</ol>
+<pre><code>
+## Bản rút gọn: Mẫu đặt câu hỏi nhanh
+
+Khi vấn đề khá đơn giản, có thể dùng bản rút gọn này:
+
+```markdown
+**Vấn đề**: [Một câu mô tả vấn đề]
+
+**Bối cảnh**: [Ngữ cảnh cần thiết]
+
+**Code**:
+```[Ngôn ngữ]
+Code liên quan]
+</code></pre>
+<p><strong>Kỳ vọng</strong>: [Bạn mong nhận được sự giúp đỡ gì]</p>
+<pre><code>
+## Kỹ năng đặt câu hỏi: Làm thế nào để câu trả lời hữu ích hơn
+
+### Kỹ năng 1: Nói kết luận trước, rồi mới đưa chi tiết
+
+```markdown
+❌ Tôi có một dự án React, dùng TypeScript, rồi tôi đang làm một cái xác thực form...
+   (AI đọc nửa ngày vẫn chưa biết vấn đề là gì)
+
+✅ Code xác thực form của tôi báo lỗi.
+   Stack kỹ thuật là React + TypeScript, thông tin lỗi là [xxx].
+</code></pre>
+<h3>Kỹ năng 2: Đưa ra code tái hiện tối thiểu</h3>
+<p>Đừng dán cả file, chỉ dán <strong>dòng code tối thiểu có thể tái hiện vấn đề</strong>. Như vậy AI dễ định vị vấn đề hơn.</p>
+<h3>Kỹ năng 3: Nói rõ đã thử những gì</h3>
+<p>Điều này giúp AI tránh đưa ra phương án vô dụng mà bạn đã thử rồi.</p>
+<h2>Sai lầm thường gặp khi điền</h2>
+<table>
+<thead>
+<tr>
+<th>Sai lầm</th>
+<th>Vấn đề</th>
+<th>Cách làm đúng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chỉ nói "không chạy được"</td>
+<td>AI không biết triệu chứng cụ thể</td>
+<td>Mô tả sai lệch giữa kỳ vọng vs thực tế</td>
+</tr>
+<tr>
+<td>Thông tin lỗi cắt một nửa</td>
+<td>Mất thông tin then chốt</td>
+<td>Dán đầy đủ, bao gồm stack trace</td>
+</tr>
+<tr>
+<td>Không đưa code</td>
+<td>AI chỉ có thể đoán mò</td>
+<td>Dán đoạn code liên quan</td>
+</tr>
+<tr>
+<td>Vấn đề khái niệm quá rộng</td>
+<td>"Giải thích JavaScript chút"</td>
+<td>Cụ thể vào điểm nào đó, như "Giải thích closure"</td>
+</tr>
+</tbody>
+</table>
+<h2>Điểm cốt yếu phần này</h2>
+<ul>
+<li>✅ <strong>Rà soát lỗi</strong>: Thông tin lỗi đầy đủ + Các bước kích hoạt + Code liên quan + Phương pháp đã thử</li>
+<li>✅ <strong>Lỗi logic</strong>: Dùng test case thể hiện "Kỳ vọng vs Thực tế"</li>
+<li>✅ <strong>Lựa chọn kỹ thuật</strong>: Làm rõ ưu tiên nhu cầu + Liệt kê các yếu tố cân nhắc</li>
+<li>✅ <strong>Giải thích khái niệm</strong>: Nói rõ cách hiểu hiện tại và điểm thắc mắc + Độ sâu giải thích mong muốn</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "2.4 Tư duy câu chuyện: Coi người dùng là nhân vật chính của câu chuyện"</h2>
+<p><img alt="02-mindset_2.4-story-thinking_index.png" src="../../../public/images/Basic/02-mindset_2.4-story-thinking_index.png" /></p>
+<h1>2.4 Tư duy câu chuyện: Coi người dùng là nhân vật chính của câu chuyện</h1>
+<p>Trong các chương trước, chúng ta đã học cách suy nghĩ về nhu cầu bằng "góc nhìn nhiệm vụ", nhận biết rủi ro bằng "tư duy ngược", và tập trung vào cốt lõi bằng "tư duy phép trừ".</p>
+<p>Bây giờ, chúng ta sẽ học một phương pháp làm cho các công cụ này trở nên mạnh mẽ hơn: <strong>Coi người dùng là nhân vật chính của câu chuyện</strong>.</p>
+<h2>Sau bài học này, bạn sẽ nắm được</h2>
+<ul>
+<li>Hiểu tại sao "kể chuyện" lại hiệu quả hơn "liệt kê tính năng"</li>
+<li>Biết cách dùng "phương pháp xây dựng 3D" để tạo ra chân dung người dùng sống động</li>
+<li>Nắm vững công cụ trực quan hóa "bản đồ hành trình người dùng"</li>
+<li>Có được bộ mẫu "Prompt hóa câu chuyện" có thể sao chép và dùng ngay</li>
+</ul>
+<h2>Insight cốt lõi của bài học</h2>
+<blockquote>
+<p>"Nếu bạn muốn mọi người ghi nhớ điều gì đó, hãy biến nó thành một câu chuyện."
+—— Tim Brown, CEO công ty thiết kế IDEO</p>
+</blockquote>
+<p>Nghiên cứu của Đại học Stanford chỉ ra rằng: Khi thông tin được trình bày dưới dạng câu chuyện, tỷ lệ lưu giữ trong trí nhớ của mọi người cao gấp 22 lần so với dữ liệu thuần tú.</p>
+<p>Điều này có ý nghĩa gì?</p>
+<ul>
+<li>Khi bạn nói với AI "làm một danh sách việc cần làm", AI chỉ có thể đoán bạn muốn gì</li>
+<li>Khi bạn kể "tôi là một nhân viên văn phòng phải xử lý 10 việc mỗi ngày, luôn sợ bỏ sót việc quan trọng", AI có thể hiểu chính xác nhu cầu của bạn</li>
+</ul>
+<p><strong>Câu chuyện không phải là kỹ thuật tu từ, mà là phương thức giao tiếp hiệu quả nhất.</strong></p>
+<h2>Mối quan hệ giữa tư duy câu chuyện và các công cụ khác</h2>
+<p>Bạn có thể sẽ hỏi: Tư duy câu chuyện khác gì với các công cụ đã học trước đó?</p>
+<pre><code class="language-mermaid">graph LR
+    A[Tư duy nhiệm vụ JTBD] --&gt; D[Nhu cầu hoàn chỉnh]
+    B[Tư duy ngược] --&gt; D
+    C[Tư duy phép trừ] --&gt; D
+    E[Tư duy câu chuyện] --&gt; A
+    E --&gt; B
+    E --&gt; C
+
+    style E fill:#f9f,stroke:#333,stroke-width:2px
+</code></pre>
+<p>Nói đơn giản:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Công cụ tư duy</th>
+<th style="text-align: left;">Trả lời câu hỏi cốt lõi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tư duy nhiệm vụ</td>
+<td style="text-align: left;">Người dùng muốn hoàn thành nhiệm vụ gì?</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tư duy ngược</td>
+<td style="text-align: left;">Điều gì sẽ dẫn đến thất bại?</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tư duy phép trừ</td>
+<td style="text-align: left;">Tính năng nào có thể không làm?</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tư duy câu chuyện</strong></td>
+<td style="text-align: left;"><strong>Người dùng là ai? Họ đã trải qua những gì?</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Tư duy câu chuyện là "đế" của các công cụ khác. Khi bạn thực sự hiểu người dùng là ai, đã trải qua những gì, thì nhiệm vụ, rủi ro, và mức độ ưu tiên đều sẽ trở nên rõ ràng hơn.</p>
+<h2>Đây không chỉ là chuyện "làm sản phẩm"</h2>
+<p>Giống như các chương trước, tư duy câu chuyện áp dụng cho bất cứ việc gì bạn muốn làm cùng AI:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Việc bạn muốn làm</th>
+<th style="text-align: left;">Vấn đề tư duy câu chuyện giúp bạn giải quyết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Làm một công cụ nhỏ</td>
+<td style="text-align: left;">Giúp bạn chuyển từ "tôi muốn tính năng gì" sang "người dùng của tôi đã trải qua những gì"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Báo cáo phân tích dữ liệu</td>
+<td style="text-align: left;">Giúp bạn hiểu "sếp đang nghĩ gì khi xem báo cáo này"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Script tự động hóa</td>
+<td style="text-align: left;">Giúp bạn nhìn rõ "bối cảnh trọn vẹn đằng sau công việc lặp lại này"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Làm công cụ cho người nhà</td>
+<td style="text-align: left;">Giúp bạn đứng ở "góc nhìn của cha mẹ 60 tuổi" để suy nghĩ vấn đề</td>
+</tr>
+</tbody>
+</table>
+<p>Bất kể mục tiêu của bạn là gì, tư duy câu chuyện đều có thể giúp bạn hiểu sâu sắc hơn về việc "làm cho ai".</p>
+<h2>Cấu trúc bài học</h2>
+<p>Tiếp theo, chúng ta sẽ đi qua các nội dung sau để giúp bạn nắm vững tư duy câu chuyện:</p>
+<ol>
+<li><strong>Sản phẩm là câu chuyện</strong>: Hiểu cấu trúc cơ bản của câu chuyện, học cách mô tả nhu cầu bằng góc nhìn câu chuyện</li>
+<li><strong>Chân dung người dùng 3D</strong>: Vượt qua "tuổi tác nghề nghiệp", xây dựng hình tượng người dùng có da có thịt</li>
+<li><strong>Bản đồ hành trình người dùng</strong>: Trực quan hóa câu chuyện, tìm ra nỗi đau quan trọng nhất</li>
+<li><strong>Prompt hóa câu chuyện</strong>: Dùng tư duy câu chuyện để viết ra chỉ lệnh AI chính xác hơn</li>
+<li><strong>Bài tập thực hành</strong>: Áp dụng tư duy câu chuyện cho dự án của riêng bạn</li>
+<li><strong>Điểm cốt lõi</strong>: Mang về những nguyên tắc có thể ứng dụng ngay lập tức</li>
+</ol>
+<p>Sẵn sàng chưa? Hãy bắt đầu từ "thế nào là một câu chuyện hay".</p>
+</body>
+</html>

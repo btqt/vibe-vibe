@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.4.1 What Is Vibe Coding</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "1.4.1 Vibe Coding là gì"</h2>
+<p><img alt="01-awakening_1.4-vibe-vs-spec_1.4.1-what-is-Vibe-Coding.png" src="../../../public/images/Basic/01-awakening_1.4-vibe-vs-spec_1.4.1-what-is-Vibe-Coding.png" /></p>
+<h1>1.4.1 Vibe Coding là gì</h1>
+<h2>Đặc điểm cốt lõi</h2>
+<p><strong>Vibe Coding = Biến nhu cầu mơ hồ thành sản phẩm thực tế từng bước thông qua đối thoại lặp lại.</strong></p>
+<p>Mấu chốt không phải độ dài câu nhắc (prompt), mà là <strong>mức độ rõ ràng của nhu cầu</strong>. Vibe Coding phù hợp với các dự án có nhu cầu mơ hồ, cần sự khám phá.</p>
+<h2>Quy trình phát triển tương tác</h2>
+<p>Vibe Coding không phải là đưa ra nhu cầu hoàn chỉnh một lần, mà là hoàn thiện từng bước qua nhiều vòng đối thoại:</p>
+<pre><code class="language-mermaid">graph LR
+    A[Ý tưởng mơ hồ] --&gt; B[Thực hiện sơ bộ]
+    B --&gt; C[Phản hồi thử nghiệm]
+    C --&gt; D[Điều chỉnh nhu cầu]
+    D --&gt; E[Cải tiến lặp lại]
+    E --&gt; F[Nhu cầu rõ ràng]
+</code></pre>
+<h3>Trường hợp đối thoại thực tế</h3>
+<p><strong>Vòng 1 - Nhu cầu ban đầu</strong></p>
+<pre><code>Bạn: Tôi muốn làm một công cụ nhỏ ghi lại việc uống nước
+AI: Tôi giúp bạn làm một trang web check-in uống nước đơn giản nhé...
+</code></pre>
+<p><strong>Vòng 2 - Dựa trên phản hồi bản đầu</strong></p>
+<pre><code>Bạn: Không tệ, nhưng tôi muốn thêm chức năng nhắc nhở, 3 giờ chiều mỗi ngày nhắc nhở
+AI: Được thôi, thêm chức năng nhắc nhở định giờ...
+</code></pre>
+<p><strong>Vòng 3 - Hoàn thiện chi tiết</strong></p>
+<pre><code>Bạn: Nhắc nhở phải tùy chỉnh được thời gian, còn phải hiển thị tiến độ tuần này nữa
+AI: Thêm cài đặt thời gian và thống kê tiến độ...
+</code></pre>
+<p><strong>Vòng 4 - Mở rộng chức năng</strong></p>
+<pre><code>Bạn: Làm thêm báo cáo tuần nữa, thống kê xu hướng lượng nước uống mỗi ngày
+AI: Thêm trực quan hóa dữ liệu và tạo báo cáo tuần...
+</code></pre>
+<p><strong>Vòng 5 - Điều chỉnh cuối cùng</strong></p>
+<pre><code>Bạn: Giao diện đơn giản hóa một chút, chỉ giữ lại chức năng cốt lõi
+AI: Tối ưu hóa bố cục giao diện, làm nổi bật chức năng cốt lõi...
+</code></pre>
+<h2>Bốn yếu tố cốt lõi</h2>
+<h3>1. Khám phá nhu cầu</h3>
+<p>Khi ý tưởng chưa rõ ràng, Vibe Coding giúp bạn thử sai nhanh chóng. Dành vài phút làm ra phiên bản cơ bản, sau đó dựa vào trải nghiệm thực tế để điều chỉnh hướng đi.</p>
+<h3>2. Tích lũy đối thoại</h3>
+<p>Mỗi lần đối thoại đều được xây dựng trên cơ sở của những lần trước, AI sẽ ghi nhớ các chi tiết thực hiện trước đó. Bản thân lịch sử đối thoại chính là tài liệu dự án.</p>
+<h3>3. Tối ưu hóa lặp lại</h3>
+<p>Sau khi nhìn thấy hiệu quả thực tế mới có thể xác định nhu cầu thực sự. Vibe Coding hỗ trợ vòng lặp "tạo sinh - phản hồi - điều chỉnh" nhanh chóng.</p>
+<h3>4. Quản lý Context</h3>
+<p>Cùng với việc đối thoại đi sâu, AI sẽ tích lũy thông tin ngữ cảnh (context) của dự án. Các quyết định quan trọng và nhu cầu trọng yếu sẽ được lắng đọng tự nhiên trong cuộc đối thoại.</p>
+<h2>Sự khác biệt với Spec Coding</h2>
+<p><strong>Khác biệt then chốt</strong>: Sự chắc chắn của nhu cầu, chứ không phải độ dài mô tả.</p>
+<ul>
+<li>Vibe Coding: Nhu cầu mơ hồ, làm rõ thông qua đối thoại</li>
+<li>Spec Coding: Nhu cầu rõ ràng, thực hiện theo quy chuẩn</li>
+</ul>
+<p>Trên thực tế, đối thoại của Vibe Coding có thể dài hơn tài liệu Spec, nhưng trọng điểm là <strong>làm rõ động</strong> chứ không phải <strong>mô tả tĩnh</strong>.</p>
+<h2>Ngữ cảnh áp dụng</h2>
+<ul>
+<li><strong>Kiểm chứng ý tưởng sản phẩm</strong>: Nhanh chóng làm ra nguyên mẫu (prototype) để kiểm tra phản ứng người dùng</li>
+<li><strong>Phát triển công cụ cá nhân</strong>: Công cụ nhỏ đáp ứng nhu cầu cụ thể của bản thân</li>
+<li><strong>Thử nghiệm học tập</strong>: Học các khái niệm lập trình thông qua dự án thực tế</li>
+<li><strong>Dự án sáng tạo</strong>: Nhu cầu không rõ ràng, cần khám phá đổi mới</li>
+</ul>
+<h2>Mẹo sử dụng</h2>
+<h3>Bắt đầu đối thoại</h3>
+<ul>
+<li>Mô tả chức năng cốt lõi, đừng quá chú trọng chi tiết</li>
+<li>Chấp nhận sự không hoàn hảo của phiên bản đầu tiên</li>
+<li>Tập trung quan tâm xem logic cốt lõi có đúng không</li>
+</ul>
+<h3>Quá trình lặp lại</h3>
+<ul>
+<li>Mỗi lần chỉ điều chỉnh 1-2 điểm chức năng</li>
+<li>Dùng ví dụ cụ thể để giải thích vấn đề</li>
+<li>Giữ lại các ghi chép quyết định quan trọng</li>
+</ul>
+<h3>Duy trì Context</h3>
+<ul>
+<li>Định kỳ tóm tắt các chức năng đã hoàn thành</li>
+<li>Xác định rõ trọng tâm điều chỉnh hiện tại</li>
+<li>Khi cần thiết hãy bắt đầu lại cuộc đối thoại để tránh hỗn loạn</li>
+</ul>
+<p>Giá trị cốt lõi của Vibe Coding nằm ở <strong>ngoại hóa quá trình tư duy</strong>, thông qua đối thoại với AI để từng bước làm rõ nhu cầu, cuối cùng có được sản phẩm thực sự mong muốn.</p>
+<p>Phần sau chúng ta tìm hiểu <a href="./1.4.2-what-is-spec-Coding_vi.html">Spec Coding</a>, xem cách phát triển khi nhu cầu đã rõ ràng.</p>
+</body>
+</html>

@@ -1,0 +1,404 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.4.3 Prd Template</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.4.3 Mẫu PRD dành cho người mới bắt đầu (Bản tinh gọn)"</h2>
+<p><img alt="03-technique_3.4-first-prd_3.4.3-prd-template.png" src="../../../public/images/Basic/03-technique_3.4-first-prd_3.4.3-prd-template.png" /></p>
+<h1>3.4.3 Mẫu PRD dành cho người mới bắt đầu (Bản tinh gọn)</h1>
+<p>Phần này cung cấp cho bạn một mẫu PRD có thể sao chép và sử dụng ngay, cùng với hướng dẫn điền cho từng trường thông tin.</p>
+<h2>Mẫu cốt lõi (Có thể sao chép trực tiếp)</h2>
+<pre><code class="language-markdown"># [Tên dự án]
+
+## Mô tả một câu
+
+[Dùng một câu nói rõ đây là cái gì, cho ai dùng, giải quyết vấn đề gì]
+
+## Người dùng mục tiêu
+
+[Ai sẽ dùng cái này? Giữ lại đặc điểm liên quan đến sản phẩm]
+
+## Vấn đề cần giải quyết
+
+[Người dùng gặp phải khó khăn gì? Giải pháp hiện tại có gì chưa tốt?]
+
+## Chức năng cốt lõi (P0, bắt buộc có)
+
+- [ ] Chức năng 1: [Mô tả ngắn gọn]
+- [ ] Chức năng 2: [Mô tả ngắn gọn]
+- [ ] Chức năng 3: [Mô tả ngắn gọn]
+
+## Chức năng KHÔNG làm
+
+- Không làm [Chức năng A] (Nguyên nhân)
+- Không làm [Chức năng B] (Nguyên nhân)
+- Không làm [Chức năng C] (Nguyên nhân)
+
+## Quy trình người dùng
+
+1. Người dùng [Hành động] → Thấy [Kết quả]
+2. Người dùng [Hành động] → Thấy [Kết quả]
+3. Người dùng [Hành động] → Thấy [Kết quả]
+
+## Ràng buộc kỹ thuật
+
+- Tech stack: [Dùng công nghệ gì]
+- Lưu trữ dữ liệu: [Lưu ở đâu]
+- Ngôn ngữ giao diện: [Tiếng Việt/Tiếng Anh]
+- Hạn chế khác: [Nếu có]
+
+## Tiêu chuẩn thành công
+
+[Hoàn thành những cái này coi như xong:]
+
+- [ ] Tiêu chuẩn 1
+- [ ] Tiêu chuẩn 2
+- [ ] Tiêu chuẩn 3
+</code></pre>
+<h2>Hướng dẫn điền từng trường thông tin</h2>
+<h3>Trường 1: Tên dự án</h3>
+<p><strong>Mục đích</strong>: Đặt cho dự án của bạn một cái tên ngắn gọn, dễ nhận biết.</p>
+<p><strong>Kỹ thuật điền</strong>:</p>
+<ul>
+<li>2-6 chữ là tốt nhất</li>
+<li>Thể hiện được chức năng cốt lõi hoặc đặc điểm</li>
+<li>Tránh những cái tên quá trừu tượng</li>
+</ul>
+<p><strong>Ví dụ</strong>:</p>
+<ul>
+<li>✅ Việc cần làm cực giản, Check-in mỗi ngày, Phân tích báo cáo sales</li>
+<li>❌ Dự án của tôi, Hệ thống, Công cụ</li>
+</ul>
+<h3>Trường 2: Mô tả một câu</h3>
+<p><strong>Mục đích</strong>: Để AI hiểu bạn muốn làm gì trong vòng 3 giây.</p>
+<p><strong>Công thức điền</strong>:</p>
+<pre><code>Một [Hình thái sản phẩm] + [Chức năng cốt lõi] + [Cho ai dùng]
+</code></pre>
+<p><strong>Ví dụ</strong>:</p>
+<ul>
+<li>"Một trang web danh sách việc cần làm cực giản cho chính tôi dùng"</li>
+<li>"Một bảng dữ liệu giúp team sales phân tích ROI kênh bán hàng"</li>
+<li>"Một script tự động tổng hợp báo cáo Excel hàng tuần"</li>
+</ul>
+<h3>Trường 3: Người dùng mục tiêu</h3>
+<p><strong>Mục đích</strong>: Nói cho AI biết thiết kế cho ai.</p>
+<p><strong>Kỹ thuật điền</strong>: Chỉ giữ lại đặc điểm liên quan đến sản phẩm.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bối cảnh</th>
+<th style="text-align: left;">Ví dụ điền</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Cho chính mình dùng</td>
+<td style="text-align: left;">"Chính tôi (Nhân viên văn phòng, xử lý 5-10 việc mỗi ngày)"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Cho nhóm cụ thể</td>
+<td style="text-align: left;">"Thành viên team Sales (Cần nộp dữ liệu doanh số hàng tuần)"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Cho người nhà dùng</td>
+<td style="text-align: left;">"Bố mẹ tôi 60 tuổi (Thao tác smartphone không thạo)"</td>
+</tr>
+</tbody>
+</table>
+<h3>Trường 4: Vấn đề cần giải quyết</h3>
+<p><strong>Mục đích</strong>: Để AI hiểu tại sao bạn muốn làm cái này.</p>
+<p><strong>Kỹ thuật điền</strong>: Mô tả nỗi đau, chứ không phải giải pháp.</p>
+<p>❌ Sai:</p>
+<pre><code>Cần một danh sách việc cần làm
+</code></pre>
+<p>✅ Đúng:</p>
+<pre><code>Sợ bỏ sót việc quan trọng.
+Giấy nhớ dễ mất, ghi chú điện thoại mở ra phiền phức,
+cần một công cụ &quot;mở ra là dùng&quot;.
+</code></pre>
+<h3>Trường 5: Chức năng cốt lõi (P0)</h3>
+<p><strong>Mục đích</strong>: Nói rõ cho AI biết bắt buộc phải thực hiện cái gì.</p>
+<p><strong>Kỹ thuật điền</strong>:</p>
+<ul>
+<li>Chỉ liệt kê chức năng bắt buộc có (P0)</li>
+<li>Mỗi chức năng một dòng, ngắn gọn súc tích</li>
+<li>Khuyên dùng 3-5 cái, không quá 7 cái</li>
+</ul>
+<p><strong>Ví dụ</strong>:</p>
+<pre><code class="language-markdown">## Chức năng cốt lõi (P0)
+
+- [ ] Thêm nhiệm vụ: Ô nhập liệu + Nút thêm
+- [ ] Xem nhiệm vụ: Hiển thị tất cả nhiệm vụ dạng danh sách
+- [ ] Hoàn thành nhiệm vụ: Bấm tích chọn, hiển thị gạch ngang
+- [ ] Xóa nhiệm vụ: Bấm nút xóa để loại bỏ nhiệm vụ
+</code></pre>
+<h3>Trường 6: Chức năng KHÔNG làm</h3>
+<p><strong>Mục đích</strong>: Ngăn AI "tự ý quyết định" thêm chức năng.</p>
+<p><strong>Kỹ thuật điền</strong>:</p>
+<ul>
+<li>Viết rõ không cần cái gì</li>
+<li>Tốt nhất là giải thích nguyên nhân (Giúp AI hiểu ranh giới)</li>
+<li>Đưa cả chức năng P2 vào đây (Tạm thời không làm)</li>
+</ul>
+<p><strong>Ví dụ</strong>:</p>
+<pre><code class="language-markdown">## Chức năng KHÔNG làm
+
+- Không đăng ký đăng nhập (Đây là công cụ cá nhân, không cần hệ thống tài khoản)
+- Không đồng bộ đám mây (Lưu cục bộ đủ dùng, tránh phức tạp)
+- Không thẻ phân loại (Giữ sự tối giản, phiên bản đầu chưa cần)
+- Không nhắc nhở định giờ (Đây là chức năng P2, sau này thêm)
+</code></pre>
+<h3>Trường 7: Quy trình người dùng</h3>
+<p><strong>Mục đích</strong>: Để AI hiểu người dùng sử dụng sản phẩm này như thế nào.</p>
+<p><strong>Kỹ thuật điền</strong>:</p>
+<ul>
+<li>Mô tả các bước then chốt, không cần quá chi tiết</li>
+<li>Định dạng: "Người dùng [Hành động] → Thấy [Kết quả]"</li>
+<li>3-5 bước là tốt nhất</li>
+</ul>
+<p><strong>Ví dụ</strong>:</p>
+<pre><code class="language-markdown">## Quy trình người dùng
+
+1. Người dùng mở trang web → Thấy danh sách nhiệm vụ (Nếu có nhiệm vụ lịch sử)
+2. Người dùng nhập nhiệm vụ vào ô nhập liệu → Bấm nút thêm → Nhiệm vụ xuất hiện trong danh sách
+3. Người dùng hoàn thành nhiệm vụ → Bấm tích chọn → Nhiệm vụ hiển thị gạch ngang
+4. Người dùng đóng trang web → Lần sau mở lại → Dữ liệu vẫn còn
+</code></pre>
+<h3>Trường 8: Ràng buộc kỹ thuật</h3>
+<p><strong>Mục đích</strong>: Nói cho AI biết các điều kiện hạn chế về mặt kỹ thuật.</p>
+<p><strong>Các loại ràng buộc thường gặp</strong>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Loại ràng buộc</th>
+<th style="text-align: left;">Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tech stack</td>
+<td style="text-align: left;">"Thuần Frontend, dùng HTML + CSS + JavaScript"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Lưu trữ dữ liệu</td>
+<td style="text-align: left;">"Lưu trong localStorage trình duyệt, không cần Backend"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Ngôn ngữ giao diện</td>
+<td style="text-align: left;">"Giao diện dùng tiếng Việt"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tính tương thích</td>
+<td style="text-align: left;">"Cần dùng được trên trình duyệt điện thoại"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Hạn chế phụ thuộc</td>
+<td style="text-align: left;">"Không dùng bất kỳ framework nào, giữ nguyên bản"</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nếu bạn không hiểu kỹ thuật</strong>, có thể viết thế này:</p>
+<pre><code class="language-markdown">## Ràng buộc kỹ thuật
+
+- Tôi là người mới bắt đầu từ con số 0, vui lòng dùng công nghệ đơn giản nhất
+- Không cần cơ sở dữ liệu, dữ liệu lưu cục bộ là được
+- Giao diện dùng tiếng Việt
+</code></pre>
+<h3>Trường 9: Tiêu chuẩn thành công</h3>
+<p><strong>Mục đích</strong>: Định nghĩa khi nào thì tính là "làm xong".</p>
+<p><strong>Kỹ thuật điền</strong>: Dùng mô tả hành vi có thể kiểm chứng.</p>
+<p>❌ Mơ hồ:</p>
+<pre><code>Dùng bình thường được
+</code></pre>
+<p>✅ Cụ thể:</p>
+<pre><code class="language-markdown">## Tiêu chuẩn thành công
+
+- [ ] Mở trang web thấy ô nhập liệu và nút thêm
+- [ ] Sau khi nhập nhiệm vụ bấm thêm, nhiệm vụ xuất hiện trong danh sách
+- [ ] Bấm vào nhiệm vụ có thể tích chọn hoàn thành
+- [ ] Sau khi refresh trang, nhiệm vụ đã thêm trước đó vẫn còn
+</code></pre>
+<h2>Ví dụ điền hoàn chỉnh: Danh sách việc cần làm của Tiểu Lý</h2>
+<pre><code class="language-markdown"># Việc cần làm cực giản
+
+## Mô tả một câu
+
+Một trang web danh sách việc cần làm cực giản cho chính mình dùng, chỉ có chức năng thêm và tích chọn
+
+## Người dùng mục tiêu
+
+Chính tôi (Nhân viên văn phòng, xử lý 5-10 công việc mỗi ngày)
+
+## Vấn đề cần giải quyết
+
+Sợ bỏ sót việc quan trọng. Giấy nhớ dễ mất, ghi chú điện thoại mở ra phiền phức,
+cần một công cụ cực giản &quot;mở trình duyệt là dùng&quot;.
+
+## Chức năng cốt lõi (P0)
+
+- [ ] Thêm nhiệm vụ: Ô nhập liệu + Nút thêm
+- [ ] Xem nhiệm vụ: Hiển thị danh sách tất cả việc cần làm
+- [ ] Hoàn thành nhiệm vụ: Bấm tích chọn, hiển thị gạch ngang
+- [ ] Xóa nhiệm vụ: Loại bỏ nhiệm vụ không cần thiết
+
+## Chức năng KHÔNG làm
+
+- Không đăng ký đăng nhập (Công cụ cá nhân không cần)
+- Không đồng bộ đám mây (Lưu cục bộ đủ dùng)
+- Không thẻ phân loại (Giữ sự tối giản)
+- Không xem lịch (Không phải công cụ quản lý lịch trình)
+- Không nhắc nhở định giờ (Sau này thêm)
+
+## Quy trình người dùng
+
+1. Mở trang web → Thấy danh sách nhiệm vụ
+2. Nhập nhiệm vụ → Bấm thêm → Nhiệm vụ xuất hiện
+3. Hoàn thành nhiệm vụ → Bấm tích chọn → Hiển thị gạch ngang
+4. Đóng trang web → Lần sau mở lại → Dữ liệu vẫn còn
+
+## Ràng buộc kỹ thuật
+
+- Thuần Frontend: HTML + CSS + JavaScript
+- Lưu trữ dữ liệu: localStorage trình duyệt
+- Ngôn ngữ giao diện: Tiếng Việt
+- Style: Gọn gàng đẹp mắt, nền trắng chữ đen
+
+## Tiêu chuẩn thành công
+
+- [ ] Có thể thêm nhiệm vụ và hiển thị trong danh sách
+- [ ] Có thể tích chọn nhiệm vụ đánh dấu hoàn thành
+- [ ] Có thể xóa nhiệm vụ
+- [ ] Refresh trang dữ liệu không bị mất
+</code></pre>
+<h2>Biến thể mẫu cho các bối cảnh khác nhau</h2>
+<h3>Biến thể A: Bối cảnh phân tích dữ liệu</h3>
+<pre><code class="language-markdown"># [Tên dự án phân tích]
+
+## Mô tả một câu
+
+[Phân tích dữ liệu gì, cho ai xem, trả lời câu hỏi gì]
+
+## Người dùng mục tiêu
+
+[Ai sẽ xem kết quả phân tích này]
+
+## Câu hỏi cần trả lời
+
+[Phân tích này giải quyết vấn đề nghiệp vụ gì]
+
+## Nguồn dữ liệu
+
+[Dữ liệu đến từ đâu, định dạng gì]
+
+## Chiều phân tích
+
+- Chiều 1: [Giải thích]
+- Chiều 2: [Giải thích]
+- Chiều 3: [Giải thích]
+
+## Hình thức đầu ra
+
+[Bảng/Biểu đồ/Báo cáo, yêu cầu định dạng cụ thể]
+
+## Ràng buộc kỹ thuật
+
+[Dùng Python/Excel/Công cụ khác]
+
+## Tiêu chuẩn thành công
+
+[Sếp/Đồng nghiệp xem xong có thể đưa ra quyết định gì]
+</code></pre>
+<h3>Biến thể B: Bối cảnh script tự động hóa</h3>
+<pre><code class="language-markdown"># [Tên script]
+
+## Mô tả một câu
+
+[Tự động hoàn thành nhiệm vụ gì]
+
+## Người sử dụng
+
+[Ai sẽ chạy script này]
+
+## Vấn đề cần giải quyết
+
+[Hiện tại làm thủ công việc này có nỗi đau gì]
+
+## Đầu vào
+
+[Script cần đầu vào gì, định dạng thế nào]
+
+## Đầu ra
+
+[Script sản sinh kết quả gì, lưu ở đâu]
+
+## Logic xử lý
+
+1. Bước 1: [Làm gì]
+2. Bước 2: [Làm gì]
+3. Bước 3: [Làm gì]
+
+## Ràng buộc kỹ thuật
+
+[Dùng ngôn ngữ gì, môi trường chạy là gì]
+
+## Tiêu chuẩn thành công
+
+[Chạy xong script, nên thấy kết quả gì]
+</code></pre>
+<h2>Mẹo để AI dễ hiểu hơn</h2>
+<h3>Mẹo 1: Sử dụng định dạng Markdown</h3>
+<p>AI hiểu định dạng Markdown rất tốt. Dùng tiêu đề <code>#</code>, danh sách <code>-</code>, in đậm <code>**</code>, rõ ràng hơn so với văn bản thuần túy.</p>
+<h3>Mẹo 2: Danh sách tốt hơn đoạn văn</h3>
+<p>❌ Dạng đoạn văn:</p>
+<pre><code>Chức năng cốt lõi bao gồm thêm nhiệm vụ, xem danh sách nhiệm vụ, tích chọn hoàn thành và xóa nhiệm vụ.
+</code></pre>
+<p>✅ Dạng danh sách:</p>
+<pre><code class="language-markdown">## Chức năng cốt lõi
+
+- Thêm nhiệm vụ
+- Xem danh sách nhiệm vụ
+- Tích chọn hoàn thành
+- Xóa nhiệm vụ
+</code></pre>
+<h3>Mẹo 3: Tránh cách diễn đạt gây hiểu lầm</h3>
+<p>❌ Mơ hồ:</p>
+<pre><code>Giao diện phải đẹp
+</code></pre>
+<p>✅ Cụ thể:</p>
+<pre><code>Phong cách giao diện: Tối giản hiện đại, nền trắng, tông chủ đạo xanh dương, nút bấm bo tròn không viền
+</code></pre>
+<h3>Mẹo 4: Dùng "Không" để xác định ranh giới</h3>
+<p>AI có xu hướng làm nhiều hơn làm ít. Dùng "Không" để nói rõ ranh giới cho nó.</p>
+<pre><code class="language-markdown">## Chức năng KHÔNG làm
+
+- Không thêm bất kỳ chức năng nào tôi không yêu cầu
+- Không dùng bất kỳ thư viện bên thứ ba nào
+- Không tạo nhiều trang, chỉ cần một trang đơn (Single Page App)
+</code></pre>
+<h2>Trọng điểm cốt lõi bài này</h2>
+<ul>
+<li>✅ Mẫu PRD có 9 trường thông tin cốt lõi, mỗi trường đều có công dụng rõ ràng</li>
+<li>✅ "Mô tả một câu" dùng công thức: Hình thái sản phẩm + Chức năng cốt lõi + Cho ai dùng</li>
+<li>✅ "Chức năng KHÔNG làm" và "Chức năng cốt lõi" quan trọng như nhau</li>
+<li>✅ "Tiêu chuẩn thành công" phải dùng mô tả hành vi có thể kiểm chứng</li>
+<li>✅ Sử dụng định dạng Markdown, danh sách, từ "Không" rõ ràng để AI dễ hiểu hơn</li>
+</ul>
+<p>Tiếp theo, chúng ta sẽ học cách dùng độ ưu tiên P0/P1/P2 để dẫn dắt AI phát triển theo giai đoạn.</p>
+</body>
+</html>

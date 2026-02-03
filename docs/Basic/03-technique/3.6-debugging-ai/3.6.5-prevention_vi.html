@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.6.5 Prevention</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.6.5 Phòng bệnh hơn chữa bệnh: Giảm tỷ lệ AI \"không nghe lời\""</h2>
+<p><img alt="03-technique_3.6-debugging-ai_3.6.5-prevention.png" src="../../../public/images/Basic/03-technique_3.6-debugging-ai_3.6.5-prevention.png" /></p>
+<h1>3.6.5 Phòng bệnh hơn chữa bệnh: Giảm tỷ lệ AI "không nghe lời"</h1>
+<h2>Qua phần học này, bạn sẽ nắm vững</h2>
+<ul>
+<li>5 điều tự kiểm tra nhanh trước khi gửi</li>
+<li>Kỹ thuật phòng ngừa "để AI thuật lại trước"</li>
+<li>Chiến lược lặp lại "bước nhỏ chạy nhanh"</li>
+<li>Thời cơ tốt nhất để điều chỉnh sai lệch kịp thời</li>
+</ul>
+<h2>Danh sách tự kiểm tra trước khi gửi</h2>
+<p>Trước khi nhấn phím gửi, dành 10 giây rà soát qua danh sách này có thể tránh được phần lớn vấn đề:</p>
+<h3>5 điều tự kiểm tra nhanh</h3>
+<ul>
+<li>[ ] <strong>Nhiệm vụ có tập trung không?</strong> Lần này chỉ để AI làm một việc?</li>
+<li>[ ] <strong>Ngữ cảnh có đầy đủ không?</strong> AI có đủ thông tin nền tảng để hiểu nhiệm vụ không?</li>
+<li>[ ] <strong>Mục tiêu có rõ ràng không?</strong> Đã nói rõ "thế nào là hoàn thành" chưa?</li>
+<li>[ ] <strong>Ràng buộc có rõ ràng không?</strong> Đã nói rõ "không làm gì" chưa?</li>
+<li>[ ] <strong>Định dạng đã chỉ định chưa?</strong> Đã bảo AI định dạng đầu ra mong muốn chưa?</li>
+</ul>
+<p>Điều này tương ứng với "Năm sai lầm lớn" đã học ở 3.1.3. Sau khi hình thành thói quen, việc kiểm tra này chỉ mất vài giây.</p>
+<h3>Bảng tự đánh giá chất lượng câu hỏi</h3>
+<p>Trước khi bắt đầu nhiệm vụ quan trọng, dùng bảng này đánh giá chất lượng prompt của bạn:</p>
+<table>
+<thead>
+<tr>
+<th>Khía cạnh</th>
+<th>Kém (1 điểm)</th>
+<th>Trung bình (2 điểm)</th>
+<th>Tốt (3 điểm)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Phạm vi nhiệm vụ</strong></td>
+<td>Bao gồm nhiều chức năng không liên quan</td>
+<td>Có phân chính phụ nhưng đều phải làm</td>
+<td>Chỉ tập trung một chức năng</td>
+</tr>
+<tr>
+<td><strong>Ngữ cảnh</strong></td>
+<td>Chỉ nói phải làm gì</td>
+<td>Nói stack kỹ thuật hoặc một phần bối cảnh</td>
+<td>Stack kỹ thuật + bối cảnh dự án + ràng buộc đều có</td>
+</tr>
+<tr>
+<td><strong>Tiêu chuẩn nghiệm thu</strong></td>
+<td>Không nói thế nào là hoàn thành</td>
+<td>Mô tả kỳ vọng một cách mơ hồ</td>
+<td>Đưa ra điều kiện nghiệm thu cụ thể</td>
+</tr>
+<tr>
+<td><strong>Điều kiện ràng buộc</strong></td>
+<td>Không có bất kỳ giới hạn nào</td>
+<td>Có giới hạn stack kỹ thuật</td>
+<td>Stack kỹ thuật + danh sách không làm + yêu cầu định dạng</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Giải thích điểm số</strong>:
+- 10-12 điểm: Tuyệt vời, gửi thôi
+- 7-9 điểm: Có thể gửi, nhưng chuẩn bị tinh thần phải lặp lại
+- 4-6 điểm: Nên bổ sung thông tin rồi hãy gửi
+- Dưới 4 điểm: Tổ chức lại prompt</p>
+<h2>Để AI thuật lại trước</h2>
+<p>Đây là một kỹ thuật phòng ngừa đơn giản nhưng cực kỳ hiệu quả: Trước khi để AI bắt đầu viết code, hãy để nó thuật lại sự hiểu biết về nhiệm vụ.</p>
+<h3>Mẫu Prompt thuật lại</h3>
+<pre><code class="language-markdown">Trước khi bắt đầu viết code, hãy trả lời các câu hỏi sau:
+
+1. **Mục tiêu nhiệm vụ bạn hiểu là gì?**
+   Mô tả bằng một câu.
+
+2. **Bạn định sử dụng giải pháp kỹ thuật nào?**
+   Liệt kê các điểm kỹ thuật then chốt và tư duy thực hiện.
+
+3. **Có chỗ nào bạn không chắc chắn, cần tôi làm rõ không?**
+   Nếu không có hãy nói &quot;Không&quot;.
+
+Hãy trả lời ba câu hỏi này trước, tôi xác nhận hiểu thống nhất rồi bạn hẵng bắt đầu viết code.
+</code></pre>
+<h3>Tại sao chiêu này hiệu quả</h3>
+<ul>
+<li><strong>Bộc lộ sớm sự hiểu lầm</strong>: Nếu sự hiểu biết của AI về nhiệm vụ có sai lệch, giai đoạn thuật lại có thể phát hiện ngay</li>
+<li><strong>Thống nhất kỳ vọng</strong>: Bạn và AI thống nhất "làm cái gì" rồi mới bắt tay làm</li>
+<li><strong>Tiết kiệm thời gian</strong>: Điều chỉnh một sự hiểu lầm nhanh hơn nhiều so với việc sửa một đống code lỗi</li>
+</ul>
+<h3>Thời điểm sử dụng</h3>
+<ul>
+<li>✅ Khi bắt đầu một chức năng mới</li>
+<li>✅ Khi nhiệm vụ khá phức tạp</li>
+<li>✅ Khi bạn không chắc AI có hiểu ý mình hay không</li>
+<li>❌ Những sửa đổi nhỏ đơn giản không cần</li>
+</ul>
+<h2>Chiến lược bước nhỏ chạy nhanh</h2>
+<p>"Bước nhỏ chạy nhanh" nghĩa là: Tách nhiệm vụ lớn thành nhiệm vụ nhỏ, mỗi khi hoàn thành một bước thì xác minh ngay, xác nhận không vấn đề mới tiếp tục.</p>
+<h3>Tại sao phải bước nhỏ chạy nhanh</h3>
+<table>
+<thead>
+<tr>
+<th>Làm một lần xong</th>
+<th>Bước nhỏ chạy nhanh</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vấn đề tích tụ đến cuối mới phát hiện</td>
+<td>Mỗi bước đều có thể phát hiện vấn đề kịp thời</td>
+</tr>
+<tr>
+<td>Sau khi lỗi khó định vị vấn đề ở bước nào</td>
+<td>Phạm vi vấn đề rõ ràng, dễ định vị</td>
+</tr>
+<tr>
+<td>Chi phí sửa chữa cao (có thể phải sửa lớn)</td>
+<td>Chi phí sửa chữa thấp (chỉ sửa bước gần nhất)</td>
+</tr>
+<tr>
+<td>Ngữ cảnh AI dễ bị mất</td>
+<td>Ngữ cảnh mỗi bước đều tươi mới</td>
+</tr>
+</tbody>
+</table>
+<h3>Gợi ý độ mịn khi tách nhỏ</h3>
+<table>
+<thead>
+<tr>
+<th>Loại nhiệm vụ</th>
+<th>Độ mịn tách nhỏ gợi ý</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chức năng đơn lẻ</td>
+<td>Logic cốt lõi → Xử lý lỗi → Trường hợp biên → Style</td>
+</tr>
+<tr>
+<td>Nhiều chức năng</td>
+<td>Mỗi chức năng một vòng đối thoại riêng</td>
+</tr>
+<tr>
+<td>Trang hoàn chỉnh</td>
+<td>Khung bố cục → Các component → Logic tương tác → Lấy dữ liệu</td>
+</tr>
+<tr>
+<td>Luồng dữ liệu</td>
+<td>Mô hình dữ liệu → Giao diện API → Gọi frontend → Quản lý trạng thái</td>
+</tr>
+</tbody>
+</table>
+<h3>Nhịp điệu của bước nhỏ chạy nhanh</h3>
+<pre><code>Bước 1: Để AI làm chức năng cốt lõi nhỏ nhất
+   ↓
+Xác minh: Chạy được không? Kết quả đúng không?
+   ↓
+Xác nhận OK → Bước 2: Thêm một chức năng nhỏ
+   ↓
+Xác minh: Còn chạy được không? Chức năng mới đúng không? Chức năng trước đó còn bình thường không?
+   ↓
+Lặp lại...
+</code></pre>
+<h2>Điều chỉnh sai lệch kịp thời</h2>
+<p>Sau khi phát hiện vấn đề phải phản hồi ngay lập tức, đừng đợi đến cuối cùng.</p>
+<h3>Tại sao phải kịp thời</h3>
+<ul>
+<li><strong>Ngữ cảnh tươi mới</strong>: AI vừa xuất xong, ngữ cảnh vẫn còn, sửa đổi dễ nhất</li>
+<li><strong>Cách ly vấn đề</strong>: Biết vấn đề nằm ở bước gần nhất này</li>
+<li><strong>Tránh phản ứng dây chuyền</strong>: Một lỗi không sửa, phía sau có thể càng sai càng nhiều</li>
+</ul>
+<h3>Khi nào nên điều chỉnh sai lệch ngay</h3>
+<table>
+<thead>
+<tr>
+<th>Tình huống</th>
+<th>Hành động</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Phát hiện lệch lạc trong cách hiểu</td>
+<td>Làm rõ ngay lập tức, để AI hiểu lại</td>
+</tr>
+<tr>
+<td>Giải pháp kỹ thuật không đúng</td>
+<td>Chỉ ra ngay lập tức, đưa ra hướng đi đúng</td>
+</tr>
+<tr>
+<td>Code có lỗi rõ ràng</td>
+<td>Phản hồi ngay lập tức, sửa xong mới tiếp tục</td>
+</tr>
+<tr>
+<td>Thiếu chức năng</td>
+<td>Liệt kê mục thiếu, để AI bổ sung</td>
+</tr>
+</tbody>
+</table>
+<h3>Ví dụ Prompt điều chỉnh sai lệch</h3>
+<pre><code class="language-markdown">Tạm dừng một chút.
+
+Code bên trên có một vấn đề: [Mô tả vấn đề]
+
+Trước khi tiếp tục, hãy sửa vấn đề này trước. Các phần khác có thể giữ nguyên.
+</code></pre>
+<pre><code class="language-markdown">Khoan đã, đây không phải thứ tôi muốn.
+
+Cái tôi muốn là [Nhu cầu đúng], không phải [Cái AI làm].
+
+Hãy hiểu lại nhu cầu của tôi rồi hẵng tiếp tục.
+</code></pre>
+<h2>Danh sách kiểm tra phòng ngừa</h2>
+<p>Trước mỗi lần bắt đầu đối thoại với AI, rà soát nhanh:</p>
+<h3>Trước khi bắt đầu</h3>
+<ul>
+<li>[ ] Tôi biết rõ lần này muốn AI làm gì (một việc)</li>
+<li>[ ] Tôi đã chuẩn bị đủ thông tin ngữ cảnh cần thiết</li>
+<li>[ ] Tôi biết thế nào được tính là "hoàn thành"</li>
+</ul>
+<h3>Sau khi gửi</h3>
+<ul>
+<li>[ ] Sự thuật lại của AI và ý đồ của tôi có nhất quán không?</li>
+<li>[ ] Giải pháp kỹ thuật của AI có hợp lý không?</li>
+<li>[ ] Thư viện và API AI dùng tôi có biết không?</li>
+</ul>
+<h3>Sau khi nhận code</h3>
+<ul>
+<li>[ ] Code có chạy được không?</li>
+<li>[ ] Kết quả có phù hợp kỳ vọng không?</li>
+<li>[ ] Trường hợp biên đã xử lý chưa?</li>
+</ul>
+<h2>Điểm cốt yếu phần này</h2>
+<p>✓ <strong>Tự kiểm tra trước khi gửi</strong>: Nhiệm vụ tập trung, ngữ cảnh đầy đủ, mục tiêu rõ ràng, ràng buộc rõ ràng, định dạng được chỉ định</p>
+<p>✓ <strong>Kỹ thuật thuật lại</strong>: Để AI nói cách hiểu của nó trước, xác nhận thống nhất rồi mới viết code</p>
+<p>✓ <strong>Bước nhỏ chạy nhanh</strong>: Tách nhỏ nhiệm vụ, xác minh từng bước, phát hiện vấn đề kịp thời</p>
+<p>✓ <strong>Điều chỉnh sai lệch kịp thời</strong>: Phát hiện vấn đề phản hồi ngay, đừng đợi đến cuối</p>
+<h2>Tổng kết chương</h2>
+<p>Chúc mừng bạn đã hoàn thành việc học phần 3.6. Bây giờ bạn đã nắm vững:</p>
+<ol>
+<li><strong>Nhận biết vấn đề</strong>: Sáu biểu hiện "không nghe lời" thường gặp của AI, đặc biệt là ảo giác AI nguy hiểm</li>
+<li><strong>Chẩn đoán vấn đề</strong>: Phương pháp chẩn đoán nhanh 3 phút, bốn góc phần tư phân tích nguyên nhân gốc rễ</li>
+<li><strong>Sửa chữa vấn đề</strong>: Bốn chiến lược sửa chữa, phát triển định hướng bởi lỗi</li>
+<li><strong>Phương án dự phòng</strong>: Chiến lược thay thế khi AI không làm được</li>
+<li><strong>Phòng ngừa vấn đề</strong>: Tự kiểm tra trước khi gửi, kỹ thuật thuật lại, bước nhỏ chạy nhanh</li>
+</ol>
+<p>Ghi nhớ tâm pháp này:</p>
+<blockquote>
+<p><strong>AI mắc lỗi không đáng sợ, đáng sợ là không biết nó sai.</strong></p>
+</blockquote>
+<p>Trong Vibe Coding, vai trò của bạn là <strong>chỉ huy</strong>, không phải <strong>người thực thi</strong>. Bạn chịu trách nhiệm nắm bắt phương hướng, nghiệm thu kết quả, xử lý bất thường. Nắm vững kỹ năng của phần này, bạn sẽ có thể ung dung đối phó với đủ loại "không nghe lời" của AI, huấn luyện nó thành một trợ lý đáng tin cậy.</p>
+<p>Phần tiếp theo là tổng kết chương 3, chúng ta sẽ tích hợp tất cả các kỹ pháp của chương này thành một quy trình làm việc hoàn chỉnh, và củng cố những gì đã học thông qua diễn tập thực chiến.</p>
+</body>
+</html>

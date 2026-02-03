@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.4.2 What Is Spec Coding</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "1.4.2 Spec Coding là gì (Phát triển theo quy chuẩn)"</h2>
+<p><img alt="01-awakening_1.4-vibe-vs-spec_1.4.2-what-is-spec-Coding.png" src="../../../public/images/Basic/01-awakening_1.4-vibe-vs-spec_1.4.2-what-is-spec-Coding.png" /></p>
+<h1>1.4.2 Spec Coding là gì</h1>
+<h2>Khái niệm cốt lõi của Spec Coding</h2>
+<p><strong>Spec Coding = Khi nhu cầu rõ ràng, viết quy chuẩn trước rồi để AI thực hiện theo quy chuẩn.</strong></p>
+<p>Khi nhu cầu dự án tương đối rõ ràng, hoặc cần hợp tác nhóm, Spec Coding cung cấp cách thức phát triển ổn định hơn. Nó không phải là mặt đối lập của Vibe Coding, mà là sự tiến hóa tự nhiên của nó.</p>
+<h2>Nhận biết ngữ cảnh áp dụng</h2>
+<p>Khi Vibe Coding đang tiến hành mà gặp các tình huống sau, nên chuyển sang Spec Coding:</p>
+<ul>
+<li><strong>Ranh giới ký ức</strong>: AI bắt đầu quên nhu cầu ban đầu, xuất hiện xung đột chức năng</li>
+<li><strong>Nhu cầu cộng tác</strong>: Cần nhiều người tham gia hoặc giải thích trạng thái dự án cho người khác</li>
+<li><strong>Độ phức tạp gia tăng</strong>: Quy mô dự án vượt quá khả năng chịu tải của đối thoại</li>
+<li><strong>Yêu cầu chất lượng</strong>: Cần đảm bảo tính nhất quán và khả năng bảo trì của chức năng</li>
+</ul>
+<p>Đây đều là những tín hiệu rõ ràng cho thấy độ phức tạp của nhu cầu đã vượt quá khả năng chịu tải của đối thoại.</p>
+<h2>Lộ trình tiến hóa từ Vibe sang Spec</h2>
+<p>Spec Coding thường tiến hóa tự nhiên từ Vibe Coding:</p>
+<pre><code class="language-mermaid">graph LR
+    A[Vibe Coding khám phá] --&gt; B[Nhu cầu dần rõ ràng]
+    B --&gt; C[Sắp xếp ghi chép đối thoại]
+    C --&gt; D[Hình thành quy chuẩn sơ bộ]
+    D --&gt; E[Spec Coding thực thi]
+</code></pre>
+<p><strong>Quy trình tiến hóa bốn giai đoạn</strong>:</p>
+<ol>
+<li><strong>Giai đoạn khám phá Vibe</strong>: Thông qua đối thoại nhanh chóng kiểm chứng ý tưởng, chế tạo nguyên mẫu cơ bản</li>
+<li><strong>Giai đoạn sắp xếp nhu cầu</strong>: Xem lại ghi chép đối thoại, chắt lọc nhu cầu cốt lõi thực sự</li>
+<li><strong>Giai đoạn hình thành quy chuẩn</strong>: Chuyển nhu cầu đã tóm tắt thành tài liệu có cấu trúc</li>
+<li><strong>Giai đoạn thực thi quy chuẩn</strong>: Tiến hành phát triển lặp lại quy chuẩn hơn theo tài liệu</li>
+</ol>
+<h2>Hệ thống tài liệu cốt lõi</h2>
+<h3>Tài liệu nhu cầu (requirements.md)</h3>
+<p><strong>Chức năng cốt lõi</strong>:</p>
+<pre><code>## Chức năng cốt lõi
+- Đăng ký đăng nhập người dùng
+- Quản lý ghi chép thu chi
+- Báo cáo thống kê hàng tháng
+- Nhập xuất dữ liệu
+
+## Không làm
+- Chức năng xã hội
+- Đồng bộ đám mây
+- Hỗ trợ đa tiền tệ
+</code></pre>
+<h3>Tài liệu thiết kế (design.md)</h3>
+<p><strong>Kiến trúc kỹ thuật</strong>:</p>
+<pre><code>## Lựa chọn kỹ thuật
+- Frontend: React + TypeScript
+- Backend: Node.js + Express
+- Database: SQLite
+
+## Cấu trúc trang
+- Trang đăng nhập
+- Giao diện chính (danh sách ghi chép)
+- Trang thống kê
+- Trang cài đặt
+</code></pre>
+<h3>Danh sách nhiệm vụ (tasks.md)</h3>
+<p><strong>Kế hoạch phát triển</strong>:</p>
+<pre><code>## Đợt chức năng đầu tiên
+- Chức năng ghi chép cơ bản
+- Biểu đồ thống kê đơn giản
+- Lưu trữ dữ liệu lâu dài (Data persistence)
+
+## Đợt chức năng thứ hai
+- Nhập xuất dữ liệu
+- Chức năng thống kê nâng cao
+- Tối ưu hóa UI
+</code></pre>
+<h2>Ưu thế cốt lõi của Spec Coding</h2>
+<h3>1. Khả năng truy xuất</h3>
+<p>Tất cả chức năng và quyết định thiết kế đều có tài liệu ghi lại, thuận tiện cho việc truy xuất và điều chỉnh.</p>
+<h3>2. Thân thiện với cộng tác</h3>
+<p>Tài liệu quy chuẩn hóa giúp thành viên trong nhóm có thể nhanh chóng hiểu dự án, thực hiện cộng tác hiệu quả.</p>
+<h3>3. Kiểm soát chất lượng</h3>
+<p>Quy chuẩn rõ ràng đảm bảo tính nhất quán và khả năng bảo trì của việc phát triển chức năng.</p>
+<h3>4. Duy trì ngữ cảnh</h3>
+<p>Nhu cầu được văn bản hóa giúp tránh việc AI quên thông tin quan trọng trong các cuộc đối thoại dài.</p>
+<h2>Chiến lược thực thi thực tế</h2>
+<h3>Kiểm soát mức độ chi tiết của tài liệu</h3>
+<ul>
+<li><strong>Giai đoạn khởi đầu</strong>: Giữ tài liệu ngắn gọn, ghi lại nhu cầu cốt lõi là được</li>
+<li><strong>Dự án phức tạp</strong>: Từng bước hoàn thiện chi tiết, nhưng tránh tư liệu hóa quá mức</li>
+<li><strong>Dự án nhóm</strong>: Cần quy chuẩn chi tiết hơn, đảm bảo tính nhất quán trong cộng tác</li>
+</ul>
+<h3>Mô hình phối hợp với Vibe Coding</h3>
+<p><strong>Chiến lược phát triển hỗn hợp</strong>:</p>
+<ul>
+<li>Khám phá chức năng mới: Sử dụng Vibe Coding kiểm chứng nhanh</li>
+<li>Sau khi chức năng ổn định: Sắp xếp thành tài liệu quy chuẩn</li>
+<li>Điều chỉnh lớn: Quay lại Vibe Coding khám phá, sau khi hoàn thành thì cập nhật quy chuẩn</li>
+</ul>
+<h3>Kỹ năng bảo trì tài liệu</h3>
+<ul>
+<li><strong>Đồng bộ định kỳ</strong>: Sau khi hoàn thành một module chức năng thì cập nhật tài liệu tương ứng</li>
+<li><strong>Quản lý phiên bản</strong>: Ghi lại lịch sử phiên bản khi có thay đổi quyết định quan trọng</li>
+<li><strong>Đánh dấu trọng điểm</strong>: Làm nổi bật các ràng buộc quan trọng và quyết định kỹ thuật</li>
+</ul>
+<p>Thông qua quản lý tài liệu hệ thống hóa này, Spec Coding có thể hỗ trợ hiệu quả nhu cầu phát triển của các dự án vừa và lớn, đồng thời duy trì ưu thế hiệu suất cao của lập trình AI.</p>
+</body>
+</html>

@@ -1,0 +1,557 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.3.4 Practice Guide</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "2.3.4 Hướng dẫn thực hành: Quy trình ứng dụng hoàn chỉnh của tư duy phép trừ"</h2>
+<p><img alt="02-mindset_2.3-subtraction-thinking_2.3.4-practice-guide.png" src="../../../public/images/Basic/02-mindset_2.3-subtraction-thinking_2.3.4-practice-guide.png" /></p>
+<h1>2.3.4 Hướng dẫn thực hành: Quy trình ứng dụng hoàn chỉnh của tư duy phép trừ</h1>
+<p>Bây giờ, hãy áp dụng những gì đã học trong bài này vào dự án của riêng bạn. Hướng dẫn thực hành này sẽ đưa bạn đi từng bước hoàn thành quy trình phép trừ hoàn chỉnh từ ý tưởng đến MVP.</p>
+<h2>Tổng quan quy trình thực hành</h2>
+<p>Hướng dẫn thực hành này bao gồm các bước sau:</p>
+<ol>
+<li><strong>Xác định giả thuyết cốt lõi</strong> - Định nghĩa bạn muốn xác minh điều gì</li>
+<li><strong>Liệt kê tất cả các tính năng</strong> - Động não (brainstorm) không giới hạn</li>
+<li><strong>Áp dụng khung sàng lọc</strong> - Phân loại tính năng bằng ba câu hỏi</li>
+<li><strong>Xác định tập hợp tính năng P0</strong> - Phạm vi MVP của bạn</li>
+<li><strong>Lập danh sách những việc không làm</strong> - Xác định ranh giới dự án</li>
+<li><strong>Thực hiện kế hoạch xác minh</strong> - Xác minh giả thuyết nhanh chóng</li>
+<li><strong>Phân tích kết quả và ra quyết định</strong> - Ra quyết định dựa trên dữ liệu</li>
+</ol>
+<h2>Bước 1: Xác định giả thuyết cốt lõi của bạn</h2>
+<p>Trước khi thực hiện bất kỳ phép trừ nào, hãy xác định rõ bạn đang xác minh điều gì.</p>
+<h3>Mẫu giả thuyết cốt lõi</h3>
+<pre><code class="language-markdown">## Giả thuyết cốt lõi của tôi
+
+Tôi giả định rằng:
+[Một nhóm người dùng] đang gặp [một vấn đề/nhu cầu nào đó],
+Họ sẵn sàng sử dụng [giải pháp của tôi] để [hoàn thành một nhiệm vụ nào đó],
+Bởi vì nó [nhanh hơn/đơn giản hơn/rẻ hơn/hiệu quả hơn] so với các giải pháp hiện có.
+
+Phần điền của tôi:
+[ ]
+</code></pre>
+<h3>Mẫu tiêu chuẩn xác minh</h3>
+<pre><code class="language-markdown">## Tiêu chuẩn xác minh
+
+Nếu:
+
+- [ ] người dùng
+- Trong vòng [ ] ngày/tuần
+- Hoàn thành [ ]
+
+Thì chứng tỏ giả thuyết là đúng, đáng để tiếp tục đầu tư.
+
+Phần điền của tôi:
+Nếu:
+
+- [ ] người dùng
+- Trong vòng [ ] ngày/tuần
+- Hoàn thành [ ]
+
+Thì chứng tỏ giả thuyết là đúng.
+</code></pre>
+<h3>Ví dụ ứng dụng thực tế</h3>
+<p><strong>Dự án danh sách việc cần làm (To-do list)</strong>:</p>
+<pre><code class="language-markdown">## Giả thuyết cốt lõi của tôi
+
+Tôi giả định rằng:
+Người đi làm công sở đang gặp vấn đề &quot;sợ bỏ sót các việc quan trọng&quot;,
+Họ sẵn sàng sử dụng một công cụ to-do cực giản để quản lý nhiệm vụ hàng ngày,
+Bởi vì nó dễ duy trì thói quen sử dụng hơn so với giấy nhớ/ghi chú trên điện thoại.
+
+## Tiêu chuẩn xác minh
+
+Nếu:
+
+- 10 người dùng
+- Trong vòng 2 tuần
+- Sử dụng trung bình trên 3 ngày mỗi tuần
+
+Thì chứng tỏ giả thuyết là đúng.
+</code></pre>
+<h2>Bước 2: Liệt kê tất cả các tính năng muốn làm</h2>
+<p>Đừng tự kiểm duyệt, hãy liệt kê tất cả các tính năng mà bạn có thể nghĩ ra.</p>
+<pre><code class="language-markdown">## Danh sách tính năng (Không giới hạn)
+
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+10. (Tiếp tục thêm vào...)
+</code></pre>
+<h3>Kỹ thuật động não (Brainstorming)</h3>
+<ul>
+<li><strong>Không đặt giới hạn</strong>: Tạm thời không xem xét độ khó kỹ thuật, thời gian, chi phí</li>
+<li><strong>Tham khảo đối thủ cạnh tranh</strong>: Xem các sản phẩm tương tự có tính năng gì</li>
+<li><strong>Nhu cầu người dùng</strong>: Tưởng tượng nhu cầu có thể có của các người dùng khác nhau</li>
+<li><strong>Mở rộng tư duy</strong>: Cân nhắc các tính năng liên quan, mở rộng</li>
+<li><strong>Ghi lại tất cả ý tưởng</strong>: Ghi lại ngay cả khi chúng có vẻ không khả thi</li>
+</ul>
+<h3>Ví dụ phân loại tính năng</h3>
+<p>Đối với dự án danh sách việc cần làm, danh sách tính năng có thể là:</p>
+<ol>
+<li>Thêm nhiệm vụ</li>
+<li>Hoàn thành nhiệm vụ</li>
+<li>Sửa nhiệm vụ</li>
+<li>Xóa nhiệm vụ</li>
+<li>Phân loại nhiệm vụ</li>
+<li>Nhãn ưu tiên</li>
+<li>Ngày hết hạn</li>
+<li>Tính năng nhắc nhở</li>
+<li>Nhiệm vụ lặp lại</li>
+<li>Nhiệm vụ con</li>
+<li>Hệ thống thẻ (tag)</li>
+<li>Tính năng tìm kiếm</li>
+<li>Thống kê nhiệm vụ</li>
+<li>Lịch sử hoàn thành</li>
+<li>Xuất dữ liệu</li>
+<li>Đồng bộ đa thiết bị</li>
+<li>Tính năng chia sẻ</li>
+<li>Tính năng cộng tác</li>
+<li>Hệ thống bình luận</li>
+<li>Chế độ tối (Dark mode)</li>
+<li>Chủ đề tùy chỉnh</li>
+<li>Widget (Tiện ích)</li>
+<li>Nhập liệu bằng giọng nói</li>
+<li>Đính kèm hình ảnh</li>
+<li>Nhắc nhở theo vị trí</li>
+</ol>
+<h2>Bước 3: Sàng lọc bằng ba câu hỏi</h2>
+<p>Đặt ba câu hỏi sàng lọc cho mỗi tính năng:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tính năng</th>
+<th style="text-align: left;">Q1: Không có dùng được không?</th>
+<th style="text-align: left;">Q2: Xác minh giả thuyết không?</th>
+<th style="text-align: left;">Q3: Lần đầu cần không?</th>
+<th style="text-align: left;">Mức ưu tiên</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1.</td>
+<td style="text-align: left;">Có/Không</td>
+<td style="text-align: left;">Có/Không</td>
+<td style="text-align: left;">Có/Không</td>
+<td style="text-align: left;">P0/P1/P2</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">3.</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">4.</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">5.</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">...</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h3>Quy tắc đánh giá</h3>
+<ul>
+<li><strong>P0</strong>: Q1=Không VÀ Q2=Có VÀ Q3=Có</li>
+<li><strong>P1</strong>: Q1=Có NHƯNG (Q2=Có HOẶC Q3=Có)</li>
+<li><strong>P2</strong>: Tất cả các tính năng khác</li>
+</ul>
+<h3>Ví dụ ứng dụng</h3>
+<p>Sàng lọc dựa trên dự án danh sách việc cần làm:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tính năng</th>
+<th style="text-align: left;">Q1: Không có dùng được không?</th>
+<th style="text-align: left;">Q2: Xác minh giả thuyết không?</th>
+<th style="text-align: left;">Q3: Lần đầu cần không?</th>
+<th style="text-align: left;">Mức ưu tiên</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Thêm nhiệm vụ</td>
+<td style="text-align: left;">Không</td>
+<td style="text-align: left;">Có</td>
+<td style="text-align: left;">Có</td>
+<td style="text-align: left;">P0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Hoàn thành nhiệm vụ</td>
+<td style="text-align: left;">Không</td>
+<td style="text-align: left;">Có</td>
+<td style="text-align: left;">Có</td>
+<td style="text-align: left;">P0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Danh sách nhiệm vụ</td>
+<td style="text-align: left;">Không</td>
+<td style="text-align: left;">Có</td>
+<td style="text-align: left;">Có</td>
+<td style="text-align: left;">P0</td>
+</tr>
+<tr>
+<td style="text-align: left;">Phân loại nhiệm vụ</td>
+<td style="text-align: left;">Có</td>
+<td style="text-align: left;">Một phần có</td>
+<td style="text-align: left;">Không</td>
+<td style="text-align: left;">P1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tính năng nhắc nhở</td>
+<td style="text-align: left;">Có</td>
+<td style="text-align: left;">Một phần có</td>
+<td style="text-align: left;">Không</td>
+<td style="text-align: left;">P1</td>
+</tr>
+<tr>
+<td style="text-align: left;">Thống kê dữ liệu</td>
+<td style="text-align: left;">Có</td>
+<td style="text-align: left;">Không</td>
+<td style="text-align: left;">Không</td>
+<td style="text-align: left;">P2</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tính năng cộng tác</td>
+<td style="text-align: left;">Có</td>
+<td style="text-align: left;">Không</td>
+<td style="text-align: left;">Không</td>
+<td style="text-align: left;">P2</td>
+</tr>
+<tr>
+<td style="text-align: left;">Chế độ tối</td>
+<td style="text-align: left;">Có</td>
+<td style="text-align: left;">Không</td>
+<td style="text-align: left;">Không</td>
+<td style="text-align: left;">P2</td>
+</tr>
+</tbody>
+</table>
+<h2>Bước 4: Xác nhận các tính năng P0 của bạn</h2>
+<p>Từ kết quả sàng lọc ở trên, trích xuất các tính năng P0.</p>
+<pre><code class="language-markdown">## Tính năng P0 của tôi (Tối đa 3-5 cái)
+
+### Tính năng P0 số 1: [Tên tính năng]
+
+- **Tại sao không cắt**: [Giải thích]
+- **Giá trị xác minh**: [Giải thích]
+
+### Tính năng P0 số 2: [Tên tính năng]
+
+- **Tại sao không cắt**: [Giải thích]
+- **Giá trị xác minh**: [Giải thích]
+
+### Tính năng P0 số 3: [Tên tính năng]
+
+- **Tại sao không cắt**: [Giải thích]
+- **Giá trị xác minh**: [Giải thích]
+</code></pre>
+<h3>Tiêu chuẩn xác minh tính năng P0</h3>
+<p>Mỗi tính năng P0 đều phải trả lời được:</p>
+<ul>
+<li>Không có tính năng này, giá trị cốt lõi còn tồn tại không?</li>
+<li>Tính năng này có trực tiếp xác minh giả thuyết cốt lõi không?</li>
+<li>Người dùng có cần tính năng này ngay lần đầu sử dụng không?</li>
+</ul>
+<p>Nếu câu trả lời cho bất kỳ câu hỏi nào là "Không", thì tính năng này có thể không thực sự là P0.</p>
+<h2>Bước 5: Lập danh sách những việc không làm</h2>
+<pre><code class="language-markdown"># Danh sách những việc không làm (Phiên bản V1)
+
+## I. Các tính năng không làm
+
+| Tính năng      | Lý do không làm | Khi nào xem xét lại |
+| :------------- | :-------------- | :------------------ |
+| [Tính năng P1] | [Lý do]         | [Điều kiện]         |
+| [Tính năng P2] | [Lý do]         | [Điều kiện]         |
+
+## II. Nhóm người dùng không xem xét
+
+| Nhóm người dùng    | Lý do không xem xét |
+| :----------------- | :------------------ |
+| [Mô tả người dùng] | [Lý do]             |
+
+## III. Các chỉ số không theo đuổi
+
+| Chỉ số       | Lý do không theo đuổi | Điểm quan tâm thay thế |
+| :----------- | :-------------------- | :--------------------- |
+| [Tên chỉ số] | [Lý do]               | [Chỉ số thay thế]      |
+</code></pre>
+<h2>Bước 6: Thực hiện kế hoạch xác minh</h2>
+<h3>Lịch trình triển khai MVP</h3>
+<pre><code class="language-markdown">## Kế hoạch triển khai MVP
+
+### Tuần 1: Phát triển tính năng cốt lõi
+
+- [ ] Phát triển tính năng 1
+- [ ] Phát triển tính năng 2
+- [ ] Phát triển tính năng 3
+
+### Tuần 2: Thử nghiệm nội bộ
+
+- [ ] Tự sử dụng để kiểm tra
+- [ ] Tìm 2-3 người bạn dùng thử
+- [ ] Thu thập phản hồi sơ bộ
+
+### Tuần 3-4: Xác minh người dùng
+
+- [ ] Tìm người dùng mục tiêu dùng thử
+- [ ] Thu thập dữ liệu sử dụng
+- [ ] Phân tích kết quả xác minh
+
+### Cuối tuần 4: Điểm ra quyết định
+
+- [ ] Đánh giá kết quả xác minh
+- [ ] Quyết định tiếp tục/điều chỉnh/từ bỏ
+- [ ] Lập kế hoạch hành động tiếp theo
+</code></pre>
+<h3>Phương pháp thu thập dữ liệu</h3>
+<ul>
+<li><strong>Tần suất sử dụng</strong>: Người dùng bao lâu dùng một lần</li>
+<li><strong>Tỷ lệ sử dụng tính năng</strong>: Những tính năng P0 nào thực sự được sử dụng</li>
+<li><strong>Phản hồi người dùng</strong>: Phản hồi định tính và đề xuất</li>
+<li><strong>Tỷ lệ hoàn thành</strong>: Tình hình đạt được tiêu chuẩn xác minh</li>
+<li><strong>Tỷ lệ giữ chân (Retention rate)</strong>: Người dùng có tiếp tục sử dụng hay không</li>
+</ul>
+<h2>Bước 7: Phân tích kết quả và ra quyết định</h2>
+<h3>Khung phân tích kết quả xác minh</h3>
+<pre><code class="language-markdown">## Phân tích kết quả xác minh
+
+### Tình hình xác minh giả thuyết
+
+- [ ] Giả thuyết đúng: Đạt tiêu chuẩn xác minh
+- [ ] Giả thuyết đúng một phần: Đạt một phần tiêu chuẩn
+- [ ] Giả thuyết sai: Không đạt tiêu chuẩn
+
+### Bài học then chốt
+
+1.
+2.
+3.
+
+### Quyết định tiếp theo
+
+- [ ] Tiếp tục lặp lại: Cải thiện tính năng P0 dựa trên phản hồi
+- [ ] Điều chỉnh hướng đi: Sửa đổi giả thuyết cốt lõi
+- [ ] Tạm dừng dự án: Giả thuyết sai, xem xét lại
+- [ ] Mở rộng tính năng: P0 xác minh thành công, bắt đầu tính năng P1
+</code></pre>
+<h2>Công cụ hỗ trợ AI và Prompt</h2>
+<h3>Nhờ AI giúp bạn cắt giảm tính năng</h3>
+<pre><code>Tôi đang làm một [loại dự án], giả thuyết cốt lõi là [giả thuyết cốt lõi].
+Dưới đây là danh sách các tính năng tôi muốn thực hiện:
+[Danh sách tính năng]
+
+Hãy giúp tôi phân tích tính năng nào là P0 (phải làm ngay), tính năng nào là P1 (làm ở phiên bản sau), tính năng nào là P2 (có thời gian sẽ làm).
+Tiêu chuẩn phân tích:
+1. Không có tính năng này, sản phẩm còn dùng được không?
+2. Tính năng này có thể xác minh giả thuyết cốt lõi không?
+3. Người dùng có cần tính năng này ngay lần đầu sử dụng không?
+
+Hãy trả lời theo định dạng sau:
+Tính năng P0:
+- Tính năng 1: [Lý do]
+- Tính năng 2: [Lý do]
+
+Tính năng P1:
+- Tính năng 1: [Lý do]
+- Tính năng 2: [Lý do]
+
+Tính năng P2:
+- Tính năng 1: [Lý do]
+- Tính năng 2: [Lý do]
+</code></pre>
+<h3>Nhờ AI giúp bạn xác minh giả thuyết</h3>
+<pre><code>Tôi có một giả thuyết cốt lõi cho dự án: [giả thuyết cốt lõi]
+Tiêu chuẩn xác minh là: [tiêu chuẩn xác minh]
+
+Dữ liệu thu thập được hiện tại là:
+[Dữ liệu và kết quả]
+
+Hãy giúp tôi phân tích:
+1. Giả thuyết có đúng không?
+2. Dữ liệu nào ủng hộ/phản đối giả thuyết?
+3. Cần thu thập thêm dữ liệu gì?
+4. Dựa trên dữ liệu hiện có, đề xuất bước tiếp theo nên đi như thế nào?
+</code></pre>
+<h2>Mẫu bài tập thực hành</h2>
+<h3>Bài tập 1: Áp dụng đầy đủ quy trình phép trừ</h3>
+<p>Chọn một dự án bạn muốn làm (có thể là thật hoặc để luyện tập), hoàn thành các công việc sau:</p>
+<ol>
+<li><strong>Điền mẫu giả thuyết cốt lõi</strong></li>
+<li><strong>Liệt kê ít nhất 15 tính năng</strong></li>
+<li><strong>Sàng lọc bằng ba câu hỏi, xác định P0/P1/P2</strong></li>
+<li><strong>Lập danh sách những việc không làm</strong></li>
+<li><strong>Thiết kế kế hoạch xác minh</strong></li>
+</ol>
+<h3>Bài tập 2: Phân tích dự án hiện có</h3>
+<p>Tìm một dự án bạn đang làm hoặc từng làm:</p>
+<ol>
+<li><strong>Giả thuyết cốt lõi lúc đó là gì?</strong> (Nếu không có, hãy bổ sung ngay bây giờ)</li>
+<li><strong>Danh sách tính năng lúc đó như thế nào?</strong></li>
+<li><strong>Sàng lọc lại tính năng bằng kiến thức hiện tại</strong></li>
+<li><strong>Nếu lúc đó có danh sách những việc không làm, nó sẽ trông như thế nào?</strong></li>
+<li><strong>Bạn học được gì từ đó?</strong></li>
+</ol>
+<h3>Bài tập 3: Thử thách MVP nhanh</h3>
+<p>Chọn một ý tưởng, thử làm ra MVP trong vòng 1 tuần:</p>
+<ol>
+<li><strong>Giới hạn thời gian: 1 tuần</strong></li>
+<li><strong>Giới hạn tính năng: Tối đa 3 tính năng P0</strong></li>
+<li><strong>Giới hạn nguồn lực: Chỉ dùng công cụ và kỹ năng hiện có</strong></li>
+<li><strong>Mục tiêu: Xác minh giả thuyết cốt lõi, không phải làm sản phẩm hoàn hảo</strong></li>
+<li><strong>Ghi lại quá trình: Viết nhật ký ngắn gọn mỗi ngày</strong></li>
+</ol>
+<h2>Giải đáp các câu hỏi thường gặp</h2>
+<h3>Q1: Nếu tính năng P0 của tôi vẫn còn quá nhiều thì sao?</h3>
+<p><strong>Trả lời</strong>:</p>
+<ul>
+<li>Kiểm tra xem giả thuyết cốt lõi có quá rộng không</li>
+<li>Cân nhắc chia dự án thành nhiều giai đoạn</li>
+<li>Xem xét lại từng tính năng P0, xem có thể đơn giản hóa thêm không</li>
+<li>Có thể cần phân giai đoạn để xác minh các giả thuyết khác nhau</li>
+</ul>
+<h3>Q2: Kết quả xác minh không lý tưởng thì sao?</h3>
+<p><strong>Trả lời</strong>:</p>
+<ul>
+<li>Đừng bỏ cuộc ngay lập tức, hãy phân tích nguyên nhân cụ thể trước</li>
+<li>Có thể giả thuyết sai, cần điều chỉnh</li>
+<li>Có thể MVP chưa đủ tốt, cần cải thiện</li>
+<li>Có thể phương pháp xác minh có vấn đề, cần điều chỉnh</li>
+</ul>
+<h3>Q3: Người dùng yêu cầu tính năng P1/P2 thì sao?</h3>
+<p><strong>Trả lời</strong>:</p>
+<ul>
+<li>Đối chiếu với danh sách những việc không làm, nếu có trong đó, hãy giải thích lý do một cách lịch sự</li>
+<li>Nếu không có trong danh sách, cân nhắc xem có cần điều chỉnh danh sách không</li>
+<li>Ghi lại nhu cầu người dùng làm tài liệu tham khảo cho quy hoạch tương lai</li>
+<li>Ưu tiên xử lý các phản hồi ảnh hưởng đến việc xác minh giá trị cốt lõi</li>
+</ul>
+<h3>Q4: Làm thế nào để cân bằng giữa xác minh nhanh và chất lượng?</h3>
+<p><strong>Trả lời</strong>:</p>
+<ul>
+<li>Tính năng P0 cần đảm bảo chất lượng, nhưng không theo đuổi sự hoàn hảo</li>
+<li>Cốt lõi là có thể xác minh giả thuyết, không phải trình diễn trình độ kỹ thuật</li>
+<li>Giới hạn chất lượng: Không ảnh hưởng nghiêm trọng đến kết quả xác minh</li>
+<li>Dùng phương pháp thủ công để xử lý các trường hợp ngoại lệ (edge cases), tiết kiệm thời gian</li>
+</ul>
+<h2>Tóm tắt các điểm chính</h2>
+<h3>Ba nguyên tắc cốt lõi</h3>
+<pre><code>✓ MVP là thực nghiệm, không phải sản phẩm. Mục đích của nó là xác minh giả thuyết, không phải làm hài lòng người dùng.
+
+✓ Làm phép trừ khó hơn làm phép cộng, nhưng quan trọng hơn. Nhiều tính năng không đồng nghĩa với giá trị cao.
+
+✓ &quot;Danh sách những việc không làm&quot; và &quot;Danh sách việc cần làm&quot; quan trọng như nhau. Xác định ranh giới mới có thể tập trung vào cốt lõi.
+</code></pre>
+<h3>Danh sách các mẫu có thể tái sử dụng</h3>
+<p>Phần này cung cấp các mẫu sau đây có thể sử dụng trực tiếp:</p>
+<ol>
+<li><strong>Mẫu giả thuyết cốt lõi</strong>: Xác định rõ bạn đang xác minh điều gì</li>
+<li><strong>Mẫu tiêu chuẩn xác minh</strong>: Định nghĩa tiêu chuẩn đánh giá thành công/thất bại</li>
+<li><strong>Bảng sàng lọc tính năng</strong>: Phân loại nhanh bằng ba câu hỏi</li>
+<li><strong>Mẫu danh sách những việc không làm</strong>: Định dạng hoàn chỉnh với ba chiều</li>
+<li><strong>Prompt hỗ trợ AI</strong>: Nhờ AI giúp bạn cắt giảm tính năng và xác minh phán đoán</li>
+</ol>
+<h3>Sai lầm thường gặp vs Cách làm đúng</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Sai lầm thường gặp</th>
+<th style="text-align: left;">Cách làm đúng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Liệt kê 14 tính năng rồi bắt tay vào làm</td>
+<td style="text-align: left;">Xác định giả thuyết cốt lõi trước, sau đó xác định P0</td>
+</tr>
+<tr>
+<td style="text-align: left;">MVP = Ít tính năng nhất</td>
+<td style="text-align: left;">MVP = Đầu tư ít nhất và có thể xác minh giả thuyết</td>
+</tr>
+<tr>
+<td style="text-align: left;">Làm xong mới cho người dùng xem</td>
+<td style="text-align: left;">Cho người dùng tham gia xác minh càng sớm càng tốt</td>
+</tr>
+<tr>
+<td style="text-align: left;">Đối thủ có gì tôi cũng làm cái đó</td>
+<td style="text-align: left;">Chỉ làm những tính năng cần thiết để xác minh giả thuyết</td>
+</tr>
+<tr>
+<td style="text-align: left;">Để danh sách những việc không làm trong đầu</td>
+<td style="text-align: left;">Viết ra, hình thành biên bản quyết định chính thức</td>
+</tr>
+</tbody>
+</table>
+<h3>Danh sách kiểm tra (Checklist)</h3>
+<p>Trước khi bắt tay vào phát triển, hãy xác nhận các mục sau:</p>
+<ul>
+<li>[ ] Tôi có giả thuyết cốt lõi rõ ràng (một câu nói rõ được)</li>
+<li>[ ] Tôi có tiêu chuẩn xác minh đo lường được (X người dùng trong Y thời gian làm Z)</li>
+<li>[ ] Tính năng P0 của tôi không quá 5 cái</li>
+<li>[ ] Tôi đã viết ra "danh sách những việc không làm"</li>
+<li>[ ] Tôi biết MVP này cần xác minh điều gì, không xác minh điều gì</li>
+</ul>
+<h2>Tiếp nối</h2>
+<p>Ôn lại những nội dung chúng ta đã học trong Chương 2:</p>
+<ul>
+<li><strong>2.1 Nâng cấp tư duy</strong>: Chuyển từ "góc nhìn tính năng" sang "góc nhìn nhiệm vụ", hỏi "người dùng muốn hoàn thành nhiệm vụ gì"</li>
+<li><strong>2.2 Tư duy ngược</strong>: Nghĩ trước "điều gì sẽ dẫn đến thất bại", tránh hố trước</li>
+<li><strong>2.3 Tư duy phép trừ</strong>: Dùng đầu tư tối thiểu để xác minh giả thuyết cốt lõi, học cách nói "cái này không làm"</li>
+</ul>
+<p>Ba công cụ tư duy này giúp bạn giải quyết vấn đề "làm gì" và "không làm gì".</p>
+<p>Nhưng vẫn còn một câu hỏi: <strong>Bạn có thực sự hiểu người dùng của mình không?</strong></p>
+<p>Trong phần tiếp theo, chúng ta sẽ học "Tư duy câu chuyện" (Story Thinking) — coi người dùng là nhân vật chính của câu chuyện, hiểu sâu sắc nhu cầu và bối cảnh của họ.</p>
+<p>Khi bạn có thể mô tả người dùng giống như kể chuyện, yêu cầu bạn viết cho AI sẽ rõ ràng hơn gấp mười lần.</p>
+<blockquote>
+<p><strong>Câu nói hay của bài</strong></p>
+<p>"Hoàn hảo không phải là không thể thêm vào được nữa, mà là không thể bớt đi được nữa."
+—— Antoine de Saint-Exupéry</p>
+</blockquote>
+<p>Thông qua quy trình thực hành hoàn chỉnh, giờ đây bạn đã trang bị khả năng đơn giản hóa mọi dự án phức tạp thành MVP có thể xác minh được. Hãy nhớ rằng: <strong>Tư duy phép trừ không phải là lười biếng, mà là tập trung; không phải là từ bỏ, mà là trí tuệ; không phải là giới hạn, mà là hiệu quả.</strong></p>
+</body>
+</html>

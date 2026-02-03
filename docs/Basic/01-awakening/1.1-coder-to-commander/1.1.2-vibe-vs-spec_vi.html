@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.1.2 Vibe Vs Spec</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "1.1.2 Chuyển đổi vai trò từ Coder sang Commander"</h2>
+<p><img alt="01-awakening_1.1-coder-to-commander_1.1.2-vibe-vs-spec.png" src="../../../public/images/Basic/01-awakening_1.1-coder-to-commander_1.1.2-vibe-vs-spec.png" /></p>
+<h1>1.1.2 Chuyển đổi vai trò từ Coder sang Commander</h1>
+<h2>Một phép so sánh giúp bạn hiểu</h2>
+<p>Lấy việc lái xe làm ví dụ.</p>
+<p><img alt="So sánh ba thời đại lái xe" src="../../../public/images/drive_car_3.png" /></p>
+<div class="audience-grid">
+  <div class="audience-card">
+    <div class="audience-title">Thời đại số sàn (Lập trình truyền thống)</div>
+    <div class="audience-desc">Tưởng tượng lái xe từ Bắc Kinh đến Thượng Hải. Dùng số sàn, bạn cần thành thạo côn, kỹ năng sang số, luôn chú ý đến vòng tua máy, người mới rất dễ chết máy. Điều này giống như lập trình truyền thống: phải nắm vững nhiều "kỹ năng vận hành" thì chương trình mới chạy được.</div>
+  </div>
+  <div class="audience-card">
+    <div class="audience-title">Thời đại số tự động (Hoàn thành mã)</div>
+    <div class="audience-desc">Chuyển sang số tự động, không cần lo côn và sang số, có thể tập trung nhiều hơn vào tình trạng giao thông. Điều này giống như các công cụ như GitHub Copilot: AI giúp bạn hoàn thành các đoạn mã, nhưng bạn vẫn cần hiểu mã, biết "lái xe".</div>
+  </div>
+  <div class="audience-card">
+    <div class="audience-title">Thời đại tự lái (Vibe Coding)</div>
+    <div class="audience-desc">Taxi tự lái: bạn chỉ cần nói "Tôi muốn đến Bến Thượng Hải", xe tự lên lộ trình, tự lái. Đi sai đường thì nói một tiếng là được. Đây chính là Vibe Coding: nói rõ điểm đến, AI hoàn thành mọi thao tác.</div>
+  </div>
+</div>
+
+<h2>Thay đổi quy trình làm việc</h2>
+<p><strong>Lập trình truyền thống:</strong></p>
+<ol>
+<li>Học ngôn ngữ lập trình: Mất vài tháng học JavaScript, Python hoặc ngôn ngữ khác</li>
+<li>Hiểu quy tắc cú pháp: Nhớ đủ loại ngoặc, dấu chấm phẩy, quy tắc thụt đầu dòng</li>
+<li>Viết mã từng dòng: "Dịch" từng chức năng thành lệnh mà máy tính hiểu được</li>
+<li>Liên tục debug: Chương trình báo lỗi? Tự mình tìm vấn đề từng dòng một</li>
+<li>Tra cứu tài liệu, hỏi cộng đồng: Gặp cái không biết, mất vài giờ tìm giải pháp</li>
+</ol>
+<p>Toàn bộ quá trình giống như học một ngoại ngữ——bạn phải học ngữ pháp trước, mới có thể diễn đạt điều mình muốn nói.</p>
+<p><strong>Thời đại AI:</strong></p>
+<ol>
+<li>Nói cho AI biết bạn muốn gì: "Giúp tôi làm một danh sách việc cần làm, có thể thêm nhiệm vụ, đánh dấu hoàn thành, xóa nhiệm vụ"</li>
+<li>Xem AI tạo mã: Vài giây sau, mã đã xuất hiện</li>
+<li>Thử xem hiệu quả: Chạy thử xem có phải cái bạn muốn không</li>
+<li>Bảo AI sửa thế nào: "Biến các nhiệm vụ đã hoàn thành thành màu xám, thêm đường gạch ngang"</li>
+<li>Tiếp tục lặp lại: Cho đến khi hài lòng</li>
+</ol>
+<p>Toàn bộ quá trình giống như đang đối thoại với một trợ lý am hiểu kỹ thuật——bạn nói ý tưởng, nó thực hiện.</p>
+<h2>Sự chuyển dịch kỹ năng cốt lõi</h2>
+<table>
+<thead>
+<tr>
+<th>Kỹ năng cốt lõi trước đây</th>
+<th>Kỹ năng cốt lõi hiện tại</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ghi nhớ quy tắc cú pháp</td>
+<td>Nói rõ yêu cầu</td>
+</tr>
+<tr>
+<td>Viết mã thủ công</td>
+<td>Đánh giá mã đúng hay sai</td>
+</tr>
+<tr>
+<td>Debug tìm lỗi</td>
+<td>Mô tả vấn đề để AI sửa</td>
+</tr>
+<tr>
+<td>Đọc tài liệu kỹ thuật</td>
+<td>Biết cái gì cần hỏi, cái gì cần tra cứu</td>
+</tr>
+</tbody>
+</table>
+<p>Dùng ví dụ lái xe:</p>
+<table>
+<thead>
+<tr>
+<th>Những gì bạn cần biết</th>
+<th>Những gì bạn không cần biết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tôi muốn đi đâu (Nhu cầu)</td>
+<td>Động cơ hoạt động như thế nào (Nguyên lý cơ bản)</td>
+</tr>
+<tr>
+<td>Đi đường nào nhanh hơn (Hướng đi lớn)</td>
+<td>Nguyên lý hộp số (Chi tiết cú pháp)</td>
+</tr>
+<tr>
+<td>Đến chưa, đúng chưa (Nghiệm thu)</td>
+<td>Cách sửa xe (Viết thủ công từng dòng mã)</td>
+</tr>
+<tr>
+<td>Đường đi không đúng cần điều chỉnh (Lặp lại)</td>
+<td>Sơ đồ mạch điện ô tô (Kiến trúc phức tạp)</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Một câu tóm tắt
+Từ "viết mã" chuyển thành "diễn đạt rõ ràng + đánh giá đúng sai".
+:::</p>
+<h2>Điều gì không thay đổi</h2>
+<p>Mặc dù "cách làm" đã thay đổi, nhưng có một số thứ sẽ không bao giờ thay đổi:</p>
+<ul>
+<li><strong>Bạn cần biết mình muốn gì</strong>: AI dù thông minh đến đâu cũng không thể nghĩ thay bạn xem cần làm gì</li>
+<li><strong>Bạn cần đánh giá kết quả tốt hay không</strong>: AI có thể mắc lỗi, bạn phải nhận ra được</li>
+<li><strong>Bạn cần có tư duy giải quyết vấn đề</strong>: Khi gặp vấn đề, biết cách từng bước kiểm tra loại trừ</li>
+</ul>
+<p>::: warning AI hiện tại chưa phải là "tự lái hoàn toàn"
+Giống như xe tự lái ngày nay, lập trình AI cũng cần bạn duy trì sự chú ý, sẵn sàng tiếp quản, chịu trách nhiệm cuối cùng. Vibe Coding giống "Lái xe tự động cấp độ 3" hơn——phần lớn thời gian AI làm, nhưng bạn phải để mắt, thời điểm quan trọng bạn phải vào cuộc.
+:::</p>
+<p>AI tiếp quản việc "thực thi", nhưng "tư duy" và "ra quyết định" vẫn là việc của bạn.</p>
+<h2>Context Engineering: Bước tiến tiếp theo</h2>
+<p>Nửa cuối năm 2025, ngành công nghiệp bắt đầu tiến hóa từ Vibe Coding sang <strong>Context Engineering</strong> (Kỹ thuật ngữ cảnh).</p>
+<p>Vibe Coding nhấn mạnh "đi theo cảm hứng", ra kết quả nhanh. Context Engineering thì nhấn mạnh: cung cấp đủ ngữ cảnh cho AI, để nó hiểu bối cảnh dự án, quy chuẩn mã, nghiệp vụ kinh doanh của bạn.</p>
+<p>Nói cách khác: muốn AI giúp tốt hơn, bạn cần học cách "cung cấp ngữ cảnh tốt". Đây cũng là nội dung trọng tâm mà hướng dẫn này sẽ dạy bạn ở phần sau.</p>
+<h2>Điều này có ý nghĩa gì với bạn</h2>
+<p>Nếu bạn biết dùng ứng dụng gọi xe, bạn đã có sẵn năng lực cốt lõi nhất của Vibe Coding:</p>
+<ul>
+<li>Nói rõ bạn muốn đi đâu (Diễn đạt nhu cầu)</li>
+<li>Đánh giá tài xế có đi sai đường không (Nghiệm thu kết quả)</li>
+<li>Khi cần thiết thì chỉ đường cho tài xế (Hướng dẫn điều chỉnh)</li>
+</ul>
+<p>Điều này phụ thuộc vào lợi thế cá nhân. Nếu bạn giỏi diễn đạt, giao tiếp, giỏi suy nghĩ thấu đáo nhu cầu, nhạy cảm với chi tiết, có thể phát hiện vấn đề——đây đều là lợi thế của bạn.</p>
+<p>Nếu trước đây bạn luôn cảm thấy "lập trình khó quá", rất có thể là do bạn không giỏi nhớ cú pháp, viết mã——nhưng đó không phải là điểm yếu thực sự của bạn. <strong>Năng lực thực sự quan trọng, có thể bạn đã có sẵn rồi.</strong></p>
+</body>
+</html>

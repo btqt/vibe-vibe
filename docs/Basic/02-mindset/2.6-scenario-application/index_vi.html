@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: '2.6 Ứng dụng bối cảnh: Những công cụ tư duy này không chỉ dùng để "làm sản phẩm"'</h2>
+<p><img alt="02-mindset_2.6-scenario-application_index.png" src="../../../public/images/Basic/02-mindset_2.6-scenario-application_index.png" /></p>
+<h1>2.6 Ứng dụng bối cảnh: Những công cụ tư duy này không chỉ dùng để "làm sản phẩm"</h1>
+<p>Năm phần trước, chúng ta đã học năm loại công cụ tư duy: Tư duy JTBD, Tư duy ngược, Tư duy phép trừ, Tư duy câu chuyện, Ba câu hỏi linh hồn.</p>
+<p>Có thể bạn sẽ nghĩ: Những cái này chẳng phải đều là thứ mà giám đốc sản phẩm, người khởi nghiệp dùng sao? Có liên quan gì đến tôi đâu?</p>
+<p>Phần này sẽ nói cho bạn biết: <strong>Bản chất của những công cụ tư duy này là năng lực "nghĩ rõ vấn đề", mà năng lực này áp dụng cho bất kỳ bối cảnh nào bạn có thể nghĩ tới.</strong></p>
+<h2>Sau khi học xong bài này, bạn sẽ nắm được</h2>
+<ul>
+<li>Hiểu tính phổ quát của công cụ tư duy: Cùng một phương pháp, ứng dụng trong các bối cảnh khác nhau</li>
+<li>Nắm được phương pháp mô tả nhu cầu và mẫu Prompt trong bối cảnh phân tích dữ liệu</li>
+<li>Nắm được cách đánh giá nhiệm vụ và mẫu Prompt trong bối cảnh script tự động hóa</li>
+<li>Nắm được nguyên tắc thiết kế trong bối cảnh công cụ cá nhân và công cụ cho người nhà</li>
+<li>Có được một bộ thư viện mẫu Prompt theo bối cảnh có thể sao chép dùng ngay</li>
+</ul>
+<h2>Insight cốt lõi</h2>
+<blockquote>
+<p><strong>Bất kể bạn muốn làm gì —— công cụ nhỏ, phân tích dữ liệu, script tự động hóa —— tư duy cốt lõi đều giống nhau: Nghĩ rõ vấn đề trước, rồi mới bắt tay giải quyết.</strong></p>
+</blockquote>
+<p>Các công cụ tư duy phía trước không phải "độc quyền của giám đốc sản phẩm", mà là "độc quyền để định nghĩa vấn đề".</p>
+<ul>
+<li>Bạn làm phân tích dữ liệu, cũng cần hỏi "ai cần xem phân tích này? họ cần ra quyết định gì?" —— đây là Tư duy JTBD</li>
+<li>Bạn viết script tự động hóa, cũng cần nghĩ "trường hợp nào sẽ bị lỗi?" —— đây là Tư duy ngược</li>
+<li>Bạn tự làm công cụ nhỏ cho mình, cũng cần kiềm chế sự thôi thúc "càng nhiều tính năng càng tốt" —— đây là Tư duy phép trừ</li>
+</ul>
+<p><strong>Công cụ tư duy là vạn năng, cái thay đổi chỉ là bối cảnh ứng dụng.</strong></p>
+<h2>Sơ lược bốn bối cảnh lớn</h2>
+<p>Phần này bao phủ bốn loại bối cảnh Vibe Coding thường gặp nhất:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bối cảnh</th>
+<th style="text-align: left;">Nhu cầu điển hình</th>
+<th style="text-align: left;">Thách thức cốt lõi</th>
+<th style="text-align: left;">Trọng tâm công cụ tư duy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Phân tích dữ liệu</strong></td>
+<td style="text-align: left;">Phân tích Excel, làm biểu đồ, viết báo cáo</td>
+<td style="text-align: left;">Không biết phải trả lời câu hỏi gì</td>
+<td style="text-align: left;">JTBD (phân tích cho ai), Phép trừ (tập trung vấn đề cốt lõi)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Script tự động hóa</strong></td>
+<td style="text-align: left;">Xử lý file hàng loạt, tác vụ định kỳ</td>
+<td style="text-align: left;">Không biết bắt đầu tự động hóa từ đâu</td>
+<td style="text-align: left;">Tư duy ngược (nhận diện bối cảnh lỗi), Phép trừ (làm bước đau nhất trước)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Công cụ cá nhân</strong></td>
+<td style="text-align: left;">Ghi chép chi tiêu, Pomodoro, ghi chú</td>
+<td style="text-align: left;">Dễ thiết kế quá mức</td>
+<td style="text-align: left;">Phép trừ (chỉ làm tính năng cốt lõi), Ba câu hỏi linh hồn (nỗi đau thực sự của mình)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Công cụ cho người nhà</strong></td>
+<td style="text-align: left;">Nhắc uống thuốc, album ảnh, lối tắt</td>
+<td style="text-align: left;">Không hiểu bối cảnh sử dụng thực tế</td>
+<td style="text-align: left;">Tư duy câu chuyện (đứng ở góc độ của họ), Tư duy ngược (điều gì khiến họ không dùng được)</td>
+</tr>
+</tbody>
+</table>
+<h2>Cấu trúc bài học</h2>
+<p>Tiếp theo, chúng ta sẽ lần lượt triển khai bốn bối cảnh này:</p>
+<ol>
+<li><strong>Insight cốt lõi</strong>: Tại sao cùng một bộ công cụ tư duy có thể ứng dụng cho các bối cảnh khác nhau</li>
+<li><strong>Bối cảnh phân tích dữ liệu</strong>: Cách dùng công cụ tư duy để AI thực hiện phân tích có giá trị</li>
+<li><strong>Bối cảnh script tự động hóa</strong>: Cách nhận diện nhiệm vụ đáng tự động hóa, tránh các bẫy thường gặp</li>
+<li><strong>Bối cảnh công cụ cá nhân</strong>: Cách kiềm chế xung động thiết kế quá mức, làm ra công cụ thực sự dùng được</li>
+<li><strong>Bối cảnh công cụ cho người nhà</strong>: Cách thiết kế công cụ đơn giản dễ dùng cho người dùng không rành kỹ thuật</li>
+<li><strong>Tổng kết</strong>: Bảng tra cứu mẫu Prompt theo bối cảnh</li>
+</ol>
+<p>Mỗi bối cảnh đều sẽ cung cấp:</p>
+<ul>
+<li>Phương pháp ứng dụng cụ thể của công cụ tư duy</li>
+<li>Trường hợp thực tế và ví dụ Prompt hoàn chỉnh</li>
+<li>Lầm tưởng thường gặp và hướng dẫn tránh bẫy</li>
+<li>Mẫu có thể sao chép dùng ngay</li>
+</ul>
+<p>Sẵn sàng chưa? Hãy bắt đầu từ "Insight cốt lõi".</p>
+</body>
+</html>

@@ -1,0 +1,292 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.4.5 Prompt Writing</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "2.4.5 Viết Prompt bằng tư duy câu chuyện: Để AI thực sự hiểu bạn"</h2>
+<p><img alt="02-mindset_2.4-story-thinking_2.4.5-prompt-writing.png" src="../../../public/images/Basic/02-mindset_2.4-story-thinking_2.4.5-prompt-writing.png" /></p>
+<h1>2.4.5 Viết Prompt bằng tư duy câu chuyện: Để AI thực sự hiểu bạn</h1>
+<h2>Cùng một nhu cầu, kết quả khác nhau</h2>
+<p>Hãy xem sự khác biệt giữa hai Prompt:</p>
+<h3>Phiên bản không có câu chuyện</h3>
+<pre><code>Giúp tôi làm một công cụ danh sách việc cần làm, cần những tính năng này:
+1. Thêm nhiệm vụ
+2. Hoàn thành nhiệm vụ
+3. Xem danh sách nhiệm vụ
+</code></pre>
+<h3>Phiên bản có câu chuyện</h3>
+<pre><code>Tôi muốn làm một công cụ danh sách việc cần làm, trước tiên hãy giới thiệu bối cảnh:
+
+Tôi là nhân viên vận hành của một công ty Internet, mỗi ngày có khoảng hơn 10 việc phải xử lý — nhiệm vụ công việc, tin nhắn cần trả lời, đồ cần mua, việc vặt cần giải quyết.
+
+Tôi đã thử dùng giấy nhớ nhưng thường xuyên làm mất; thử dùng vài App to-do list nhưng đều quá phức tạp, chỉ riêng việc nhập liệu nhiệm vụ đã mệt đến mức không muốn dùng. Nỗi đau cốt lõi của tôi là: sợ quên việc, trong đầu lúc nào cũng chứa đầy sự lo âu &quot;còn việc gì chưa làm xong&quot;.
+
+Tôi hy vọng có một công cụ có thể:
+- Mở ra là thêm được ngay, không cần chọn phân loại, điền ngày tháng, đặt mức ưu tiên
+- Nhìn một cái là thấy hôm nay phải làm gì
+- Làm xong một việc là gạch bỏ, có được cảm giác &quot;đã giải quyết xong&quot; rất sướng
+
+Hãy giúp tôi thiết kế giao diện và tính năng cốt lõi cho công cụ này.
+</code></pre>
+<p>Prompt thứ hai dài hơn Prompt thứ nhất rất nhiều, nhưng kết quả đầu ra của AI sẽ có sự khác biệt về bản chất.</p>
+<h2>Sự khác biệt nằm ở đâu</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Khía cạnh</th>
+<th style="text-align: left;">Phiên bản không có câu chuyện</th>
+<th style="text-align: left;">Phiên bản có câu chuyện</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>AI biết người dùng là ai</strong></td>
+<td style="text-align: left;">❌ Không biết</td>
+<td style="text-align: left;">✅ Người đi làm bận rộn</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>AI biết bối cảnh sử dụng</strong></td>
+<td style="text-align: left;">❌ Không biết</td>
+<td style="text-align: left;">✅ Xử lý 10+ đầu việc mỗi ngày</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>AI biết điều kiện ràng buộc</strong></td>
+<td style="text-align: left;">❌ Không biết</td>
+<td style="text-align: left;">✅ Đã dùng App phức tạp, cần cực giản</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>AI biết nỗi đau cốt lõi</strong></td>
+<td style="text-align: left;">❌ Không biết</td>
+<td style="text-align: left;">✅ Sợ quên việc, sợ lo âu</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>AI có thể suy luận mức ưu tiên</strong></td>
+<td style="text-align: left;">❌ Chỉ có thể đoán</td>
+<td style="text-align: left;">✅ Đơn giản &gt; Nhiều tính năng</td>
+</tr>
+</tbody>
+</table>
+<p>Có bối cảnh câu chuyện, AI có thể đưa ra các quyết định thiết kế hợp lý hơn:</p>
+<ul>
+<li>Giao diện sẽ gọn gàng hơn, thay vì nhồi nhét tính năng</li>
+<li>Thêm nhiệm vụ sẽ được thiết kế hoàn thành trong một bước, thay vì nhiều biểu mẫu</li>
+<li>Khi hoàn thành nhiệm vụ sẽ thêm phản hồi tạo cảm giác thỏa mãn</li>
+</ul>
+<h2>Bốn yếu tố của Prompt hóa câu chuyện</h2>
+<p>Một Prompt hóa câu chuyện tốt cần bao gồm bốn yếu tố:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Yếu tố</th>
+<th style="text-align: left;">Trả lời câu hỏi</th>
+<th style="text-align: left;">Tác dụng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Thân phận</strong></td>
+<td style="text-align: left;">Tôi là ai?</td>
+<td style="text-align: left;">Để AI hiểu đặc điểm người dùng</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Hiện trạng</strong></td>
+<td style="text-align: left;">Tôi hiện đang làm như thế nào? Gặp vấn đề gì?</td>
+<td style="text-align: left;">Để AI hiểu bối cảnh và ràng buộc</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Nỗi đau</strong></td>
+<td style="text-align: left;">Điều gì làm tôi phiền não nhất?</td>
+<td style="text-align: left;">Để AI xác định rõ vấn đề cốt lõi</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Kỳ vọng</strong></td>
+<td style="text-align: left;">Tôi mong muốn đạt được hiệu quả gì?</td>
+<td style="text-align: left;">Để AI biết tiêu chuẩn thành công</td>
+</tr>
+</tbody>
+</table>
+<h2>Mẫu Prompt hóa câu chuyện dùng chung</h2>
+<p>Mẫu có thể sao chép và sử dụng trực tiếp:</p>
+<pre><code class="language-markdown">Tôi muốn làm [loại dự án], trước tiên hãy giới thiệu bối cảnh:
+
+## Tôi là ai
+
+[Mô tả thân phận người dùng, tình hình cơ bản]
+
+## Hiện trạng của tôi
+
+[Mô tả hiện đang làm như thế nào, dùng công cụ gì, có vấn đề gì]
+
+## Nỗi đau của tôi
+
+[Mô tả vấn đề phiền não nhất, tại sao lại phiền não]
+
+## Kỳ vọng của tôi
+
+[Mô tả hiệu quả mong muốn đạt được, bao gồm tính năng và cảm nhận]
+
+Hãy giúp tôi [yêu cầu cụ thể: thiết kế/thực hiện/phân tích].
+</code></pre>
+<h2>Ví dụ Prompt đa bối cảnh</h2>
+<h3>Bối cảnh 1: Làm sản phẩm</h3>
+<pre><code class="language-markdown">Tôi muốn làm một công cụ check-in (điểm danh) thói quen, trước tiên hãy giới thiệu bối cảnh:
+
+## Tôi là ai
+
+Tôi là một nhân viên văn phòng muốn rèn luyện thói quen dậy sớm, trước đây đã từng kiên trì nhiều lần nhưng đều thất bại.
+
+## Hiện trạng của tôi
+
+- Đã dùng vài App thói quen, giao diện lòe loẹt, quá nhiều tính năng
+- Mỗi ngày phải bấm mấy cái mới hoàn thành check-in, phiền đến mức không muốn dùng
+- Cuối cùng đều là dùng được vài ngày rồi bỏ cuộc
+
+## Nỗi đau của tôi
+
+Check-in quá phiền phức, khiến tôi cảm thấy bản thân việc &quot;check-in&quot; đã trở thành gánh nặng, chứ không phải sự giúp đỡ.
+
+## Kỳ vọng của tôi
+
+- Mở ra là check-in được ngay, tốt nhất là chỉ có một nút bấm
+- Có thể nhìn thấy số ngày check-in liên tục, tạo động lực kiên trì cho tôi
+- Giao diện cực giản, không có những thứ thừa thãi làm phân tán sự chú ý
+
+Hãy giúp tôi thiết kế giao diện và quy trình tương tác cho công cụ này.
+</code></pre>
+<h3>Bối cảnh 2: Phân tích dữ liệu</h3>
+<pre><code class="language-markdown">Tôi cần làm một bản phân tích dữ liệu bán hàng, trước tiên hãy giới thiệu bối cảnh:
+
+## Tôi là ai
+
+Tôi là nhân viên vận hành của một công ty thương mại điện tử, cần báo cáo tình hình bán hàng Quý 3 cho sếp.
+
+## Hiện trạng của tôi
+
+- Trong tay có dữ liệu đơn hàng trong ba tháng (định dạng Excel)
+- Sếp chỉ có 15 phút vào sáng thứ hai hàng tuần để xem báo cáo
+- Báo cáo làm lần trước quá dài, sếp xem hai trang rồi bỏ xuống
+
+## Nỗi đau của tôi
+
+Không biết sếp quan tâm điều gì nhất, báo cáo luôn không nắm bắt được trọng điểm.
+
+## Kỳ vọng của tôi
+
+- Một bản báo cáo mà sếp có thể xem xong trong vòng 5 phút
+- Trang đầu tiên có thể nhìn thấy ngay kết luận quan trọng nhất
+- Có đề xuất hành động rõ ràng, không chỉ là trình bày dữ liệu
+
+Hãy giúp tôi quy hoạch cấu trúc và các biểu đồ cốt lõi cho báo cáo này.
+</code></pre>
+<h3>Bối cảnh 3: Script tự động hóa</h3>
+<pre><code class="language-markdown">Tôi muốn viết một script tự động hóa, trước tiên hãy giới thiệu bối cảnh:
+
+## Tôi là ai
+
+Tôi là kế toán của công ty, thứ sáu hàng tuần phải tổng hợp báo cáo tuần của 5 bộ phận.
+
+## Hiện trạng của tôi
+
+- Chiều thứ sáu hàng tuần mất 2 tiếng để làm việc này
+- Quy trình là: Mở 5 file Excel → Copy dữ liệu → Paste vào bảng tổng hợp → Chỉnh định dạng
+- Đôi khi bị sót dữ liệu hoặc lỗi định dạng, phải kiểm tra đi kiểm tra lại
+
+## Nỗi đau của tôi
+
+Công việc này lặp đi lặp lại và nhàm chán, nhưng không được phép sai sót, nên đặc biệt mệt mỏi.
+
+## Kỳ vọng của tôi
+
+- Bấm một cái là tự động tổng hợp
+- Định dạng đầu ra giống hệt như tôi làm thủ công
+- Tôi chỉ cần kiểm tra nhanh kết quả là được
+
+Hãy giúp tôi thiết kế logic cho script này, thực hiện bằng Python.
+</code></pre>
+<h3>Bối cảnh 4: Làm công cụ cho người nhà</h3>
+<pre><code class="language-markdown">Tôi muốn làm một công cụ nhắc uống thuốc cho mẹ tôi 60 tuổi, trước tiên hãy giới thiệu bối cảnh:
+
+## Tôi là ai (Người dùng là mẹ tôi)
+
+- 62 tuổi, giáo viên về hưu, sống một mình
+- Bị cao huyết áp, mỗi ngày uống thuốc một lần sáng và tối
+- Biết dùng WeChat (Zalo), xem video ngắn, ít dùng các App khác
+
+## Hiện trạng của bà
+
+- Dựa vào trí nhớ để uống thuốc, thường xuyên quên mất mình đã uống chưa
+- Đôi khi uống lặp lại, đôi khi quên uống
+- Không muốn làm phiền tôi, nhưng thực ra tôi rất lo lắng
+
+## Nỗi đau của bà
+
+Trí nhớ không tốt, nhưng lại không muốn thừa nhận mình trí nhớ không tốt.
+
+## Kỳ vọng của bà
+
+- Chữ phải to, mắt bà không tốt lắm
+- Thao tác phải ít, tốt nhất chỉ có một nút bấm
+- Có thể để tôi nhìn thấy từ xa xem hôm nay bà đã uống thuốc chưa
+
+Hãy giúp tôi thiết kế một trang nhắc nhở uống thuốc mà bà có thể sử dụng.
+</code></pre>
+<h2>So sánh đầu ra của AI</h2>
+<p>Lấy danh sách việc cần làm làm ví dụ, xem sự khác biệt đầu ra của AI giữa hai loại Prompt:</p>
+<h3>Đầu ra điển hình của phiên bản không có câu chuyện</h3>
+<pre><code>Đây là thiết kế danh sách việc cần làm cơ bản:
+
+1. Trên cùng có một ô nhập liệu, dùng để thêm nhiệm vụ
+2. Bên dưới là danh sách nhiệm vụ, mỗi nhiệm vụ có:
+   - Ô tích chọn (đánh dấu hoàn thành)
+   - Văn bản nhiệm vụ
+   - Nút xóa
+3. Có thể cân nhắc thêm các tính năng sau:
+   - Phân loại nhiệm vụ
+   - Ngày hết hạn
+   - Nhãn ưu tiên
+   ...
+</code></pre>
+<h3>Đầu ra điển hình của phiên bản có câu chuyện</h3>
+<pre><code>Dựa trên nhu cầu của bạn, tôi đề xuất một thiết kế cực giản:
+
+Giao diện chỉ có hai yếu tố:
+1. Một ô nhập liệu lớn, bấm vào là bắt đầu nhập, Enter là thêm trực tiếp
+2. Danh sách nhiệm vụ, bấm vào nhiệm vụ là đánh dấu hoàn thành (có hoạt hình gạch ngang và phản hồi rung nhẹ)
+
+Nguyên tắc thiết kế:
+- Không có phân loại, ngày tháng, độ ưu tiên — giảm gánh nặng nhập liệu
+- Hoạt hình hoàn thành phải có cảm giác thỏa mãn — một hoạt hình &quot;√&quot; đơn giản
+- Tông màu tổng thể gọn gàng, không lòe loẹt
+
+Giải thích đặc biệt:
+- Cân nhắc việc bạn nói &quot;nhập liệu còn mệt hơn làm việc&quot;, nên đã bỏ tất cả các trường không cần thiết
+- Cân nhắc việc bạn nói &quot;cảm giác sướng khi giải quyết xong&quot;, nên khi hoàn thành sẽ có hoạt hình nhỏ
+...
+</code></pre>
+<p>Sự khác biệt rất rõ ràng: Phiên bản có câu chuyện đưa ra thiết kế phù hợp với nhu cầu hơn, và có thể giải thích "tại sao lại thiết kế như vậy".</p>
+<h2>Điểm chính của bài này</h2>
+<p>Prompt hóa câu chuyện không phải là để "viết cho dài", mà là để "cho AI thực sự hiểu bạn":</p>
+<ul>
+<li>Bốn yếu tố: Thân phận, hiện trạng, nỗi đau, kỳ vọng</li>
+<li>Prompt tốt giúp AI có thể đưa ra suy luận, chứ không chỉ thực hiện mệnh lệnh</li>
+<li>Mẫu có thể sao chép và sử dụng trực tiếp, điền nội dung tùy theo bối cảnh</li>
+</ul>
+<p>Tiếp theo, chúng ta sẽ thông qua bài tập thực chiến, áp dụng tư duy câu chuyện vào dự án của chính bạn.</p>
+</body>
+</html>

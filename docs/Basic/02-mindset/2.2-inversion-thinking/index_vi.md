@@ -55,10 +55,10 @@ Nhìn thấy trước thất bại, rẻ hơn gấp trăm lần so với việc 
 
 Phần này giúp bạn nắm vững tư duy ngược thông qua ba nội dung tăng tiến:
 
-1. **[Cơ bản về tư duy ngược](./2.2.1-inversion-thinking-basics.md)**: Từ trí tuệ tư duy của Carl Jacobi đến Charlie Munger, hiểu nguyên lý tâm lý học của Pre-mortem
+1. **[Cơ bản về tư duy ngược](./2.2.1-inversion-thinking-basics_vi.md)**: Từ trí tuệ tư duy của Carl Jacobi đến Charlie Munger, hiểu nguyên lý tâm lý học của Pre-mortem
 
-2. **[Phân tích mô hình thất bại](./2.2.2-pre-mortem-failure-patterns.md)**: Nguyên nhân thất bại điển hình và hướng dẫn tránh hố của dự án Vibe Coding, bao gồm bốn phương diện: nhu cầu, kỹ thuật, tình huống, thói quen
+2. **[Phân tích mô hình thất bại](./2.2.2-pre-mortem-failure-patterns_vi.md)**: Nguyên nhân thất bại điển hình và hướng dẫn tránh hố của dự án Vibe Coding, bao gồm bốn phương diện: nhu cầu, kỹ thuật, tình huống, thói quen
 
-3. **[Hướng dẫn thao tác thực chiến](./2.2.3-pre-mortem-practical-guide.md)**: Các bước thao tác Pre-mortem hoàn chỉnh, mẫu và công cụ, có thể áp dụng trực tiếp vào dự án của bạn
+3. **[Hướng dẫn thao tác thực chiến](./2.2.3-pre-mortem-practical-guide_vi.md)**: Các bước thao tác Pre-mortem hoàn chỉnh, mẫu và công cụ, có thể áp dụng trực tiếp vào dự án của bạn
 
 Thông qua học tập có hệ thống, bạn sẽ nắm vững một công cụ tư duy có thể nâng cao đáng kể tỷ lệ thành công của dự án.

@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.4.3 Vibe Vs Spec</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "1.4.3 Cách lựa chọn và chuyển đổi"</h2>
+<p><img alt="01-awakening_1.4-vibe-vs-spec_1.4.3-vibe-vs-spec.png" src="../../../public/images/Basic/01-awakening_1.4-vibe-vs-spec_1.4.3-vibe-vs-spec.png" /></p>
+<h1>1.4.3 Cách lựa chọn và chuyển đổi</h1>
+<h2>Tiêu chuẩn ra quyết định cốt lõi</h2>
+<p><strong>Mấu chốt không phải quy mô dự án, mà là độ rõ ràng của nhu cầu.</strong></p>
+<ul>
+<li><strong>Nhu cầu mơ hồ</strong> → Vibe Coding (làm rõ thông qua đối thoại)</li>
+<li><strong>Nhu cầu rõ ràng</strong> → Spec Coding (thực hiện theo quy chuẩn)</li>
+</ul>
+<h2>Khung phán đoán mức độ rõ ràng của nhu cầu</h2>
+<h3>1. Độ rõ ràng của nhu cầu (Trọng số cao nhất)</h3>
+<p><strong>Tín hiệu nhu cầu mơ hồ:</strong></p>
+<ul>
+<li>Chỉ có hướng đi lớn, chi tiết chưa chắc chắn</li>
+<li>"Tôi cảm thấy người dùng có thể cần..."</li>
+<li>"Đại khái làm một cái giống XX nhưng có điểm khác biệt"</li>
+<li>Cần nhìn thấy hiệu quả thực tế mới có thể xác định bước tiếp theo</li>
+</ul>
+<p><strong>Tín hiệu nhu cầu rõ ràng:</strong></p>
+<ul>
+<li>Có thể nói ra ngữ cảnh người dùng cụ thể</li>
+<li>Biết đầu vào đầu ra của từng chức năng</li>
+<li>Có tiêu chuẩn thành công rõ ràng</li>
+<li>Có thể liệt kê những chức năng nào không làm</li>
+</ul>
+<h3>2. Độ phức tạp dự án</h3>
+<p><strong>Dự án đơn giản (Nghiêng về Vibe):</strong></p>
+<ul>
+<li>Chức năng cốt lõi trong khoảng 3 cái</li>
+<li>Chủ yếu cho bản thân hoặc số ít người sử dụng</li>
+<li>Không cần bảo trì dài hạn</li>
+</ul>
+<p><strong>Dự án phức tạp (Nghiêng về Spec):</strong></p>
+<ul>
+<li>Các chức năng liên quan với nhau, sửa một cái ảnh hưởng cái khác</li>
+<li>Cần hợp tác nhiều người</li>
+<li>Số lượng người dùng lớn, yêu cầu tính ổn định cao</li>
+</ul>
+<h3>3. Yếu tố đội ngũ</h3>
+<p><strong>Phù hợp Vibe:</strong></p>
+<ul>
+<li>Dự án cá nhân</li>
+<li>Dự án tạm thời</li>
+<li>Dự án mang tính khám phá</li>
+</ul>
+<p><strong>Phù hợp Spec:</strong></p>
+<ul>
+<li>Hợp tác nhóm</li>
+<li>Cần bàn giao công việc</li>
+<li>Có lịch trình bàn giao rõ ràng</li>
+</ul>
+<h2>Chiến lược chuyển đổi linh hoạt</h2>
+<h3>Từ Vibe sang Spec</h3>
+<p><strong>Tín hiệu chuyển đổi:</strong></p>
+<ul>
+<li>Bắt đầu xuất hiện nhu cầu lặp lại</li>
+<li>Cần người khác hiểu dự án</li>
+<li>Đối thoại trở nên rất dài, AI bắt đầu quên</li>
+<li>Dự án có người dùng thực tế</li>
+</ul>
+<p><strong>Phương pháp chuyển đổi:</strong></p>
+<ol>
+<li>Tạm dừng phát triển chức năng mới</li>
+<li>Xem lại ghi chép đối thoại, tổng kết chức năng hiện có</li>
+<li>Viết tài liệu nhu cầu đơn giản</li>
+<li>Sau đó thực hiện theo quy chuẩn</li>
+</ol>
+<h3>Từ Spec sang Vibe</h3>
+<p><strong>Tín hiệu chuyển đổi:</strong></p>
+<ul>
+<li>Nhu cầu xảy ra thay đổi lớn</li>
+<li>Cần khám phá phương án kỹ thuật mới</li>
+<li>Quy chuẩn hiện có hạn chế sự đổi mới</li>
+</ul>
+<p><strong>Phương pháp chuyển đổi:</strong></p>
+<ol>
+<li>Xác định rõ mục tiêu và ranh giới khám phá</li>
+<li>Thiết lập giới hạn thời gian khám phá</li>
+<li>Sau khi hoàn thành khám phá, kịp thời sắp xếp thành quả</li>
+</ol>
+<h2>Mô hình sử dụng hỗn hợp</h2>
+<h3>Vibe + Spec song song</h3>
+<p><strong>Ngữ cảnh áp dụng</strong>: Phần lớn dự án thực tế</p>
+<p><strong>Phương pháp thao tác:</strong></p>
+<ul>
+<li>Kiến trúc tổng thể dùng Spec</li>
+<li>Thực hiện chức năng cụ thể dùng Vibe</li>
+<li>Định nghĩa giao diện (Interface) dùng Spec</li>
+<li>Chi tiết UI dùng Vibe</li>
+</ul>
+<h3>Sử dụng phân giai đoạn</h3>
+<p><strong>Giai đoạn khám phá</strong>: Vibe Coding</p>
+<ul>
+<li>Nhanh chóng kiểm chứng tính khả thi của ý tưởng</li>
+<li>Tìm ra nhu cầu thực sự của người dùng</li>
+<li>Thử nghiệm phương án kỹ thuật</li>
+</ul>
+<p><strong>Giai đoạn phát triển</strong>: Spec Coding</p>
+<ul>
+<li>Lặp lại chức năng ổn định</li>
+<li>Hợp tác nhóm phát triển</li>
+<li>Kiểm soát chất lượng</li>
+</ul>
+<p><strong>Giai đoạn điều chỉnh</strong>: Vibe Coding</p>
+<ul>
+<li>Thay đổi chức năng lớn</li>
+<li>Nâng cấp phương án kỹ thuật</li>
+<li>Cải tiến dựa trên phản hồi người dùng</li>
+</ul>
+<h2>Ví dụ ra quyết định thực tế</h2>
+<h3>Ví dụ 1: Công cụ ghi chép chi tiêu cá nhân</h3>
+<p><strong>Phân tích ban đầu:</strong></p>
+<ul>
+<li>Nhu cầu mơ hồ: Không rõ cụ thể cần chức năng gì</li>
+<li>Độ phức tạp thấp: Chắc là khá đơn giản</li>
+<li>Yếu tố đội ngũ: Cá nhân sử dụng</li>
+</ul>
+<p><strong>Quyết định: Vibe Coding</strong></p>
+<p><strong>Quá trình thực hiện:</strong></p>
+<ol>
+<li>Làm chức năng ghi chép cơ bản trước</li>
+<li>Trong quá trình sử dụng thấy cần thống kê phân tích → Tiếp tục dùng Vibe thêm vào</li>
+<li>Chức năng nhiều lên, bắt đầu hỗn loạn → Chuyển sang Spec, sắp xếp chức năng hiện có</li>
+<li>Sau đó lặp lại ổn định → Duy trì Spec</li>
+</ol>
+<h3>Ví dụ 2: Công cụ quản lý nhiệm vụ nhóm</h3>
+<p><strong>Phân tích ban đầu:</strong></p>
+<ul>
+<li>Nhu cầu rõ ràng: Biết rõ cần làm chức năng gì</li>
+<li>Độ phức tạp cao: Nhiều module liên quan lẫn nhau</li>
+<li>Yếu tố đội ngũ: Nhóm 5 người</li>
+</ul>
+<p><strong>Quyết định: Trực tiếp Spec Coding</strong></p>
+<p><strong>Tình huống đặc biệt:</strong></p>
+<ul>
+<li>Khám phá chức năng mới (như hiển thị biểu đồ) → Dùng Vibe thử nghiệm nhanh</li>
+<li>Xác định chức năng cần giữ lại → Bổ sung vào tài liệu Spec</li>
+</ul>
+<h3>Ví dụ 3: Kiểm chứng dự án khởi nghiệp</h3>
+<p><strong>Phân tích ban đầu:</strong></p>
+<ul>
+<li>Nhu cầu cực kỳ mơ hồ: Không chắc chắn phản ứng thị trường</li>
+<li>Độ phức tạp chưa biết: Xem phản hồi người dùng</li>
+<li>Yếu tố đội ngũ: Đội ngũ sáng lập</li>
+</ul>
+<p><strong>Quyết định: Bắt đầu bằng Vibe Coding</strong></p>
+<p><strong>Lộ trình tiến hóa:</strong></p>
+<ol>
+<li>MVP dùng Vibe phát triển nhanh</li>
+<li>Có phản hồi người dùng → Sắp xếp tài liệu nhu cầu</li>
+<li>Đội ngũ mở rộng → Chuyển toàn diện sang Spec</li>
+<li>Sản phẩm ổn định → Spec là chính, Vibe dùng cho đổi mới</li>
+</ol>
+<h2>Gợi ý lựa chọn</h2>
+<h3>Đừng suy nghĩ quá nhiều</h3>
+<p>Nếu đắn đo quá 5 phút, hãy bắt đầu bằng Vibe. Sự bắt đầu sai lầm có giá trị hơn kế hoạch hoàn hảo.</p>
+<h3>Định kỳ đánh giá lại</h3>
+<p>Mỗi khi hoàn thành một giai đoạn quan trọng, đánh giá lại xem có cần điều chỉnh phương pháp không.</p>
+<h3>Giữ sự linh hoạt</h3>
+<p>Không có phương pháp đúng tuyệt đối, phù hợp với giai đoạn hiện tại mới là tốt nhất.</p>
+<p><strong>Hãy nhớ: Vibe và Spec không phải là cái này hoặc cái kia, mà là các công cụ khác nhau trong hộp công cụ, sử dụng công cụ phù hợp vào thời điểm phù hợp.</strong></p>
+<p>Phần sau chúng ta học <a href="./1.4.4-context-management_vi.html">Kỹ năng quản lý Context</a>.</p>
+</body>
+</html>

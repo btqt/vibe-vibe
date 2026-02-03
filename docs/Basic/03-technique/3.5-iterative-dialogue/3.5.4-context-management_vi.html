@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.5.4 Context Management</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.5.4 Quản lý ngữ cảnh: Để AI ghi nhớ lời bạn đã nói"</h2>
+<p><img alt="03-technique_3.5-iterative-dialogue_3.5.4-context-management.png" src="../../../public/images/Basic/03-technique_3.5-iterative-dialogue_3.5.4-context-management.png" /></p>
+<h1>3.5.4 Quản lý ngữ cảnh: Để AI ghi nhớ lời bạn đã nói</h1>
+<h2>Qua phần học này, bạn sẽ nắm vững</h2>
+<ul>
+<li>Hiểu cách "trí nhớ" của AI hoạt động</li>
+<li>Nhận biết tín hiệu "tràn" ngữ cảnh</li>
+<li>Bốn kỹ thuật quản lý ngữ cảnh thực dụng</li>
+<li>Sử dụng cấu hình cấp công cụ để AI "tự động ghi nhớ" quy chuẩn dự án</li>
+</ul>
+<h2>"Trí nhớ" của AI hoạt động như thế nào</h2>
+<p>Đầu tiên hãy hiểu một khái niệm then chốt: AI không có "trí nhớ" thực sự.</p>
+<p>Mỗi lần bạn đối thoại với AI, cái AI nhìn thấy là <strong>toàn bộ lịch sử đối thoại</strong>. Giống như bạn đưa một xấp giấy cho một người, bảo họ đọc xong rồi trả lời câu hỏi. Giấy càng nhiều, lượng thông tin họ cần xử lý càng lớn.</p>
+<p>Xấp "giấy" này có một cái tên: <strong>Cửa sổ ngữ cảnh (Context Window)</strong>.</p>
+<h3>Dùng "bàn làm việc" để hiểu</h3>
+<p>Tưởng tượng cửa sổ ngữ cảnh của AI là một cái bàn làm việc:</p>
+<pre><code>┌────────────────────────────────────────────┐
+│              Bàn làm việc của AI            │
+│  ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐      │
+│  │  Vòng │ │  Vòng │ │  Vòng │ │  Vòng │ ... │
+│  │   1  │ │   2  │ │   3  │ │   4  │      │
+│  └──────┘ └──────┘ └──────┘ └──────┘      │
+│                                            │
+│  Kích thước bàn có hạn (như 128K tokens)    │
+└────────────────────────────────────────────┘
+</code></pre>
+<p><strong>Đặc điểm bàn làm việc</strong>:
+- Kích thước có hạn (tùy model, thường là 8K-200K tokens)
+- Khi không bỏ vừa nữa, <strong>nội dung cũ nhất sẽ bị "đẩy ra ngoài"</strong>
+- Nội dung bị đẩy ra ngoài, AI sẽ "quên" mất</p>
+<h3>Kích thước cửa sổ ngữ cảnh của các model khác nhau</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Cửa sổ ngữ cảnh</th>
+<th>Tương đương khoảng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPT-4o</td>
+<td>128K tokens</td>
+<td>Khoảng 300 trang tài liệu</td>
+</tr>
+<tr>
+<td>Claude 3.5 Sonnet</td>
+<td>200K tokens</td>
+<td>Khoảng 500 trang tài liệu</td>
+</tr>
+<tr>
+<td>DeepSeek</td>
+<td>64K tokens</td>
+<td>Khoảng 150 trang tài liệu</td>
+</tr>
+<tr>
+<td>Model cũ hơn</td>
+<td>4K-8K tokens</td>
+<td>Khoảng 10-20 trang tài liệu</td>
+</tr>
+</tbody>
+</table>
+<p>Trông có vẻ lớn? Nhưng trong các cuộc đối thoại dài, tốc độ tiêu hao nhanh hơn bạn tưởng tượng.</p>
+<h2>Tín hiệu "tràn" ngữ cảnh</h2>
+<p>Khi cuộc đối thoại quá dài, nội dung ban đầu bị đẩy khỏi cửa sổ ngữ cảnh, sẽ xuất hiện hiện tượng "tràn".</p>
+<h3>Triệu chứng thường gặp</h3>
+<table>
+<thead>
+<tr>
+<th>Triệu chứng</th>
+<th>Biểu hiện</th>
+<th>Nguyên nhân</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI đột nhiên "mất trí nhớ"</td>
+<td>Quên mất stack kỹ thuật hoặc quy chuẩn đặt tên đã giao ước trước đó</td>
+<td>Đối thoại ban đầu bị đẩy ra ngoài</td>
+</tr>
+<tr>
+<td>Bắt đầu "tự mâu thuẫn"</td>
+<td>Câu trả lời trước sau bất nhất</td>
+<td>Chỉ nhìn thấy một phần lịch sử</td>
+</tr>
+<tr>
+<td>Hỏi lại câu hỏi bạn đã hỏi</td>
+<td>"Xin hỏi bạn dùng framework gì?" (Trước đó đã nói rồi)</td>
+<td>Phần đối thoại đó không còn trong cửa sổ</td>
+</tr>
+<tr>
+<td>Phong cách code thay đổi đột ngột</td>
+<td>Trước dùng TypeScript, đột nhiên bắt đầu viết JavaScript</td>
+<td>Quên mất giao ước về stack kỹ thuật</td>
+</tr>
+</tbody>
+</table>
+<h3>Một tình huống thực tế</h3>
+<pre><code>Vòng 1: Bạn nói &quot;Hãy dùng TypeScript và Tailwind&quot;
+Vòng 2: AI dùng TypeScript viết code
+Vòng 3: Tiếp tục dùng TypeScript
+...
+Vòng 15: Bạn bảo AI viết một component mới
+Vòng 16: AI đột nhiên đưa cho bạn code JavaScript ← Vấn đề xuất hiện
+</code></pre>
+<p>Đây chính là tràn ngữ cảnh. Giao ước ở vòng 1 đã bị đẩy khỏi bàn làm việc rồi.</p>
+<h2>Bốn kỹ thuật quản lý ngữ cảnh</h2>
+<h3>Kỹ thuật 1: Ghim thông tin quan trọng lên đầu</h3>
+<p>Khi bắt đầu mỗi vòng đối thoại, nhắc lại các giao ước quan trọng.</p>
+<pre><code class="language-markdown">Tiếp tục dự án danh sách việc cần làm của chúng ta.
+
+Nhắc nhở:
+- Stack kỹ thuật: React + TypeScript + Tailwind
+- Quy chuẩn đặt tên: Component dùng PascalCase, hàm dùng camelCase
+- Tất cả hàm cần khai báo kiểu
+
+Bây giờ hãy giúp tôi thực hiện [Chức năng mới]...
+</code></pre>
+<p><strong>Hiệu quả</strong>: Thông tin quan trọng luôn nằm trong "tầm nhìn" của AI.</p>
+<h3>Kỹ thuật 2: Tóm tắt định kỳ</h3>
+<p>Khi đối thoại diễn ra hơn 10 vòng, hãy chủ động bảo AI tóm tắt công việc đã hoàn thành.</p>
+<pre><code class="language-markdown">Chúng ta đã nói chuyện rất nhiều vòng rồi. Hãy tóm tắt lại trạng thái dự án hiện tại:
+1. Các chức năng đã hoàn thành
+2. Stack kỹ thuật và giao ước đang sử dụng
+3. Các chức năng chờ hoàn thành
+
+Sau đó chúng ta tiếp tục phát triển.
+</code></pre>
+<p><strong>Hiệu quả</strong>:
+- "Nén" các thông tin nằm rải rác khắp nơi thành một đoạn tóm tắt
+- Tóm tắt ở vị trí mới nhất, sẽ không bị đẩy ra ngoài
+- Bạn cũng có thể xác nhận xem AI hiểu có đúng không</p>
+<h3>Kỹ thuật 3: Truyền tải phân mảnh</h3>
+<p>Đừng gửi lượng thông tin lớn một lần. Chia thành nhiều mảnh nhỏ, mỗi mảnh xác nhận AI hiểu rồi mới tiếp tục.</p>
+<pre><code>❌ Cách làm sai:
+Gửi tài liệu nhu cầu 3000 chữ một lần
+
+✅ Cách làm đúng:
+Tin nhắn đầu tiên: &quot;Tôi muốn làm một ứng dụng danh sách việc cần làm, đầu tiên định nghĩa cấu trúc dữ liệu cốt lõi...&quot;
+Đợi AI trả lời xác nhận xong
+Tin nhắn thứ hai: &quot;Cấu trúc dữ liệu chốt rồi, tiếp theo là danh sách chức năng chính...&quot;
+</code></pre>
+<p><strong>Hiệu quả</strong>:
+- Mỗi mảnh thông tin đều được xử lý đầy đủ
+- Giảm xác suất AI bỏ sót thông tin
+- Thuận tiện phát hiện kịp thời sự sai lệch trong cách hiểu</p>
+<h3>Kỹ thuật 4: Nhắc lại giao ước</h3>
+<p>Nhắc lại các giao ước quan trọng ở các nút thắt then chốt, đặc biệt là:
+- Khi bắt đầu chức năng mới
+- Khi phát hiện AI lệch khỏi giao ước
+- Khi đối thoại vượt quá 10 vòng</p>
+<pre><code class="language-markdown">Trước khi bắt đầu chức năng mới, xác nhận lại giao ước của chúng ta:
+1. Sử dụng TypeScript, không dùng kiểu any
+2. Component đặt ở thư mục src/components
+3. Quản lý trạng thái dùng useState, trạng thái phức tạp dùng useReducer
+4. Xử lý lỗi dùng try-catch
+
+Sau khi xác nhận, hãy bắt đầu thực hiện [Chức năng].
+</code></pre>
+<h2>Mẫu quản lý ngữ cảnh thực dụng</h2>
+<h3>Thiết lập ngữ cảnh khi bắt đầu đối thoại</h3>
+<pre><code class="language-markdown">Bối cảnh dự án:
+- Tên dự án: [Tên]
+- Stack kỹ thuật: [Danh sách stack kỹ thuật]
+- Tiến độ hiện tại: [Mô tả ngắn gọn]
+
+Nhiệm vụ lần này:
+[Mô tả nhiệm vụ cụ thể]
+
+Hãy chú ý các giao ước sau:
+1. [Giao ước 1]
+2. [Giao ước 2]
+3. [Giao ước 3]
+</code></pre>
+<h3>"Điểm kiểm tra" giữa chừng đối thoại dài</h3>
+<pre><code class="language-markdown">Tạm dừng một chút, để tôi xác nhận trạng thái hiện tại:
+
+Đã hoàn thành:
+1. [Chức năng 1]
+2. [Chức năng 2]
+
+Kỹ thuật/Giao ước sử dụng:
+- [Giao ước 1]
+- [Giao ước 2]
+
+Tiếp theo cần làm:
+[Nhiệm vụ tiếp theo]
+
+Hiểu như trên có đúng không? Xác nhận xong thì tiếp tục.
+</code></pre>
+<h3>Đính chính khi vi phạm giao ước</h3>
+<pre><code class="language-markdown">Chú ý: Code vừa rồi đã dùng JavaScript, nhưng dự án chúng ta quy định dùng TypeScript.
+
+Hãy tạo lại, và đảm bảo:
+1. Tất cả biến và hàm đều có khai báo kiểu
+2. Không dùng kiểu any
+3. Export định nghĩa kiểu để component khác sử dụng
+</code></pre>
+<h2>Quản lý ngữ cảnh cấp công cụ</h2>
+<p>Ngoài việc quản lý ngữ cảnh trong đối thoại, các AI IDE chủ lưu còn cung cấp tính năng <strong>cấu hình bền vững</strong>. Những cấu hình này sẽ tự động tải mỗi khi bắt đầu đối thoại, để AI "bẩm sinh" đã biết quy chuẩn dự án của bạn.</p>
+<h3>Bảng đối chiếu file cấu hình của các công cụ chủ lưu</h3>
+<table>
+<thead>
+<tr>
+<th>Công cụ</th>
+<th>Vị trí file cấu hình</th>
+<th>Định vị chức năng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cursor</strong></td>
+<td><code>.cursor/rules/*.mdc</code></td>
+<td>Quy chuẩn dự án, phong cách code, sở thích stack kỹ thuật</td>
+</tr>
+<tr>
+<td><strong>Windsurf</strong></td>
+<td><code>.windsurf/rules/*.md</code> hoặc <code>.windsurfrules</code></td>
+<td>Quy tắc hành vi AI cấp dự án</td>
+</tr>
+<tr>
+<td><strong>Trae</strong></td>
+<td><code>.trae/project_rules.md</code>, <code>user_rules.md</code></td>
+<td>Quy tắc người dùng + Quy tắc dự án</td>
+</tr>
+<tr>
+<td><strong>Claude Code</strong></td>
+<td><code>CLAUDE.md</code> + <code>SKILL.md</code></td>
+<td>Ngữ cảnh dự án + Skill tái sử dụng</td>
+</tr>
+<tr>
+<td><strong>GitHub Copilot</strong></td>
+<td><code>.github/copilot-instructions.md</code></td>
+<td>Chỉ thị cấp kho lưu trữ</td>
+</tr>
+<tr>
+<td><strong>OpenAI Codex</strong></td>
+<td><code>AGENTS.md</code></td>
+<td>File chỉ thị Agent</td>
+</tr>
+<tr>
+<td><strong>Factory Droid</strong></td>
+<td><code>.factory/droids/*.md</code></td>
+<td>Cấu hình Droid tùy chỉnh</td>
+</tr>
+<tr>
+<td><strong>Aider</strong></td>
+<td><code>CONVENTIONS.md</code></td>
+<td>File quy chuẩn code</td>
+</tr>
+<tr>
+<td><strong>Cline</strong></td>
+<td><code>.clinerules</code></td>
+<td>Quy tắc dự án</td>
+</tr>
+</tbody>
+</table>
+<h3>File cấu hình nên viết gì?</h3>
+<p>Bất kể dùng công cụ nào, file cấu hình thường bao gồm:</p>
+<ol>
+<li><strong>Tổng quan dự án</strong>: Đây là dự án gì, giải quyết vấn đề gì</li>
+<li><strong>Stack kỹ thuật</strong>: Ngôn ngữ, framework, thư viện sử dụng</li>
+<li><strong>Quy chuẩn code</strong>: Quy ước đặt tên, phong cách code, cấu trúc thư mục</li>
+<li><strong>Việc cấm làm</strong>: Đừng dùng thư viện nào, đừng áp dụng mô hình nào</li>
+<li><strong>Lệnh thường dùng</strong>: Lệnh build, test, deploy</li>
+</ol>
+<h3>Mẫu cấu hình dự án chung</h3>
+<pre><code class="language-markdown"># Cấu hình dự án
+
+## Tổng quan dự án
+Đây là ứng dụng danh sách việc cần làm, giúp người dùng quản lý nhiệm vụ hàng ngày.
+
+## Stack kỹ thuật
+- Frontend: React 18 + TypeScript 5
+- Style: Tailwind CSS 3
+- Quản lý trạng thái: Zustand
+- Test: Vitest
+
+## Cấu trúc thư mục
+- src/components: Component React
+- src/hooks: Hooks tùy chỉnh
+- src/utils: Hàm công cụ
+- src/types: Định nghĩa kiểu TypeScript
+
+## Quy chuẩn code
+- Sử dụng Functional Component, không dùng Class Component
+- Tất cả hàm bắt buộc có khai báo kiểu TypeScript
+- File component đặt tên theo PascalCase
+- Hàm công cụ đặt tên theo camelCase
+- Sử dụng chú thích tiếng Việt
+
+## Những việc cấm làm
+- Không dùng kiểu `any`
+- Không dùng jQuery
+- Không viết inline style trực tiếp trong component (dùng Tailwind)
+- Không dùng `var`, dùng `const` hoặc `let`
+
+## Lệnh thường dùng
+- Phát triển: npm run dev
+- Build: npm run build
+- Test: npm test
+</code></pre>
+<h3>Tại sao file cấu hình lại quan trọng?</h3>
+<table>
+<thead>
+<tr>
+<th>Không có file cấu hình</th>
+<th>Có file cấu hình</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mỗi lần đối thoại đều phải nói lại stack kỹ thuật</td>
+<td>AI tự động biết stack kỹ thuật</td>
+</tr>
+<tr>
+<td>AI có thể dùng sai quy chuẩn</td>
+<td>Quy chuẩn luôn nhất quán</td>
+</tr>
+<tr>
+<td>Thành viên team mỗi người cấu hình một kiểu</td>
+<td>Team chia sẻ cùng một cấu hình</td>
+</tr>
+<tr>
+<td>Giao ước dễ bị quên lãng</td>
+<td>Giao ước được quản lý phiên bản</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Gợi ý</strong>: Phương pháp cấu hình chi tiết của từng công cụ cụ thể, vui lòng tham khảo tài liệu chính thức của công cụ đó. Bản cơ bản chỉ cần biết sự tồn tại của các tính năng này là được, bản nâng cao sẽ có hướng dẫn cấu hình công cụ chi tiết hơn.</p>
+</blockquote>
+<h2>Điểm cốt yếu phần này</h2>
+<p>✓ <strong>AI không có trí nhớ thực sự</strong>: Nó nhìn thấy lịch sử đối thoại, lịch sử quá dài sẽ bị "tràn"</p>
+<p>✓ <strong>Tín hiệu tràn</strong>: AI mất trí nhớ, tự mâu thuẫn, phong cách code thay đổi đột ngột</p>
+<p>✓ <strong>Bốn kỹ thuật quản lý</strong>: Ghim thông tin quan trọng, tóm tắt định kỳ, truyền tải phân mảnh, nhắc lại giao ước</p>
+<p>✓ <strong>Cấu hình cấp công cụ</strong>: Dùng file cấu hình để AI tự động tải quy chuẩn dự án</p>
+<p>✓ <strong>Hợp tác nhóm</strong>: File cấu hình có thể đưa vào quản lý phiên bản, chia sẻ trong nhóm</p>
+<p>Phần tiếp theo, chúng ta sẽ học khi nào nên từ bỏ cuộc đối thoại cũ và bắt đầu một cuộc đối thoại hoàn toàn mới.</p>
+</body>
+</html>

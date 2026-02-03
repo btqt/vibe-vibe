@@ -1,0 +1,372 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.2.2 Scaff Framework</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.2.2 Khung S.C.A.F.F. (Khung đề xuất)"</h2>
+<p><img alt="03-technique_3.2-structured-frameworks_3.2.2-scaff-framework.png" src="../../../public/images/Basic/03-technique_3.2-structured-frameworks_3.2.2-scaff-framework.png" /></p>
+<h1>3.2.2 Khung S.C.A.F.F. (Khung đề xuất)</h1>
+<h2>Sau bài học này, bạn sẽ nắm được</h2>
+<ul>
+<li>5 yếu tố của khung S.C.A.F.F. và ý nghĩa của chúng</li>
+<li>Cách dùng khung này mô tả một nhiệm vụ phát triển kỹ thuật</li>
+<li>Phiên bản tinh gọn của khung, thích hợp dùng nhanh hàng ngày</li>
+<li>Nhận được mẫu Prompt có thể sao chép dùng ngay</li>
+</ul>
+<h2>Cấu trúc khung tư duy</h2>
+<p>S.C.A.F.F. là viết tắt chữ cái đầu của 5 từ tiếng Anh:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Chữ cái</th>
+<th style="text-align: left;">Tiếng Anh</th>
+<th style="text-align: left;">Tiếng Việt</th>
+<th style="text-align: left;">Câu hỏi cốt lõi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>S</strong></td>
+<td style="text-align: left;">Situation</td>
+<td style="text-align: left;">Tình huống</td>
+<td style="text-align: left;">Bạn đang làm dự án gì? Trạng thái hiện tại ra sao?</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>C</strong></td>
+<td style="text-align: left;">Challenge</td>
+<td style="text-align: left;">Thách thức</td>
+<td style="text-align: left;">Vấn đề cụ thể cần giải quyết hiện tại là gì?</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>A</strong></td>
+<td style="text-align: left;">Audience</td>
+<td style="text-align: left;">Khán giả</td>
+<td style="text-align: left;">Code/Sản phẩm cho ai dùng? Ai bảo trì?</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>F</strong></td>
+<td style="text-align: left;">Format</td>
+<td style="text-align: left;">Định dạng</td>
+<td style="text-align: left;">Kỳ vọng AI xuất ra định dạng gì?</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>F</strong></td>
+<td style="text-align: left;">Foundations</td>
+<td style="text-align: left;">Nền tảng</td>
+<td style="text-align: left;">Những ràng buộc và nguyên tắc bắt buộc tuân thủ là gì?</td>
+</tr>
+</tbody>
+</table>
+<p>Logic thiết kế của khung này là: <strong>Đưa bối cảnh trước, sau đó nói vấn đề, rồi xác định đối tượng, cuối cùng ràng buộc ranh giới</strong>.</p>
+<h2>Giải thích chi tiết 5 yếu tố</h2>
+<h3>S - Situation (Tình huống)</h3>
+<p>Trả lời: <strong>Bạn đang làm gì? Tiến độ hiện tại thế nào?</strong></p>
+<p>Nội dung điền:</p>
+<ul>
+<li>Loại dự án và mục tiêu</li>
+<li>Tech stack sử dụng</li>
+<li>Giai đoạn phát triển hiện tại</li>
+<li>Cấu trúc code hoặc quyết định thiết kế đã có</li>
+</ul>
+<p><strong>Mẹo điền</strong>: Tưởng tượng bạn đang giới thiệu tình hình cho một đồng nghiệp mới gia nhập dự án.</p>
+<h3>C - Challenge (Thách thức)</h3>
+<p>Trả lời: <strong>Hiện tại cụ thể cần giải quyết vấn đề gì?</strong></p>
+<p>Nội dung điền:</p>
+<ul>
+<li>Tính năng cần thực hiện hoặc vấn đề cần sửa chữa</li>
+<li>Đầu vào là gì, đầu ra là gì</li>
+<li>Logic nghiệp vụ cụ thể</li>
+</ul>
+<p><strong>Mẹo điền</strong>: Một câu nói rõ "làm xong việc này, trạng thái gì biến thành trạng thái gì".</p>
+<h3>A - Audience (Khán giả)</h3>
+<p>Trả lời: <strong>Sản phẩm làm ra cho ai dùng?</strong></p>
+<p>Nội dung điền:</p>
+<ul>
+<li>Người sử dụng code là ai (Người dùng cuối? Lập trình viên khác?)</li>
+<li>Người bảo trì code là ai (Bạn? Nhóm?)</li>
+<li>Trình độ kỹ thuật của người sử dụng/người bảo trì</li>
+</ul>
+<p><strong>Mẹo điền</strong>: Điều này quyết định độ phức tạp của code và mức độ chi tiết của chú thích.</p>
+<h3>F - Format (Định dạng)</h3>
+<p>Trả lời: <strong>Kỳ vọng AI xuất ra kết quả dưới hình thức nào?</strong></p>
+<p>Nội dung điền:</p>
+<ul>
+<li>Code hoàn chỉnh hay đoạn code rời rạc</li>
+<li>Cần định dạng file gì</li>
+<li>Có cần chú thích không</li>
+<li>Có cần hướng dẫn sử dụng không</li>
+</ul>
+<p><strong>Mẹo điền</strong>: Càng cụ thể càng tốt. "Cho tôi code" không bằng "Cho tôi một file React Component hoàn chỉnh, bao gồm định nghĩa kiểu TypeScript".</p>
+<h3>F - Foundations (Nền tảng)</h3>
+<p>Trả lời: <strong>Có ràng buộc gì bắt buộc phải tuân thủ?</strong></p>
+<p>Nội dung điền:</p>
+<ul>
+<li>Ràng buộc kỹ thuật (bắt buộc/không được dùng thư viện nào đó)</li>
+<li>Ràng buộc hiệu năng (thời gian phản hồi, giới hạn bộ nhớ)</li>
+<li>Ràng buộc phong cách (quy tắc đặt tên, phong cách code)</li>
+<li>Ràng buộc bảo mật (xử lý dữ liệu nhạy cảm)</li>
+</ul>
+<p><strong>Mẹo điền</strong>: Dùng tư duy "Danh sách không làm" ở Chương 2 —— nói rõ cho AI biết không được làm gì.</p>
+<h2>Ví dụ hoàn chỉnh: Trang đăng nhập</h2>
+<p>Xem một trường hợp cụ thể: Bạn cần AI giúp thực hiện một trang đăng nhập.</p>
+<h3>❌ Prompt dở</h3>
+<pre><code>Giúp tôi làm một trang đăng nhập
+</code></pre>
+<p><strong>Vấn đề</strong>: AI không biết dùng công nghệ gì, phong cách gì, cần chức năng gì, có giới hạn gì. Kết quả xác suất cao là một "mẫu chung chung", lạc quẻ với dự án của bạn.</p>
+<h3>✅ Viết lại bằng khung S.C.A.F.F.</h3>
+<pre><code class="language-markdown">【Situation - Tình huống】
+Tôi đang phát triển trang quản trị cho hệ thống blog cá nhân.
+Tech stack: Next.js 16 + TypeScript + Tailwind CSS
+Tiến độ hiện tại: Trang chủ và trang danh sách bài viết đã xong, giờ cần thêm chức năng đăng nhập.
+Phong cách thiết kế: Tối giản, tham khảo trang đăng nhập của Notion.
+
+【Challenge - Thách thức】
+Thực hiện trang đăng nhập quản trị viên:
+
+- Form bao gồm: Ô nhập email, ô nhập mật khẩu, nút đăng nhập
+- Sau khi bấm đăng nhập, kiểm tra định dạng (định dạng email, mật khẩu không rỗng)
+- Khi định dạng sai, hiển thị thông báo đỏ bên dưới ô nhập tương ứng
+- Tạm thời chưa cần xác thực backend thật, làm giao diện và tương tác frontend trước
+
+【Audience - Khán giả】
+
+- Người dùng: Chỉ có mình tôi (quản trị viên blog)
+- Người bảo trì code: Chính tôi, người mới học React
+- Vui lòng thêm chú thích vào các chỗ logic quan trọng, giúp tôi hiểu
+
+【Format - Định dạng】
+Vui lòng cung cấp:
+
+1. Code component trang đăng nhập hoàn chỉnh (một file)
+2. Bao gồm định nghĩa kiểu TypeScript
+3. Style dùng Tailwind CSS
+4. Tên file: LoginPage.tsx
+
+【Foundations - Ràng buộc nền tảng】
+
+- Không dùng bất kỳ thư viện UI component nào (như shadcn/ui, Ant Design)
+- Không dùng thư viện form bên thứ ba (như React Hook Form)
+- Quản lý trạng thái dùng useState nguyên bản của React
+- Thiết kế Responsive: Phải thích ứng cả mobile và desktop
+</code></pre>
+<h3>So sánh sự khác biệt đầu ra</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Khía cạnh</th>
+<th style="text-align: left;">Đầu ra có thể của Prompt dở</th>
+<th style="text-align: left;">Đầu ra có thể của S.C.A.F.F.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tech stack</td>
+<td style="text-align: left;">Có thể là thuần HTML hoặc Vue</td>
+<td style="text-align: left;">Chắc chắn là Next.js + TS + Tailwind</td>
+</tr>
+<tr>
+<td style="text-align: left;">Phạm vi chức năng</td>
+<td style="text-align: left;">Có thể bao gồm đăng ký, quên mật khẩu</td>
+<td style="text-align: left;">Chỉ đăng nhập, khớp nhu cầu hiện tại</td>
+</tr>
+<tr>
+<td style="text-align: left;">Độ phức tạp code</td>
+<td style="text-align: left;">Có thể dùng thư viện bạn không quen</td>
+<td style="text-align: left;">Dùng useState, thân thiện người mới</td>
+</tr>
+<tr>
+<td style="text-align: left;">Chú thích</td>
+<td style="text-align: left;">Có thể không có</td>
+<td style="text-align: left;">Logic quan trọng có chú thích</td>
+</tr>
+<tr>
+<td style="text-align: left;">Phong cách</td>
+<td style="text-align: left;">Phong cách ngẫu nhiên</td>
+<td style="text-align: left;">Phong cách tối giản, tham khảo Notion</td>
+</tr>
+</tbody>
+</table>
+<h2>Case study danh sách việc cần làm: Chức năng thêm nhiệm vụ</h2>
+<p>Tiếp tục dự án của Tiểu Lý ở Chương 2, dùng khung S.C.A.F.F. mô tả chức năng "thêm nhiệm vụ":</p>
+<pre><code class="language-markdown">【Situation - Tình huống】
+Tôi đang làm một ứng dụng web danh sách việc cần làm cá nhân.
+Tech stack: React + TypeScript + Tailwind CSS
+Người dùng mục tiêu: Người mới đi làm hay quên việc giống như tôi
+Nguyên tắc thiết kế: Cực giản, mở ra là thấy việc hôm nay, thêm nhiệm vụ hoàn thành trong 3 giây
+Tiến độ hiện tại: Dự án vừa khởi tạo, chưa có code chức năng nào
+
+【Challenge - Thách thức】
+Thực hiện chức năng &quot;thêm nhiệm vụ&quot;:
+
+- Người dùng nhập nội dung nhiệm vụ vào ô nhập liệu
+- Bấm phím Enter hoặc nút thêm, nhiệm vụ được thêm vào danh sách
+- Thêm thành công tự động xóa trắng ô nhập liệu và focus lại
+- Nội dung rỗng không được thêm, ô nhập liệu rung nhẹ để nhắc nhở
+
+【Audience - Khán giả】
+
+- Người dùng: Chính tôi, mong muốn thao tác càng đơn giản càng tốt
+- Người bảo trì: Chính tôi, người mới học React
+- Vui lòng giải thích tại sao lại dùng cách thực hiện này
+
+【Format - Định dạng】
+Vui lòng cung cấp:
+
+1. Code component AddTask (xử lý nhập và thêm)
+2. Code component TaskList (hiển thị danh sách nhiệm vụ)
+3. Hướng dẫn sử dụng component đơn giản
+
+【Foundations - Ràng buộc nền tảng】
+
+- Dữ liệu nhiệm vụ lưu tạm trong state của component, chưa cần lưu lâu dài
+- Không dùng bất kỳ thư viện quản lý trạng thái nào (Redux, Zustand v.v.)
+- Style dùng Tailwind, giữ sự đơn giản
+- Mỗi nhiệm vụ chỉ cần: Nội dung text + Trạng thái hoàn thành
+</code></pre>
+<h2>Bản tinh gọn: 3 yếu tố S.C.F.</h2>
+<p>Khi sử dụng nhanh hàng ngày, có thể chỉ giữ lại 3 yếu tố cốt lõi:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Yếu tố</th>
+<th style="text-align: left;">Lý do bắt buộc điền</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>S</strong> - Situation</td>
+<td style="text-align: left;">Không có bối cảnh, AI chỉ có thể đoán</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>C</strong> - Challenge</td>
+<td style="text-align: left;">Đây là vấn đề bạn cần giải quyết</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>F</strong> - Foundations</td>
+<td style="text-align: left;">Ràng buộc quyết định ranh giới đầu ra</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mẫu bản tinh gọn</strong>:</p>
+<pre><code class="language-markdown">【Bối cảnh】
+[Loại dự án] + [Tech stack] + [Trạng thái hiện tại]
+
+【Nhiệm vụ】
+[Cụ thể cần làm gì]
+
+【Ràng buộc】
+
+- [Giới hạn bắt buộc tuân thủ 1]
+- [Giới hạn bắt buộc tuân thủ 2]
+</code></pre>
+<p><strong>Ví dụ bản tinh gọn</strong>:</p>
+<pre><code class="language-markdown">【Bối cảnh】
+Dự án danh sách việc cần làm React + TS, đã hoàn thành cấu trúc cơ bản
+
+【Nhiệm vụ】
+Thực hiện chức năng xóa nhiệm vụ: Bấm icon xóa bên phải nhiệm vụ, nhiệm vụ đó bị xóa khỏi danh sách
+
+【Ràng buộc】
+
+- Hiển thị xác nhận trước khi xóa
+- Dùng Tailwind CSS
+- Hiệu ứng xóa: Mờ dần (Fade out)
+</code></pre>
+<h2>Mẫu đầy đủ có thể sao chép</h2>
+<pre><code class="language-markdown">【Situation - Tình huống】
+Loại dự án:
+Tech stack:
+Tiến độ hiện tại:
+Phong cách/Nguyên tắc thiết kế:
+
+【Challenge - Thách thức】
+Chức năng cần thực hiện:
+
+-
+-
+- Đầu vào:
+  Đầu ra:
+
+【Audience - Khán giả】
+Người dùng là ai:
+Người bảo trì là ai:
+Trình độ kỹ thuật:
+
+【Format - Định dạng】
+Kỳ vọng đầu ra:
+
+- [ ] File code hoàn chỉnh
+- [ ] Đoạn code
+- [ ] Bao gồm chú thích
+- [ ] Bao gồm hướng dẫn sử dụng
+      Tên file:
+
+【Foundations - Ràng buộc nền tảng】
+Bắt buộc:
+
+-
+- Không được:
+-
+-
+</code></pre>
+<h2>Những hiểu lầm thường gặp khi điền</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Hiểu lầm</th>
+<th style="text-align: left;">Vấn đề</th>
+<th style="text-align: left;">Cách làm đúng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Situation viết quá dài</td>
+<td style="text-align: left;">AI sẽ lạc lối trong chi tiết</td>
+<td style="text-align: left;">Chỉ viết bối cảnh liên quan đến nhiệm vụ hiện tại</td>
+</tr>
+<tr>
+<td style="text-align: left;">Challenge không cụ thể</td>
+<td style="text-align: left;">"Tối ưu code" quá mơ hồ</td>
+<td style="text-align: left;">Nói rõ tối ưu phương diện nào</td>
+</tr>
+<tr>
+<td style="text-align: left;">Quên viết Audience</td>
+<td style="text-align: left;">AI không biết code cho ai xem</td>
+<td style="text-align: left;">Người mới yêu cầu chú thích, cao thủ có thể bỏ qua</td>
+</tr>
+<tr>
+<td style="text-align: left;">Format chỉ viết "cho tôi code"</td>
+<td style="text-align: left;">Định dạng đầu ra ngẫu nhiên</td>
+<td style="text-align: left;">Chỉ định loại file, có cần chú thích không</td>
+</tr>
+<tr>
+<td style="text-align: left;">Foundations chỉ viết "phải làm gì"</td>
+<td style="text-align: left;">AI có thể "tự biên tự diễn"</td>
+<td style="text-align: left;">Viết rõ cả "không được làm gì"</td>
+</tr>
+</tbody>
+</table>
+<h2>Trọng điểm bài học</h2>
+<p>✓ <strong>5 yếu tố S.C.A.F.F.</strong>: Situation (Tình huống), Challenge (Thách thức), Audience (Khán giả), Format (Định dạng), Foundations (Nền tảng/Ràng buộc)</p>
+<p>✓ <strong>Logic điền</strong>: Đưa bối cảnh trước → Nói vấn đề → Xác định đối tượng → Ràng buộc ranh giới</p>
+<p>✓ <strong>Bản tinh gọn S.C.F.</strong>: Dùng nhanh hàng ngày, giữ lại 3 yếu tố Bối cảnh, Nhiệm vụ, Ràng buộc</p>
+<p>✓ <strong>Kỹ thuật then chốt</strong>: "Danh sách không làm" và "Danh sách làm" quan trọng như nhau</p>
+<p>Bài sau, chúng ta sẽ học một khung nhẹ nhàng hơn: R.G.C. —— thích hợp cho việc đặt câu hỏi nhanh và nhiệm vụ đơn giản.</p>
+</body>
+</html>

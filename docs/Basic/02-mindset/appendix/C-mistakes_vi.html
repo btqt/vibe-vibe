@@ -1,0 +1,461 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C Mistakes</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "C. Danh sách chẩn đoán sai lầm thường gặp"</h2>
+<p><img alt="02-mindset_appendix_C-mistakes.png" src="../../../public/images/Basic/02-mindset_appendix_C-mistakes.png" /></p>
+<h1>C. Danh sách chẩn đoán sai lầm thường gặp</h1>
+<p>Phụ lục này tổng hợp các sai lầm thường gặp của bảy mô hình tư duy trong Chương 2. Mỗi sai lầm đều đi kèm "mô tả triệu chứng", "chẩn đoán vấn đề", "đề xuất cải tiến", giúp bạn tự kiểm tra và tránh bẫy.</p>
+<h2>Cách sử dụng danh sách này</h2>
+<ol>
+<li><strong>Tự kiểm tra</strong>: Đối chiếu với "triệu chứng" của từng sai lầm, xem mình có dẫm phải bẫy không</li>
+<li><strong>Chẩn đoán</strong>: Hiểu tại sao đây là vấn đề</li>
+<li><strong>Cải tiến</strong>: Điều chỉnh tư duy của bạn theo đề xuất</li>
+</ol>
+<h2>Một, Sai lầm thường gặp của tư duy JTBD</h2>
+<h3>Sai lầm 1.1: Chỉ mô tả tính năng, không mô tả nhiệm vụ</h3>
+<p><strong>Triệu chứng</strong></p>
+<p>Mô tả nhu cầu của bạn thế này:</p>
+<blockquote>
+<p>"Tôi muốn làm một App danh sách việc cần làm, phải có thêm nhiệm vụ, xóa nhiệm vụ, thẻ phân loại, hạn chót..."</p>
+</blockquote>
+<p><strong>Chẩn đoán vấn đề</strong></p>
+<p>Đây là "danh sách tính năng", không phải "mô tả nhiệm vụ". Nó nói cho AI biết bạn muốn tính năng gì, nhưng không nói rõ người dùng cần hoàn thành nhiệm vụ gì, tại sao cần những tính năng này.</p>
+<p>AI có thể làm theo đúng đơn đặt hàng, nhưng thứ làm ra chưa chắc giải quyết được vấn đề thực sự.</p>
+<p><strong>Đề xuất cải tiến</strong></p>
+<p>Dùng mẫu câu JTBD để mô tả lại:</p>
+<blockquote>
+<p>"Khi người mới đi làm ở trong buổi sáng bắt đầu làm việc, muốn ghi nhanh những việc cần làm hôm nay, để không bỏ sót nhiệm vụ quan trọng."</p>
+</blockquote>
+<p>Sau đó mới suy ra tính năng: Đã nhiệm vụ là "ghi nhanh", thì "thêm nhiệm vụ" bắt buộc phải hoàn thành trong 3 giây. "Thẻ phân loại" có thể lại làm chậm tốc độ, có thể không làm.</p>
+<h3>Sai lầm 1.2: Chỉ nhìn nhiệm vụ chức năng, bỏ qua nhiệm vụ cảm xúc và xã hội</h3>
+<p><strong>Triệu chứng</strong></p>
+<p>Bạn chỉ cân nhắc người dùng "phải làm gì", không cân nhắc người dùng "muốn cảm nhận gì" và "muốn được nhìn nhận thế nào".</p>
+<p><strong>Chẩn đoán vấn đề</strong></p>
+<p>Người dùng chọn một sản phẩm, thường không chỉ vì tính năng, mà còn vì yếu tố cảm xúc và xã hội.</p>
+<ul>
+<li>Một App danh sách việc cần làm, nhiệm vụ chức năng là "ghi chép nhiệm vụ"</li>
+<li>Nhiệm vụ cảm xúc có thể là "giảm bớt lo âu, cảm thấy kiểm soát được"</li>
+<li>Nhiệm vụ xã hội có thể là "tỏ ra đáng tin cậy trước mặt đồng nghiệp"</li>
+</ul>
+<p>Nếu bạn chỉ tập trung vào nhiệm vụ chức năng, có thể làm ra một sản phẩm "tính năng đúng nhưng không ai muốn dùng".</p>
+<p><strong>Đề xuất cải tiến</strong></p>
+<p>Mỗi lần làm phân tích JTBD, hãy tự hỏi ba câu hỏi:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tầng bậc</th>
+<th style="text-align: left;">Câu hỏi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Nhiệm vụ chức năng</td>
+<td style="text-align: left;">Người dùng cần hoàn thành việc cụ thể gì?</td>
+</tr>
+<tr>
+<td style="text-align: left;">Nhiệm vụ cảm xúc</td>
+<td style="text-align: left;">Người dùng muốn cảm nhận điều gì?</td>
+</tr>
+<tr>
+<td style="text-align: left;">Nhiệm vụ xã hội</td>
+<td style="text-align: left;">Người dùng muốn được người khác nhìn nhận thế nào?</td>
+</tr>
+</tbody>
+</table>
+<h3>Sai lầm 1.3: Coi "tôi muốn làm" là "người dùng cần"</h3>
+<p><strong>Triệu chứng</strong></p>
+<p>Điểm xuất phát của bạn là "tôi muốn làm một cái xxx", chứ không phải "tôi phát hiện người dùng cần xxx".</p>
+<p><strong>Chẩn đoán vấn đề</strong></p>
+<p>Đây là một thiên kiến tâm lý phổ biến. Chúng ta thường giả định ý tưởng của mình chính là nhu cầu của người dùng, mà không đi xác minh giả định này.</p>
+<p>Kết quả là: Tốn rất nhiều thời gian làm ra thứ chỉ có mình thấy tốt.</p>
+<p><strong>Đề xuất cải tiến</strong></p>
+<p>Chuyển đổi "tôi muốn làm" thành "người dùng cần":</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Ý tưởng ban đầu</th>
+<th style="text-align: left;">Sau khi chuyển đổi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tôi muốn làm một danh sách việc cần làm</td>
+<td style="text-align: left;">Ai cần danh sách việc cần làm? Hiện tại họ giải quyết vấn đề này thế nào?</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tôi thấy tính năng này rất ngầu</td>
+<td style="text-align: left;">Có người dùng nào thực sự cần tính năng này không?</td>
+</tr>
+</tbody>
+</table>
+<p>Cách xác minh tốt nhất: Tìm 3 người dùng mục tiêu, hỏi xem hiện tại họ đang làm thế nào.</p>
+<h2>Hai, Sai lầm thường gặp của tư duy ngược</h2>
+<h3>Sai lầm 2.1: Chỉ liệt kê rủi ro, không nghĩ biện pháp đối phó</h3>
+<p><strong>Triệu chứng</strong></p>
+<p>Phân tích Pre-mortem của bạn thế này:</p>
+<blockquote>
+<p>"Nguyên nhân có thể thất bại: Tính năng quá nhiều làm không xong, người dùng không mua, kỹ thuật không làm được..."</p>
+</blockquote>
+<p>Sau đó thì hết.</p>
+<p><strong>Chẩn đoán vấn đề</strong></p>
+<p>Liệt kê rủi ro chỉ là bước đầu. Nếu không có biện pháp phòng ngừa tương ứng, phân tích này chỉ là nói suông.</p>
+<p><strong>Đề xuất cải tiến</strong></p>
+<p>Mỗi rủi ro bắt buộc phải đi kèm một biện pháp phòng ngừa. Dùng định dạng này:</p>
+<pre><code>Rủi ro: _______________
+Biện pháp phòng ngừa: _______________
+</code></pre>
+<p>Nếu không nghĩ ra biện pháp phòng ngừa, chứng tỏ rủi ro này cần được đối đãi nghiêm túc hơn —— hoặc là nó thực sự khó tránh (vậy có thể không nên làm), hoặc bạn chưa nghĩ kỹ (vậy cần tiếp tục suy nghĩ).</p>
+<h3>Sai lầm 2.2: Quá bi quan, bị rủi ro dọa sợ</h3>
+<p><strong>Triệu chứng</strong></p>
+<p>Sau khi làm xong phân tích Pre-mortem, bạn phát hiện có 10 nguyên nhân có thể thất bại, sau đó quyết định không làm nữa.</p>
+<p><strong>Chẩn đoán vấn đề</strong></p>
+<p>Tư duy ngược không phải để bạn bỏ cuộc, mà là để bạn "biết rõ có hố mà vẫn tránh được".</p>
+<p>Dự án nào cũng có rủi ro, mấu chốt là nhận diện đâu là "rủi ro chí mạng" (bắt buộc phải tránh), đâu là "rủi ro có thể kiểm soát" (có thể chấp nhận).</p>
+<p><strong>Đề xuất cải tiến</strong></p>
+<p>Dùng ma trận "Khả năng × Mức độ nghiêm trọng" để đánh giá từng rủi ro:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Nghiêm trọng cao</th>
+<th style="text-align: left;">Nghiêm trọng thấp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Khả năng cao</strong></td>
+<td style="text-align: left;">Bắt buộc giải quyết</td>
+<td style="text-align: left;">Chú ý là được</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Khả năng thấp</strong></td>
+<td style="text-align: left;">Chuẩn bị phương án dự phòng</td>
+<td style="text-align: left;">Có thể bỏ qua</td>
+</tr>
+</tbody>
+</table>
+<p>Chỉ có rủi ro "Khả năng cao + Nghiêm trọng cao" là chí mạng. Nếu loại rủi ro này không thể tránh, có thể đúng là không nên làm. Nhưng nếu có thể phòng ngừa, thì hãy làm tốt biện pháp phòng ngừa, rồi tiếp tục.</p>
+<h3>Sai lầm 2.3: Pre-mortem làm một lần là xong</h3>
+<p><strong>Triệu chứng</strong></p>
+<p>Bạn làm Pre-mortem lúc bắt đầu dự án, sau đó không bao giờ xem lại nữa.</p>
+<p><strong>Chẩn đoán vấn đề</strong></p>
+<p>Trong quá trình thực hiện dự án, sẽ xuất hiện thông tin mới. Rủi ro lúc đầu không lường trước được có thể xuất hiện, rủi ro lúc đầu lo lắng có thể đã được hóa giải.</p>
+<p><strong>Đề xuất cải tiến</strong></p>
+<p>Ở các mốc quan trọng của dự án (như hoàn thành MVP, sau phản hồi người dùng lần đầu) xem lại danh sách Pre-mortem:</p>
+<ul>
+<li>Có rủi ro mới nào không?</li>
+<li>Biện pháp phòng ngừa lúc đầu có hiệu quả không?</li>
+<li>Có rủi ro nào đã có thể gạch bỏ không?</li>
+</ul>
+<h2>Ba, Sai lầm thường gặp của tư duy phép trừ</h2>
+<h3>Sai lầm 3.1: Coi MVP là "bản sơ sài"</h3>
+<p><strong>Triệu chứng</strong></p>
+<p>MVP của bạn là phiên bản "tính năng què quặt, trải nghiệm thô sơ, dùng tạm được".</p>
+<p><strong>Chẩn đoán vấn đề</strong></p>
+<p>MVP là "phiên bản nhỏ nhất có thể xác minh", không phải "phiên bản nhỏ nhất có thể chạy".</p>
+<p>Sự khác biệt then chốt:</p>
+<ul>
+<li>Hiểu sai: Tính năng càng ít càng tốt, chạy được là được</li>
+<li>Hiểu đúng: Giữ lại những tính năng đủ để xác minh giả thiết cốt lõi, những tính năng này phải làm cho tốt</li>
+</ul>
+<p>Nếu trải nghiệm MVP của bạn quá tệ, người dùng có thể bỏ cuộc vì "khó dùng", chứ không phải vì "không cần". Bạn sẽ không thể phán đoán vấn đề nằm ở sản phẩm hay nhu cầu.</p>
+<p><strong>Đề xuất cải tiến</strong></p>
+<p>Nguyên tắc của MVP là: Tính năng phải ít, nhưng tính năng cốt lõi phải làm đến nơi đến chốn.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Chiều</th>
+<th style="text-align: left;">MVP nên làm</th>
+<th style="text-align: left;">MVP không nên làm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Số lượng tính năng</td>
+<td style="text-align: left;">Chỉ làm P0 (trong vòng 3 cái)</td>
+<td style="text-align: left;">Không làm P1, P2</td>
+</tr>
+<tr>
+<td style="text-align: left;">Độ sâu tính năng</td>
+<td style="text-align: left;">Tính năng P0 làm cho dễ dùng</td>
+<td style="text-align: left;">Không làm tạm bợ, qua loa</td>
+</tr>
+<tr>
+<td style="text-align: left;">Thiết kế trực quan</td>
+<td style="text-align: left;">Rõ ràng khả dụng</td>
+<td style="text-align: left;">Không cần tinh xảo</td>
+</tr>
+</tbody>
+</table>
+<h3>Sai lầm 3.2: Khi cắt tính năng trong lòng thấy khó chịu</h3>
+<p><strong>Triệu chứng</strong></p>
+<p>Bạn biết nên làm MVP, nhưng tính năng nào cũng không nỡ cắt:</p>
+<blockquote>
+<p>"Tính năng này quan trọng mà... Tính năng kia đối thủ đều có... Tính năng này tôi nghĩ xong cách làm rồi..."</p>
+</blockquote>
+<p><strong>Chẩn đoán vấn đề</strong></p>
+<p>Đây là tâm lý bình thường. Con người bẩm sinh ghét mất mát, cắt bỏ những tính năng đã suy nghĩ sẽ khiến bạn cảm thấy "bị lỗ".</p>
+<p>Nhưng nếu không cắt, bạn sẽ tốn nhiều thời gian hơn vào những tính năng không quan trọng, trì hoãn việc xác minh thực sự.</p>
+<p><strong>Đề xuất cải tiến</strong></p>
+<p>Dùng "Danh sách không làm" thay thế "Danh sách tính năng". Không phải "xóa tính năng", mà là "đưa tính năng vào danh sách không làm".</p>
+<p>Sự khác biệt về tâm lý:</p>
+<ul>
+<li>"Xóa đi" = Tính năng này mất rồi</li>
+<li>"Đưa vào danh sách không làm" = Tính năng này tôi nghĩ rồi, quyết định không làm, lý do là xxx, tương lai lúc xxx sẽ cân nhắc lại</li>
+</ul>
+<h3>Sai lầm 3.3: Danh sách không làm quá chung chung</h3>
+<p><strong>Triệu chứng</strong></p>
+<p>Danh sách không làm của bạn thế này:</p>
+<blockquote>
+<p>"Không làm tính năng phức tạp", "Không làm tính năng không cần thiết"</p>
+</blockquote>
+<p><strong>Chẩn đoán vấn đề</strong></p>
+<p>Danh sách không làm kiểu này bằng không. Thế nào là "phức tạp"? Thế nào là "không cần thiết"? Không có ranh giới rõ ràng, khi gặp vấn đề cụ thể vẫn sẽ đắn đo.</p>
+<p><strong>Đề xuất cải tiến</strong></p>
+<p>Danh sách không làm phải cụ thể đến tên tính năng, và ghi rõ lý do:</p>
+<pre><code>Không làm Đồng bộ nhiều thiết bị, vì Cần phát triển backend, tăng độ phức tạp rất nhiều
+Không làm Thẻ phân loại nhiệm vụ, vì Không phải cốt lõi của trải nghiệm cực giản
+Không làm Nhắc nhở hạn chót, vì Xác minh giá trị cốt lõi &quot;ghi chép&quot; trước
+</code></pre>
+<h2>Bốn, Sai lầm thường gặp của tư duy câu chuyện</h2>
+<h3>Sai lầm 4.1: Chân dung người dùng chỉ có đặc điểm nhân khẩu học</h3>
+<p><strong>Triệu chứng</strong></p>
+<p>Chân dung người dùng của bạn thế này:</p>
+<blockquote>
+<p>"25-35 tuổi, thành phố lớn, trình độ đại học, thu nhập tháng 10-20 triệu"</p>
+</blockquote>
+<p><strong>Chẩn đoán vấn đề</strong></p>
+<p>Những thông tin này gần như không giúp ích gì cho thiết kế sản phẩm. Biết người dùng "25-35 tuổi", không thể cho bạn biết họ cần tính năng gì, sẽ sử dụng trong bối cảnh nào, có lo lắng gì.</p>
+<p><strong>Đề xuất cải tiến</strong></p>
+<p>Dùng "Chân dung ba chiều" thay thế nhân khẩu học:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Chiều</th>
+<th style="text-align: left;">Nội dung nên bao gồm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Thuộc tính bề mặt</td>
+<td style="text-align: left;">Nghề nghiệp, mỗi ngày xử lý bao nhiêu việc, sử dụng thiết bị gì</td>
+</tr>
+<tr>
+<td style="text-align: left;">Thói quen hành vi</td>
+<td style="text-align: left;">Dùng khi nào, dùng thế nào, hiện tại dùng phương án thay thế nào</td>
+</tr>
+<tr>
+<td style="text-align: left;">Động cơ sâu xa</td>
+<td style="text-align: left;">Sợ cái gì, theo đuổi cái gì, muốn trở thành người thế nào</td>
+</tr>
+</tbody>
+</table>
+<h3>Sai lầm 4.2: Người dùng là "một nhóm người" chứ không phải "một người"</h3>
+<p><strong>Triệu chứng</strong></p>
+<p>Người dùng bạn nói là những nhóm như "giới trẻ", "dân văn phòng", "học sinh".</p>
+<p><strong>Chẩn đoán vấn đề</strong></p>
+<p>Nhóm người quá trừu tượng, không thể chỉ đạo thiết kế sản phẩm cụ thể. Trong "giới trẻ" có học sinh, có người mới đi làm, có người khởi nghiệp, nhu cầu của họ hoàn toàn khác nhau.</p>
+<p><strong>Đề xuất cải tiến</strong></p>
+<p>Đặt cho người dùng của bạn một cái tên, cụ thể hóa họ đến mức "có thể nhắn tin hỏi":</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Trừu tượng</th>
+<th style="text-align: left;">Cụ thể</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Dân văn phòng trẻ tuổi</td>
+<td style="text-align: left;">Tiểu Lý, 25 tuổi, vận hành một công ty Internet, mỗi ngày xử lý 10-15 việc</td>
+</tr>
+<tr>
+<td style="text-align: left;">Người hay quên</td>
+<td style="text-align: left;">Tiểu Lý, tuần trước vì quên trả lời email khách hàng mà bị sếp phê bình</td>
+</tr>
+</tbody>
+</table>
+<h3>Sai lầm 4.3: Hành trình người dùng chỉ cân nhắc "con đường bình thường"</h3>
+<p><strong>Triệu chứng</strong></p>
+<p>Hành trình người dùng của bạn là "Mở App → Thêm nhiệm vụ → Hoàn thành nhiệm vụ → Đóng".</p>
+<p><strong>Chẩn đoán vấn đề</strong></p>
+<p>Đây chỉ là tình huống lý tưởng. Trong bối cảnh thực tế, người dùng sẽ gặp đủ loại bất ngờ:</p>
+<ul>
+<li>Đang thêm nhiệm vụ thì bị ngắt quãng thì sao?</li>
+<li>Nhiệm vụ nhiều quá nhìn không xuể thì sao?</li>
+<li>Mấy ngày không dùng mở lại thì sao?</li>
+</ul>
+<p><strong>Đề xuất cải tiến</strong></p>
+<p>Thêm "con đường bất thường" và "trường hợp biên" vào hành trình người dùng:</p>
+<pre><code>Con đường bình thường: Mở → Thêm → Hoàn thành → Đóng
+Con đường bất thường 1: Mở → Thêm được một nửa bị ngắt quãng → Lần sau mở có thấy bản nháp không?
+Con đường bất thường 2: Mở → Thấy 50 nhiệm vụ chưa hoàn thành → Có lo âu đến mức tắt đi không?
+Trường hợp biên: 3 ngày không dùng → Mở lại hiển thị cái gì?
+</code></pre>
+<h2>Năm, Sai lầm thường gặp của Ba câu hỏi linh hồn</h2>
+<h3>Sai lầm 5.1: Mô tả người dùng quá rộng</h3>
+<p><strong>Triệu chứng</strong></p>
+<p>Khi bạn trả lời "người dùng là ai", bạn nói:</p>
+<blockquote>
+<p>"Người muốn nâng cao hiệu suất", "Người có nhu cầu làm việc cần làm", "Giới trẻ"</p>
+</blockquote>
+<p><strong>Chẩn đoán vấn đề</strong></p>
+<p>Mô tả kiểu này bằng không. "Người muốn nâng cao hiệu suất" có thể là học sinh, là người đi làm, là người khởi nghiệp, nhu cầu của họ khác biệt rất lớn.</p>
+<p>Tiêu chuẩn phán đoán: Bạn có thể gửi tin nhắn cho người dùng này không? Nếu không thể, chứng tỏ chưa đủ cụ thể.</p>
+<p><strong>Đề xuất cải tiến</strong></p>
+<p>Dùng tiêu chuẩn kiểm nghiệm này: Tôi có thể dùng một câu mô tả TA là ai, TA gặp vấn đề gì trong bối cảnh nào không?</p>
+<pre><code>❌ Người muốn nâng cao hiệu suất
+✅ Tiểu Lý, người mới đi làm 25 tuổi, thường xuyên quên việc bị sếp phê bình
+</code></pre>
+<h3>Sai lầm 5.2: Nỗi đau chỉ có "muốn" không có "đau"</h3>
+<p><strong>Triệu chứng</strong></p>
+<p>Nỗi đau bạn mô tả là:</p>
+<blockquote>
+<p>"Người dùng muốn một danh sách việc cần làm dễ dùng", "Người dùng muốn ghi chép nhiệm vụ thuận tiện hơn"</p>
+</blockquote>
+<p><strong>Chẩn đoán vấn đề</strong></p>
+<p>"Muốn xxx" là nhu cầu, không phải nỗi đau. Nỗi đau nên đi kèm cảm xúc tiêu cực: lo âu, phiền muộn, lúng túng, sợ hãi.</p>
+<p>Nếu người dùng chỉ "muốn" mà không "đau", họ có thể sẽ không thực sự dùng giải pháp của bạn —— vì hiện trạng vẫn chấp nhận được.</p>
+<p><strong>Đề xuất cải tiến</strong></p>
+<p>Ba tiêu chuẩn kiểm nghiệm nỗi đau:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tiêu chuẩn</th>
+<th style="text-align: left;">Câu hỏi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Có cảm xúc tiêu cực</td>
+<td style="text-align: left;">Người dùng có vì vấn đề này mà cảm thấy lo âu/phiền muộn/lúng túng không?</td>
+</tr>
+<tr>
+<td style="text-align: left;">Đang diễn ra</td>
+<td style="text-align: left;">Người dùng tuần này có gặp vấn đề này không?</td>
+</tr>
+<tr>
+<td style="text-align: left;">Sẵn sàng trả giá</td>
+<td style="text-align: left;">Nếu có giải pháp, người dùng có dùng ngay không?</td>
+</tr>
+</tbody>
+</table>
+<p>Thỏa mãn cả ba, mới là nỗi đau thật sự.</p>
+<h3>Sai lầm 5.3: "Tại sao chọn tôi" chỉ nói "tôi tốt hơn"</h3>
+<p><strong>Triệu chứng</strong></p>
+<p>Khi bạn trả lời "tại sao chọn tôi", bạn nói:</p>
+<blockquote>
+<p>"Vì sản phẩm của tôi tốt hơn", "Vì thiết kế của tôi đơn giản hơn"</p>
+</blockquote>
+<p><strong>Chẩn đoán vấn đề</strong></p>
+<p>"Tốt hơn" không phải là sự khác biệt hóa. Tại sao người dùng tin bạn "tốt hơn"? "Tốt hơn" so với ai? Tốt ở đâu?</p>
+<p><strong>Đề xuất cải tiến</strong></p>
+<p>Dùng mẫu câu này để trả lời:</p>
+<blockquote>
+<p>"Người dùng hiện tại dùng [Giải pháp hiện có] giải quyết vấn đề này, nhưng [Nỗi đau]. Giải pháp của tôi là [Sự khác biệt cụ thể], cho nên người dùng nên chọn tôi."</p>
+</blockquote>
+<pre><code>❌ Vì sản phẩm của tôi tốt hơn
+✅ Người dùng hiện tại dùng ghi chú điện thoại ghi việc, nhưng thường xuyên quên xem. Giải pháp của tôi là &quot;mở ra là thấy việc hôm nay&quot;, 3 giây thêm nhiệm vụ, cho nên phù hợp hơn với người đi làm cần ghi chép nhanh.
+</code></pre>
+<h2>Sáu, Sai lầm thường gặp của ứng dụng bối cảnh</h2>
+<h3>Sai lầm 6.1: Rập khuôn tư duy sản phẩm</h3>
+<p><strong>Triệu chứng</strong></p>
+<p>Khi bạn làm phân tích dữ liệu hoặc script tự động hóa, cũng lấn cấn "chân dung người dùng", "MVP", "ba câu hỏi linh hồn".</p>
+<p><strong>Chẩn đoán vấn đề</strong></p>
+<p>Mô hình tư duy là công cụ, không phải giáo điều. Bối cảnh khác nhau cần điều chỉnh linh hoạt:</p>
+<ul>
+<li>Làm sản phẩm: Cần chân dung người dùng hoàn chỉnh, quy hoạch MVP</li>
+<li>Làm phân tích dữ liệu: Cốt lõi là "cho ai xem, trả lời câu hỏi gì"</li>
+<li>Làm script tự động hóa: Cốt lõi là "nhiệm vụ gì đáng tự động hóa"</li>
+</ul>
+<p><strong>Đề xuất cải tiến</strong></p>
+<p>Chọn trọng tâm dựa theo bối cảnh:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bối cảnh</th>
+<th style="text-align: left;">Mô hình trọng tâm</th>
+<th style="text-align: left;">Mô hình thứ yếu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Sản phẩm/Công cụ</td>
+<td style="text-align: left;">JTBD, Phép trừ, Ba câu hỏi linh hồn</td>
+<td style="text-align: left;">Tất cả</td>
+</tr>
+<tr>
+<td style="text-align: left;">Phân tích dữ liệu</td>
+<td style="text-align: left;">Ba câu hỏi linh hồn (cho ai xem, trả lời cái gì)</td>
+<td style="text-align: left;">Ngược (cái gì sẽ khiến phân tích sai)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Script tự động hóa</td>
+<td style="text-align: left;">Phát hiện vấn đề, Tư duy ngược</td>
+<td style="text-align: left;">Phép trừ (tự động hóa bước nào trước)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Làm cho người nhà</td>
+<td style="text-align: left;">Tư duy câu chuyện</td>
+<td style="text-align: left;">Phép trừ (thiết kế cực giản)</td>
+</tr>
+</tbody>
+</table>
+<h2>Bảy, Sai lầm thường gặp của phát hiện vấn đề</h2>
+<h3>Sai lầm 7.1: Nhật ký phiền não chỉ ghi không phân tích</h3>
+<p><strong>Triệu chứng</strong></p>
+<p>Bạn ghi nhật ký phiền não một tuần, rồi để đó luôn.</p>
+<p><strong>Chẩn đoán vấn đề</strong></p>
+<p>Ghi chép chỉ là bước đầu. Giá trị nằm ở phân tích và sàng lọc.</p>
+<p><strong>Đề xuất cải tiến</strong></p>
+<p>Ngày thứ 8 bắt buộc phải làm phân tích:</p>
+<ol>
+<li>Chấm điểm theo tần suất và mức độ đau khổ</li>
+<li>Dùng "Bảng chấm điểm sàng lọc vấn đề" đánh giá từng vấn đề</li>
+<li>Chọn ra 1-2 vấn đề điểm cao nhất, bắt đầu làm phân tích JTBD</li>
+</ol>
+<h3>Sai lầm 7.2: Chọn một vấn đề "không phù hợp tự động hóa"</h3>
+<p><strong>Triệu chứng</strong></p>
+<p>Nhiệm vụ bạn chọn tự động hóa là:</p>
+<ul>
+<li>Liên quan nhiều phán đoán chủ quan (như "giúp tôi viết một báo cáo hay")</li>
+<li>Liên quan dữ liệu nhạy cảm (như "tự động giao dịch cổ phiếu")</li>
+<li>Sai hậu quả rất nghiêm trọng (như "tự động gửi hợp đồng cho khách hàng")</li>
+</ul>
+<p><strong>Chẩn đoán vấn đề</strong></p>
+<p>Không phải vấn đề nào cũng thích hợp dùng Vibe Coding giải quyết. Nhiệm vụ có tính quy tắc thấp, tính nhạy cảm cao, tính chịu lỗi thấp, nên xử lý thận trọng.</p>
+<p><strong>Đề xuất cải tiến</strong></p>
+<p>Dùng "Bảng chấm điểm sàng lọc vấn đề" đánh giá, vấn đề tổng điểm thấp hơn 15 điểm, hoặc là không làm, hoặc là chỉ làm hỗ trợ (nhân công rà soát).</p>
+<h2>Tổng kết danh sách tự kiểm tra</h2>
+<p>Trước khi hoàn thành dự án, dùng danh sách này tự kiểm tra nhanh:</p>
+<ul>
+<li>[ ] Tôi dùng "mô tả nhiệm vụ" chứ không phải "danh sách tính năng"?</li>
+<li>[ ] Tôi đã cân nhắc ba tầng nhiệm vụ chức năng, cảm xúc, xã hội?</li>
+<li>[ ] Mỗi rủi ro đều có biện pháp phòng ngừa tương ứng?</li>
+<li>[ ] Tính năng cốt lõi của MVP làm đến nơi đến chốn, chứ không phải tạm bợ?</li>
+<li>[ ] Danh sách không làm là tên tính năng cụ thể, chứ không phải mô tả chung chung?</li>
+<li>[ ] Chân dung người dùng cụ thể đến mức "có thể nhắn tin"?</li>
+<li>[ ] Nỗi đau mang cảm xúc tiêu cực, chứ không chỉ là "muốn"?</li>
+<li>[ ] "Tại sao chọn tôi" nói rõ sự khác biệt với giải pháp hiện có?</li>
+</ul>
+<p>Nếu có bất kỳ mục nào không đánh dấu được, hãy quay lại chương tương ứng suy nghĩ lại.</p>
+</body>
+</html>

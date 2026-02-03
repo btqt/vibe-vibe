@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.3 Kỹ thuật Prompt nâng cao"</h2>
+<p><img alt="03-technique_3.3-advanced-techniques_index.png" src="../../../public/images/Basic/03-technique_3.3-advanced-techniques_index.png" /></p>
+<h1>3.3 Kỹ thuật Prompt nâng cao: Mở khóa năng lực ẩn giấu của AI</h1>
+<p>Ở bài 3.2, bạn đã học cách dùng khung cấu trúc hóa (S.C.A.F.F., R.G.C.) để tổ chức Prompt. Khung đã giải quyết vấn đề "tổ chức thông tin thế nào", nhưng vẫn còn một câu hỏi chưa được trả lời:</p>
+<blockquote>
+<p>"Cùng một thông tin, có cách 'hỏi' nào thông minh hơn để AI thể hiện tốt hơn không?"</p>
+</blockquote>
+<p>Có. Đó chính là <strong>Kỹ thuật Prompt nâng cao</strong> được giới thiệu trong phần này.</p>
+<h2>Sau bài học này, bạn sẽ nắm được</h2>
+<ul>
+<li><strong>Zero-shot</strong>: Hỏi trực tiếp, thích hợp cho nhiệm vụ AI đã "biết"</li>
+<li><strong>Few-shot</strong>: Dùng ví dụ dạy AI, thích hợp cho đầu ra định dạng hóa</li>
+<li><strong>Chain of Thought</strong>: Để AI suy nghĩ phân bước, thích hợp cho logic phức tạp</li>
+<li><strong>Tree of Thoughts</strong>: Khám phá nhiều con đường, thích hợp so sánh phương án</li>
+<li><strong>Self-Critique</strong>: Để AI tự kiểm tra, nâng cao chất lượng đầu ra</li>
+<li><strong>Hướng dẫn lựa chọn kỹ thuật</strong>: Trường hợp nào dùng kỹ thuật gì</li>
+</ul>
+<h2>Insight cốt lõi</h2>
+<blockquote>
+<p>"Nhiệm vụ khác nhau cần cách tư duy khác nhau. Bản chất của kỹ thuật Prompt là dẫn dắt AI sử dụng cách thức phù hợp nhất để xử lý vấn đề của bạn."</p>
+</blockquote>
+<p>Nghiên cứu năm 2024 chỉ ra rằng: Kỹ thuật Chain of Thought (Chuỗi suy nghĩ) có hiệu quả đáng kể trong các nhiệm vụ <strong>toán học và suy luận ký hiệu</strong>, nhưng lợi ích hạn chế trong các loại nhiệm vụ khác. Điều này có nghĩa là: <strong>Không có kỹ thuật vạn năng, chỉ có kỹ thuật phù hợp nhất</strong>.</p>
+<p>Mục tiêu của phần này không phải để bạn nhớ hết tất cả kỹ thuật, mà là giúp bạn xây dựng một "trực giác lựa chọn kỹ thuật" —— nhìn thấy nhiệm vụ là biết ngay nên dùng cách nào để đối thoại với AI.</p>
+<h2>Cấu trúc bài này</h2>
+<pre><code>3.3.1 Zero-shot Prompting    → Cách hỏi cơ bản nhất, thích hợp nhập môn
+3.3.2 Few-shot Prompting     → Dùng ví dụ dạy AI, công cụ sắc bén cho định dạng hóa
+3.3.3 Chain of Thought       → Suy luận phân bước, trợ thủ đắc lực cho logic phức tạp
+3.3.4 Tree of Thoughts       → Khám phá đa đường dẫn, chuyên dụng cho bối cảnh ra quyết định
+3.3.5 Self-Critique          → AI tự kiểm tra, phòng tuyến cuối cùng đảm bảo chất lượng
+3.3.6 Hướng dẫn lựa chọn kỹ thuật → Quyết định nhanh, bối cảnh nào dùng kỹ thuật gì
+</code></pre>
+<h2>Mối quan hệ với các chương trước</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Chương tiết</th>
+<th style="text-align: left;">Vấn đề giải quyết</th>
+<th style="text-align: left;">Ví von</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">3.1 Cơ bản về Prompt</td>
+<td style="text-align: left;">Nên nói cho AI <strong>thông tin gì</strong></td>
+<td style="text-align: left;">Chuẩn bị nguyên liệu</td>
+</tr>
+<tr>
+<td style="text-align: left;">3.2 Khung cấu trúc hóa</td>
+<td style="text-align: left;">Làm sao <strong>tổ chức</strong> các thông tin này</td>
+<td style="text-align: left;">Sắp xếp theo công thức</td>
+</tr>
+<tr>
+<td style="text-align: left;">3.3 Kỹ thuật nâng cao</td>
+<td style="text-align: left;">Dùng <strong>cách thức</strong> nào để AI xử lý</td>
+<td style="text-align: left;">Chọn phương pháp nấu nướng</td>
+</tr>
+</tbody>
+</table>
+<p>Ba phần này có quan hệ thăng tiến: Đầu tiên biết phải nói gì (3.1), sau đó học cách tổ chức (3.2), cuối cùng nắm vững các "cách hỏi" khác nhau (3.3).</p>
+<h2>Tiếp nối Case Study: Danh sách việc cần làm của Tiểu Lý</h2>
+<p>Phần này tiếp tục sử dụng dự án danh sách việc cần làm của Tiểu Lý ở Chương 2 làm ví dụ xuyên suốt. Bạn sẽ thấy cùng một nhu cầu, dùng các kỹ thuật hỏi khác nhau sẽ nhận được hiệu quả khác nhau như thế nào.</p>
+<h2>Lời khuyên học tập</h2>
+<ol>
+<li><strong>Nắm vững Zero-shot và Few-shot trước</strong>: Hai kỹ thuật này bao phủ 80% bối cảnh hàng ngày</li>
+<li><strong>Chain of Thought dùng theo nhu cầu</strong>: Gặp logic phức tạp hẵng dùng</li>
+<li><strong>Tree of Thoughts biết là được</strong>: Khi nào chọn kỹ thuật mới cần đến</li>
+<li><strong>Self-Critique tập thành thói quen</strong>: Đầu ra quan trọng đều để AI tự kiểm tra lại một lượt</li>
+</ol>
+<p>Sẵn sàng chưa? Hãy bắt đầu từ Zero-shot cơ bản nhất.</p>
+</body>
+</html>

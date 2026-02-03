@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.4.4 Context Management</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "1.4.4 Kỹ năng quản lý Context"</h2>
+<p><img alt="01-awakening_1.4-vibe-vs-spec_1.4.4-context-management.png" src="../../../public/images/Basic/01-awakening_1.4-vibe-vs-spec_1.4.4-context-management.png" /></p>
+<h1>1.4.4 Kỹ năng quản lý Context</h1>
+<h2>Khái niệm cơ bản về Context</h2>
+<p><strong>Context = Tất cả thông tin nền tảng mà AI có thể nhìn thấy.</strong></p>
+<p>Bao gồm nội dung đối thoại hiện tại và trước đó, các tệp code được cung cấp, câu trả lời của AI cũng như thông tin lịch sử dự án. Chất lượng của Context ảnh hưởng trực tiếp đến hiệu quả hỗ trợ của AI.</p>
+<p>Mỗi mô hình AI đều có dung lượng bộ nhớ giới hạn:</p>
+<ul>
+<li><strong>GPT-4</strong>: Khoảng 25.000 từ (một bài viết dài)</li>
+<li><strong>Claude 3</strong>: Khoảng 150.000 từ (một cuốn sách nhỏ)</li>
+<li><strong>Mô hình mới</strong>: Dung lượng lớn hơn</li>
+</ul>
+<p>Vượt quá giới hạn sẽ dẫn đến việc AI "quên" nội dung ban đầu, gây ra sai lệch trong cách hiểu.</p>
+<h2>Hệ thống quản lý Context ba tầng</h2>
+<h3>Context tức thời (Tầng đối thoại hiện tại)</h3>
+<p><strong>Mục tiêu</strong>: Để AI hiểu chính xác nhu cầu nhiệm vụ hiện tại</p>
+<p><strong>Kỹ năng cốt lõi</strong>:</p>
+<ul>
+<li>Thông tin quan trọng ưu tiên đặt ở đầu hoặc cuối cuộc đối thoại</li>
+<li>Sử dụng ví dụ cụ thể để giải thích vấn đề, tránh diễn đạt mơ hồ</li>
+<li>Cung cấp chi tiết lỗi thay vì mô tả đơn giản</li>
+</ul>
+<p><strong>So sánh ví dụ</strong>:</p>
+<pre><code>❌ Mơ hồ: &quot;Chức năng này có vấn đề&quot;
+✅ Cụ thể: &quot;Sau khi nhấn nút 'Lưu', trang không phản ứng, console hiển thị 'Cannot read property 'value' of null'&quot;
+</code></pre>
+<h3>Context trung hạn (Tầng trạng thái dự án)</h3>
+<p><strong>Mục tiêu</strong>: Để AI nắm bắt tình hình tiến độ tổng thể của dự án</p>
+<p><strong>Thông tin then chốt</strong>:</p>
+<ul>
+<li>Chức năng cốt lõi và tiến độ phát triển của dự án</li>
+<li>Các vấn đề đã biết và điều kiện hạn chế</li>
+<li>Lựa chọn stack kỹ thuật và quyết định kiến trúc</li>
+</ul>
+<p><strong>Phương pháp duy trì</strong>: Định kỳ tóm tắt trạng thái dự án, ghi lại nguyên nhân quyết định quan trọng, giữ thông tin cập nhật theo thời gian thực.</p>
+<h3>Context dài hạn (Tầng lịch sử dự án)</h3>
+<p><strong>Mục tiêu</strong>: Cung cấp tính liên mạch phát triển cho dự án dài hạn</p>
+<p><strong>Nội dung hồ sơ</strong>: Nhu cầu ban đầu của dự án, quyết định kiến trúc then chốt, điều chỉnh theo phản hồi người dùng, ghi chép phiên bản lặp lại.</p>
+<h2>Chiến lược quản lý Context thực tế</h2>
+<h3>Kỹ năng quản lý đối thoại</h3>
+<p><strong>Đặt lại Context khi khởi động nhiệm vụ</strong> (30 giây hoàn thành):</p>
+<pre><code>Dự án: Ứng dụng ghi chép chi tiêu (đã hoàn thành ghi chép cơ bản và thống kê)
+Nhiệm vụ hiện tại: Thêm chức năng quản lý ngân sách
+Stack kỹ thuật: React + Node.js
+Vấn đề: [Mô tả vấn đề cụ thể]
+</code></pre>
+<p><strong>Tóm tắt đối thoại định kỳ</strong> (Mỗi 10-15 vòng đối thoại):</p>
+<pre><code>Chức năng đã hoàn thành:
+1. Đăng ký đăng nhập người dùng
+2. Chức năng ghi chép thu chi
+3. Biểu đồ thống kê cơ bản
+
+Trọng tâm bước tiếp theo: Tích hợp quản lý ngân sách với chức năng hiện có
+</code></pre>
+<p><strong>Tách biệt chủ đề đối thoại</strong>:</p>
+<ul>
+<li>Phát triển chức năng → Đối thoại độc lập</li>
+<li>Sửa Bug → Đối thoại chuyên biệt</li>
+<li>Thảo luận kiến trúc → Đối thoại riêng biệt</li>
+</ul>
+<h3>Mẫu tài liệu dự án</h3>
+<pre><code class="language-markdown"># Bối cảnh dự án
+
+## Mục tiêu: Công cụ ghi chép chi tiêu cá nhân
+
+## Đã thực hiện: Ghi chép thu chi, thống kê hàng tháng, xuất dữ liệu
+
+## Stack kỹ thuật: React + Node.js + SQLite
+
+## Vấn đề hiện tại: [Ghi lại vấn đề cụ thể]
+</code></pre>
+<h2>Kiểm tra và tối ưu hóa chất lượng Context</h2>
+<h3>Điểm kiểm tra then chốt</h3>
+<ul>
+<li><strong>Tính trọn vẹn của thông tin</strong>: Có bao gồm bối cảnh dự án, trạng thái hiện tại, vấn đề cụ thể không</li>
+<li><strong>Tính chính xác</strong>: Stack kỹ thuật, trạng thái tiến độ có phải mới nhất không</li>
+<li><strong>Độ rõ ràng</strong>: Mô tả vấn đề có đủ cụ thể không</li>
+<li><strong>Tính liên quan</strong>: Đã loại bỏ thông tin lịch sử không liên quan chưa</li>
+</ul>
+<h3>Vấn đề thường gặp và giải pháp</h3>
+<p><strong>Vấn đề 1: Quá tải thông tin</strong></p>
+<ul>
+<li>Giải quyết: Tập trung vào nhiệm vụ hiện tại, loại bỏ thông tin lịch sử không liên quan</li>
+</ul>
+<p><strong>Vấn đề 2: Giả định AI nhớ mọi thứ</strong></p>
+<ul>
+<li>Giải quyết: Mỗi lần đối thoại đều đặt lại thông tin nền tảng quan trọng</li>
+</ul>
+<p><strong>Vấn đề 3: Thiếu cập nhật</strong></p>
+<ul>
+<li>Giải quyết: Định kỳ đồng bộ thay đổi trạng thái dự án</li>
+</ul>
+<p><strong>Vấn đề 4: Phụ thuộc quá mức vào một cuộc đối thoại</strong></p>
+<ul>
+<li>Giải quyết: Tách biệt các chủ đề khác nhau, sử dụng đối thoại chuyên biệt</li>
+</ul>
+<h3>Nhận biết thời điểm tối ưu hóa</h3>
+<p><strong>Tín hiệu cần cuộc đối thoại mới</strong>:</p>
+<ul>
+<li>Đối thoại vượt quá 15-20 vòng</li>
+<li>Hướng đi nhiệm vụ xảy ra thay đổi lớn</li>
+<li>AI bắt đầu lặp lại cách hiểu sai trước đó</li>
+<li>Cần thảo luận module chức năng hoàn toàn khác</li>
+</ul>
+<p>Thông qua quản lý Context có hệ thống, có thể nâng cao đáng kể hiệu suất và độ chính xác của lập trình AI.</p>
+</body>
+</html>

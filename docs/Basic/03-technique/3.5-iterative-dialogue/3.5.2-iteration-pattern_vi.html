@@ -1,0 +1,429 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.5.2 Iteration Pattern</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.5.2 Mô hình cơ bản của đối thoại lặp lại"</h2>
+<p><img alt="03-technique_3.5-iterative-dialogue_3.5.2-iteration-pattern.png" src="../../../public/images/Basic/03-technique_3.5-iterative-dialogue_3.5.2-iteration-pattern.png" /></p>
+<h1>3.5.2 Mô hình cơ bản của đối thoại lặp lại</h1>
+<h2>Qua phần học này, bạn sẽ nắm vững</h2>
+<ul>
+<li>Mô hình lặp lại ba giai đoạn: Xem hướng đi → Sửa vấn đề → Mài giũa chi tiết</li>
+<li>Hành động then chốt và điểm kiểm tra của mỗi vòng đối thoại</li>
+<li>Một ví dụ đầy đủ về đối thoại lặp lại (Danh sách việc cần làm của Tiểu Lý)</li>
+<li>Mẫu đối thoại lặp lại có thể sao chép dùng ngay</li>
+</ul>
+<h2>Mô hình lặp lại ba giai đoạn</h2>
+<p>Đối thoại lặp lại không phải là sửa đi sửa lại một cách vô định. Lặp lại hiệu quả tuân theo một mô hình rõ ràng:</p>
+<pre><code>Vòng 1: Xem hướng đi
+    ↓
+  Hướng đi đúng không? Tư duy tổng thể đúng không?
+    ↓
+Vòng 2: Sửa vấn đề
+    ↓
+  Chức năng đầy đủ không? Có khiếm khuyết rõ ràng không?
+    ↓
+Vòng 3: Mài giũa chi tiết
+    ↓
+  Cấu trúc code tốt không? Có trường hợp biên không?
+    ↓
+  Hoàn thành
+</code></pre>
+<h3>Vòng 1: Xem hướng đi</h3>
+<p><strong>Mục tiêu</strong>: Xác nhận AI đã hiểu ý đồ của bạn, hướng đi tổng thể chính xác.</p>
+<p><strong>Hành động then chốt</strong>:
+- Đưa ra nhu cầu cốt lõi, đừng sa đà vào chi tiết
+- Nói rõ với AI "Trước tiên hãy cho tôi bản thực hiện cơ bản"
+- Trọng tâm xem: AI hiểu có đúng không? Hướng đi lớn có đúng không?</p>
+<p><strong>Điểm kiểm tra</strong>:
+- [ ] AI có làm đúng chức năng bạn muốn không?
+- [ ] Giải pháp kỹ thuật có nhất quán với dự kiến của bạn không?
+- [ ] Nếu hướng đi sai, phải đính chính ngay lúc này</p>
+<p><strong>Vấn đề thường gặp</strong>: Sai hướng đi. Ví dụ bạn muốn một popup, AI lại làm cho bạn một trang mới.</p>
+<h3>Vòng 2: Sửa vấn đề</h3>
+<p><strong>Mục tiêu</strong>: Sửa chữa các vấn đề rõ ràng của vòng 1, bổ sung các tính năng bị thiếu.</p>
+<p><strong>Hành động then chốt</strong>:
+- Chỉ ra vấn đề cụ thể, đừng nói "không đúng lắm"
+- Liệt kê các điểm chức năng cần thêm vào
+- Có thể đưa ra nhiều yêu cầu sửa đổi cùng lúc, nhưng đừng vượt quá 3-5 cái</p>
+<p><strong>Điểm kiểm tra</strong>:
+- [ ] Các tính năng cốt lõi đã thực hiện chưa?
+- [ ] Logic tương tác có chính xác không?
+- [ ] Có bug rõ ràng nào không?</p>
+<p><strong>Vấn đề thường gặp</strong>: Thiếu chức năng hoặc sai logic. Ví dụ thiếu xác thực đầu vào, hoặc nút bấm không phản hồi.</p>
+<h3>Vòng 3: Mài giũa chi tiết</h3>
+<p><strong>Mục tiêu</strong>: Tối ưu hóa cấu trúc code, xử lý các trường hợp biên, nâng cao chất lượng.</p>
+<p><strong>Hành động then chốt</strong>:
+- Chú ý đến khả năng bảo trì của code
+- Kiểm tra trường hợp biên (nhập rỗng, nhập quá dài, ký tự đặc biệt)
+- Tối ưu hóa đặt tên, chú thích, cấu trúc</p>
+<p><strong>Điểm kiểm tra</strong>:
+- [ ] Cấu trúc code có rõ ràng không?
+- [ ] Đã xử lý trường hợp biên chưa?
+- [ ] Code có thể dùng cho production ngay chưa?</p>
+<p><strong>Vấn đề thường gặp</strong>: Code chạy được nhưng chưa đủ tốt. Ví dụ logic viết hết vào một hàm, hoặc không có xử lý lỗi.</p>
+<h2>Ví dụ đầy đủ: Chức năng "Thêm nhiệm vụ" của Tiểu Lý</h2>
+<p>Hãy xem Tiểu Lý dùng mô hình ba giai đoạn như thế nào để lặp lại ra một chức năng thêm nhiệm vụ ưng ý.</p>
+<h3>Đối thoại vòng 1: Xem hướng đi</h3>
+<p><strong>Prompt của Tiểu Lý:</strong></p>
+<pre><code>Tôi đang phát triển một ứng dụng danh sách việc cần làm, sử dụng React + TypeScript + Tailwind CSS.
+
+Hãy giúp tôi thực hiện chức năng &quot;Thêm nhiệm vụ&quot;:
+- Một ô nhập liệu + một nút thêm
+- Nhấn nút có thể thêm nhiệm vụ vào danh sách
+
+Trước tiên hãy cho tôi bản thực hiện cơ bản, sau này sẽ hoàn thiện tiếp.
+</code></pre>
+<p><strong>Output của AI:</strong></p>
+<pre><code class="language-tsx">import { useState } from 'react';
+
+interface Task {
+  id: number;
+  title: string;
+}
+
+export default function AddTaskForm() {
+  const [tasks, setTasks] = useState&lt;Task[]&gt;([]);
+  const [inputValue, setInputValue] = useState('');
+
+  const handleAdd = () =&gt; {
+    const newTask: Task = {
+      id: Date.now(),
+      title: inputValue,
+    };
+    setTasks([...tasks, newTask]);
+    setInputValue('');
+  };
+
+  return (
+    &lt;div&gt;
+      &lt;input
+        type=&quot;text&quot;
+        value={inputValue}
+        onChange={(e) =&gt; setInputValue(e.target.value)}
+        className=&quot;border p-2&quot;
+      /&gt;
+      &lt;button onClick={handleAdd} className=&quot;bg-blue-500 text-white p-2 ml-2&quot;&gt;
+        Thêm
+      &lt;/button&gt;
+      &lt;ul&gt;
+        {tasks.map((task) =&gt; (
+          &lt;li key={task.id}&gt;{task.title}&lt;/li&gt;
+        ))}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p><strong>Kiểm tra của Tiểu Lý</strong>:
+- ✅ Hướng đi đúng: Ô nhập liệu + Nút + Danh sách nhiệm vụ
+- ✅ Stack kỹ thuật đúng: React + TypeScript + Tailwind
+- ⚠️ Nhưng có vấn đề: Không có xác thực nhập liệu, có thể thêm nhiệm vụ rỗng</p>
+<p><strong>Phán đoán</strong>: Hướng đi chính xác, vào vòng 2.</p>
+<h3>Đối thoại vòng 2: Sửa vấn đề</h3>
+<p><strong>Prompt của Tiểu Lý:</strong></p>
+<pre><code>Chức năng cơ bản được rồi, hãy thêm các cải tiến sau:
+
+1. Hỗ trợ nhấn phím Enter để thêm nhiệm vụ (không chỉ nhấn nút)
+2. Thêm xác thực nhập rỗng:
+   - Khi nhập rỗng, nút hiển thị trạng thái vô hiệu hóa
+   - Khi thử thêm nhiệm vụ rỗng, không thực hiện thao tác nào
+3. Thêm placeholder cho ô nhập liệu: &quot;Nhập nhiệm vụ mới...&quot;
+</code></pre>
+<p><strong>Output của AI:</strong></p>
+<pre><code class="language-tsx">import { useState } from 'react';
+
+interface Task {
+  id: number;
+  title: string;
+}
+
+export default function AddTaskForm() {
+  const [tasks, setTasks] = useState&lt;Task[]&gt;([]);
+  const [inputValue, setInputValue] = useState('');
+
+  const isInputEmpty = inputValue.trim() === '';
+
+  const handleAdd = () =&gt; {
+    if (isInputEmpty) return;
+
+    const newTask: Task = {
+      id: Date.now(),
+      title: inputValue.trim(),
+    };
+    setTasks([...tasks, newTask]);
+    setInputValue('');
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) =&gt; {
+    if (e.key === 'Enter') {
+      handleAdd();
+    }
+  };
+
+  return (
+    &lt;div&gt;
+      &lt;input
+        type=&quot;text&quot;
+        value={inputValue}
+        onChange={(e) =&gt; setInputValue(e.target.value)}
+        onKeyDown={handleKeyDown}
+        placeholder=&quot;Nhập nhiệm vụ mới...&quot;
+        className=&quot;border p-2 rounded&quot;
+      /&gt;
+      &lt;button
+        onClick={handleAdd}
+        disabled={isInputEmpty}
+        className={`p-2 ml-2 rounded ${
+          isInputEmpty
+            ? 'bg-gray-300 cursor-not-allowed'
+            : 'bg-blue-500 text-white hover:bg-blue-600'
+        }`}
+      &gt;
+        Thêm
+      &lt;/button&gt;
+      &lt;ul className=&quot;mt-4&quot;&gt;
+        {tasks.map((task) =&gt; (
+          &lt;li key={task.id} className=&quot;py-1&quot;&gt;{task.title}&lt;/li&gt;
+        ))}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p><strong>Kiểm tra của Tiểu Lý</strong>:
+- ✅ Thêm bằng Enter: Đã thực hiện
+- ✅ Xác thực nhập rỗng: Đã thực hiện
+- ✅ Placeholder: Đã thêm
+- ⚠️ Vấn đề cấu trúc code: Logic xác thực và logic UI trộn lẫn với nhau</p>
+<p><strong>Phán đoán</strong>: Chức năng đầy đủ, vào vòng 3 tối ưu cấu trúc.</p>
+<h3>Đối thoại vòng 3: Mài giũa chi tiết</h3>
+<p><strong>Prompt của Tiểu Lý:</strong></p>
+<pre><code>Chức năng đầy đủ rồi, hãy tối ưu hóa cấu trúc code:
+
+1. Tách logic xác thực nhập liệu thành hàm độc lập validateTaskInput
+2. Quản lý tên class style bằng hằng số thống nhất (tiện cho việc sửa đổi sau này)
+3. Thêm chú thích cần thiết giải thích công dụng component
+</code></pre>
+<p><strong>Output cuối cùng của AI:</strong></p>
+<pre><code class="language-tsx">import { useState } from 'react';
+
+// Kiểu dữ liệu nhiệm vụ
+interface Task {
+  id: number;
+  title: string;
+}
+
+// Hằng số style
+const STYLES = {
+  input: 'border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-300',
+  buttonBase: 'p-2 ml-2 rounded transition-colors',
+  buttonEnabled: 'bg-blue-500 text-white hover:bg-blue-600',
+  buttonDisabled: 'bg-gray-300 cursor-not-allowed text-gray-500',
+  taskItem: 'py-1 border-b border-gray-100',
+};
+
+// Xác thực nhập liệu nhiệm vụ
+function validateTaskInput(input: string): boolean {
+  return input.trim().length &gt; 0;
+}
+
+/**
+ * Component form thêm nhiệm vụ
+ * Chức năng: Ô nhập liệu + Nút thêm, hỗ trợ thêm bằng Enter, bao gồm xác thực nhập rỗng
+ */
+export default function AddTaskForm() {
+  const [tasks, setTasks] = useState&lt;Task[]&gt;([]);
+  const [inputValue, setInputValue] = useState('');
+
+  const isValid = validateTaskInput(inputValue);
+
+  const handleAdd = () =&gt; {
+    if (!isValid) return;
+
+    const newTask: Task = {
+      id: Date.now(),
+      title: inputValue.trim(),
+    };
+    setTasks([...tasks, newTask]);
+    setInputValue('');
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) =&gt; {
+    if (e.key === 'Enter') {
+      handleAdd();
+    }
+  };
+
+  return (
+    &lt;div className=&quot;p-4&quot;&gt;
+      &lt;div className=&quot;flex&quot;&gt;
+        &lt;input
+          type=&quot;text&quot;
+          value={inputValue}
+          onChange={(e) =&gt; setInputValue(e.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder=&quot;Nhập nhiệm vụ mới...&quot;
+          className={STYLES.input}
+        /&gt;
+        &lt;button
+          onClick={handleAdd}
+          disabled={!isValid}
+          className={`${STYLES.buttonBase} ${
+            isValid ? STYLES.buttonEnabled : STYLES.buttonDisabled
+          }`}
+        &gt;
+          Thêm
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;ul className=&quot;mt-4&quot;&gt;
+        {tasks.map((task) =&gt; (
+          &lt;li key={task.id} className={STYLES.taskItem}&gt;
+            {task.title}
+          &lt;/li&gt;
+        ))}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p><strong>Kiểm tra của Tiểu Lý</strong>:
+- ✅ Logic xác thực độc lập: Hàm <code>validateTaskInput</code>
+- ✅ Quản lý style thống nhất: Hằng số <code>STYLES</code>
+- ✅ Chú thích rõ ràng: Giải thích công dụng component
+- ✅ Code dễ bảo trì: Cấu trúc rõ ràng, dễ mở rộng</p>
+<p><strong>Kết quả</strong>: Ba vòng đối thoại, từ "dùng được" đến "dùng tốt".</p>
+<h2>Danh sách hành động mỗi vòng đối thoại</h2>
+<table>
+<thead>
+<tr>
+<th>Giai đoạn</th>
+<th>Trọng tâm của bạn</th>
+<th>Từ khóa Prompt</th>
+<th>Kiểm tra gì</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vòng 1</td>
+<td>Xem hướng đi</td>
+<td>"Thực hiện cơ bản", "Trước tiên hãy cho tôi..."</td>
+<td>Hướng đi đúng không? Hiểu đúng không?</td>
+</tr>
+<tr>
+<td>Vòng 2</td>
+<td>Sửa vấn đề</td>
+<td>"Hãy thêm...", "Chỉnh sửa..."</td>
+<td>Chức năng đầy đủ không? Logic đúng không?</td>
+</tr>
+<tr>
+<td>Vòng 3</td>
+<td>Mài giũa chi tiết</td>
+<td>"Tối ưu cấu trúc", "Tách thành hàm"</td>
+<td>Code dễ bảo trì không? Trường hợp biên?</td>
+</tr>
+</tbody>
+</table>
+<h2>Mẫu có thể sao chép: Kịch bản đối thoại lặp lại</h2>
+<h3>Mẫu vòng 1: Thiết lập hướng đi</h3>
+<pre><code class="language-markdown">Tôi đang phát triển [Tên dự án], sử dụng [Stack kỹ thuật].
+
+Hãy giúp tôi thực hiện [Tên chức năng]:
+- [Nhu cầu cốt lõi 1]
+- [Nhu cầu cốt lõi 2]
+
+Trước tiên hãy cho tôi bản thực hiện cơ bản, chúng ta sẽ dần hoàn thiện sau.
+</code></pre>
+<h3>Mẫu vòng 2: Sửa chữa vấn đề</h3>
+<pre><code class="language-markdown">Chức năng cơ bản được rồi, hãy thêm các cải tiến sau:
+
+1. [Chức năng cần thêm/Vấn đề cần sửa]
+2. [Chức năng cần thêm/Vấn đề cần sửa]
+3. [Chức năng cần thêm/Vấn đề cần sửa]
+</code></pre>
+<h3>Mẫu vòng 3: Tối ưu chi tiết</h3>
+<pre><code class="language-markdown">Chức năng đầy đủ rồi, hãy tối ưu hóa code:
+
+1. [Yêu cầu tối ưu cấu trúc]
+2. [Xử lý trường hợp biên]
+3. [Yêu cầu chất lượng khác]
+</code></pre>
+<h2>Khi nào có thể bỏ qua một giai đoạn?</h2>
+<table>
+<thead>
+<tr>
+<th>Tình huống</th>
+<th>Có thể bỏ qua</th>
+<th>Nguyên nhân</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nhiệm vụ cực đơn giản</td>
+<td>Vòng 3</td>
+<td>Lượng code ít, không cần tối ưu cấu trúc</td>
+</tr>
+<tr>
+<td>Output vòng 1 đã rất tốt</td>
+<td>Vòng 2</td>
+<td>Đi thẳng vào mài giũa chi tiết</td>
+</tr>
+<tr>
+<td>Chỉ là xác minh nguyên mẫu nhanh</td>
+<td>Vòng 3</td>
+<td>Sau này sẽ viết lại, không cần hoàn hảo</td>
+</tr>
+</tbody>
+</table>
+<h2>Giá trị kinh nghiệm về số lần lặp lại</h2>
+<table>
+<thead>
+<tr>
+<th>Độ phức tạp nhiệm vụ</th>
+<th>Số vòng lặp lại điển hình</th>
+<th>Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Đơn giản (Chức năng đơn lẻ)</td>
+<td>1-2 vòng</td>
+<td>Một nút bấm, một ô nhập liệu</td>
+</tr>
+<tr>
+<td>Trung bình (Nhiều chức năng)</td>
+<td>2-3 vòng</td>
+<td>Một biểu mẫu, một component danh sách</td>
+</tr>
+<tr>
+<td>Phức tạp (Module hoàn chỉnh)</td>
+<td>3-5 vòng</td>
+<td>Một trang hoàn chỉnh, một tương tác phức tạp</td>
+</tr>
+</tbody>
+</table>
+<p>Nếu vượt quá 5 vòng mà vẫn chưa đạt hiệu quả mong muốn, hãy xem xét xem có phải nhu cầu bản thân chưa đủ rõ ràng, hoặc nên bắt đầu cuộc đối thoại mới.</p>
+<h2>Điểm cốt yếu phần này</h2>
+<p>✓ <strong>Mô hình ba giai đoạn</strong>: Xem hướng đi → Sửa vấn đề → Mài giũa chi tiết</p>
+<p>✓ <strong>Mỗi vòng có tiêu điểm</strong>: Vòng 1 không sa đà chi tiết, Vòng 2 không sa đà cấu trúc, Vòng 3 tập trung chất lượng</p>
+<p>✓ <strong>Điểm kiểm tra rõ ràng</strong>: Mỗi vòng kết thúc đều có tiêu chuẩn kiểm tra rõ ràng</p>
+<p>✓ <strong>Điều chỉnh linh hoạt</strong>: Nhiệm vụ đơn giản có thể bỏ qua giai đoạn, nhiệm vụ phức tạp có thể cần nhiều vòng hơn</p>
+<p>Phần tiếp theo, chúng ta sẽ học cách đưa ra phản hồi hiệu quả cho AI — đây là chìa khóa thành công của việc lặp lại.</p>
+</body>
+</html>

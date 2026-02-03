@@ -1,0 +1,420 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.7.4 Suitable Problems</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "2.7.4 Vấn đề như thế nào thì thích hợp dùng Vibe Coding để giải quyết"</h2>
+<p><img alt="02-mindset_2.7-problem-discovery_2.7.4-suitable-problems.png" src="../../../public/images/Basic/02-mindset_2.7-problem-discovery_2.7.4-suitable-problems.png" /></p>
+<h1>2.7.4 Vấn đề như thế nào thì thích hợp dùng Vibe Coding để giải quyết</h1>
+<h2>Không phải vấn đề nào cũng phù hợp</h2>
+<p>Thông qua việc quan sát và ghi chép ở các phần trước, bạn có thể đã tích lũy được một số vấn đề cần giải quyết. Nhưng trước khi bỏ thời gian vào, cần có một đánh giá quan trọng:</p>
+<p><strong>Vấn đề này, có thích hợp dùng Vibe Coding để giải quyết không?</strong></p>
+<p>Ưu thế của Vibe Coding là nhanh chóng, rào cản thấp, khả năng chịu lỗi cao. Nhưng nó cũng có ranh giới rõ ràng. Chọn đúng vấn đề, làm ít công to; chọn sai vấn đề, có thể lãng phí thời gian, thậm chí gây ra rủi ro.</p>
+<h2>Phương pháp đánh giá 5 chiều</h2>
+<p>Chúng ta dùng 5 chiều để đánh giá xem một vấn đề có thích hợp dùng Vibe Coding giải quyết hay không. Mỗi chiều tối đa 5 điểm, tổng điểm 25 điểm.</p>
+<h3>Chiều 1: Tính lặp lại (Việc này bao lâu xảy ra một lần?)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tần suất</th>
+<th style="text-align: left;">Điểm</th>
+<th style="text-align: left;">Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Xảy ra hàng ngày</td>
+<td style="text-align: left;">5 điểm</td>
+<td style="text-align: left;">Vấn đề tần suất cao, giải quyết xong ngày nào cũng hưởng lợi</td>
+</tr>
+<tr>
+<td style="text-align: left;">Xảy ra hàng tuần</td>
+<td style="text-align: left;">4 điểm</td>
+<td style="text-align: left;">Vấn đề tần suất trung bình, đáng đầu tư</td>
+</tr>
+<tr>
+<td style="text-align: left;">Xảy ra hàng tháng</td>
+<td style="text-align: left;">3 điểm</td>
+<td style="text-align: left;">Tần suất thấp nhưng nếu rất đau thì cũng đáng</td>
+</tr>
+<tr>
+<td style="text-align: left;">Hàng quý/Hàng năm</td>
+<td style="text-align: left;">1 điểm</td>
+<td style="text-align: left;">Quá ít, làm công cụ chuyên biệt có thể không bõ</td>
+</tr>
+<tr>
+<td style="text-align: left;">Chỉ xảy ra một lần</td>
+<td style="text-align: left;">0 điểm</td>
+<td style="text-align: left;">Làm thủ công cho xong, không đáng làm công cụ</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mẹo đánh giá</strong>: Tự hỏi "Nếu vấn đề này hôm nay được giải quyết, tuần sau tôi có còn gặp lại không?"</p>
+<h3>Chiều 2: Tính quy tắc (Việc này có các bước cố định không?)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tính quy tắc</th>
+<th style="text-align: left;">Điểm</th>
+<th style="text-align: left;">Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Các bước hoàn toàn cố định</td>
+<td style="text-align: left;">5 điểm</td>
+<td style="text-align: left;">Có thể viết thành lưu đồ rõ ràng</td>
+</tr>
+<tr>
+<td style="text-align: left;">Đa phần cố định, thiểu số cần phán đoán</td>
+<td style="text-align: left;">4 điểm</td>
+<td style="text-align: left;">Có thể làm quy trình chính, trường hợp đặc biệt xử lý thủ công</td>
+</tr>
+<tr>
+<td style="text-align: left;">Một nửa cố định một nửa linh hoạt</td>
+<td style="text-align: left;">3 điểm</td>
+<td style="text-align: left;">Cần can thiệp thủ công nhiều hơn</td>
+</tr>
+<tr>
+<td style="text-align: left;">Đa phần cần phán đoán</td>
+<td style="text-align: left;">1 điểm</td>
+<td style="text-align: left;">Khó tự động hóa</td>
+</tr>
+<tr>
+<td style="text-align: left;">Hoàn toàn dựa vào kinh nghiệm và trực giác</td>
+<td style="text-align: left;">0 điểm</td>
+<td style="text-align: left;">Không thích hợp làm thành công cụ</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mẹo đánh giá</strong>: Thử viết các bước của việc này ra. Nếu viết không ra, chứng tỏ tính quy tắc chưa đủ.</p>
+<p><strong>Ví dụ</strong>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Nhiệm vụ</th>
+<th style="text-align: left;">Tính quy tắc</th>
+<th style="text-align: left;">Điểm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tổng hợp dữ liệu từ 5 file Excel</td>
+<td style="text-align: left;">Tên cột cố định, quy tắc trích xuất cố định</td>
+<td style="text-align: left;">5 điểm</td>
+</tr>
+<tr>
+<td style="text-align: left;">Phán đoán một email có nên trả lời hay không</td>
+<td style="text-align: left;">Cần hiểu nội dung và ngữ cảnh</td>
+<td style="text-align: left;">1 điểm</td>
+</tr>
+<tr>
+<td style="text-align: left;">Chuyển ghi âm cuộc họp thành văn bản</td>
+<td style="text-align: left;">Các bước cố định (upload → chuyển đổi → xuất file)</td>
+<td style="text-align: left;">5 điểm</td>
+</tr>
+<tr>
+<td style="text-align: left;">Quyết định có nên đầu tư một cổ phiếu hay không</td>
+<td style="text-align: left;">Liên quan đến phán đoán chủ quan lớn</td>
+<td style="text-align: left;">0 điểm</td>
+</tr>
+</tbody>
+</table>
+<h3>Chiều 3: Tính khả kiểm (Làm sao biết là làm đúng rồi?)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tính khả kiểm</th>
+<th style="text-align: left;">Điểm</th>
+<th style="text-align: left;">Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Kết quả trắng đen rõ ràng</td>
+<td style="text-align: left;">5 điểm</td>
+<td style="text-align: left;">Hoặc đúng hoặc sai, nhìn cái biết ngay</td>
+</tr>
+<tr>
+<td style="text-align: left;">Có tiêu chuẩn kiểm tra rõ ràng</td>
+<td style="text-align: left;">4 điểm</td>
+<td style="text-align: left;">Có thể đối chiếu danh sách kiểm tra</td>
+</tr>
+<tr>
+<td style="text-align: left;">Cần duyệt thủ công</td>
+<td style="text-align: left;">3 điểm</td>
+<td style="text-align: left;">Làm xong phải tốn thời gian kiểm tra</td>
+</tr>
+<tr>
+<td style="text-align: left;">Khó phán đoán tốt xấu</td>
+<td style="text-align: left;">1 điểm</td>
+<td style="text-align: left;">Rất khó nói là "làm xong rồi" hay "làm đúng rồi"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Hoàn toàn chủ quan</td>
+<td style="text-align: left;">0 điểm</td>
+<td style="text-align: left;">Không có đáp án tiêu chuẩn</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mẹo đánh giá</strong>: Tự hỏi "Nếu AI giúp tôi làm xong, tôi làm sao biết nó làm đúng hay không?"</p>
+<p><strong>Ví dụ</strong>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Nhiệm vụ</th>
+<th style="text-align: left;">Tính khả kiểm</th>
+<th style="text-align: left;">Điểm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tính tổng dữ liệu của 5 bảng</td>
+<td style="text-align: left;">Có thể đối chiếu dữ liệu gốc để kiểm toán</td>
+<td style="text-align: left;">5 điểm</td>
+</tr>
+<tr>
+<td style="text-align: left;">Viết một email đúng mực</td>
+<td style="text-align: left;">Cần người phán đoán ngữ khí có phù hợp không</td>
+<td style="text-align: left;">2 điểm</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tạo một poster quảng cáo</td>
+<td style="text-align: left;">Thẩm mỹ tùy mỗi người</td>
+<td style="text-align: left;">1 điểm</td>
+</tr>
+</tbody>
+</table>
+<h3>Chiều 4: Tính nhạy cảm (Dữ liệu liên quan nhạy cảm đến mức nào?)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tính nhạy cảm</th>
+<th style="text-align: left;">Điểm</th>
+<th style="text-align: left;">Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Hoàn toàn không nhạy cảm</td>
+<td style="text-align: left;">5 điểm</td>
+<td style="text-align: left;">Thông tin công khai, không riêng tư, không rủi ro</td>
+</tr>
+<tr>
+<td style="text-align: left;">Hơi nhạy cảm</td>
+<td style="text-align: left;">4 điểm</td>
+<td style="text-align: left;">Sở thích cá nhân, lịch trình v.v.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Nhạy cảm trung bình</td>
+<td style="text-align: left;">2 điểm</td>
+<td style="text-align: left;">Liên quan nội dung công việc, cần chú ý</td>
+</tr>
+<tr>
+<td style="text-align: left;">Nhạy cảm cao</td>
+<td style="text-align: left;">1 điểm</td>
+<td style="text-align: left;">Liên quan quyền riêng tư người khác hoặc bí mật kinh doanh</td>
+</tr>
+<tr>
+<td style="text-align: left;">Cực kỳ nhạy cảm</td>
+<td style="text-align: left;">0 điểm</td>
+<td style="text-align: left;">Mật khẩu, thông tin thanh toán, hồ sơ y tế v.v.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mẹo đánh giá</strong>: Tự hỏi "Nếu những dữ liệu này bị lộ, sẽ có hậu quả gì?"</p>
+<p><strong>Giới hạn đỏ</strong>: Các loại dữ liệu sau, không khuyến nghị dùng Vibe Coding xử lý:</p>
+<ul>
+<li>Tài khoản ngân hàng, thông tin thanh toán, mật khẩu</li>
+<li>Số CMND/CCCD, số hộ chiếu và các thông tin định danh khác</li>
+<li>Hồ sơ y tế, dữ liệu sức khỏe</li>
+<li>Thông tin riêng tư của người khác (chưa được ủy quyền)</li>
+</ul>
+<h3>Chiều 5: Tính chịu lỗi (Làm sai thì sẽ thế nào?)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tính chịu lỗi</th>
+<th style="text-align: left;">Điểm</th>
+<th style="text-align: left;">Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Làm sai không ảnh hưởng gì</td>
+<td style="text-align: left;">5 điểm</td>
+<td style="text-align: left;">Tình huống xấu nhất là làm lại</td>
+</tr>
+<tr>
+<td style="text-align: left;">Làm sai hơi phiền</td>
+<td style="text-align: left;">4 điểm</td>
+<td style="text-align: left;">Cần tốn thời gian sửa, nhưng không nghiêm trọng</td>
+</tr>
+<tr>
+<td style="text-align: left;">Làm sai khá phiền</td>
+<td style="text-align: left;">3 điểm</td>
+<td style="text-align: left;">Cần người khác giúp hoặc tốn nhiều thời gian sửa</td>
+</tr>
+<tr>
+<td style="text-align: left;">Làm sai rất nghiêm trọng</td>
+<td style="text-align: left;">1 điểm</td>
+<td style="text-align: left;">Có thể ảnh hưởng công việc hoặc người khác</td>
+</tr>
+<tr>
+<td style="text-align: left;">Làm sai không thể cứu vãn</td>
+<td style="text-align: left;">0 điểm</td>
+<td style="text-align: left;">Liên quan tiền bạc, pháp luật, an toàn</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mẹo đánh giá</strong>: Tự hỏi "Nếu công cụ bị bug, tình huống xấu nhất là gì?"</p>
+<p><strong>Ví dụ</strong>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Nhiệm vụ</th>
+<th style="text-align: left;">Tính chịu lỗi</th>
+<th style="text-align: left;">Điểm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tạo một danh sách việc cần làm cá nhân</td>
+<td style="text-align: left;">Xấu nhất là mất dữ liệu, ghi lại thôi</td>
+<td style="text-align: left;">5 điểm</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tạo một báo cáo tuần cho sếp xem</td>
+<td style="text-align: left;">Có thể sai phải sửa, nhưng ảnh hưởng không lớn</td>
+<td style="text-align: left;">4 điểm</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tự động gửi email cho khách hàng</td>
+<td style="text-align: left;">Gửi nhầm có thể ảnh hưởng hình ảnh công ty</td>
+<td style="text-align: left;">2 điểm</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tự động thực hiện giao dịch cổ phiếu</td>
+<td style="text-align: left;">Làm sai có thể mất tiền thật</td>
+<td style="text-align: left;">0 điểm</td>
+</tr>
+</tbody>
+</table>
+<h2>Bảng chấm điểm sàng lọc vấn đề</h2>
+<p>Đem vấn đề bạn chọn ra từ nhật ký phiền não, dùng bảng này để chấm điểm:</p>
+<pre><code class="language-markdown">## Bảng chấm điểm sàng lọc vấn đề
+
+**Mô tả vấn đề**: ********\_\_\_\_********
+
+| Chiều                                        | Điểm (0-5) | Ghi chú |
+| :------------------------------------------- | :--------- | :------ |
+| Tính lặp lại                                 |            |         |
+| Tính quy tắc                                 |            |         |
+| Tính khả kiểm                                |            |         |
+| Tính nhạy cảm (càng không nhạy cảm càng cao) |            |         |
+| Tính chịu lỗi (càng chịu lỗi càng cao)       |            |         |
+| **Tổng điểm**                                |            |         |
+
+**Tiêu chuẩn đánh giá**:
+
+- 20-25 điểm: Rất phù hợp, có thể bắt đầu ngay
+- 15-19 điểm: Khá phù hợp, chú ý rủi ro ở các mục điểm thấp
+- 10-14 điểm: Cân nhắc thận trọng, có thể cần hỗ trợ chuyên môn
+- Dưới 10 điểm: Không khuyến nghị dùng Vibe Coding giải quyết
+</code></pre>
+<h2>Danh sách giới hạn đỏ: Những vấn đề này đừng động vào</h2>
+<p>Bất kể điểm cao bao nhiêu, các loại vấn đề sau đây đều <strong>không khuyến nghị</strong> dùng Vibe Coding giải quyết:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Loại giới hạn đỏ</th>
+<th style="text-align: left;">Nguyên nhân</th>
+<th style="text-align: left;">Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Liên quan dòng tiền</strong></td>
+<td style="text-align: left;">Rủi ro an toàn cực cao, một khi sai có thể gây mất mát thực tế</td>
+<td style="text-align: left;">Tự động chuyển khoản, thanh toán, thao tác tài chính</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Liên quan quyền riêng tư người dùng</strong></td>
+<td style="text-align: left;">Rủi ro pháp lý, lộ dữ liệu có thể vi phạm pháp luật</td>
+<td style="text-align: left;">Thu thập thông tin người khác, xử lý dữ liệu y tế</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Liên quan tuân thủ quy định</strong></td>
+<td style="text-align: left;">Cần chứng chỉ và kiến thức chuyên môn</td>
+<td style="text-align: left;">Chẩn đoán y tế, tư vấn pháp luật, báo cáo tài chính</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Cần bảo trì dài hạn</strong></td>
+<td style="text-align: left;">Nợ kỹ thuật sẽ tích lũy, Vibe Coding khó duy trì</td>
+<td style="text-align: left;">Hệ thống thương mại vận hành nhiều năm</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Bối cảnh chịu tải cao</strong></td>
+<td style="text-align: left;">Cần kiến trúc backend chuyên nghiệp</td>
+<td style="text-align: left;">Ứng dụng có hàng ngàn người dùng cùng lúc</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hãy nhớ</strong>: Định vị của Vibe Coding là "xác minh nhanh" và "công cụ cá nhân", không phải thay thế phát triển chuyên nghiệp.</p>
+<h2>Vùng xám: Trường hợp cần hỗ trợ chuyên môn</h2>
+<p>Có những vấn đề không nằm trong giới hạn đỏ, nhưng cũng không hoàn toàn thích hợp để tự dùng Vibe Coding giải quyết. Lúc này bạn có hai lựa chọn:</p>
+<h3>Lựa chọn 1: Hạ cấp phạm vi vấn đề</h3>
+<p>Thu hẹp vấn đề vào trong phạm vi an toàn.</p>
+<p><strong>Ví dụ</strong>:</p>
+<ul>
+<li>Vấn đề gốc: "Làm một hệ thống đặt hẹn cho khách hàng dùng" → Liên quan dữ liệu người dùng</li>
+<li>Sau khi hạ cấp: "Làm một công cụ quản lý lịch trình chỉ mình tôi dùng" → Chỉ liên quan dữ liệu của mình</li>
+</ul>
+<h3>Lựa chọn 2: Tìm kiếm hỗ trợ chuyên môn</h3>
+<p>Nếu bạn thực sự cần làm một sản phẩm liên quan lĩnh vực nhạy cảm, hãy cân nhắc:</p>
+<ul>
+<li>Tìm một nhà phát triển có kinh nghiệm giúp bạn review các phần quan trọng</li>
+<li>Sử dụng dịch vụ bên thứ ba đã trưởng thành (như thanh toán dùng Stripe, xác thực dùng Auth0)</li>
+<li>Thuê ngoài phần nhạy cảm, mình chỉ làm phần không nhạy cảm</li>
+</ul>
+<h2>Phán đoán tình huống ranh giới</h2>
+<h3>"Dữ liệu của tôi chỉ mình tôi dùng, có tính là nhạy cảm không?"</h3>
+<p>Nếu chỉ là dữ liệu cá nhân của bạn (lịch trình, ghi chú đọc sách, việc cần làm), và lưu trữ cục bộ hoặc trong tài khoản cá nhân, thì thường là an toàn.</p>
+<p>Nhưng cần lưu ý: Nếu "công cụ cá nhân" của bạn sau này có thể đưa cho người khác dùng, thì phải cân nhắc an toàn dữ liệu từ trước.</p>
+<h3>"Thứ tôi muốn làm liên quan một chút xíu đến thông tin nhạy cảm, làm sao đây?"</h3>
+<p>Cố gắng "tách" thông tin nhạy cảm ra:</p>
+<ul>
+<li>Không lưu trữ thông tin nhạy cảm trong công cụ, chỉ lưu chỉ mục</li>
+<li>Thông tin nhạy cảm dùng link trỏ đến vị trí gốc, không copy vào công cụ</li>
+<li>Không làm tính năng "tự động xử lý" thông tin nhạy cảm, giữ lại khâu xác nhận thủ công</li>
+</ul>
+<h3>"Tôi không chắc vấn đề của mình có phù hợp không, làm sao đây?"</h3>
+<p>Hai lời khuyên:</p>
+<ol>
+<li>Làm một phiên bản "an toàn nhất" trước: Chỉ giải quyết vấn đề cốt lõi, không liên quan đến bất kỳ vùng xám nào</li>
+<li>Rà soát lại một lượt nữa trong danh sách tự kiểm tra "Ba câu hỏi linh hồn" đã học ở phần 2.5</li>
+</ol>
+<h2>Các điểm cốt lõi</h2>
+<p>Làm tốt việc sàng lọc vấn đề, có thể giúp bạn:</p>
+<p>✓ Đầu tư thời gian hữu hạn vào những vấn đề có giá trị nhất</p>
+<p>✓ Tránh lãng phí sức lực vào những vấn đề không phù hợp</p>
+<p>✓ Nhận diện các bối cảnh cần hỗ trợ chuyên môn, tránh dẫm phải hố</p>
+<p><strong>Hãy nhớ</strong>: Không phải vấn đề nào cũng phải dựa vào bản thân để giải quyết. Biết cái gì không làm, cũng quan trọng như biết cái gì phải làm.</p>
+</body>
+</html>

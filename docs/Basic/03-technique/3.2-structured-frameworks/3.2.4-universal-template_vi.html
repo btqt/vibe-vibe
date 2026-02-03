@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.2.4 Universal Template</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.2.4 Mẫu Prompt vạn năng"</h2>
+<p><img alt="03-technique_3.2-structured-frameworks_3.2.4-universal-template.png" src="../../../public/images/Basic/03-technique_3.2-structured-frameworks_3.2.4-universal-template.png" /></p>
+<h1>3.2.4 Mẫu Prompt vạn năng</h1>
+<h2>Sau bài học này, bạn sẽ nắm được</h2>
+<ul>
+<li>Một mẫu chung áp dụng cho hầu hết các bối cảnh</li>
+<li>Bối cảnh sử dụng của phiên bản đầy đủ và phiên bản tinh gọn</li>
+<li>Ví dụ điền mẫu cho 3 bối cảnh khác nhau</li>
+<li>Các kỹ thuật thực tế để sử dụng mẫu hiệu quả hơn</li>
+</ul>
+<h2>Tại sao cần "Mẫu vạn năng"</h2>
+<p>S.C.A.F.F. thích hợp cho phát triển kỹ thuật, R.G.C. thích hợp cho câu hỏi nhanh, nhưng có một số nhiệm vụ không dễ phân loại như vậy:</p>
+<ul>
+<li>Vừa không phải thuần kỹ thuật, cũng không phải câu hỏi đơn giản</li>
+<li>Không chắc chắn nên dùng khung nào</li>
+<li>Muốn một phương án chung chung "điền thế nào cũng không sai"</li>
+</ul>
+<p>Đây chính là ý nghĩa tồn tại của mẫu vạn năng: <strong>Độ bao phủ rộng, điền thế nào cũng không quá tệ</strong>.</p>
+<h2>Cấu trúc mẫu</h2>
+<p>Mẫu vạn năng bao gồm 7 yếu tố, sắp xếp theo mức độ quan trọng:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">STT</th>
+<th style="text-align: left;">Yếu tố</th>
+<th style="text-align: left;">Mức độ bắt buộc</th>
+<th style="text-align: left;">Tác dụng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Vai trò</td>
+<td style="text-align: left;">Đề xuất điền</td>
+<td style="text-align: left;">Để AI vào chế độ chuyên gia</td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Bối cảnh</td>
+<td style="text-align: left;">Bắt buộc</td>
+<td style="text-align: left;">Cung cấp thông tin ngữ cảnh</td>
+</tr>
+<tr>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Nhiệm vụ</td>
+<td style="text-align: left;">Bắt buộc</td>
+<td style="text-align: left;">Nói rõ cần làm gì</td>
+</tr>
+<tr>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Yêu cầu</td>
+<td style="text-align: left;">Đề xuất điền</td>
+<td style="text-align: left;">Xác định tiêu chuẩn thành công</td>
+</tr>
+<tr>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Ràng buộc</td>
+<td style="text-align: left;">Đề xuất điền</td>
+<td style="text-align: left;">Vạch ranh giới, ngăn "tự biên tự diễn"</td>
+</tr>
+<tr>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">Định dạng</td>
+<td style="text-align: left;">Tùy tình huống</td>
+<td style="text-align: left;">Chỉ định hình thức đầu ra</td>
+</tr>
+<tr>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">Ví dụ</td>
+<td style="text-align: left;">Tùy chọn</td>
+<td style="text-align: left;">Dùng ví dụ dạy AI bạn muốn gì</td>
+</tr>
+</tbody>
+</table>
+<h2>Mẫu bản đầy đủ</h2>
+<pre><code class="language-markdown">Bạn là một [Mô tả vai trò].
+
+## Bối cảnh
+
+[Thông tin bối cảnh dự án/nhiệm vụ]
+
+## Nhiệm vụ
+
+[Cụ thể cần làm gì]
+
+## Yêu cầu
+
+- [Yêu cầu 1: Tiêu chuẩn thành công cụ thể]
+- [Yêu cầu 2]
+- [Yêu cầu 3]
+
+## Ràng buộc
+
+- [Không được làm gì 1]
+- [Không được làm gì 2]
+
+## Định dạng đầu ra
+
+[Hình thức đầu ra mong muốn]
+
+## Ví dụ (Tùy chọn)
+
+[Một ví dụ đầu ra lý tưởng, giúp AI hiểu kỳ vọng của bạn]
+</code></pre>
+<h2>Mẫu bản tinh gọn</h2>
+<p>Khi sử dụng hàng ngày, có thể giữ lại 3 yếu tố cốt lõi:</p>
+<pre><code class="language-markdown">Bạn là một [Vai trò].
+
+Bối cảnh: [Một câu giải thích tình huống]
+
+Nhiệm vụ: [Cần làm gì]
+
+Yêu cầu:
+
+- [Yêu cầu 1]
+- [Yêu cầu 2]
+</code></pre>
+<p><strong>Tiêu chuẩn lựa chọn</strong>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Loại nhiệm vụ</th>
+<th style="text-align: left;">Phiên bản đề xuất</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Code quan trọng, sẽ đưa vào dự án</td>
+<td style="text-align: left;">Bản đầy đủ</td>
+</tr>
+<tr>
+<td style="text-align: left;">Xác minh ý tưởng nhanh, tra cứu tạm thời</td>
+<td style="text-align: left;">Bản tinh gọn</td>
+</tr>
+<tr>
+<td style="text-align: left;">Lần đầu làm loại nhiệm vụ nào đó</td>
+<td style="text-align: left;">Bản đầy đủ (giúp bạn làm rõ suy nghĩ)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Nhiệm vụ đã làm lặp lại</td>
+<td style="text-align: left;">Bản tinh gọn</td>
+</tr>
+</tbody>
+</table>
+<h2>Ví dụ bối cảnh</h2>
+<h3>Bối cảnh 1: Phát triển sản phẩm (Danh sách việc cần làm)</h3>
+<pre><code class="language-markdown">Bạn là một lập trình viên Frontend giỏi về React và thiết kế trải nghiệm người dùng.
+
+## Bối cảnh
+
+Tôi đang làm một ứng dụng danh sách việc cần làm cá nhân, người dùng mục tiêu là người mới đi làm hay quên việc.
+Tech stack: React + TypeScript + Tailwind CSS
+Nguyên tắc thiết kế: Cực giản, thêm nhiệm vụ phải hoàn thành trong 3 giây
+
+## Nhiệm vụ
+
+Thực hiện chức năng &quot;kéo thả sắp xếp&quot; nhiệm vụ, để người dùng có thể điều chỉnh thứ tự nhiệm vụ bằng cách kéo thả.
+
+## Yêu cầu
+
+- Khi kéo, nhiệm vụ bị kéo trở nên bán trong suốt
+- Vị trí thả có chỉ báo trực quan rõ ràng
+- Sau khi kéo xong thứ tự cập nhật ngay lập tức
+- Di động cũng dùng được (nhấn giữ để kích hoạt kéo thả)
+
+## Ràng buộc
+
+- Không dùng thư viện kéo thả bên ngoài (như react-beautiful-dnd)
+- Dùng HTML5 Drag and Drop API nguyên bản
+- Code phải có chú thích chi tiết, tôi là người mới học về API kéo thả
+
+## Định dạng đầu ra
+
+Code React component hoàn chỉnh, bao gồm:
+
+1. File component (TypeScript)
+2. Chú thích tiếng Việt cho các logic quan trọng
+3. Hướng dẫn sử dụng đơn giản
+</code></pre>
+<h3>Bối cảnh 2: Phân tích dữ liệu</h3>
+<pre><code class="language-markdown">Bạn là một chuyên gia phân tích giỏi trực quan hóa dữ liệu, đặc biệt chú trọng việc làm cho người không chuyên kỹ thuật cũng hiểu được dữ liệu.
+
+## Bối cảnh
+
+Tôi là nhân viên vận hành của công ty thương mại điện tử, trong tay có dữ liệu bán hàng 3 tháng (định dạng Excel).
+Sếp mỗi sáng thứ Hai chỉ có 15 phút xem báo cáo, báo cáo lần trước dài quá bị phê bình.
+
+## Nhiệm vụ
+
+Giúp tôi thiết kế cấu trúc báo cáo phân tích bán hàng Quý 3.
+
+## Yêu cầu
+
+- Sếp có thể nắm bắt trọng điểm trong 5 phút
+- Trang đầu tiên phải thấy được kết luận quan trọng nhất
+- Có đề xuất hành động rõ ràng, không chỉ hiển thị dữ liệu
+- Biểu đồ phải tinh gọn, một biểu đồ nói lên một vấn đề
+
+## Ràng buộc
+
+- Báo cáo không quá 5 trang
+- Không dùng thuật ngữ thống kê phức tạp
+- Màu sắc sử dụng màu thương hiệu công ty (hệ màu xanh lam)
+
+## Định dạng đầu ra
+
+1. Cấu trúc trang báo cáo (Tiêu đề mỗi trang và ý chính nội dung)
+2. Loại biểu đồ đề xuất và lý do
+3. Phương án phối màu đề xuất
+</code></pre>
+<h3>Bối cảnh 3: Script tự động hóa</h3>
+<pre><code class="language-markdown">Bạn là một kỹ sư Python chú trọng sự bền vững của code.
+
+## Bối cảnh
+
+Tôi là kế toán công ty, mỗi thứ Sáu phải tổng hợp báo cáo tuần Excel của 5 bộ phận.
+Quy trình hiện tại: Mở thủ công 5 file → Copy dữ liệu → Paste vào bảng tổng hợp → Chỉnh định dạng
+Mỗi tuần mất 2 tiếng, thường xuyên sai sót phải kiểm tra lại nhiều lần.
+
+## Nhiệm vụ
+
+Viết một script Python, tự động hoàn thành công việc tổng hợp này.
+
+## Yêu cầu
+
+- Đọc tất cả file .xlsx trong thư mục chỉ định
+- Mỗi file trích xuất vùng A1:E20 của sheet &quot;Tổng hợp&quot;
+- Gộp vào một file Excel mới, mỗi bộ phận một sheet
+- Chạy xong hiển thị đã xử lý bao nhiêu file
+
+## Ràng buộc
+
+- Chỉ dùng thư viện openpyxl (máy công ty đã cài sẵn)
+- Nếu định dạng file không đúng, bỏ qua và ghi lại lỗi, đừng ngắt quãng cả quy trình
+- Code phải có chú thích tiếng Việt, tôi là người mới học Python
+
+## Định dạng đầu ra
+
+Script Python hoàn chỉnh, có thể chạy trực tiếp
+
+## Ví dụ
+
+Cấu trúc thư mục:
+</code></pre>
+<p>/Báo cáo tuần/
+├── Phòng kinh doanh_Tuần 1.xlsx
+├── Phòng thị trường_Tuần 1.xlsx
+├── ...</p>
+<pre><code>File đầu ra: Tổng hợp_2024_Tuần 1.xlsx
+</code></pre>
+<h2>Kỹ thuật để dùng mẫu tốt hơn</h2>
+<h3>Kỹ thuật 1: Viết "Nhiệm vụ" trước, rồi bổ sung cái khác</h3>
+<p>Rất nhiều người bị kẹt ở phần "Bối cảnh" không biết viết gì. Đề xuất:</p>
+<ol>
+<li>Viết cái bạn muốn nói nhất vào phần "Nhiệm vụ" trước</li>
+<li>Sau đó tự hỏi: Để hiểu nhiệm vụ này AI cần biết bối cảnh gì?</li>
+<li>Điền câu trả lời vào phần "Bối cảnh"</li>
+</ol>
+<h3>Kỹ thuật 2: "Ràng buộc" bắt đầu bằng "Không"</h3>
+<p>"Ràng buộc" dễ bị viết trùng lặp với "Yêu cầu". Hãy nhớ:</p>
+<ul>
+<li><strong>Yêu cầu</strong>: Nói cho AI biết "cần cái gì"</li>
+<li><strong>Ràng buộc</strong>: Nói cho AI biết "không cần cái gì"</li>
+</ul>
+<p>Câu ràng buộc cố gắng bắt đầu bằng "Không", "Không dùng", "Không cần", như vậy dễ phân biệt hơn.</p>
+<h3>Kỹ thuật 3: Ví dụ hơn ngàn lời nói</h3>
+<p>Khi bạn phát hiện rất khó dùng ngôn ngữ mô tả đầu ra mong muốn, hãy đưa thẳng một ví dụ:</p>
+<pre><code class="language-markdown">## Ví dụ
+
+Đầu vào: &quot;2024-01-15&quot;
+Đầu ra mong muốn: &quot;Thứ Hai, ngày 15 tháng 1 năm 2024&quot;
+</code></pre>
+<p>Một ví dụ chính xác hiệu quả hơn ba đoạn văn mô tả.</p>
+<h2>Trọng điểm bài học</h2>
+<p>✓ <strong>7 yếu tố mẫu vạn năng</strong>: Vai trò, Bối cảnh, Nhiệm vụ, Yêu cầu, Ràng buộc, Định dạng, Ví dụ</p>
+<p>✓ <strong>Bản đầy đủ vs Bản tinh gọn</strong>: Nhiệm vụ quan trọng dùng bản đầy đủ, xác minh nhanh dùng bản tinh gọn</p>
+<p>✓ <strong>Đề xuất trình tự điền</strong>: Viết nhiệm vụ trước, bổ sung bối cảnh, cuối cùng thêm ràng buộc</p>
+<p>✓ <strong>Phân biệt then chốt</strong>: Yêu cầu nói "cần gì", ràng buộc nói "không cần gì"</p>
+<p>Bài sau là phần cuối cùng của chương này: Hướng dẫn lựa chọn khung tư duy —— giúp bạn phán đoán nhanh bối cảnh nào dùng khung nào.</p>
+</body>
+</html>

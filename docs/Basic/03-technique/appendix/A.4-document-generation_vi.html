@@ -1,0 +1,478 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.4 Document Generation</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "A.4 Mẫu tạo tài liệu"</h2>
+<p><img alt="03-technique_appendix_A.4-document-generation.png" src="../../../public/images/Basic/03-technique_appendix_A.4-document-generation.png" /></p>
+<h1>A.4 Mẫu tạo tài liệu</h1>
+<p>Phần này cung cấp các mẫu Prompt để tạo các loại tài liệu, bao gồm chú thích code, README, tài liệu API và hướng dẫn sử dụng.</p>
+<h2>Mẫu 1: Tạo chú thích code</h2>
+<p>Thích hợp cho: Thêm chú thích cho code hiện có</p>
+<pre><code class="language-markdown">## Nhu cầu chú thích
+
+Vui lòng thêm chú thích bằng tiếng Việt cho đoạn code sau:
+
+```[Ngôn ngữ]
+[Dán code]
+</code></pre>
+<h2>Yêu cầu chú thích</h2>
+<p><strong>Loại chú thích</strong>:
+- [ ] Chú thích đầu file (giải thích công dụng file)
+- [ ] Chú thích hàm (giải thích tham số, giá trị trả về, chức năng)
+- [ ] Chú thích logic then chốt (giải thích logic phức tạp)
+- [ ] Chú thích TODO (đánh dấu chỗ cần hoàn thiện)</p>
+<p><strong>Phong cách chú thích</strong>:
+- Ngôn ngữ: Tiếng Việt
+- Định dạng: [Phong cách JSDoc / Chú thích thường / Quy chuẩn của bạn]
+- Độ chi tiết: [Ngắn gọn/Vừa phải/Chi tiết]</p>
+<p><strong>Lưu ý đặc biệt</strong>:
+- [Yêu cầu khác, ví dụ "không cần chú thích biến đơn giản"]</p>
+<h2>Yêu cầu đầu ra</h2>
+<p>Vui lòng xuất code hoàn chỉnh sau khi thêm chú thích, giữ nguyên logic code ban đầu.</p>
+<pre><code>
+### Ví dụ điền mẫu
+
+```markdown
+## Nhu cầu chú thích
+
+Vui lòng thêm chú thích bằng tiếng Việt cho đoạn code sau:
+
+```typescript
+interface Task {
+  id: string;
+  title: string;
+  completed: boolean;
+  createdAt: Date;
+}
+
+function useTasks() {
+  const [tasks, setTasks] = useState&lt;Task[]&gt;([]);
+
+  const addTask = useCallback((title: string) =&gt; {
+    const newTask: Task = {
+      id: crypto.randomUUID(),
+      title,
+      completed: false,
+      createdAt: new Date(),
+    };
+    setTasks(prev =&gt; [...prev, newTask]);
+  }, []);
+
+  const toggleTask = useCallback((id: string) =&gt; {
+    setTasks(prev =&gt; 
+      prev.map(task =&gt; 
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  }, []);
+
+  return { tasks, addTask, toggleTask };
+}
+</code></pre>
+<h2>Yêu cầu chú thích</h2>
+<p><strong>Loại chú thích</strong>:
+- [x] Chú thích đầu file
+- [x] Chú thích hàm (định dạng JSDoc)
+- [x] Chú thích logic then chốt</p>
+<p><strong>Phong cách chú thích</strong>:
+- Ngôn ngữ: Tiếng Việt
+- Định dạng: Phong cách JSDoc
+- Độ chi tiết: Vừa phải</p>
+<p><strong>Lưu ý đặc biệt</strong>:
+- Mỗi trường trong interface cần có chú thích
+- useCallback cần giải thích tại sao dùng nó</p>
+<h2>Yêu cầu đầu ra</h2>
+<p>Vui lòng xuất code hoàn chỉnh sau khi thêm chú thích.</p>
+<pre><code>
+## Mẫu 2: Tạo README
+
+Thích hợp cho: Tạo tài liệu hướng dẫn cho dự án
+
+```markdown
+## Thông tin dự án
+
+**Tên dự án**: [Tên]
+**Mô tả một câu**: [Tóm tắt dự án làm gì]
+
+**Stack kỹ thuật**:
+- Frontend: [Công nghệ]
+- Backend: [Công nghệ, nếu không có thì ghi &quot;Không&quot;]
+- Cơ sở dữ liệu: [Công nghệ, nếu không có thì ghi &quot;Không&quot;]
+
+**Người dùng mục tiêu**: [Ai sẽ dùng dự án này]
+
+## Chức năng dự án
+
+**Chức năng cốt lõi**:
+1. [Chức năng 1]
+2. [Chức năng 2]
+3. [Chức năng 3]
+
+**Ảnh chụp màn hình chức năng** (Tùy chọn):
+[Nếu có ảnh chụp màn hình, mô tả nội dung ảnh]
+
+## Chi tiết kỹ thuật
+
+**Cấu trúc dự án**:
+</code></pre>
+<p>[Dán cấu trúc thư mục dự án]</p>
+<pre><code>
+**Yêu cầu môi trường**:
+- Phiên bản Node.js: [Phiên bản]
+- Phụ thuộc khác: [Liệt kê]
+
+**Các bước cài đặt**:
+[Nếu bạn biết các bước cài đặt, có thể viết ra trước]
+
+## Yêu cầu README
+
+**Nội dung bao gồm**:
+- [ ] Giới thiệu dự án
+- [ ] Đặc điểm tính năng
+- [ ] Bắt đầu nhanh (Cài đặt và chạy)
+- [ ] Giải thích cấu trúc dự án
+- [ ] Giải thích Stack kỹ thuật
+- [ ] Hướng dẫn đóng góp
+- [ ] License
+
+**Yêu cầu phong cách**:
+- Ngôn ngữ: Tiếng Việt
+- Phong cách: [Ngắn gọn chuyên nghiệp/Thân thiện gần gũi/Đậm chất kỹ thuật]
+
+## Yêu cầu đầu ra
+
+Vui lòng tạo nội dung file README.md hoàn chỉnh.
+</code></pre>
+<h3>Ví dụ điền mẫu</h3>
+<pre><code class="language-markdown">## Thông tin dự án
+
+**Tên dự án**: Minimal Todo
+**Mô tả một câu**: Một danh sách việc cần làm cực giản, mở trình duyệt là dùng ngay
+
+**Stack kỹ thuật**:
+- Frontend: React + TypeScript + Tailwind CSS
+- Backend: Không
+- Cơ sở dữ liệu: localStorage trình duyệt
+
+**Người dùng mục tiêu**: Người dùng cá nhân muốn ghi lại việc cần làm hàng ngày một cách đơn giản
+
+## Chức năng dự án
+
+**Chức năng cốt lõi**:
+1. Thêm việc cần làm
+2. Đánh dấu hoàn thành
+3. Xóa việc cần làm
+4. Bền vững hóa dữ liệu cục bộ
+
+## Chi tiết kỹ thuật
+
+**Cấu trúc dự án**:
+</code></pre>
+<p>src/
+├── components/
+│   ├── AddTask.tsx
+│   ├── TaskList.tsx
+│   └── TaskItem.tsx
+├── hooks/
+│   └── useTasks.ts
+├── types/
+│   └── index.ts
+├── App.tsx
+└── main.tsx</p>
+<pre><code>
+**Yêu cầu môi trường**:
+- Phiên bản Node.js: 18+
+- Trình quản lý gói: npm hoặc pnpm
+
+## Yêu cầu README
+
+**Nội dung bao gồm**:
+- [x] Giới thiệu dự án
+- [x] Đặc điểm tính năng
+- [x] Bắt đầu nhanh
+- [x] Giải thích cấu trúc dự án
+- [ ] Hướng dẫn đóng góp (Không cần)
+- [ ] License (Không cần)
+
+**Yêu cầu phong cách**:
+- Ngôn ngữ: Tiếng Việt
+- Phong cách: Ngắn gọn chuyên nghiệp
+
+## Yêu cầu đầu ra
+
+Vui lòng tạo nội dung file README.md hoàn chỉnh.
+</code></pre>
+<h2>Mẫu 3: Tạo tài liệu API</h2>
+<p>Thích hợp cho: Tạo tài liệu cho interface backend</p>
+<pre><code class="language-markdown">## Thông tin cơ bản API
+
+**Tên API**: [Tên interface]
+**Đường dẫn request**: [Ví dụ /api/users]
+**Phương thức request**: [GET/POST/PUT/DELETE]
+**Mô tả chức năng**: [Interface này làm gì]
+
+## Code interface
+
+```[Ngôn ngữ]
+[Dán code cài đặt interface]
+</code></pre>
+<h2>Yêu cầu tài liệu</h2>
+<p><strong>Định dạng tài liệu</strong>: [Markdown / OpenAPI YAML / Khác]</p>
+<p><strong>Nội dung bao gồm</strong>:
+- [ ] Mô tả interface
+- [ ] Giải thích tham số request
+- [ ] Ví dụ body request
+- [ ] Giải thích định dạng phản hồi
+- [ ] Ví dụ phản hồi
+- [ ] Giải thích mã lỗi
+- [ ] Ví dụ gọi (curl/JavaScript)</p>
+<h2>Yêu cầu đầu ra</h2>
+<p>Vui lòng tạo tài liệu API hoàn chỉnh.</p>
+<pre><code>
+### Ví dụ điền mẫu
+
+```markdown
+## Thông tin cơ bản API
+
+**Tên API**: Tạo nhiệm vụ
+**Đường dẫn request**: /api/tasks
+**Phương thức request**: POST
+**Mô tả chức năng**: Tạo một nhiệm vụ cần làm mới
+
+## Code interface
+
+```typescript
+// POST /api/tasks
+export async function POST(request: Request) {
+  const body = await request.json();
+  const { title, priority } = body;
+
+  if (!title || title.trim() === '') {
+    return Response.json(
+      { error: 'Title is required' },
+      { status: 400 }
+    );
+  }
+
+  const task = {
+    id: crypto.randomUUID(),
+    title: title.trim(),
+    priority: priority || 'medium',
+    completed: false,
+    createdAt: new Date().toISOString(),
+  };
+
+  // Lưu vào database...
+  await db.tasks.create(task);
+
+  return Response.json(task, { status: 201 });
+}
+</code></pre>
+<h2>Yêu cầu tài liệu</h2>
+<p><strong>Định dạng tài liệu</strong>: Markdown</p>
+<p><strong>Nội dung bao gồm</strong>:
+- [x] Mô tả interface
+- [x] Giải thích tham số request
+- [x] Ví dụ body request
+- [x] Giải thích định dạng phản hồi
+- [x] Ví dụ phản hồi
+- [x] Giải thích mã lỗi
+- [x] Ví dụ gọi (curl)</p>
+<h2>Yêu cầu đầu ra</h2>
+<p>Vui lòng tạo tài liệu API hoàn chỉnh.</p>
+<pre><code>
+## Mẫu 4: Tạo hướng dẫn sử dụng
+
+Thích hợp cho: Viết hướng dẫn sử dụng cho người dùng không chuyên kỹ thuật
+
+```markdown
+## Thông tin sản phẩm
+
+**Tên sản phẩm**: [Tên]
+**Loại sản phẩm**: [Trang web/App/Phần mềm desktop/Script]
+**Người dùng mục tiêu**: [Ai dùng, trình độ kỹ thuật thế nào]
+
+## Chức năng cốt lõi
+
+Vui lòng viết hướng dẫn sử dụng cho các chức năng sau:
+
+1. **[Chức năng 1]**
+   - Mô tả chức năng: [Làm gì]
+   - Vị trí truy cập: [Tìm chức năng này ở đâu]
+
+2. **[Chức năng 2]**
+   - Mô tả chức năng: [Làm gì]
+   - Vị trí truy cập: [Tìm chức năng này ở đâu]
+
+## Yêu cầu hướng dẫn
+
+**Phong cách ngôn ngữ**:
+- Giọng điệu: [Trang trọng/Thân thiện/Ngắn gọn]
+- Thuật ngữ kỹ thuật: [Tránh sử dụng/Giải thích đơn giản rồi dùng]
+
+**Cấu trúc nội dung**:
+- [ ] Giới thiệu chức năng
+- [ ] Các bước thao tác (giải thích từng bước)
+- [ ] Lưu ý
+- [ ] Vấn đề thường gặp
+
+**Giải thích phối ảnh** (Tùy chọn):
+[Mô tả cần phối ảnh gì, hoặc ghi chú &quot;Không cần phối ảnh&quot;]
+
+## Yêu cầu đầu ra
+
+Vui lòng tạo tài liệu hướng dẫn sử dụng thân thiện với người dùng.
+</code></pre>
+<h2>Mẫu 5: Tổng hợp ghi chép học tập</h2>
+<p>Thích hợp cho: Tổng hợp nội dung học tập kỹ thuật</p>
+<pre><code class="language-markdown">## Chủ đề học tập
+
+Tôi đã học về [Chủ đề], vui lòng giúp tôi tổng hợp ghi chép.
+
+## Nội dung học tập
+
+Sau đây là những ghi chép rời rạc tôi ghi lại trong quá trình học:
+
+</code></pre>
+<p>[Dán ghi chép học tập, đoạn code, từ khóa... của bạn]</p>
+<pre><code>
+## Yêu cầu tổng hợp
+
+**Cấu trúc ghi chép**:
+- [ ] Định nghĩa khái niệm
+- [ ] Điểm cốt lõi (3-5 điểm)
+- [ ] Ví dụ code
+- [ ] Tình huống sử dụng
+- [ ] Hiểu lầm thường gặp
+- [ ] Link khái niệm liên quan
+
+**Sở thích định dạng**:
+- Sử dụng Markdown
+- Khối code có highlight cú pháp
+- Điểm trọng tâm in đậm
+
+## Yêu cầu đầu ra
+
+Vui lòng xuất ghi chép học tập có cấu trúc, thuận tiện cho việc ôn tập sau này.
+</code></pre>
+<h3>Ví dụ điền mẫu</h3>
+<pre><code class="language-markdown">## Chủ đề học tập
+
+Tôi đã học về useEffect trong React Hooks, vui lòng giúp tôi tổng hợp ghi chép.
+
+## Nội dung học tập
+
+Sau đây là những ghi chép rời rạc tôi ghi lại trong quá trình học:
+
+</code></pre>
+<p>useEffect tác dụng phụ
+- Lấy dữ liệu
+- Đăng ký sự kiện
+- Sửa DOM</p>
+<p>Mảng dependency
+[] mảng rỗng - chỉ thực thi một lần khi mount
+Không viết - thực thi mỗi lần render
+[dep1, dep2] - thực thi khi dependency thay đổi</p>
+<p>Hàm cleanup return () =&gt; {}
+Gọi khi component unmount
+Tránh rò rỉ bộ nhớ</p>
+<p>Lỗi thường gặp:
+Vòng lặp vô hạn - mảng dependency viết sai
+Rò rỉ bộ nhớ - quên dọn dẹp đăng ký</p>
+<pre><code>
+## Yêu cầu tổng hợp
+
+**Cấu trúc ghi chép**:
+- [x] Định nghĩa khái niệm
+- [x] Điểm cốt lõi
+- [x] Ví dụ code
+- [x] Tình huống sử dụng
+- [x] Hiểu lầm thường gặp
+
+**Sở thích định dạng**:
+- Sử dụng Markdown
+- Khối code có highlight cú pháp
+- Điểm trọng tâm in đậm
+
+## Yêu cầu đầu ra
+
+Vui lòng xuất ghi chép học tập có cấu trúc.
+</code></pre>
+<h2>Bản rút gọn: Tạo tài liệu nhanh</h2>
+<p>Khi nhu cầu đơn giản, có thể dùng bản rút gọn này:</p>
+<pre><code class="language-markdown">Vui lòng tạo [Chú thích/Tài liệu/Giải thích] cho code sau:
+
+```[Ngôn ngữ]
+[Code]
+</code></pre>
+<p>Yêu cầu:
+- Ngôn ngữ: Tiếng Việt
+- Định dạng: [Markdown/JSDoc/Khác]
+- [Yêu cầu khác]
+```</p>
+<h2>Kỹ năng tạo tài liệu</h2>
+<h3>Kỹ năng 1: Cung cấp đủ ngữ cảnh</h3>
+<p>AI cần hiểu công dụng của code mới viết được tài liệu tốt. Giải thích đơn giản đoạn code này "làm gì" sẽ giúp tài liệu chính xác hơn.</p>
+<h3>Kỹ năng 2: Chỉ định độc giả mục tiêu</h3>
+<p>Tài liệu cho developer xem và hướng dẫn cho người dùng phổ thông xem có cách viết hoàn toàn khác nhau. Xác định rõ người đọc là ai.</p>
+<h3>Kỹ năng 3: Đưa ra ví dụ định dạng</h3>
+<p>Nếu bạn có yêu cầu định dạng tài liệu cụ thể, đưa ra một ví dụ sẽ hiệu quả hơn là dùng lời mô tả.</p>
+<h2>Sai lầm thường gặp khi điền</h2>
+<table>
+<thead>
+<tr>
+<th>Sai lầm</th>
+<th>Vấn đề</th>
+<th>Cách làm đúng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Không giải thích công dụng</td>
+<td>AI không hiểu code làm gì</td>
+<td>Giải thích tóm tắt chức năng và tình huống</td>
+</tr>
+<tr>
+<td>Không chỉ định định dạng</td>
+<td>Định dạng đầu ra ngẫu nhiên</td>
+<td>Xác định rõ cần Markdown/JSDoc...</td>
+</tr>
+<tr>
+<td>Không chỉ định ngôn ngữ</td>
+<td>Có thể xuất ra tiếng Anh</td>
+<td>Yêu cầu rõ tiếng Việt</td>
+</tr>
+<tr>
+<td>Yêu cầu quá chung chung</td>
+<td>"Viết cái tài liệu"</td>
+<td>Nói cụ thể bao gồm những nội dung gì</td>
+</tr>
+</tbody>
+</table>
+<h2>Điểm cốt yếu phần này</h2>
+<ul>
+<li>✅ <strong>Chú thích code</strong>: Chỉ định loại chú thích + Phong cách + Độ chi tiết</li>
+<li>✅ <strong>README</strong>: Cung cấp thông tin dự án + Danh sách chức năng + Chi tiết kỹ thuật</li>
+<li>✅ <strong>Tài liệu API</strong>: Cung cấp code interface + Chỉ định định dạng tài liệu</li>
+<li>✅ <strong>Hướng dẫn sử dụng</strong>: Xác định người dùng mục tiêu + Chỉ định phong cách ngôn ngữ</li>
+<li>✅ <strong>Kỹ thuật then chốt</strong>: Cung cấp ngữ cảnh + Chỉ định độc giả mục tiêu + Đưa ra ví dụ định dạng</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.6.2 Data Analysis</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "2.6.2 Bối cảnh phân tích dữ liệu: Để AI thực hiện phân tích có giá trị"</h2>
+<p><img alt="02-mindset_2.6-scenario-application_2.6.2-data-analysis.png" src="../../../public/images/Basic/02-mindset_2.6-scenario-application_2.6.2-data-analysis.png" /></p>
+<h1>2.6.2 Bối cảnh phân tích dữ liệu: Để AI thực hiện phân tích có giá trị</h1>
+<h2>Bản chất JTBD của phân tích dữ liệu</h2>
+<p>Rất nhiều người tưởng rằng phân tích dữ liệu chỉ là "làm vài cái biểu đồ". Nhưng nếu bạn nhìn bằng tư duy JTBD, nhiệm vụ thực sự mà phân tích dữ liệu cần hoàn thành là:</p>
+<blockquote>
+<p><strong>Giúp một người nào đó trả lời một câu hỏi nghiệp vụ nào đó, từ đó đưa ra quyết định tốt hơn.</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Nhu cầu bề mặt</th>
+<th style="text-align: left;">Nhiệm vụ thực sự dưới góc nhìn JTBD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Làm một báo cáo bán hàng</td>
+<td style="text-align: left;">Giúp sếp đánh giá "Doanh số Q3 có đạt chỉ tiêu không"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Phân tích dữ liệu hành vi người dùng</td>
+<td style="text-align: left;">Giúp giám đốc sản phẩm quyết định "Phiên bản tới ưu tiên làm tính năng gì"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Thống kê kết quả khảo sát</td>
+<td style="text-align: left;">Giúp bộ phận marketing đánh giá "Mức độ chấp nhận của người dùng với sản phẩm mới"</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nếu bạn không biết bài phân tích cần trả lời câu hỏi gì, thì biểu đồ AI tạo ra có đẹp đến mấy cũng vô dụng.</strong></p>
+<h2>Ứng dụng công cụ tư duy trong phân tích dữ liệu</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Công cụ tư duy</th>
+<th style="text-align: left;">Câu hỏi cần đặt ra trong phân tích dữ liệu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tư duy JTBD</td>
+<td style="text-align: left;">Phân tích này cần trả lời câu hỏi nghiệp vụ gì? Ai sẽ dùng phân tích này để ra quyết định gì?</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tư duy ngược</td>
+<td style="text-align: left;">Điều gì sẽ khiến phân tích này trở nên vô giá trị? Chất lượng dữ liệu có vấn đề? Chọn sai chỉ số? Biểu đồ không hiểu nổi?</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tư duy phép trừ</td>
+<td style="text-align: left;">1-3 câu hỏi cốt lõi nhất là gì? Đừng làm 20 cái biểu đồ, hãy trả lời vấn đề quan trọng nhất trước</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tư duy câu chuyện</td>
+<td style="text-align: left;">Người xem phân tích này là ai? Bối cảnh của họ là gì? Dùng cách diễn đạt nào để họ dễ hiểu nhất?</td>
+</tr>
+<tr>
+<td style="text-align: left;">Ba câu hỏi linh hồn</td>
+<td style="text-align: left;">Ai cần xem? Họ quan tâm điều gì? Tại sao phân tích của tôi có thể giúp ích cho họ?</td>
+</tr>
+</tbody>
+</table>
+<h2>Lầm tưởng thường gặp: "Biểu đồ càng nhiều càng chuyên nghiệp"</h2>
+<p>❌ <strong>Cách làm sai</strong>:</p>
+<pre><code>Giúp tôi phân tích dữ liệu bán hàng này, làm thành biểu đồ
+</code></pre>
+<p>AI có thể sẽ tạo ra 15 cái biểu đồ: Biểu đồ cột, biểu đồ đường, biểu đồ tròn, biểu đồ nhiệt...</p>
+<p>Vấn đề là:</p>
+<ul>
+<li>Bạn không biết nên xem cái nào</li>
+<li>Sếp hỏi "vậy kết luận là gì", bạn không trả lời được</li>
+<li>Làm rất nhiều việc, nhưng không trả lời được bất kỳ câu hỏi nghiệp vụ nào</li>
+</ul>
+<p>✅ <strong>Cách làm đúng</strong>:</p>
+<p>Suy nghĩ rõ ràng xem cần trả lời câu hỏi gì trước, rồi mới để AI giúp bạn phân tích.</p>
+<h2>Mẫu mô tả nhu cầu phân tích dữ liệu</h2>
+<p>Trước khi bắt đầu phân tích, hãy điền vào mẫu này trước:</p>
+<pre><code class="language-markdown">## Bối cảnh phân tích
+
+- Vai trò của tôi: [Chức vụ/vai trò của bạn trong công ty]
+- Mục đích phân tích: [Phân tích này hỗ trợ quyết định gì]
+- Đối tượng báo cáo: [Ai sẽ xem phân tích này]
+- Bối cảnh sử dụng: [Dùng trong cuộc họp/báo cáo nào]
+
+## Vấn đề cốt lõi
+
+Vấn đề cốt lõi mà phân tích này cần trả lời là:
+[Mô tả bằng một câu, ví dụ &quot;Nguyên nhân chính khiến doanh số Q3 sụt giảm là gì&quot;]
+
+## Mô tả dữ liệu
+
+- Nguồn dữ liệu: [Excel/Cơ sở dữ liệu/Khảo sát/...]
+- Phạm vi dữ liệu: [Khoảng thời gian, dung lượng mẫu...]
+- Trường thông tin quan trọng: [Liệt kê vài trường quan trọng nhất]
+
+## Yêu cầu đầu ra
+
+- Số lượng biểu đồ: [Gợi ý 3-5 cái, tập trung vào vấn đề cốt lõi]
+- Sở thích loại biểu đồ: [Biểu đồ cột/đường/..., tùy chọn]
+- Định dạng kết luận: [Mỗi biểu đồ kèm một câu kết luận / Cuối cùng đưa ra tóm tắt / ...]
+
+## File dữ liệu
+
+[Tải lên dữ liệu của bạn]
+</code></pre>
+<h2>Trường hợp thực chiến: Phân tích doanh số Q3</h2>
+<h3>Bối cảnh</h3>
+<p>Tiểu Lý là nhân viên vận hành kinh doanh của một công ty thương mại điện tử, sếp tuần sau phải báo cáo doanh số Q3 cho CEO. Sếp bảo Tiểu Lý "phân tích xem tại sao Q3 lại sụt giảm so với Q2".</p>
+<h3>Quá trình suy nghĩ của Tiểu Lý</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Công cụ tư duy</th>
+<th style="text-align: left;">Suy nghĩ của Tiểu Lý</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tư duy JTBD</td>
+<td style="text-align: left;">Sếp phải báo cáo cho CEO, ổng cần "giải thích nguyên nhân" chứ không phải "liệt kê số liệu"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tư duy ngược</td>
+<td style="text-align: left;">Nếu mình chỉ nói "giảm 15%" mà không nói nguyên nhân, sếp sẽ rất ngại trước mặt CEO</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tư duy phép trừ</td>
+<td style="text-align: left;">Vấn đề cốt lõi chỉ có một: Nguyên nhân chính sụt giảm là gì. Những cái khác đều là phụ trợ</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tư duy câu chuyện</td>
+<td style="text-align: left;">Thời gian của CEO rất quý báu, phải nói rõ ràng trong 5 phút, biểu đồ phải ngắn gọn dễ hiểu</td>
+</tr>
+<tr>
+<td style="text-align: left;">Ba câu hỏi linh hồn</td>
+<td style="text-align: left;">Sếp → Muốn biết nguyên nhân → Phân tích của mình có thể đưa ra các giả thuyết nguyên nhân khả thi</td>
+</tr>
+</tbody>
+</table>
+<h3>Prompt Tiểu Lý gửi cho AI</h3>
+<pre><code class="language-markdown">## Bối cảnh phân tích
+
+- Vai trò của tôi: Nhân viên vận hành kinh doanh công ty TMĐT
+- Mục đích phân tích: Giúp sếp giải thích nguyên nhân doanh số Q3 sụt giảm với CEO
+- Đối tượng báo cáo: Sếp (ông ấy sẽ thuật lại cho CEO)
+- Bối cảnh sử dụng: Cuộc họp lãnh đạo cấp cao tuần tới, sếp có 5 phút báo cáo
+
+## Vấn đề cốt lõi
+
+Doanh số Q3 sụt giảm so với Q2, nguyên nhân chính là gì?
+
+## Phân tích cần thiết
+
+1. So sánh tổng thế: Tổng doanh số Q3 vs Q2, xác nhận biên độ sụt giảm
+2. Phân tích chi tiết: Tách theo dòng sản phẩm/khu vực/loại khách hàng, tìm ra phần sụt giảm nghiêm trọng nhất
+3. Khám phá nguyên nhân: Là do giá trị đơn hàng trung bình giảm? Hay do số lượng đơn hàng giảm? Hay do mất khách hàng lớn nào đó?
+
+## Yêu cầu đầu ra
+
+- 3-5 biểu đồ rõ ràng
+- Mỗi biểu đồ kèm một câu kết luận
+- Cuối cùng đưa ra 2-3 giả thuyết nguyên nhân khả thi (không cần chắc chắn 100%, đưa ra hướng đi là được)
+
+## Mô tả dữ liệu
+
+- Dữ liệu là chi tiết bán hàng Q2 và Q3
+- Bao gồm các trường: Ngày, Dòng sản phẩm, Khu vực, Tên khách hàng, Giá trị đơn hàng
+- Tổng cộng khoảng 5000 bản ghi
+
+## File dữ liệu
+
+[Tải lên Excel]
+</code></pre>
+<h3>AI sẽ đưa ra cái gì</h3>
+<p>Dựa trên mô tả nhu cầu rõ ràng như vậy, AI có thể sẽ:</p>
+<ol>
+<li>Tạo biểu đồ so sánh tổng doanh số Q3 vs Q2, chú thích giảm 15%</li>
+<li>Biểu đồ cột tách theo dòng sản phẩm, phát hiện "ngành hàng gia dụng" giảm nghiêm trọng nhất (-30%)</li>
+<li>Phân tích sâu hơn ngành hàng gia dụng, phát hiện là do "số lượng đơn hàng" giảm chứ không phải "giá trị đơn hàng trung bình" giảm</li>
+<li>Đưa ra giả thuyết: Có thể do khuyến mãi mùa hè không đủ mạnh / Đối thủ có đợt sale lớn / Một sản phẩm chủ lực nào đó hết hàng</li>
+</ol>
+<p><strong>Phân tích như thế này sếp nhận được là dùng được ngay.</strong></p>
+<h2>Bối cảnh nâng cao: Phân tích dữ liệu khảo sát</h2>
+<p>Tư duy phân tích khảo sát cũng giống phân tích doanh số, nhưng có một số điểm lưu ý đặc biệt:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Điểm lưu ý</th>
+<th style="text-align: left;">Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Dung lượng mẫu</td>
+<td style="text-align: left;">Phải nói rõ "tổng cộng thu thập được X phiếu khảo sát hợp lệ", để kết luận có căn cứ</td>
+</tr>
+<tr>
+<td style="text-align: left;">Phân tích chéo</td>
+<td style="text-align: left;">Không chỉ xem tổng thể, còn phải xem "sự khác biệt giữa các nhóm người khác nhau"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Câu hỏi mở</td>
+<td style="text-align: left;">Câu trả lời dạng văn bản cần được trích xuất từ khóa hoặc phân tích cảm xúc</td>
+</tr>
+</tbody>
+</table>
+<h3>Ví dụ Prompt phân tích khảo sát</h3>
+<pre><code class="language-markdown">## Bối cảnh phân tích
+
+- Vai trò của tôi: Thực tập sinh phòng Marketing
+- Mục đích phân tích: Tìm hiểu mức độ chấp nhận của người dùng với khái niệm sản phẩm mới
+- Đối tượng báo cáo: Giám đốc Marketing
+- Bối cảnh sử dụng: Cuộc họp lập dự án sản phẩm mới
+
+## Vấn đề cốt lõi
+
+1. Mức độ chấp nhận tổng thể của người dùng với sản phẩm mới thế nào? (Xem điểm ý định mua hàng)
+2. Người dùng ở các độ tuổi khác nhau, thái độ có gì khác biệt?
+3. Vấn đề người dùng lo lắng nhất là gì? (Trích xuất từ câu hỏi mở)
+
+## Mô tả dữ liệu
+
+- Khảo sát gồm 20 câu, bao gồm chọn một, chọn nhiều, chấm điểm, câu hỏi mở
+- Mẫu hợp lệ 326 phiếu
+- Trường quan trọng: Tuổi, Giới tính, Ý định mua hàng (1-5 điểm), Vấn đề lo lắng (câu hỏi mở)
+
+## Yêu cầu đầu ra
+
+- Chỉ số then chốt hiển thị chữ to (ví dụ &quot;Ý định mua hàng trung bình 3.8 điểm&quot;)
+- Phân tích chéo dùng biểu đồ cột nhóm
+- Câu hỏi mở dùng đám mây từ khóa hoặc danh sách từ khóa
+
+## File dữ liệu
+
+[Tải lên Excel]
+</code></pre>
+<h2>Danh sách tự kiểm tra phân tích dữ liệu</h2>
+<p>Trước khi gửi kết quả phân tích đi, hãy kiểm tra những điểm sau:</p>
+<ul>
+<li>[ ] Tôi có thể dùng một câu nói rõ "phân tích này trả lời câu hỏi gì" không?</li>
+<li>[ ] Người xem phân tích này có thể nắm bắt trọng tâm trong 30 giây không?</li>
+<li>[ ] Mỗi biểu đồ đều có kết luận rõ ràng, chứ không chỉ là trưng bày số liệu chứ?</li>
+<li>[ ] Tôi có làm quá nhiều biểu đồ khiến trọng tâm bị chìm nghỉm không?</li>
+<li>[ ] Phân tích của tôi có giúp đối phương đưa ra quyết định không? Hay chỉ là "trưng bày dữ liệu"?</li>
+</ul>
+<h2>Các điểm cốt lõi</h2>
+<p>✓ Bản chất của phân tích dữ liệu là "trả lời câu hỏi nghiệp vụ", chứ không phải "làm biểu đồ đẹp"</p>
+<p>✓ Trước khi bắt đầu phân tích, hãy dùng ba câu hỏi linh hồn để xác nhận: Ai cần xem? Họ muốn biết gì?</p>
+<p>✓ Biểu đồ quý ở tinh chứ không quý ở nhiều, 3-5 biểu đồ tập trung vào vấn đề cốt lõi có giá trị hơn nhiều so với 20 biểu đồ rời rạc</p>
+</body>
+</html>

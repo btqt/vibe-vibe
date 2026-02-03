@@ -35,4 +35,4 @@ Không phải là "trên lý thuyết thì được", mà là **thực sự làm
 
 ---
 
-[Bước tiếp theo: Tìm vị trí của bạn →](./0.1-start-here.md)
+[Bước tiếp theo: Tìm vị trí của bạn →](./0.1-start-here_vi.md)

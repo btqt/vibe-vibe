@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.1.2 Context Is King</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.1.2 Context is King: Ngữ cảnh là vua"</h2>
+<p><img alt="03-technique_3.1-prompt-basics_3.1.2-context-is-king.png" src="../../../public/images/Basic/03-technique_3.1-prompt-basics_3.1.2-context-is-king.png" /></p>
+<h1>3.1.2 Context is King: Ngữ cảnh là vua</h1>
+<h2>Sau bài học này, bạn sẽ nắm được</h2>
+<ul>
+<li>"Ngữ cảnh" là gì: thông tin nền tảng, điều kiện ràng buộc, kết quả kỳ vọng</li>
+<li>Mô hình ngữ cảnh ba tầng: Ngữ cảnh dự án, ngữ cảnh nhiệm vụ, ngữ cảnh cá nhân</li>
+<li>Khái niệm cửa sổ ngữ cảnh: AI có thể "nhớ" được bao nhiêu nội dung</li>
+<li>Sự khác biệt đầu ra giữa có và không có ngữ cảnh cho cùng một nhu cầu (đối chiếu case study thực tế)</li>
+</ul>
+<h2>Một công thức</h2>
+<p>Hãy nhớ kỹ công thức này trước:</p>
+<blockquote>
+<p><strong>Chất lượng đầu ra của AI = Chất lượng ngữ cảnh bạn cung cấp × Năng lực của AI</strong></p>
+</blockquote>
+<p>Năng lực của AI là cố định (do mô hình quyết định), cái bạn có thể kiểm soát chỉ có chất lượng ngữ cảnh.</p>
+<p>Đây là lý do tại sao cùng một câu nói, người khác nhau hỏi AI sẽ nhận được kết quả hoàn toàn khác nhau —— sự khác biệt không nằm ở "hỏi thế nào", mà nằm ở "trước khi hỏi đã nói cho AI biết cái gì".</p>
+<h2>Ngữ cảnh là gì</h2>
+<p>"Ngữ cảnh" nghe có vẻ hơi trừu tượng, chúng ta hãy phân giải nó ra.</p>
+<p>Ngữ cảnh bao gồm ba loại thông tin:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Loại</th>
+<th style="text-align: left;">Giải thích</th>
+<th style="text-align: left;">Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Thông tin nền tảng</strong></td>
+<td style="text-align: left;">Điều kiện tiên quyết AI cần biết</td>
+<td style="text-align: left;">Tôi đang làm một ứng dụng danh sách việc cần làm, phát triển bằng React</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Điều kiện ràng buộc</strong></td>
+<td style="text-align: left;">Giới hạn AI cần tuân thủ</td>
+<td style="text-align: left;">Code phải tinh gọn, không được dùng thư viện bên ngoài</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Kết quả kỳ vọng</strong></td>
+<td style="text-align: left;">Bạn muốn đầu ra như thế nào</td>
+<td style="text-align: left;">Cho tôi một đoạn code có thể copy dùng ngay</td>
+</tr>
+</tbody>
+</table>
+<p>Thiếu bất cứ loại nào, đầu ra của AI đều có thể lệch khỏi kỳ vọng của bạn.</p>
+<h2>Mô hình ngữ cảnh ba tầng</h2>
+<p>Để tư duy có hệ thống hơn về việc "nên nói cho AI biết cái gì", chúng ta chia ngữ cảnh làm ba tầng:</p>
+<pre><code>┌─────────────────────────────────────┐
+│         Ngữ cảnh dự án               │
+│   Bạn đang làm dự án gì? Dùng       │
+│   công nghệ gì?                     │
+├─────────────────────────────────────┤
+│         Ngữ cảnh nhiệm vụ            │
+│  Hiện tại cần giải quyết vấn đề     │
+│  cụ thể gì?                         │
+├─────────────────────────────────────┤
+│         Ngữ cảnh cá nhân             │
+│   Trình độ kỹ thuật của bạn?        │
+│   Phong cách ưa thích của bạn?      │
+└─────────────────────────────────────┘
+</code></pre>
+<h3>Tầng 1: Ngữ cảnh dự án</h3>
+<p>Ngữ cảnh dự án trả lời câu hỏi: <strong>Bạn đang làm cái gì?</strong></p>
+<p>Thông tin bao gồm:</p>
+<ul>
+<li>Loại dự án (ứng dụng web, script phân tích dữ liệu, công cụ tự động hóa, v.v.)</li>
+<li>Tech stack (nếu liên quan đến code)</li>
+<li>Bối cảnh và mục tiêu dự án</li>
+<li>Người dùng mục tiêu là ai (chân dung người dùng ở Chương 2 phát huy tác dụng rồi)</li>
+<li>Quy phạm code hoặc sở thích phong cách đã có</li>
+</ul>
+<p><strong>Ví dụ</strong>:</p>
+<pre><code>Tôi đang phát triển một ứng dụng web danh sách việc cần làm cá nhân.
+- Tech stack: React + TypeScript
+- Người dùng mục tiêu: Người mới đi làm hay quên việc giống như tôi
+- Yêu cầu phong cách: Code tinh gọn, thiết kế hướng component
+</code></pre>
+<h3>Tầng 2: Ngữ cảnh nhiệm vụ</h3>
+<p>Ngữ cảnh nhiệm vụ trả lời câu hỏi: <strong>Hiện tại bạn muốn làm gì?</strong></p>
+<p>Thông tin bao gồm:</p>
+<ul>
+<li>Nhiệm vụ cụ thể cần hoàn thành hiện tại</li>
+<li>Đầu vào và đầu ra của nhiệm vụ</li>
+<li>Các điều kiện ràng buộc cụ thể</li>
+<li>Định dạng đầu ra mong muốn</li>
+</ul>
+<p><strong>Ví dụ</strong>:</p>
+<pre><code>Nhiệm vụ hiện tại: Thực hiện chức năng &quot;Thêm nhiệm vụ&quot;
+- Đầu vào: Người dùng nhập nội dung nhiệm vụ vào ô nhập liệu, bấm nút thêm
+- Đầu ra: Nhiệm vụ mới xuất hiện trong danh sách nhiệm vụ
+- Ràng buộc: Sau khi thêm tự động xóa trắng ô nhập liệu, nội dung rỗng không được thêm
+- Định dạng: Cho tôi code React Component hoàn chỉnh
+</code></pre>
+<h3>Tầng 3: Ngữ cảnh cá nhân</h3>
+<p>Ngữ cảnh cá nhân trả lời câu hỏi: <strong>Bạn là ai?</strong></p>
+<p>Thông tin bao gồm:</p>
+<ul>
+<li>Trình độ kỹ thuật của bạn</li>
+<li>Mục tiêu học tập của bạn</li>
+<li>Sở thích giao tiếp của bạn</li>
+</ul>
+<p><strong>Ví dụ</strong>:</p>
+<pre><code>Tôi là người mới học lập trình, lần đầu dùng React.
+Hãy thêm chú thích vào những đoạn code quan trọng, giải thích tại sao lại viết như vậy.
+Nếu có cách thực hiện tốt hơn, hãy nói cho tôi biết, nhưng trước tiên cho tôi một phiên bản chạy được đã.
+</code></pre>
+<h2>Đối chiếu case study: Sự khác biệt có và không có ngữ cảnh</h2>
+<p>Hãy dùng dự án danh sách việc cần làm của Tiểu Lý, xem ngữ cảnh ảnh hưởng đến đầu ra của AI thế nào.</p>
+<h3>❌ Prompt dở: Thiếu ngữ cảnh</h3>
+<pre><code>Giúp tôi làm một danh sách việc cần làm
+</code></pre>
+<p><strong>Phản hồi có thể của AI</strong>:</p>
+<p>AI sẽ bắt đầu đoán mò:</p>
+<ul>
+<li>Dùng công nghệ gì? HTML/CSS/JS? React? Vue? Hay Python?</li>
+<li>Làm đến mức độ nào? Đơn giản hay phức tạp?</li>
+<li>Cần chức năng gì? Chỉ là danh sách hay cần phân loại, nhắc nhở, thống kê?</li>
+</ul>
+<p>Kết quả thường là: AI đưa cho bạn một "mẫu chung chung", có thể khác xa thứ bạn muốn.</p>
+<h3>✅ Prompt tốt: Bao gồm ngữ cảnh ba tầng</h3>
+<pre><code>【Bối cảnh dự án】
+Tôi đang phát triển một ứng dụng web danh sách việc cần làm cá nhân, giúp những người mới đi làm hay quên như tôi quản lý nhiệm vụ hàng ngày.
+Tech stack: React + TypeScript + Tailwind CSS
+Nguyên tắc thiết kế: Phong cách cực giản, mở ra là thấy việc cần làm hôm nay, thêm nhiệm vụ phải hoàn thành trong 3 giây
+
+【Nhiệm vụ hiện tại】
+Hãy giúp tôi thực hiện component &quot;Thêm nhiệm vụ&quot;:
+- Người dùng nhập nội dung nhiệm vụ vào ô nhập liệu
+- Bấm nút thêm hoặc nhấn phím Enter, nhiệm vụ được thêm vào danh sách
+- Sau khi thêm thành công tự động xóa trắng ô nhập liệu
+- Nội dung rỗng không được thêm (hiện thông báo đơn giản)
+
+【Yêu cầu đầu ra】
+- Cho tôi code React Component hoàn chỉnh
+- Sử dụng TypeScript, định nghĩa kiểu (type) rõ ràng
+- Style dùng Tailwind CSS
+- Thêm chú thích vào các chỗ logic quan trọng
+
+【Về tôi】
+Tôi là người mới học React, nếu có cái hố nào người mới dễ dẫm phải, hãy nhắc tôi.
+</code></pre>
+<p><strong>Phản hồi của AI</strong> sẽ chính xác hơn nhiều:</p>
+<ul>
+<li>Sử dụng tech stack bạn chỉ định</li>
+<li>Thực hiện chức năng cụ thể bạn yêu cầu</li>
+<li>Tuân thủ nguyên tắc thiết kế của bạn</li>
+<li>Phong cách code phù hợp với trình độ của bạn</li>
+</ul>
+<h2>Cửa sổ ngữ cảnh: AI có thể "nhớ" bao nhiêu</h2>
+<p>Bạn có thể sẽ hỏi: Tôi có thể nói cho AI biết bao nhiêu thông tin?</p>
+<p>Điều này liên quan đến một khái niệm: <strong>Cửa sổ ngữ cảnh</strong> (Context Window).</p>
+<p>Hãy tưởng tượng "trí nhớ" của AI như một cái bàn ăn. Bàn ăn có kích thước cố định, số đĩa (thông tin) bạn đặt lên không thể vượt quá mặt bàn.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Mô hình</th>
+<th style="text-align: left;">Kích thước cửa sổ ngữ cảnh</th>
+<th style="text-align: left;">Tương đương</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Claude Opus 4.5</td>
+<td style="text-align: left;">200K tokens</td>
+<td style="text-align: left;">Khoảng 150.000 từ</td>
+</tr>
+<tr>
+<td style="text-align: left;">Gemini 3 Pro</td>
+<td style="text-align: left;">1M tokens</td>
+<td style="text-align: left;">Khoảng 750.000 từ</td>
+</tr>
+<tr>
+<td style="text-align: left;">Bối cảnh đối thoại thông thường</td>
+<td style="text-align: left;">Thường là đủ dùng</td>
+<td style="text-align: left;">Không cần lo lắng</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Đối với người mới bắt đầu</strong>: Không cần quá lo lắng về giới hạn này. Mô tả dự án và giải thích nhiệm vụ hàng ngày còn lâu mới vượt quá cửa sổ ngữ cảnh.</p>
+<p>Nhưng có một nhắc nhở quan trọng: <strong>AI sẽ không nhớ xuyên qua các cuộc đối thoại</strong>.</p>
+<p>Nếu bạn mở một cuộc đối thoại mới, tất cả thông tin bạn đã nói với AI trước đó đều sẽ "về không". Đây là lý do tại sao nhiều công cụ AI cung cấp tính năng "Quy tắc dự án" hoặc "System Prompt" —— để một số ngữ cảnh được lưu giữ lâu dài, không cần nhập lại mỗi lần.</p>
+<p>(Phần này sẽ được giảng giải chi tiết trong bài 3.5 "Nghệ thuật đối thoại lặp lại")</p>
+<h2>Danh sách kiểm tra ngữ cảnh</h2>
+<p>Trước khi đặt câu hỏi cho AI, hãy dùng danh sách này kiểm tra nhanh:</p>
+<h3>Ngữ cảnh dự án ✓</h3>
+<ul>
+<li>[ ] Đã nói rõ loại dự án và mục tiêu</li>
+<li>[ ] Đã nói rõ tech stack (nếu liên quan đến code)</li>
+<li>[ ] Đã nói rõ người dùng mục tiêu là ai</li>
+<li>[ ] Đã nói rõ nguyên tắc thiết kế hoặc sở thích phong cách</li>
+</ul>
+<h3>Ngữ cảnh nhiệm vụ ✓</h3>
+<ul>
+<li>[ ] Mô tả rõ ràng nhiệm vụ cần hoàn thành hiện tại</li>
+<li>[ ] Đã nói rõ đầu vào và đầu ra</li>
+<li>[ ] Liệt kê các điều kiện ràng buộc và trường hợp biên</li>
+<li>[ ] Chỉ định định dạng đầu ra mong muốn</li>
+</ul>
+<h3>Ngữ cảnh cá nhân ✓</h3>
+<ul>
+<li>[ ] Đã nói rõ trình độ kỹ thuật của bản thân</li>
+<li>[ ] Nói cho AI biết bạn cần giải thích như thế nào</li>
+<li>[ ] Đã nói rõ sở thích đặc biệt (nếu có)</li>
+</ul>
+<p>Không cần lần nào cũng điền đầy đủ tất cả các mục. Tùy theo độ phức tạp của nhiệm vụ, chọn cung cấp thông tin cần thiết là được.</p>
+<h2>Ứng dụng thành quả Chương 2</h2>
+<p>Còn nhớ những suy nghĩ đã thực hiện ở Chương 2 không? Bây giờ chúng sẽ phát huy tác dụng:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Thành quả Chương 2</th>
+<th style="text-align: left;">Tầng ngữ cảnh tương ứng</th>
+<th style="text-align: left;">Cách sử dụng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Ba câu hỏi linh hồn</td>
+<td style="text-align: left;">Ngữ cảnh dự án</td>
+<td style="text-align: left;">"Người dùng là ai", "Nỗi đau ở đâu" viết trực tiếp vào bối cảnh dự án</td>
+</tr>
+<tr>
+<td style="text-align: left;">Chân dung người dùng</td>
+<td style="text-align: left;">Ngữ cảnh dự án</td>
+<td style="text-align: left;">Mô tả đặc điểm và nhu cầu của người dùng mục tiêu</td>
+</tr>
+<tr>
+<td style="text-align: left;">Phạm vi MVP</td>
+<td style="text-align: left;">Ngữ cảnh nhiệm vụ</td>
+<td style="text-align: left;">Xác định rõ giai đoạn hiện tại cần thực hiện cái gì, không thực hiện cái gì</td>
+</tr>
+<tr>
+<td style="text-align: left;">Danh sách không làm</td>
+<td style="text-align: left;">Ngữ cảnh nhiệm vụ</td>
+<td style="text-align: left;">Làm điều kiện ràng buộc, ngăn AI "tự biên tự diễn"</td>
+</tr>
+</tbody>
+</table>
+<p>Những suy nghĩ Tiểu Lý hoàn thành ở Chương 2, có thể chuyển hóa trực tiếp thành ngữ cảnh:</p>
+<pre><code>【Bối cảnh dự án - Từ Ba câu hỏi linh hồn】
+Người dùng: Người mới đi làm hay quên việc giống như tôi
+Nỗi đau: Thường xuyên bỏ sót nhiệm vụ quan trọng, bị sếp phê bình, cảm thấy lo âu
+Sự khác biệt: Dễ dùng hơn giấy nhớ (mở ra là thấy), đơn giản hơn công cụ phức tạp (3 giây thêm nhiệm vụ)
+
+【Ràng buộc phạm vi - Từ Tư duy phép trừ】
+Phiên bản đầu chỉ làm: Thêm nhiệm vụ, hoàn thành nhiệm vụ, xem nhiệm vụ hôm nay
+Không làm: Phân loại thẻ, hạn chót, thông báo nhắc nhở, thống kê lịch sử
+</code></pre>
+<h2>Trọng điểm bài học</h2>
+<p>✓ <strong>Công thức</strong>: Chất lượng đầu ra AI = Chất lượng ngữ cảnh × Năng lực AI. Cái bạn kiểm soát được là ngữ cảnh.</p>
+<p>✓ <strong>Mô hình ngữ cảnh ba tầng</strong>:</p>
+<ul>
+<li>Ngữ cảnh dự án: Bạn đang làm dự án gì</li>
+<li>Ngữ cảnh nhiệm vụ: Hiện tại cần giải quyết vấn đề gì</li>
+<li>Ngữ cảnh cá nhân: Bạn là ai, cần gì</li>
+</ul>
+<p>✓ <strong>Cửa sổ ngữ cảnh</strong>: "Dung lượng bộ nhớ" của AI có hạn, nhưng sử dụng hàng ngày thường là đủ.</p>
+<p>✓ <strong>Thành quả tư duy Chương 2</strong> có thể chuyển hóa trực tiếp thành ngữ cảnh chất lượng cao.</p>
+<p>Bài sau, chúng ta sẽ xem xét 5 sai lầm người mới thường gặp nhất —— và cách phòng tránh chúng.</p>
+</body>
+</html>

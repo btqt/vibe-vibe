@@ -65,10 +65,10 @@ Hiểu được điểm này, là ranh giới giữa thành công và thất b�
 
 Phần này giúp bạn hoàn thành việc nâng cấp tư duy thông qua ba nội dung tăng tiến:
 
-1. **[Lý thuyết JTBD](./2.1.1-jtbd-intro-theory.md)**: Hiểu khái niệm cốt lõi và các ví dụ kinh điển, nắm vững sự chuyển biến từ tư duy chức năng sang tư duy nhiệm vụ
+1. **[Lý thuyết JTBD](./2.1.1-jtbd-intro-theory_vi.md)**: Hiểu khái niệm cốt lõi và các ví dụ kinh điển, nắm vững sự chuyển biến từ tư duy chức năng sang tư duy nhiệm vụ
 
-2. **[Ứng dụng thực hành JTBD](./2.1.1-jtbd-intro-practice.md)**: Phân tích và bài tập bốn tình huống thực tế, học cách áp dụng lý thuyết vào dự án thực
+2. **[Ứng dụng thực hành JTBD](./2.1.1-jtbd-intro-practice_vi.md)**: Phân tích và bài tập bốn tình huống thực tế, học cách áp dụng lý thuyết vào dự án thực
 
-3. **[Kỹ thuật JTBD nâng cao](./2.1.1-jtbd-intro-advanced.md)**: Hiểu sâu ba tầng của nhiệm vụ, nắm vững phương pháp cao cấp trong cộng tác AI và lặp lại sản phẩm
+3. **[Kỹ thuật JTBD nâng cao](./2.1.1-jtbd-intro-advanced_vi.md)**: Hiểu sâu ba tầng của nhiệm vụ, nắm vững phương pháp cao cấp trong cộng tác AI và lặp lại sản phẩm
 
 Thông qua học tập có hệ thống, bạn sẽ nắm vững một khung tư duy có thể nâng cao đáng kể tỷ lệ thành công của dự án.

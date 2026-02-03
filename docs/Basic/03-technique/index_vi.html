@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "Chương 3: Kỹ pháp —— Nghệ thuật đối thoại với AI"</h2>
+<p><img alt="03-technique_index.png" src="../../public/images/Basic/03-technique_index.png" /></p>
+<h1>Chương 3: Kỹ pháp —— Nghệ thuật đối thoại với AI</h1>
+<blockquote>
+<p><strong>Định vị chương</strong>: Chương này là chương kỹ năng cốt lõi của Vibe Coding, từ "biết nói" đến "nói đúng", giúp độc giả nắm vững phương pháp luận và kỹ thuật thực hành giao tiếp hiệu quả với AI.</p>
+</blockquote>
+<h2>Từ "nghĩ thông suốt" đến "nói rõ ràng"</h2>
+<p>Ở Chương 2, chúng ta đã học cách <strong>nghĩ thông suốt</strong> —— sử dụng các công cụ tư duy của Giám đốc sản phẩm (JTBD, tư duy ngược, tư duy phép trừ, tư duy câu chuyện, ba câu hỏi linh hồn) để chải chuốt nhu cầu, xác định rõ làm cái gì, làm cho ai, tại sao làm.</p>
+<p>Chương này, chúng ta sẽ học cách <strong>nói rõ ràng</strong> —— diễn đạt những thứ đã nghĩ thông suốt theo cách mà AI có thể hiểu được.</p>
+<p>Mối quan hệ giữa hai chương này là:</p>
+<table>
+<thead>
+<tr>
+<th>Chương</th>
+<th>Nhiệm vụ cốt lõi</th>
+<th>Ví von</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chương 2 Tâm pháp</td>
+<td>Nghĩ thông suốt làm cái gì</td>
+<td>Viết kịch bản tốt</td>
+</tr>
+<tr>
+<td>Chương 3 Kỹ pháp</td>
+<td>Nói rõ ràng để AI làm</td>
+<td>Đạo diễn chỉ huy</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Không có sự suy nghĩ của Chương 2, kỹ thuật của Chương 3 chỉ là lầu các trên không; không có sự diễn đạt của Chương 3, suy nghĩ của Chương 2 không thể hạ cánh.</strong></p>
+<h2>Tại sao chương này lại quan trọng đến vậy</h2>
+<p>Trong thế giới của Vibe Coding, <strong>khả năng diễn đạt của bạn chính là khả năng lập trình</strong>.</p>
+<p>Lập trình truyền thống cần học cú pháp của ngôn ngữ lập trình, còn Vibe Coding cần học cú pháp của "đối thoại với AI". Đây không đơn giản là dịch nhu cầu sang ngôn ngữ tự nhiên, mà là một bộ phương pháp luận giao tiếp hoàn chỉnh —— bạn cần biết:</p>
+<ul>
+<li>Khi nào nên nói gì (Thời điểm và chiến lược)</li>
+<li>Nói thế nào để AI hiểu (Cấu trúc và định dạng)</li>
+<li>AI không hiểu thì làm sao (Lặp lại và sửa chữa)</li>
+<li>Làm sao để AI nhớ những gì bạn đã nói (Quản lý ngữ cảnh)</li>
+</ul>
+<p><strong>Một prompt tốt có thể khiến AI đưa ra code 90 điểm ngay lần đầu; một prompt tệ có thể khiến bạn vật lộn trong cái hố 20 điểm suốt hai tiếng đồng hồ.</strong></p>
+<h2>Mục tiêu học tập chương này</h2>
+<p>Sau khi hoàn thành chương này, bạn sẽ có thể:</p>
+<ul>
+<li>✅ Hiểu các nguyên tắc cốt lõi của Prompt Engineering, nắm vững tinh túy của "Context is King"</li>
+<li>✅ Vận dụng khung cấu trúc (S.C.A.F.F., R.G.C.) để viết prompt rõ ràng, hiệu quả</li>
+<li>✅ Nắm vững các kỹ thuật cốt lõi như Zero-shot, Few-shot, Chain of Thought, Tree of Thoughts</li>
+<li>✅ Chuyển hóa tư duy sản phẩm của Chương 2 (chân dung người dùng, bản đồ hành trình, ba câu hỏi linh hồn) thành PRD mà AI có thể thực thi</li>
+<li>✅ Học cách đối thoại lặp lại nhiều vòng với AI, từng bước tiếp cận kết quả lý tưởng</li>
+<li>✅ Nhận diện bốn loại ảo giác của AI (ảo giác gói, ảo giác API, ảo giác logic, ảo giác phiên bản), nắm vững kỹ thuật xác minh</li>
+<li>✅ Hiểu phương pháp cấu hình dự án của các AI IDE chủ đạo (Cursor/Windsurf/Claude Code, v.v.)</li>
+</ul>
+<h2>Điểm sáng chương này</h2>
+<p>Chương này bao gồm nhiều nội dung thực dụng, giúp bạn ít đi đường vòng:</p>
+<ul>
+<li>📦 <strong>Cảnh báo an toàn 2024-2025</strong>: Nhận diện tấn công Slopsquatting —— nghiên cứu cho thấy khoảng 20% gói AI đề xuất có thể không tồn tại, kẻ tấn công đã lợi dụng lỗ hổng này để tấn công chuỗi cung ứng</li>
+<li>🛠️ <strong>Bảng đối chiếu cấu hình 9 loại AI IDE</strong>: Tổng hợp phương pháp cấu hình ngữ cảnh của các công cụ như Cursor, Windsurf, Claude Code, GitHub Copilot, Trae</li>
+<li>📋 <strong>Mẫu Prompt có thể sao chép trực tiếp</strong>: Các kịch bản tạo dự án, sửa code, giải quyết vấn đề có thể dùng ngay</li>
+<li>⚖️ <strong>So sánh Prompt tệ vs Prompt tốt</strong>: Hiển thị trực quan ảnh hưởng của cách diễn đạt đối với chất lượng đầu ra của AI</li>
+</ul>
+<h2>Ví dụ xuyên suốt chương này</h2>
+<p>Chương này sẽ tiếp nối dự án "Danh sách việc cần làm" của Tiểu Lý ở Chương 2, diễn giải cách:
+- Chuyển hóa phân tích JTBD và ba câu hỏi linh hồn của Chương 2 thành PRD mà AI có thể thực thi
+- Dùng khung cấu trúc viết Prompt hoàn chỉnh đầu tiên
+- Thông qua đối thoại lặp lại từng bước hoàn thiện chức năng</p>
+<p>Đồng thời, cũng sẽ sử dụng các kịch bản điển hình như "Trang đăng nhập", "Chuyển đổi code", "Lựa chọn kỹ thuật" để diễn giải các kỹ thuật prompt khác nhau.</p>
+<h2>Đặc sắc giảng dạy chương này</h2>
+<p>Chương này sử dụng nhiều <strong>phương pháp giảng dạy so sánh</strong> —— hiển thị "Prompt tệ" và "Prompt tốt" cho cùng một nhiệm vụ, để bạn thấy trực quan ảnh hưởng của cách diễn đạt đến chất lượng đầu ra của AI.</p>
+<p>Ví dụ:
+- ❌ "Giúp tôi làm một trang đăng nhập"
+- ✅ Phiên bản khung S.C.A.F.F. hoàn chỉnh bao gồm bối cảnh dự án, stack kỹ thuật, yêu cầu chức năng, ràng buộc giao diện (xem tiết 3.2)</p>
+<p><strong>Tại sao dạy như vậy</strong>: Nghiên cứu cho thấy, học tập so sánh giúp xây dựng mô hình tâm trí đúng đắn nhanh hơn. Thấy "tệ" ở đâu, mới hiểu "tốt" ở chỗ nào.</p>
+<h2>Gắn kết với Chương 2</h2>
+<p>Chương này và Chương 2 có mối quan hệ "Suy nghĩ" và "Diễn đạt". Bảng dưới đây hiển thị cách chuyển hóa thành quả Chương 2 thành kỹ năng Chương 3:</p>
+<table>
+<thead>
+<tr>
+<th>Thành quả Chương 2</th>
+<th>Vị trí ứng dụng Chương 3</th>
+<th>Chuyển hóa thế nào</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ba câu hỏi linh hồn (Người dùng là ai, nỗi đau ở đâu, tại sao chọn bạn)</td>
+<td>3.4 Mẫu PRD</td>
+<td>Điền trực tiếp vào phần "Mục tiêu sản phẩm"</td>
+</tr>
+<tr>
+<td>Tư duy phép trừ (Ưu tiên P0/P1/P2)</td>
+<td>3.4 Phát triển phân giai đoạn</td>
+<td>Dùng độ ưu tiên dẫn dắt AI thực hiện từng bước</td>
+</tr>
+<tr>
+<td>Chân dung người dùng</td>
+<td>3.2 Phần Context của khung</td>
+<td>Giúp AI hiểu người dùng mục tiêu</td>
+</tr>
+<tr>
+<td>Bản đồ hành trình người dùng</td>
+<td>3.4 Luồng người dùng</td>
+<td>Điền bản rút gọn vào PRD</td>
+</tr>
+<tr>
+<td>Prompt kể chuyện</td>
+<td>3.2 Lựa chọn khung</td>
+<td>Trong một số trường hợp hiệu quả hơn cấu trúc hóa</td>
+</tr>
+<tr>
+<td>Danh sách không làm</td>
+<td>3.2 Ràng buộc Constraints</td>
+<td>Nói rõ cho AI biết không làm cái gì</td>
+</tr>
+</tbody>
+</table>
+<h2>Ranh giới chương này</h2>
+<p>Chương này tập trung vào <strong>phương pháp luận chung</strong>, không ràng buộc với bất kỳ công cụ cụ thể nào. Về cấu hình cụ thể của AI IDE:
+- Bản cơ bản chỉ giới thiệu khái niệm cốt lõi và tác dụng của file cấu hình
+- Hướng dẫn cấu hình chi tiết vui lòng tham khảo bản nâng cao hoặc tài liệu chính thức của từng công cụ</p>
+<p>Lý do thiết kế như vậy: Công cụ sẽ thay đổi, phương pháp luận thì không. Nắm vững tư duy của chương này, bạn có thể chuyển giao sang bất kỳ công cụ lập trình AI nào.</p>
+<h2>Xem trước cấu trúc chương này</h2>
+<table>
+<thead>
+<tr>
+<th>Tiểu tiết</th>
+<th>Câu hỏi cốt lõi</th>
+<th>Bạn sẽ nhận được</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3.1 Cơ sở Prompt Engineering</td>
+<td>AI cần biết gì?</td>
+<td>Mô hình ngữ cảnh ba lớp</td>
+</tr>
+<tr>
+<td>3.2 Khung cấu trúc</td>
+<td>Nói sao để AI hiểu?</td>
+<td>Khung S.C.A.F.F. và R.G.C.</td>
+</tr>
+<tr>
+<td>3.3 Kỹ thuật Prompt nâng cao</td>
+<td>Trường hợp nào dùng kỹ thuật gì?</td>
+<td>Hướng dẫn chọn Zero-shot/Few-shot/CoT/ToT</td>
+</tr>
+<tr>
+<td>3.4 Viết PRD đầu tiên</td>
+<td>Làm sao tích hợp suy nghĩ Chương 2?</td>
+<td>Mẫu PRD có thể điền vào</td>
+</tr>
+<tr>
+<td>3.5 Đối thoại lặp lại</td>
+<td>Một lần không đủ thì sao?</td>
+<td>Kỹ thuật vòng lặp phản hồi - sửa chữa</td>
+</tr>
+<tr>
+<td>3.6 Khi AI không nghe lời</td>
+<td>Đầu ra có vấn đề thì sao?</td>
+<td>Nhận diện ảo giác + Danh sách xác minh</td>
+</tr>
+<tr>
+<td>3.7 Tổng kết và diễn tập</td>
+<td>Ứng dụng tổng hợp thế nào?</td>
+<td>Quy trình làm việc hoàn chỉnh + Bài tập thực chiến</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

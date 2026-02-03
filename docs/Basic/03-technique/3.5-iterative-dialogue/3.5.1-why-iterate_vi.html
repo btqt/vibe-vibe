@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.5.1 Why Iterate</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.5.1 Tại sao hỏi một lần thường là chưa đủ"</h2>
+<p><img alt="03-technique_3.5-iterative-dialogue_3.5.1-why-iterate.png" src="../../../public/images/Basic/03-technique_3.5-iterative-dialogue_3.5.1-why-iterate.png" /></p>
+<h1>3.5.1 Tại sao hỏi một lần thường là chưa đủ</h1>
+<h2>Qua phần học này, bạn sẽ nắm vững</h2>
+<ul>
+<li>Hiểu tại sao kỳ vọng "làm một lần xong ngay" là không thực tế</li>
+<li>Nhận biết ba nguyên nhân dẫn đến kết quả đầu ra không hoàn hảo</li>
+<li>Xây dựng tâm thế lặp lại đúng đắn: AI là đối tác đối thoại, không phải thuật đọc tâm trí</li>
+</ul>
+<h2>Có thể bạn đã từng trải qua</h2>
+<p>Bạn dành mười phút viết một prompt chi tiết, tràn đầy hy vọng nhấn Enter. Kết quả AI đưa cho bạn — tuy nhìn có vẻ chuyên nghiệp — nhưng hoàn toàn không phải thứ bạn muốn.</p>
+<p>Bạn bắt đầu nghi ngờ: Có phải prompt của tôi viết chưa đủ tốt? Có phải tôi không đủ thông minh? Hay là AI vô dụng?</p>
+<p><strong>Đều không phải.</strong></p>
+<p>Điều này chỉ nói lên rằng: Bạn và AI cần đối thoại nhiều hơn. Giống như bạn hợp tác với một đồng nghiệp mới, lần đầu giao việc, đối phương rất khó hiểu hoàn toàn ý đồ của bạn. Đây không phải lỗi của ai, mà là bản chất của giao tiếp.</p>
+<h2>Ba nguyên nhân khiến kết quả đầu ra đầu tiên không hoàn hảo</h2>
+<h3>Nguyên nhân 1: Bất đối xứng thông tin</h3>
+<p>Trong đầu bạn có bức tranh hoàn chỉnh, nhưng AI chỉ nhìn thấy những dòng chữ bạn viết ra.</p>
+<pre><code>Trong lòng bạn nghĩ:
+&quot;Tôi muốn một ô nhập liệu đơn giản, đặt ở đầu trang, nhấn Enter thì thêm nhiệm vụ,
+ ô nhập liệu có bo góc, placeholder viết 'Thêm nhiệm vụ mới...',
+ thêm thành công xong thì tự động xóa trắng ô nhập liệu&quot;
+
+Thực tế bạn viết:
+&quot;Giúp tôi làm tính năng thêm nhiệm vụ&quot;
+</code></pre>
+<p><strong>Bạn tưởng mình nói rõ rồi, nhưng AI chỉ nhận được 10% thông tin.</strong></p>
+<h3>Nguyên nhân 2: Nhu cầu bản thân mơ hồ</h3>
+<p>Rất nhiều khi, chính bạn cũng không hoàn toàn rõ mình muốn gì — cho đến khi nhìn thấy phiên bản đầu tiên.</p>
+<p>Điều này rất bình thường. Lĩnh vực thiết kế sản phẩm có câu: "Người dùng không biết mình muốn gì, cho đến khi bạn cho họ xem." Quan hệ giữa bạn và AI cũng tương tự. Giá trị của vòng output đầu tiên, thường không phải là "dùng được ngay", mà là "giúp bạn nghĩ thông suốt".</p>
+<h3>Nguyên nhân 3: Sai lệch trong cách hiểu của AI</h3>
+<p>Kể cả khi bạn viết rất chi tiết, AI cũng có thể hiểu sai. Bởi vì ngôn ngữ tự nhiên vốn dĩ mơ hồ.</p>
+<pre><code>Bạn nói: &quot;Làm một cái form đơn giản&quot;
+
+AI có thể hiểu là:
+- Form chỉ có một ô nhập liệu?
+- Form không có logic xác thực?
+- Form có kiểu dáng mộc mạc?
+- Form có chức năng tinh giản?
+</code></pre>
+<p>"Đơn giản" với mỗi người có ý nghĩa khác nhau. AI chỉ có thể đoán ý định của bạn.</p>
+<h2>Một phép ẩn dụ: Sửa sang nhà cửa</h2>
+<p>Giả sử bạn thuê một người thợ sửa nhà, bạn nói: "Tôi muốn một phòng khách thoải mái."</p>
+<p>Người thợ không thể nào làm ra ngay dáng vẻ hoàn hảo trong lòng bạn chỉ sau một lần. Các bạn cần:</p>
+<ol>
+<li><strong>Vòng 1</strong>: Thợ cho bạn xem bản phác thảo thiết kế (hướng đi đúng chưa?)</li>
+<li><strong>Vòng 2</strong>: Bạn đưa ra ý kiến sửa đổi, thợ điều chỉnh (sofa đổi vị trí, rèm đổi màu)</li>
+<li><strong>Vòng 3</strong>: Trau chuốt chi tiết (độ sáng đèn, cách đặt gối ôm)</li>
+</ol>
+<p>Lập trình AI cũng là quá trình như vậy. <strong>Kỳ vọng một lần là xong, là kỳ vọng không hợp lý.</strong></p>
+<h2>Tư duy lặp lại: Mỗi lần đối thoại đều đang tiến gần mục tiêu</h2>
+<p>Đổi một góc nhìn khác:</p>
+<table>
+<thead>
+<tr>
+<th>Tư duy truyền thống</th>
+<th>Tư duy lặp lại</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lần đầu làm không đúng = Thất bại</td>
+<td>Output lần đầu = Điểm khởi đầu có giá trị</td>
+</tr>
+<tr>
+<td>Cần sửa nhiều lần = AI kém</td>
+<td>Đối thoại nhiều vòng = Quy trình hợp tác bình thường</td>
+</tr>
+<tr>
+<td>Theo đuổi sự hoàn hảo trong một lần</td>
+<td>Theo đuổi sự cải tiến liên tục</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Chuyển đổi cốt lõi</strong>: Xem AI như một thực tập sinh thông minh, chứ không phải vị thần toàn tri toàn năng. Bạn cần "trò chuyện" với nó, chứ không phải "ra lệnh".</p>
+<h2>Prompt dở vs Prompt tốt</h2>
+<p>Sau khi hiểu tư duy lặp lại, bạn sẽ phát hiện: <strong>Prompt tốt không phải là theo đuổi sự hoàn hảo trong một lần, mà là để lại không gian cho sự lặp lại.</strong></p>
+<h3>❌ Prompt dở: Cố gắng nói hết mọi việc một lần</h3>
+<pre><code>Giúp tôi dùng React + TypeScript + Tailwind CSS thực hiện tính năng thêm nhiệm vụ cho danh sách việc cần làm,
+phải có ô nhập liệu và nút bấm, ô nhập liệu phải có placeholder, nút bấm phải có hiệu ứng hover,
+nhấn nút hoặc nhấn Enter đều thêm được nhiệm vụ, phải xác thực nhập rỗng, nhập rỗng thì hiện thông báo lỗi,
+thêm thành công xong thì xóa trắng ô nhập liệu, dữ liệu nhiệm vụ lưu vào state, dùng useState hook,
+tên component là AddTaskForm, export default...
+</code></pre>
+<p><strong>Vấn đề</strong>: Lượng thông tin quá lớn, AI dễ bỏ sót chi tiết. Hơn nữa có thể bạn còn chưa nghĩ thông suốt tất cả nhu cầu.</p>
+<h3>✅ Prompt tốt: Thiết lập hướng đi trước, rồi chi tiết hóa từng bước</h3>
+<p><strong>Prompt vòng 1:</strong></p>
+<pre><code>Tôi đang phát triển ứng dụng danh sách việc cần làm, sử dụng React + TypeScript + Tailwind CSS.
+
+Hãy giúp tôi thực hiện tính năng &quot;Thêm nhiệm vụ&quot;:
+- Một ô nhập liệu + một nút thêm
+- Nhấn nút có thể thêm nhiệm vụ vào danh sách
+
+Trước tiên hãy cho tôi bản thực hiện cơ bản, chúng ta sẽ dần hoàn thiện sau.
+</code></pre>
+<p><strong>Sau khi xem output vòng 1, prompt vòng 2:</strong></p>
+<pre><code>Chức năng cơ bản ổn rồi. Hãy thêm các cải tiến sau:
+1. Hỗ trợ nhấn phím Enter để thêm nhiệm vụ
+2. Thêm xác thực nhập rỗng, khi nhập rỗng thì vô hiệu hóa nút
+3. Thêm thành công xong thì tự động xóa trắng ô nhập liệu
+</code></pre>
+<p><strong>Prompt vòng 3:</strong></p>
+<pre><code>Chức năng đầy đủ rồi. Cuối cùng hãy tối ưu hóa cấu trúc code:
+- Tách logic xác thực thành hàm validateTaskInput độc lập
+- Quản lý tên class style bằng biến thống nhất
+</code></pre>
+<p><strong>Ưu thế</strong>: Mỗi vòng đều có tiêu điểm rõ ràng, AI không dễ bỏ sót. Hơn nữa bạn có thể dựa vào output vòng trước để điều chỉnh nhu cầu vòng sau.</p>
+<h2>Điều chỉnh tâm thế thực chiến</h2>
+<table>
+<thead>
+<tr>
+<th>Tình huống</th>
+<th>Phản ứng sai lầm</th>
+<th>Phản ứng đúng đắn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI output lần đầu không hoàn hảo</td>
+<td>"AI ngốc quá"</td>
+<td>"Đây là điểm khởi đầu bình thường"</td>
+</tr>
+<tr>
+<td>Cần sửa nhiều lần</td>
+<td>"Phiền phức quá"</td>
+<td>"Đây là quá trình hợp tác"</td>
+</tr>
+<tr>
+<td>Phát hiện nhu cầu bản thân thay đổi</td>
+<td>"Sao mình không nghĩ kỹ"</td>
+<td>"Output vòng 1 giúp mình nghĩ thông suốt rồi"</td>
+</tr>
+</tbody>
+</table>
+<h2>Điểm cốt yếu phần này</h2>
+<p>✓ <strong>Làm một lần xong ngay là ảo giác</strong>: Output lần đầu không hoàn hảo là bình thường, không phải thất bại</p>
+<p>✓ <strong>Ba nguyên nhân</strong>: Bất đối xứng thông tin, nhu cầu mơ hồ, sai lệch trong cách hiểu của AI</p>
+<p>✓ <strong>Ẩn dụ sửa nhà</strong>: Lập trình AI giống như sửa nhà, cần "xem hiệu quả → góp ý → điều chỉnh lại"</p>
+<p>✓ <strong>Tâm thế lặp lại</strong>: Xem AI là đối tác đối thoại, không phải người thực thi mệnh lệnh</p>
+<p>✓ <strong>Đặt câu hỏi theo giai đoạn</strong>: Thiết lập hướng đi trước, rồi chi tiết hóa từng bước, hiệu quả hơn là nói hết một lần</p>
+<p>Phần tiếp theo, chúng ta sẽ xem mô hình thao tác cụ thể của hội thoại lặp lại: Mô hình lặp lại ba giai đoạn.</p>
+</body>
+</html>

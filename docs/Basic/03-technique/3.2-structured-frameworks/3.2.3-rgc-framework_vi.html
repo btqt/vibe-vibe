@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.2.3 Rgc Framework</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.2.3 Khung Role → Goal → Constraints (Bản đơn giản)"</h2>
+<p><img alt="03-technique_3.2-structured-frameworks_3.2.3-rgc-framework.png" src="../../../public/images/Basic/03-technique_3.2-structured-frameworks_3.2.3-rgc-framework.png" /></p>
+<h1>3.2.3 Khung Role → Goal → Constraints (Bản đơn giản)</h1>
+<h2>Sau bài học này, bạn sẽ nắm được</h2>
+<ul>
+<li>3 yếu tố của khung R.G.C. và ý nghĩa của chúng</li>
+<li>Bối cảnh nào thích hợp dùng khung tinh gọn này</li>
+<li>Tiêu chuẩn lựa chọn giữa S.C.A.F.F. và R.G.C.</li>
+<li>Biết khi nào nâng cấp từ R.G.C. lên S.C.A.F.F.</li>
+</ul>
+<h2>Cấu trúc khung tư duy</h2>
+<p>R.G.C. là viết tắt chữ cái đầu của 3 từ tiếng Anh:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Chữ cái</th>
+<th style="text-align: left;">Tiếng Anh</th>
+<th style="text-align: left;">Tiếng Việt</th>
+<th style="text-align: left;">Câu hỏi cốt lõi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>R</strong></td>
+<td style="text-align: left;">Role</td>
+<td style="text-align: left;">Vai trò</td>
+<td style="text-align: left;">Để AI đóng vai gì?</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>G</strong></td>
+<td style="text-align: left;">Goal</td>
+<td style="text-align: left;">Mục tiêu</td>
+<td style="text-align: left;">Cần hoàn thành nhiệm vụ gì?</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>C</strong></td>
+<td style="text-align: left;">Constraints</td>
+<td style="text-align: left;">Ràng buộc</td>
+<td style="text-align: left;">Có những điều kiện hạn chế nào?</td>
+</tr>
+</tbody>
+</table>
+<p>Logic thiết kế của khung này là: <strong>Định vai trò → Nói mục tiêu → Vạch ranh giới</strong>.</p>
+<p>So với S.C.A.F.F., R.G.C. nhẹ nhàng hơn, thích hợp cho việc đặt câu hỏi nhanh và nhiệm vụ tương đối đơn giản.</p>
+<h2>Giải thích chi tiết 3 yếu tố</h2>
+<h3>R - Role (Vai trò)</h3>
+<p>Để AI đi vào "chế độ chuyên gia" cụ thể.</p>
+<p><strong>Tại sao vai trò lại quan trọng</strong>: Cùng một vấn đề, câu trả lời từ góc nhìn của lập trình viên và giám đốc sản phẩm sẽ rất khác nhau. Chỉ định vai trò giúp đầu ra của AI phù hợp với kỳ vọng của bạn hơn.</p>
+<p><strong>Ví dụ vai trò thường dùng</strong>:</p>
+<ul>
+<li>"Bạn là một lập trình viên React thâm niên"</li>
+<li>"Bạn là một kỹ sư Python chú trọng khả năng đọc của code"</li>
+<li>"Bạn là một chuyên gia phân tích giỏi trực quan hóa dữ liệu"</li>
+<li>"Bạn là một người thầy dạy lập trình thân thiện với người mới"</li>
+</ul>
+<p><strong>Mẹo điền</strong>: Mô tả vai trò có thể bao gồm sở trường, sở thích phong cách, mức độ kinh nghiệm.</p>
+<h3>G - Goal (Mục tiêu)</h3>
+<p>Nói rõ cần hoàn thành nhiệm vụ gì.</p>
+<p><strong>Nội dung điền</strong>:</p>
+<ul>
+<li>Mô tả nhiệm vụ cụ thể</li>
+<li>Kết quả đầu ra kỳ vọng</li>
+<li>Tiêu chuẩn thành công</li>
+</ul>
+<p><strong>Mẹo điền</strong>: Dùng cấu trúc "Động từ + Danh từ", ví dụ "Thực hiện một hàm", "Phân tích đoạn code này", "Giải thích khái niệm này".</p>
+<h3>C - Constraints (Ràng buộc)</h3>
+<p>Vạch ra ranh giới cho nhiệm vụ.</p>
+<p><strong>Nội dung điền</strong>:</p>
+<ul>
+<li>Giới hạn kỹ thuật (ngôn ngữ, khung, thư viện)</li>
+<li>Yêu cầu định dạng (độ dài, phong cách)</li>
+<li>Giới hạn nội dung (không được làm gì)</li>
+</ul>
+<p><strong>Mẹo điền</strong>: Ràng buộc càng rõ ràng, không gian để AI "tự biên tự diễn" càng nhỏ.</p>
+<h2>Ví dụ hoàn chỉnh: Refactor code</h2>
+<h3>Bối cảnh nhiệm vụ</h3>
+<p>Bạn có một đoạn code chạy được nhưng rất lộn xộn, muốn nhờ AI giúp refactor (tái cấu trúc).</p>
+<h3>❌ Prompt dở</h3>
+<pre><code>Giúp tôi tối ưu đoạn code này:
+[Dán code]
+</code></pre>
+<p><strong>Vấn đề</strong>: "Tối ưu" có thể hiểu theo rất nhiều cách —— tối ưu hiệu năng? tối ưu khả năng đọc? tối ưu kiến trúc? AI không biết bạn muốn loại nào.</p>
+<h3>✅ Viết lại bằng khung R.G.C.</h3>
+<pre><code class="language-markdown">【Role - Vai trò】
+Bạn là một kỹ sư Python chú trọng khả năng đọc và khả năng bảo trì của code.
+
+【Goal - Mục tiêu】
+Refactor đoạn code dưới đây, nâng cao khả năng đọc:
+
+- Đặt tên biến rõ ràng hơn
+- Tách logic lặp lại thành hàm
+- Thêm chú thích cần thiết
+
+```python
+def f(l):
+    r=[]
+    for i in l:
+        if i&gt;0:
+            r.append(i*2)
+    return r
+```
+</code></pre>
+<p>【Constraints - Ràng buộc】</p>
+<ul>
+<li>Giữ nguyên chức năng hoàn toàn không đổi</li>
+<li>Không dùng list comprehension (tôi chưa học đến phần đó)</li>
+<li>Không cần thêm type hinting (chú thích kiểu)</li>
+<li>Chú thích dùng tiếng Việt</li>
+</ul>
+<pre><code>
+### Đầu ra có thể của AI
+
+```python
+def double_positive_numbers(numbers):
+    &quot;&quot;&quot;
+    Lọc các số dương từ danh sách, và nhân đôi mỗi số dương đó
+
+    Tham số: numbers - Danh sách các số đầu vào
+    Trả về: Danh sách mới chứa các số dương đã nhân đôi
+    &quot;&quot;&quot;
+    result = []
+
+    for number in numbers:
+        # Chỉ xử lý số dương
+        if number &gt; 0:
+            doubled = number * 2
+            result.append(doubled)
+
+    return result
+</code></pre>
+<h2>Thêm ví dụ R.G.C.</h2>
+<h3>Ví dụ 1: Giải thích khái niệm</h3>
+<pre><code class="language-markdown">【Role】Bạn là một người thầy dạy lập trình thân thiện với người mới
+
+【Goal】Dùng ngôn ngữ thông tục giải thích &quot;Callback function&quot; (Hàm callback) là gì
+
+【Constraints】
+
+- Đừng dùng thuật ngữ kỹ thuật khác
+- Lấy một ví dụ so sánh trong đời sống
+- Kiểm soát trong vòng 200 chữ
+</code></pre>
+<h3>Ví dụ 2: Tạo dữ liệu test</h3>
+<pre><code class="language-markdown">【Role】Bạn là một kỹ sư dữ liệu am hiểu nghiệp vụ thương mại điện tử
+
+【Goal】Tạo 10 dòng dữ liệu đơn hàng giả lập
+
+【Constraints】
+
+- Định dạng: Mảng JSON
+- Mỗi dòng bao gồm: OrderID, UserName, ProductName, Amount, OrderTime
+- Phạm vi số tiền: 50.000 - 5.000.000 VNĐ
+- Phạm vi thời gian: Tháng 1 năm 2024
+</code></pre>
+<h3>Ví dụ 3: Review Code</h3>
+<pre><code class="language-markdown">【Role】Bạn là một người kiểm tra code nghiêm khắc nhưng thiện chí
+
+【Goal】Kiểm tra đoạn code này, chỉ ra các vấn đề tiềm ẩn:
+[Dán code]
+
+【Constraints】
+
+- Chỉ tập trung vào vấn đề bảo mật và hiệu năng
+- Không đánh giá phong cách code
+- Mỗi vấn đề đưa ra đề xuất sửa chữa
+- Số lượng vấn đề không quá 5 cái
+</code></pre>
+<h2>S.C.A.F.F. vs R.G.C.: Hai cách viết cho cùng một nhiệm vụ</h2>
+<p>Giả sử nhiệm vụ là: Thêm chức năng "hoàn thành nhiệm vụ" cho danh sách việc cần làm.</p>
+<h3>Cách viết R.G.C. (Bản nhanh)</h3>
+<pre><code class="language-markdown">【Role】Bạn là một lập trình viên React
+
+【Goal】Thực hiện chức năng khi bấm vào nhiệm vụ sẽ đánh dấu là đã hoàn thành
+
+【Constraints】
+
+- Dùng TypeScript
+- Nhiệm vụ hoàn thành hiển thị gạch ngang
+- Dùng Tailwind CSS
+</code></pre>
+<h3>Cách viết S.C.A.F.F. (Bản đầy đủ)</h3>
+<pre><code class="language-markdown">【Situation】
+Dự án danh sách việc cần làm, React + TS + Tailwind, đã có component AddTask và TaskList
+
+【Challenge】
+Thực hiện chức năng &quot;hoàn thành nhiệm vụ&quot;:
+
+- Bấm vào văn bản nhiệm vụ, chuyển đổi trạng thái hoàn thành/chưa hoàn thành
+- Nhiệm vụ hoàn thành hiển thị gạch ngang và màu xám nhạt
+- Có thể bấm lại để chuyển đổi trạng thái
+
+【Audience】
+Tôi là người mới học React, vui lòng giải thích logic quản lý trạng thái
+
+【Format】
+Cập nhật code component TaskList, thêm chú thích cần thiết
+
+【Foundations】
+
+- Dùng useState quản lý trạng thái
+- Không dùng bất kỳ thư viện animation nào
+- Thay đổi style cần có hiệu ứng chuyển tiếp (transition) 0.2s
+</code></pre>
+<h3>Tiêu chuẩn lựa chọn</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bối cảnh</th>
+<th style="text-align: left;">Khung đề xuất</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Đã quen thuộc bối cảnh dự án, nhiệm vụ đơn giản rõ ràng</td>
+<td style="text-align: left;">R.G.C.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Dự án mới hoặc nhiệm vụ phức tạp, cần giải thích chi tiết bối cảnh</td>
+<td style="text-align: left;">S.C.A.F.F.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Hỏi nhanh, chỉ muốn xác minh một ý tưởng</td>
+<td style="text-align: left;">R.G.C.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Phát triển chính thức, code sẽ đưa vào dự án</td>
+<td style="text-align: left;">S.C.A.F.F.</td>
+</tr>
+<tr>
+<td style="text-align: left;">AI trả lời không tốt, cần tăng cường ràng buộc</td>
+<td style="text-align: left;">Nâng cấp từ R.G.C. lên S.C.A.F.F.</td>
+</tr>
+</tbody>
+</table>
+<h2>Khi nào nâng cấp từ R.G.C. lên S.C.A.F.F.</h2>
+<p>Khi bạn dùng R.G.C. đặt câu hỏi xong, phát hiện đầu ra của AI không đúng kỳ vọng, đây thường là tín hiệu của việc <strong>thiếu thông tin</strong>.</p>
+<p><strong>Tín hiệu thường gặp</strong>:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Biểu hiện vấn đề</th>
+<th style="text-align: left;">Thông tin có thể thiếu</th>
+<th style="text-align: left;">Hướng nâng cấp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tech stack sai</td>
+<td style="text-align: left;">Bối cảnh dự án</td>
+<td style="text-align: left;">Thêm Situation</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tính năng quá đơn giản/quá phức tạp</td>
+<td style="text-align: left;">Nhu cầu cụ thể</td>
+<td style="text-align: left;">Bổ sung Challenge</td>
+</tr>
+<tr>
+<td style="text-align: left;">Phong cách code không khớp</td>
+<td style="text-align: left;">Thông tin người bảo trì</td>
+<td style="text-align: left;">Thêm Audience</td>
+</tr>
+<tr>
+<td style="text-align: left;">Định dạng đầu ra lộn xộn</td>
+<td style="text-align: left;">Yêu cầu định dạng</td>
+<td style="text-align: left;">Thêm Format</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ví dụ nâng cấp</strong>:</p>
+<pre><code class="language-markdown"># R.G.C. ban đầu
+
+【Role】Lập trình viên React
+【Goal】Thực hiện xác thực form
+【Constraints】Không dùng thư viện bên thứ ba
+
+# AI đưa ra một phương án xác thực quá phức tạp
+
+# Nâng cấp thành S.C.A.F.F.
+
+【Situation】Dự án blog cá nhân, chỉ có một form đăng nhập đơn giản
+【Challenge】Xác thực định dạng email và mật khẩu không rỗng, hiển thị thông báo khi lỗi
+【Audience】Tôi là người mới học, vui lòng dùng cách đơn giản nhất để thực hiện
+【Format】Code component hoàn chỉnh + Chú thích tiếng Việt
+【Foundations】Chỉ dùng useState, không dùng useReducer hay các pattern phức tạp khác
+</code></pre>
+<h2>Mẫu R.G.C. có thể sao chép</h2>
+<pre><code class="language-markdown">【Role - Vai trò】
+Bạn là một [Mô tả nghề nghiệp] có [Mô tả sở trường/phong cách]
+
+【Goal - Mục tiêu】
+[Động từ] [Mô tả nhiệm vụ cụ thể]
+
+【Constraints - Ràng buộc】
+
+- [Điều kiện hạn chế 1]
+- [Điều kiện hạn chế 2]
+- [Điều kiện hạn chế 3]
+</code></pre>
+<h2>Trọng điểm bài học</h2>
+<p>✓ <strong>3 yếu tố R.G.C.</strong>: Role (Vai trò) → Goal (Mục tiêu) → Constraints (Ràng buộc)</p>
+<p>✓ <strong>Bối cảnh áp dụng</strong>: Hỏi nhanh, nhiệm vụ đơn giản, đã có nhận thức rõ ràng về dự án</p>
+<p>✓ <strong>Quan hệ với S.C.A.F.F.</strong>: R.G.C. là bản tinh gọn, khi đầu ra không lý tưởng có thể nâng cấp</p>
+<p>✓ <strong>Tín hiệu nâng cấp</strong>: Khi AI trả lời không đúng kỳ vọng, kiểm tra xem có thiếu bối cảnh, nhu cầu, đối tượng hay định dạng không</p>
+<p>Bài sau, chúng ta sẽ giới thiệu một "Mẫu vạn năng" —— lựa chọn an toàn khi bạn không chắc nên dùng khung nào.</p>
+</body>
+</html>

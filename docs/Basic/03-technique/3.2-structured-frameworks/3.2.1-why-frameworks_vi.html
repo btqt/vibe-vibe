@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.2.1 Why Frameworks</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.2.1 Tại sao cần khung tư duy (Framework)"</h2>
+<p><img alt="03-technique_3.2-structured-frameworks_3.2.1-why-frameworks.png" src="../../../public/images/Basic/03-technique_3.2-structured-frameworks_3.2.1-why-frameworks.png" /></p>
+<h1>3.2.1 Tại sao cần khung tư duy (Framework)</h1>
+<h2>Sau bài học này, bạn sẽ nắm được</h2>
+<ul>
+<li>Hiểu giá trị cốt lõi của khung tư duy: Giảm bớt gánh nặng suy nghĩ, nâng cao sự ổn định của đầu ra</li>
+<li>Xác định rõ khung tư duy không phải là giới hạn, mà là điểm khởi đầu</li>
+<li>Biết khi nào dùng khung tư duy, khi nào linh hoạt phát huy</li>
+<li>Hiểu sự khác biệt về ngữ cảnh áp dụng giữa Prompt dạng câu chuyện và khung tư duy cấu trúc hóa</li>
+</ul>
+<h2>Một nỗi phiền lòng thực tế</h2>
+<p>Sau khi học xong bài 3.1, Tiểu Lý đã biết phải cung cấp ngữ cảnh cho AI. Nhưng mỗi lần viết Prompt, cậu vẫn rơi vào trạng thái thế này:</p>
+<blockquote>
+<p>"Mình biết phải nói cho AI bối cảnh dự án... Khoan đã, còn gì nữa nhỉ? Tech stack, điều kiện ràng buộc, định dạng đầu ra... Lần nào cũng phải nghĩ lại từ đầu, mệt quá."</p>
+</blockquote>
+<p>Đây không phải vấn đề của Tiểu Lý, mà là vấn đề của <strong>gánh nặng nhận thức</strong>.</p>
+<p>Dung lượng bộ nhớ làm việc của não người có hạn. Khi bạn đồng thời phải suy nghĩ "nói cái gì" và "nói thế nào", rất dễ rơi vào cảnh cái này được cái kia mất —— hoặc là bỏ sót thông tin quan trọng, hoặc là diễn đạt lộn xộn.</p>
+<p>Giá trị của khung tư duy, chính là <strong>biến "nói thế nào" thành định dạng cố định, để bạn tập trung vào "nói cái gì"</strong>.</p>
+<h2>Ba giá trị cốt lõi của khung tư duy</h2>
+<h3>1. Giảm bớt gánh nặng suy nghĩ</h3>
+<p>Khi không có khung tư duy, mỗi lần bạn đều phải suy nghĩ từ con số 0:</p>
+<ul>
+<li>Nên nói cái gì?</li>
+<li>Nói cái gì trước cái gì sau?</li>
+<li>Có bỏ sót gì không?</li>
+</ul>
+<p>Sau khi có khung tư duy, bạn chỉ cần <strong>điền vào chỗ trống</strong>:</p>
+<ul>
+<li>Situation (Tình huống) → Điền bối cảnh dự án</li>
+<li>Challenge (Thách thức) → Điền vấn đề hiện tại</li>
+<li>...Cứ thế suy ra</li>
+</ul>
+<p>Khung tư duy biến "câu hỏi mở" thành "bài tập điền vào chỗ trống", gánh nặng nhận thức giảm đi đáng kể.</p>
+<h3>2. Nâng cao sự ổn định của đầu ra</h3>
+<p>Nghiên cứu của Viện Tương tác Người-Máy Đại học Stanford chỉ ra: Sử dụng Prompt theo khung cấu trúc hóa, độ chính xác hoàn thành nhiệm vụ cao hơn 30% so với đặt câu hỏi ngẫu nhiên.</p>
+<p>Lý do rất đơn giản: Khung tư duy đảm bảo <strong>không bỏ sót thông tin quan trọng</strong>. Giống như danh sách kiểm tra trước khi cất cánh của phi công, không phải vì họ không nhớ, mà vì danh sách có thể tránh được sơ suất của con người.</p>
+<h3>3. Giảm chi phí giao tiếp</h3>
+<p>Khi bạn và AI thiết lập một "giao thức giao tiếp" cố định, AI có thể hiểu ý định của bạn nhanh hơn.</p>
+<p>Điều này giống như hợp tác với đồng nghiệp lâu năm: Các bạn có cách giao tiếp ăn ý, không cần lần nào cũng giải thích lại từ đầu. Khung tư duy chính là sự "ăn ý" giữa bạn và AI.</p>
+<h2>Khung tư duy không phải giới hạn, mà là điểm khởi đầu</h2>
+<p>Bạn có thể sẽ lo lắng: Dùng khung tư duy có bị cứng nhắc quá không?</p>
+<p>Câu trả lời là: <strong>Khung tư duy là điểm khởi đầu, không phải điểm kết thúc</strong>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Giai đoạn</th>
+<th style="text-align: left;">Cách làm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Giai đoạn mới học</td>
+<td style="text-align: left;">Điền nghiêm ngặt theo khung, đảm bảo không bỏ sót</td>
+</tr>
+<tr>
+<td style="text-align: left;">Giai đoạn thành thạo</td>
+<td style="text-align: left;">Đơn giản hóa hoặc mở rộng tùy theo độ phức tạp của nhiệm vụ</td>
+</tr>
+<tr>
+<td style="text-align: left;">Giai đoạn cao thủ</td>
+<td style="text-align: left;">Khung tư duy nội hóa thành trực giác, tổ chức thông tin một cách tự nhiên</td>
+</tr>
+</tbody>
+</table>
+<p>Giống như học lái xe: Ban đầu phải nhớ kỹ trình tự "xi nhan, nhìn gương, đánh lái", sau khi thành thạo những động tác này sẽ trở thành bản năng.</p>
+<h2>Khi nào dùng khung tư duy, khi nào tự do phát huy</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bối cảnh</th>
+<th style="text-align: left;">Đề xuất</th>
+<th style="text-align: left;">Lý do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Nhiệm vụ kỹ thuật phức tạp</td>
+<td style="text-align: left;">Dùng khung đầy đủ</td>
+<td style="text-align: left;">Tránh bỏ sót ràng buộc quan trọng</td>
+</tr>
+<tr>
+<td style="text-align: left;">Câu hỏi nhanh đơn giản</td>
+<td style="text-align: left;">Dùng khung tinh gọn hoặc tự do phát huy</td>
+<td style="text-align: left;">Tiết kiệm thời gian</td>
+</tr>
+<tr>
+<td style="text-align: left;">Lần đầu làm loại nhiệm vụ nào đó</td>
+<td style="text-align: left;">Dùng khung đầy đủ</td>
+<td style="text-align: left;">Giúp bạn làm rõ suy nghĩ</td>
+</tr>
+<tr>
+<td style="text-align: left;">Nhiệm vụ đã làm lặp lại</td>
+<td style="text-align: left;">Có thể đơn giản hóa</td>
+<td style="text-align: left;">Bạn đã biết các yếu tố then chốt</td>
+</tr>
+<tr>
+<td style="text-align: left;">Đầu ra của AI không đúng kỳ vọng</td>
+<td style="text-align: left;">Quay lại kiểm tra bằng khung</td>
+<td style="text-align: left;">Định vị xem đã bỏ sót thông tin gì</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Một lời khuyên thực tế</strong>: Khi bạn không chắc chắn, hãy dùng khung tư duy; khi cảm thấy khung tư duy thừa thãi, hãy đơn giản hóa nó.</p>
+<h2>Prompt câu chuyện vs Khung cấu trúc hóa</h2>
+<p>Prompt câu chuyện được giới thiệu ở Chương 2 và Khung cấu trúc hóa ở bài này, mỗi cái đều có ngữ cảnh áp dụng riêng:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Chiều so sánh</th>
+<th style="text-align: left;">Prompt câu chuyện</th>
+<th style="text-align: left;">Khung cấu trúc hóa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Động lực cốt lõi</strong></td>
+<td style="text-align: left;">Cảm xúc và nỗi đau</td>
+<td style="text-align: left;">Logic và ràng buộc</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Cách diễn đạt</strong></td>
+<td style="text-align: left;">Kể chuyện, như đang tường thuật</td>
+<td style="text-align: left;">Liệt kê, như điền bảng biểu</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Nhiệm vụ phù hợp</strong></td>
+<td style="text-align: left;">Thiết kế sản phẩm, giao tiếp nhu cầu người dùng</td>
+<td style="text-align: left;">Triển khai code, nhiệm vụ kỹ thuật</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Trọng điểm hiểu của AI</strong></td>
+<td style="text-align: left;">Người dùng là ai, tại sao cần</td>
+<td style="text-align: left;">Làm thế nào, có giới hạn gì</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Bối cảnh điển hình</strong></td>
+<td style="text-align: left;">"Giúp tôi thiết kế một danh sách việc cần làm"</td>
+<td style="text-align: left;">"Giúp tôi thực hiện chức năng thêm nhiệm vụ"</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Trong thực tế sử dụng, hai cái này có thể kết hợp</strong>:</p>
+<ol>
+<li>Dùng Prompt câu chuyện mô tả nhu cầu tổng thể trước (cấp độ sản phẩm)</li>
+<li>Sau đó dùng khung cấu trúc hóa phân giải nhiệm vụ cụ thể (cấp độ kỹ thuật)</li>
+</ol>
+<p>Ví dụ:</p>
+<ul>
+<li>Vòng đối thoại đầu tiên: Dùng Prompt câu chuyện mô tả "tôi là ai, nỗi đau của tôi, tôi muốn gì"</li>
+<li>Vòng đối thoại thứ hai: Dùng khung S.C.A.F.F. mô tả "chức năng cụ thể cần thực hiện hiện tại"</li>
+</ul>
+<h2>Trọng điểm bài học</h2>
+<p>✓ <strong>Giá trị của khung tư duy</strong>: Giảm gánh nặng suy nghĩ, nâng cao sự ổn định đầu ra, giảm chi phí giao tiếp</p>
+<p>✓ <strong>Khung tư duy không phải giới hạn</strong>: Mới học thì tuân thủ nghiêm ngặt, thành thạo rồi thì điều chỉnh linh hoạt</p>
+<p>✓ <strong>Nguyên tắc lựa chọn</strong>: Nhiệm vụ phức tạp dùng khung đầy đủ, nhiệm vụ đơn giản có thể đơn giản hóa</p>
+<p>✓ <strong>Quan hệ với Prompt câu chuyện</strong>: Cảm xúc thúc đẩy vs Logic thúc đẩy, có thể kết hợp sử dụng</p>
+<p>Bài sau, chúng ta sẽ học khung cấu trúc hóa đầu tiên: S.C.A.F.F. —— một khung tư duy hoàn chỉnh phù hợp cho các nhiệm vụ phát triển kỹ thuật.</p>
+</body>
+</html>

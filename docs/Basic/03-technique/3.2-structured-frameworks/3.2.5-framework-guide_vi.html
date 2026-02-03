@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.2.5 Framework Guide</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.2.5 Hướng dẫn lựa chọn khung tư duy (Framework)"</h2>
+<p><img alt="03-technique_3.2-structured-frameworks_3.2.5-framework-guide.png" src="../../../public/images/Basic/03-technique_3.2-structured-frameworks_3.2.5-framework-guide.png" /></p>
+<h1>3.2.5 Hướng dẫn lựa chọn khung tư duy (Framework)</h1>
+<h2>Sau bài học này, bạn sẽ nắm được</h2>
+<ul>
+<li>Lựa chọn nhanh khung phù hợp dựa trên loại nhiệm vụ</li>
+<li>Hiểu mối quan hệ giữa các khung</li>
+<li>Nhận được một danh sách kiểm tra nhanh trước khi đặt câu hỏi</li>
+<li>Biết khi nào nên chuyển từ khung này sang khung khác</li>
+</ul>
+<h2>Bảng tra cứu khung nhanh</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bối cảnh</th>
+<th style="text-align: left;">Khung đề xuất</th>
+<th style="text-align: left;">Lý do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Cần diễn đạt nỗi đau và cảm xúc người dùng</td>
+<td style="text-align: left;">Prompt câu chuyện (Chương 2)</td>
+<td style="text-align: left;">Cộng hưởng cảm xúc mạnh hơn, AI hiểu được "tại sao"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Nhiệm vụ phát triển kỹ thuật phức tạp</td>
+<td style="text-align: left;">S.C.A.F.F.</td>
+<td style="text-align: left;">Cấu trúc hoàn chỉnh, ràng buộc rõ ràng</td>
+</tr>
+<tr>
+<td style="text-align: left;">Hỏi đáp nhanh đơn giản</td>
+<td style="text-align: left;">R.G.C.</td>
+<td style="text-align: left;">Tinh gọn hiệu quả, giảm bớt việc nhập liệu</td>
+</tr>
+<tr>
+<td style="text-align: left;">Không chắc dùng khung nào</td>
+<td style="text-align: left;">Mẫu vạn năng</td>
+<td style="text-align: left;">Độ bao phủ rộng, khó sai sót</td>
+</tr>
+<tr>
+<td style="text-align: left;">Review code, refactor code</td>
+<td style="text-align: left;">R.G.C.</td>
+<td style="text-align: left;">Bản thân code đã cung cấp ngữ cảnh</td>
+</tr>
+<tr>
+<td style="text-align: left;">Mô tả nhu cầu, thiết kế sản phẩm</td>
+<td style="text-align: left;">Câu chuyện + S.C.A.F.F.</td>
+<td style="text-align: left;">Kể chuyện trước, rồi chia nhỏ nhiệm vụ</td>
+</tr>
+<tr>
+<td style="text-align: left;">Phân tích dữ liệu, tạo báo cáo</td>
+<td style="text-align: left;">Mẫu vạn năng</td>
+<td style="text-align: left;">Loại nhiệm vụ đa dạng, tính phổ quát mạnh</td>
+</tr>
+<tr>
+<td style="text-align: left;">Học khái niệm, tìm lời giải thích</td>
+<td style="text-align: left;">R.G.C.</td>
+<td style="text-align: left;">Đơn giản trực tiếp</td>
+</tr>
+</tbody>
+</table>
+<h2>Sơ đồ quy trình ra quyết định</h2>
+<pre><code class="language-mermaid">graph TD
+    A[Bắt đầu: Tôi muốn hỏi AI một câu] --&gt; B{Nhiệm vụ có phức tạp không?}
+    B --&gt;|Đơn giản, một hai câu nói rõ được| C{Cần AI đóng vai trò cụ thể không?}
+    B --&gt;|Phức tạp, cần giải thích chi tiết| D{Có liên quan nỗi đau và cảm xúc người dùng không?}
+
+    C --&gt;|Có| E[Khung R.G.C.]
+    C --&gt;|Không| F[Hỏi trực tiếp cũng được]
+
+    D --&gt;|Có| G[Dùng Prompt câu chuyện trước]
+    D --&gt;|Không| H{Là nhiệm vụ phát triển kỹ thuật?}
+
+    H --&gt;|Có| I[Khung S.C.A.F.F.]
+    H --&gt;|Không| J[Mẫu vạn năng]
+
+    G --&gt; K{Cần tiếp tục phân giải nhiệm vụ cụ thể?}
+    K --&gt;|Có| I
+    K --&gt;|Không| L[Prompt câu chuyện là đủ]
+
+    style E fill:#e1f5fe
+    style I fill:#e8f5e9
+    style J fill:#fff3e0
+    style G fill:#fce4ec
+</code></pre>
+<p><strong>Quyết định phiên bản đơn giản</strong>:</p>
+<ol>
+<li><strong>Nhiệm vụ đơn giản</strong> → R.G.C.</li>
+<li><strong>Nhiệm vụ phức tạp + Phát triển kỹ thuật</strong> → S.C.A.F.F.</li>
+<li><strong>Nhiệm vụ phức tạp + Phi kỹ thuật</strong> → Mẫu vạn năng</li>
+<li><strong>Cần diễn đạt câu chuyện người dùng</strong> → Prompt câu chuyện</li>
+<li><strong>Không chắc chắn</strong> → Mẫu vạn năng</li>
+</ol>
+<h2>Sơ đồ quan hệ các khung</h2>
+<p>Bốn loại khung này không thay thế lẫn nhau, mà bổ sung cho nhau:</p>
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│                     Mẫu vạn năng                          │
+│        (Phổ quát nhất, bao phủ rộng, gì cũng dùng được)     │
+│  ┌─────────────────────┐  ┌─────────────────────┐      │
+│  │    S.C.A.F.F.       │  │   Prompt câu chuyện  │      │
+│  │ (Chuyên cho kỹ thuật) │  │ (Chuyên cho cảm xúc)  │      │
+│  │                     │  │                     │      │
+│  │  ┌─────────────┐    │  │                     │      │
+│  │  │   R.G.C.    │    │  │                     │      │
+│  │  │ (Bản tinh gọn) │    │  │                     │      │
+│  │  └─────────────┘    │  │                     │      │
+│  └─────────────────────┘  └─────────────────────┘      │
+└─────────────────────────────────────────────────────────┘
+</code></pre>
+<ul>
+<li><strong>R.G.C.</strong> là bản tinh gọn của <strong>S.C.A.F.F.</strong></li>
+<li><strong>S.C.A.F.F.</strong> và <strong>Prompt câu chuyện</strong> có quan hệ ngang hàng, mỗi cái có trọng tâm riêng</li>
+<li><strong>Mẫu vạn năng</strong> là tập hợp lớn nhất, bối cảnh nào cũng dùng được</li>
+</ul>
+<h2>Danh sách kiểm tra trước khi hỏi</h2>
+<p>Trước khi nhấn nút gửi, lướt nhanh qua một lượt:</p>
+<h3>Kiểm tra cơ bản (Bắt buộc)</h3>
+<ul>
+<li>[ ] <strong>Nhiệm vụ có rõ ràng không</strong>: AI có hiểu bạn muốn nó làm gì không?</li>
+<li>[ ] <strong>Bối cảnh có đủ không</strong>: AI có đủ thông tin để đưa ra phán đoán đúng không?</li>
+<li>[ ] <strong>Ràng buộc có xác định không</strong>: AI có biết cái gì không được làm không?</li>
+</ul>
+<h3>Kiểm tra nâng cao (Đề xuất)</h3>
+<ul>
+<li>[ ] <strong>Vai trò có chỉ định không</strong>: AI nên trả lời với tư cách gì?</li>
+<li>[ ] <strong>Định dạng có nói rõ không</strong>: Bạn kỳ vọng hình thức đầu ra thế nào?</li>
+<li>[ ] <strong>Ví dụ có cần thiết không</strong>: Cho một ví dụ có giúp rõ ràng hơn không?</li>
+</ul>
+<h3>Kiểm tra phản tư (Tùy chọn)</h3>
+<ul>
+<li>[ ] <strong>Có nói quá nhiều không</strong>: Có phải yêu cầu quá nhiều thứ một lúc không?</li>
+<li>[ ] <strong>Có nói quá ít không</strong>: Có bỏ sót thông tin quan trọng nào không?</li>
+<li>[ ] <strong>Ranh giới có rõ ràng không</strong>: AI có thể sẽ "tự biên tự diễn" không?</li>
+</ul>
+<h2>Tín hiệu chuyển đổi khung</h2>
+<p>Khi bạn dùng một khung nào đó để hỏi, nhưng đầu ra của AI không lý tưởng, đây có thể là vấn đề do chọn khung hoặc điền nội dung:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Vấn đề đầu ra của AI</th>
+<th style="text-align: left;">Nguyên nhân có thể</th>
+<th style="text-align: left;">Hướng điều chỉnh</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Phương án kỹ thuật không khớp dự án</td>
+<td style="text-align: left;">Thiếu bối cảnh dự án</td>
+<td style="text-align: left;">Bổ sung Situation</td>
+</tr>
+<tr>
+<td style="text-align: left;">Phạm vi chức năng không khớp kỳ vọng</td>
+<td style="text-align: left;">Mô tả nhiệm vụ không rõ</td>
+<td style="text-align: left;">Viết lại Challenge/Goal</td>
+</tr>
+<tr>
+<td style="text-align: left;">Độ phức tạp code không phù hợp</td>
+<td style="text-align: left;">Không nói rõ trình độ người dùng</td>
+<td style="text-align: left;">Thêm Audience</td>
+</tr>
+<tr>
+<td style="text-align: left;">Định dạng đầu ra lộn xộn</td>
+<td style="text-align: left;">Không chỉ định định dạng</td>
+<td style="text-align: left;">Thêm Format</td>
+</tr>
+<tr>
+<td style="text-align: left;">AI "tự biên tự diễn" quá nhiều</td>
+<td style="text-align: left;">Ràng buộc chưa đủ</td>
+<td style="text-align: left;">Bổ sung Constraints/Foundations</td>
+</tr>
+<tr>
+<td style="text-align: left;">Trả lời quá kỹ thuật khô khan</td>
+<td style="text-align: left;">Vấn đề thiết lập vai trò</td>
+<td style="text-align: left;">Điều chỉnh Role</td>
+</tr>
+<tr>
+<td style="text-align: left;">Không hiểu nỗi đau cốt lõi</td>
+<td style="text-align: left;">Thiếu bối cảnh câu chuyện</td>
+<td style="text-align: left;">Chuyển sang Prompt câu chuyện</td>
+</tr>
+</tbody>
+</table>
+<h2>Lời khuyên thực chiến</h2>
+<h3>Cho người mới bắt đầu</h3>
+<p>Khi mới bắt đầu, đề xuất <strong>điền nghiêm ngặt theo khung</strong>, dù cảm thấy một số mục là "thừa thãi".</p>
+<p>Lý do:</p>
+<ol>
+<li>Khung giúp bạn kiểm tra xem có bỏ sót thông tin quan trọng không</li>
+<li>Xây dựng thói quen tư duy cấu trúc hóa</li>
+<li>Khi đầu ra không lý tưởng, có khung để đối chiếu rà soát</li>
+</ol>
+<h3>Cho người dùng có kinh nghiệm</h3>
+<p>Sau khi thành thạo, có thể <strong>linh hoạt đơn giản hóa</strong> tùy theo nhiệm vụ:</p>
+<ul>
+<li>Nhiệm vụ đơn giản: R.G.C. hoặc thậm chí hỏi trực tiếp</li>
+<li>Nhiệm vụ phức tạp: Khung đầy đủ</li>
+<li>Nhiệm vụ lặp lại: Tinh chỉnh dựa trên Prompt trước đó</li>
+</ul>
+<p><strong>Nguyên tắc cốt lõi</strong>: Khung là công cụ, không phải quy tắc. Hãy để nó giúp bạn, chứ không phải trói buộc bạn.</p>
+<h2>Ôn tập chương này</h2>
+<p>Chúc mừng bạn đã hoàn thành phần học về "Khung Prompt cấu trúc hóa". Bây giờ bạn đã nắm vững:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Công cụ</th>
+<th style="text-align: left;">Công dụng</th>
+<th style="text-align: left;">Yếu tố cốt lõi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">S.C.A.F.F.</td>
+<td style="text-align: left;">Nhiệm vụ kỹ thuật phức tạp</td>
+<td style="text-align: left;">Situation, Challenge, Audience, Format, Foundations</td>
+</tr>
+<tr>
+<td style="text-align: left;">R.G.C.</td>
+<td style="text-align: left;">Hỏi đáp nhanh đơn giản</td>
+<td style="text-align: left;">Role, Goal, Constraints</td>
+</tr>
+<tr>
+<td style="text-align: left;">Mẫu vạn năng</td>
+<td style="text-align: left;">Bối cảnh chung</td>
+<td style="text-align: left;">Vai trò, Bối cảnh, Nhiệm vụ, Yêu cầu, Ràng buộc, Định dạng, Ví dụ</td>
+</tr>
+<tr>
+<td style="text-align: left;">Prompt câu chuyện</td>
+<td style="text-align: left;">Diễn đạt nỗi đau người dùng</td>
+<td style="text-align: left;">Thân phận, Hiện trạng, Nỗi đau, Kỳ vọng</td>
+</tr>
+</tbody>
+</table>
+<h2>Dự báo bước tiếp theo</h2>
+<p>Khung cấu trúc hóa giải quyết vấn đề "tổ chức thông tin thế nào". Nhưng đôi khi, chỉ có cấu trúc là chưa đủ —— bạn cần một số <strong>kỹ thuật đặc biệt</strong> để suy luận của AI sâu sắc hơn, đầu ra chính xác hơn.</p>
+<p>Bài tiếp theo "3.3 Kỹ thuật Prompt nâng cao", chúng ta sẽ học:</p>
+<ul>
+<li><strong>Zero-shot</strong>: Nghệ thuật hỏi trực tiếp</li>
+<li><strong>Few-shot</strong>: Dùng ví dụ dạy AI</li>
+<li><strong>Chain of Thought</strong>: Để AI "nghĩ một chút" rồi mới trả lời</li>
+<li><strong>Tree of Thoughts</strong>: Khám phá nhiều hướng suy luận</li>
+<li><strong>Self-Critique</strong>: Để AI tự kiểm tra</li>
+</ul>
+<p>Các kỹ thuật này có thể <strong>kết hợp sử dụng</strong> với khung cấu trúc hóa, nâng cao hơn nữa chất lượng đầu ra của AI.</p>
+<p>Sẵn sàng chưa? Hãy cùng bước vào bài tiếp theo.</p>
+</body>
+</html>

@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.7.3 Prompt Checklist</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.7.3 Danh sách kiểm tra Prompt nhanh"</h2>
+<p><img alt="03-technique_3.7-summary_3.7.3-prompt-checklist.png" src="../../../public/images/Basic/03-technique_3.7-summary_3.7.3-prompt-checklist.png" /></p>
+<h1>3.7.3 Danh sách kiểm tra Prompt nhanh</h1>
+<p>Phần này cung cấp một loạt danh sách kiểm tra nhanh và mẫu có thể sử dụng ngay, nên lưu lại hoặc in ra để dự phòng.</p>
+<h2>Bảng kiểm tra nhanh một trang: Phải kiểm tra trước khi hỏi</h2>
+<p>Trước khi đặt câu hỏi cho AI, hãy kiểm tra nhanh chín mục này:</p>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│               Danh sách tự kiểm tra Prompt v1.0               │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  □ 1. Tôi đã nói rõ [Bối cảnh] chưa?                          │
+│       (Loại dự án, stack kỹ thuật, tiến độ hiện tại)          │
+│                                                             │
+│  □ 2. Tôi đã nói rõ [Nhiệm vụ] chưa?                          │
+│       (Phải làm gì, đầu vào đầu ra là gì)                     │
+│                                                             │
+│  □ 3. Tôi đã nói rõ [Ràng buộc] chưa?                         │
+│       (Hạn chế bắt buộc tuân thủ, không được làm gì)          │
+│                                                             │
+│  □ 4. Tôi đã nói rõ [Định dạng] chưa?                         │
+│       (Cần code hoàn chỉnh hay đoạn code, cần chú thích không)│
+│                                                             │
+│  □ 5. Tôi đã cho [Ví dụ] chưa?                                │
+│       (Nếu cần định dạng đầu ra cụ thể)                       │
+│                                                             │
+│  □ 6. Prompt của tôi có đủ [Cụ thể] không?                    │
+│       (Có thể mô tả kỳ vọng chính xác hơn không)              │
+│                                                             │
+│  □ 7. Tôi đã bảo AI [Cái gì không được làm] chưa?             │
+│       (Đề phòng AI &quot;phát huy quá đà&quot;)                         │
+│                                                             │
+│  □ 8. Tôi đã sẵn sàng [Lặp lại] chưa?                         │
+│       (Không mong đợi một lần là hoàn hảo)                    │
+│                                                             │
+│  □ 9. Tôi đã tích hợp [Thành quả tư duy Chương 2] chưa?       │
+│       (Chân dung người dùng, phạm vi MVP, ba câu hỏi linh hồn)│
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+</code></pre>
+<h2>Mẫu Prompt theo ngữ cảnh</h2>
+<h3>Ngữ cảnh 1: Tạo code</h3>
+<p>Thích hợp cho: Tạo component mới, thực hiện tính năng mới, tạo module hoàn chỉnh</p>
+<pre><code class="language-markdown">【Bối cảnh】
+Loại dự án: [Web App/Phân tích dữ liệu/Script tự động hóa/...]
+Stack kỹ thuật: [React/Python/Node.js/...]
+Tiến độ hiện tại: [Dự án mới bắt đầu/Đã có cấu trúc cơ bản/...]
+
+【Nhiệm vụ】
+Hãy giúp tôi thực hiện [Tên tính năng]:
+- Mô tả tính năng: [Người dùng làm gì, hệ thống làm gì]
+- Đầu vào: [Người dùng nhập gì]
+- Đầu ra: [Hệ thống xuất ra gì]
+
+【Ràng buộc】
+Bắt buộc:
+- [Ràng buộc 1]
+- [Ràng buộc 2]
+
+Không được:
+- [Ràng buộc 3]
+- [Ràng buộc 4]
+
+【Yêu cầu định dạng】
+- [ ] File code hoàn chỉnh
+- [ ] Bao gồm kiểu TypeScript
+- [ ] Bao gồm chú thích then chốt
+- [ ] Bao gồm hướng dẫn sử dụng
+</code></pre>
+<p><strong>Ví dụ điền mẫu</strong>:</p>
+<pre><code class="language-markdown">【Bối cảnh】
+Loại dự án: Ứng dụng web danh sách việc cần làm cá nhân
+Stack kỹ thuật: React + TypeScript + Tailwind CSS
+Tiến độ hiện tại: Dự án đã khởi tạo, đã có component AddTask
+
+【Nhiệm vụ】
+Hãy giúp tôi thực hiện tính năng &quot;Xóa nhiệm vụ&quot;:
+- Mô tả tính năng: Người dùng click icon xóa bên phải nhiệm vụ, nhiệm vụ đó bị xóa khỏi danh sách
+- Đầu vào: Người dùng click icon xóa
+- Đầu ra: Nhiệm vụ biến mất khỏi danh sách, hiện thông báo hoàn tác ngắn gọn
+
+【Ràng buộc】
+Bắt buộc:
+- Hiển thị nhắc nhở xác nhận trước khi xóa (tránh xóa nhầm)
+- Có thể hoàn tác trong vòng 3 giây sau khi xóa
+- Style dùng Tailwind CSS
+
+Không được:
+- Không dùng bất kỳ thư viện UI component nào
+- Không dùng popup confirm() (trải nghiệm không tốt)
+
+【Yêu cầu định dạng】
+- [x] File code hoàn chỉnh
+- [x] Bao gồm kiểu TypeScript
+- [x] Bao gồm chú thích then chốt
+- [ ] Bao gồm hướng dẫn sử dụng
+</code></pre>
+<h3>Ngữ cảnh 2: Sửa code</h3>
+<p>Thích hợp cho: Sửa Bug, tối ưu hiệu năng, tái cấu trúc code</p>
+<pre><code class="language-markdown">【Code hiện tại】
+```[Ngôn ngữ]
+[Dán code hiện tại]
+</code></pre>
+<p>【Mô tả vấn đề】
+Vấn đề hiện tại là: [Mô tả cụ thể hiện tượng vấn đề]
+Hành vi kỳ vọng là: [Mô tả hành vi đúng]</p>
+<p>【Yêu cầu sửa đổi】
+- [Yêu cầu 1]
+- [Yêu cầu 2]</p>
+<p>【Ràng buộc】
+- Chỉ sửa những phần cần thiết, giữ nguyên các code khác
+- [Ràng buộc khác]</p>
+<pre><code>
+**Ví dụ điền mẫu**:
+
+```markdown
+【Code hiện tại】
+```typescript
+const handleSubmit = () =&gt; {
+  if (inputValue) {
+    addTask(inputValue);
+    setInputValue('');
+  }
+}
+</code></pre>
+<p>【Mô tả vấn đề】
+Vấn đề hiện tại là: Nhập dấu cách cũng thêm được nhiệm vụ
+Hành vi kỳ vọng là: Chỉ khi thực sự có nội dung mới được thêm, dấu cách nên bị bỏ qua</p>
+<p>【Yêu cầu sửa đổi】
+- Loại bỏ khoảng trắng đầu cuối trước khi thêm
+- Nếu sau khi loại bỏ khoảng trắng mà rỗng, hiển thị nhắc nhở</p>
+<p>【Ràng buộc】
+- Chỉ sửa những phần cần thiết, giữ nguyên các code khác
+- Nhắc nhở dùng toast chứ không phải alert</p>
+<pre><code>
+### Ngữ cảnh 3: Rà soát vấn đề
+
+Thích hợp cho: Báo lỗi code, chức năng bất thường, vấn đề hiệu năng
+
+```markdown
+【Hiện tượng vấn đề】
+[Mô tả bạn thấy gì]
+
+【Hành vi kỳ vọng】
+[Mô tả bạn mong đợi thấy gì]
+
+【Code liên quan】
+```[Ngôn ngữ]
+[Dán code liên quan]
+</code></pre>
+<p>【Phương pháp đã thử】
+1. [Đã thử 1]: [Kết quả]
+2. [Đã thử 2]: [Kết quả]</p>
+<p>【Thông tin môi trường】
+- Trình duyệt/Môi trường chạy: [Phiên bản]
+- Phiên bản thư viện liên quan: [Phiên bản]</p>
+<p>【Hãy giúp tôi】
+1. Phân tích nguyên nhân có thể
+2. Đưa ra giải pháp
+3. Giải thích tại sao xuất hiện vấn đề này</p>
+<pre><code>
+**Ví dụ điền mẫu**:
+
+```markdown
+【Hiện tượng vấn đề】
+Sau khi click nút &quot;Hoàn thành nhiệm vụ&quot;, trạng thái nhiệm vụ không thay đổi, console không báo lỗi
+
+【Hành vi kỳ vọng】
+Sau khi click, vòng tròn bên trái nhiệm vụ nên chuyển sang trạng thái đã chọn
+
+【Code liên quan】
+```typescript
+const toggleComplete = (id: string) =&gt; {
+  setTasks(tasks.map(task =&gt; 
+    task.id === id ? { ...task, complete: !task.complete } : task
+  ));
+}
+</code></pre>
+<p>【Phương pháp đã thử】
+1. Kiểm tra id truyền vào có đúng không: console.log xác nhận id đúng
+2. Kiểm tra trạng thái tasks: Mảng tasks trước và sau cập nhật không thay đổi</p>
+<p>【Thông tin môi trường】
+- Trình duyệt: Chrome 120
+- Phiên bản React: 18.2.0</p>
+<p>【Hãy giúp tôi】
+1. Phân tích nguyên nhân có thể
+2. Đưa ra giải pháp
+3. Giải thích tại sao xuất hiện vấn đề này</p>
+<pre><code>
+### Ngữ cảnh 4: Lựa chọn công nghệ
+
+Thích hợp cho: Chọn thư viện, framework, phương án kiến trúc
+
+```markdown
+【Bối cảnh dự án】
+[Mô tả tóm tắt dự án]
+
+【Nhu cầu lựa chọn】
+Tôi cần chọn [Loại lựa chọn], chủ yếu cân nhắc:
+- [Yếu tố cân nhắc 1]
+- [Yếu tố cân nhắc 2]
+- [Yếu tố cân nhắc 3]
+
+【Phương án ứng viên】 (Tùy chọn)
+1. [Phương án A]
+2. [Phương án B]
+3. [Phương án C]
+
+【Hãy giúp tôi】
+1. Phân tích ưu nhược điểm của từng phương án
+2. Đưa ra phương án đề xuất và lý do
+3. Giải thích trường hợp nào nên chọn phương án khác
+</code></pre>
+<p><strong>Ví dụ điền mẫu</strong>:</p>
+<pre><code class="language-markdown">【Bối cảnh dự án】
+Ứng dụng danh sách việc cần làm cá nhân, hiện tại dữ liệu ở localStorage, muốn hỗ trợ đồng bộ đa thiết bị
+
+【Nhu cầu lựa chọn】
+Tôi cần chọn phương án lưu trữ dữ liệu backend, chủ yếu cân nhắc:
+- Miễn phí hoặc chi phí thấp (dự án cá nhân)
+- Dễ tiếp cận (tôi là người mới backend)
+- Hỗ trợ xác thực người dùng
+
+【Phương án ứng viên】
+1. Supabase
+2. Firebase
+3. Tự dựng Node.js + MongoDB
+
+【Hãy giúp tôi】
+1. Phân tích ưu nhược điểm của từng phương án
+2. Đưa ra phương án đề xuất và lý do
+3. Giải thích trường hợp nào nên chọn phương án khác
+</code></pre>
+<h2>Danh sách tự kiểm tra lỗi thường gặp</h2>
+<p>Trước khi gửi Prompt, kiểm tra xem có phạm phải 5 lỗi thường gặp này không:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Lỗi</th>
+<th>Cách kiểm tra</th>
+<th>Cách sửa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Không có bối cảnh</strong></td>
+<td>Xóa bối cảnh đi AI còn hiểu được không?</td>
+<td>Thêm loại dự án và stack kỹ thuật</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Quá mơ hồ</strong></td>
+<td>"Tối ưu code" là tối ưu cái gì?</td>
+<td>Nói rõ tối ưu khía cạnh nào</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Không có ràng buộc</strong></td>
+<td>AI có thể "phát huy quá đà" không?</td>
+<td>Thêm "danh sách không làm"</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Không có định dạng</strong></td>
+<td>Định dạng đầu ra của AI ngẫu nhiên?</td>
+<td>Chỉ định cần code hay giải thích</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Một lần đòi quá nhiều</strong></td>
+<td>Nhiệm vụ quá 3 điểm chính?</td>
+<td>Tách thành đối thoại nhiều vòng</td>
+</tr>
+</tbody>
+</table>
+<h2>Hướng dẫn nhanh xác minh ảo giác</h2>
+<p>Khi AI giới thiệu gói hoặc API bạn không quen, dùng quy trình này để xác minh:</p>
+<pre><code>AI giới thiệu một gói hoặc API
+        │
+        ▼
+┌─────────────────────────┐
+│ 1. Xác minh gói tồn tại   │
+│    npm search &lt;tên_gói&gt;  │
+│    hoặc truy cập npmjs.com│
+└─────────────────────────┘
+        │
+        ├─ Không tồn tại ─────▶ 🔴 Ảo giác gói, yêu cầu AI giới thiệu lại
+        │
+        ▼ Tồn tại
+┌─────────────────────────┐
+│ 2. Kiểm tra độ tin cậy    │
+│    - Lượt tải tuần &gt; 1000?|
+│    - Cập nhật gần nhất &lt; 1 năm?|
+│    - GitHub stars &gt; 100?  |
+└─────────────────────────┘
+        │
+        ├─ Không thỏa mãn ────▶ 🟡 Dùng thận trọng, cân nhắc phương án thay thế
+        │
+        ▼ Thỏa mãn
+┌─────────────────────────┐
+│ 3. Xác minh API đúng không│
+│    Tra cứu tài liệu chính thức│
+└─────────────────────────┘
+        │
+        ├─ API không tồn tại ─▶ 🔴 Ảo giác API, tra tài liệu tìm API đúng
+        │
+        ▼ API tồn tại
+        ✅ Có thể sử dụng
+</code></pre>
+<h2>Mẫu phản hồi lặp lại</h2>
+<p>Khi đầu ra của AI chưa ưng ý, dùng mẫu này phản hồi:</p>
+<pre><code class="language-markdown">【Vấn đề】
+[Chỉ ra cụ thể chỗ nào không đúng]
+
+【Nguyên nhân】
+[Giải thích tại sao như vậy không được]
+
+【Kỳ vọng】
+[Nói rõ bạn muốn gì]
+
+【Ví dụ】 (Tùy chọn)
+[Cho một ví dụ bạn mong muốn]
+</code></pre>
+<p><strong>Ví dụ điền mẫu</strong>:</p>
+<pre><code class="language-markdown">【Vấn đề】
+Trong code bạn đưa, sau khi xóa nhiệm vụ không có chức năng hoàn tác
+
+【Nguyên nhân】
+Người dùng có thể xóa nhầm, cần có cơ hội hối hận
+
+【Kỳ vọng】
+Sau khi xóa hiển thị một thông báo &quot;Hoàn tác&quot; trong 3 giây, click vào có thể khôi phục nhiệm vụ
+
+【Ví dụ】
+Giống nút &quot;Hoàn tác&quot; xuất hiện dưới đáy sau khi xóa email trong Gmail
+</code></pre>
+<h2>Mẫu vạn năng có thể sao chép</h2>
+<p>Đây là một mẫu chung, áp dụng cho đa số ngữ cảnh:</p>
+<pre><code class="language-markdown">## Bối cảnh
+Tôi đang làm [Loại dự án].
+Stack kỹ thuật: [Stack kỹ thuật]
+Người dùng mục tiêu: [Mô tả người dùng]
+
+## Nhiệm vụ hiện tại
+[Mô tả cụ thể phải làm gì]
+
+## Yêu cầu
+1. [Yêu cầu 1]
+2. [Yêu cầu 2]
+3. [Yêu cầu 3]
+
+## Không cần
+- [Không cần 1]
+- [Không cần 2]
+
+## Định dạng đầu ra
+[Nói rõ định dạng đầu ra mong muốn]
+
+## Về tôi
+Tôi là [Trình độ kỹ thuật], nếu có [Lưu ý], hãy nhắc tôi.
+</code></pre>
+<h2>Điểm cốt yếu phần này</h2>
+<p>✓ <strong>Phải kiểm tra trước khi hỏi</strong>: Bối cảnh, nhiệm vụ, ràng buộc, định dạng, ví dụ, tính cụ thể, danh sách không làm, chuẩn bị lặp lại, thành quả Chương 2</p>
+<p>✓ <strong>Bốn mẫu ngữ cảnh</strong>: Tạo code, sửa code, rà soát vấn đề, lựa chọn công nghệ</p>
+<p>✓ <strong>Năm lỗi thường gặp</strong>: Không bối cảnh, quá mơ hồ, không ràng buộc, không định dạng, đòi quá nhiều một lần</p>
+<p>✓ <strong>Xác minh ảo giác</strong>: Xác minh sự tồn tại trước, rồi kiểm tra độ tin cậy, cuối cùng tra tài liệu chính thức</p>
+<p>Phần tiếp theo, chúng ta sẽ thông qua bốn bài tập tổng hợp, giúp bạn nội hóa các kỹ năng này.</p>
+</body>
+</html>

@@ -1,0 +1,424 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.1.1 Jtbd Intro Practice</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "2.1.1 Ứng dụng thực hành JTBD: Phân tích bốn tình huống và luyện tập"</h2>
+<p><img alt="02-mindset_2.1-thinking-upgrade_2.1.1-jtbd-intro-practice.png" src="../../../public/images/Basic/02-mindset_2.1-thinking-upgrade_2.1.1-jtbd-intro-practice.png" /></p>
+<h1>2.1.1 Ứng dụng thực hành JTBD: Phân tích bốn tình huống và luyện tập</h1>
+<p>Sau khi hiểu lý thuyết JTBD, bây giờ hãy nắm vững khung tư duy này thông qua các tình huống thực tế và bài tập luyện tập.</p>
+<h2>Thực chiến bốn tình huống</h2>
+<h3>Tình huống 1: Nguyên mẫu sản phẩm——Danh sách việc cần làm (To-do List)</h3>
+<h4>Ý tưởng ban đầu</h4>
+<p>"Tôi muốn làm một App danh sách việc cần làm"</p>
+<h4>Phân tích lại bằng JTBD</h4>
+<p><strong>Người dùng là ai?</strong>
+Nhân viên vận hành công ty Internet nào đó, mỗi ngày phải xử lý 20-30 hạng mục công việc</p>
+<p><strong>Tình huống là gì?</strong>
+Mỗi sáng đến công ty, cần làm rõ hôm nay phải làm gì</p>
+<p><strong>Cần hoàn thành nhiệm vụ gì?</strong>
+Nhanh chóng ghi chép và xem các việc cần làm hôm nay, đảm bảo không bỏ sót</p>
+<p><strong>Kết quả mong đợi là gì?</strong>
+An tâm tập trung vào công việc, không lo bỏ sót việc quan trọng</p>
+<p><strong>Phương án thay thế hiện tại?</strong>
+Dùng giấy nhớ (sticky note), tin nhắn ghim trên WeChat, hoặc nhớ trong đầu</p>
+<p><strong>Vấn đề của phương án thay thế?</strong>
+Giấy nhớ dễ mất, tin nhắn WeChat bị trôi, đầu óc không nhớ hết</p>
+<h4>Sản phẩm được định nghĩa lại</h4>
+<p>"Khi những người đi làm bận rộn bắt đầu công việc mỗi ngày, họ muốn nhanh chóng làm rõ nhiệm vụ trong ngày, để an tâm tập trung vào công việc."</p>
+<p>Dựa trên định nghĩa nhiệm vụ này, sản phẩm nên:</p>
+<ul>
+<li>Ưu tiên cân nhắc: Ghi chép nhanh, giao diện nhìn cái hiểu ngay</li>
+<li>Cân nhắc thứ yếu: Chức năng nhắc nhở, phân loại đơn giản</li>
+</ul>
+<h4>Gợi ý thiết kế</h4>
+<p><strong>Độ ưu tiên chức năng</strong>:</p>
+<ol>
+<li><strong>P0 (Cốt lõi)</strong>: Thêm nhanh nhiệm vụ, danh sách nhiệm vụ hôm nay</li>
+<li><strong>P1 (Quan trọng)</strong>: Đánh dấu hoàn thành nhiệm vụ, phân loại đơn giản</li>
+<li><strong>P2 (Tùy chọn)</strong>: Chức năng nhắc nhở, đồng bộ đa thiết bị</li>
+</ol>
+<p><strong>Trọng điểm trải nghiệm người dùng</strong>:</p>
+<ul>
+<li>Mở ra là ghi được ngay, chi phí học tập bằng không</li>
+<li>Danh sách nhiệm vụ rõ ràng, nhìn cái hiểu ngay</li>
+<li>Thao tác đơn giản, một tay là làm được</li>
+</ul>
+<h3>Tình huống 2: Công cụ học tập——Thẻ từ vựng (Flashcard)</h3>
+<h4>Ý tưởng ban đầu</h4>
+<p>"Tôi muốn làm một App học từ vựng"</p>
+<h4>Phân tích lại bằng JTBD</h4>
+<p><strong>Người dùng là ai?</strong>
+Học sinh cấp 3 Tiểu Vương, chuẩn bị thi tiếng Anh, mỗi ngày cần học 50 từ mới</p>
+<p><strong>Tình huống là gì?</strong>
+Giờ tự học buổi tối, muốn vừa thư giãn vừa học</p>
+<p><strong>Cần hoàn thành nhiệm vụ gì?</strong>
+Ghi nhớ hiệu quả từ mới, đồng thời không cảm thấy nhàm chán</p>
+<p><strong>Kết quả mong đợi là gì?</strong>
+Lượng từ vựng đạt chuẩn thi cử, quá trình học không đau khổ</p>
+<p><strong>Phương án thay thế hiện tại?</strong>
+Học sách từ vựng, ghi chú trên điện thoại, bạn bè kiểm tra lẫn nhau</p>
+<p><strong>Vấn đề của phương án thay thế?</strong>
+Sách vở nhàm chán, ghi chú thiếu hiệu ứng tương tác, bạn bè phối hợp không tiện</p>
+<h4>Sản phẩm được định nghĩa lại</h4>
+<p>"Khi học sinh ôn thi trong lúc nghỉ giải lao, họ muốn ghi nhớ từ vựng theo cách nhẹ nhàng, để nâng cao lượng từ vựng trong khi giải trí."</p>
+<p>Dựa trên định nghĩa nhiệm vụ này, sản phẩm nên:</p>
+<ul>
+<li>Trải nghiệm học tập game hóa</li>
+<li>Bài luyện tập nhanh phù hợp thời gian vụn vặt</li>
+<li>Thuật toán ghi nhớ tăng cường hiệu quả học tập</li>
+</ul>
+<h4>Gợi ý thiết kế</h4>
+<p><strong>Thiết kế trải nghiệm cốt lõi</strong>:</p>
+<ul>
+<li>Giao diện và phản hồi giống như trò chơi</li>
+<li>Đơn vị học tập nhanh 5-10 phút</li>
+<li>Thuật toán lặp lại ngắt quãng hỗ trợ ghi nhớ</li>
+</ul>
+<p><strong>Tránh các chức năng</strong>:</p>
+<ul>
+<li>Chức năng xã hội phức tạp (phân tán sự chú ý học tập)</li>
+<li>Phân tích thống kê quá nhiều (tăng áp lực học tập)</li>
+</ul>
+<h3>Tình huống 3: Trợ lý cuộc sống——Sổ chi tiêu gia đình</h3>
+<h4>Ý tưởng ban đầu</h4>
+<p>"Tôi muốn làm một App ghi chép chi tiêu"</p>
+<h4>Phân tích lại bằng JTBD</h4>
+<p><strong>Người dùng là ai?</strong>
+Vợ chồng trẻ, vừa mua nhà, cần kiểm soát chi tiêu gia đình</p>
+<p><strong>Tình huống là gì?</strong>
+Sau mỗi lần tiêu dùng, hoặc khi xem lại vào cuối tháng</p>
+<p><strong>Cần hoàn thành nhiệm vụ gì?</strong>
+Nắm rõ tình trạng tài chính gia đình, đưa ra quyết định tiêu dùng hợp lý</p>
+<p><strong>Kết quả mong đợi là gì?</strong>
+Tài chính lành mạnh, không bị nợ nần quấy nhiễu</p>
+<p><strong>Phương án thay thế hiện tại?</strong>
+Bảng Excel, máy tính trên điện thoại, sổ ghi chép giấy</p>
+<p><strong>Vấn đề của phương án thay thế?</strong>
+Excel cần dùng máy tính, máy tính chức năng hạn chế, sổ giấy dễ mất</p>
+<h4>Sản phẩm được định nghĩa lại</h4>
+<p>"Khi gia đình mới thành lập tiến hành quản lý tiêu dùng, họ muốn ghi chép và xem tình trạng tài chính một cách đơn giản trực quan, để đưa ra quyết định tiêu dùng sáng suốt."</p>
+<h4>Gợi ý thiết kế</h4>
+<p><strong>Trọng điểm trải nghiệm người dùng</strong>:</p>
+<ul>
+<li>Ghi chép một chạm, tự động nhận diện phân loại</li>
+<li>Biểu đồ trực quan hiển thị xu hướng tiêu dùng</li>
+<li>Chức năng nhắc nhở ngân sách đơn giản</li>
+</ul>
+<p><strong>Chức năng cốt lõi</strong>:</p>
+<ul>
+<li>Ghi chép nhanh (chụp ảnh nhận diện, nhập giọng nói)</li>
+<li>Tự động nhận diện phân loại tiêu dùng</li>
+<li>Báo cáo tiêu dùng tháng/năm</li>
+</ul>
+<h3>Tình huống 4: Hiệu suất công việc——Biên bản cuộc họp</h3>
+<h4>Ý tưởng ban đầu</h4>
+<p>"Tôi muốn làm một công cụ ghi chép cuộc họp"</p>
+<h4>Phân tích lại bằng JTBD</h4>
+<p><strong>Người dùng là ai?</strong>
+Quản lý dự án, mỗi tuần phải tham gia 5-8 cuộc họp</p>
+<p><strong>Tình huống là gì?</strong>
+Trong khi họp, và khi sắp xếp lại sau cuộc họp</p>
+<p><strong>Cần hoàn thành nhiệm vụ gì?</strong>
+Không bỏ sót quyết định quan trọng và các mục hành động (action item), thuận tiện cho cộng tác nhóm</p>
+<p><strong>Kết quả mong đợi là gì?</strong>
+Thành quả cuộc họp được thực hiện hiệu quả, thông tin nhóm đồng bộ</p>
+<p><strong>Phương án thay thế hiện tại?</strong>
+Sổ tay giấy, ghi chú điện thoại, tổng kết qua email</p>
+<p><strong>Vấn đề của phương án thay thế?</strong>
+Tốc độ viết tay chậm, sắp xếp ghi chú phiền phức, hình thức tổng kết email không thống nhất</p>
+<h4>Sản phẩm được định nghĩa lại</h4>
+<p>"Khi người quản lý dự án trong quá trình họp, họ muốn ghi chép hiệu quả các điểm chính và phân công nhiệm vụ, để sau cuộc họp nhanh chóng sắp xếp và cộng tác nhóm."</p>
+<h4>Gợi ý thiết kế</h4>
+<p><strong>Giá trị cốt lõi</strong>:</p>
+<ul>
+<li>Chuyển giọng nói thành văn bản, ghi chép nhanh nội dung cuộc họp</li>
+<li>Nhận diện thông minh điểm quyết định và mục hành động</li>
+<li>Tự động tạo biên bản cuộc họp và danh sách nhiệm vụ</li>
+</ul>
+<p><strong>Chức năng cộng tác</strong>:</p>
+<ul>
+<li>Chia sẻ điểm chính cuộc họp theo thời gian thực</li>
+<li>Phân công và theo dõi nhiệm vụ</li>
+<li>Lưu trữ tài liệu cuộc họp</li>
+</ul>
+<h2>Mô hình học được từ các tình huống</h2>
+<h3>Mô hình 1: Ngữ cảnh là then chốt</h3>
+<p>Mỗi phân tích JTBD thành công đều làm rõ:</p>
+<ul>
+<li><strong>Dùng khi nào</strong>: Thời gian, địa điểm, môi trường</li>
+<li><strong>Dùng trong tình huống nào</strong>: Điều kiện kích hoạt, kịch bản sử dụng</li>
+<li><strong>Dùng như thế nào</strong>: Quá trình sử dụng cụ thể</li>
+</ul>
+<h3>Mô hình 2: Nỗi đau thúc đẩy đổi mới</h3>
+<p>Không phải tạo ra chức năng từ hư không, mà là:</p>
+<ul>
+<li>Phát hiện sự thiếu sót của phương án hiện tại</li>
+<li>Hiểu sự phiền não thực sự của người dùng</li>
+<li>Cung cấp giải pháp tốt hơn</li>
+</ul>
+<h3>Mô hình 3: Đơn giản hóa là trí tuệ</h3>
+<p>Sản phẩm thành công thường:</p>
+<ul>
+<li>Chỉ làm 1-2 việc quan trọng nhất</li>
+<li>Biến việc phức tạp thành đơn giản</li>
+<li>Để người dùng tập trung vào nhiệm vụ cốt lõi</li>
+</ul>
+<h2>Bài tập thực hành</h2>
+<h3>Bài tập 1: Điền mẫu mô tả nhiệm vụ</h3>
+<p>Dùng một dự án bạn đang muốn làm hiện tại, hoàn thành mẫu này:</p>
+<h4>Mẫu</h4>
+<pre><code class="language-markdown">### Ý tưởng ban đầu của tôi
+
+Tôi muốn làm một **********\_\_\_**********
+
+### Mô tả nhiệm vụ JTBD
+
+**Người dùng là ai?**
+[Mô tả người cụ thể, không phải &quot;tất cả mọi người&quot;]
+
+**Tình huống là gì?**
+[Dùng khi nào, trong tình huống nào?]
+
+**Cần hoàn thành nhiệm vụ gì?**
+[Mục tiêu người dùng thực sự muốn đạt được là gì?]
+
+**Kết quả/Cảm nhận mong đợi là gì?**
+[Tầng chức năng + Tầng cảm xúc]
+
+**Phương án thay thế hiện tại?**
+[Người dùng hiện tại giải quyết vấn đề này như thế nào?]
+
+**Nỗi đau của phương án thay thế?**
+[Phương án hiện tại khó dùng ở đâu?]
+
+### Diễn đạt lại
+
+Khi [một loại người dùng nào đó] trong [tình huống nào đó],
+họ muốn [hoàn thành nhiệm vụ nào đó],
+để [có được kết quả/cảm nhận nào đó].
+
+Hiện tại phương án của họ là [cách giải quyết hiện tại],
+nhưng vấn đề của phương án này là [nỗi đau].
+</code></pre>
+<h3>Bài tập 2: Phân tích dự án phổ biến</h3>
+<p>Chọn một loại dự án bạn hứng thú, suy nghĩ lại theo khung JTBD:</p>
+<h4>Các tùy chọn loại dự án</h4>
+<ol>
+<li><strong>Loại quản lý sức khỏe</strong>: App ghi chép vận động, công cụ theo dõi ăn uống</li>
+<li><strong>Loại học tập giáo dục</strong>: Phần mềm ghi chú, công cụ chuẩn bị thi</li>
+<li><strong>Loại dịch vụ đời sống</strong>: Tổ chức hoạt động cộng đồng, trợ lý thuê nhà</li>
+<li><strong>Loại hiệu suất công việc</strong>: Công cụ quản lý dự án, trợ lý email</li>
+</ol>
+<h4>Các bước phân tích</h4>
+<ol>
+<li>Xác định chân dung người dùng cụ thể</li>
+<li>Tìm ra nhiệm vụ và động cơ thực sự</li>
+<li>Nhận diện phương án thay thế hiện tại và nỗi đau</li>
+<li>Định nghĩa lại mục tiêu sản phẩm</li>
+</ol>
+<h3>Bài tập 3: Kỹ thuật đảo ngược (Reverse Engineering)</h3>
+<p>Chọn một App bạn sử dụng hàng ngày, thử suy luận ngược lại JTBD của nó:</p>
+<h4>Phân tích vấn đề</h4>
+<ul>
+<li>App này được "thuê" để hoàn thành nhiệm vụ gì?</li>
+<li>Nó giải quyết nỗi đau nào?</li>
+<li>Nếu không có App này, người dùng sẽ làm thế nào?</li>
+<li>Nó làm tốt ở phương diện nào? Phương diện nào có thể cải thiện?</li>
+</ul>
+<h4>Ví dụ: WeChat</h4>
+<p><strong>Nhiệm vụ</strong>: Giữ liên lạc với bạn bè và gia đình, xử lý giao tiếp hàng ngày
+<strong>Nỗi đau</strong>: Tin nhắn SMS tốn phí, hiệu suất giao tiếp thấp, không thể chia sẻ đa phương tiện
+<strong>Làm tốt</strong>: Nhắn tin tức thời, chia sẻ Bảng tin (Moments), hệ sinh thái Mini Program
+<strong>Có thể cải thiện</strong>: Quá tải thông tin, vấn đề riêng tư, làm phiền quá mức</p>
+<h3>Bài tập 4: Tối ưu hóa ứng dụng AI</h3>
+<p>Nếu bạn đang dùng AI làm dự án nào đó, dùng JTBD tổ chức lại nhu cầu của bạn:</p>
+<h4>Nhu cầu ban đầu (Vấn đề thường gặp)</h4>
+<ul>
+<li>"Giúp tôi làm một App chức năng toàn diện..."</li>
+<li>"Tham khảo sản phẩm XX, nhưng phải tốt hơn..."</li>
+<li>"Tôi cần một công cụ để giải quyết..."</li>
+</ul>
+<h4>Nhu cầu sau khi tối ưu hóa bằng JTBD</h4>
+<pre><code>Khi [người dùng cụ thể] ở trong [tình huống cụ thể],
+họ muốn [nhiệm vụ cụ thể cần hoàn thành],
+bởi vì phương án hiện tại [nỗi đau cụ thể].
+
+Xin hãy giúp tôi thiết kế một giải pháp, trọng điểm cân nhắc:
+- Chức năng cốt lõi: [Chức năng giải quyết vấn đề then chốt nhất]
+- Trải nghiệm người dùng: [Làm thế nào để người dùng hoàn thành nhiệm vụ nhẹ nhàng]
+- Phương án kỹ thuật: [Lựa chọn kỹ thuật phù hợp nhất]
+</code></pre>
+<h2>Bẫy thường gặp và phương pháp tránh</h2>
+<h3>Bẫy 1: Coi JTBD là mẫu điền sẵn</h3>
+<p><strong>Vấn đề</strong>: Điền mẫu một cách máy móc, không thực sự hiểu người dùng</p>
+<p><strong>Cách giải quyết</strong>:</p>
+<ul>
+<li>Mẫu là công cụ tư duy, không phải đáp án</li>
+<li>Mỗi trường thông tin đều phải hỏi "tại sao"</li>
+<li>Xác nhận giả thuyết thông qua kiểm chứng</li>
+</ul>
+<h3>Bẫy 2: Phớt lờ nhiệm vụ cảm xúc và xã hội</h3>
+<p><strong>Vấn đề</strong>: Chỉ quan tâm nhiệm vụ chức năng, bỏ qua cảm nhận người dùng</p>
+<p><strong>Cách giải quyết</strong>:</p>
+<ul>
+<li>Chủ động hỏi nhu cầu cảm xúc của người dùng</li>
+<li>Suy nghĩ về hình ảnh xã hội khi sử dụng sản phẩm</li>
+<li>Thiết kế chức năng có thể mang lại trải nghiệm cảm xúc tích cực</li>
+</ul>
+<h3>Bẫy 3: Dừng lại ở phân tích lý thuyết</h3>
+<p><strong>Vấn đề</strong>: Làm phân tích JTBD nhưng không có hành động thực tế</p>
+<p><strong>Cách giải quyết</strong>:</p>
+<ul>
+<li>Chuyển hóa kết quả phân tích thành nhu cầu sản phẩm cụ thể</li>
+<li>Làm nguyên mẫu kiểm chứng giả thuyết</li>
+<li>Lặp lại nhanh chóng, điều chỉnh dựa trên phản hồi người dùng</li>
+</ul>
+<h3>Bẫy 4: Quên kiểm chứng</h3>
+<p><strong>Vấn đề</strong>: Làm phân tích JTBD dựa trên tưởng tượng của bản thân</p>
+<p><strong>Cách giải quyết</strong>:</p>
+<ul>
+<li>Trò chuyện với người dùng thật</li>
+<li>Quan sát hành vi người dùng</li>
+<li>Thử nghiệm sản phẩm khả dụng tối thiểu (MVP)</li>
+</ul>
+<h2>Kỹ năng nâng cao chất lượng phân tích JTBD</h2>
+<h3>1. Kỹ năng phỏng vấn người dùng</h3>
+<p><strong>Câu hỏi mở</strong>:</p>
+<ul>
+<li>"Lần gần nhất bạn [hoạt động liên quan] là khi nào?"</li>
+<li>"Lúc đó bạn xử lý như thế nào?"</li>
+<li>"Trong quá trình đó đã gặp khó khăn gì?"</li>
+<li>"Nếu có thứ gì có thể giúp bạn nhẹ nhàng hơn, bạn hy vọng đó là gì?"</li>
+</ul>
+<p><strong>Câu hỏi nên tránh</strong>:</p>
+<ul>
+<li>"Bạn muốn chức năng gì?" (Quá trừu tượng)</li>
+<li>"Bạn thấy ý tưởng này thế nào?" (Tìm kiếm sự tán đồng)</li>
+</ul>
+<h3>2. Trọng điểm quan sát hành vi</h3>
+<p><strong>Quan sát cái gì</strong>:</p>
+<ul>
+<li>Hành vi thực tế của người dùng (không phải lời họ nói)</li>
+<li>Công cụ và phương pháp sử dụng</li>
+<li>Khó khăn gặp phải và phương pháp lách luật</li>
+<li>Phản ứng cảm xúc và ngôn ngữ cơ thể</li>
+</ul>
+<p><strong>Cách ghi chép</strong>:</p>
+<ul>
+<li>Chụp ảnh hoặc quay video (được sự đồng ý)</li>
+<li>Ghi chép chi tiết quá trình sử dụng</li>
+<li>Ghi lại những phát hiện bất ngờ</li>
+</ul>
+<h3>3. Khung phân tích sản phẩm cạnh tranh</h3>
+<p><strong>Chiều phân tích</strong>:</p>
+<ul>
+<li>Nhóm người dùng cốt lõi</li>
+<li>Tình huống sử dụng chính</li>
+<li>Nhiệm vụ cốt lõi giải quyết</li>
+<li>Điểm làm tốt</li>
+<li>Vấn đề tồn tại</li>
+<li>Chiến lược định giá</li>
+</ul>
+<h3>4. Phương pháp kiểm chứng giả thuyết</h3>
+<p><strong>Công cụ kiểm chứng</strong>:</p>
+<ul>
+<li>Nguyên mẫu giấy</li>
+<li>Nguyên mẫu kỹ thuật số</li>
+<li>Sản phẩm khả dụng tối thiểu (MVP)</li>
+<li>Thử nghiệm A/B</li>
+</ul>
+<p><strong>Chỉ số kiểm chứng</strong>:</p>
+<ul>
+<li>Tỷ lệ chấp nhận của người dùng</li>
+<li>Tần suất sử dụng</li>
+<li>Tỷ lệ hoàn thành nhiệm vụ</li>
+<li>Mức độ hài lòng của người dùng</li>
+</ul>
+<h2>Ứng dụng JTBD trong Vibe Coding</h2>
+<h3>Cách đúng để đưa ra nhu cầu cho AI</h3>
+<h4>Ví dụ sai</h4>
+<pre><code>Giúp tôi làm một App quản lý dự án, phải có biểu đồ Gantt, bảng Kanban, cộng tác nhóm, chia sẻ tập tin, theo dõi tiến độ...
+</code></pre>
+<h4>Ví dụ đúng</h4>
+<pre><code>Khi nhà khởi nghiệp của nhóm nhỏ trong quá trình thúc đẩy dự án, họ muốn nhìn thấy rõ ràng tiến độ dự án và phân công nhóm, bởi vì hiện tại dùng nhóm WeChat giao tiếp dễ bỏ sót thông tin quan trọng.
+
+Xin giúp tôi thiết kế một giải pháp, trọng điểm cân nhắc:
+1. Làm thế nào để thành viên nhóm nhanh chóng hiểu nhiệm vụ của mình?
+2. Làm thế nào để người sáng lập nhìn một cái là thấy tiến độ tổng thể dự án?
+3. Làm thế nào để tránh thông tin quan trọng bị trôi?
+
+Yêu cầu kỹ thuật: Đơn giản dễ dùng, chi phí học tập thấp.
+</code></pre>
+<h3>Nhận kết quả tốt hơn từ AI</h3>
+<p><strong>Kỹ năng đặt câu hỏi</strong>:</p>
+<ol>
+<li>Xác định rõ người dùng và tình huống</li>
+<li>Nói rõ nhiệm vụ cốt lõi</li>
+<li>Nhấn mạnh nỗi đau của phương án hiện tại</li>
+<li>Đưa ra điều kiện ràng buộc then chốt</li>
+</ol>
+<p><strong>Cấu trúc ví dụ</strong>:</p>
+<pre><code>Tôi muốn [làm gì], phục vụ người dùng [là ai].
+
+Người dùng sẽ sử dụng trong [tình huống nào],
+chủ yếu giải quyết [vấn đề gì].
+Hiện tại [phương án thay thế] tồn tại [nỗi đau gì].
+
+Xin giúp tôi thực hiện, trọng điểm cân nhắc [yêu cầu then chốt].
+</code></pre>
+<h2>Bài tập nâng cao</h2>
+<h3>Phân tích dự án tổng hợp</h3>
+<p>Chọn một dự án bạn quen thuộc (có thể là thành công hoặc thất bại), tiến hành phân tích JTBD hoàn chỉnh:</p>
+<ol>
+<li><strong>Bối cảnh dự án</strong>: Đây là dự án gì?</li>
+<li><strong>Phân tích người dùng</strong>: Người dùng là ai? Có đặc điểm gì?</li>
+<li><strong>Phân tích nhiệm vụ</strong>: Người dùng muốn hoàn thành nhiệm vụ gì?</li>
+<li><strong>Phương án thay thế</strong>: Trước đây người dùng giải quyết thế nào?</li>
+<li><strong>Yếu tố thành công</strong>: Tại sao thành công (nếu đã thành công)?</li>
+<li><strong>Nguyên nhân thất bại</strong>: Tại sao thất bại (nếu đã thất bại)?</li>
+</ol>
+<h3>Rèn luyện tư duy đổi mới</h3>
+<p>Chọn một vấn đề trong cuộc sống hàng ngày, thử dùng khung JTBD thiết kế giải pháp:</p>
+<p><strong>Lĩnh vực vấn đề</strong>:</p>
+<ul>
+<li>Hiệu suất học tập</li>
+<li>Quản lý sức khỏe</li>
+<li>Quy hoạch thời gian</li>
+<li>Tương tác xã hội</li>
+<li>Cuộc sống gia đình</li>
+</ul>
+<p><strong>Khung phân tích</strong>:</p>
+<ol>
+<li>Quan sát những điểm bất tiện trong cuộc sống</li>
+<li>Tìm hiểu nhóm người dùng liên quan</li>
+<li>Phân tích các giải pháp hiện có</li>
+<li>Đưa ra ý tưởng giải quyết đổi mới</li>
+</ol>
+<h2>Bước tiếp theo</h2>
+<p>Sau khi hoàn thành bài tập thực hành, bạn sẽ nắm vững:</p>
+<ul>
+<li>Phân tích nhu cầu người dùng từ các góc độ khác nhau</li>
+<li>Chuyển hóa ý tưởng trừu tượng thành nhu cầu sản phẩm cụ thể</li>
+<li>Nhận diện nỗi đau thực sự, tránh giải quyết vấn đề không tồn tại</li>
+<li>Đưa ra nhu cầu chính xác hơn cho AI</li>
+</ul>
+<p>Tiếp tục học <a href="./2.1.1-jtbd-intro-advanced_vi.html">2.1.1 Kỹ thuật JTBD nâng cao</a>, làm sâu sắc thêm sự hiểu biết và ứng dụng.</p>
+</body>
+</html>

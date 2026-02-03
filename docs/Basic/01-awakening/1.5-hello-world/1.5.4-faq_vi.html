@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.5.4 Faq</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "1.5.4 Câu hỏi thường gặp FAQ"</h2>
+<p><img alt="01-awakening_1.5-hello-world_1.5.4-faq.png" src="../../../public/images/Basic/01-awakening_1.5-hello-world_1.5.4-faq.png" /></p>
+<h1>1.5.4 Câu hỏi thường gặp FAQ</h1>
+<p>Khi làm dự án đầu tiên, bạn có thể sẽ gặp một số bối rối.</p>
+<p>Đừng lo, những vấn đề này ai cũng gặp phải cả.</p>
+<h2>Q1: "Kết quả của tôi khác với hướng dẫn thì làm sao?"</h2>
+<p><strong>Chuyện này quá bình thường.</strong></p>
+<p>Mỗi lần AI tạo nội dung đều sẽ có chút khác biệt. Giống như bạn bảo hai nhà thiết kế "làm một trang web đẹp", phương án họ đưa cho bạn chắc chắn cũng không giống nhau.</p>
+<p>::: tip Mấu chốt là
+Chỉ cần trang web của bạn:</p>
+<ul>
+<li>Có thể hiển thị bình thường</li>
+<li>Có danh ngôn và tác giả</li>
+<li>Nhìn cũng tạm được</li>
+</ul>
+<p>Thì coi như thành công rồi!
+:::</p>
+<p>Nếu bạn muốn hiệu quả giống hệt hướng dẫn, có thể mô tả cụ thể hơn trong Prompt, ví dụ:</p>
+<ul>
+<li>Chỉ định màu sắc cụ thể ("Nền dùng màu #f0f4f8")</li>
+<li>Chỉ định cỡ chữ cụ thể ("Danh ngôn dùng font 32px")</li>
+<li>Chỉ định bố cục cụ thể ("Danh ngôn căn giữa theo chiều dọc trang")</li>
+</ul>
+<h2>Q2: "Code xem không hiểu có bình thường không?"</h2>
+<p><strong>Hoàn toàn bình thường.</strong></p>
+<p>Giai đoạn bắt đầu, bạn không cần xem hiểu từng dòng code.</p>
+<p>Giống như bạn dùng WeChat gửi tin nhắn, không cần hiểu WeChat được viết ra như thế nào.</p>
+<p>Triết lý cốt lõi của Vibe Coding là: <strong>Để AI xử lý cú pháp code, bạn tập trung vào nhu cầu và kết quả</strong>.</p>
+<p>::: info Tin tốt
+Cùng với số lần sử dụng tăng lên, bạn sẽ tự nhiên bắt đầu nhận biết một số cấu trúc code thường gặp.</p>
+<p>Nếu bạn tò mò đoạn code nào đó có ý nghĩa gì, có thể hỏi AI:</p>
+<pre><code>Xin hãy giải thích đoạn code này dùng để làm gì, dùng lời lẽ đơn giản nhất
+</code></pre>
+<p>AI sẽ dùng ngôn ngữ bạn có thể hiểu để giải thích cho bạn. Điều này không bắt buộc, nhưng sẽ giúp bạn và AI hợp tác trôi chảy hơn.
+:::</p>
+<h2>Q3: "Dùng tiếng Việt (hoặc Trung/Anh) được không?"</h2>
+<p><strong>Đương nhiên là được.</strong></p>
+<p>AI hiện nay hiểu tiếng Việt (và các ngôn ngữ khác) rất tốt.</p>
+<p>Dùng tiếng Việt viết Prompt, AI hoàn toàn có thể hiểu.</p>
+<p>::: tip Khi nào dùng tiếng Anh?
+Một số thuật ngữ kỹ thuật dùng tiếng Anh sẽ chính xác hơn, ví dụ:</p>
+<ul>
+<li>"Nút bấm" vs "button"</li>
+<li>"Hiệu ứng khi di chuột" vs "hover effect"</li>
+</ul>
+<p>Nhưng phần lớn trường hợp, dùng tiếng Việt hoàn toàn không vấn đề gì.</p>
+<p>Nếu tiếng Anh bạn tốt, dùng tiếng Anh cũng được——hiệu quả tương đương.
+:::</p>
+<h2>Q4: "Đồ AI làm ra báo lỗi thì làm sao?"</h2>
+<p><strong>Sao chép thông tin lỗi cho AI.</strong></p>
+<p>Đây là phương pháp đơn giản hiệu quả nhất:</p>
+<pre><code>Trang web báo lỗi rồi, thông tin lỗi là:
+[Dán thông tin lỗi vào đây]
+
+Xin hãy giúp tôi sửa chữa
+</code></pre>
+<p>AI sẽ phân tích nguyên nhân lỗi, sau đó đưa cho bạn code đã sửa.</p>
+<p>::: warning Nếu sửa đi sửa lại không được</p>
+<ol>
+<li><strong>Đơn giản hóa nhu cầu của bạn</strong>: Tách chức năng phức tạp thành các bước nhỏ hơn, mỗi lần chỉ làm một việc</li>
+<li><strong>Đổi cách mô tả khác</strong>: Cùng một nhu cầu, dùng lời lẽ khác để nói, AI có thể sẽ dễ hiểu hơn</li>
+<li><strong>Bắt đầu lại từ phiên bản đơn giản nhất</strong>: Xóa bỏ chức năng phức tạp, để phiên bản cơ bản chạy được trước, rồi từ từ thêm chức năng</li>
+<li><strong>Vấn đề thường nằm ở "mô tả chưa đủ rõ ràng", chứ không phải công cụ không tốt</strong>.
+   :::</li>
+</ol>
+<h2>Q5: "Trang web này gửi cho người khác xem kiểu gì?"</h2>
+<p>Hiện tại trang web bạn làm chỉ nằm trong cửa sổ xem trước của công cụ. Muốn để người khác truy cập, cần phải "triển khai" (Deploy)——Cái này chúng ta sẽ nói kỹ ở các chương sau.</p>
+<p><strong>Bây giờ không cần vội, cứ làm ra sản phẩm trước đã.</strong></p>
+<h2>Q6: "Tôi muốn lưu dự án này thì làm thế nào?"</h2>
+<p>Các loại công cụ khác nhau có cách lưu khác nhau:</p>
+<table>
+<thead>
+<tr>
+<th>Loại công cụ</th>
+<th>Cách lưu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Công cụ nền tảng web (như Bolt.new, Doubao)</td>
+<td>Tự động lưu sau khi đăng ký tài khoản, cũng có thể xuất code</td>
+</tr>
+<tr>
+<td>Trình soạn thảo mã AI (như Cursor, Trae)</td>
+<td>Tệp tin cục bộ, lưu bất cứ lúc nào</td>
+</tr>
+</tbody>
+</table>
+<p>Nếu bạn chỉ muốn giữ lại code, phương pháp đơn giản nhất là:</p>
+<ol>
+<li>Sao chép tất cả code AI tạo ra</li>
+<li>Dán vào một tệp văn bản</li>
+<li>Lưu vào máy tính</li>
+</ol>
+<h2>Q7: "Tôi có thể dùng cái này làm dự án thương mại không?"</h2>
+<p>Được, nhưng khuyên bạn nên chia giai đoạn:</p>
+<ol>
+<li><strong>Dùng Vibe Coding kiểm chứng ý tưởng trước</strong>——Nhanh chóng làm ra nguyên mẫu, xem xem có khả thi không</li>
+<li><strong>Nếu muốn chính thức ra mắt</strong>——Liên quan đến dữ liệu người dùng, thanh toán và các chức năng nhạy cảm khác, cần học nội dung An toàn (Chương 6) và Kiểm thử (Chương 9) trong phần nâng cao</li>
+</ol>
+<p>Rất nhiều sản phẩm thành công, đều bắt đầu từ một nguyên mẫu thô sơ. Phần nâng cao của hướng dẫn này sẽ dạy bạn làm sao để biến nguyên mẫu thành sản phẩm chính thức.</p>
+<h2>Q8: "Giao diện công cụ khác nhau thì làm sao?"</h2>
+<p><strong>Không cần lo lắng, thao tác cốt lõi đều giống nhau.</strong></p>
+<p>Bất kể bạn dùng Bolt.new, Doubao, Cursor hay công cụ khác, quy trình cơ bản đều là:</p>
+<ol>
+<li>Tìm khung nhập liệu</li>
+<li>Dùng ngôn ngữ tự nhiên mô tả bạn muốn gì</li>
+<li>Đợi AI tạo ra</li>
+<li>Xem hiệu quả xem trước</li>
+<li>Không hài lòng thì nói tiếp</li>
+</ol>
+<p>Vị trí nút bấm trên giao diện có thể khác nhau, nhưng cốt lõi "dùng ngôn ngữ tự nhiên mô tả nhu cầu" sẽ không đổi.</p>
+<p>Nếu không tìm thấy chức năng nào đó, hỏi thẳng AI: "Làm sao để lưu dự án trong [Tên công cụ]?"</p>
+<h2>Còn câu hỏi khác?</h2>
+<p>Nếu bạn gặp vấn đề không được nhắc đến ở trên, thử cách này xem:</p>
+<p><strong>Hỏi trực tiếp AI.</strong></p>
+<pre><code>Tôi đang dùng [Tên công cụ] làm một trang web, gặp phải vấn đề này:
+[Mô tả vấn đề của bạn]
+
+Xin hỏi giải quyết thế nào?
+</code></pre>
+<p>AI có thể giúp bạn suy nghĩ phần lớn vấn đề——nhưng nhớ kiểm chứng câu trả lời nó đưa ra có đáng tin cậy không nhé.</p>
+<p>Đây cũng là tinh túy của Vibe Coding: <strong>Gặp vấn đề, hỏi AI trước, rồi tự mình kiểm chứng</strong>.</p>
+<p>Sẵn sàng học tiếp chưa?</p>
+<p>Chương tiếp theo, chúng ta sẽ nói về "Tâm pháp"——Làm sao để tư duy như một giám đốc sản phẩm (Product Manager), để đầu ra của AI đáng tin cậy hơn.</p>
+</body>
+</html>

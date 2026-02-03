@@ -1,0 +1,356 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.2 Code Modification</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "A.2 Mẫu sửa đổi code"</h2>
+<p><img alt="03-technique_appendix_A.2-code-modification.png" src="../../../public/images/Basic/03-technique_appendix_A.2-code-modification.png" /></p>
+<h1>A.2 Mẫu sửa đổi code</h1>
+<p>Phần này cung cấp các mẫu Prompt để sửa đổi code hiện có, bao gồm mở rộng chức năng, tái cấu trúc code, tối ưu hóa hiệu năng và điều chỉnh style.</p>
+<h2>Mẫu 1: Mở rộng chức năng</h2>
+<p>Thích hợp cho: Thêm chức năng mới trên nền tảng code hiện có</p>
+<pre><code class="language-markdown">## Trạng thái hiện tại
+
+**Bối cảnh dự án**: [Tóm tắt dự án làm gì]
+**Stack kỹ thuật**: [Công nghệ sử dụng]
+**Module cần mở rộng**: [File/Component nào]
+
+## Code hiện tại
+
+```[Ngôn ngữ]
+[Dán code hiện tại]
+</code></pre>
+<h2>Nhu cầu mở rộng</h2>
+<p><strong>Chức năng mới</strong>: [Mô tả cần thêm chức năng gì]</p>
+<p><strong>Chi tiết chức năng</strong>:
+- [Chi tiết 1]
+- [Chi tiết 2]
+- [Chi tiết 3]</p>
+<p><strong>Cách kích hoạt</strong>: [Người dùng kích hoạt chức năng này như thế nào]
+<strong>Kết quả kỳ vọng</strong>: [Sau khi chức năng thực thi thì chuyện gì xảy ra]</p>
+<h2>Điều kiện ràng buộc</h2>
+<p><strong>Phải giữ nguyên</strong>:
+- [Chức năng A hiện có không được bị ảnh hưởng]
+- [Chức năng B hiện có phải tiếp tục hoạt động bình thường]</p>
+<p><strong>Không được sửa</strong>:
+- [Phần 1 không được sửa]
+- [Phần 2 không được sửa]</p>
+<h2>Yêu cầu đầu ra</h2>
+<ul>
+<li>[ ] Chỉ xuất code sau khi sửa, không cần lặp lại phần không sửa</li>
+<li>[ ] Dùng chú thích đánh dấu code mới thêm</li>
+<li>[ ] Giải thích các thư viện phụ thuộc cần cài thêm (nếu có)</li>
+</ul>
+<pre><code>
+### Ví dụ điền mẫu: Thêm chức năng &quot;Hoàn tác xóa&quot; cho danh sách việc cần làm
+
+```markdown
+## Trạng thái hiện tại
+
+**Bối cảnh dự án**: Ứng dụng web danh sách việc cần làm cá nhân
+**Stack kỹ thuật**: React + TypeScript + Tailwind CSS
+**Module cần mở rộng**: Component TaskList.tsx
+
+## Code hiện tại
+
+```tsx
+function TaskList({ tasks, onDelete }) {
+  return (
+    &lt;ul&gt;
+      {tasks.map(task =&gt; (
+        &lt;li key={task.id}&gt;
+          {task.content}
+          &lt;button onClick={() =&gt; onDelete(task.id)}&gt;Xóa&lt;/button&gt;
+        &lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+</code></pre>
+<h2>Nhu cầu mở rộng</h2>
+<p><strong>Chức năng mới</strong>: Sau khi xóa nhiệm vụ hiển thị nhắc nhở "Hoàn tác", có thể khôi phục trong vòng 3 giây</p>
+<p><strong>Chi tiết chức năng</strong>:
+- Sau khi xóa nhiệm vụ, dưới đáy hiển thị nhắc nhở "Đã xóa, nhấn để hoàn tác"
+- Nhắc nhở hiển thị 3 giây rồi tự biến mất
+- Nhấn nút "Hoàn tác", nhiệm vụ khôi phục về vị trí cũ
+- Cùng lúc chỉ có một nhắc nhở hoàn tác</p>
+<p><strong>Cách kích hoạt</strong>: Người dùng nhấn nút xóa
+<strong>Kết quả kỳ vọng</strong>: Nhiệm vụ biến mất khỏi danh sách, dưới đáy xuất hiện nhắc nhở hoàn tác</p>
+<h2>Điều kiện ràng buộc</h2>
+<p><strong>Phải giữ nguyên</strong>:
+- Logic hiển thị nhiệm vụ hiện tại không đổi
+- Vị trí và style của nút xóa không đổi</p>
+<p><strong>Không được sửa</strong>:
+- Không thay đổi định nghĩa kiểu props
+- Không giới thiệu thư viện quản lý trạng thái mới</p>
+<h2>Yêu cầu đầu ra</h2>
+<ul>
+<li>[x] Chỉ xuất code sau khi sửa</li>
+<li>[x] Dùng chú thích đánh dấu code mới thêm</li>
+<li>[ ] Giải thích các thư viện phụ thuộc cần cài thêm</li>
+</ul>
+<pre><code>
+## Mẫu 2: Tái cấu trúc code
+
+Thích hợp cho: Cải thiện chất lượng code, nâng cao khả năng đọc, thống nhất phong cách code
+
+```markdown
+## Mục tiêu tái cấu trúc
+
+**Vấn đề hiện tại**: [Code hiện tại có vấn đề gì]
+**Cải tiến kỳ vọng**: [Sau khi tái cấu trúc hy vọng đạt hiệu quả gì]
+
+## Code chờ tái cấu trúc
+
+```[Ngôn ngữ]
+[Dán code cần tái cấu trúc]
+</code></pre>
+<h2>Yêu cầu tái cấu trúc</h2>
+<p><strong>Hướng đi</strong>: [Có thể chọn nhiều]
+- [ ] Nâng cao khả năng đọc (đặt tên biến, tách hàm)
+- [ ] Giảm code lặp (tách hàm chung)
+- [ ] Thống nhất phong cách code
+- [ ] Thêm định nghĩa kiểu (TypeScript)
+- [ ] Cải thiện xử lý lỗi
+- [ ] Khác: [Giải thích cụ thể]</p>
+<p><strong>Phải giữ nguyên</strong>:
+- Hành vi chức năng hoàn toàn không đổi
+- [Ràng buộc khác]</p>
+<p><strong>Quy chuẩn tham khảo</strong> (Tùy chọn):
+[Nếu có quy chuẩn code cụ thể, có thể dán vào đây]</p>
+<h2>Yêu cầu đầu ra</h2>
+<p>Vui lòng cung cấp:
+1. Code hoàn chỉnh sau khi tái cấu trúc
+2. Giải thích tóm tắt đã sửa những gì
+3. Lý do sửa đổi</p>
+<pre><code>
+### Ví dụ điền mẫu: Tái cấu trúc code xác thực form bị lặp
+
+```markdown
+## Mục tiêu tái cấu trúc
+
+**Vấn đề hiện tại**: Ba form đăng ký, đăng nhập, đổi mật khẩu đều có code xác thực tương tự nhau, copy paste 3 lần
+**Cải tiến kỳ vọng**: Tách hàm xác thực chung, giảm lặp lại
+
+## Code chờ tái cấu trúc
+
+```typescript
+// Form đăng ký
+function validateRegister(data) {
+  if (!data.email || !data.email.includes('@')) {
+    return 'Định dạng email không đúng';
+  }
+  if (!data.password || data.password.length &lt; 8) {
+    return 'Mật khẩu ít nhất 8 ký tự';
+  }
+  if (data.password !== data.confirmPassword) {
+    return 'Mật khẩu hai lần nhập không khớp';
+  }
+  return null;
+}
+
+// Form đăng nhập
+function validateLogin(data) {
+  if (!data.email || !data.email.includes('@')) {
+    return 'Định dạng email không đúng';
+  }
+  if (!data.password || data.password.length &lt; 8) {
+    return 'Mật khẩu ít nhất 8 ký tự';
+  }
+  return null;
+}
+
+// Form đổi mật khẩu
+function validateChangePassword(data) {
+  if (!data.oldPassword || data.oldPassword.length &lt; 8) {
+    return 'Mật khẩu cũ ít nhất 8 ký tự';
+  }
+  if (!data.newPassword || data.newPassword.length &lt; 8) {
+    return 'Mật khẩu mới ít nhất 8 ký tự';
+  }
+  if (data.newPassword !== data.confirmPassword) {
+    return 'Mật khẩu hai lần nhập không khớp';
+  }
+  return null;
+}
+</code></pre>
+<h2>Yêu cầu tái cấu trúc</h2>
+<p><strong>Hướng đi</strong>:
+- [x] Giảm code lặp (tách hàm chung)
+- [x] Thêm định nghĩa kiểu (TypeScript)
+- [x] Cải thiện xử lý lỗi (hỗ trợ trả về nhiều lỗi)</p>
+<p><strong>Phải giữ nguyên</strong>:
+- Hành vi chức năng hoàn toàn không đổi
+- Văn bản thông báo lỗi giữ nguyên</p>
+<h2>Yêu cầu đầu ra</h2>
+<p>Vui lòng cung cấp:
+1. Code hoàn chỉnh sau khi tái cấu trúc
+2. Giải thích tóm tắt đã sửa những gì
+3. Cách sử dụng hàm xác thực mới trong các form cũ</p>
+<pre><code>
+## Mẫu 3: Tối ưu hóa hiệu năng
+
+Thích hợp cho: Trang tải chậm, thao tác giật lag, chiếm dụng bộ nhớ cao
+
+```markdown
+## Mô tả vấn đề hiệu năng
+
+**Hiện tượng vấn đề**: [Mô tả cụ thể chậm ở đâu, lag ở đâu]
+**Điều kiện kích hoạt**: [Tình huống nào thì xuất hiện vấn đề này]
+**Mức độ ảnh hưởng**: [Trễ khoảng bao lâu, lag bao lâu]
+
+## Code liên quan
+
+```[Ngôn ngữ]
+[Dán code có thể gây ra vấn đề hiệu năng]
+</code></pre>
+<h2>Mục tiêu tối ưu</h2>
+<p><strong>Hiệu quả kỳ vọng</strong>: [Sau tối ưu nên đạt mức độ nào]
+<strong>Tiêu chuẩn đo lường</strong>: [Làm sao phán đoán tối ưu thành công]</p>
+<h2>Thông tin đã biết</h2>
+<p><strong>Quy mô dữ liệu</strong>: [Lượng dữ liệu xử lý khoảng bao nhiêu]
+<strong>Môi trường chạy</strong>: [Trình duyệt/Node.js/Mobile]
+<strong>Đã thử tối ưu</strong>: [Nếu có]</p>
+<h2>Điều kiện ràng buộc</h2>
+<ul>
+<li>Logic chức năng không được thay đổi</li>
+<li>[Ràng buộc khác]</li>
+</ul>
+<h2>Yêu cầu đầu ra</h2>
+<p>Vui lòng cung cấp:
+1. Code sau khi tối ưu
+2. Giải thích nguyên nhân vấn đề hiệu năng
+3. Nguyên lý tối ưu và dự đoán hiệu quả</p>
+<pre><code>
+## Mẫu 4: Điều chỉnh Style
+
+Thích hợp cho: Làm đẹp UI, sửa bố cục, thích ứng Responsive
+
+```markdown
+## Style hiện tại
+
+**Mô tả vấn đề**: [Giao diện hiện tại chỗ nào chưa ưng ý]
+
+**Code hiện tại**:
+```[css/html]
+[Dán code style liên quan hiện tại]
+</code></pre>
+<h2>Hiệu quả kỳ vọng</h2>
+<p><strong>Mô tả</strong>: [Dùng lời văn mô tả hiệu quả mong muốn]</p>
+<p><strong>Tham khảo</strong> (Tùy chọn):
+- Website tham khảo: [URL]
+- Ảnh tham khảo: [Mô tả hoặc link]
+- Từ khóa: [Tối giản/Hiện đại/Bo tròn/Đổ bóng/Gradient/...]</p>
+<h2>Yêu cầu cụ thể</h2>
+<p><strong>Điều chỉnh bố cục</strong>:
+- [Điều chỉnh 1]
+- [Điều chỉnh 2]</p>
+<p><strong>Hiệu quả thị giác</strong>:
+- [Hiệu quả 1]
+- [Hiệu quả 2]</p>
+<p><strong>Responsive</strong>:
+- Desktop (&gt;1024px): [Yêu cầu]
+- Tablet (768-1024px): [Yêu cầu]
+- Mobile (&lt;768px): [Yêu cầu]</p>
+<h2>Ràng buộc kỹ thuật</h2>
+<p><strong>Công nghệ sử dụng</strong>: [Tailwind CSS/CSS thuần/Khác]
+<strong>Phải tương thích</strong>: [Yêu cầu phiên bản trình duyệt]</p>
+<h2>Yêu cầu đầu ra</h2>
+<p>Vui lòng cung cấp code style sau khi sửa, và đánh dấu phần sửa đổi.</p>
+<pre><code>
+## Mẫu 5: Di trú code (Bản rút gọn)
+
+Thích hợp cho: Nâng cấp phiên bản framework, thay đổi stack kỹ thuật
+
+```markdown
+## Nhu cầu di trú
+
+**Công nghệ cũ**: [Ví dụ React Class Component]
+**Công nghệ mục tiêu**: [Ví dụ React Hooks Function Component]
+
+## Code cũ
+
+```[Ngôn ngữ]
+[Dán code cần di trú]
+</code></pre>
+<h2>Yêu cầu di trú</h2>
+<ul>
+<li>Giữ nguyên chức năng hoàn toàn nhất quán</li>
+<li>Tuân thủ best practice của công nghệ mục tiêu</li>
+<li>[Yêu cầu khác]</li>
+</ul>
+<h2>Yêu cầu đầu ra</h2>
+<p>Vui lòng cung cấp code sau khi di trú, và giải thích các điểm thay đổi chính.</p>
+<pre><code>
+## Bản rút gọn: Mẫu sửa nhanh
+
+Khi bạn chỉ cần sửa nhỏ, có thể dùng bản rút gọn này:
+
+```markdown
+Hãy sửa đoạn code sau:
+
+```[Ngôn ngữ]
+[Code]
+</code></pre>
+<p><strong>Nội dung sửa</strong>: [Tóm tắt sửa cái gì]</p>
+<p><strong>Ràng buộc</strong>:
+- Giữ nguyên các phần khác
+- [Ràng buộc khác]
+```</p>
+<h2>Sai lầm thường gặp khi điền</h2>
+<table>
+<thead>
+<tr>
+<th>Sai lầm</th>
+<th>Vấn đề</th>
+<th>Cách làm đúng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Không dán code hiện tại</td>
+<td>AI không hiểu ngữ cảnh</td>
+<td>Dán đoạn code liên quan</td>
+</tr>
+<tr>
+<td>Chỉ nói "tối ưu một chút"</td>
+<td>Không biết tối ưu hướng nào</td>
+<td>Nói rõ là tính dễ đọc/hiệu năng/cấu trúc</td>
+</tr>
+<tr>
+<td>Quên nói "không được sửa"</td>
+<td>AI có thể tái cấu trúc cả file</td>
+<td>Xác định ranh giới, cái nào không động vào</td>
+</tr>
+<tr>
+<td>Mô tả tham khảo quá trừu tượng</td>
+<td>"Đẹp hơn chút" quá mơ hồ</td>
+<td>Cho website tham khảo hoặc mô tả cụ thể</td>
+</tr>
+</tbody>
+</table>
+<h2>Điểm cốt yếu phần này</h2>
+<ul>
+<li>✅ <strong>Mở rộng chức năng</strong>: Dán code hiện tại + Mô tả chức năng mới + Xác định phần không được động vào</li>
+<li>✅ <strong>Tái cấu trúc code</strong>: Xác định hướng tái cấu trúc + Đảm bảo chức năng không đổi</li>
+<li>✅ <strong>Tối ưu hóa hiệu năng</strong>: Mô tả hiện tượng vấn đề + Đưa ra quy mô dữ liệu + Thiết lập tiêu chuẩn đo lường</li>
+<li>✅ <strong>Điều chỉnh Style</strong>: Cung cấp tham khảo + Mô tả cụ thể hiệu quả mong muốn</li>
+</ul>
+</body>
+</html>

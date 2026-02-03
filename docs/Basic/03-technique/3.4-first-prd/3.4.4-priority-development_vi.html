@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.4.4 Priority Development</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.4.4 Dùng độ ưu tiên dẫn dắt AI phát triển phân giai đoạn"</h2>
+<p><img alt="03-technique_3.4-first-prd_3.4.4-priority-development.png" src="../../../public/images/Basic/03-technique_3.4-first-prd_3.4.4-priority-development.png" /></p>
+<h1>3.4.4 Dùng độ ưu tiên dẫn dắt AI phát triển phân giai đoạn</h1>
+<p>Ở Chương 2, bạn đã dùng tư duy phép trừ để phân chia độ ưu tiên chức năng P0/P1/P2. Vấn đề bây giờ là: <strong>Làm sao để AI làm việc phân giai đoạn theo thứ tự này?</strong></p>
+<h2>Tại sao cần phát triển phân giai đoạn</h2>
+<h3>Bối cảnh vấn đề</h3>
+<p>Tiểu Lý gửi toàn bộ PRD cho AI cùng một lúc:</p>
+<pre><code>Vui lòng giúp tôi thực hiện các chức năng sau:
+- Thêm nhiệm vụ
+- Xem danh sách
+- Tích chọn hoàn thành
+- Xóa nhiệm vụ
+- Thẻ phân loại
+- Đánh dấu ưu tiên
+- Nhắc nhở định giờ
+- Thống kê dữ liệu
+</code></pre>
+<p>AI trả về một đống code. Tiểu Lý chạy thử thì phát hiện:</p>
+<ul>
+<li>"Thêm nhiệm vụ" có bug (Nhập rỗng cũng thêm được)</li>
+<li>Chức năng "Thẻ phân loại" làm rất hoàn thiện</li>
+<li>"Nhắc nhở định giờ" dùng công nghệ cậu ấy không hiểu</li>
+</ul>
+<p>Tiểu Lý mất hai tiếng để debug, phát hiện chức năng cốt lõi có vấn đề, nhưng chức năng hoa lá cành lại rất hoàn thiện.</p>
+<p><strong>Đây chính là hậu quả điển hình của việc "đưa quá nhiều cùng một lúc".</strong></p>
+<h3>3 lợi ích lớn của phân giai đoạn</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Lợi ích</th>
+<th style="text-align: left;">Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Giảm sót lỗi</strong></td>
+<td style="text-align: left;">AI xử lý 3-5 chức năng một lần ít sai hơn xử lý 10 chức năng</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Kiểm chứng kịp thời</strong></td>
+<td style="text-align: left;">Sau mỗi vòng có thể test ngay, phát hiện vấn đề sửa ngay</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Điều chỉnh linh hoạt</strong></td>
+<td style="text-align: left;">Sau khi xong P0 có thể thấy P1 không cần thiết nữa, đỡ tốn công vô ích</td>
+</tr>
+</tbody>
+</table>
+<h2>Mô hình đối thoại 3 vòng</h2>
+<p>Cốt lõi của phát triển phân giai đoạn là: <strong>Mỗi vòng chỉ làm chức năng của một mức ưu tiên, kiểm chứng thông qua rồi mới vào vòng tiếp theo.</strong></p>
+<pre><code>┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│    Vòng 1   │────▶│    Vòng 2   │────▶│    Vòng 3   │
+│ Thực hiện P0│     │   Thêm P1   │     │   Thêm P2   │
+│             │     │             │     │  (Tùy chọn) │
+└─────────────┘     └─────────────┘     └─────────────┘
+      │                   │                   │
+      ▼                   ▼                   ▼
+  Kiểm chứng          Kiểm chứng          Kiểm chứng
+</code></pre>
+<h2>Vòng 1: Thực hiện chức năng P0</h2>
+<h3>Mẫu Prompt</h3>
+<pre><code class="language-markdown">Vui lòng dựa trên PRD dưới đây thực hiện phiên bản đầu tiên, **chỉ làm chức năng P0, không làm bất cứ việc gì khác**.
+
+[Dán PRD của bạn vào đây]
+
+Đặc biệt nhấn mạnh:
+
+- Chỉ thực hiện các chức năng liệt kê trong phần &quot;Chức năng cốt lõi&quot;
+- Không thêm bất kỳ chức năng nào không được nhắc đến trong PRD
+- Code cần tinh gọn, chạy được là được
+</code></pre>
+<h3>Prompt thực tế của Tiểu Lý</h3>
+<pre><code class="language-markdown">Vui lòng dựa trên PRD dưới đây thực hiện phiên bản đầu tiên, chỉ làm chức năng P0.
+
+# Việc cần làm cực giản
+
+## Mô tả một câu
+
+Một trang web danh sách việc cần làm cực giản cho chính mình dùng
+
+## Người dùng mục tiêu
+
+Chính tôi (Nhân viên văn phòng, xử lý 5-10 công việc mỗi ngày)
+
+## Vấn đề cần giải quyết
+
+Sợ bỏ sót việc quan trọng, cần một công cụ cực giản mở ra là dùng
+
+## Chức năng cốt lõi (P0, chỉ làm những cái này)
+
+- Thêm nhiệm vụ: Ô nhập liệu + Nút thêm
+- Xem nhiệm vụ: Hiển thị danh sách tất cả việc cần làm
+- Hoàn thành nhiệm vụ: Bấm tích chọn, hiển thị gạch ngang
+
+## Chức năng KHÔNG làm
+
+- Không đăng ký đăng nhập
+- Không chức năng xóa (P1, làm ở vòng sau)
+- Không thẻ phân loại
+- Không đồng bộ đám mây
+
+## Ràng buộc kỹ thuật
+
+- Thuần Frontend: HTML + CSS + JavaScript
+- Lưu trữ dữ liệu: localStorage trình duyệt
+- Ngôn ngữ giao diện: Tiếng Việt
+
+Đặc biệt nhấn mạnh: Chỉ làm chức năng P0 liệt kê ở trên, không thêm bất kỳ chức năng thừa thãi nào.
+</code></pre>
+<h3>Danh sách kiểm chứng Vòng 1</h3>
+<p>Sau khi AI trả về code, hãy kiểm chứng theo danh sách này:</p>
+<ul>
+<li>[ ] Có thêm nhiệm vụ được không?</li>
+<li>[ ] Nhiệm vụ có hiển thị trong danh sách không?</li>
+<li>[ ] Có tích chọn hoàn thành được không?</li>
+<li>[ ] Refresh xong dữ liệu còn không?</li>
+<li>[ ] Có làm thừa chức năng nào không?</li>
+</ul>
+<p><strong>Tất cả thông qua, mới bước vào vòng 2.</strong></p>
+<h2>Vòng 2: Thêm chức năng P1</h2>
+<h3>Mẫu Prompt</h3>
+<pre><code class="language-markdown">Chức năng P0 đã hoàn thành và kiểm chứng thông qua. Bây giờ hãy thêm chức năng P1.
+
+## Chức năng hiện có
+
+- Thêm nhiệm vụ ✓
+- Xem danh sách ✓
+- Tích chọn hoàn thành ✓
+
+## Chức năng P1 cần thêm vòng này
+
+- [Chức năng P1_1]
+- [Chức năng P1_2]
+
+## Lưu ý
+
+- Không sửa code chức năng P0 đã có (trừ khi sửa bug)
+- Không thêm bất kỳ chức năng nào ngoài P1
+- Giữ phong cách code nhất quán
+</code></pre>
+<h3>Prompt thực tế của Tiểu Lý</h3>
+<pre><code class="language-markdown">Chức năng P0 đã hoàn thành và kiểm chứng thông qua. Bây giờ hãy thêm chức năng P1.
+
+## Chức năng hiện có
+
+- Thêm nhiệm vụ ✓
+- Xem danh sách ✓
+- Tích chọn hoàn thành ✓
+
+## Chức năng P1 cần thêm vòng này
+
+- Xóa nhiệm vụ: Bên phải mỗi nhiệm vụ có nút xóa, bấm vào thì loại bỏ
+- Đếm số nhiệm vụ: Hiển thị &quot;Cần làm X việc, Đã xong Y việc&quot;
+
+## Lưu ý
+
+- Không sửa chức năng P0 đã có
+- Không thêm chức năng phân loại, thẻ v.v.
+- Style nút xóa cần thống nhất với phong cách chung
+</code></pre>
+<h3>Danh sách kiểm chứng Vòng 2</h3>
+<ul>
+<li>[ ] Chức năng P0 còn hoạt động bình thường không?</li>
+<li>[ ] Chức năng xóa có bình thường không?</li>
+<li>[ ] Hiển thị đếm số có đúng không?</li>
+<li>[ ] Sau khi xóa số đếm có cập nhật không?</li>
+</ul>
+<h2>Vòng 3: Thêm chức năng P2 (Tùy chọn)</h2>
+<p>Vòng 3 là tùy chọn. Nếu P0 + P1 đã đáp ứng nhu cầu, có thể dừng ở đây.</p>
+<h3>Mẫu Prompt</h3>
+<pre><code class="language-markdown">Chức năng P1 đã hoàn thành. Nếu thời gian cho phép, bây giờ có thể thêm chức năng P2.
+
+## Chức năng hiện có
+
+- [Danh sách chức năng P0] ✓
+- [Danh sách chức năng P1] ✓
+
+## Chức năng P2 tùy chọn (Chọn 1-2 cái theo độ ưu tiên)
+
+- [Chức năng P2_1]
+- [Chức năng P2_2]
+- [Chức năng P2_3]
+
+Vui lòng hỏi tôi muốn ưu tiên làm cái nào trước, sau đó mới thực hiện.
+</code></pre>
+<h2>Các mẫu câu chuyển giao giai đoạn then chốt</h2>
+<p>Dưới đây là một số mẫu câu rất hữu dụng khi chuyển giao giai đoạn:</p>
+<h3>Bắt đầu giai đoạn mới</h3>
+<pre><code>&quot;P0 kiểm chứng thông qua, vui lòng tiếp tục thêm chức năng P1...&quot;
+&quot;Chức năng vòng trước đã xác nhận không lỗi, bây giờ vào giai đoạn tiếp theo...&quot;
+&quot;Phiên bản đầu hoàn thành, bây giờ làm phiên bản 2...&quot;
+</code></pre>
+<h3>Khi phát hiện vấn đề</h3>
+<pre><code>&quot;Khi test P0 phát hiện một vấn đề: [Mô tả vấn đề]. Vui lòng sửa cái này trước, sau đó mới tiếp tục P1.&quot;
+&quot;Khi thêm nhiệm vụ nhập rỗng cũng thêm được, đây là bug. Vui lòng thêm validate không được rỗng.&quot;
+</code></pre>
+<h3>Khi muốn điều chỉnh kế hoạch</h3>
+<pre><code>&quot;Làm xong P0 tôi phát hiện thực ra không cần chức năng xóa của P1 nữa, vui lòng nhảy thẳng qua thẻ phân loại của P2.&quot;
+&quot;Chức năng này phức tạp hơn tưởng tượng, chúng ta tạm dừng, tôi nghĩ lại nhu cầu đã.&quot;
+</code></pre>
+<h2>Case Study trọn vẹn: 3 vòng phát triển của Tiểu Lý</h2>
+<h3>Đối thoại Vòng 1</h3>
+<p><strong>Tiểu Lý</strong>:</p>
+<pre><code>Vui lòng dựa trên PRD dưới đây thực hiện phiên bản đầu tiên... (Chức năng P0)
+</code></pre>
+<p><strong>AI</strong>: Trả về code HTML + CSS + JS</p>
+<p><strong>Tiểu Lý test</strong>:</p>
+<ul>
+<li>Thêm nhiệm vụ ✓</li>
+<li>Xem danh sách ✓</li>
+<li>Tích chọn hoàn thành ✓</li>
+<li>Refresh dữ liệu còn ✓</li>
+</ul>
+<h3>Đối thoại Vòng 2</h3>
+<p><strong>Tiểu Lý</strong>:</p>
+<pre><code>P0 kiểm chứng thông qua. Vui lòng thêm chức năng P1:
+- Xóa nhiệm vụ
+- Đếm số nhiệm vụ
+</code></pre>
+<p><strong>AI</strong>: Trả về code đã cập nhật</p>
+<p><strong>Tiểu Lý test</strong>:</p>
+<ul>
+<li>Chức năng P0 bình thường ✓</li>
+<li>Chức năng xóa bình thường ✓</li>
+<li>Hiển thị đếm số đúng ✓</li>
+</ul>
+<h3>Đối thoại Vòng 3</h3>
+<p><strong>Tiểu Lý</strong>:</p>
+<pre><code>P1 hoàn thành. Trong các chức năng P2 tôi chỉ muốn làm &quot;Đánh dấu ưu tiên nhiệm vụ&quot;, các cái khác không cần.
+</code></pre>
+<p><strong>AI</strong>: Trả về code có chức năng ưu tiên</p>
+<p><strong>Tiểu Lý test</strong>: Tất cả thông qua, dự án hoàn thành.</p>
+<h2>Các câu hỏi thường gặp</h2>
+<h3>Q: P0 chưa làm xong, có thể làm trước một chức năng P1 không?</h3>
+<p>A: Không khuyến khích. P0 là chức năng cốt lõi, nếu cốt lõi có vấn đề, những cái làm sau đều có thể công cốc. Hãy cứ làm theo đúng thứ tự.</p>
+<h3>Q: AI tự ý thêm chức năng thì làm sao?</h3>
+<p>A: Bảo nó xóa đi, hoặc tạo lại.</p>
+<pre><code>&quot;Tôi thấy bạn thêm chức năng sắp xếp, nhưng cái này không có trong PRD. Vui lòng xóa chức năng này đi, chỉ giữ lại những gì tôi yêu cầu.&quot;
+</code></pre>
+<h3>Q: Vòng nào cũng phải gửi lại toàn bộ PRD à?</h3>
+<p>A: Vòng 1 gửi PRD đầy đủ, các vòng sau chỉ cần gửi phần thay đổi là được. AI thường nhớ được ngữ cảnh.</p>
+<h3>Q: Phân giai đoạn thế có chậm quá không?</h3>
+<p>A: Nhìn bề ngoài thì đối thoại nhiều vòng hơn, nhưng giảm được rất nhiều thời gian làm lại. Làm một lần cho xong thường tốn nhiều thời gian debug hơn.</p>
+<h2>Mẫu điểm kiểm tra xác nhận</h2>
+<p>Sau mỗi vòng, dùng mẫu này để kiểm tra:</p>
+<pre><code class="language-markdown">## Kiểm tra xác nhận Vòng [N]
+
+### Xác nhận chức năng
+
+- [ ] [Chức năng 1] hoạt động bình thường
+- [ ] [Chức năng 2] hoạt động bình thường
+- [ ] [Chức năng 3] hoạt động bình thường
+
+### Test hồi quy (Đảm bảo chức năng trước đó không hỏng)
+
+- [ ] Chức năng P0 vẫn bình thường
+- [ ] Chức năng P1 vẫn bình thường (Nếu đã làm)
+
+### Trường hợp biên
+
+- [ ] Xử lý nhập rỗng đúng
+- [ ] Refresh dữ liệu còn
+- [ ] Thao tác nhiều lần không lỗi
+
+### Quyết định
+
+- [ ] Tất cả thông qua → Vào vòng sau
+- [ ] Có vấn đề → Sửa trước, rồi mới tiếp tục
+</code></pre>
+<h2>Trọng điểm cốt lõi bài này</h2>
+<ul>
+<li>✅ Phát triển phân giai đoạn giảm bỏ sót, kiểm chứng kịp thời, điều chỉnh linh hoạt</li>
+<li>✅ Mô hình 3 vòng: P0 → Kiểm chứng → P1 → Kiểm chứng → P2 (Tùy chọn)</li>
+<li>✅ Đầu mỗi vòng cần nói rõ "Chỉ làm những cái này, không làm cái khác"</li>
+<li>✅ Cuối mỗi vòng dùng danh sách kiểm tra để xác nhận</li>
+<li>✅ Phát hiện vấn đề sửa trước, xác nhận không lỗi mới vào vòng sau</li>
+</ul>
+<p>Tiếp theo, chúng ta sẽ thông qua một case study trọn vẹn, trải nghiệm toàn bộ quá trình từ ý tưởng đến PRD.</p>
+</body>
+</html>

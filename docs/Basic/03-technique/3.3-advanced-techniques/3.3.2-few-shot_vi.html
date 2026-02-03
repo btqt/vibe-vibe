@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.3.2 Few Shot</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.3.2 Few-shot Prompting: Dùng ví dụ dạy AI"</h2>
+<p><img alt="03-technique_3.3-advanced-techniques_3.3.2-few-shot.png" src="../../../public/images/Basic/03-technique_3.3-advanced-techniques_3.3.2-few-shot.png" /></p>
+<h1>3.3.2 Few-shot Prompting: Dùng ví dụ dạy AI</h1>
+<h2>Sau bài học này, bạn sẽ nắm được</h2>
+<ul>
+<li>Định nghĩa và nguyên lý hoạt động của Few-shot</li>
+<li>Tại sao ví dụ lại hiệu quả hơn giải thích dài dòng</li>
+<li>Cách lựa chọn ví dụ chất lượng cao</li>
+<li>Best practice về số lượng ví dụ</li>
+<li>Bối cảnh phù hợp và hạn chế của Few-shot</li>
+</ul>
+<h2>Few-shot Prompting là gì</h2>
+<p>Few-shot (Có mẫu/Ít ví dụ) nghĩa là: <strong>Cho AI vài ví dụ, để nó học theo mẫu rồi mới xử lý nhiệm vụ mới</strong>.</p>
+<pre><code>Nhiệm vụ: Chuyển đổi nhu cầu người dùng thành nhiệm vụ kỹ thuật
+
+Ví dụ 1:
+Nhu cầu: &quot;Người dùng có thể thêm việc cần làm&quot;
+Nhiệm vụ:
+- Tạo component ô nhập liệu
+- Xử lý sự kiện click nút thêm
+- Cập nhật trạng thái danh sách nhiệm vụ
+
+Ví dụ 2:
+Nhu cầu: &quot;Người dùng có thể xóa việc cần làm&quot;
+Nhiệm vụ:
+- Thêm nút xóa cho mỗi nhiệm vụ
+- Xử lý logic xác nhận xóa
+- Loại bỏ nhiệm vụ tương ứng khỏi danh sách
+
+Bây giờ hãy xử lý:
+Nhu cầu: &quot;Người dùng có thể đánh dấu nhiệm vụ là đã hoàn thành&quot;
+</code></pre>
+<p>Sau khi xem 2 ví dụ, AI đã "học được" quy tắc chuyển đổi, có thể xử lý nhu cầu mới theo định dạng tương tự.</p>
+<h2>Insight cốt lõi: Tại sao ví dụ hiệu quả hơn giải thích</h2>
+<blockquote>
+<p>"Làm mẫu một lần, hơn giải thích trăm lần."</p>
+</blockquote>
+<p>Điều này không hề phóng đại. Khi con người học kỹ năng mới, xem làm mẫu hiệu quả hơn nghe giảng giải. AI cũng vậy.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Cách thức</th>
+<th style="text-align: left;">Hiệu quả</th>
+<th style="text-align: left;">Lý do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Giải thích quy tắc dài dòng</td>
+<td style="text-align: left;">Dễ bỏ sót chi tiết, định dạng không ổn định</td>
+<td style="text-align: left;">AI cần "thấu hiểu" ý định của bạn</td>
+</tr>
+<tr>
+<td style="text-align: left;">Cung cấp ví dụ</td>
+<td style="text-align: left;">Định dạng nhất quán, chi tiết đầy đủ</td>
+<td style="text-align: left;">AI trực tiếp "mô phỏng" mẫu</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Thực tế kiểm nghiệm cho thấy</strong>: Đối với nhiệm vụ xuất ra định dạng chuẩn, độ chính xác của Few-shot cao hơn Zero-shot từ 20-40%.</p>
+<h2>Số lượng ví dụ: Bao nhiêu là phù hợp nhất?</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Số lượng</th>
+<th style="text-align: left;">Bối cảnh áp dụng</th>
+<th style="text-align: left;">Cân nhắc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>1 cái</strong> (One-shot)</td>
+<td style="text-align: left;">Định dạng rõ ràng, quy tắc đơn giản</td>
+<td style="text-align: left;">Tiết kiệm token nhất, nhưng mẫu có thể chưa đủ rõ</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>2-3 cái</strong></td>
+<td style="text-align: left;">Đa số các bối cảnh</td>
+<td style="text-align: left;">Cân bằng giữa hiệu quả và chi phí, khuyên dùng mặc định</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>4-5 cái</strong></td>
+<td style="text-align: left;">Mẫu phức tạp, nhiều trường hợp biên</td>
+<td style="text-align: left;">Hiệu quả tốt hơn, nhưng tốn token hơn</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Nhiều hơn</strong></td>
+<td style="text-align: left;">Rất ít khi cần</td>
+<td style="text-align: left;">Lợi ích giảm dần, nên cân nhắc fine-tune (tinh chỉnh) mô hình</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Quy tắc kinh nghiệm</strong>: Bắt đầu từ 2 ví dụ, nếu đầu ra không ổn định thì tăng lên 3.</p>
+<h2>Cách chọn ví dụ chất lượng cao</h2>
+<h3>Nguyên tắc 1: Tính đại diện</h3>
+<p>Ví dụ phải bao gồm <strong>tình huống điển hình</strong>, đừng chỉ toàn là ngoại lệ.</p>
+<pre><code>❌ Chọn ví dụ dở (toàn là trường hợp biên):
+- Xử lý chuỗi rỗng
+- Xử lý văn bản siêu dài
+- Xử lý ký tự đặc biệt
+
+✅ Chọn ví dụ tốt (điển hình trước, biên sau):
+- Văn bản độ dài bình thường (điển hình)
+- Văn bản chứa cả tiếng Anh và tiếng Việt (biến thể thường gặp)
+- Xử lý chuỗi rỗng (trường hợp biên)
+</code></pre>
+<h3>Nguyên tắc 2: Tính đa dạng</h3>
+<p>Ví dụ phải bao gồm <strong>các loại khác nhau</strong>, tránh để AI quá khớp (overfitting) vào một mẫu duy nhất.</p>
+<pre><code>Nhiệm vụ: Phân loại phản hồi người dùng
+
+❌ Ví dụ dở (toàn là tiêu cực):
+- &quot;Khó dùng quá&quot; → Tiêu cực
+- &quot;Phần mềm rác&quot; → Tiêu cực
+
+✅ Ví dụ tốt (bao phủ các loại):
+- &quot;Khó dùng quá&quot; → Tiêu cực
+- &quot;Cũng được, nhưng mong thêm chế độ ban đêm&quot; → Trung tính
+- &quot;Dùng 3 tháng rồi, hiệu suất tăng nhiều&quot; → Tích cực
+</code></pre>
+<h3>Nguyên tắc 3: Nhất quán định dạng</h3>
+<p>Định dạng đầu vào và đầu ra của tất cả các ví dụ <strong>phải thống nhất</strong>.</p>
+<pre><code>❌ Định dạng không nhất quán:
+Ví dụ 1: Đầu vào &quot;...&quot; → Đầu ra: Danh sách nhiệm vụ
+Ví dụ 2: Đầu vào: &quot;...&quot; Đầu ra - Nhiệm vụ 1 - Nhiệm vụ 2
+
+✅ Định dạng nhất quán:
+Ví dụ 1:
+Đầu vào: &quot;...&quot;
+Đầu ra:
+- Nhiệm vụ 1
+- Nhiệm vụ 2
+
+Ví dụ 2:
+Đầu vào: &quot;...&quot;
+Đầu ra:
+- Nhiệm vụ 1
+- Nhiệm vụ 2
+</code></pre>
+<h2>Prompt dở vs Prompt tốt</h2>
+<h3>❌ Prompt dở</h3>
+<pre><code>Giúp tôi chuyển User Story thành nhiệm vụ phát triển, định dạng phải rõ ràng, bao gồm công việc frontend và backend.
+
+User Story: Là người dùng, tôi muốn có thể tìm kiếm nhiệm vụ
+</code></pre>
+<p><strong>Vấn đề</strong>: Không có ví dụ, AI không biết "định dạng rõ ràng" mà bạn kỳ vọng trông như thế nào.</p>
+<h3>✅ Prompt tốt</h3>
+<pre><code>Nhiệm vụ: Chuyển đổi User Story thành danh sách nhiệm vụ phát triển
+
+Ví dụ:
+User Story: Là người dùng, tôi muốn có thể lọc nhiệm vụ theo ngày
+Nhiệm vụ phát triển:
+【Frontend】
+- Thêm component bộ chọn ngày
+- Xử lý quản lý trạng thái lọc
+- Cập nhật logic render danh sách nhiệm vụ
+【Backend】
+- Thêm tham số lọc ngày cho API
+- Xử lý điều kiện truy vấn database
+
+Bây giờ hãy xử lý:
+User Story: Là người dùng, tôi muốn có thể tìm kiếm nhiệm vụ
+</code></pre>
+<h3>So sánh đầu ra</h3>
+<p>Đầu ra của Prompt tốt sẽ tuân thủ nghiêm ngặt định dạng ví dụ:</p>
+<pre><code>Nhiệm vụ phát triển:
+【Frontend】
+- Thêm component ô tìm kiếm
+- Xử lý quản lý trạng thái từ khóa tìm kiếm
+- Xử lý logic debounce tìm kiếm
+- Cập nhật render danh sách nhiệm vụ, highlight từ khóa
+【Backend】
+- Thêm tham số từ khóa tìm kiếm cho API
+- Xử lý truy vấn database dạng fuzzy matching (khớp mờ)
+</code></pre>
+<h2>Ví dụ thực chiến: Dự án danh sách việc cần làm</h2>
+<p>Tiểu Lý cần AI giúp tạo định nghĩa kiểu TypeScript cho nhiều component. Cậu ấy muốn định dạng thống nhất.</p>
+<h3>Prompt Few-shot</h3>
+<pre><code>Nhiệm vụ: Tạo định nghĩa kiểu TypeScript Props cho React Component
+
+Ví dụ 1:
+Mô tả component: Một component hiển thị tiêu đề nhiệm vụ, tiêu đề bắt buộc, trạng thái hoàn thành tùy chọn
+Đầu ra:
+interface TaskTitleProps {
+  title: string;           // Tiêu đề nhiệm vụ, bắt buộc
+  isCompleted?: boolean;   // Trạng thái hoàn thành, tùy chọn
+}
+
+Ví dụ 2:
+Mô tả component: Một component nút bấm, hiển thị chữ bắt buộc, sự kiện click bắt buộc, trạng thái vô hiệu hóa tùy chọn
+Đầu ra:
+interface ButtonProps {
+  label: string;           // Chữ trên nút, bắt buộc
+  onClick: () =&gt; void;     // Sự kiện click, bắt buộc
+  disabled?: boolean;      // Trạng thái vô hiệu hóa, tùy chọn
+}
+
+Bây giờ hãy xử lý:
+Mô tả component: Một component thẻ nhiệm vụ, bao gồm tiêu đề bắt buộc, mô tả tùy chọn, hạn chót tùy chọn, độ ưu tiên bắt buộc (cao/trung/thấp)
+</code></pre>
+<h3>Đầu ra của AI</h3>
+<pre><code class="language-typescript">interface TaskCardProps {
+  title: string; // Tiêu đề nhiệm vụ, bắt buộc
+  description?: string; // Mô tả nhiệm vụ, tùy chọn
+  dueDate?: Date; // Hạn chót, tùy chọn
+  priority: &quot;high&quot; | &quot;medium&quot; | &quot;low&quot;; // Độ ưu tiên, bắt buộc
+}
+</code></pre>
+<p>Để ý AI đã tự động học được:</p>
+<ul>
+<li>Phong cách chú thích (<code>// Giải thích, bắt buộc/tùy chọn</code>)</li>
+<li>Thuộc tính tùy chọn dùng <code>?</code></li>
+<li>Kiểu liệt kê dùng Union Type</li>
+</ul>
+<h2>Bối cảnh phù hợp</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Bối cảnh</th>
+<th style="text-align: left;">Ví dụ</th>
+<th style="text-align: left;">Tại sao cần Few-shot</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Đầu ra định dạng hóa</td>
+<td style="text-align: left;">Tạo tài liệu API</td>
+<td style="text-align: left;">Đảm bảo định dạng nhất quán</td>
+</tr>
+<tr>
+<td style="text-align: left;">Nhiệm vụ phân loại</td>
+<td style="text-align: left;">Phân tích tình cảm, phân loại nhãn</td>
+<td style="text-align: left;">Làm rõ tiêu chuẩn phân loại</td>
+</tr>
+<tr>
+<td style="text-align: left;">Nhiệm vụ chuyển đổi</td>
+<td style="text-align: left;">Nhu cầu → Nhiệm vụ, Code → Tài liệu</td>
+<td style="text-align: left;">Học quy tắc chuyển đổi</td>
+</tr>
+<tr>
+<td style="text-align: left;">Mô phỏng phong cách</td>
+<td style="text-align: left;">Viết nội dung theo phong cách cụ thể</td>
+<td style="text-align: left;">Học phong cách ngôn ngữ</td>
+</tr>
+</tbody>
+</table>
+<h2>Hạn chế của Few-shot</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Hạn chế</th>
+<th style="text-align: left;">Biểu hiện</th>
+<th style="text-align: left;">Giải pháp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Tốn nhiều Token</td>
+<td style="text-align: left;">Ví dụ chiếm nhiều ngữ cảnh</td>
+<td style="text-align: left;">Tinh giản ví dụ, chỉ giữ lại thông tin then chốt</td>
+</tr>
+<tr>
+<td style="text-align: left;">Khó chọn ví dụ</td>
+<td style="text-align: left;">Chọn sai ví dụ dẫn đến hiệu quả kém</td>
+<td style="text-align: left;">Tuân thủ nguyên tắc đại diện, đa dạng, nhất quán</td>
+</tr>
+<tr>
+<td style="text-align: left;">Bắt chước thái quá</td>
+<td style="text-align: left;">AI sao chép cả chi tiết của ví dụ</td>
+<td style="text-align: left;">Dùng nội dung ví dụ khác nhau, chỉ giữ lại định dạng giống nhau</td>
+</tr>
+</tbody>
+</table>
+<h2>Mẫu có thể sao chép</h2>
+<h3>Mẫu Few-shot chung</h3>
+<pre><code class="language-markdown">Nhiệm vụ: [Mô tả nhiệm vụ]
+
+Ví dụ 1:
+Đầu vào: [Đầu vào ví dụ 1]
+Đầu ra:
+[Đầu ra ví dụ 1]
+
+Ví dụ 2:
+Đầu vào: [Đầu vào ví dụ 2]
+Đầu ra:
+[Đầu ra ví dụ 2]
+
+Bây giờ hãy xử lý:
+Đầu vào: [Đầu vào thực tế]
+</code></pre>
+<h3>Mẫu nhiệm vụ phân loại</h3>
+<pre><code class="language-markdown">Nhiệm vụ: Phân loại phản hồi người dùng vào [Danh sách phân loại]
+
+Ví dụ:
+Phản hồi: &quot;[Phản hồi ví dụ 1]&quot;
+Phân loại: [Loại]
+
+Phản hồi: &quot;[Phản hồi ví dụ 2]&quot;
+Phân loại: [Loại]
+
+Phản hồi: &quot;[Phản hồi ví dụ 3]&quot;
+Phân loại: [Loại]
+
+Vui lòng phân loại:
+Phản hồi: &quot;[Nội dung chờ phân loại]&quot;
+</code></pre>
+<h3>Mẫu nhiệm vụ chuyển đổi</h3>
+<pre><code class="language-markdown">Nhiệm vụ: Chuyển đổi [Định dạng nguồn] sang [Định dạng đích]
+
+Ví dụ quy tắc chuyển đổi:
+
+Nguồn: [Nội dung nguồn ví dụ]
+Đích:
+[Nội dung đích ví dụ]
+
+Nguồn: [Nội dung nguồn ví dụ]
+Đích:
+[Nội dung đích ví dụ]
+
+Vui lòng chuyển đổi:
+Nguồn: [Nội dung thực tế]
+</code></pre>
+<h2>Dự báo nâng cao: Few-shot động</h2>
+<p>Trong phần nâng cao, bạn sẽ học "Few-shot động" —— Tự động <strong>lựa chọn ví dụ liên quan nhất</strong> dựa trên đầu vào của người dùng, nâng cao hiệu quả hơn nữa và tiết kiệm token.</p>
+<h2>Trọng điểm bài học</h2>
+<p>✓ <strong>Bản chất của Few-shot</strong>: Dùng ví dụ dạy AI nhận biết mẫu, thay vì dùng văn bản giải thích quy tắc</p>
+<p>✓ <strong>Số lượng ví dụ</strong>: 2-3 cái là điểm cân bằng tốt nhất</p>
+<p>✓ <strong>3 nguyên tắc chọn ví dụ</strong>: Tính đại diện, tính đa dạng, tính nhất quán định dạng</p>
+<p>✓ <strong>Bối cảnh phù hợp</strong>: Đầu ra định dạng hóa, phân loại, chuyển đổi, mô phỏng phong cách</p>
+<p>✓ <strong>Lựa chọn với Zero-shot</strong>: Nếu định dạng Zero-shot không ổn định, hãy chuyển sang Few-shot</p>
+<p>Bài sau, chúng ta sẽ học cách để AI "nghĩ một chút rồi mới trả lời" —— Chain of Thought.</p>
+</body>
+</html>

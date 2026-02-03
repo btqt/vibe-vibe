@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.1.1 What Is Prompt Engineering</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.1.1 Kỹ thuật Prompt là gì"</h2>
+<p><img alt="03-technique_3.1-prompt-basics_3.1.1-what-is-prompt-engineering.png" src="../../../public/images/Basic/03-technique_3.1-prompt-basics_3.1.1-what-is-prompt-engineering.png" /></p>
+<h1>3.1.1 Kỹ thuật Prompt là gì</h1>
+<h2>Sau bài học này, bạn sẽ nắm được</h2>
+<ul>
+<li>Ý nghĩa thực sự của kỹ thuật Prompt (Prompt Engineering): Không phải là "nghệ thuật đặt câu hỏi", mà là "nghệ thuật cung cấp ngữ cảnh"</li>
+<li>Xu hướng mới nhất năm 2025: Từ Prompt Engineering đến Context Engineering</li>
+<li>Sự khác biệt cốt lõi giữa lập trình truyền thống và kỹ thuật Prompt</li>
+</ul>
+<h2>Phá bỏ một hiểu lầm trước</h2>
+<p>Bạn có thể đã nghe qua thuật ngữ "kỹ thuật Prompt" (Prompt Engineering), và cảm thấy nó nghe rất cao siêu.</p>
+<p>Nhiều bài viết sẽ nói với bạn: Kỹ thuật Prompt là một môn "nghệ thuật đặt câu hỏi", cần phải học đủ loại "từ ngữ ma thuật" và "công thức kỹ xảo", mới có thể khiến AI đưa ra câu trả lời hay.</p>
+<p>Cách nói này đã làm phức tạp hóa vấn đề.</p>
+<p><strong>Bản chất của kỹ thuật Prompt rất đơn giản: Nói cho AI biết đủ thông tin nền tảng, để nó hiểu bạn muốn gì.</strong></p>
+<p>Không có ma thuật, không có câu thần chú. Chỉ có một nguyên tắc cốt lõi: <strong>Thông tin bạn cung cấp càng rõ ràng đầy đủ, đầu ra của AI càng phù hợp với kỳ vọng của bạn.</strong></p>
+<h2>Một phép ẩn dụ giúp bạn dễ hiểu</h2>
+<p>Hãy tưởng tượng bạn vừa tuyển một thực tập sinh.</p>
+<p>Thực tập sinh này cực kỳ thông minh, khả năng học hỏi cực mạnh, gần như nhiệm vụ nào cũng hoàn thành được. Nhưng có một vấn đề: Cậu ấy hôm nay mới vào làm, hoàn toàn không biết gì về dự án của bạn.</p>
+<p>Bây giờ bạn cần bảo cậu ấy viết giúp một đoạn code. Bạn sẽ làm thế nào?</p>
+<p><strong>Cách A</strong>: Nói thẳng "Viết giúp anh một chức năng đăng nhập", rồi ngồi đợi xem kết quả.</p>
+<p><strong>Cách B</strong>: Dành 5 phút giới thiệu bối cảnh dự án trước, nói rõ dùng công nghệ gì (tech stack), giải thích chức năng đăng nhập này cần đạt hiệu quả gì, có yêu cầu đặc biệt gì, rồi mới bảo cậu ấy bắt tay làm.</p>
+<p>Hiển nhiên, kết quả của Cách B sẽ tốt hơn nhiều.</p>
+<p>AI chính là cậu thực tập sinh này. Năng lực của nó rất mạnh, nhưng cần bạn cung cấp đủ "ngữ cảnh" (context) mới có thể phát huy được.</p>
+<h2>Từ Prompt Engineering đến Context Engineering</h2>
+<p>Năm 2025, trong ngành đã xuất hiện một sự chuyển dịch thú vị.</p>
+<p>Theo báo cáo nghiên cứu của Gartner, ngày càng nhiều người làm nghề AI bắt đầu dùng "Context Engineering" (Kỹ thuật ngữ cảnh) để thay thế cho cách gọi "Prompt Engineering" (Kỹ thuật gợi ý).</p>
+<p>Đây không chỉ là đổi cái tên. Nó phản ánh sự nâng cấp về nhận thức:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Nhận thức cũ: Prompt Engineering</th>
+<th style="text-align: left;">Nhận thức mới: Context Engineering</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Quan tâm "hỏi thế nào"</td>
+<td style="text-align: left;">Quan tâm "nói cho AI biết cái gì"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tìm kiếm "từ ngữ ma thuật"</td>
+<td style="text-align: left;">Xây dựng "môi trường thông tin"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Đầu vào một lần</td>
+<td style="text-align: left;">Thiết kế có hệ thống</td>
+</tr>
+<tr>
+<td style="text-align: left;">Phụ thuộc kỹ xảo</td>
+<td style="text-align: left;">Phụ thuộc sự rõ ràng</td>
+</tr>
+</tbody>
+</table>
+<p>Các kỹ sư của Anthropic (công ty phát triển Claude) giải thích thế này:</p>
+<blockquote>
+<p>"Thay vì tốn thời gian nghiên cứu cách dùng từ, chi bằng dành thời gian suy nghĩ xem AI cần biết cái gì mới có thể hoàn thành nhiệm vụ."</p>
+</blockquote>
+<p>Điều này có nghĩa là gì?</p>
+<p><strong>Bạn không cần học "kỹ thuật Prompt" phức tạp, cái bạn cần học là: Làm thế nào truyền đạt rõ ràng thông tin nền tảng trong đầu bạn cho AI.</strong></p>
+<h2>Lập trình truyền thống vs Kỹ thuật Prompt</h2>
+<p>Nếu bạn hoàn toàn không có nền tảng lập trình, đây là một so sánh giúp bạn hiểu:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Chiều</th>
+<th style="text-align: left;">Lập trình truyền thống</th>
+<th style="text-align: left;">Kỹ thuật Prompt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Ngôn ngữ</td>
+<td style="text-align: left;">Ngôn ngữ lập trình (Python, JavaScript, v.v.)</td>
+<td style="text-align: left;">Ngôn ngữ tự nhiên (Tiếng Việt, Tiếng Anh)</td>
+</tr>
+<tr>
+<td style="text-align: left;">Độ chính xác</td>
+<td style="text-align: left;">Bắt buộc chính xác đến từng ký tự</td>
+<td style="text-align: left;">Cho phép sự mơ hồ nhất định</td>
+</tr>
+<tr>
+<td style="text-align: left;">Khả năng chịu lỗi</td>
+<td style="text-align: left;">Sai một ký tự là báo lỗi</td>
+<td style="text-align: left;">AI sẽ cố gắng hiểu ý định của bạn</td>
+</tr>
+<tr>
+<td style="text-align: left;">Năng lực cốt lõi</td>
+<td style="text-align: left;">Cú pháp và logic</td>
+<td style="text-align: left;">Diễn đạt rõ ràng và cung cấp ngữ cảnh</td>
+</tr>
+<tr>
+<td style="text-align: left;">Đường cong học tập</td>
+<td style="text-align: left;">Dốc đứng</td>
+<td style="text-align: left;">Thoải mái</td>
+</tr>
+</tbody>
+</table>
+<p>Lập trình truyền thống yêu cầu bạn dùng ngôn ngữ của máy móc để đối thoại với máy móc; kỹ thuật Prompt cho phép bạn dùng ngôn ngữ loài người để đối thoại với AI.</p>
+<p>Nhưng điều này không có nghĩa là bạn có thể nói tùy tiện. Tuy AI có thể hiểu ngôn ngữ tự nhiên, nhưng chất lượng hiểu của nó phụ thuộc vào chất lượng diễn đạt của bạn.</p>
+<p><strong>Từ "chỉ lệnh chính xác" đến "truyền đạt ý định", rào cản đã hạ thấp, nhưng năng lực diễn đạt rõ ràng lại trở nên quan trọng hơn.</strong></p>
+<h2>Bạn đã trang bị sẵn năng lực này rồi</h2>
+<p>Tin tốt là: Năng lực cốt lõi mà kỹ thuật Prompt yêu cầu, bạn đã có sẵn rồi.</p>
+<p>Còn nhớ nội dung đã học ở Chương 2 không?</p>
+<ul>
+<li><strong>Ba câu hỏi linh hồn</strong>: Người dùng là ai? Nỗi đau ở đâu? Tại sao chọn bạn?</li>
+<li><strong>Chân dung người dùng</strong>: Mô tả thuộc tính bề mặt, thói quen hành vi, động cơ sâu xa của người dùng</li>
+<li><strong>Tư duy phép trừ</strong>: Xác định rõ cái gì làm, cái gì không làm</li>
+</ul>
+<p>Thành quả của những suy nghĩ này, chính là "ngữ cảnh" mà bạn cần nói cho AI.</p>
+<p>Chương 2 dạy bạn "nghĩ rõ", chương này dạy bạn "nói rõ". Những suy nghĩ bạn tích lũy ở Chương 2, sẽ chuyển hóa thành cuộc đối thoại chất lượng cao với AI trong chương này.</p>
+<h2>Trọng điểm bài học</h2>
+<p>✓ <strong>Bản chất của kỹ thuật Prompt</strong> là cung cấp ngữ cảnh, không phải tìm kiếm từ ngữ ma thuật.</p>
+<p>✓ <strong>Xu hướng năm 2025</strong>: Từ "Kỹ thuật Prompt" sang "Kỹ thuật ngữ cảnh", trọng tâm chuyển từ "hỏi thế nào" sang "nói cho AI biết cái gì".</p>
+<p>✓ <strong>AI giống như thực tập sinh thông minh</strong>: Năng lực rất mạnh, nhưng cần bạn cung cấp đủ thông tin nền tảng.</p>
+<p>✓ <strong>Thành quả tư duy của Chương 2</strong> (Ba câu hỏi linh hồn, chân dung người dùng, tư duy phép trừ) chính là nguyên liệu ngữ cảnh tốt nhất.</p>
+<p>Tiếp theo, chúng ta sẽ thảo luận sâu hơn: Rốt cuộc nên nói cho AI biết những thông tin gì? Đây chính là vấn đề mà "Mô hình ngữ cảnh ba tầng" sẽ giải quyết.</p>
+</body>
+</html>

@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.3.5 Self Critique</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.3.5 Self-Critique: Để AI tự kiểm tra"</h2>
+<p><img alt="03-technique_3.3-advanced-techniques_3.3.5-self-critique.png" src="../../../public/images/Basic/03-technique_3.3-advanced-techniques_3.3.5-self-critique.png" /></p>
+<h1>3.3.5 Self-Critique: Để AI tự kiểm tra</h1>
+<h2>Sau bài học này, bạn sẽ nắm được</h2>
+<ul>
+<li>Định nghĩa và nguyên lý của Self-Critique (Tự phê bình)</li>
+<li>Tại sao AI tự kiểm tra có thể nâng cao chất lượng đầu ra</li>
+<li>Danh sách các chiều kiểm tra cốt lõi</li>
+<li>Cách hướng dẫn AI tự kiểm tra trong Prompt</li>
+<li>Hạn chế của Self-Critique</li>
+</ul>
+<h2>Self-Critique là gì</h2>
+<p>Tư tưởng cốt lõi của Self-Critique (Tự phê bình) là: <strong>Sau khi AI tạo nội dung, hãy để nó tự kiểm tra lại một lần nữa, phát hiện và sửa lỗi</strong>.</p>
+<p>Điều này giống như tự mình soát lại bài sau khi viết xong, thường sẽ phát hiện ra những lỗi bị sót lúc đầu.</p>
+<pre><code>Tạo nội dung → Tự kiểm tra → Sửa lỗi
+</code></pre>
+<h2>Insight cốt lõi: Tại sao tự kiểm tra lại hiệu quả</h2>
+<blockquote>
+<p>"Phương pháp SELF-REFINE có thể nâng cao chất lượng đầu ra của AI khoảng 20% mà không cần huấn luyện thêm."
+—— Bài báo nghiên cứu của CMU năm 2023</p>
+</blockquote>
+<p>Dữ liệu này cho ta biết: Cùng một AI, thêm một bước tự kiểm tra, hiệu quả sẽ tăng rõ rệt.</p>
+<p>Lý do nằm ở chỗ:</p>
+<ol>
+<li><strong>Lần tạo đầu tiên thường có thiếu sót</strong>: Khi AI tạo nhanh có thể bỏ qua các trường hợp biên</li>
+<li><strong>Đổi góc nhìn khi tự kiểm tra</strong>: Chế độ rà soát sẽ quan tâm đến các khía cạnh khác</li>
+<li><strong>Cải tiến lặp lại chính xác hơn</strong>: Sửa dựa trên vấn đề cụ thể chính xác hơn là tạo lại từ đầu</li>
+</ol>
+<h2>Các chiều kiểm tra cốt lõi</h2>
+<p>Các loại nội dung khác nhau cần kiểm tra ở các chiều khác nhau:</p>
+<h3>Chiều tự kiểm tra code</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Chiều</th>
+<th style="text-align: left;">Nội dung kiểm tra</th>
+<th style="text-align: left;">Vấn đề thường gặp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Tính đúng đắn của chức năng</strong></td>
+<td style="text-align: left;">Đã thực hiện đúng nhu cầu chưa</td>
+<td style="text-align: left;">Bỏ sót một phần chức năng</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Trường hợp biên</strong></td>
+<td style="text-align: left;">Giá trị rỗng, giá trị cực đoan, đầu vào bất thường</td>
+<td style="text-align: left;">Không xử lý null/undefined</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tính bảo mật</strong></td>
+<td style="text-align: left;">XSS, Injection, dữ liệu nhạy cảm</td>
+<td style="text-align: left;">Đầu vào người dùng chưa lọc</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Hiệu năng</strong></td>
+<td style="text-align: left;">Độ phức tạp thời gian/không gian</td>
+<td style="text-align: left;">Vòng lặp lồng nhau không cần thiết</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Khả năng đọc</strong></td>
+<td style="text-align: left;">Đặt tên, chú thích, cấu trúc</td>
+<td style="text-align: left;">Tên biến không rõ ràng</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Khả năng bảo trì</strong></td>
+<td style="text-align: left;">Code lặp lại, độ kết dính</td>
+<td style="text-align: left;">Magic number được hardcode</td>
+</tr>
+</tbody>
+</table>
+<h3>Chiều tự kiểm tra văn bản/tài liệu</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Chiều</th>
+<th style="text-align: left;">Nội dung kiểm tra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Tính chính xác</strong></td>
+<td style="text-align: left;">Thông tin có đúng không</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tính toàn vẹn</strong></td>
+<td style="text-align: left;">Có bỏ sót điểm then chốt không</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Độ rõ ràng</strong></td>
+<td style="text-align: left;">Có dễ hiểu không</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tính nhất quán</strong></td>
+<td style="text-align: left;">Thuật ngữ, phong cách có thống nhất không</td>
+</tr>
+</tbody>
+</table>
+<h2>Prompt dở vs Prompt tốt</h2>
+<h3>Bối cảnh: Tạo hàm xác thực form đăng ký</h3>
+<h3>❌ Prompt dở</h3>
+<pre><code>Viết một hàm xác thực form đăng ký người dùng, kiểm tra email và mật khẩu.
+</code></pre>
+<p>AI có thể tạo ra một phiên bản cơ bản, nhưng bỏ sót các trường hợp biên.</p>
+<h3>✅ Prompt tốt (Kèm Self-Critique)</h3>
+<pre><code>Viết một hàm xác thực form đăng ký người dùng, kiểm tra email và mật khẩu.
+
+Sau khi tạo xong, vui lòng tự kiểm tra:
+1. Đã bao quát hết các trường hợp biên chưa (giá trị rỗng, chuỗi rỗng, chỉ có dấu cách)?
+2. Có rủi ro bảo mật nào không (XSS, Injection)?
+3. Thông báo lỗi có rõ ràng không, người dùng có biết vấn đề cụ thể không?
+4. Có đoạn code nào lặp lại không cần thiết không?
+
+Nếu có vấn đề, hãy sửa lại và xuất ra phiên bản cuối cùng.
+</code></pre>
+<h3>Đầu ra của Prompt tốt</h3>
+<p>AI sẽ tạo code trước, sau đó kiểm tra từng mục, cuối cùng đưa ra bản cải tiến:</p>
+<pre><code class="language-javascript">// Tự kiểm tra phát hiện vấn đề:
+// 1. Bản gốc chưa xử lý trường hợp trim xong bị rỗng
+// 2. Thông báo lỗi chưa đủ cụ thể
+// 3. Regex email có thể chặt chẽ hơn
+
+// Phiên bản sau cải tiến:
+function validateRegistration(email, password) {
+  const errors = [];
+
+  // Xử lý ký tự trắng
+  const trimmedEmail = email?.trim() || &quot;&quot;;
+  const trimmedPassword = password || &quot;&quot;;
+
+  // Xác thực email
+  if (!trimmedEmail) {
+    errors.push(&quot;Email không được để trống&quot;);
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
+    errors.push(
+      &quot;Định dạng email không đúng, vui lòng kiểm tra xem có chứa @ và tên miền không&quot;,
+    );
+  }
+
+  // Xác thực mật khẩu
+  if (!trimmedPassword) {
+    errors.push(&quot;Mật khẩu không được để trống&quot;);
+  } else {
+    if (trimmedPassword.length &lt; 8) {
+      errors.push(&quot;Mật khẩu phải có ít nhất 8 ký tự&quot;);
+    }
+    if (!/[A-Z]/.test(trimmedPassword)) {
+      errors.push(&quot;Mật khẩu cần chứa ít nhất một chữ cái viết hoa&quot;);
+    }
+    if (!/[0-9]/.test(trimmedPassword)) {
+      errors.push(&quot;Mật khẩu cần chứa ít nhất một chữ số&quot;);
+    }
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors,
+  };
+}
+</code></pre>
+<h2>Kho từ vựng lệnh tự kiểm tra thường dùng</h2>
+<h3>Tự kiểm tra chung</h3>
+<pre><code>Sau khi tạo xong, vui lòng kiểm tra xem có thiếu sót hay sai lầm nào không, nếu có hãy sửa lại.
+</code></pre>
+<h3>Tự kiểm tra code</h3>
+<pre><code>Vui lòng tự kiểm tra:
+1. Các trường hợp biên đã được xử lý chưa?
+2. Có vấn đề bảo mật tiềm ẩn nào không?
+3. Hiệu năng có thể tối ưu hơn không?
+Nếu có vấn đề, hãy sửa lại và xuất ra phiên bản cuối cùng.
+</code></pre>
+<h3>Tự kiểm tra nghiêm ngặt</h3>
+<pre><code>Hãy đóng vai một người review code nghiêm khắc, thẩm định đoạn code bạn vừa tạo:
+- Tìm ra ít nhất 3 điểm có thể cải thiện
+- Đưa ra phiên bản đã cải thiện
+</code></pre>
+<h3>Tự kiểm tra theo chiều cụ thể</h3>
+<pre><code>Vui lòng thẩm định đoạn code này từ góc độ [Bảo mật/Hiệu năng/Khả năng đọc], chỉ ra vấn đề và sửa lại.
+</code></pre>
+<h2>Ví dụ thực chiến: Dự án danh sách việc cần làm</h2>
+<p>Tiểu Lý để AI tạo một hàm sắp xếp nhiệm vụ, và yêu cầu tự kiểm tra.</p>
+<h3>Prompt Self-Critique</h3>
+<pre><code>Viết một hàm sắp xếp cho ứng dụng danh sách việc cần làm của tôi, hỗ trợ sắp xếp theo các cách sau:
+- Theo thời gian tạo (Mới đến cũ)
+- Theo hạn chót (Gần đến xa, không có hạn chót xếp cuối cùng)
+- Theo độ ưu tiên (Cao &gt; Trung &gt; Thấp)
+
+Cấu trúc dữ liệu nhiệm vụ:
+{
+  id: string,
+  title: string,
+  createdAt: Date,
+  dueDate: Date | null,
+  priority: 'high' | 'medium' | 'low'
+}
+
+Sau khi tạo xong, vui lòng tự kiểm tra:
+1. Logic sắp xếp đã xử lý đúng null/undefined chưa?
+2. Thứ tự sắp xếp độ ưu tiên có đúng kỳ vọng không?
+3. Interface của hàm có rõ ràng dễ dùng không?
+Nếu có vấn đề, hãy sửa lại.
+</code></pre>
+<h3>Đầu ra của AI (Bao gồm quá trình tự kiểm tra)</h3>
+<pre><code class="language-javascript">// Thực hiện bản đầu...
+
+// Tự kiểm tra phát hiện:
+// 1. Khi dueDate là null, so sánh trực tiếp sẽ có vấn đề ✓ Đã xử lý
+// 2. Độ ưu tiên so sánh chuỗi không đáng tin cậy, cần map sang số → Cần sửa
+// 3. Hàm có thể linh hoạt hơn, hỗ trợ tăng dần/giảm dần → Đã tối ưu
+
+// Phiên bản cuối cùng:
+const priorityMap = { high: 3, medium: 2, low: 1 };
+
+function sortTasks(tasks, sortBy, order = &quot;desc&quot;) {
+  const direction = order === &quot;desc&quot; ? -1 : 1;
+
+  return [...tasks].sort((a, b) =&gt; {
+    switch (sortBy) {
+      case &quot;createdAt&quot;:
+        return direction * (new Date(b.createdAt) - new Date(a.createdAt));
+
+      case &quot;dueDate&quot;:
+        // null xếp cuối
+        if (!a.dueDate &amp;&amp; !b.dueDate) return 0;
+        if (!a.dueDate) return 1;
+        if (!b.dueDate) return -1;
+        return direction * (new Date(a.dueDate) - new Date(b.dueDate));
+
+      case &quot;priority&quot;:
+        return direction * (priorityMap[b.priority] - priorityMap[a.priority]);
+
+      default:
+        return 0;
+    }
+  });
+}
+</code></pre>
+<h2>Self-Critique lặp lại (Iterative)</h2>
+<p>Đối với đầu ra quan trọng, có thể tiến hành kiểm tra nhiều vòng:</p>
+<pre><code>Vòng 1: Kiểm tra tính đúng đắn của chức năng
+Vòng 2: Kiểm tra tính bảo mật
+Vòng 3: Kiểm tra hiệu năng và chất lượng code
+</code></pre>
+<p>Mỗi vòng tập trung vào một chiều, từng bước hoàn thiện.</p>
+<h2>Hạn chế của Self-Critique</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Hạn chế</th>
+<th style="text-align: left;">Biểu hiện</th>
+<th style="text-align: left;">Cách đối phó</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Thiên kiến tự xác nhận</td>
+<td style="text-align: left;">AI có thể cho rằng đầu ra của mình không có vấn đề</td>
+<td style="text-align: left;">Dùng lệnh "đóng vai người thẩm định nghiêm khắc"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Kiểm tra không triệt để</td>
+<td style="text-align: left;">Có thể bỏ sót một số chiều</td>
+<td style="text-align: left;">Liệt kê rõ các chiều cần kiểm tra</td>
+</tr>
+<tr>
+<td style="text-align: left;">Càng sửa càng rối</td>
+<td style="text-align: left;">Khi sửa lại sinh ra vấn đề mới</td>
+<td style="text-align: left;">Giới hạn phạm vi sửa đổi, mỗi lần chỉ sửa một chỗ</td>
+</tr>
+<tr>
+<td style="text-align: left;">Tăng token</td>
+<td style="text-align: left;">Đầu ra dài hơn</td>
+<td style="text-align: left;">Dùng cho đầu ra quan trọng, bỏ qua với nhiệm vụ đơn giản</td>
+</tr>
+</tbody>
+</table>
+<h2>Phối hợp với kiểm tra nhân công</h2>
+<p>Self-Critique không thể thay thế kiểm tra nhân công, mà là <strong>giảm bớt gánh nặng cho kiểm tra nhân công</strong>.</p>
+<p>Quy trình đề xuất:</p>
+<ol>
+<li>AI tạo + Tự kiểm tra → Ra bản đầu</li>
+<li>Bạn lướt nhanh, phát hiện vấn đề rõ ràng → Để AI sửa</li>
+<li>Cuối cùng nhân công xác nhận logic then chốt</li>
+</ol>
+<h2>Mẫu có thể sao chép</h2>
+<h3>Mẫu tạo code + Tự kiểm tra</h3>
+<pre><code class="language-markdown">[Mô tả nhiệm vụ]
+
+Sau khi tạo xong, vui lòng tự kiểm tra:
+
+1. Đã bao quát hết các trường hợp biên chưa?
+2. Có rủi ro bảo mật nào không?
+3. Code có rõ ràng dễ bảo trì không?
+   Nếu có vấn đề, hãy sửa lại và xuất ra phiên bản cuối cùng.
+</code></pre>
+<h3>Mẫu thẩm định nghiêm ngặt</h3>
+<pre><code class="language-markdown">Vui lòng đóng vai một [Vai trò: Người review code/Biên tập viên/QA] nghiêm khắc, thẩm định đầu ra bạn vừa tạo:
+
+- Tìm ra ít nhất [Số lượng] điểm có thể cải thiện
+- Giải thích ảnh hưởng của mỗi vấn đề
+- Đưa ra phiên bản đã cải thiện
+</code></pre>
+<h3>Mẫu thẩm định theo chiều cụ thể</h3>
+<pre><code class="language-markdown">Vui lòng thẩm định đầu ra của bạn từ các góc độ sau:
+
+- [ ] [Chiều 1]
+- [ ] [Chiều 2]
+- [ ] [Chiều 3]
+
+Đối với mỗi chiều, hãy nói rõ có đạt yêu cầu không, nếu không hãy sửa lại.
+</code></pre>
+<h2>Trọng điểm bài học</h2>
+<p>✓ <strong>Bản chất của Self-Critique</strong>: Để AI tự kiểm tra sau khi tạo, phát hiện và sửa lỗi</p>
+<p>✓ <strong>Tại sao hiệu quả</strong>: Tự kiểm tra đổi góc nhìn, có thể phát hiện vấn đề bị bỏ sót lần đầu</p>
+<p>✓ <strong>Chiều cốt lõi</strong>: Tính đúng đắn chức năng, trường hợp biên, tính bảo mật, hiệu năng, khả năng đọc</p>
+<p>✓ <strong>Lệnh thường dùng</strong>: "Vui lòng tự kiểm tra... nếu có vấn đề hãy sửa lại", "Đóng vai người thẩm định nghiêm khắc"</p>
+<p>✓ <strong>Hạn chế</strong>: Có thể tự công nhận, kiểm tra không triệt để, cần phối hợp kiểm tra nhân công</p>
+<p>Bài sau, chúng ta sẽ học cách lựa chọn kỹ thuật phù hợp —— Hướng dẫn lựa chọn kỹ thuật.</p>
+</body>
+</html>

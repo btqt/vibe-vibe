@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.3.3 Feature Strategy</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "2.3.3 Chiến lược tính năng: Nghệ thuật cắt giảm tính năng và danh sách những việc không làm"</h2>
+<p><img alt="02-mindset_2.3-subtraction-thinking_2.3.3-feature-strategy.png" src="../../../public/images/Basic/02-mindset_2.3-subtraction-thinking_2.3.3-feature-strategy.png" /></p>
+<h1>2.3.3 Chiến lược tính năng: Nghệ thuật cắt giảm tính năng và danh sách những việc không làm</h1>
+<p>Đã hiểu ý nghĩa của MVP, câu hỏi tiếp theo là: Cụ thể làm phép trừ như thế nào? Làm sao để cắt giảm từ 20 tính năng xuống còn 3 tính năng?</p>
+<p>Phần này cung cấp một bộ phương pháp hoàn chỉnh có thể thực hiện được, bao gồm khung sàng lọc tính năng và kỹ thuật lập "danh sách những việc không làm" (not-to-do list).</p>
+<h2>Ba câu hỏi then chốt để cắt giảm tính năng</h2>
+<p>Khi đối mặt với mỗi tính năng, hãy tự hỏi ba câu hỏi quan trọng sau:</p>
+<h3>Câu hỏi 1: Không có tính năng này, sản phẩm còn dùng được không?</h3>
+<p>Câu hỏi này giúp bạn phân biệt "tính năng cốt lõi" và "tính năng bổ sung".</p>
+<p><strong>Tiêu chuẩn đánh giá</strong>:</p>
+<ul>
+<li>Nếu câu trả lời là "Không thể" → Tính năng này có thể là tính năng cốt lõi</li>
+<li>Nếu câu trả lời là "Có thể" → Tính năng này không phải là tính năng cốt lõi</li>
+</ul>
+<p><strong>Ví dụ về danh sách việc cần làm (to-do list)</strong>:
+| Tính năng | Không có nó có dùng được không? | Kết luận |
+| :--- | :--- | :--- |
+| Thêm nhiệm vụ | Không thể | Tính năng cốt lõi |
+| Hoàn thành nhiệm vụ | Không thể | Tính năng cốt lõi |
+| Xem danh sách nhiệm vụ | Không thể | Tính năng cốt lõi |
+| Phân loại nhiệm vụ | Có thể (tạm thời chưa phân loại cũng được) | Không cốt lõi |
+| Chế độ tối (Dark mode) | Có thể (không ảnh hưởng đến việc sử dụng) | Không cốt lõi |
+| Báo cáo thống kê | Có thể (biết đã hoàn thành là được) | Không cốt lõi |</p>
+<h3>Câu hỏi 2: Tính năng này có thể xác minh giả thuyết cốt lõi của tôi không?</h3>
+<p>Câu hỏi này giúp bạn tập trung vào các tính năng dùng để xác minh giả thuyết.</p>
+<p><strong>Tiêu chuẩn đánh giá</strong>:</p>
+<ul>
+<li>Nếu câu trả lời là "Có thể" → Cân nhắc giữ lại</li>
+<li>Nếu câu trả lời là "Không thể" → Tạm thời không làm</li>
+</ul>
+<p><strong>Ví dụ về danh sách việc cần làm</strong>:</p>
+<p>Giả sử giả thuyết cốt lõi là: "Danh sách việc cần làm cực giản (minimalist) dễ duy trì hơn giấy nhớ"</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Tính năng</th>
+<th style="text-align: left;">Có thể xác minh giả thuyết không?</th>
+<th style="text-align: left;">Lý do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Thêm nhiệm vụ một chạm</td>
+<td style="text-align: left;">Có thể</td>
+<td style="text-align: left;">Kiểm tra xem "cực giản" có thực sự dễ dùng hơn không</td>
+</tr>
+<tr>
+<td style="text-align: left;">Lịch check-in</td>
+<td style="text-align: left;">Không chắc chắn</td>
+<td style="text-align: left;">Có thể hữu ích, nhưng không phải là then chốt để xác minh "cực giản"</td>
+</tr>
+<tr>
+<td style="text-align: left;">Chia sẻ mạng xã hội</td>
+<td style="text-align: left;">Không thể</td>
+<td style="text-align: left;">Đây là tính năng tăng trưởng, không phải tính năng xác minh</td>
+</tr>
+<tr>
+<td style="text-align: left;">Hệ thống thành tích</td>
+<td style="text-align: left;">Không thể</td>
+<td style="text-align: left;">Đây là tính năng giữ chân người dùng (retention), xác minh giá trị cốt lõi trước đã</td>
+</tr>
+</tbody>
+</table>
+<h3>Câu hỏi 3: Người dùng có cần tính năng này ngay lần đầu sử dụng không?</h3>
+<p>Câu hỏi này giúp bạn phân biệt "tính năng thu hút khách hàng" và "tính năng giữ chân người dùng".</p>
+<p><strong>Tiêu chuẩn đánh giá</strong>:</p>
+<ul>
+<li>Lần đầu sử dụng đã cần → Có thể là P0 (Phải làm ngay)</li>
+<li>Dùng một thời gian mới cần → Có thể là P1 (Làm ở phiên bản sau)</li>
+<li>Thêu hoa trên gấm (có thì tốt, không có cũng không sao) → Có thể là P2 (Có thời gian sẽ làm)</li>
+</ul>
+<p><strong>Hiểu biết sâu sắc (insight) then chốt</strong>:</p>
+<ul>
+<li>Người dùng mới chỉ quan tâm "thứ này có thể giúp tôi làm gì"</li>
+<li>Bảng xếp hạng, hệ thống thành tích, tính năng xã hội là để người dùng "ở lại", chứ không phải để người dùng "bước vào"</li>
+<li>Giai đoạn MVP nên tập trung vào việc để người dùng "bước vào và trải nghiệm giá trị cốt lõi"</li>
+</ul>
+<h2>Khung ưu tiên P0/P1/P2</h2>
+<p>Sau khi sàng lọc bằng ba câu hỏi, hãy chia các tính năng thành ba cấp độ:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Mức ưu tiên</th>
+<th style="text-align: left;">Định nghĩa</th>
+<th style="text-align: left;">Hành động</th>
+<th style="text-align: left;">Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>P0</strong></td>
+<td style="text-align: left;">Không có thì không thể xác minh giá trị cốt lõi</td>
+<td style="text-align: left;">Phải bao gồm trong MVP</td>
+<td style="text-align: left;">Thêm nhiệm vụ, hoàn thành nhiệm vụ</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>P1</strong></td>
+<td style="text-align: left;">Quan trọng nhưng có thể lặp lại sau</td>
+<td style="text-align: left;">Làm ở phiên bản V2</td>
+<td style="text-align: left;">Phân loại nhiệm vụ, tính năng nhắc nhở</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>P2</strong></td>
+<td style="text-align: left;">Thêu hoa trên gấm</td>
+<td style="text-align: left;">Có thời gian hãy nói</td>
+<td style="text-align: left;">Chế độ tối, báo cáo thống kê</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nguyên tắc quan trọng</strong>:</p>
+<ul>
+<li>Tính năng P0 không vượt quá 3-5 cái</li>
+<li>Nếu P0 vượt quá 5 cái, chứng tỏ bạn chưa suy nghĩ rõ ràng về giá trị cốt lõi là gì</li>
+<li>Viết P1 và P2 ra nhưng tạm thời không làm, để tránh quên và cũng để tránh cám dỗ</li>
+</ul>
+<h2>Quy trình ra quyết định cắt giảm tính năng</h2>
+<p>Sắp xếp các phương pháp trên thành một quy trình ra quyết định:</p>
+<ol>
+<li><strong>Liệt kê tất cả các tính năng muốn làm</strong></li>
+<li><strong>Đặt câu hỏi 1: Không có nó có dùng được không?</strong><ul>
+<li>Không thể → Chuyển sang câu hỏi 2</li>
+<li>Có thể → Chuyển sang câu hỏi 3</li>
+</ul>
+</li>
+<li><strong>Đặt câu hỏi 2: Có thể xác minh giả thuyết cốt lõi không?</strong><ul>
+<li>Có thể → Đánh dấu là P0</li>
+<li>Không thể → Tạm thời không làm</li>
+</ul>
+</li>
+<li><strong>Đặt câu hỏi 3: Lần đầu sử dụng có cần không?</strong><ul>
+<li>Có → Đánh dấu là P1</li>
+<li>Không → Đánh dấu là P2</li>
+</ul>
+</li>
+</ol>
+<h2>Ma thuật của "Danh sách những việc không làm"</h2>
+<p>Đa số mọi người chỉ liệt kê "danh sách việc cần làm" (to-do list), rất ít người liệt kê "danh sách những việc không làm" (not-to-do list).</p>
+<p>Nhưng "danh sách những việc không làm" có thể quan trọng hơn "danh sách việc cần làm".</p>
+<h3>Tại sao cần "danh sách những việc không làm"</h3>
+<h4>Lý do 1: Xác định ranh giới rõ ràng</h4>
+<p>Khi bạn bảo AI "giúp tôi làm một danh sách việc cần làm", AI có thể hỏi bạn: Có muốn thêm đồng bộ lịch không? Có muốn hỗ trợ cộng tác nhóm không?</p>
+<p>Nếu bạn không có ranh giới rõ ràng, rất dễ bị những câu hỏi này dẫn đi chệch hướng.</p>
+<p>"Danh sách những việc không làm" giúp cả bạn và AI đều rõ ràng: Những việc này không nằm trong phạm vi.</p>
+<h4>Lý do 2: Chống lại cám dỗ</h4>
+<p>Trong quá trình làm dự án, bạn sẽ liên tục nảy sinh ý tưởng mới:</p>
+<ul>
+<li>"Nếu thêm một tính năng XX thì có tốt hơn không?"</li>
+<li>"Sản phẩm cạnh tranh đều có XX, mình có phải cũng nên có không?"</li>
+<li>"Người dùng phản hồi là muốn XX..."</li>
+</ul>
+<p>Những cám dỗ này sẽ liên tục làm phình to phạm vi dự án của bạn.</p>
+<p>"Danh sách những việc không làm" là phòng tuyến của bạn: Những tính năng này tôi đã nghĩ qua rồi, quyết định không làm, lý do ở đây.</p>
+<h4>Lý do 3: Công cụ giao tiếp</h4>
+<p>Khi người khác hỏi "tại sao bạn không làm tính năng XX", bạn có thể trả lời rõ ràng:</p>
+<blockquote>
+<p>Tính năng này nằm trong "danh sách những việc không làm" của tôi. Lý do là [lý do]. Tôi sẽ xem xét lại khi [điều kiện được thỏa mãn].</p>
+</blockquote>
+<p>Điều này chuyên nghiệp hơn nhiều so với "chưa kịp làm" hoặc "để sau hãy nói".</p>
+<h3>Ba chiều của "danh sách những việc không làm"</h3>
+<p>Một "danh sách những việc không làm" hoàn chỉnh nên bao phủ ba chiều:</p>
+<h4>Chiều 1: Các tính năng không làm</h4>
+<p>Liệt kê các tính năng bạn quyết định dứt khoát không làm, cùng với lý do.</p>
+<h4>Chiều 2: Nhóm người dùng không xem xét</h4>
+<p>Sản phẩm của bạn không thể phục vụ tất cả mọi người. Xác định rõ bạn không định phục vụ ai.</p>
+<h4>Chiều 3: Các chỉ số không theo đuổi</h4>
+<p>Giai đoạn MVP bạn nên tập trung vào xác minh, chứ không phải tăng trưởng. Xác định rõ bạn tạm thời không quan tâm đến chỉ số nào.</p>
+<h2>Mẫu hoàn chỉnh "Danh sách những việc không làm"</h2>
+<pre><code class="language-markdown"># Danh sách những việc không làm (Phiên bản V1 xác định rõ những việc không làm)
+
+## I. Các tính năng không làm
+
+| Tính năng       | Lý do không làm | Khi nào xem xét lại |
+| :-------------- | :-------------- | :------------------ |
+| [Tên tính năng] | [Lý do]         | [Điều kiện]         |
+
+## II. Nhóm người dùng không xem xét
+
+| Nhóm người dùng    | Lý do không xem xét |
+| :----------------- | :------------------ |
+| [Mô tả người dùng] | [Lý do]             |
+
+## III. Các chỉ số không theo đuổi
+
+| Chỉ số       | Lý do không theo đuổi | Điểm quan tâm thay thế |
+| :----------- | :-------------------- | :--------------------- |
+| [Tên chỉ số] | [Lý do]               | [Chỉ số thay thế]      |
+</code></pre>
+<h2>Ví dụ 1: "Danh sách những việc không làm" của dự án danh sách việc cần làm</h2>
+<pre><code class="language-markdown"># Danh sách những việc không làm (Phiên bản V1)
+
+## I. Các tính năng không làm
+
+| Tính năng           | Lý do không làm                                                       | Khi nào xem xét lại                           |
+| :------------------ | :-------------------------------------------------------------------- | :-------------------------------------------- |
+| Đồng bộ đa thiết bị | Cần phát triển backend, làm tăng đáng kể độ phức tạp                  | Sau khi xác minh thành công tính năng cốt lõi |
+| Cộng tác nhóm       | Không phải giá trị cốt lõi của công cụ cá nhân                        | Khi có nhu cầu sử dụng nhóm rõ ràng           |
+| Chế độ tối          | Tính năng làm đẹp thuần túy, không ảnh hưởng xác minh cốt lõi         | Khi có người dùng phản hồi mạnh mẽ            |
+| Chế độ xem lịch     | Tăng khối lượng công việc phát triển, không phải trải nghiệm cực giản | Sau khi tính năng P0 ổn định                  |
+| Báo cáo thống kê    | Không giúp ích cho việc xác minh &quot;cực giản dễ dùng&quot;                   | Sau khi tỷ lệ giữ chân người dùng ổn định     |
+| Widget (Tiện ích)   | Tính năng đặc thù của nền tảng, tăng chi phí bảo trì                  | Sau khi sản phẩm chính trưởng thành           |
+
+## II. Nhóm người dùng không xem xét
+
+| Nhóm người dùng             | Lý do không xem xét                                                    |
+| :-------------------------- | :--------------------------------------------------------------------- |
+| Nhóm doanh nghiệp lớn       | Nhu cầu phức tạp, không phù hợp với định vị công cụ cá nhân            |
+| Quản lý dự án chuyên nghiệp | Có công cụ chuyên dụng trưởng thành, cạnh tranh khốc liệt              |
+| Người mù công nghệ          | Chi phí học tập cao, người dùng sớm nên là người dùng nhẹ (light user) |
+
+## III. Các chỉ số không theo đuổi
+
+| Chỉ số                                  | Lý do không theo đuổi                         | Điểm quan tâm thay thế                           |
+| :-------------------------------------- | :-------------------------------------------- | :----------------------------------------------- |
+| Số người dùng hoạt động hàng ngày (DAU) | Giai đoạn MVP xác minh giá trị quan trọng hơn | Tần suất sử dụng tính năng cốt lõi               |
+| Tốc độ tăng trưởng người dùng           | Tăng trưởng có thể che lấp vấn đề             | Tỷ lệ giữ chân người dùng và chất lượng phản hồi |
+| Độ hoàn thiện tính năng                 | Số lượng tính năng không phải là trọng điểm   | Kết quả xác minh giả thuyết                      |
+</code></pre>
+<h2>Ví dụ 2: "Danh sách những việc không làm" của dự án phân tích dữ liệu</h2>
+<pre><code class="language-markdown"># Danh sách những việc không làm (Phân tích dữ liệu bán hàng Phiên bản V1)
+
+## I. Các tính năng không làm
+
+| Tính năng                       | Lý do không làm                                                   | Khi nào xem xét lại                                 |
+| :------------------------------ | :---------------------------------------------------------------- | :-------------------------------------------------- |
+| Cập nhật dữ liệu thời gian thực | Tăng độ phức tạp kỹ thuật, không phải then chốt để ra quyết định  | Khi có nhu cầu ra quyết định thời gian thực rõ ràng |
+| Drill-down (khoan sâu) đa chiều | Thời gian phát triển dài, không linh hoạt bằng phân tích thủ công | Sau khi sử dụng báo cáo cơ bản ổn định              |
+| Tự động tạo báo cáo             | Không phải nỗi đau hiện tại                                       | Khi người dùng cần rõ ràng                          |
+| Xuất dữ liệu                    | Không phải mục tiêu xác minh cốt lõi                              | Khi có nhu cầu phân tích thứ cấp                    |
+
+## II. Nhóm người dùng không xem xét
+
+| Nhóm người dùng             | Lý do không xem xét                                        |
+| :-------------------------- | :--------------------------------------------------------- |
+| Bộ phận tài chính           | Điểm quan tâm khác nhau, cần báo cáo tài chính chuyên dụng |
+| Đội ngũ chăm sóc khách hàng | Kịch bản sử dụng khác biệt lớn, nhu cầu khác nhau          |
+| Đối tác bên ngoài           | Cân nhắc về an toàn dữ liệu, quản lý quyền hạn phức tạp    |
+
+## III. Các chỉ số không theo đuổi
+
+| Chỉ số                    | Lý do không theo đuổi                     | Điểm quan tâm thay thế                                |
+| :------------------------ | :---------------------------------------- | :---------------------------------------------------- |
+| Số lượng báo cáo          | Số lượng không bằng giá trị               | Hiệu quả ra quyết định được nâng cao                  |
+| Lượt truy cập trang       | Tần suất sử dụng không phải là trọng điểm | Số lượng đề xuất ra quyết định thực tế được chấp nhận |
+| Độ chính xác dữ liệu 100% | Bẫy chủ nghĩa hoàn hảo, 99% là đủ dùng    | Tính chính xác của kết luận then chốt                 |
+</code></pre>
+<h2>Kỹ thuật lập "danh sách những việc không làm"</h2>
+<h3>Kỹ thuật 1: Sàng lọc dựa trên giả thuyết cốt lõi</h3>
+<p>Đối với mỗi tính năng muốn làm, hãy tự hỏi:</p>
+<ul>
+<li>Tính năng này có giúp tôi xác minh giả thuyết cốt lõi không?</li>
+<li>Nếu không, tại sao phải làm?</li>
+</ul>
+<h3>Kỹ thuật 2: Cân nhắc ràng buộc về nguồn lực</h3>
+<p>Đánh giá trung thực các hạn chế của bạn:</p>
+<ul>
+<li>Thời gian: Có thể đầu tư bao nhiêu thời gian phát triển?</li>
+<li>Kỹ thuật: Có hạn chế gì về kỹ thuật?</li>
+<li>Ngân sách: Có thể chịu được bao nhiêu chi phí?</li>
+</ul>
+<h3>Kỹ thuật 3: Thiết lập điều kiện xem xét lại rõ ràng</h3>
+<p>Đối với mỗi tính năng "không làm", hãy xác định rõ khi nào sẽ xem xét lại:</p>
+<ul>
+<li>Khi số lượng người dùng đạt đến một ngưỡng nào đó</li>
+<li>Khi năng lực kỹ thuật nâng cao đến một trình độ nào đó</li>
+<li>Khi sản phẩm cạnh tranh xuất hiện biến động nào đó</li>
+</ul>
+<h3>Kỹ thuật 4: Định kỳ xem xét và điều chỉnh</h3>
+<p>"Danh sách những việc không làm" không phải là bất biến:</p>
+<ul>
+<li>Xem xét lại mỗi tháng một lần</li>
+<li>Điều chỉnh dựa trên những bài học và phản hồi mới</li>
+<li>Ghi lại lý do điều chỉnh và những cân nhắc</li>
+</ul>
+<h2>Kịch bản sử dụng "danh sách những việc không làm"</h2>
+<h3>Kịch bản 1: Khi bắt đầu dự án mới</h3>
+<p>Lập "danh sách những việc không làm" ngay trong giai đoạn khởi động dự án, xác định rõ ranh giới dự án.</p>
+<h3>Kịch bản 2: Khi đối mặt với sự phình to tính năng</h3>
+<p>Khi phát hiện tính năng càng làm càng nhiều, hãy dùng "danh sách những việc không làm" để tập trung trở lại.</p>
+<h3>Kịch bản 3: Khi xử lý phản hồi của người dùng</h3>
+<p>Khi người dùng yêu cầu tính năng mới, hãy đối chiếu với "danh sách những việc không làm" để quyết định có nên xem xét hay không.</p>
+<h3>Kịch bản 4: Khi cộng tác nhóm</h3>
+<p>Dùng "danh sách những việc không làm" để thống nhất nhận thức của nhóm, tránh thảo luận lặp lại về những việc đã quyết định không làm.</p>
+<h3>Kịch bản 5: Khi cộng tác với AI</h3>
+<p>Khi đưa ra yêu cầu cho AI, hãy đưa "danh sách những việc không làm" làm điều kiện ranh giới nói rõ cho AI.</p>
+<h2>Các lầm tưởng thường gặp và cách tránh</h2>
+<h3>Lầm tưởng 1: "Danh sách những việc không làm" quá cứng nhắc</h3>
+<p><strong>Vấn đề</strong>: Coi "danh sách những việc không làm" là ràng buộc tuyệt đối, mất đi tính linh hoạt.</p>
+<p><strong>Cách giải quyết</strong>:</p>
+<ul>
+<li>Thiết lập điều kiện xem xét lại rõ ràng cho mỗi việc "không làm"</li>
+<li>Định kỳ xem xét và điều chỉnh danh sách</li>
+<li>Giữ tâm thái cởi mở, tiếp nhận thông tin mới</li>
+</ul>
+<h3>Lầm tưởng 2: Lý do không đầy đủ</h3>
+<p><strong>Vấn đề</strong>: Lý do "không làm" rất mơ hồ, ví dụ "tạm thời không cần".</p>
+<p><strong>Cách giải quyết</strong>:</p>
+<ul>
+<li>Giải thích cụ thể lý do không làm: hạn chế nguồn lực, mức ưu tiên không cao, không liên quan đến giả thuyết cốt lõi, v.v.</li>
+<li>Dùng dữ liệu để hỗ trợ phán đoán: phản hồi của người dùng, tần suất sử dụng, chi phí phát triển, v.v.</li>
+</ul>
+<h3>Lầm tưởng 3: Không giao tiếp</h3>
+<p><strong>Vấn đề</strong>: Lập "danh sách những việc không làm" nhưng không nói cho các bên liên quan.</p>
+<p><strong>Cách giải quyết</strong>:</p>
+<ul>
+<li>Chia sẻ danh sách với thành viên trong nhóm</li>
+<li>Ghi lại danh sách trong công cụ quản lý dự án</li>
+<li>Định kỳ đồng bộ trạng thái danh sách</li>
+</ul>
+<h3>Lầm tưởng 4: Quên cập nhật</h3>
+<p><strong>Vấn đề</strong>: Môi trường dự án thay đổi, nhưng "danh sách những việc không làm" không được cập nhật kịp thời.</p>
+<p><strong>Cách giải quyết</strong>:</p>
+<ul>
+<li>Thiết lập nhắc nhở xem xét định kỳ</li>
+<li>Đưa việc cập nhật "danh sách những việc không làm" vào quy trình dự án</li>
+<li>Ghi lại lý do mỗi lần điều chỉnh</li>
+</ul>
+<h2>Bài tập thực hành</h2>
+<h3>Bài tập 1: Lập "danh sách những việc không làm" cho dự án hiện tại của bạn</h3>
+<ol>
+<li>Liệt kê tất cả các tính năng bạn đang xem xét</li>
+<li>Dùng ba câu hỏi then chốt để lọc ra tính năng P0</li>
+<li>Lập "danh sách những việc không làm" chi tiết cho các tính năng còn lại</li>
+</ol>
+<h3>Bài tập 2: Phân tích một dự án thất bại</h3>
+<p>Tìm một dự án thất bại mà bạn hoặc người khác từng làm, phân tích:</p>
+<ul>
+<li>"Danh sách việc cần làm" lúc đó là gì?</li>
+<li>Nếu lúc đó có "danh sách những việc không làm", sẽ có gì khác biệt?</li>
+<li>Bây giờ hãy lập "danh sách những việc không làm" cho dự án này</li>
+</ul>
+<h3>Bài tập 3: Thử nghiệm cộng tác với AI</h3>
+<p>Đưa ra một yêu cầu cho AI, quan sát xem nó có đề xuất tính năng bổ sung không:</p>
+<ul>
+<li>Không đưa ra điều kiện ranh giới, xem AI sẽ đề xuất gì</li>
+<li>Đưa ra "danh sách những việc không làm", xem phản ứng của AI</li>
+<li>So sánh kết quả của hai trường hợp</li>
+</ul>
+<p>Thông qua việc sàng lọc tính năng có hệ thống và quản lý bằng "danh sách những việc không làm", bạn có thể tránh việc phình to tính năng một cách hiệu quả, tập trung vào giá trị cốt lõi, nâng cao tỷ lệ thành công của dự án. Hãy nhớ rằng: <strong>Quyết định không làm gì quan trọng hơn quyết định làm gì</strong>.</p>
+</body>
+</html>

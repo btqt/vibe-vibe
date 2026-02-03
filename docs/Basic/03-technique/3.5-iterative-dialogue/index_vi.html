@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "3.5 Nghệ thuật đối thoại lặp lại"</h2>
+<p><img alt="03-technique_3.5-iterative-dialogue_index.png" src="../../../public/images/Basic/03-technique_3.5-iterative-dialogue_index.png" /></p>
+<h1>3.5 Nghệ thuật đối thoại lặp lại: Từ "làm một lần xong ngay" đến "từng bước tiếp cận"</h1>
+<blockquote>
+<p><strong>Mục tiêu phần này</strong>: Nắm vững kỹ thuật đối thoại nhiều vòng, học cách từng bước tiếp cận kết quả lý tưởng trong quá trình đối thoại</p>
+</blockquote>
+<p>Bạn đã học được cách viết prompt có cấu trúc (3.2), nắm vững kỹ thuật nâng cao (3.3), thậm chí có thể viết ra một bản PRD hoàn chỉnh (3.4). Nhưng khi bạn giao tất cả những thứ này cho AI, rất có thể bạn sẽ phát hiện ra: <strong>Output lần đầu tiên thường không phải là thứ bạn muốn</strong>.</p>
+<p>Đây không phải vấn đề của bạn, cũng không phải vấn đề của AI. Đây là bản chất của đối thoại.</p>
+<h2>Sự thấu hiểu cốt lõi</h2>
+<blockquote>
+<p>"Theo đuổi 'một lần hoàn hảo' là ảo giác, 'từng bước tiếp cận' mới là chính đạo."</p>
+</blockquote>
+<p>Tưởng tượng bạn đang sửa nhà. Bạn sẽ không kỳ vọng thợ sơn quét xong nước đầu tiên mà đã hoàn hảo không tì vết. Bạn sẽ xem hiệu quả, góp ý, rồi điều chỉnh lại. Đối thoại với AI cũng như vậy — nó là một <strong>quá trình hợp tác</strong>, không phải một lần <strong>thực thi mệnh lệnh</strong>.</p>
+<h2>Qua phần học này, bạn sẽ nắm vững</h2>
+<ul>
+<li>Hiểu tại sao "đặt câu hỏi một lần" thường là chưa đủ</li>
+<li>Nắm vững mô hình ba giai đoạn của đối thoại lặp lại: Xem hướng đi → Sửa vấn đề → Mài giũa chi tiết</li>
+<li>Học cách dùng khung SBI để phản hồi hiệu quả cho AI</li>
+<li>Quản lý ngữ cảnh của cuộc đối thoại dài, tránh để AI "mất trí nhớ"</li>
+<li>Biết khi nào nên bắt đầu cuộc hội thoại mới, và làm thế nào để "chuyển nhà"</li>
+</ul>
+<h2>Vị trí của phần này trong chương 3</h2>
+<pre><code>3.1 Cơ bản về Prompt        →  Biết nên nói cho AI thông tin gì
+      ↓
+3.2 Khung cấu trúc          →  Học cách tổ chức các thông tin này
+      ↓
+3.3 Kỹ thuật nâng cao       →  Nắm vững các &quot;cách hỏi&quot; khác nhau
+      ↓
+3.4 Bản PRD đầu tiên        →  Tích hợp tư duy, hình thành bản nhiệm vụ
+      ↓
+3.5 Đối thoại lặp lại (Phần này) →  Điều chỉnh từng bước trong khi thực thi, tiếp cận kết quả lý tưởng
+      ↓
+3.6 Chiến lược Debug        →  Cách sửa chữa khi AI mắc lỗi
+</code></pre>
+<p>Nếu nói 3.1-3.4 là dạy bạn "cách mở đầu tốt", thì phần này chính là dạy bạn "cách chạy hết chặng đường".</p>
+<h2>Cấu trúc phần này</h2>
+<table>
+<thead>
+<tr>
+<th>Tiểu tiết</th>
+<th>Nội dung cốt lõi</th>
+<th>Bạn sẽ nhận được</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3.5.1</td>
+<td>Tại sao hỏi một lần thường là chưa đủ</td>
+<td>Kỳ vọng đúng đắn: Lặp lại là bình thường, không phải thất bại</td>
+</tr>
+<tr>
+<td>3.5.2</td>
+<td>Mô hình cơ bản của đối thoại lặp lại</td>
+<td>Mô hình ba giai đoạn + Ví dụ đối thoại đầy đủ</td>
+</tr>
+<tr>
+<td>3.5.3</td>
+<td>Nghệ thuật phản hồi hiệu quả</td>
+<td>Khung SBI + Kho mẫu câu phản hồi</td>
+</tr>
+<tr>
+<td>3.5.4</td>
+<td>Quản lý ngữ cảnh</td>
+<td>Bốn kỹ thuật tránh để AI "mất trí nhớ"</td>
+</tr>
+<tr>
+<td>3.5.5</td>
+<td>Biết khi nào nên bắt đầu đối thoại mới</td>
+<td>Phán đoán thời điểm "chuyển nhà" + Mẫu khởi động</td>
+</tr>
+</tbody>
+</table>
+<h2>Tiếp nối trường hợp: Danh sách việc cần làm của Tiểu Lý</h2>
+<p>Phần này tiếp tục sử dụng dự án danh sách việc cần làm của Tiểu Lý. Bạn sẽ thấy một quá trình lặp lại hoàn chỉnh:</p>
+<pre><code>Nhu cầu ban đầu: &quot;Giúp tôi thực hiện chức năng thêm nhiệm vụ&quot;
+    ↓
+Vòng 1: AI đưa ra bản thực hiện cơ bản (Hướng đi đúng, nhưng chi tiết kém)
+    ↓
+Phản hồi: &quot;Ô nhập liệu nhỏ quá, hơn nữa chưa có xác thực nhập rỗng&quot;
+    ↓
+Vòng 2: AI sửa chữa, thêm xác thực (Chức năng đúng, nhưng cấu trúc chưa ưng ý)
+    ↓
+Phản hồi: &quot;Logic xác thực đang để trong component, tôi muốn tách thành hàm độc lập&quot;
+    ↓
+Vòng 3: Phiên bản cuối cùng (Cấu trúc rõ ràng, dễ bảo trì)
+</code></pre>
+<p>Ba vòng đối thoại, từ "dùng được" đến "dùng tốt". Đây chính là sức mạnh của sự lặp lại.</p>
+<h2>Lời khuyên học tập</h2>
+<ol>
+<li><strong>Điều chỉnh kỳ vọng</strong>: Output lần đầu không hoàn hảo là bình thường, đừng nản lòng</li>
+<li><strong>Vừa học vừa luyện</strong>: Mỗi tiểu tiết đều có mẫu có thể sao chép, khuyên bạn nên sử dụng thực tế</li>
+<li><strong>Ghi chép kinh nghiệm</strong>: Thu thập các mẫu câu phản hồi hiệu quả, hình thành "kho vũ khí" của riêng mình</li>
+</ol>
+<p>Sẵn sàng chưa? Hãy bắt đầu từ "Tại sao hỏi một lần thường là chưa đủ".</p>
+</body>
+</html>
