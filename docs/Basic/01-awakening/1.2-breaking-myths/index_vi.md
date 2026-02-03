@@ -55,6 +55,6 @@ Trường hợp thực tế có sức thuyết phục hơn lời nói suông:
 
 Hãy nhớ: **Mục tiêu không phải là trở thành lập trình viên, mà là có thể dùng code giải quyết vấn đề của chính mình.**
 
-Bây giờ hãy bắt đầu từ câu hỏi phổ biến nhất: [Lập trình cần giỏi toán?](./1.2.1-math-myth.md)
+Bây giờ hãy bắt đầu từ câu hỏi phổ biến nhất: [Lập trình cần giỏi toán?](./1.2.1-math-myth_vi.md)
 
 > Học xong chương này, bạn sẽ hiểu: Năng lực cốt lõi của thời đại lập trình AI là "diễn đạt nhu cầu rõ ràng", chứ không phải toán học, tiếng Anh hay thuật ngữ kỹ thuật. Phần sau, chúng ta sẽ xem có những công cụ nào có thể giúp bạn bắt đầu.
