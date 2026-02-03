@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.2.2 Generate Static</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.2.2 Tạo trang tĩnh"
+order: 3</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.2-build-page_4.2.2-generate-static.png" src="../../../public/images/Basic/04-practice-0-to-1_4.2-build-page_4.2.2-generate-static.png" /></p>
+<h1>4.2.2 Tạo trang tĩnh</h1>
+<blockquote>
+<p><strong>Mục tiêu bước này</strong>: Gửi Prompt cho AI, lấy trang tĩnh phiên bản đầu tiên</p>
+</blockquote>
+<h2>Gửi Prompt</h2>
+<p>Bây giờ, hãy gửi Prompt mà bạn đã chuẩn bị ở bước trước cho AI IDE.</p>
+<p>Còn nhớ giao diện đã giới thiệu ở phần 4.1.2 không? Tìm <strong>Khu vực hội thoại (Chat)</strong>, dán Prompt vào đó và nhấn Enter để gửi.</p>
+<p>Vị trí khu vực hội thoại của các AI IDE khác nhau có thể hơi khác nhau, nhưng đều rất dễ tìm:</p>
+<ul>
+<li>Thường nằm ở dưới cùng hoặc thanh bên của giao diện</li>
+<li>Có thể được đánh dấu là "Chat", "AI", "Composer", "Cascade", v.v.</li>
+<li>Một số công cụ có thể mở bằng phím tắt (như <code>Cmd/Ctrl + L</code> trong Cursor)</li>
+</ul>
+<p>::: tip Không tìm thấy khu vực hội thoại?
+Xem lại hướng dẫn bố cục giao diện trong <a href="../4.1-before-start/4.1.2-prepare-ai-ide_vi.html">4.1.2 Chuẩn bị AI IDE của bạn</a>. Nếu công cụ bạn sử dụng không nằm trong danh sách phổ biến, bạn có thể xem <a href="../../01-awakening/1.3-tools-guide/1.3.1-tool-overview_vi.html">1.3.1 Bản đồ toàn cảnh công cụ lập trình AI</a> để biết thêm thông tin.
+:::</p>
+<p>Sau khi gửi, hãy đợi AI tạo mã nguồn. Thường mất khoảng 10-30 giây.</p>
+<h2>Bạn sẽ nhìn thấy gì</h2>
+<p>Sau khi AI tạo xong, bạn sẽ thấy một trang danh sách việc cần làm, bao gồm cấu trúc sau:</p>
+<pre><code>┌─────────────────────────────────────┐
+│                                     │
+│        Danh sách việc cần làm       │  ← Khu vực tiêu đề
+│                                     │
+├─────────────────────────────────────┤
+│  ┌─────────────────────┐ ┌────┐    │
+│  │ Nhập nhiệm vụ mới... │ │Thêm│    │  ← Khu vực nhập liệu
+│  └─────────────────────┘ └────┘    │
+├─────────────────────────────────────┤
+│                                     │
+│  □ Hoàn thành báo cáo    [Xong] [Xóa]  │  ← Khu vực danh sách nhiệm vụ
+│  □ Mua sữa               [Xong] [Xóa]  │    (Dữ liệu giả)
+│  □ Gọi điện cho mẹ       [Xong] [Xóa]  │
+│                                     │
+└─────────────────────────────────────┘
+</code></pre>
+<p>Kiểm tra cụ thể xem các phần tử này có tồn tại không:</p>
+<ul>
+<li>[ ] Trang có tiêu đề "Danh sách việc cần làm của tôi"</li>
+<li>[ ] Có một ô nhập liệu</li>
+<li>[ ] Có một nút "Thêm"</li>
+<li>[ ] Có danh sách nhiệm vụ, hiển thị vài dòng dữ liệu giả</li>
+<li>[ ] Mỗi nhiệm vụ có nút "Hoàn thành" và "Xóa"</li>
+<li>[ ] Bố cục tổng thể căn giữa, trông khá gọn gàng</li>
+</ul>
+<h2>Năm tình huống có thể gặp và cách xử lý</h2>
+<p>Kết quả lần đầu tiên tạo ra có thể có sự khác biệt. Tùy theo tình huống bạn gặp phải, hãy chọn cách xử lý tương ứng:</p>
+<h3>Tình huống 1: Hoàn hảo đúng như mong đợi</h3>
+<p><strong>Hiện tượng</strong>: Bố cục trang, kiểu dáng, các phần tử đều đúng như mong đợi.</p>
+<p><strong>Xử lý</strong>: Tuyệt vời! Chuyển thẳng đến <a href="./4.2.4-checkpoint_vi.html">4.2.4 Kiểm tra kết quả giai đoạn</a>.</p>
+<h3>Tình huống 2: Cấu trúc đúng, nhưng kiểu dáng không ưng ý</h3>
+<p><strong>Hiện tượng</strong>: Đủ các phần tử, nhưng màu quá tối, nút quá nhỏ, khoảng cách không đủ, v.v.</p>
+<p><strong>Xử lý</strong>: Vào <a href="./4.2.3-adjust-style_vi.html">4.2.3 Điều chỉnh kiểu dáng và bố cục</a>, dùng hội thoại lặp lại để điều chỉnh.</p>
+<h3>Tình huống 3: Thiếu một số phần tử</h3>
+<p><strong>Hiện tượng</strong>: Ví dụ không có nút "Hoàn thành", hoặc không có dữ liệu giả.</p>
+<p><strong>Xử lý</strong>: Gửi yêu cầu bổ sung:</p>
+<pre><code>Trang nhìn chung khá ổn, hãy bổ sung các nội dung sau:
+- Mỗi nhiệm vụ cần có nút &quot;Hoàn thành&quot; và nút &quot;Xóa&quot;
+- Danh sách nhiệm vụ hiển thị trước 3 dòng dữ liệu giả để xem kiểu dáng
+</code></pre>
+<h3>Tình huống 4: Trang trắng tinh</h3>
+<p><strong>Hiện tượng</strong>: Trình duyệt hiển thị trang trắng, không có gì cả.</p>
+<p><strong>Xử lý</strong>: Thường là do vấn đề lưu tập tin hoặc xem trước, hãy kiểm tra theo thứ tự sau:</p>
+<ol>
+<li><strong>Xác nhận tập tin đã lưu</strong>: Nhấn <code>Ctrl+S</code> trong AI IDE (Mac dùng <code>Cmd+S</code>)</li>
+<li><strong>Làm mới xem trước</strong>: Nhấn <code>Ctrl+Shift+R</code> (Mac dùng <code>Cmd+Shift+R</code>) để buộc làm mới</li>
+<li><strong>Kiểm tra vị trí tập tin</strong>: Xác nhận tập tin HTML được lưu đúng vị trí</li>
+<li><strong>Xem bảng điều khiển (Console)</strong>: Nhấn <code>F12</code> mở công cụ nhà phát triển, xem có lỗi màu đỏ không</li>
+</ol>
+<p>Nếu tất cả đều không được, hãy nhờ AI kiểm tra giúp:</p>
+<pre><code>Trang hiển thị trắng tinh, hãy giúp tôi kiểm tra xem mã nguồn có vấn đề gì không.
+Nếu có lỗi, hãy sửa và đưa cho tôi mã nguồn đầy đủ, chính xác.
+</code></pre>
+<h3>Tình huống 5: Mã nguồn báo lỗi</h3>
+<p><strong>Hiện tượng</strong>: Bảng điều khiển trình duyệt hiển thị thông báo lỗi màu đỏ.</p>
+<p><strong>Xử lý</strong>: Chuyển đến <a href="../4.5-debug/4.5.2-fix-with-ai_vi.html">4.5.2 Dùng AI sửa lỗi của AI</a>, học cách để AI giúp bạn sửa lỗi.</p>
+<h2>Hiểu cấu trúc mã nguồn do AI tạo ra</h2>
+<p>Bạn không cần hiểu hoàn toàn mã nguồn, nhưng biết cấu trúc đại khái sẽ giúp bạn điều chỉnh sau này. Tập tin HTML do AI tạo ra thường như sau:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;!-- Tiêu đề trang và cài đặt --&gt;
+    &lt;title&gt;Danh sách việc cần làm của tôi&lt;/title&gt;
+    &lt;style&gt;
+        /* 
+         * Đây là mã kiểu dáng CSS
+         * Điều khiển màu sắc, kích thước, bố cục trang
+         */
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Đây là nội dung trang --&gt;
+
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;!-- Tiêu đề --&gt;
+        &lt;h1&gt;Danh sách việc cần làm của tôi&lt;/h1&gt;
+
+        &lt;!-- Khu vực nhập liệu --&gt;
+        &lt;div class=&quot;input-area&quot;&gt;
+            &lt;input type=&quot;text&quot; placeholder=&quot;Nhập nhiệm vụ mới...&quot;&gt;
+            &lt;button&gt;Thêm&lt;/button&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Danh sách nhiệm vụ --&gt;
+        &lt;ul class=&quot;task-list&quot;&gt;
+            &lt;li&gt;
+                &lt;span&gt;Hoàn thành báo cáo dự án&lt;/span&gt;
+                &lt;button&gt;Hoàn thành&lt;/button&gt;
+                &lt;button&gt;Xóa&lt;/button&gt;
+            &lt;/li&gt;
+            &lt;!-- Các nhiệm vụ khác... --&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Hiểu đơn giản:</p>
+<table>
+<thead>
+<tr>
+<th>Phần mã</th>
+<th>Tác dụng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;head&gt;...&lt;/head&gt;</code></td>
+<td>"Cài đặt hậu trường" của trang, gồm tiêu đề và kiểu dáng</td>
+</tr>
+<tr>
+<td><code>&lt;style&gt;...&lt;/style&gt;</code></td>
+<td>Kiểu dáng CSS, điều khiển vẻ ngoài</td>
+</tr>
+<tr>
+<td><code>&lt;body&gt;...&lt;/body&gt;</code></td>
+<td>"Nội dung chính" của trang, phần người dùng nhìn thấy</td>
+</tr>
+<tr>
+<td><code>&lt;div&gt;</code></td>
+<td>Một vật chứa, dùng để nhóm và bố cục</td>
+</tr>
+<tr>
+<td><code>&lt;input&gt;</code></td>
+<td>Ô nhập liệu</td>
+</tr>
+<tr>
+<td><code>&lt;button&gt;</code></td>
+<td>Nút bấm</td>
+</tr>
+<tr>
+<td><code>&lt;ul&gt;</code> và <code>&lt;li&gt;</code></td>
+<td>Danh sách và mục danh sách</td>
+</tr>
+</tbody>
+</table>
+<p>::: info Không cần nhớ những thứ này
+Đây chỉ là giúp bạn hiểu cấu trúc mã. Trong Vibe Coding, bạn không cần tự viết những dòng mã này - chỉ cần nói cho AI biết bạn muốn gì, nó sẽ viết giúp bạn.
+:::</p>
+<h2>Bấm nút không có phản ứng?</h2>
+<p>Nếu bạn thử bấm nút "Thêm" và thấy không có chuyện gì xảy ra - đây là điều <strong>hết sức bình thường</strong>.</p>
+<p>Trang hiện tại chỉ là một cái "vỏ", chưa có bất kỳ mã chức năng nào. Giống như mô hình xe hơi, trông giống xe, nhưng chưa chạy được.</p>
+<p>Ở phần 4.3, chúng ta sẽ làm cho những nút bấm này "sống" dậy.</p>
+<h2>Tra cứu nhanh vấn đề thường gặp</h2>
+<table>
+<thead>
+<tr>
+<th>Vấn đề</th>
+<th>Nguyên nhân có thể</th>
+<th>Cách giải quyết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trang hoàn toàn trắng</td>
+<td>Tập tin chưa lưu hoặc chưa xem trước đúng cách</td>
+<td>Lưu tập tin, làm mới trình duyệt</td>
+</tr>
+<tr>
+<td>Kiểu dáng trông rất xấu</td>
+<td>Kiểu dáng mặc định của AI không hợp thẩm mỹ của bạn</td>
+<td>Vào phần 4.2.3 để điều chỉnh</td>
+</tr>
+<tr>
+<td>Chỉ có chữ không có kiểu dáng</td>
+<td>CSS chưa được dẫn vào đúng cách</td>
+<td>Nhờ AI kiểm tra cấu trúc mã</td>
+</tr>
+<tr>
+<td>Trang hiển thị bất thường trên điện thoại</td>
+<td>Thiếu thiết lập Responsive</td>
+<td>Yêu cầu AI thêm kiểu dáng Responsive</td>
+</tr>
+<tr>
+<td>Bấm nút không phản ứng</td>
+<td>Bình thường! Trang tĩnh chưa có chức năng</td>
+<td>Phần 4.3 sẽ thêm chức năng</td>
+</tr>
+</tbody>
+</table>
+<h2>Điểm kiểm tra bước này</h2>
+<p>Trước khi tiếp tục, hãy xác nhận:</p>
+<ul>
+<li>[ ] AI đã tạo ra mã nguồn</li>
+<li>[ ] Có thể nhìn thấy trang trong trình duyệt</li>
+<li>[ ] Trang bao gồm tiêu đề, ô nhập liệu, nút bấm, danh sách nhiệm vụ</li>
+</ul>
+<p>Nếu kiểu dáng chưa ưng ý, hãy vào bước tiếp theo để điều chỉnh. Nếu đã hài lòng, có thể chuyển thẳng đến <a href="./4.2.4-checkpoint_vi.html">4.2.4 Kiểm tra kết quả giai đoạn</a>.</p>
+<p>→ <a href="./4.2.3-adjust-style_vi.html">4.2.3 Điều chỉnh kiểu dáng và bố cục</a></p>
+</body>
+</html>

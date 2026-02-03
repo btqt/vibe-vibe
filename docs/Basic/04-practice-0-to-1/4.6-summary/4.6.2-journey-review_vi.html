@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.6.2 Journey Review</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.6.2 Nhìn lại hành trình trọn vẹn từ 0 đến 1"
+order: 3</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.6-summary_4.6.2-journey-review.png" src="../../../public/images/Basic/04-practice-0-to-1_4.6-summary_4.6.2-journey-review.png" /></p>
+<h1>4.6.2 Nhìn lại hành trình trọn vẹn từ 0 đến 1</h1>
+<blockquote>
+<p><strong>Mục tiêu bước này</strong>: Ôn lại toàn bộ hành trình phát triển, hiểu cách mỗi bước kết nối tư duy chương 2 và kỹ thuật chương 3 lại với nhau</p>
+</blockquote>
+<h2>Liên kết trọn vẹn từ ý tưởng đến sản phẩm</h2>
+<p>Hãy cùng dùng một bức hình để nhìn lại con đường trọn vẹn bạn đã đi qua:</p>
+<pre><code>Chương 2: Suy nghĩ kỹ                Chương 3: Nói rõ ràng              Chương 4: Làm ra được
+─────────────                      ─────────────                    ─────────────
+
+  Phát hiện vấn đề                     Tư duy ngữ cảnh
+     │                                    │
+     ▼                                    ▼
+  Tư duy JTBD     ─────────────────▶   Tổng hợp PRD  ──────────────▶  4.1 Công tác chuẩn bị
+     │                                    │                                │
+     ▼                                    ▼                                ▼
+  3 câu hỏi linh hồn                Khung S.C.A.F.F.  ─────────────▶  4.2 Trang tĩnh
+     │                                    │                                │
+     ▼                                    ▼                                ▼
+  Tư duy phép trừ  ────────────────▶   Đối thoại lặp lại ────────────▶  4.3 Chức năng cốt lõi
+  (Định nghĩa MVP)                        │                                │
+     │                                    ▼                                ▼
+     ▼                              Chẩn đoán vấn đề  ──────────────▶  4.4 Lưu trữ dữ liệu
+  Tư duy ngược     ────────────────▶   Chiến lược sửa chữa ──────────▶  4.5 Debug
+  (Dự đoán thất bại)
+</code></pre>
+<p>Mỗi chương đều không hề cô lập. Thành quả suy nghĩ của chương 2, thông qua kỹ thuật diễn đạt của chương 3, cuối cùng ở chương 4 đã hạ cánh thành mã nguồn có thể chạy được.</p>
+<h2>Công cụ tư duy dùng cho mỗi vòng lặp</h2>
+<p>Bảng dưới đây trình bày phần tư duy và kỹ thuật hỗ trợ đằng sau mỗi bước của chương 4:</p>
+<table>
+<thead>
+<tr>
+<th>Các bước chương 4</th>
+<th>Tư duy chương 2 đã dùng</th>
+<th>Kỹ thuật chương 3 đã dùng</th>
+<th>Sản phẩm cốt lõi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>4.1 Công tác chuẩn bị</strong></td>
+<td>3 câu hỏi linh hồn (xác định phương hướng), Định nghĩa MVP (xác định phạm vi)</td>
+<td>Tổng hợp PRD (tổng hợp nhu cầu)</td>
+<td>Thẻ khởi động dự án</td>
+</tr>
+<tr>
+<td><strong>4.2 Trang tĩnh</strong></td>
+<td>Tư duy câu chuyện (bối cảnh người dùng), Chân dung người dùng</td>
+<td>Khung S.C.A.F.F. viết Prompt</td>
+<td>Khung xương trang trực quan</td>
+</tr>
+<tr>
+<td><strong>4.3 Chức năng cốt lõi</strong></td>
+<td>Tư duy phép trừ (chỉ làm chức năng P0)</td>
+<td>Đối thoại lặp lại (thực hiện từng chức năng)</td>
+<td>Chức năng thêm/xóa/hoàn thành</td>
+</tr>
+<tr>
+<td><strong>4.4 Lưu trữ dữ liệu</strong></td>
+<td>—</td>
+<td>Prompt tiệm tiến (thực hiện từng bước)</td>
+<td>Bền vững hóa localStorage</td>
+</tr>
+<tr>
+<td><strong>4.5 Debug</strong></td>
+<td>Tư duy ngược (dự đoán vấn đề có thể xảy ra)</td>
+<td>Quy trình Chẩn đoán → Sửa chữa → Xác thực</td>
+<td>Năng lực giải quyết vấn đề</td>
+</tr>
+</tbody>
+</table>
+<p>Giá trị của bảng này nằm ở chỗ: <strong>Lần sau khi bạn làm dự án mới, có thể thao tác theo đúng mô hình tương tự</strong>.</p>
+<h2>Dữ liệu thời gian và đầu ra</h2>
+<p>Mời xem dữ liệu thực tế khi hoàn thành dự án này:</p>
+<h3>Phân bổ thời gian</h3>
+<table>
+<thead>
+<tr>
+<th>Giai đoạn</th>
+<th>Thời gian đầu tư</th>
+<th>Đầu ra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4.1 Công tác chuẩn bị</td>
+<td>Khoảng 15 phút</td>
+<td>Định nghĩa dự án rõ ràng</td>
+</tr>
+<tr>
+<td>4.2 Trang tĩnh</td>
+<td>Khoảng 20 phút</td>
+<td>Giao diện người dùng (UI) hoàn chỉnh</td>
+</tr>
+<tr>
+<td>4.3 Chức năng cốt lõi</td>
+<td>Khoảng 35 phút</td>
+<td>3 chức năng thêm xóa sửa</td>
+</tr>
+<tr>
+<td>4.4 Lưu trữ dữ liệu</td>
+<td>Khoảng 20 phút</td>
+<td>Bền vững hóa dữ liệu</td>
+</tr>
+<tr>
+<td>4.5 Debug kiểm tra sửa lỗi</td>
+<td>Khoảng 15-20 phút</td>
+<td>Kinh nghiệm giải quyết vấn đề</td>
+</tr>
+<tr>
+<td><strong>Tổng cộng</strong></td>
+<td><strong>Khoảng 2 tiếng</strong></td>
+<td><strong>Ứng dụng hoàn chỉnh khả dụng</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>So sánh Prompt và Mã nguồn</h3>
+<table>
+<thead>
+<tr>
+<th>Chỉ số</th>
+<th>Giá trị</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Số lượng Prompt đã gửi</td>
+<td>Khoảng 10-15 câu</td>
+<td>Bao gồm tạo ban đầu và điều chỉnh sửa lỗi</td>
+</tr>
+<tr>
+<td>Số dòng mã tạo ra</td>
+<td>Khoảng 150-250 dòng</td>
+<td>HTML + CSS + JavaScript</td>
+</tr>
+<tr>
+<td>Số dòng mã bạn cần hiểu</td>
+<td>0 dòng</td>
+<td>AI xử lý mọi chi tiết kỹ thuật</td>
+</tr>
+<tr>
+<td>Nhu cầu bạn cần diễn đạt rõ</td>
+<td>100%</td>
+<td>Đây là công việc cốt lõi của bạn</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nhận định cốt lõi</strong>: Vibe Coding biến công việc của bạn từ "viết mã" thành "diễn đạt nhu cầu". Thời gian của bạn dành cho việc suy nghĩ kỹ và nói rõ ràng, mã nguồn do AI tạo ra.</p>
+<h2>Mối quan hệ tịnh tiến của 3 vòng lặp</h2>
+<p>Nhìn lại 3 vòng lặp 4.2-4.4, giữa chúng có mối quan hệ tịnh tiến rõ ràng:</p>
+<pre><code>Vòng 1 (4.2)           Vòng 2 (4.3)           Vòng 3 (4.4)
+─────────────         ─────────────         ─────────────
+   Trang tĩnh            Chức năng tương tác    Lưu trữ dữ liệu
+
+   &quot;Vỏ rỗng&quot;       →      &quot;Sống dậy&quot;      →      &quot;Ghi nhớ&quot;
+
+ Chỉ có vẻ ngoài          Nhấp có phản ứng       Làm mới không mất
+ Chưa có chức năng        Nhưng làm mới là mất   Dùng được thực sự
+</code></pre>
+<p>Mô hình lặp lại "Tĩnh → Tương tác → Lưu trữ" này là một nhịp điệu phát triển thông dụng. Khi bạn làm dự án khác, cũng có thể đẩy tiến độ theo trình tự này.</p>
+<h2>Nếu làm lại một lần nữa, những chỗ nào có thể nhanh hơn</h2>
+<p>Dựa trên kinh nghiệm lần này, nếu để bạn làm lại một lần nữa, những điểm sau đây có thể giúp bạn tăng tốc:</p>
+<h3>Những khâu có thể nhanh hơn</h3>
+<table>
+<thead>
+<tr>
+<th>Khâu</th>
+<th>Phương pháp tăng tốc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Viết Prompt đầu tiên</td>
+<td>Dùng thẳng mẫu ở chương 3, không cần nghĩ từ đầu</td>
+</tr>
+<tr>
+<td>Điều chỉnh kiểu dáng</td>
+<td>Lần đầu tiên đã mô tả rõ sở thích thiết kế, giảm việc sửa đi sửa lại</td>
+</tr>
+<tr>
+<td>Thực hiện chức năng</td>
+<td>Mỗi Prompt thực hiện một chức năng, hiệu quả hơn là yêu cầu nhiều chức năng cùng lúc</td>
+</tr>
+<tr>
+<td>Debug</td>
+<td>Cung cấp thông tin báo lỗi đầy đủ, AI sửa lỗi chuẩn xác hơn</td>
+</tr>
+</tbody>
+</table>
+<h3>Nguyên nhân phổ biến gây "chậm"</h3>
+<table>
+<thead>
+<tr>
+<th>Biểu hiện chậm</th>
+<th>Nguyên nhân</th>
+<th>Phương pháp cải thiện</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI tạo ra không đúng ý</td>
+<td>Prompt mô tả chưa đủ cụ thể</td>
+<td>Dùng khung S.C.A.F.F. bổ sung thông tin</td>
+</tr>
+<tr>
+<td>Điều chỉnh kiểu dáng lặp lại nhiều</td>
+<td>Chưa nói trước sở thích thiết kế</td>
+<td>Prompt đầu tiên đã mô tả màu sắc, phong cách</td>
+</tr>
+<tr>
+<td>Debug tốn quá nhiều thời gian</td>
+<td>Chưa cung cấp đủ thông tin lỗi cho AI</td>
+<td>Sao chép đầy đủ báo lỗi console</td>
+</tr>
+<tr>
+<td>Làm chức năng được một nửa thì tắc</td>
+<td>Muốn thực hiện quá nhiều chức năng cùng lúc</td>
+<td>Mỗi lần chỉ làm một chức năng, xác nhận xong mới làm tiếp</td>
+</tr>
+</tbody>
+</table>
+<h2>Mẫu quy trình làm việc có thể tái sử dụng</h2>
+<p>Dựa trên kinh nghiệm lần này, tóm tắt một quy trình làm việc Vibe Coding có thể tái sử dụng:</p>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                  Quy trình dự án Vibe Coding                 │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  Giai đoạn chuẩn bị                                          │
+│  ──────                                                     │
+│  1. Trả lời 3 câu hỏi linh hồn: Người dùng là ai? Đau ở đâu? Tại sao chọn bạn?  │
+│  2. Xác định phạm vi MVP: Bản đầu tiên chỉ làm gì? Rõ ràng không làm gì?      │
+│  3. Sắp xếp thẻ khởi động dự án: Cấu trúc hóa thành quả suy nghĩ             │
+│                                                             │
+│  Giai đoạn phát triển                                        │
+│  ──────                                                     │
+│  4. Vòng 1 - Trang tĩnh: Dùng khung S.C.A.F.F. viết Prompt                   │
+│  5. Vòng 2 - Chức năng cốt lõi: Mỗi lần một chức năng, thực hiện lặp lại      │
+│  6. Vòng 3 - Lưu trữ dữ liệu: Chọn phương án lưu trữ theo nhu cầu             │
+│                                                             │
+│  Giai đoạn kết thúc                                          │
+│  ──────                                                     │
+│  7. Kiểm thử hoàn chỉnh: Xác thực từng mục theo danh sách chức năng           │
+│  8. Sao lưu bảo quản: Giữ lại phiên bản hiện tại, tiện sau này sửa đổi        │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+</code></pre>
+<p>Quy trình này không chỉ áp dụng cho danh sách việc cần làm, mà bất kỳ dự án nào bạn muốn dùng Vibe Coding thực hiện đều có thể tham khảo.</p>
+<h2>Điểm kiểm tra bước này</h2>
+<ul>
+<li>[ ] Hiểu mối quan hệ chuỗi Tư duy chương 2 → Kỹ thuật chương 3 → Thực chiến chương 4</li>
+<li>[ ] Biết mỗi vòng lặp đã dùng những công cụ tư duy và kỹ thuật nào</li>
+<li>[ ] Hiểu rõ mô hình lặp lại 3 vòng "Tĩnh → Tương tác → Lưu trữ"</li>
+<li>[ ] Nắm vững quy trình làm việc Vibe Coding có thể tái sử dụng</li>
+</ul>
+<p>Tiếp theo, hãy cùng điểm lại cụ thể xem bạn đã thu hoạch được những kỹ năng gì trong quá trình này.</p>
+<p>→ <a href="./4.6.3-what-learned_vi.html">4.6.3 Bạn đã học được những gì</a></p>
+</body>
+</html>

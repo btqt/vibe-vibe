@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.2 Vòng 1: Xây dựng khung trang web"
+order: 1</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.2-build-page_index.png" src="../../../public/images/Basic/04-practice-0-to-1_4.2-build-page_index.png" /></p>
+<h1>4.2 Vòng 1: Xây dựng khung trang web</h1>
+<blockquote>
+<p><strong>Mục tiêu vòng này</strong>: Dùng AI tạo trang tĩnh danh sách việc cần làm, làm ra cái "mặt tiền" trước</p>
+</blockquote>
+<h2>Qua bài học này, bạn sẽ nhận được</h2>
+<ul>
+<li>Một trang danh sách việc cần làm có thể mở trong trình duyệt</li>
+<li>Bố cục hoàn chỉnh bao gồm tiêu đề, ô nhập liệu, nút bấm và danh sách nhiệm vụ</li>
+<li>Thiết kế thị giác đơn giản đẹp mắt</li>
+<li>Trang Responsive hiển thị bình thường trên cả điện thoại và máy tính</li>
+</ul>
+<blockquote>
+<p><strong>[Gợi ý hình ảnh]</strong>
+Nội dung hình ảnh: Ảnh xem trước trang danh sách việc cần làm sau khi kết thúc vòng này, hiển thị tiêu đề, khu vực nhập liệu, danh sách dữ liệu giả
+Prompt: warm illustration of a simple todo list webpage preview, friendly and approachable style, soft rounded shapes, pastel colors with coral accents, minimal text, clean white background, high quality, 8k --ar 16:9</p>
+</blockquote>
+<h2>"Trang tĩnh" là gì?</h2>
+<p>Trang tĩnh là trang chỉ có vẻ ngoài, chưa có chức năng.</p>
+<p>Hãy tưởng tượng bạn đang trang trí nhà mới:</p>
+<pre><code>Nhà thô → Sơn tường trắng, lát sàn (xem hiệu quả tổng thể trước) → Lắp điện máy, nối ống nước (để dùng được) → Dọn vào ở
+</code></pre>
+<p>Việc chúng ta làm bây giờ chính là bước "sơn tường trắng" - <strong>dựng giao diện lên trước, xem tổng thể có ổn không</strong>.</p>
+<p>Làm vậy có ba lợi ích:</p>
+<table>
+<thead>
+<tr>
+<th>Lợi ích</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nhanh chóng thấy thành quả</td>
+<td>5-10 phút là thấy trang web, xây dựng niềm tin</td>
+</tr>
+<tr>
+<td>Sớm phát hiện vấn đề</td>
+<td>Bố cục không đúng, phong cách không ưng, sửa lúc này chi phí thấp nhất</td>
+</tr>
+<tr>
+<td>Tránh làm đi làm lại</td>
+<td>Nếu làm nhiều chức năng rồi mới phát hiện sai hướng, sửa lại rất cực</td>
+</tr>
+</tbody>
+</table>
+<h2>Quy trình làm việc vòng này</h2>
+<pre><code>Thành quả suy nghĩ chương 2 → Viết Prompt bằng khung chương 3 → AI tạo trang tĩnh → Điều chỉnh kiểu dáng → Kiểm tra xác nhận
+</code></pre>
+<p>Chúng ta sẽ dùng đến "Thẻ khởi động dự án" đã sắp xếp ở phần 4.1 và khung S.C.A.F.F. đã học ở chương 3.</p>
+<h2>Điều hướng chương</h2>
+<table>
+<thead>
+<tr>
+<th>Tiểu tiết</th>
+<th>Việc bạn cần làm</th>
+<th>Thời gian dự kiến</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="./4.2.1-first-prompt_vi.html">4.2.1</a></td>
+<td>Chuyển đổi thẻ khởi động dự án thành Prompt</td>
+<td>5 phút</td>
+</tr>
+<tr>
+<td><a href="./4.2.2-generate-static_vi.html">4.2.2</a></td>
+<td>Gửi cho AI, tạo trang phiên bản đầu tiên</td>
+<td>5 phút</td>
+</tr>
+<tr>
+<td><a href="./4.2.3-adjust-style_vi.html">4.2.3</a></td>
+<td>Điều chỉnh màu sắc, bố cục, chi tiết</td>
+<td>8 phút</td>
+</tr>
+<tr>
+<td><a href="./4.2.4-checkpoint_vi.html">4.2.4</a></td>
+<td>Kiểm tra thành quả, xác nhận có thể vào vòng sau</td>
+<td>2 phút</td>
+</tr>
+<tr>
+<td><a href="./4.2.5-prompt-log_vi.html">4.2.5</a></td>
+<td>Ôn tập nhật ký hội thoại đầy đủ</td>
+<td>2 phút</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tổng thời gian dự kiến: Khoảng 20 phút</strong></p>
+<p>::: tip Trước khi bắt đầu
+Đảm bảo bạn đã hoàn thành công việc chuẩn bị ở phần 4.1, AI IDE đã mở và có thể sử dụng bình thường.
+:::</p>
+<p>→ <a href="./4.2.1-first-prompt_vi.html">4.2.1 Dùng khung chương 3 để viết Prompt đầu tiên</a></p>
+</body>
+</html>

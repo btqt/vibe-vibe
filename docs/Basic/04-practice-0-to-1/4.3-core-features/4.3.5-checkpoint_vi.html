@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.3.5 Checkpoint</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.3.5 Kiểm tra kết quả giai đoạn"
+order: 6</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.3-core-features_4.3.5-checkpoint.png" src="../../../public/images/Basic/04-practice-0-to-1_4.3-core-features_4.3.5-checkpoint.png" /></p>
+<h1>4.3.5 Kiểm tra kết quả giai đoạn</h1>
+<blockquote>
+<p><strong>Mục tiêu bước này</strong>: Xác nhận tất cả chức năng của vòng 2 đều bình thường, chuẩn bị vào vòng tiếp theo</p>
+</blockquote>
+<h2>Danh sách danh sách kiểm tra vòng 2</h2>
+<p>Trước khi bước vào phần lưu trữ dữ liệu (4.4), hãy xác nhận các chức năng sau đều hoạt động bình thường:</p>
+<h3>Thêm nhiệm vụ</h3>
+<ul>
+<li>[ ] Sau khi nhập nội dung và nhấp thêm, nhiệm vụ xuất hiện trong danh sách</li>
+<li>[ ] Sau khi thêm, ô nhập liệu tự động xóa trắng</li>
+<li>[ ] Nhập trống sẽ không thêm nhiệm vụ rỗng</li>
+<li>[ ] Có thể thêm liên tục nhiều nhiệm vụ</li>
+</ul>
+<h3>Xóa nhiệm vụ</h3>
+<ul>
+<li>[ ] Nhấp nút xóa, nhiệm vụ tương ứng biến mất</li>
+<li>[ ] Xóa một nhiệm vụ không ảnh hưởng nhiệm vụ khác</li>
+<li>[ ] Nhiệm vụ thêm mới cũng có thể xóa bình thường</li>
+</ul>
+<h3>Đánh dấu hoàn thành</h3>
+<ul>
+<li>[ ] Nhấp nút hoàn thành, nhiệm vụ có thay đổi thị giác (gạch ngang, chuyển xám)</li>
+<li>[ ] Nhấp lần nữa có thể hủy trạng thái hoàn thành</li>
+<li>[ ] Thao tác hoàn thành/hủy bỏ có thể thực hiện lặp lại</li>
+<li>[ ] Nhiệm vụ đã hoàn thành vẫn có thể xóa</li>
+</ul>
+<h3>Kiểm tra tổng thể</h3>
+<ul>
+<li>[ ] Nhấn F12 mở console, không có thông báo lỗi màu đỏ</li>
+<li>[ ] Ba chức năng có thể phối hợp sử dụng, không ảnh hưởng lẫn nhau</li>
+</ul>
+<h2>🎉 Hoàn thành vòng 2!</h2>
+<p>Chúc mừng bạn! Sau vòng này, danh sách việc cần làm của bạn đã từ "trang tĩnh" biến thành "ứng dụng tương tác".</p>
+<h3>Bạn đã hoàn thành những gì</h3>
+<table>
+<thead>
+<tr>
+<th>Chức năng</th>
+<th>Kết thúc vòng 1</th>
+<th>Kết thúc vòng 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thêm nhiệm vụ</td>
+<td>❌ Nhấp không phản ứng</td>
+<td>✅ Thêm bình thường</td>
+</tr>
+<tr>
+<td>Xóa nhiệm vụ</td>
+<td>❌ Nhấp không phản ứng</td>
+<td>✅ Xóa bình thường</td>
+</tr>
+<tr>
+<td>Đánh dấu hoàn thành</td>
+<td>❌ Nhấp không phản ứng</td>
+<td>✅ Chuyển đổi bình thường</td>
+</tr>
+</tbody>
+</table>
+<h3>Ôn tập: Vòng này đã dùng những gì</h3>
+<table>
+<thead>
+<tr>
+<th>Nguồn</th>
+<th>Nội dung bạn đã dùng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chương 2 phần 2.3</td>
+<td>Định nghĩa chức năng MVP (Danh sách tính năng P0)</td>
+</tr>
+<tr>
+<td>Chương 3 phần 3.2</td>
+<td>Viết Prompt bằng khung S.C.F. tinh gọn</td>
+</tr>
+<tr>
+<td>Chương 3 phần 3.5</td>
+<td>Kỹ thuật truy vấn đối thoại lặp lại</td>
+</tr>
+<tr>
+<td>Chương 4 phần 4.2</td>
+<td>Thêm chức năng trên nền tảng trang tĩnh</td>
+</tr>
+</tbody>
+</table>
+<p>Đây chính là quy trình làm việc đầy đủ của Vibe Coding: <strong>Nghĩ rõ ràng → Nói rõ ràng → Để AI làm → Điều chỉnh tối ưu</strong>.</p>
+<h3>Tổng kết trạng thái hiện tại</h3>
+<table>
+<thead>
+<tr>
+<th>Chức năng</th>
+<th>Trạng thái</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hiển thị trang</td>
+<td>✅ Bình thường</td>
+<td></td>
+</tr>
+<tr>
+<td>Thêm nhiệm vụ</td>
+<td>✅ Khả dụng</td>
+<td></td>
+</tr>
+<tr>
+<td>Xóa nhiệm vụ</td>
+<td>✅ Khả dụng</td>
+<td></td>
+</tr>
+<tr>
+<td>Đánh dấu hoàn thành</td>
+<td>✅ Khả dụng</td>
+<td></td>
+</tr>
+<tr>
+<td>Dữ liệu sau khi làm mới</td>
+<td>❌ Dữ liệu bị mất</td>
+<td><strong>Giải quyết ở vòng sau</strong></td>
+</tr>
+</tbody>
+</table>
+<h2>Đã phát hiện vấn đề chưa?</h2>
+<p>Bây giờ hãy thử: <strong>Làm mới trang web</strong> (Nhấn F5 hoặc Ctrl+R).</p>
+<p>Bạn sẽ phát hiện: Tất cả nhiệm vụ đều biến mất.</p>
+<p>Điều này là bình thường. Hiện tại danh sách việc cần làm của chúng ta chỉ "sống" trong bộ nhớ của trình duyệt, giống như viết chữ lên bảng trắng - xóa bảng đi là chữ mất.</p>
+<p><strong>Vòng tiếp theo, chúng ta sẽ giải quyết vấn đề này</strong>: Để dữ liệu có thể được lưu lại, ngay cả khi làm mới trang, tắt trình duyệt, danh sách nhiệm vụ của bạn cũng không bị mất.</p>
+<p>::: warning 💡 Gặp vấn đề?
+Nếu chức năng nào đó không bình thường, hãy quay lại phần tiểu tiết tương ứng để xem "Khắc phục sự cố thường gặp".</p>
+<p>Nếu gặp lỗi không hiểu, có thể nhảy đến <a href="../4.5-debug/">4.5 Thực chiến Debug</a> để học cách để AI giúp bạn sửa lỗi.</p>
+<p>Cũng có thể tiếp tục học xuống dưới, gặp vấn đề quay lại giải quyết bất cứ lúc nào.
+:::</p>
+<h2>Dự báo bước tiếp theo</h2>
+<p>Vòng 3 là "tầng lưu trữ" - trang bị năng lực "ghi nhớ" cho danh sách việc cần làm của bạn:</p>
+<ul>
+<li>Tắt trình duyệt, dữ liệu không mất</li>
+<li>Ngày hôm sau mở ra, nhiệm vụ hôm qua vẫn còn</li>
+<li>Giống như một ứng dụng thực thụ vậy</li>
+</ul>
+<p>Đã sẵn sàng chưa?</p>
+<p>→ <a href="../4.4-data-storage/">4.4 Vòng 3: Làm cho dữ liệu sống dậy</a></p>
+</body>
+</html>

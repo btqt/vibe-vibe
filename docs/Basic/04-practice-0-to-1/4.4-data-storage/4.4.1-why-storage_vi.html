@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.4.1 Why Storage</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.4.1 Tại sao cần lưu trữ dữ liệu"
+order: 2</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.4-data-storage_4.4.1-why-storage.png" src="../../../public/images/Basic/04-practice-0-to-1_4.4-data-storage_4.4.1-why-storage.png" /></p>
+<h1>4.4.1 Tại sao cần lưu trữ dữ liệu</h1>
+<blockquote>
+<p><strong>Mục tiêu bước này</strong>: Hiểu sự cần thiết của lưu trữ dữ liệu, tìm hiểu khái niệm cơ bản về localStorage</p>
+</blockquote>
+<h2>Sự bối rối của Tiểu Lý</h2>
+<p>Còn nhớ Tiểu Lý ở chương 2 không? Cậu ấy đã hào hứng hoàn thành các chức năng tương tác cho danh sách việc cần làm, thêm vào mấy nhiệm vụ, chuẩn bị ngày mai dùng tiếp.</p>
+<p>Ngày hôm sau mở máy tính lên, mở trang web ra - <strong>danh sách nhiệm vụ trống trơn</strong>.</p>
+<p>"Nhiệm vụ của tôi đâu rồi?" Tiểu Lý ngơ ngác.</p>
+<p>Đây không phải là Bug, mà là vì danh sách việc cần làm của Tiểu Lý còn thiếu một năng lực then chốt cuối cùng: <strong>Lưu trữ dữ liệu</strong>.</p>
+<h2>Hiểu qua ví dụ thực tế</h2>
+<p>Tưởng tượng hai cách ghi chép:</p>
+<table>
+<thead>
+<tr>
+<th>Bối cảnh</th>
+<th>So sánh</th>
+<th>Kết quả</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Viết chữ trên bãi cát</td>
+<td>Dữ liệu chỉ tồn tại trong bộ nhớ trình duyệt</td>
+<td>Sóng đánh tới (làm mới trang), chữ biến mất</td>
+</tr>
+<tr>
+<td>Khắc chữ lên phiến đá</td>
+<td>Dữ liệu lưu vào localStorage</td>
+<td>Mưa gió (làm mới, tắt), chữ vẫn còn</td>
+</tr>
+</tbody>
+</table>
+<p>Hiện tại danh sách việc cần làm của chúng ta giống như viết chữ trên bãi cát. Việc cần làm vòng này chính là biến nó thành "khắc trên phiến đá".</p>
+<h2>Các cách lưu trữ dữ liệu trang web</h2>
+<table>
+<thead>
+<tr>
+<th>Cách thức</th>
+<th>Tồn tại ở đâu</th>
+<th>Đặc điểm</th>
+<th>Chương này có dùng không</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>localStorage</strong></td>
+<td>Trình duyệt nội bộ</td>
+<td>Đơn giản, miễn phí, không cần cấu hình</td>
+<td>✅ Sử dụng</td>
+</tr>
+<tr>
+<td>sessionStorage</td>
+<td>Trình duyệt nội bộ</td>
+<td>Đóng thẻ trang là mất</td>
+<td>❌ Không phù hợp</td>
+</tr>
+<tr>
+<td>Cơ sở dữ liệu đám mây</td>
+<td>Máy chủ từ xa</td>
+<td>Đồng bộ nhiều thiết bị, cần Backend</td>
+<td>❌ Nội dung phần nâng cao</td>
+</tr>
+</tbody>
+</table>
+<h2>Tại sao chọn localStorage?</h2>
+<p>Đối với dự án công cụ cá nhân, localStorage là điểm bắt đầu tốt nhất:</p>
+<table>
+<thead>
+<tr>
+<th>Ưu điểm</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cấu hình bằng 0</td>
+<td>Trình duyệt hỗ trợ sẵn, không cần cài đặt gì</td>
+</tr>
+<tr>
+<td>Bền vững</td>
+<td>Tắt trình duyệt, khởi động lại máy, dữ liệu vẫn còn</td>
+</tr>
+<tr>
+<td>Dung lượng đủ dùng</td>
+<td>Khoảng 5MB không gian, lưu vài ngàn nhiệm vụ cũng không vấn đề</td>
+</tr>
+<tr>
+<td>Riêng tư an toàn</td>
+<td>Dữ liệu chỉ nằm trên máy tính của chính bạn</td>
+</tr>
+<tr>
+<td>Chi phí học tập thấp</td>
+<td>Chỉ cần hai phương thức: Lưu và Đọc</td>
+</tr>
+</tbody>
+</table>
+<h2>Hạn chế của localStorage</h2>
+<p>Đương nhiên, localStorage cũng có những bối cảnh không phù hợp:</p>
+<table>
+<thead>
+<tr>
+<th>Bối cảnh</th>
+<th>Tại sao không phù hợp</th>
+<th>Giải pháp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Đồng bộ nhiều thiết bị</td>
+<td>Dữ liệu chỉ nằm ở trình duyệt hiện tại</td>
+<td>Cần cơ sở dữ liệu đám mây (Phần nâng cao)</td>
+</tr>
+<tr>
+<td>Hợp tác nhóm</td>
+<td>Người khác không thấy dữ liệu của bạn</td>
+<td>Cần dịch vụ Backend (Phần nâng cao)</td>
+</tr>
+<tr>
+<td>Dữ liệu cực lớn</td>
+<td>Vượt quá 5MB sẽ báo lỗi</td>
+<td>Cần cơ sở dữ liệu chuyên nghiệp</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Dự báo nâng cao
+Trong phần nâng cao, chúng ta sẽ học cách dùng dịch vụ cơ sở dữ liệu đám mây như Supabase, thực hiện đồng bộ đa thiết bị và sao lưu dữ liệu. Nhưng với phiên bản đầu tiên của công cụ cá nhân, localStorage là hoàn toàn đủ dùng.
+:::</p>
+<h2>Điểm kiểm tra bước này</h2>
+<p>Trước khi tiếp tục, hãy xác nhận bạn đã hiểu:</p>
+<ul>
+<li>[ ] Tại sao dữ liệu danh sách việc cần làm hiện tại biến mất sau khi làm mới</li>
+<li>[ ] localStorage là gì (không gian lưu trữ nội bộ do trình duyệt cung cấp)</li>
+<li>[ ] Tại sao chúng ta chọn localStorage làm bước đầu tiên</li>
+</ul>
+<p>Hiểu những khái niệm này rồi, tiếp theo có thể bắt tay vào thực hiện được rồi.</p>
+<p>→ <a href="./4.4.2-localstorage_vi.html">4.4.2 Sử dụng lưu trữ nội bộ (localStorage)</a></p>
+</body>
+</html>

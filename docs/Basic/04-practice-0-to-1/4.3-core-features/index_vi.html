@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.3 Vòng 2: Thực hiện chức năng cốt lõi"
+order: 1</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.3-core-features_index.png" src="../../../public/images/Basic/04-practice-0-to-1_4.3-core-features_index.png" /></p>
+<h1>4.3 Vòng 2: Thực hiện chức năng cốt lõi</h1>
+<blockquote>
+<p><strong>Mục tiêu vòng này</strong>: Để trang web phản hồi thao tác người dùng - nhấp nút thực sự có phản ứng</p>
+</blockquote>
+<p>Ở vòng trước (4.2), bạn đã làm ra một cái "vỏ rỗng đẹp mắt": có tiêu đề, ô nhập liệu, nút bấm, khu vực danh sách. Nhưng nếu bây giờ bạn nhấp nút "Thêm", sẽ chẳng có chuyện gì xảy ra cả.</p>
+<p>Điều này giống như làm ra một chiếc xe hơi đẹp đẽ, nhưng chưa lắp động cơ.</p>
+<p><strong>Vòng này, chúng ta sẽ lắp "động cơ" cho nó</strong> - để mỗi nút bấm đều thực sự hoạt động.</p>
+<h2>Từ "Tĩnh" sang "Động"</h2>
+<p>Ở phần 4.2, chúng ta dùng HTML và CSS dựng trang. Bây giờ cần thêm JavaScript, để trang có thể "phản hồi" thao tác của người dùng.</p>
+<table>
+<thead>
+<tr>
+<th>Khái niệm</th>
+<th>So sánh</th>
+<th>Biểu hiện trong danh sách việc cần làm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTML</td>
+<td>Khung xương ngôi nhà</td>
+<td>Cấu trúc ô nhập liệu, nút bấm, danh sách</td>
+</tr>
+<tr>
+<td>CSS</td>
+<td>Trang trí ngôi nhà</td>
+<td>Màu sắc, phông chữ, bố cục</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>Mạch điện và công tắc</td>
+<td>Logic phản hồi sau khi nhấp nút</td>
+</tr>
+</tbody>
+</table>
+<p>Bạn không cần "học thuộc" JavaScript. Bạn chỉ cần nói cho AI biết bạn muốn hiệu quả gì, AI sẽ giúp bạn viết mã.</p>
+<h2>Ba chức năng cần thực hiện trong vòng này</h2>
+<p>Còn nhớ chức năng P0 đã định nghĩa ở chương 2 không? Vòng này chúng ta sẽ thực hiện 3 chức năng cốt lõi nhất:</p>
+<table>
+<thead>
+<tr>
+<th>Chức năng</th>
+<th>Thao tác người dùng</th>
+<th>Kết quả mong đợi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thêm nhiệm vụ</td>
+<td>Nhập nội dung, nhấp nút "Thêm"</td>
+<td>Nhiệm vụ mới xuất hiện trong danh sách</td>
+</tr>
+<tr>
+<td>Xóa nhiệm vụ</td>
+<td>Nhấp nút "Xóa" bên cạnh nhiệm vụ</td>
+<td>Nhiệm vụ đó biến mất khỏi danh sách</td>
+</tr>
+<tr>
+<td>Đánh dấu hoàn thành</td>
+<td>Nhấp nút "Hoàn thành" của nhiệm vụ</td>
+<td>Nhiệm vụ hiển thị trạng thái hoàn thành (có gạch ngang)</td>
+</tr>
+</tbody>
+</table>
+<p>Ba chức năng này bao gồm các thao tác "Thêm, Xóa, Sửa", là mô hình cơ bản của hầu hết các ứng dụng.</p>
+<h2>Xử lý sự kiện: Để trang web "nghe hiểu" thao tác của bạn</h2>
+<p>Trước khi bắt đầu, hãy hiểu một khái niệm cốt lõi: <strong>Xử lý sự kiện</strong>.</p>
+<p>Tưởng tượng bạn gọi món trong nhà hàng:</p>
+<ol>
+<li>Bạn nhấn nút gọi nhân viên phục vụ (<strong>Kích hoạt sự kiện</strong>)</li>
+<li>Nhân viên nghe thấy tiếng chuông (<strong>Lắng nghe sự kiện</strong>)</li>
+<li>Nhân viên đi tới phục vụ bạn (<strong>Thực hiện phản hồi</strong>)</li>
+</ol>
+<p>Logic xử lý sự kiện của JavaScript cũng vậy:</p>
+<pre><code>Người dùng nhấp nút → Chú trình lắng nghe thấy cú nhấp → Thực thi mã tương ứng
+</code></pre>
+<p>Bạn không cần tự viết những đoạn mã này. Chỉ cần nói với AI: "Khi người dùng nhấp nút thêm, hãy thêm nội dung đã nhập vào danh sách", AI sẽ giúp bạn thực hiện.</p>
+<h2>Quy trình làm việc vòng này</h2>
+<pre><code>4.3.1 Thêm nhiệm vụ → Để nút &quot;Thêm&quot; dùng được
+       ↓
+4.3.2 Xóa nhiệm vụ → Để nút &quot;Xóa&quot; dùng được
+       ↓
+4.3.3 Đánh dấu hoàn thành → Để nút &quot;Hoàn thành&quot; dùng được
+       ↓
+4.3.4 Tối ưu hóa lặp lại → Điều chỉnh những chỗ chưa hài lòng
+       ↓
+4.3.5 Kiểm tra giai đoạn → Xác nhận mọi chức năng bình thường
+</code></pre>
+<p>Mỗi khi hoàn thành một chức năng, đều phải kiểm tra xác nhận có thể sử dụng bình thường, rồi mới vào bước tiếp theo.</p>
+<h2>Điều hướng chương</h2>
+<table>
+<thead>
+<tr>
+<th>Tiểu tiết</th>
+<th>Chủ đề</th>
+<th>Thời gian dự kiến</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="./4.3.1-add-task_vi.html">4.3.1</a></td>
+<td>Chức năng 1: Thêm nhiệm vụ</td>
+<td>10 phút</td>
+</tr>
+<tr>
+<td><a href="./4.3.2-delete-task_vi.html">4.3.2</a></td>
+<td>Chức năng 2: Xóa nhiệm vụ</td>
+<td>8 phút</td>
+</tr>
+<tr>
+<td><a href="./4.3.3-complete-task_vi.html">4.3.3</a></td>
+<td>Chức năng 3: Đánh dấu hoàn thành</td>
+<td>8 phút</td>
+</tr>
+<tr>
+<td><a href="./4.3.4-iterate_vi.html">4.3.4</a></td>
+<td>Nghệ thuật tối ưu hóa lặp lại</td>
+<td>7 phút</td>
+</tr>
+<tr>
+<td><a href="./4.3.5-checkpoint_vi.html">4.3.5</a></td>
+<td>Kiểm tra kết quả giai đoạn</td>
+<td>2 phút</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tổng thời gian dự kiến: Khoảng 35 phút</strong></p>
+<p>::: tip 💡 Nhắc nhở ấm áp
+Nếu chức năng nào đó thực hiện xong mà chưa đúng lắm, đừng vội. Phần 4.3.4 sẽ chuyên nói về cách truy vấn và điều chỉnh. Cứ làm theo trước đã, gặp vấn đề thì ghi lại.
+:::</p>
+<h2>Đã chuẩn bị xong chưa?</h2>
+<p>Đảm bảo bạn đã hoàn thành phần 4.2, có một trang tĩnh hiển thị bình thường.</p>
+<p>Hãy bắt đầu "lắp động cơ" cho nó nào!</p>
+<p>→ <a href="./4.3.1-add-task_vi.html">4.3.1 Chức năng 1: Thêm nhiệm vụ</a></p>
+</body>
+</html>

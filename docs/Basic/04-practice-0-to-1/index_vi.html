@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "Chương 4: Thực chiến —— Phát triển công cụ cá nhân từ 0 đến 1"</h2>
+<p><img alt="04-practice-0-to-1_index.png" src="../../public/images/Basic/04-practice-0-to-1_index.png" /></p>
+<h1>Chương 4: Thực chiến —— Phát triển công cụ cá nhân từ 0 đến 1</h1>
+<blockquote>
+<p><strong>Định vị chương</strong>: Chương này là chương thực hành cốt lõi của Vibe Coding, đưa tư duy và kỹ thuật đã học ở ba chương trước vào thực tế, cầm tay chỉ việc dẫn dắt bạn hoàn thành dự án lập trình AI hoàn chỉnh đầu tiên.</p>
+</blockquote>
+<h2>Từ "Bàn việc trên giấy" đến "Múa đao múa thương"</h2>
+<p>Ở ba chương trước, chúng ta đã hoàn thành công tác chuẩn bị quan trọng:</p>
+<table>
+<thead>
+<tr>
+<th>Chương</th>
+<th>Bạn học được gì</th>
+<th>Ẩn dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chương 1 Thức tỉnh</td>
+<td>Hiểu Vibe Coding là gì</td>
+<td>Nhận biết thế giới mới</td>
+</tr>
+<tr>
+<td>Chương 2 Tâm pháp</td>
+<td>Dùng tư duy giám đốc sản phẩm nghĩ cho rõ cần làm gì</td>
+<td>Viết kịch bản hay</td>
+</tr>
+<tr>
+<td>Chương 3 Kỹ thuật</td>
+<td>Dùng phương pháp cấu trúc hóa để giao tiếp hiệu quả với AI</td>
+<td>Học ngôn ngữ đạo diễn</td>
+</tr>
+<tr>
+<td><strong>Chương 4 Thực chiến</strong></td>
+<td><strong>Thực sự bắt tay làm ra một sản phẩm</strong></td>
+<td><strong>Diễn!</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Chương này, chúng ta sẽ dùng hết tất cả những gì đã học ở trước đó —— <strong>làm ra một thứ thực sự dùng được</strong>.</p>
+<p>Không phải nhìn người khác làm, không phải tưởng tượng đang làm, mà là chính tay bạn làm ra.</p>
+<h2>Tại sao chọn "Danh sách việc cần làm" làm dự án đầu tiên</h2>
+<p>Bạn có thể sẽ hỏi: Sao không làm cái gì đó ngầu hơn? Ví dụ như AI chatbot, trình tạo ảnh?</p>
+<p>Chúng tôi chọn "Danh sách việc cần làm cá nhân", có ba lý do quan trọng:</p>
+<h3>1. Bao hàm trọn vẹn thao tác CRUD</h3>
+<table>
+<thead>
+<tr>
+<th>Thao tác</th>
+<th>Tiếng Anh</th>
+<th>Thể hiện trong danh sách việc cần làm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tạo</td>
+<td>Create</td>
+<td>Thêm nhiệm vụ mới</td>
+</tr>
+<tr>
+<td>Đọc</td>
+<td>Read</td>
+<td>Hiển thị danh sách nhiệm vụ</td>
+</tr>
+<tr>
+<td>Cập nhật</td>
+<td>Update</td>
+<td>Đánh dấu nhiệm vụ hoàn thành</td>
+</tr>
+<tr>
+<td>Xóa</td>
+<td>Delete</td>
+<td>Xóa nhiệm vụ</td>
+</tr>
+</tbody>
+</table>
+<p>Bốn thao tác này là nền tảng của hầu hết mọi ứng dụng. Học được cái này, làm dự án khác chỉ là thay đổi lớp vỏ thôi.</p>
+<h3>2. Kết nối liền mạch với ví dụ chương 2</h3>
+<p>Còn nhớ Tiểu Lý ở chương 2 không? Cậu ấy muốn làm một danh sách việc cần làm để quản lý nhiệm vụ của mình. Ở chương 2 chúng ta đã giúp cậu ấy làm:
+- Phân tích 3 câu hỏi linh hồn
+- Chân dung người dùng
+- Định nghĩa chức năng MVP
+- PRD đơn giản</p>
+<p>Bây giờ, chúng ta sẽ <strong>biến ý tưởng của Tiểu Lý thành hiện thực</strong>.</p>
+<h3>3. Làm xong dùng được thật</h3>
+<p>Đây không phải là một "dự án luyện tập" —— sau khi làm xong, bạn thực sự có thể dùng nó để quản lý các công việc cần làm của mình. Làm mới trang dữ liệu vẫn còn, mở trên điện thoại cũng được. Cảm giác thành tựu kiểu "thứ mình làm ra dùng được thật" này là động lực lớn nhất để học lập trình.</p>
+<h2>Chương này tích hợp nội dung các chương trước như thế nào</h2>
+<table>
+<thead>
+<tr>
+<th>Đến từ chương</th>
+<th>Bạn sẽ dùng</th>
+<th>Dùng ở đâu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chương 2 Tâm pháp</td>
+<td>PRD của Tiểu Lý, 3 câu hỏi linh hồn, Định nghĩa MVP</td>
+<td>4.1 Xác định rõ cần làm gì</td>
+</tr>
+<tr>
+<td>Chương 3 Kỹ thuật</td>
+<td>Khung S.C.A.F.F., kỹ năng đối thoại lặp lại</td>
+<td>4.2-4.4 Viết Prompt, điều chỉnh tối ưu</td>
+</tr>
+</tbody>
+</table>
+<p>Chương này là "sân diễn tập thực chiến" của hai chương trước —— Chương 2 dạy bạn nghĩ cho kỹ, chương 3 dạy bạn nói cho rõ, chương này để bạn thực sự làm ra sản phẩm.</p>
+<h2>Mục tiêu học tập chương này</h2>
+<p>Sau khi hoàn thành chương này, bạn sẽ:</p>
+<ul>
+<li>✅ Độc lập hoàn thành một ứng dụng web hoàn chỉnh bao gồm chức năng thêm xóa sửa tra cứu</li>
+<li>✅ Nắm vững quy trình làm việc trọn vẹn từ ý tưởng đến sản phẩm</li>
+<li>✅ Học cách sử dụng AI IDE để phát triển</li>
+<li>✅ Có khả năng debug và sửa chữa khi mã AI bị lỗi</li>
+<li>✅ Hiểu khái niệm cơ bản về lưu trữ dữ liệu (localStorage)</li>
+<li>✅ Sở hữu một tác phẩm thực tế có thể khoe với bạn bè</li>
+</ul>
+<h2>Xem trước cấu trúc chương này</h2>
+<pre><code>4.1 Bắt đầu trước đó → Tích hợp công tác chuẩn bị, chọn công cụ
+4.2 Vòng 1: Dựng trang → Làm cái &quot;mặt tiền&quot; trước
+4.3 Vòng 2: Thực hiện chức năng → Để nó phản hồi thao tác
+4.4 Vòng 3: Lưu trữ dữ liệu → Để nó nhớ dữ liệu của bạn
+4.5 Thực chiến Debug → Khi mã AI báo lỗi thì làm thế nào
+4.6 Kết thúc và ôn tập → Trưng bày dự án hoàn chỉnh và tổng kết kinh nghiệm
+</code></pre>
+<h2>Thời gian dự kiến</h2>
+<table>
+<thead>
+<tr>
+<th>Tiết</th>
+<th>Thời gian dự kiến</th>
+<th>Độ khó</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4.1 Bắt đầu trước đó</td>
+<td>15 phút</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>4.2 Dựng trang</td>
+<td>20 phút</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td>4.3 Thực hiện chức năng</td>
+<td>30 phút</td>
+<td>⭐⭐</td>
+</tr>
+<tr>
+<td>4.4 Lưu trữ dữ liệu</td>
+<td>20 phút</td>
+<td>⭐⭐</td>
+</tr>
+<tr>
+<td>4.5 Thực chiến Debug</td>
+<td>20 phút</td>
+<td>⭐⭐</td>
+</tr>
+<tr>
+<td>4.6 Kết thúc ôn tập</td>
+<td>15 phút</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td><strong>Tổng cộng</strong></td>
+<td><strong>Khoảng 2 tiếng</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>::: tip 💡 Gợi ý
+Có thể làm một mạch cho xong, cũng có thể chia thành 2-3 lần. Mỗi khi hoàn thành một vòng đều có thành quả giai đoạn, có thể tạm dừng bất cứ lúc nào.
+:::</p>
+<h2>Sẵn sàng chưa?</h2>
+<p>Hãy cùng bắt tay vào làm!</p>
+<p>→ <a href="./4.1-before-start/">4.1 Bắt đầu trước đó</a></p>
+</body>
+</html>

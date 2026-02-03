@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.6.4 Next Steps</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.6.4 Bước tiếp theo có thể làm gì"
+order: 5</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.6-summary_4.6.4-next-steps.png" src="../../../public/images/Basic/04-practice-0-to-1_4.6-summary_4.6.4-next-steps.png" /></p>
+<h1>4.6.4 Bước tiếp theo có thể làm gì</h1>
+<blockquote>
+<p><strong>Mục tiêu bước này</strong>: Quy hoạch lộ trình học tập, xác định rõ mục tiêu ngắn hạn và trung hạn</p>
+</blockquote>
+<p>Hoàn thành danh sách việc cần làm rồi, chắc bạn đang nghĩ: Tiếp theo làm gì? Ở đây đưa cho bạn lựa chọn theo ba hướng.</p>
+<h2>Hướng 1: Thêm tính năng cho danh sách việc cần làm (Làm được ngay)</h2>
+<p>Nếu bạn muốn tiếp tục mài giũa dự án này, dưới đây là một số ví dụ Prompt mở rộng chức năng:</p>
+<h3>Phân loại nhiệm vụ</h3>
+<pre><code>【Bối cảnh】
+Danh sách việc cần làm của tôi đã có thể thêm, xóa, nhiệm vụ hoàn thành, đồng thời dữ liệu sẽ được lưu trong localStorage.
+
+【Nhiệm vụ hiện tại】
+Xin hãy thêm chức năng phân loại cho nhiệm vụ:
+1. Thiết lập sẵn 3 loại: Công việc, Đời sống, Học tập
+2. Khi thêm nhiệm vụ có thể chọn phân loại
+3. Mỗi phân loại dùng màu sắc khác nhau để nhận diện
+4. Có thể lọc hiển thị nhiệm vụ theo phân loại
+
+【Yêu cầu kỹ thuật】
+- Giữ nguyên việc dùng localStorage lưu trữ
+- Phong cách mã nguồn thống nhất với mã hiện có
+</code></pre>
+<h3>Đánh dấu ưu tiên</h3>
+<pre><code>【Bối cảnh】
+Danh sách việc cần làm của tôi hiện tại chức năng đã đầy đủ, cần thêm chức năng độ ưu tiên.
+
+【Nhiệm vụ hiện tại】
+Xin hãy thêm chức năng độ ưu tiên cho nhiệm vụ:
+1. Ba mức ưu tiên: Cao, Trung bình, Thấp
+2. Ưu tiên cao dùng màu đỏ hiển thị, trung bình màu vàng, thấp màu xám
+3. Danh sách nhiệm vụ tự động sắp xếp theo độ ưu tiên
+4. Khi thêm nhiệm vụ có thể chọn độ ưu tiên, mặc định là &quot;Trung bình&quot;
+
+【Yêu cầu kỹ thuật】
+- Thông tin độ ưu tiên cũng cần lưu vào localStorage
+- Giữ các chức năng hoàn thành, xóa hiện có hoạt động bình thường
+</code></pre>
+<h3>Chức năng tìm kiếm</h3>
+<pre><code>【Bối cảnh】
+Nhiệm vụ trong danh sách của tôi càng lúc càng nhiều, cần có chức năng tìm kiếm.
+
+【Nhiệm vụ hiện tại】
+Xin hãy thêm chức năng tìm kiếm nhiệm vụ:
+1. Thêm một ô tìm kiếm phía trên ô nhập liệu
+2. Khi nhập từ khóa, lọc hiển thị nhiệm vụ khớp theo thời gian thực
+3. Khi ô tìm kiếm rỗng, hiển thị tất cả nhiệm vụ
+4. Tìm kiếm không phân biệt chữ hoa thường
+
+【Yêu cầu kỹ thuật】
+- Tìm kiếm là lọc front-end, không ảnh hưởng đến dữ liệu trong localStorage
+</code></pre>
+<p>Bạn có thể thêm từng chức năng này một, mỗi khi thêm một cái thì kiểm tra một lần, cảm nhận nhịp điệu phát triển tiệm tiến.</p>
+<h2>Hướng 2: Tiến vào chương 5 (Bước tiếp theo được đề xuất)</h2>
+<p>Chương 5 sẽ giải quyết 3 vấn đề mà hiện tại bạn có thể gặp phải:</p>
+<h3>Vấn đề 1: Sửa hỏng không quay lại được</h3>
+<p><strong>Bối cảnh</strong>: Bạn thử thêm một chức năng mới, kết quả làm hỏng luôn chức năng vốn đang dùng được, hơn nữa bạn đã lưu tập tin rồi, không hoàn tác được nữa.</p>
+<p><strong>Giải pháp chương 5</strong>: 5.1 Quản lý phiên bản</p>
+<p>Bạn sẽ học được:
+- Quản lý phiên bản là gì, tại sao cần nó
+- Dùng GitHub Desktop quản lý phiên bản mã nguồn
+- Mỗi lần thay đổi đều có thể "lưu game", quay lại bất cứ lúc nào</p>
+<h3>Vấn đề 2: Chỉ mình tôi dùng được</h3>
+<p><strong>Bối cảnh</strong>: Bạn muốn chia sẻ danh sách việc cần làm cho bạn bè, nhưng hiện tại nó chỉ là một tập tin trên máy tính của bạn, người khác không mở được.</p>
+<p><strong>Giải pháp chương 5</strong>: 5.2 Triển khai trực tuyến</p>
+<p>Bạn sẽ học được:
+- Dùng Vercel để đưa danh sách việc cần làm lên mạng
+- Có được một địa chỉ web thực sự, ai cũng truy cập được
+- Tùy chọn: Gắn tên miền của riêng mình</p>
+<h3>Vấn đề 3: Ý thức an toàn</h3>
+<p><strong>Bối cảnh</strong>: Bạn muốn để AI giúp làm một ứng dụng có chức năng đăng nhập, nhưng không biết xử lý mật khẩu và thông tin nhạy cảm thế nào.</p>
+<p><strong>Giải pháp chương 5</strong>: 5.3 Ý thức an toàn</p>
+<p>Bạn sẽ học được:
+- Những thứ gì tuyệt đối không được nói cho AI
+- Xử lý thông tin nhạy cảm thế nào cho đúng
+- Giới hạn an toàn của giai đoạn người mới bắt đầu</p>
+<table>
+<thead>
+<tr>
+<th>Tiết chương 5</th>
+<th>Vấn đề giải quyết</th>
+<th>Thời gian dự kiến</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5.1 Quản lý phiên bản</td>
+<td>Sửa hỏng không quay lại được</td>
+<td>30 phút</td>
+</tr>
+<tr>
+<td>5.2 Triển khai trực tuyến</td>
+<td>Chỉ mình tôi dùng được</td>
+<td>20 phút</td>
+</tr>
+<tr>
+<td>5.3 Ý thức an toàn</td>
+<td>Không biết việc gì không thể làm</td>
+<td>15 phút</td>
+</tr>
+<tr>
+<td>5.4 Tính hạn chế</td>
+<td>Ranh giới của Vibe Coding</td>
+<td>10 phút</td>
+</tr>
+</tbody>
+</table>
+<h2>Hướng 3: Làm một dự án mới (Củng cố kỹ năng)</h2>
+<p>Dùng quy trình làm việc bạn đã học, thử làm một dự án mới. Dưới đây là một số ý tưởng thích hợp để luyện tay:</p>
+<h3>Nhóm công cụ cá nhân</h3>
+<table>
+<thead>
+<tr>
+<th>Dự án</th>
+<th>Chức năng cốt lõi</th>
+<th>Độ phức tạp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sổ tay</strong></td>
+<td>Viết văn bản, lưu, sửa</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td><strong>Quản lý dấu trang</strong></td>
+<td>Lưu địa chỉ web, phân loại, tìm kiếm</td>
+<td>⭐⭐</td>
+</tr>
+<tr>
+<td><strong>Đồng hồ đếm ngược</strong></td>
+<td>Cài đặt thời gian, bắt đầu, tạm dừng, nhắc nhở</td>
+<td>⭐⭐</td>
+</tr>
+<tr>
+<td><strong>Sổ nhật ký</strong></td>
+<td>Viết nhật ký theo ngày, xem lịch sử</td>
+<td>⭐⭐</td>
+</tr>
+</tbody>
+</table>
+<h3>Nhóm theo dõi thói quen</h3>
+<table>
+<thead>
+<tr>
+<th>Dự án</th>
+<th>Chức năng cốt lõi</th>
+<th>Độ phức tạp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Thẻ điểm danh thói quen</strong></td>
+<td>Thêm thói quen, điểm danh hàng ngày, xem số ngày liên tục</td>
+<td>⭐⭐</td>
+</tr>
+<tr>
+<td><strong>Ghi chép đọc sách</strong></td>
+<td>Ghi tên sách, tiến độ, ghi chép</td>
+<td>⭐⭐</td>
+</tr>
+<tr>
+<td><strong>Nhắc uống nước</strong></td>
+<td>Ghi số lần uống nước, mục tiêu hôm nay</td>
+<td>⭐</td>
+</tr>
+</tbody>
+</table>
+<h3>Công cụ làm cho người nhà</h3>
+<table>
+<thead>
+<tr>
+<th>Dự án</th>
+<th>Chức năng cốt lõi</th>
+<th>Độ phức tạp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Album gia đình</strong></td>
+<td>Hiển thị ảnh, thêm mô tả</td>
+<td>⭐⭐</td>
+</tr>
+<tr>
+<td><strong>Thực đơn gia đình</strong></td>
+<td>Thu thập công thức tấu ăn, xem theo phân loại</td>
+<td>⭐⭐</td>
+</tr>
+<tr>
+<td><strong>Nhắc ngày kỷ niệm</strong></td>
+<td>Ghi lại ngày quan trọng, số ngày còn lại</td>
+<td>⭐</td>
+</tr>
+</tbody>
+</table>
+<p>Gợi ý chọn dự án:
+1. <strong>Xuất phát từ nỗi đau của chính mình</strong>: Làm một thứ mình thực sự sẽ dùng
+2. <strong>Độ phức tạp vừa phải</strong>: Dự án đầu tiên chọn ⭐ hoặc ⭐⭐, đừng mới vào đã thách thức ⭐⭐⭐
+3. <strong>Chức năng phải ít</strong>: Bản đầu tiên chỉ làm chức năng cốt lõi, sau này hẵng lặp lại</p>
+<h2>Danh sách kiểm tra hoàn thành học tập bản cơ sở</h2>
+<p>Trước khi vào chương 5 hoặc bắt đầu dự án mới, dùng danh sách này xác nhận bạn đã nắm vững nội dung cốt lõi của bản cơ sở:</p>
+<h3>Tầng tư duy</h3>
+<ul>
+<li>[ ] Hiểu Vibe Coding là gì, khác biệt với lập trình truyền thống ra sao</li>
+<li>[ ] Biết dùng 3 câu hỏi linh hồn để chải chuốt phương hướng dự án</li>
+<li>[ ] Hiểu tư duy MVP, biết xác định phạm vi bản đầu tiên thế nào</li>
+<li>[ ] Biết tại sao tư duy ngược "nghĩ đến thất bại trước" lại quan trọng</li>
+</ul>
+<h3>Tầng diễn đạt</h3>
+<ul>
+<li>[ ] Biết dùng khung S.C.A.F.F. tổ chức Prompt</li>
+<li>[ ] Biết ảnh hưởng của ngữ cảnh (bối cảnh, nhiệm vụ, ràng buộc) đối với đầu ra AI</li>
+<li>[ ] Biết dùng đối thoại lặp lại từng bước tiếp cận mục tiêu</li>
+<li>[ ] Khi gặp vấn đề, biết cung cấp thông tin hiệu quả cho AI thế nào</li>
+</ul>
+<h3>Tầng thực hành</h3>
+<ul>
+<li>[ ] Có thể làm cho AI tạo ra trang tĩnh</li>
+<li>[ ] Có thể làm cho AI thực hiện chức năng tương tác</li>
+<li>[ ] Có thể làm cho AI thêm lưu trữ localStorage</li>
+<li>[ ] Khi gặp báo lỗi, có thể dùng AI chẩn đoán và sửa chữa</li>
+<li>[ ] Đã hoàn thành ít nhất một dự án đầy đủ chức năng</li>
+</ul>
+<h3>Tầng tâm thái</h3>
+<ul>
+<li>[ ] Tin tưởng bản thân có thể dùng AI làm ra sản phẩm</li>
+<li>[ ] Không còn sợ hãi đối với báo lỗi</li>
+<li>[ ] Hiểu nguyên tắc "chạy được trước đã rồi tối ưu sau"</li>
+<li>[ ] Có động lực tiếp tục học tập và thử nghiệm</li>
+</ul>
+<p><strong>Nếu phần lớn các mục trên đều đánh dấu</strong>, chúc mừng bạn - bạn đã hoàn thành việc học tập Vibe Coding bản cơ sở.</p>
+<h2>Xem trước bản nâng cao</h2>
+<p>Sau khi hoàn thành bản cơ sở, nếu bạn muốn làm dự án phức tạp hơn, bản nâng cao sẽ dạy bạn:</p>
+<table>
+<thead>
+<tr>
+<th>Chủ đề</th>
+<th>Bạn sẽ học</th>
+<th>Có thể làm gì</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cơ sở dữ liệu đám mây</strong></td>
+<td>Supabase, Prisma</td>
+<td>Đồng bộ dữ liệu đa thiết bị</td>
+</tr>
+<tr>
+<td><strong>Xác thực người dùng</strong></td>
+<td>NextAuth, Đăng nhập đăng ký</td>
+<td>Hệ thống đa người dùng</td>
+</tr>
+<tr>
+<td><strong>Framework chuyên nghiệp</strong></td>
+<td>Next.js, React</td>
+<td>Phát triển ứng dụng phức tạp</td>
+</tr>
+<tr>
+<td><strong>Tích hợp tính năng AI</strong></td>
+<td>Vercel AI SDK</td>
+<td>Sử dụng AI trong ứng dụng</td>
+</tr>
+<tr>
+<td><strong>Triển khai vận hành</strong></td>
+<td>Docker, 1Panel</td>
+<td>Triển khai máy chủ</td>
+</tr>
+</tbody>
+</table>
+<p>Nội dung bản nâng cao cần đầu tư nhiều thời gian hơn, nhưng nếu bạn hứng thú với kỹ thuật, đây là con đường trưởng thành rõ ràng.</p>
+<h2>Lời kết chương này</h2>
+<p>Chúc mừng bạn đã hoàn thành dự án trọn vẹn đầu tiên của Vibe Coding!</p>
+<p>Từ tư duy sản phẩm chương 2, đến kỹ thuật diễn đạt chương 3, rồi đến thực hành bắt tay vào làm chương 4 - bạn đã đi qua một con đường hoàn chỉnh. Danh sách việc cần làm này có thể chức năng đơn giản, nhưng nó chứng minh một điều:</p>
+<p><strong>Bạn có thể biến ý tưởng thành hiện thực.</strong></p>
+<p>Năng lực này, trong thời đại AI sẽ ngày càng quan trọng. Không phải vì bạn cần trở thành lập trình viên, mà vì "có thể làm ra sản phẩm" đồng nghĩa với việc bạn có thể nhanh chóng xác thực ý tưởng, giải quyết vấn đề của chính mình, tạo ra công cụ thuộc về mình.</p>
+<p>Hãy ghi nhớ cảm giác này, mang theo nó tiếp tục tiến lên.</p>
+<p>→ <a href="../../05-advanced/">Chương 5: Tinh tấn —— Quy trình phát triển thế giới thực</a></p>
+</body>
+</html>

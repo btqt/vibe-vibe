@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.2.4 Checkpoint</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.2.4 Kiểm tra kết quả giai đoạn"
+order: 5</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.2-build-page_4.2.4-checkpoint.png" src="../../../public/images/Basic/04-practice-0-to-1_4.2-build-page_4.2.4-checkpoint.png" /></p>
+<h1>4.2.4 Kiểm tra kết quả giai đoạn</h1>
+<blockquote>
+<p><strong>Mục tiêu bước này</strong>: Xác nhận hoàn thành vòng 1, chuẩn bị bước vào vòng tiếp theo</p>
+</blockquote>
+<h2>Danh sách kiểm tra hoàn thành vòng 1</h2>
+<p>Trước khi bước vào vòng tiếp theo, hãy xác nhận các nội dung sau:</p>
+<h3>Mục bắt buộc</h3>
+<ul>
+<li>[ ] <strong>Trang hiển thị bình thường</strong>: Mở trong trình duyệt, không bị trắng trang hay báo lỗi</li>
+<li>[ ] <strong>Có tiêu đề</strong>: Nhìn thấy "Danh sách việc cần làm của tôi" (hoặc tiêu đề bạn tự đặt)</li>
+<li>[ ] <strong>Có ô nhập liệu</strong>: Có một ô để nhập văn bản</li>
+<li>[ ] <strong>Có nút thêm</strong>: Có một nút "Thêm"</li>
+<li>[ ] <strong>Có danh sách nhiệm vụ</strong>: Nhìn thấy khu vực danh sách nhiệm vụ (dù là dữ liệu giả)</li>
+<li>[ ] <strong>Có nút thao tác</strong>: Mỗi nhiệm vụ có nút "Hoàn thành" và "Xóa"</li>
+</ul>
+<h3>Mục cộng điểm</h3>
+<ul>
+<li>[ ] Kiểu dáng tổng thể bạn cơ bản hài lòng</li>
+<li>[ ] Di chuột qua nút bấm có phản hồi thị giác</li>
+<li>[ ] Hiển thị bình thường ở kích thước điện thoại</li>
+</ul>
+<h2>Cách kiểm tra hiệu quả Responsive</h2>
+<p>Muốn biết trang trông như thế nào trên điện thoại? Không cần dùng điện thoại thật, trình duyệt có thể mô phỏng:</p>
+<ol>
+<li>Mở trang của bạn trong trình duyệt</li>
+<li>Nhấn <code>F12</code> để mở công cụ nhà phát triển</li>
+<li>Nhấp vào biểu tượng "Chuyển đổi thiết bị" ở góc trên bên trái thanh công cụ (trông giống điện thoại và máy tính bảng)</li>
+<li>Chọn một mẫu điện thoại (như iPhone 12) hoặc kéo trực tiếp chiều rộng trang</li>
+</ol>
+<p>Kiểm tra các tình huống sau:</p>
+<ul>
+<li>[ ] Nội dung trang không bị tràn ra ngoài màn hình</li>
+<li>[ ] Cỡ chữ trên điện thoại vẫn nhìn rõ</li>
+<li>[ ] Nút bấm trên điện thoại cũng dễ bấm</li>
+<li>[ ] Chiều rộng ô nhập liệu phù hợp với màn hình điện thoại</li>
+</ul>
+<p>::: tip Mẹo nhỏ
+Nếu hiển thị trên điện thoại có vấn đề, hãy quay lại phần 4.2.3, sử dụng Prompt điều chỉnh thuộc "Nhóm tương thích thiết bị".
+:::</p>
+<h2>Tham khảo hiệu quả mong đợi</h2>
+<p>Lúc này trang của bạn trông sẽ tương tự như thế này:</p>
+<blockquote>
+<p><strong>[Gợi ý hình ảnh]</strong>
+Nội dung hình ảnh: Ảnh chụp màn hình trang danh sách việc cần làm sau khi hoàn thành vòng 1, hiển thị cả giao diện máy tính và điện thoại
+Prompt: clean mockup of a simple todo list webpage, showing both desktop and mobile views, minimalist design, soft blue accent colors, friendly and approachable style, white background, high quality, 8k --ar 16:9</p>
+</blockquote>
+<h2>Trạng thái "bình thường" lúc này</h2>
+<p>Hiện tại trang của bạn đang ở trạng thái như sau:</p>
+<table>
+<thead>
+<tr>
+<th>Chức năng</th>
+<th>Trạng thái hiện tại</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hiển thị trang</td>
+<td>✅ Bình thường</td>
+</tr>
+<tr>
+<td>Nhấp nút "Thêm"</td>
+<td>❌ Không phản ứng (Bình thường!)</td>
+</tr>
+<tr>
+<td>Nhấp nút "Hoàn thành"</td>
+<td>❌ Không phản ứng (Bình thường!)</td>
+</tr>
+<tr>
+<td>Nhấp nút "Xóa"</td>
+<td>❌ Không phản ứng (Bình thường!)</td>
+</tr>
+<tr>
+<td>Dữ liệu sau khi làm mới trang</td>
+<td>❌ Dữ liệu biến mất (Bình thường!)</td>
+</tr>
+</tbody>
+</table>
+<p>Những điều này đều là bình thường - chúng ta hiện tại chỉ mới hoàn thành "vẻ ngoài", chưa thêm "chức năng".</p>
+<h2>🎉 Hoàn thành vòng 1!</h2>
+<p>Chúc mừng bạn! Bạn đã hoàn thành vòng phát triển đầu tiên của danh sách việc cần làm.</p>
+<p>Hiện tại bạn đã có:</p>
+<ul>
+<li>✅ Một trang HTML có thể mở trong trình duyệt</li>
+<li>✅ Giao diện hoàn chỉnh bao gồm tiêu đề, ô nhập liệu, nút bấm</li>
+<li>✅ Một khu vực danh sách nhiệm vụ</li>
+<li>✅ Thiết kế thị giác cơ bản đẹp mắt</li>
+</ul>
+<p>Đây là một cột mốc quan trọng - bạn đã đi từ "không có gì" đến "nhìn thấy được sản phẩm".</p>
+<h2>Ôn tập: Bạn đã dùng những gì</h2>
+<p>Trong vòng này, bạn đã thực hành:</p>
+<table>
+<thead>
+<tr>
+<th>Nguồn</th>
+<th>Nội dung đã dùng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chương 2</td>
+<td>Thẻ khởi động dự án làm nguyên liệu cho Prompt</td>
+</tr>
+<tr>
+<td>Chương 3</td>
+<td>Khung S.C.A.F.F. để tổ chức Prompt</td>
+</tr>
+<tr>
+<td>Chương 3</td>
+<td>Hội thoại lặp lại để điều chỉnh kiểu dáng</td>
+</tr>
+</tbody>
+</table>
+<p>Đây chính là quy trình làm việc của Vibe Coding: Nghĩ rõ ràng → Nói rõ ràng → Để AI làm → Điều chỉnh tối ưu.</p>
+<h2>Dự báo bước tiếp theo</h2>
+<p>Có trang rồi, nhưng vẫn chỉ là một cái "vỏ rỗng" - bấm nút không phản ứng, làm mới trang là mất dữ liệu.</p>
+<p><strong>Vòng tiếp theo, chúng ta sẽ làm cho nó "sống" dậy</strong>:
+- Bấm nút "Thêm", có thể thêm nhiệm vụ mới vào danh sách
+- Bấm nút "Hoàn thành", nhiệm vụ hiển thị trạng thái đã hoàn thành
+- Bấm nút "Xóa", nhiệm vụ biến mất khỏi danh sách</p>
+<p>Đã sẵn sàng chưa?</p>
+<p>→ <a href="./4.2.5-prompt-log_vi.html">4.2.5 Nhật ký hội thoại Prompt đầy đủ</a> (Đọc thêm tùy chọn)</p>
+<p>→ <a href="../4.3-core-features/">4.3 Vòng 2: Thực hiện chức năng cốt lõi</a></p>
+</body>
+</html>

@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.2.3 Adjust Style</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.2.3 Điều chỉnh kiểu dáng và bố cục"
+order: 4</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.2-build-page_4.2.3-adjust-style.png" src="../../../public/images/Basic/04-practice-0-to-1_4.2-build-page_4.2.3-adjust-style.png" /></p>
+<h1>4.2.3 Điều chỉnh kiểu dáng và bố cục</h1>
+<blockquote>
+<p><strong>Mục tiêu bước này</strong>: Dùng hội thoại lặp lại để tối ưu hóa vẻ ngoài của trang, làm cho nó phù hợp hơn với thẩm mỹ của bạn</p>
+</blockquote>
+<h2>Tâm thế điều chỉnh lặp lại</h2>
+<p>Mã nguồn phiên bản đầu tiên hiếm khi hoàn hảo ngay, đây là chuyện rất bình thường.</p>
+<p>Còn nhớ "hội thoại lặp lại" đã học ở chương 3 không? Bây giờ là lúc dùng đến nó:</p>
+<pre><code>Phiên bản 1 → Xem chỗ nào chưa ưng ý → Nói với AI → Nhận phiên bản mới → Xem lại → ...
+</code></pre>
+<p>Thông thường 2-3 vòng điều chỉnh là có thể đạt hiệu quả ưng ý. Đừng kỳ vọng một lần là hoàn hảo, cũng đừng điều chỉnh vô tận.</p>
+<h2>Kho Prompt điều chỉnh theo tình huống</h2>
+<p>Dưới đây là một số Prompt cho các tình huống điều chỉnh thường gặp, bạn có thể sao chép dùng ngay, hoặc sửa lại tùy theo nhu cầu.</p>
+<h3>Nhóm điều chỉnh màu sắc</h3>
+<p><strong>Phối màu tổng thể quá tối:</strong></p>
+<pre><code>Phối màu tổng thể tối quá, hãy sửa thành phong cách tươi sáng, rõ ràng hơn.
+Gợi ý:
+- Nền dùng màu xám nhạt (như #f5f5f5)
+- Màu chủ đạo dùng màu xanh dương sáng (như #3b82f6)
+- Nút bấm sử dụng dải màu gradient hoặc màu tươi tắn hơn
+</code></pre>
+<p><strong>Muốn đổi một màu chủ đề:</strong></p>
+<pre><code>Hãy đổi màu chủ đạo từ xanh dương sang hệ màu xanh lá.
+Nút thêm dùng xanh lá đậm (#059669), nút hoàn thành dùng xanh lá nhạt.
+</code></pre>
+<p><strong>Màu nút bấm chưa đủ nổi bật:</strong></p>
+<pre><code>Màu nút &quot;Thêm&quot; nhạt quá, đổi thành màu xanh dương nổi bật hơn (#2563eb),
+Chữ đổi thành màu trắng, khi di chuột vào thì màu đậm hơn.
+</code></pre>
+<h3>Nhóm điều chỉnh bố cục</h3>
+<p><strong>Vị trí ô nhập liệu và nút bấm:</strong></p>
+<pre><code>Để ô nhập liệu và nút thêm nằm trên cùng một dòng.
+Ô nhập liệu chiếm phần lớn chiều rộng, nút bấm nằm bên phải.
+Giữa hai phần tử chừa khoảng cách 8px.
+</code></pre>
+<p><strong>Vị trí tổng thể trang:</strong></p>
+<pre><code>Nội dung trang dịch lên trên một chút, cách đỉnh 30px là đủ.
+Khoảng cách giữa tiêu đề và khu vực nhập liệu giảm xuống còn 16px.
+</code></pre>
+<p><strong>Danh sách nhiệm vụ quá chật:</strong></p>
+<pre><code>Khoảng cách giữa các mục trong danh sách nhiệm vụ quá nhỏ, trông rất chật chội.
+Hãy tăng khoảng cách giữa mỗi mục nhiệm vụ lên 12px, để nhìn thoáng hơn.
+</code></pre>
+<h3>Nhóm điều chỉnh khoảng cách</h3>
+<p><strong>Tổng thể quá chật chội:</strong></p>
+<pre><code>Trang nhìn tổng thể quá chật chội. Hãy tăng các khoảng cách sau:
+- Padding trong của trang tăng lên 24px
+- Khoảng cách dưới tiêu đề tăng lên 24px
+- Khoảng cách giữa khu vực nhập liệu và danh sách tăng lên 20px
+</code></pre>
+<p><strong>Tổng thể quá rời rạc:</strong></p>
+<pre><code>Khoảng cách giữa các phần tử quá lớn, trông rất trống trải.
+Hãy giảm bớt khoảng cách giữa các phần một chút, để trang trông gọn gàng hơn.
+</code></pre>
+<h3>Nhóm điều chỉnh kích thước</h3>
+<p><strong>Ô nhập liệu quá hẹp:</strong></p>
+<pre><code>Ô nhập liệu hẹp quá, gõ chữ bất tiện.
+Hãy tăng chiều cao ô nhập liệu lên 44px, padding trong tăng lên 12px.
+</code></pre>
+<p><strong>Nút bấm quá nhỏ:</strong></p>
+<pre><code>Nút bấm nhỏ quá, khó bấm.
+Hãy thiết lập chiều cao tối thiểu cho tất cả nút bấm là 36px, padding trong tăng lên 12px 16px.
+</code></pre>
+<p><strong>Điều chỉnh cỡ chữ:</strong></p>
+<pre><code>Cỡ chữ tiêu đề to hơn xíu (28px), nội dung nhiệm vụ dùng 16px, chữ trên nút dùng 14px.
+</code></pre>
+<h3>Nhóm tương thích thiết bị (Responsive)</h3>
+<p><strong>Hiển thị không bình thường trên điện thoại:</strong></p>
+<pre><code>Trang hiển thị trên điện thoại có vấn đề, nội dung tràn ra ngoài mép màn hình.
+Hãy đảm bảo:
+- Ở màn hình hẹp (chiều rộng nhỏ hơn 400px), chiều rộng trang tự thích ứng
+- Nút bấm ở màn hình hẹp có thể xuống dòng hiển thị
+- Cỡ chữ trên điện thoại đừng nhỏ quá
+</code></pre>
+<h3>Nhóm tham khảo phong cách</h3>
+<p><strong>Tham khảo phong cách sản phẩm cụ thể:</strong></p>
+<pre><code>Hãy sửa phong cách tổng thể giống cảm giác của Apple Notes:
+- Nền trắng tinh
+- Bo góc lớn hơn một chút (12px)
+- Đổ bóng nhẹ nhàng hơn
+- Phông chữ sử dụng phông chữ mặc định của hệ thống
+</code></pre>
+<p><strong>Cảm giác hiện đại hơn:</strong></p>
+<pre><code>Phong cách hiện đại hơn chút nữa:
+- Thêm đổ bóng nhẹ cho thẻ (card shadow)
+- Sử dụng bo góc (8px)
+- Khi di chuột vào có thay đổi màu nhẹ
+- Tổng thể sử dụng phông chữ không chân (sans-serif)
+</code></pre>
+<h2>Ví dụ quá trình điều chỉnh của Tiểu Lý</h2>
+<p>Hãy xem Tiểu Lý dùng hội thoại lặp lại để tối ưu hóa trang danh sách việc cần làm của cậu ấy như thế nào.</p>
+<h3>Vòng 1: Cảm nhận tổng thể</h3>
+<p><strong>Suy nghĩ của Tiểu Lý sau khi thấy bản đầu tiên</strong>: Cấu trúc đúng rồi, nhưng màu thường quá, nút bấm quá nhỏ.</p>
+<p><strong>Tiểu Lý gửi:</strong></p>
+<pre><code>Cấu trúc trang khá ổn, hãy thực hiện các điều chỉnh sau:
+1. Phối màu tổng thể đổi sang hệ xanh ngọc lam, tươi mới hơn
+2. Nút thêm đổi thành bo góc, màu tươi tắn hơn
+3. Tăng chiều cao nút bấm, để dễ bấm hơn
+</code></pre>
+<h3>Vòng 2: Điều chỉnh chi tiết</h3>
+<p><strong>Suy nghĩ của Tiểu Lý sau khi thấy bản mới</strong>: Tốt hơn nhiều rồi, nhưng khoảng cách giữa ô nhập liệu và danh sách vẫn có thể tối ưu.</p>
+<p><strong>Tiểu Lý gửi:</strong></p>
+<pre><code>Màu sắc đẹp hơn nhiều rồi! Điều chỉnh thêm hai chi tiết nữa:
+1. Khoảng cách giữa ô nhập liệu và danh sách nhiệm vụ tăng lên 20px
+2. Mỗi mục nhiệm vụ thêm một đường kẻ phân cách màu xám nhạt
+</code></pre>
+<h3>Vòng 3: Chốt lại</h3>
+<p><strong>Tiểu Lý gửi:</strong></p>
+<pre><code>Tổng thể rất tốt rồi. Một điều chỉnh nhỏ cuối cùng:
+- Giữa hai nút bấm bên phải nhiệm vụ chừa chút khoảng cách (8px)
+- Nút &quot;Hoàn thành&quot; dùng màu xanh lá, nút &quot;Xóa&quot; dùng màu đỏ, tương phản màu rõ ràng hơn
+</code></pre>
+<p>Qua 3 vòng điều chỉnh, Tiểu Lý đã có được một trang ưng ý.</p>
+<h2>Bảng tra cứu nhanh vấn đề kiểu dáng thường gặp</h2>
+<table>
+<thead>
+<tr>
+<th>Vấn đề</th>
+<th>Prompt điều chỉnh nhanh</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ô nhập liệu quá hẹp</td>
+<td>Chiều rộng ô nhập liệu đổi thành 100%, trừ đi chiều rộng của nút bấm</td>
+</tr>
+<tr>
+<td>Nút bấm quá nhỏ</td>
+<td>Chiều cao tối thiểu tất cả nút bấm 36px, padding trong 12px 16px</td>
+</tr>
+<tr>
+<td>Khoảng cách danh sách quá nhỏ</td>
+<td>Tăng bước nhảy giữa các mục nhiệm vụ thêm 12px</td>
+</tr>
+<tr>
+<td>Màu quá tối</td>
+<td>Phối màu tổng thể đổi sang phong cách sáng sủa tươi mới</td>
+</tr>
+<tr>
+<td>Không có phân tầng thị giác</td>
+<td>Thêm đổ bóng nhẹ cho thẻ, tiêu đề in đậm phóng to</td>
+</tr>
+<tr>
+<td>Hiển thị lộn xộn trên điện thoại</td>
+<td>Thêm kiểu dáng Responsive, chiều rộng sử dụng phần trăm</td>
+</tr>
+<tr>
+<td>Di chuột không có phản hồi</td>
+<td>Thêm hiệu ứng hover cho nút, màu đậm hơn hoặc đổ bóng</td>
+</tr>
+<tr>
+<td>Ô nhập liệu quá sát lề</td>
+<td>Tăng padding trong của trang lên 24px</td>
+</tr>
+</tbody>
+</table>
+<h2>Tiêu chuẩn "Đủ tốt"</h2>
+<p>Khi nào nên dừng điều chỉnh và chuyển sang bước tiếp theo? Dùng danh sách này để phán đoán:</p>
+<h3>Bắt buộc thỏa mãn</h3>
+<ul>
+<li>[ ] Tất cả phần tử đều nằm đúng vị trí</li>
+<li>[ ] Có thể nhìn rõ tiêu đề, ô nhập liệu, nút bấm, danh sách nhiệm vụ</li>
+<li>[ ] Trang không bị biến dạng ở chiều rộng điện thoại (375px)</li>
+<li>[ ] Không có vấn đề thị giác rõ ràng (tràn chữ, phần tử chồng chéo)</li>
+</ul>
+<h3>Điểm cộng (Có thì tốt hơn, không có cũng được)</h3>
+<ul>
+<li>[ ] Phối màu hợp gu thẩm mỹ của bạn</li>
+<li>[ ] Di chuột vào có phản hồi tương tác</li>
+<li>[ ] Phong cách tổng thể thống nhất</li>
+<li>[ ] Khoảng cách nhìn thoải mái</li>
+</ul>
+<h3>Không cần theo đuổi</h3>
+<ul>
+<li>[ ] Căn chỉnh chính xác từng pixel</li>
+<li>[ ] Hiệu ứng hoạt hình (animation)</li>
+<li>[ ] Hiệu ứng thị giác phức tạp</li>
+</ul>
+<p>::: warning Quan trọng
+80 điểm là đủ rồi, chạy được trước đã rồi tối ưu sau. Nếu bạn đã điều chỉnh 3-4 vòng rồi thì cũng nên dừng lại được rồi.</p>
+<p>Hãy nhớ, mục tiêu của chúng ta là làm ra một danh sách việc cần làm <strong>dùng được</strong>, không phải tham gia cuộc thi thiết kế.
+:::</p>
+<h2>Gợi ý điều chỉnh</h2>
+<ol>
+<li><strong>Mỗi lần chỉ điều chỉnh một loại vấn đề</strong>: Màu sắc, bố cục, khoảng cách nên điều chỉnh riêng, như vậy dễ kiểm soát hơn</li>
+<li><strong>Mô tả cụ thể</strong>: Đừng nói "đẹp hơn chút", hãy nói "nút bấm dùng màu xanh #3b82f6"</li>
+<li><strong>Giữ lại phần tốt</strong>: Nếu phần nào đó đã ưng ý, hãy nhắc trong Prompt là "màu sắc giữ nguyên"</li>
+<li><strong>Không quá 5 vòng</strong>: Nếu 5 vòng mà vẫn chưa ưng, có thể bạn cần mô tả nhu cầu của mình rõ ràng hơn</li>
+</ol>
+<h2>Điểm kiểm tra bước này</h2>
+<p>Sau khi điều chỉnh xong, hãy xác nhận:</p>
+<ul>
+<li>[ ] Bố cục tổng thể chính xác (tiêu đề, khu vực nhập, khu vực danh sách đều có)</li>
+<li>[ ] Phối màu cơ bản hài lòng</li>
+<li>[ ] Khoảng cách và kích thước nhìn thoải mái</li>
+<li>[ ] Hiển thị bình thường ở chiều rộng điện thoại</li>
+</ul>
+<p>→ <a href="./4.2.4-checkpoint_vi.html">4.2.4 Kiểm tra kết quả giai đoạn</a></p>
+</body>
+</html>

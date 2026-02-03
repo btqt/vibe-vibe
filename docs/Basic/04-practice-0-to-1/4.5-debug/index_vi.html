@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.5 Thực chiến Debug: Khi mã AI bị lỗi"
+order: 1</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.5-debug_index.png" src="../../../public/images/Basic/04-practice-0-to-1_4.5-debug_index.png" /></p>
+<h1>4.5 Thực chiến Debug: Khi mã AI bị lỗi</h1>
+<p>Qua phần học này, bạn sẽ nắm bắt được:
+- Nhận diện 4 loại lỗi thường gặp trong quá trình phát triển danh sách việc cần làm
+- Quy trình chuẩn dùng AI chẩn đoán và sửa lỗi mã nguồn
+- Kỹ năng đối thoại hoàn chỉnh để xử lý báo lỗi thực tế
+- Xây dựng tâm thái Debug "không sợ báo lỗi"</p>
+<h2>Mối quan hệ với chương 3</h2>
+<p>Phần 3.6 của chương 3 giảng về <strong>phương diện nguyên lý</strong>: AI có những biểu hiện "không nghe lời" nào, làm sao nhận biết ảo giác của AI, khung tư duy chẩn đoán vấn đề.</p>
+<p>Phần này giảng về <strong>phương diện thực hành</strong>: Xoay quanh dự án danh sách việc cần làm bạn đang phát triển, trình bày các thông tin báo lỗi thực tế, hội thoại sửa chữa hoàn chỉnh, và các mẫu Prompt có thể sao chép dùng ngay.</p>
+<p>Nói đơn giản: 3.6 dạy bạn "gặp vấn đề nên nghĩ thế nào", 4.5 dạy bạn "gặp vấn đề nên làm thế nào".</p>
+<h2>Tại sao báo lỗi là bình thường</h2>
+<p>Trong quá trình phát triển danh sách việc cần làm, có thể bạn đã gặp phải một số báo lỗi. Đừng lo lắng, chuyện này hoàn toàn bình thường.</p>
+<table>
+<thead>
+<tr>
+<th>Hiểu lầm</th>
+<th>Sự thật</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Báo lỗi chứng tỏ tôi làm sai"</td>
+<td>Báo lỗi là mã đang nói với bạn chỗ nào cần điều chỉnh</td>
+</tr>
+<tr>
+<td>"Lập trình viên chuyên nghiệp sẽ không gặp lỗi"</td>
+<td>Lập trình viên chuyên nghiệp ngày nào cũng debug, chỉ là họ biết cách giải quyết</td>
+</tr>
+<tr>
+<td>"Mã do AI tạo ra chắc không có vấn đề"</td>
+<td>AI không hiểu môi trường cụ thể của bạn, cần bạn giúp nó điều chỉnh</td>
+</tr>
+</tbody>
+</table>
+<p>Tin tốt là: <strong>AI có thể giúp bạn giải quyết 90% các vấn đề thường gặp</strong>. Bạn chỉ cần học được "cách hỏi".</p>
+<h2>Điều hướng chương</h2>
+<table>
+<thead>
+<tr>
+<th>Tiểu tiết</th>
+<th>Chủ đề</th>
+<th>Bạn sẽ học được</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="./4.5.1-error-types_vi.html">4.5.1</a></td>
+<td>Tra cứu nhanh các loại lỗi thường gặp</td>
+<td>Phương pháp nhận diện 4 loại lỗi, cách đọc báo lỗi console</td>
+</tr>
+<tr>
+<td><a href="./4.5.2-fix-with-ai_vi.html">4.5.2</a></td>
+<td>Dùng AI giúp bạn sửa mã AI</td>
+<td>Các mẫu Prompt hoàn chỉnh để chẩn đoán, sửa chữa, xác thực</td>
+</tr>
+<tr>
+<td><a href="./4.5.3-real-cases_vi.html">4.5.3</a></td>
+<td>Phân tích trường hợp thực tế</td>
+<td>6 lỗi điển hình trong phát triển danh sách việc cần làm và quá trình giải quyết</td>
+</tr>
+<tr>
+<td><a href="./4.5.4-debug-mindset_vi.html">4.5.4</a></td>
+<td>Tâm pháp Debug tổng kết</td>
+<td>Xây dựng thói quen và tâm thái debug đúng đắn</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Thời gian học tập dự kiến: Khoảng 25-30 phút</strong></p>
+<h2>Trước khi bắt đầu</h2>
+<p>Đảm bảo bạn đã hoàn thành việc phát triển từ 4.2-4.4, trên tay có một danh sách việc cần làm cơ bản dùng được. Nếu mã hiện tại của bạn chạy bình thường, cũng có thể xem qua nội dung chương này trước, đợi khi gặp vấn đề thì quay lại tra cứu.</p>
+<p>Sẵn sàng chưa? Hãy bắt đầu từ việc nhận biết các loại lỗi thường gặp.</p>
+<p>→ <a href="./4.5.1-error-types_vi.html">4.5.1 Tra cứu nhanh các loại lỗi thường gặp</a></p>
+</body>
+</html>

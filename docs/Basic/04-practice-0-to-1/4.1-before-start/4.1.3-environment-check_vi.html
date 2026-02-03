@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.1.3 Environment Check</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.1.3 Chuẩn bị công cụ và kiểm tra môi trường"
+order: 4</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.1-before-start_4.1.3-environment-check.png" src="../../../public/images/Basic/04-practice-0-to-1_4.1-before-start_4.1.3-environment-check.png" /></p>
+<h1>4.1.3 Chuẩn bị công cụ và kiểm tra môi trường</h1>
+<blockquote>
+<p><strong>Mục tiêu phần này</strong>: Dùng 3 phút hoàn thành kiểm tra môi trường, loại bỏ các vấn đề thường gặp</p>
+</blockquote>
+<h2>5 Hạng mục kiểm tra nhanh</h2>
+<p>Lần lượt xác nhận các nội dung sau. Sau khi thông qua hết, bạn có thể bắt đầu.</p>
+<h3>✅ Kiểm tra 1: Công cụ mở được</h3>
+<ul>
+<li>[ ] AI IDE đã cài đặt và khởi động bình thường</li>
+<li>[ ] Đăng nhập bình thường (nếu cần)</li>
+<li>[ ] Giao diện tải xong, không báo lỗi</li>
+</ul>
+<h3>✅ Kiểm tra 2: Mạng bình thường</h3>
+<ul>
+<li>[ ] AI IDE kết nối được với server</li>
+<li>[ ] Nhập liệu vào khu vực đối thoại và nhận được phản hồi từ AI</li>
+</ul>
+<h3>✅ Kiểm tra 3: Hạn mức đầy đủ</h3>
+<ul>
+<li>[ ] Xác nhận vẫn còn hạn mức miễn phí</li>
+<li>[ ] Hoặc đã chuẩn bị phương án trả phí</li>
+</ul>
+<h3>✅ Kiểm tra 4: Thời gian đầy đủ</h3>
+<ul>
+<li>[ ] Có ít nhất 30 phút liên tục (hoàn thành vòng đầu tiên)</li>
+<li>[ ] Tốt nhất là có 1-2 tiếng (hoàn thành cả chương 4)</li>
+<li>[ ] Trong thời gian đó không bị gián đoạn thường xuyên</li>
+</ul>
+<h3>✅ Kiểm tra 5: Tâm thái sẵn sàng</h3>
+<ul>
+<li>[ ] Chuẩn bị tâm lý chấp nhận "lần đầu không hoàn hảo"</li>
+<li>[ ] Chuẩn bị tâm lý nhìn thấy thông báo lỗi</li>
+<li>[ ] Tin tưởng "báo lỗi có thể nhờ AI sửa giúp"</li>
+</ul>
+<h2>Tra cứu nhanh vấn đề thường gặp</h2>
+<p>Nếu có mục kiểm tra nào ở trên không thông qua, hãy xem ở đây có giải pháp không:</p>
+<h3>Vấn đề: Truy cập mạng không ổn định</h3>
+<p><strong>Triệu chứng</strong>: AI phản hồi quá thời gian, thường xuyên mất kết nối</p>
+<p><strong>Giải pháp</strong>:
+1. Thử chuyển mạng (như từ WiFi chuyển sang chia sẻ dữ liệu di động)
+2. Kiểm tra có cần cấu hình proxy không
+3. Khởi động lại AI IDE rồi thử lại</p>
+<h3>Vấn đề: Đăng nhập tài khoản thất bại</h3>
+<p><strong>Triệu chứng</strong>: Báo đăng nhập thất bại, tài khoản không tồn tại, sai mật khẩu</p>
+<p><strong>Giải pháp</strong>:
+1. Xác nhận dùng đúng phương thức đăng nhập (Email/GitHub/Google...)
+2. Thử đặt lại mật khẩu
+3. Kiểm tra hòm thư xem có nhận được mail xác minh không</p>
+<h3>Vấn đề: Hết hạn mức Prompt</h3>
+<p><strong>Triệu chứng</strong>: AI không trả lời nữa, báo "quota exceeded" hoặc thông tin tương tự</p>
+<p><strong>Giải pháp</strong>:
+1. Chờ làm mới hạn mức tháng (thường là ngày 1 hàng tháng)
+2. Mua thêm hạn mức
+3. Tối ưu Prompt, giảm bớt số lần đối thoại không cần thiết</p>
+<h3>Vấn đề: Công cụ bị crash hoặc đơ</h3>
+<p><strong>Triệu chứng</strong>: Giao diện không phản hồi, cứ tải mãi</p>
+<p><strong>Giải pháp</strong>:
+1. Khởi động lại AI IDE
+2. Kiểm tra xem có bản cập nhật phần mềm không
+3. Nếu vấn đề vẫn tiếp diễn, thử cài đặt lại</p>
+<h3>Vấn đề: Không hiểu code sinh ra</h3>
+<p><strong>Triệu chứng</strong>: AI sinh ra rất nhiều code, nhưng bạn không biết ý nghĩa là gì</p>
+<p><strong>Đây không phải vấn đề</strong>. Triết lý cốt lõi của Vibe Coding là: Bạn không cần hiểu hoàn toàn code. Chỉ cần kết quả phù hợp kỳ vọng, chi tiết code có thể giao cho AI.</p>
+<p>Nếu kết quả không phù hợp kỳ vọng, điều bạn cần làm là <strong>nói cho AI biết chỗ nào không đúng</strong>, chứ không phải tự mình sửa code.</p>
+<h2>Thiết lập môi trường học tập đề xuất</h2>
+<p>Để có trải nghiệm học tập tốt nhất, kiến nghị:</p>
+<h3>Bố cục màn hình</h3>
+<p>Nếu bạn có màn hình lớn hoặc hai màn hình:
+- Một bên để AI IDE (để thao tác)
+- Một bên để hướng dẫn này (để tham khảo)</p>
+<p>Nếu chỉ có một màn hình:
+- Có thể dùng tab trình duyệt để chuyển đổi
+- Hoặc dùng tính năng chia màn hình để hiển thị song song</p>
+<h3>Đề xuất bố cục cửa sổ</h3>
+<p>Trước khi bắt đầu, kiến nghị chuẩn bị sẵn:
+1. <strong>AI IDE</strong> (Hiển thị toàn màn hình hoặc nửa màn hình)
+2. <strong>Trình duyệt</strong> (Mở trang hướng dẫn này)</p>
+<h3>Giảm nhiễu</h3>
+<ul>
+<li>Tắt các thông báo không cần thiết</li>
+<li>Nói với người nhà/bạn cùng phòng bạn cần một khoảng thời gian tập trung</li>
+<li>Chuẩn bị sẵn nước hoặc đồ uống (giảm số lần đứng dậy)</li>
+</ul>
+<h2>Lối tắt: Nếu bạn rất tự tin</h2>
+<p>Nếu bạn thỏa mãn tất cả điều kiện sau, có thể bỏ qua phần kiểm tra còn lại, vào thẳng 4.2:</p>
+<ul>
+<li>✅ Đã test công cụ thông qua (Test Hello World ở 4.1.2 thành công)</li>
+<li>✅ Biết mình phải làm gì (Danh sách việc cần làm hoặc dự án riêng)</li>
+<li>✅ Có thời gian trên 1 tiếng</li>
+<li>✅ Sẵn sàng tâm lý chấp nhận báo lỗi</li>
+</ul>
+<p>→ <a href="../4.2-build-page/">4.2 Vòng 1: Dựng khung trang</a></p>
+<h2>Điểm cốt yếu phần này</h2>
+<p>✓ <strong>5 Hạng mục kiểm tra</strong>: Công cụ, Mạng, Hạn mức, Thời gian, Tâm thái</p>
+<p>✓ <strong>Vấn đề thường gặp có lời giải</strong>: Đa số vấn đề đều có thể giải quyết nhanh</p>
+<p>✓ <strong>Môi trường ảnh hưởng hiệu suất</strong>: Môi trường học tập tốt giúp bạn tập trung hơn</p>
+<p>::: tip Bước cuối cùng
+Sau khi kiểm tra môi trường thông qua, chúng ta hãy làm xác nhận cuối cùng.
+:::</p>
+<p>→ <a href="./4.1.4-checklist_vi.html">4.1.4 Danh sách kiểm tra phần này</a></p>
+</body>
+</html>

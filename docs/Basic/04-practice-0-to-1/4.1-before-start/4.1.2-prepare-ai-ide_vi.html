@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.1.2 Prepare Ai Ide</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.1.2 Chuẩn bị AI IDE của bạn"
+order: 3</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.1-before-start_4.1.2-prepare-ai-ide.png" src="../../../public/images/Basic/04-practice-0-to-1_4.1-before-start_4.1.2-prepare-ai-ide.png" /></p>
+<h1>4.1.2 Chuẩn bị AI IDE của bạn</h1>
+<blockquote>
+<p><strong>Mục tiêu phần này</strong>: Dùng 5 phút để xác nhận AI IDE của bạn đã sẵn sàng</p>
+</blockquote>
+<h2>Xác nhận công cụ đã cài đặt</h2>
+<p>Nếu bạn đã học theo Chương 1, chắc hẳn bạn đã chọn và cài đặt một AI IDE.</p>
+<p>Chưa cài đặt? Vui lòng xem lại <a href="../../01-awakening/1.3-tools-guide/">1.3 Hướng dẫn chọn công cụ</a>, cài đặt xong rồi hãy tiếp tục.</p>
+<p>::: warning Quan trọng
+Chương này sử dụng AI IDE cài trên máy local để phát triển. Hãy đảm bảo máy tính của bạn đã cài đặt công cụ.
+:::</p>
+<h2>Làm quen với bố cục giao diện AI IDE</h2>
+<p>Bất kể bạn dùng AI IDE nào, chúng đều có cấu trúc giao diện tương tự:</p>
+<pre><code>┌────────────────────────────────────────────────────────────┐
+│                        AI IDE Bố cục chung                   │
+│                                                            │
+├──────────────┬─────────────────────┬───────────────────────┤
+│              │                     │                       │
+│   Khu vực    │      Khu vực        │       Khu vực         │
+│    File      │        Code         │      Xem trước        │
+│ (File dự án) │ (Code AI tạo ra)    │ (Hiệu quả thực tế)    │
+│              │                     │                       │
+├──────────────┴─────────────────────┴───────────────────────┤
+│                        Khu vực                             │
+│                       Đối thoại                            │
+│               (Nơi bạn nhập Prompt)                         │
+└────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>Khu vực Đối thoại: Nơi bạn giao tiếp với AI</h3>
+<p>Đây là khu vực quan trọng nhất. Bạn nhập Prompt (còn gọi là chỉ lệnh, mô tả nhu cầu) tại đây, AI sẽ hiểu ý định của bạn và sinh ra code.</p>
+<p><strong>Tìm nó</strong>: Thường ở dưới đáy hoặc bên cạnh giao diện, có một ô nhập liệu, có thể ghi chữ "Ask AI", "Chat", "Composer" v.v.</p>
+<h3>Khu vực Code: Nơi hiển thị code AI sinh ra</h3>
+<p>Code do AI sinh ra sẽ hiển thị ở đây. Thông thường bạn không cần chỉnh sửa trực tiếp những code này, nhưng có thể xem.</p>
+<p><strong>Tìm nó</strong>: Thường ở giữa giao diện, hiển thị nội dung file như <code>index.html</code>, <code>app.js</code>.</p>
+<h3>Khu vực File: Nơi quản lý file dự án</h3>
+<p>Ở đây hiển thị tất cả file và thư mục trong dự án. Khi quá trình phát triển diễn ra, bạn sẽ thấy ngày càng nhiều file xuất hiện ở đây.</p>
+<p><strong>Tìm nó</strong>: Thường ở bên trái giao diện, là một danh sách file dạng cây.</p>
+<h3>Khu vực Xem trước: Nơi nhìn thấy hiệu quả</h3>
+<p>Đây là khu vực mang lại cảm giác thành tựu nhất. Trang web của bạn sẽ hiển thị thời gian thực ở đây.</p>
+<p><strong>Tìm nó</strong>: Thường ở bên phải giao diện, có thể cần nhấn nút "Preview", "Run" hoặc tương tự mới xuất hiện. Một số AI IDE cũng hỗ trợ mở xem trước trên trình duyệt.</p>
+<h2>Tạo thư mục dự án</h2>
+<p>Trước khi bắt đầu, kiến nghị bạn tạo một thư mục dự án chuyên dụng trên máy tính:</p>
+<ol>
+<li>Mở thư mục "Documents" hoặc "Desktop"</li>
+<li>Tạo một thư mục mới, đặt tên là <code>vibe-coding-projects</code></li>
+<li>Trong đó tạo thêm một thư mục con <code>todo-list</code> (Dự án danh sách việc cần làm)</li>
+</ol>
+<p>Cấu trúc thư mục như sau:</p>
+<pre><code>Documents/
+└── vibe-coding-projects/
+    └── todo-list/        ← Dự án chương này đặt ở đây
+</code></pre>
+<p>::: info 💡 Tại sao làm như vậy
+Đặt dự án ở vị trí cố định, thuận tiện cho việc tìm kiếm sau này. Các file AI IDE sinh ra đều sẽ được lưu trong thư mục này.
+:::</p>
+<h2>Mở thư mục dự án trong AI IDE</h2>
+<ol>
+<li>Mở AI IDE của bạn</li>
+<li>Tìm tùy chọn "Open Folder" hoặc "Mở thư mục"</li>
+<li>Chọn thư mục <code>todo-list</code> vừa tạo</li>
+<li>Xác nhận mở</li>
+</ol>
+<p>Bây giờ, AI IDE của bạn sẽ hiển thị một dự án trống.</p>
+<h2>Xác minh công cụ hoạt động bình thường: Một bài test đơn giản</h2>
+<p>Nhập Prompt sau vào khu vực đối thoại, kiểm tra xem công cụ có hoạt động bình thường không:</p>
+<pre><code>Hãy giúp tôi tạo một trang web đơn giản, hiển thị câu &quot;Hello, Vibe Coding!&quot;, chữ căn giữa, dùng màu xanh dương.
+</code></pre>
+<h3>Kết quả mong đợi</h3>
+<p>Bạn sẽ thấy:
+1. AI bắt đầu sinh code (thường là một file <code>index.html</code>)
+2. Khu vực Code hiển thị code HTML đã sinh
+3. Khu vực File xuất hiện file mới
+4. Khu vực Xem trước hiển thị một trang web, trên đó có dòng chữ "Hello, Vibe Coding!" màu xanh dương căn giữa</p>
+<h3>Nếu mọi thứ bình thường</h3>
+<p>Chúc mừng! Công cụ của bạn đã sẵn sàng. Có thể nhảy thẳng đến <a href="./4.1.4-checklist_vi.html">4.1.4 Danh sách kiểm tra cuối cùng</a>.</p>
+<h3>Nếu gặp vấn đề</h3>
+<table>
+<thead>
+<tr>
+<th>Vấn đề</th>
+<th>Nguyên nhân có thể</th>
+<th>Cách giải quyết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Khu vực đối thoại không phản hồi</td>
+<td>Vấn đề mạng hoặc chưa đăng nhập</td>
+<td>Kiểm tra kết nối mạng, xác nhận đã đăng nhập tài khoản</td>
+</tr>
+<tr>
+<td>AI trả lời rất chậm</td>
+<td>Độ trễ mạng</td>
+<td>Kiên nhẫn chờ, hoặc kiểm tra tình trạng mạng</td>
+</tr>
+<tr>
+<td>Code sinh ra rồi nhưng không thấy xem trước</td>
+<td>Xem trước chưa bật</td>
+<td>Tìm nút "Preview" hoặc "Run", hoặc mở file HTML đã sinh bằng trình duyệt</td>
+</tr>
+<tr>
+<td>Hết hạn mức Prompt</td>
+<td>Hạn mức miễn phí đã hết</td>
+<td>Xem có thể mua thêm hạn mức không, hoặc chờ làm mới hạn mức tháng</td>
+</tr>
+<tr>
+<td>Giao diện toàn tiếng Anh</td>
+<td>Cài đặt ngôn ngữ</td>
+<td>Không ảnh hưởng sử dụng, AI có thể hiểu Prompt tiếng Việt</td>
+</tr>
+</tbody>
+</table>
+<h2>Về hạn mức miễn phí</h2>
+<p>Đa số AI IDE đều cung cấp hạn mức miễn phí hoặc thời gian dùng thử. Đối với dự án danh sách việc cần làm của hướng dẫn này, hạn mức miễn phí thường là đủ.</p>
+<p>Nếu hạn mức không đủ:
+1. Xem công cụ có tùy chọn trả phí không
+2. Tối ưu Prompt của bạn, giảm bớt đối thoại không cần thiết
+3. Chờ làm mới hạn mức tháng</p>
+<h2>Điểm cốt yếu phần này</h2>
+<p>✓ <strong>Công cụ đã cài đặt</strong>: Máy tính của bạn có một AI IDE khả dụng</p>
+<p>✓ <strong>Giao diện đã quen thuộc</strong>: Biết khu vực đối thoại, khu vực code, khu vực file, khu vực xem trước nằm ở đâu</p>
+<p>✓ <strong>Dự án đã tạo</strong>: Có một thư mục dự án chuyên dụng, AI IDE đã mở thư mục này</p>
+<p>✓ <strong>Test đã thông qua</strong>: Dùng "Hello, Vibe Coding!" xác minh công cụ hoạt động bình thường</p>
+<p>::: tip Bước tiếp theo
+Sau khi xác nhận công cụ khả dụng, chúng ta sẽ kiểm tra môi trường lần cuối.
+:::</p>
+<p>→ <a href="./4.1.3-environment-check_vi.html">4.1.3 Chuẩn bị công cụ và kiểm tra môi trường</a></p>
+</body>
+</html>

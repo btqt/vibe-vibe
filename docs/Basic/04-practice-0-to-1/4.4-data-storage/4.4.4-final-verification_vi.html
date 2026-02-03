@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.4.4 Final Verification</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.4.4 Xác thực chức năng hoàn chỉnh và tổng kết giai đoạn"
+order: 5</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.4-data-storage_4.4.4-final-verification.png" src="../../../public/images/Basic/04-practice-0-to-1_4.4-data-storage_4.4.4-final-verification.png" /></p>
+<h1>4.4.4 Xác thực chức năng hoàn chỉnh và tổng kết giai đoạn</h1>
+<blockquote>
+<p><strong>Mục tiêu bước này</strong>: Hoàn thành kiểm thử nghiệm thu cuối cùng, ôn tập lại thành quả học tập của vòng này</p>
+</blockquote>
+<h2>Kiểm thử nghiệm thu cuối cùng</h2>
+<p>Trước khi kết thúc vòng này, hãy làm một đợt kiểm thử đầu cuối hoàn chỉnh, đảm bảo tất cả chức năng phối hợp hoạt động.</p>
+<h3>Quy trình kiểm thử</h3>
+<p>Hãy thực hiện các thao tác theo thứ tự sau:</p>
+<table>
+<thead>
+<tr>
+<th>Bước</th>
+<th>Thao tác</th>
+<th>Kết quả mong đợi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Xóa hết tất cả nhiệm vụ hiện có</td>
+<td>Danh sách nhiệm vụ trống trơn</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Thêm nhiệm vụ "Mua sữa"</td>
+<td>Nhiệm vụ xuất hiện trong danh sách</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Thêm nhiệm vụ "Viết báo cáo tuần"</td>
+<td>Trong danh sách có 2 nhiệm vụ</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Thêm nhiệm vụ "Học Vibe Coding"</td>
+<td>Trong danh sách có 3 nhiệm vụ</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Đánh dấu "Mua sữa" là đã hoàn thành</td>
+<td>Nhiệm vụ này có thay đổi về mặt thị giác</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Xóa "Viết báo cáo tuần"</td>
+<td>Trong danh sách còn lại 2 nhiệm vụ</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Làm mới trang</td>
+<td>Trạng thái nhiệm vụ được giữ nguyên hoàn toàn</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Đóng và mở lại trang</td>
+<td>Trạng thái nhiệm vụ được giữ nguyên hoàn toàn</td>
+</tr>
+</tbody>
+</table>
+<h3>Danh sách kiểm tra cuối cùng</h3>
+<p>Sau khi làm mới/mở lại, xác nhận các trạng thái sau:</p>
+<ul>
+<li>[ ] Số lượng nhiệm vụ: 2 cái</li>
+<li>[ ] "Mua sữa": Hiển thị trạng thái đã hoàn thành (có gạch ngang hoặc chuyển xám)</li>
+<li>[ ] "Học Vibe Coding": Hiển thị trạng thái chưa hoàn thành</li>
+<li>[ ] "Viết báo cáo tuần": Đã bị xóa, không nên xuất hiện</li>
+<li>[ ] Console không báo lỗi</li>
+<li>[ ] Các chức năng thêm, xóa, hoàn thành vẫn hoạt động bình thường</li>
+</ul>
+<h2>Hoàn thành vòng 3</h2>
+<p>Chúc mừng bạn! Sau 3 vòng lặp phát triển, danh sách việc cần làm của bạn đã từ một trang tĩnh, biến thành một công cụ cá nhân thực sự có thể sử dụng.</p>
+<h3>Bạn đã hoàn thành những gì</h3>
+<table>
+<thead>
+<tr>
+<th>Chức năng</th>
+<th>Kết thúc 4.2</th>
+<th>Kết thúc 4.3</th>
+<th>Kết thúc 4.4 (Hiện tại)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hiển thị trang</td>
+<td>✅ Trang tĩnh</td>
+<td>✅ Trang tĩnh</td>
+<td>✅ Trang tĩnh</td>
+</tr>
+<tr>
+<td>Thêm nhiệm vụ</td>
+<td>❌ Không khả dụng</td>
+<td>✅ Khả dụng</td>
+<td>✅ Khả dụng</td>
+</tr>
+<tr>
+<td>Xóa nhiệm vụ</td>
+<td>❌ Không khả dụng</td>
+<td>✅ Khả dụng</td>
+<td>✅ Khả dụng</td>
+</tr>
+<tr>
+<td>Đánh dấu hoàn thành</td>
+<td>❌ Không khả dụng</td>
+<td>✅ Khả dụng</td>
+<td>✅ Khả dụng</td>
+</tr>
+<tr>
+<td>Dữ liệu bền vững</td>
+<td>❌ Làm mới là mất</td>
+<td>❌ Làm mới là mất</td>
+<td>✅ Làm mới vẫn còn</td>
+</tr>
+</tbody>
+</table>
+<p>Từ "vỏ rỗng" đến "dùng được", rồi đến "dễ dùng" - Đây chính là sức mạnh của phát triển tiệm tiến.</p>
+<h3>Vòng này đã dùng những gì</h3>
+<table>
+<thead>
+<tr>
+<th>Nguồn</th>
+<th>Nội dung</th>
+<th>Dùng ở đâu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chương 2 phần 2.3</td>
+<td>Định nghĩa chức năng MVP</td>
+<td>Xác định vòng này chỉ làm localStorage</td>
+</tr>
+<tr>
+<td>Chương 3 phần 3.2</td>
+<td>Khung S.C.F. tinh gọn</td>
+<td>Viết Prompt cho chức năng lưu trữ</td>
+</tr>
+<tr>
+<td>Chương 3 phần 3.5</td>
+<td>Kỹ thuật đối thoại lặp lại</td>
+<td>Khắc phục sự cố và sửa lỗi</td>
+</tr>
+<tr>
+<td>Chương 3 phần 3.6</td>
+<td>Xác thực đầu ra của AI</td>
+<td>Kiểm thử dữ liệu có lưu chính xác không</td>
+</tr>
+</tbody>
+</table>
+<h3>Điểm kỹ năng vòng này</h3>
+<p>Thông qua vòng này, bạn đã học được:</p>
+<table>
+<thead>
+<tr>
+<th>Kỹ năng</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Khái niệm bền vững dữ liệu</td>
+<td>Hiểu tại sao cần lưu trữ, lưu ở đâu</td>
+</tr>
+<tr>
+<td>Sử dụng localStorage</td>
+<td>Cách dùng cơ bản của lưu trữ cục bộ trình duyệt</td>
+</tr>
+<tr>
+<td>Cơ bản về tuần tự hóa JSON</td>
+<td>Dữ liệu "đóng gói" và "mở gói" như thế nào (dù AI viết mã giúp bạn)</td>
+</tr>
+<tr>
+<td>Tư duy xác thực dữ liệu</td>
+<td>Biết cách kiểm tra xem dữ liệu có được lưu đúng không</td>
+</tr>
+<tr>
+<td>Sử dụng công cụ nhà phát triển</td>
+<td>Biết cách xem Application &gt; Local Storage</td>
+</tr>
+</tbody>
+</table>
+<h3>Hô ứng với trường hợp Tiểu Lý chương 2</h3>
+<p>Còn nhớ định nghĩa chức năng MVP của Tiểu Lý ở chương 2 không?</p>
+<table>
+<thead>
+<tr>
+<th>Ưu tiên</th>
+<th>Chức năng</th>
+<th>Trạng thái</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>Thêm nhiệm vụ</td>
+<td>✅ Đã hoàn thành (4.3)</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>Hiển thị danh sách</td>
+<td>✅ Đã hoàn thành (4.2)</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>Xóa nhiệm vụ</td>
+<td>✅ Đã hoàn thành (4.3)</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>Đánh dấu hoàn thành</td>
+<td>✅ Đã hoàn thành (4.3)</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>Giữ dữ liệu sau khi làm mới</td>
+<td>✅ Đã hoàn thành (4.4)</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>Phân loại nhiệm vụ</td>
+<td>Để lại cho bản nâng cao</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>Hạn chót</td>
+<td>Để lại cho bản nâng cao</td>
+</tr>
+</tbody>
+</table>
+<p>Chức năng cốt lõi MVP của Tiểu Lý (P0 + P1), hiện tại đã thực hiện được toàn bộ.</p>
+<h2>Trạng thái dự án hiện tại</h2>
+<p>Hiện tại bạn đang sở hữu một:</p>
+<ul>
+<li>Danh sách việc cần làm <strong>đầy đủ chức năng</strong>: Thêm xóa sửa tra cứu + Dữ liệu bền vững</li>
+<li>Công cụ cá nhân <strong>thực sự có thể sử dụng</strong>: Làm mới không mất, tắt máy không mất</li>
+<li>Dự án lập trình AI đầu tiên <strong>do chính tay bạn làm ra</strong></li>
+</ul>
+<p>Đây không phải bài luyện tập, mà là một <strong>sản phẩm thực sự dùng được</strong>.</p>
+<p>::: tip Dự báo nâng cao
+Trong phần nâng cao, chúng ta sẽ học:
+- Sử dụng cơ sở dữ liệu đám mây (như Supabase) thực hiện đồng bộ nhiều thiết bị
+- Thêm đăng nhập người dùng, mỗi người có danh sách nhiệm vụ riêng
+- Triển khai lên mạng, để người khác cũng có thể truy cập</p>
+<p>Nhưng đối với nhu cầu cá nhân, phiên bản bạn đang làm hiện tại đã hoàn toàn đủ dùng.
+:::</p>
+<h2>Gặp vấn đề thì làm sao?</h2>
+<p>Trong quá trình phát triển thực tế, gặp lỗi là chuyện thường ngày. Nếu bạn gặp vấn đề không thể giải quyết trong vòng này, đừng lo lắng - tiết sau sẽ chuyên nói về cách Debug.</p>
+<p>::: warning Nếu có vấn đề
+Đừng để bị kẹt lại, hãy tiếp tục học xuống dưới. Phần 4.5 sẽ dạy bạn phương pháp kiểm tra lỗi có hệ thống, học xong có thể quay lại giải quyết vấn đề tồn đọng.
+:::</p>
+<h2>Bước tiếp theo</h2>
+<p>Chức năng cốt lõi đã hoàn thành, nhưng trong quá trình phát triển có thể bạn đã gặp một số thông báo lỗi.</p>
+<p>Tiết sau, chúng ta sẽ chuyên học <strong>khi mã AI bị lỗi thì phải làm sao</strong> - Đây là kỹ năng bắt buộc của Vibe Coding.</p>
+<p>→ <a href="../4.5-debug/">4.5 Thực chiến Debug</a></p>
+</body>
+</html>

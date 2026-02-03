@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.3.1 Add Task</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.3.1 Chức năng 1: Thêm nhiệm vụ"
+order: 2</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.3-core-features_4.3.1-add-task.png" src="../../../public/images/Basic/04-practice-0-to-1_4.3-core-features_4.3.1-add-task.png" /></p>
+<h1>4.3.1 Chức năng 1: Thêm nhiệm vụ</h1>
+<blockquote>
+<p><strong>Mục tiêu bước này</strong>: Cho phép người dùng nhập nội dung nhiệm vụ, sau khi nhấp nút thì nhiệm vụ xuất hiện trong danh sách</p>
+</blockquote>
+<p>Đây là chức năng cốt lõi nhất của danh sách việc cần làm - không có nó, các chức năng khác đều vô nghĩa.</p>
+<h2>🎯 Chúng ta cần thực hiện điều gì</h2>
+<p>Quy trình thao tác của người dùng:</p>
+<ol>
+<li>Nhập nội dung nhiệm vụ vào ô nhập liệu (ví dụ "Mua sữa")</li>
+<li>Nhấp nút "Thêm"</li>
+<li>"Mua sữa" xuất hiện trong danh sách nhiệm vụ phía dưới</li>
+<li>Ô nhập liệu tự động xóa trắng, thuận tiện nhập nhiệm vụ tiếp theo</li>
+</ol>
+<h2>📝 Prompt đầy đủ</h2>
+<p>Sao chép Prompt dưới đây, gửi cho AI IDE của bạn:</p>
+<pre><code>【Bối cảnh】
+Tôi đã có một trang tĩnh danh sách việc cần làm (HTML + CSS).
+Trang bao gồm: tiêu đề, ô nhập liệu, nút thêm, khu vực danh sách nhiệm vụ.
+Bây giờ cần thêm JavaScript để nó thực sự hoạt động.
+
+【Nhiệm vụ hiện tại】
+Hãy thực hiện chức năng &quot;Thêm nhiệm vụ&quot;:
+1. Sau khi người dùng nhập nội dung vào ô nhập liệu, nhấp nút &quot;Thêm&quot;
+2. Nội dung đã nhập sẽ làm nhiệm vụ mới, hiển thị trong danh sách nhiệm vụ
+3. Mỗi nhiệm vụ hiển thị: nội dung nhiệm vụ + nút &quot;Hoàn thành&quot; + nút &quot;Xóa&quot;
+4. Sau khi thêm thành công, ô nhập liệu tự động xóa trắng
+5. Nếu ô nhập liệu trống, nhấp nút thêm sẽ không thêm nhiệm vụ rỗng
+
+【Yêu cầu kỹ thuật】
+- Sử dụng JavaScript thuần (native), không dùng framework nào
+- Viết mã JavaScript vào trong thẻ &lt;script&gt; ở cuối tập tin HTML
+- Thêm chú thích tiếng Việt cho các logic quan trọng, giúp tôi hiểu mã nguồn
+
+【Tôi là người mới bắt đầu】
+Hãy giữ mã nguồn đơn giản dễ hiểu, đặt tên biến có tính mô tả.
+</code></pre>
+<h2>✅ Kết quả mong đợi</h2>
+<p>Sau khi gửi Prompt, AI sẽ đưa cho bạn mã nguồn đã cập nhật. Sau khi thay thế nội dung tập tin HTML của bạn, bạn sẽ thấy:</p>
+<p><strong>Các bước kiểm tra</strong>:
+1. Nhập "Mua sữa" vào ô nhập liệu
+2. Nhấp nút "Thêm"
+3. Kiểm tra kết quả:</p>
+<table>
+<thead>
+<tr>
+<th>Mục kiểm tra</th>
+<th>Hiệu quả mong đợi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Danh sách nhiệm vụ</td>
+<td>Xuất hiện nhiệm vụ "Mua sữa"</td>
+</tr>
+<tr>
+<td>Ô nhập liệu</td>
+<td>Trở nên trống rỗng</td>
+</tr>
+<tr>
+<td>Nút bấm</td>
+<td>Bên cạnh mỗi nhiệm vụ có nút "Hoàn thành" và "Xóa"</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Kiểm tra lại lần nữa</strong>:
+1. Để ô nhập liệu trống, nhấp trực tiếp "Thêm"
+2. Mong đợi: Không nên thêm bất kỳ nhiệm vụ nào</p>
+<h2>🔍 Điểm kiểm tra</h2>
+<p>Trước khi tiếp tục, hãy xác nhận các điểm sau:</p>
+<ul>
+<li>[ ] Sau khi nhập nội dung và nhấp thêm, nhiệm vụ xuất hiện trong danh sách</li>
+<li>[ ] Sau khi thêm, ô nhập liệu được xóa trắng</li>
+<li>[ ] Nhập trống sẽ không thêm nhiệm vụ rỗng</li>
+<li>[ ] Có thể thêm liên tục nhiều nhiệm vụ</li>
+<li>[ ] Trang không báo lỗi (nhấn F12 mở console kiểm tra)</li>
+</ul>
+<h2>⚠️ Khắc phục sự cố thường gặp</h2>
+<h3>Vấn đề 1: Nhấp nút không có phản ứng gì</h3>
+<p><strong>Nguyên nhân có thể</strong>: Mã JavaScript chưa được tải đúng cách, hoặc nút bấm chưa được gắn sự kiện.</p>
+<p><strong>Các bước khắc phục</strong>:
+1. Nhấn F12 mở công cụ nhà phát triển trình duyệt
+2. Xem thẻ "Bảng điều khiển" (Console)
+3. Nếu có thông báo lỗi màu đỏ, sao chép cho AI</p>
+<p><strong>Prompt sửa lỗi</strong>:</p>
+<pre><code>Nhấp nút thêm không có phản ứng.
+Thông báo lỗi trong console: [Dán chữ màu đỏ bạn nhìn thấy vào đây]
+Hãy giúp tôi sửa lỗi này.
+</code></pre>
+<h3>Vấn đề 2: Nhiệm vụ đã thêm nhưng không nhìn thấy</h3>
+<p><strong>Nguyên nhân có thể</strong>: Nhiệm vụ được thêm vào sai vị trí, hoặc kiểu dáng có vấn đề.</p>
+<p><strong>Prompt sửa lỗi</strong>:</p>
+<pre><code>Tôi nhấp thêm xong, ô nhập liệu đã xóa trắng (chứng tỏ mã đã chạy),
+nhưng trong danh sách nhiệm vụ không thấy nhiệm vụ mới.
+Hãy kiểm tra mã, đảm bảo nhiệm vụ mới hiển thị đúng trong khu vực danh sách nhiệm vụ.
+</code></pre>
+<h3>Vấn đề 3: Ô nhập liệu không xóa trắng</h3>
+<p><strong>Prompt sửa lỗi</strong>:</p>
+<pre><code>Chức năng thêm nhiệm vụ dùng được rồi, nhiệm vụ đã hiển thị.
+Nhưng có một vấn đề: sau khi thêm thành công, chữ trong ô nhập liệu không tự xóa.
+Hãy sửa lỗi này.
+</code></pre>
+<h3>Vấn đề 4: Nhập trống cũng thêm được</h3>
+<p><strong>Prompt sửa lỗi</strong>:</p>
+<pre><code>Hiện tại khi ô nhập liệu trống, nhấp nút thêm vẫn thêm một mục nhiệm vụ rỗng.
+Hãy thêm xác thực: nếu ô nhập liệu trống hoặc chỉ có khoảng trắng, không thực hiện thao tác thêm.
+</code></pre>
+<h2>💡 Mẹo kỹ thuật nhỏ: Hiểu về xử lý sự kiện</h2>
+<p>Bạn có thể tò mò mã AI viết hoạt động như thế nào. Dưới đây là một ví dụ so sánh đời sống giúp bạn hiểu:</p>
+<p><strong>Bối cảnh</strong>: Bạn đang đợi lấy đồ uống tại quán trà sữa</p>
+<table>
+<thead>
+<tr>
+<th>Bối cảnh quán trà sữa</th>
+<th>Khái niệm mã tương ứng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Màn hình gọi số</td>
+<td>Phần tử nút bấm (button element)</td>
+</tr>
+<tr>
+<td>"Đơn hàng của bạn đã xong"</td>
+<td>Sự kiện nhấp chuột (click event)</td>
+</tr>
+<tr>
+<td>Bạn nghe gọi số đi lấy đồ</td>
+<td>Trình lắng nghe sự kiện (addEventListener)</td>
+</tr>
+<tr>
+<td>Lấy trà sữa đi</td>
+<td>Hàm xử lý sự kiện (mã được thực thi)</td>
+</tr>
+</tbody>
+</table>
+<p>Mã do AI tạo ra đại khái có cấu trúc như sau:</p>
+<pre><code class="language-javascript">// 1. Tìm nút bấm (giống như biết màn hình gọi số ở đâu)
+const addButton = document.querySelector('.add-btn');
+
+// 2. Bảo với nút bấm: Khi có người nhấp vào bạn, hãy làm việc này
+addButton.addEventListener('click', function() {
+    // 3. Đây là việc cần làm sau khi nhấp
+    // - Lấy nội dung ô nhập liệu
+    // - Tạo phần tử nhiệm vụ mới
+    // - Thêm nhiệm vụ vào danh sách
+    // - Xóa trắng ô nhập liệu
+});
+</code></pre>
+<p>Bạn không cần nhớ những mã này. Chỉ cần biết: <strong>Nói cho AI biết bạn muốn hiệu quả gì, AI sẽ giúp bạn viết mã tương ứng</strong>.</p>
+<h2>🎯 Xác nhận hoàn thành</h2>
+<p>Nếu bạn đã:
+- ✅ Có thể thêm thành công nhiệm vụ mới
+- ✅ Sau khi thêm ô nhập liệu tự động xóa trắng
+- ✅ Nhập trống không thêm nhiệm vụ</p>
+<p>Chúc mừng! Chức năng "Thêm" đã hoàn thành.</p>
+<p>Tiếp theo, chúng ta sẽ để nút "Xóa" cũng hoạt động được.</p>
+<p>→ <a href="./4.3.2-delete-task_vi.html">4.3.2 Chức năng 2: Xóa nhiệm vụ</a></p>
+</body>
+</html>

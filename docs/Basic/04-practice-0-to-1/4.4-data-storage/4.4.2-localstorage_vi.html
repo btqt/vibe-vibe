@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.4.2 Localstorage</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.4.2 Sử dụng lưu trữ nội bộ (localStorage)"
+order: 3</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.4-data-storage_4.4.2-localstorage.png" src="../../../public/images/Basic/04-practice-0-to-1_4.4-data-storage_4.4.2-localstorage.png" /></p>
+<h1>4.4.2 Sử dụng lưu trữ nội bộ (localStorage)</h1>
+<blockquote>
+<p><strong>Mục tiêu bước này</strong>: Để AI giúp chúng ta thực hiện tự động lưu và đọc dữ liệu</p>
+</blockquote>
+<p>Phần này là thực hiện cốt lõi của lưu trữ dữ liệu. Chúng ta sẽ chia làm hai bước hoàn thành: thực hiện "Lưu" trước, sau đó thực hiện "Đọc".</p>
+<h2>Mẹo kỹ thuật: Hiểu về localStorage</h2>
+<p>Trước khi bắt đầu, dùng một ví dụ so sánh đời sống giúp bạn hình dung:</p>
+<table>
+<thead>
+<tr>
+<th>Bối cảnh cuộc sống</th>
+<th>Khái niệm tương ứng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tủ gửi đồ chuyển phát</td>
+<td>localStorage</td>
+</tr>
+<tr>
+<td>Số tủ (như A-15)</td>
+<td>key (tên khóa) lưu trữ</td>
+</tr>
+<tr>
+<td>Gói đồ trong tủ</td>
+<td>value (giá trị) lưu trữ</td>
+</tr>
+<tr>
+<td>Gửi đồ</td>
+<td><code>localStorage.setItem(key, value)</code></td>
+</tr>
+<tr>
+<td>Lấy đồ</td>
+<td><code>localStorage.getItem(key)</code></td>
+</tr>
+</tbody>
+</table>
+<p>Giống như tủ đồ vậy, localStorage có thể giúp bạn "gửi" dữ liệu, lần sau quay lại vẫn có thể lấy về.</p>
+<p>::: warning Chú ý
+localStorage chỉ có thể lưu trữ văn bản (chuỗi ký tự). Nếu muốn lưu dữ liệu phức tạp như danh sách nhiệm vụ, cần chuyển đổi nó thành định dạng văn bản (JSON) trước, khi lấy ra thì chuyển đổi ngược lại. Việc chuyển đổi này AI sẽ tự động xử lý giúp bạn.
+:::</p>
+<h2>Bước 1: Thêm chức năng lưu và đọc</h2>
+<p>Chúng ta dùng một Prompt đầy đủ, để AI đồng thời thực hiện logic lưu và đọc.</p>
+<h3>Prompt đầy đủ</h3>
+<p>Sao chép Prompt dưới đây, gửi cho AI IDE của bạn:</p>
+<pre><code>【Bối cảnh】
+Tôi có một trang web danh sách việc cần làm, hiện đã thực hiện được các chức năng thêm, xóa, đánh dấu hoàn thành.
+Nhưng sau khi làm mới trang, tất cả nhiệm vụ đều biến mất.
+Tôi cần thêm chức năng lưu trữ dữ liệu bền vững, để nhiệm vụ có thể được giữ lại.
+
+【Nhiệm vụ hiện tại】
+Hãy giúp tôi thực hiện chức năng lưu trữ dữ liệu localStorage:
+
+1. Chức năng lưu:
+   - Mỗi khi danh sách nhiệm vụ có thay đổi (thêm, xóa, thay đổi trạng thái hoàn thành)
+   - Tự động lưu danh sách nhiệm vụ hiện tại vào localStorage
+   - Sử dụng &quot;todoList&quot; làm tên key lưu trữ
+
+2. Chức năng đọc:
+   - Khi tải trang, tự động đọc các nhiệm vụ đã lưu trước đó từ localStorage
+   - Nếu có dữ liệu đã lưu, dùng nó để khởi tạo danh sách nhiệm vụ
+   - Nếu không có dữ liệu lưu (lần đầu sử dụng), hiển thị danh sách rỗng
+
+3. Định dạng dữ liệu:
+   - Mỗi nhiệm vụ cần lưu: nội dung nhiệm vụ, trạng thái hoàn thành
+   - Sử dụng định dạng JSON để lưu trữ
+
+【Yêu cầu kỹ thuật】
+- Sử dụng JavaScript thuần (native)
+- Thêm chú thích tiếng Việt cho các logic quan trọng
+- Đảm bảo định dạng dữ liệu khi lưu và đọc nhất quán với nhau
+
+【Tôi là người mới bắt đầu】
+Hãy giữ mã nguồn ngắn gọn dễ hiểu, và giải thích logic lưu/đọc quan trọng.
+</code></pre>
+<h3>Kết quả mong đợi</h3>
+<p>Sau khi gửi Prompt, AI sẽ cập nhật mã nguồn của bạn. Sau khi thay thế nội dung tập tin:</p>
+<ol>
+<li><strong>Bề ngoài trông không có gì thay đổi</strong> - Trang vẫn giống như trước</li>
+<li><strong>Nhưng dữ liệu đã được tự động lưu</strong> - Mỗi thao tác đều kích hoạt việc lưu trữ</li>
+</ol>
+<h3>Làm sao xác nhận việc lưu đã có hiệu lực?</h3>
+<p>Sử dụng công cụ nhà phát triển trình duyệt để xem:</p>
+<ol>
+<li>Nhấn <strong>F12</strong> mở công cụ nhà phát triển</li>
+<li>Nhấp thẻ <strong>Application</strong> (Ứng dụng) ở phía trên</li>
+<li>Tìm <strong>Storage &gt; Local Storage</strong> ở bên trái</li>
+<li>Nhấp vào địa chỉ trang web của bạn</li>
+<li>Bạn sẽ thấy một dữ liệu có key là <code>todoList</code></li>
+</ol>
+<p>::: tip Đối chiếu ảnh chụp
+Nếu thao tác đúng, bạn sẽ thấy giao diện tương tự như thế này:
+- Bên trái: Local Storage &gt; <code>file://</code> hoặc địa chỉ web của bạn
+- Bên phải: Cột Key hiển thị <code>todoList</code>, cột Value hiển thị nội dung đại loại như <code>[{"text":"Mua sữa","completed":false}]</code>
+:::</p>
+<h3>Điểm kiểm tra</h3>
+<p>Trước khi tiếp tục, hãy xác nhận các điểm sau:</p>
+<ul>
+<li>[ ] Sau khi cập nhật mã, trang hiển thị bình thường</li>
+<li>[ ] Thêm một nhiệm vụ, trong công cụ nhà phát triển thấy dữ liệu <code>todoList</code></li>
+<li>[ ] Thêm tiếp một nhiệm vụ nữa, giá trị của <code>todoList</code> được cập nhật</li>
+<li>[ ] Đánh dấu một nhiệm vụ hoàn thành, giá trị của <code>todoList</code> được cập nhật</li>
+<li>[ ] Xóa một nhiệm vụ, giá trị của <code>todoList</code> được cập nhật</li>
+</ul>
+<h3>Khắc phục sự cố thường gặp</h3>
+<h4>Vấn đề 1: Không thấy Local Storage trong công cụ nhà phát triển</h4>
+<p><strong>Nguyên nhân có thể</strong>: Bạn có thể đang mở thẻ Console hoặc thẻ khác.</p>
+<p><strong>Cách giải quyết</strong>:
+- Đảm bảo nhấp vào thẻ <strong>Application</strong> (không phải Elements, Console v.v.)
+- Nếu không tìm thấy Application, thử nhấp <strong>&gt;&gt;</strong> để mở rộng thêm thẻ</p>
+<h4>Vấn đề 2: Trong Local Storage không có todoList</h4>
+<p><strong>Nguyên nhân có thể</strong>: Logic lưu chưa được thực thi đúng.</p>
+<p><strong>Prompt sửa lỗi</strong>:</p>
+<pre><code>Tôi đã sửa theo mã của bạn, nhưng trong Local Storage của trình duyệt không thấy dữ liệu todoList.
+Hãy kiểm tra logic lưu, đảm bảo mỗi khi nhiệm vụ thay đổi đều gọi localStorage.setItem.
+Hãy đưa cho tôi mã đầy đủ sau khi kiểm tra.
+</code></pre>
+<h4>Vấn đề 3: Giá trị todoList là undefined hoặc [object Object]</h4>
+<p><strong>Nguyên nhân có thể</strong>: Dữ liệu chưa được chuyển đổi đúng sang chuỗi JSON.</p>
+<p><strong>Prompt sửa lỗi</strong>:</p>
+<pre><code>Giá trị todoList trong Local Storage hiển thị là [object Object] hoặc undefined.
+Hãy đảm bảo khi lưu dùng JSON.stringify chuyển đổi dữ liệu, khi đọc dùng JSON.parse phân tích dữ liệu.
+Hãy đưa cho tôi mã đầy đủ sau khi sửa lỗi.
+</code></pre>
+<h4>Vấn đề 4: Trang báo lỗi, chức năng không bình thường</h4>
+<p><strong>Các bước kiểm tra</strong>:
+1. Nhấn F12 mở công cụ nhà phát triển
+2. Nhấp thẻ <strong>Console</strong>
+3. Xem thông báo lỗi màu đỏ</p>
+<p><strong>Prompt sửa lỗi</strong>:</p>
+<pre><code>Sau khi cập nhật mã thì trang bị lỗi.
+Thông báo lỗi trong console: [Dán nội dung lỗi màu đỏ bạn nhìn thấy]
+Hãy giúp tôi sửa lỗi này.
+</code></pre>
+<h2>Bước 2: Xác thực dữ liệu phục hồi sau khi làm mới</h2>
+<p>Sau khi xác nhận chức năng lưu hoạt động bình thường, giờ xác thực phần quan trọng nhất - <strong>sau khi làm mới trang dữ liệu có còn không</strong>.</p>
+<h3>Quy trình xác thực</h3>
+<ol>
+<li>Đảm bảo hiện tại có 1-2 nhiệm vụ (nếu chưa có, hãy thêm vài cái)</li>
+<li>Đánh dấu một cái là đã hoàn thành</li>
+<li><strong>Làm mới trang</strong> (Nhấn F5 hoặc nhấp nút làm mới của trình duyệt)</li>
+<li>Kiểm tra kết quả</li>
+</ol>
+<h3>Kết quả mong đợi</h3>
+<table>
+<thead>
+<tr>
+<th>Mục kiểm tra</th>
+<th>Trước khi làm mới</th>
+<th>Sau khi làm mới (Kỳ vọng)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Số lượng nhiệm vụ</td>
+<td>2 cái</td>
+<td>2 cái (Không đổi)</td>
+</tr>
+<tr>
+<td>Nội dung nhiệm vụ</td>
+<td>"Mua sữa", "Viết báo cáo"</td>
+<td>Giống nhau (Không đổi)</td>
+</tr>
+<tr>
+<td>Trạng thái hoàn thành</td>
+<td>"Mua sữa" đã hoàn thành</td>
+<td>Vẫn là đã hoàn thành</td>
+</tr>
+</tbody>
+</table>
+<h3>Nếu sau khi làm mới dữ liệu bị mất</h3>
+<p><strong>Nguyên nhân có thể</strong>: Logic đọc chưa được thực thi đúng.</p>
+<p><strong>Prompt sửa lỗi</strong>:</p>
+<pre><code>Chức năng lưu bình thường (tôi thấy dữ liệu trong Local Storage),
+nhưng sau khi làm mới trang, danh sách nhiệm vụ trống trơn, không đọc dữ liệu từ localStorage.
+
+Hãy kiểm tra logic đọc khi tải trang, đảm bảo:
+1. Khi tải trang sẽ gọi localStorage.getItem(&quot;todoList&quot;)
+2. Dữ liệu đọc được sẽ được phân tích đúng và hiển thị lên trang
+
+Hãy đưa cho tôi mã đầy đủ sau khi sửa lỗi.
+</code></pre>
+<h3>Điểm kiểm tra</h3>
+<ul>
+<li>[ ] Sau khi làm mới trang, nhiệm vụ thêm trước đó vẫn còn</li>
+<li>[ ] Sau khi làm mới trang, trạng thái hoàn thành của nhiệm vụ cũng được giữ nguyên</li>
+<li>[ ] Tắt thẻ trình duyệt, mở lại tập tin, nhiệm vụ vẫn còn</li>
+</ul>
+<h2>Mẹo kỹ thuật: JSON là gì?</h2>
+<p>Bạn có thể để ý thấy trong mã của AI có dùng <code>JSON.stringify</code> và <code>JSON.parse</code>. Giải thích đơn giản một chút:</p>
+<table>
+<thead>
+<tr>
+<th>Phương thức</th>
+<th>Tác dụng</th>
+<th>So sánh</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>JSON.stringify</code></td>
+<td>Chuyển đổi dữ liệu thành văn bản</td>
+<td>Gấp gọn quần áo bỏ vào vali</td>
+</tr>
+<tr>
+<td><code>JSON.parse</code></td>
+<td>Chuyển đổi văn bản ngược lại thành dữ liệu</td>
+<td>Lấy quần áo từ vali ra</td>
+</tr>
+</tbody>
+</table>
+<p>Vì localStorage chỉ có thể lưu văn bản, nên:
+- <strong>Khi lưu</strong>: Dùng <code>JSON.stringify</code> để "đóng gói" danh sách nhiệm vụ thành văn bản trước
+- <strong>Khi lấy</strong>: Dùng <code>JSON.parse</code> để "mở gói" văn bản khôi phục thành danh sách nhiệm vụ</p>
+<p>Bạn không cần nhớ những thứ này, chỉ cần biết mã nguồn do AI tạo ra sẽ bao gồm hai bước này.</p>
+<h2>Xác nhận hoàn thành bước này</h2>
+<p>Nếu bạn đã:
+- ✅ Nhìn thấy dữ liệu <code>todoList</code> trong công cụ nhà phát triển
+- ✅ Sau khi làm mới trang nhiệm vụ vẫn còn
+- ✅ Trạng thái hoàn thành cũng được giữ lại</p>
+<p>Chúc mừng! Chức năng lưu trữ dữ liệu đã thực hiện xong. Tiếp theo chúng ta sẽ làm kiểm thử đầy đủ hơn.</p>
+<p>→ <a href="./4.4.3-test-persistence_vi.html">4.4.3 Kiểm thử tính bền vững của dữ liệu</a></p>
+</body>
+</html>

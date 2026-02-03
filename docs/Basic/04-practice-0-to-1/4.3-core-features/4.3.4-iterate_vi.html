@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.3.4 Iterate</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.3.4 Nghệ thuật tối ưu hóa lặp lại"
+order: 5</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.3-core-features_4.3.4-iterate.png" src="../../../public/images/Basic/04-practice-0-to-1_4.3-core-features_4.3.4-iterate.png" /></p>
+<h1>4.3.4 Nghệ thuật tối ưu hóa lặp lại</h1>
+<blockquote>
+<p><strong>Mục tiêu phần này</strong>: Học cách truy vấn hiệu quả, biến AI từ "biết làm" thành "làm tốt"</p>
+</blockquote>
+<p>Đến giờ phút này, danh sách việc cần làm của bạn đã "dùng được" rồi. Nhưng có thể vài chỗ vẫn chưa ưng ý:</p>
+<ul>
+<li>Muốn chỉnh lại kiểu dáng chút nữa</li>
+<li>Muốn tối ưu chi tiết tương tác</li>
+<li>Muốn thêm vài tính năng nhỏ</li>
+</ul>
+<p>Lúc này, <strong>truy vấn lặp lại</strong> sẽ phát huy tác dụng.</p>
+<h2>Tại sao lần đầu AI xuất ra thường không hoàn hảo</h2>
+<p>Đây không phải vấn đề của AI, cũng không phải vấn đề của bạn. Nguyên nhân rất đơn giản:</p>
+<table>
+<thead>
+<tr>
+<th>Hình ảnh trong đầu bạn</th>
+<th>Nội dung AI hiểu</th>
+<th>Kết quả thực tế</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100% chi tiết</td>
+<td>70% mô tả văn bản</td>
+<td>60% mã thực hiện</td>
+</tr>
+</tbody>
+</table>
+<p>Thông tin trong quá trình truyền tải chắc chắn sẽ có tổn hao. Cho nên <strong>lần đầu xuất ra không hoàn hảo là bình thường</strong>, truy vấn lặp lại mới là trạng thái thường ngày.</p>
+<p>::: info 📖 Ôn lại chương 3
+Đây chính là quan điểm cốt lõi đã nói ở phần 3.5 "Nghệ thuật đối thoại lặp lại" chương 3. Phần này là bài thực hành của các nguyên tắc đó.
+:::</p>
+<h2>Ba yếu tố truy vấn</h2>
+<p>Truy vấn hiệu quả cần bao gồm ba thông tin:</p>
+<table>
+<thead>
+<tr>
+<th>Yếu tố</th>
+<th>Giải thích</th>
+<th>Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hiện trạng</strong></td>
+<td>Bây giờ đang như thế nào</td>
+<td>"Nhấp hoàn thành xong, nhiệm vụ vẫn nằm chỗ cũ"</td>
+</tr>
+<tr>
+<td><strong>Kỳ vọng</strong></td>
+<td>Bạn muốn nó như thế nào</td>
+<td>"Tôi muốn nhiệm vụ đã hoàn thành tự động chuyển xuống đáy danh sách"</td>
+</tr>
+<tr>
+<td><strong>Khác biệt</strong></td>
+<td>Cụ thể khác chỗ nào</td>
+<td>"Hiện tại vị trí không đổi, tôi muốn nó chuyển xuống đáy"</td>
+</tr>
+</tbody>
+</table>
+<h2>Ví dụ đối thoại lặp lại thực tế</h2>
+<p>Giả sử bạn không hài lòng lắm với chức năng "Đánh dấu hoàn thành", muốn điều chỉnh chút. Xem thử đoạn đối thoại 3 vòng này:</p>
+<h3>Vòng 1: Phát hiện vấn đề</h3>
+<p><strong>Bạn phát hiện</strong>: Nhiệm vụ đã hoàn thành và chưa hoàn thành lẫn lộn với nhau, khó phân biệt.</p>
+<p><strong>Bạn gửi</strong>:</p>
+<pre><code>Chức năng hoàn thành dùng được rồi, nhưng tôi có ý tưởng cải tiến:
+Tôi muốn nhiệm vụ đã hoàn thành tự động chuyển xuống đáy danh sách,
+Như vậy nhiệm vụ chưa hoàn thành luôn hiển thị ở trên, dễ nhìn hơn.
+Hãy giúp tôi thực hiện tính năng này.
+</code></pre>
+<p><strong>AI có thể phản hồi</strong>: Sửa mã nguồn, thực hiện tự động sắp xếp.</p>
+<h3>Vòng 2: Tiếp tục điều chỉnh</h3>
+<p><strong>Bạn kiểm tra và phát hiện</strong>: Sắp xếp thì có rồi, nhưng nhiệm vụ mới thêm lại xuất hiện ở cuối danh sách, xem rất bất tiện.</p>
+<p><strong>Bạn gửi</strong>:</p>
+<pre><code>Chức năng sắp xếp đã thực hiện được, nhưng có vấn đề mới:
+Tình trạng hiện tại: Nhiệm vụ mới thêm xuất hiện ở cuối danh sách
+Hiệu quả tôi mong muốn: Nhiệm vụ mới nên xuất hiện ở trên cùng của các nhiệm vụ chưa hoàn thành
+Hãy điều chỉnh một chút, để nhiệm vụ mới luôn hiển thị trên đỉnh (trước các nhiệm vụ đã hoàn thành).
+</code></pre>
+<h3>Vòng 3: Trau chuốt chi tiết</h3>
+<p><strong>Bạn gửi</strong>:</p>
+<pre><code>Logic sắp xếp giờ đúng rồi.
+Muốn tối ưu thêm chút xíu: Liệu có thể thêm một nút &quot;Xóa hết việc đã hoàn thành&quot;?
+Nhấp vào sẽ xóa một lần toàn bộ các nhiệm vụ đã hoàn thành.
+Nút có thể đặt ở đáy danh sách, chỉ hiển thị khi có nhiệm vụ đã hoàn thành.
+</code></pre>
+<p>Sau 3 vòng đối thoại, bạn nhận được một danh sách việc cần làm dễ dùng hơn nhiều so với phiên bản ban đầu.</p>
+<h2>Phản hồi hiệu quả vs Phản hồi vô hiệu</h2>
+<table>
+<thead>
+<tr>
+<th>Phản hồi vô hiệu</th>
+<th>Vấn đề ở đâu</th>
+<th>Phản hồi hiệu quả</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Không đúng, sửa lại đi"</td>
+<td>AI không biết không đúng chỗ nào</td>
+<td>"Thêm xong nhiệm vụ không hiển thị, hãy kiểm tra..."</td>
+</tr>
+<tr>
+<td>"Kiểu dáng xấu quá"</td>
+<td>Quá mơ hồ, AI không biết bắt đầu từ đâu</td>
+<td>"Cỡ chữ tiêu đề nhỏ quá, hãy đổi thành 24px"</td>
+</tr>
+<tr>
+<td>"Cảm giác cứ sao sao ấy"</td>
+<td>Không có thông tin cụ thể</td>
+<td>"Nút bấm xong, chữ thay đổi bị trễ"</td>
+</tr>
+<tr>
+<td>"Có thể tốt hơn chút không"</td>
+<td>Thế nào gọi là "tốt hơn"?</td>
+<td>"Muốn nút có hiệu ứng hover, màu đậm hơn"</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nguyên tắc cốt lõi</strong>: Mô tả của bạn càng cụ thể, AI sửa càng chính xác.</p>
+<h2>Mẫu câu dùng khi truy vấn</h2>
+<p>Sưu tầm một số mẫu câu hay dùng, gặp vấn đề có thể áp dụng ngay:</p>
+<h3>Mô tả vấn đề</h3>
+<pre><code>Tình trạng hiện tại: [Bây giờ đang như thế nào]
+Hiệu quả tôi mong muốn: [Muốn như thế nào]
+Hãy giúp tôi sửa lại.
+</code></pre>
+<h3>Yêu cầu thêm tính năng</h3>
+<pre><code>Tính năng hiện có chạy bình thường.
+Tôi muốn trên cơ sở này thêm một tính năng mới: [Mô tả tính năng]
+Cụ thể là: [Liệt kê chi tiết]
+</code></pre>
+<h3>Điều chỉnh kiểu dáng</h3>
+<pre><code>Chức năng bình thường, nhưng muốn chỉnh kiểu dáng:
+- Hiện tại: [Kiểu dáng hiện tại]
+- Mong muốn: [Kiểu dáng mong muốn]
+Hãy chỉ sửa kiểu dáng, đừng thay đổi logic chức năng.
+</code></pre>
+<h3>Sửa lỗi (Bug)</h3>
+<pre><code>Phát hiện một vấn đề:
+- Các bước thao tác: [1, 2, 3]
+- Kết quả mong đợi: [Nên xảy ra chuyện gì]
+- Kết quả thực tế: [Thực tế đã xảy ra chuyện gì]
+Hãy giúp tôi sửa lỗi.
+</code></pre>
+<h2>Biết khi nào nên đổi hướng suy nghĩ</h2>
+<p>Nếu cùng một vấn đề mà truy vấn 3 lần vẫn chưa giải quyết được, hãy cân nhắc:</p>
+<table>
+<thead>
+<tr>
+<th>Tình huống</th>
+<th>Gợi ý</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI dường như hiểu sai nhu cầu</td>
+<td>Đổi cách mô tả khác, dùng ví dụ cụ thể hơn</td>
+</tr>
+<tr>
+<td>Vấn đề quá phức tạp</td>
+<td>Chia nhỏ nhu cầu thành các bước nhỏ hơn, làm từng bước một</td>
+</tr>
+<tr>
+<td>AI lặp đi lặp lại mã lỗi tương tự</td>
+<td>Bắt đầu hội thoại mới, sắp xếp lại nhu cầu rồi gửi</td>
+</tr>
+<tr>
+<td>Vượt quá phạm vi kỹ thuật hiện tại</td>
+<td>Tính năng này có thể cần cách thực hiện phức tạp hơn, cân nhắc tạm gác lại</td>
+</tr>
+</tbody>
+</table>
+<h2>Khi nào nên bắt đầu hội thoại mới</h2>
+<p>Đôi khi, thay vì tiếp tục truy vấn trong hội thoại cũ, tốt hơn là bắt đầu hội thoại mới:</p>
+<table>
+<thead>
+<tr>
+<th>Bối cảnh</th>
+<th>Gợi ý</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hội thoại đã rất dài (hơn 10 vòng)</td>
+<td>AI có thể bị "mất trí nhớ", mở hội thoại mới</td>
+</tr>
+<tr>
+<td>Nhu cầu thay đổi khá lớn</td>
+<td>Sắp xếp rõ ràng nhu cầu mới, mở hội thoại mới</td>
+</tr>
+<tr>
+<td>Mã nguồn sửa đến mức không nhận ra</td>
+<td>Lưu lại phiên bản dùng được hiện tại, mở hội thoại mới tối ưu lại từ đầu</td>
+</tr>
+<tr>
+<td>AI dường như rơi vào vòng lặp sai lầm nào đó</td>
+<td>Mở hội thoại mới, đổi cách mô tả</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mẫu khi bắt đầu hội thoại mới</strong>:</p>
+<pre><code>Tôi đang phát triển một trang web danh sách việc cần làm.
+
+【Trạng thái hiện tại】
+- Đã thực hiện: Thêm nhiệm vụ, xóa nhiệm vụ, đánh dấu hoàn thành
+- Mã hiện tại chạy bình thường
+
+【Mục tiêu lần này】
+Tôi muốn tối ưu [Chức năng cụ thể], nhu cầu cụ thể:
+1. [Nhu cầu 1]
+2. [Nhu cầu 2]
+
+【Mã hiện tại】
+[Dán mã hiện tại vào]
+</code></pre>
+<h2>Trọng tâm phần này</h2>
+<ul>
+<li>✓ Lần đầu xuất ra không hoàn hảo là bình thường, lặp lại mới là thường ngày</li>
+<li>✓ Truy vấn hiệu quả cần ba yếu tố: Hiện trạng + Kỳ vọng + Khác biệt</li>
+<li>✓ Mô tả càng cụ thể, AI sửa càng chính xác</li>
+<li>✓ Truy vấn 3 lần không giải quyết được, cân nhắc đổi hướng hoặc mở hội thoại mới</li>
+</ul>
+<h2>Gợi ý luyện tập</h2>
+<p>Thừa thắng xông lên, thử dùng kỹ thuật học được trong phần này, tối ưu hóa danh sách việc cần làm của bạn:</p>
+<ul>
+<li>[ ] Điều chỉnh một kiểu dáng bạn chưa hài lòng</li>
+<li>[ ] Thêm một tính năng nhỏ bạn muốn</li>
+<li>[ ] Nếu có lỗi, thử dùng mẫu câu "Mô tả vấn đề" để AI sửa</li>
+</ul>
+<p>Làm xong, vào phần tiếp theo để xác nhận tất cả chức năng hoạt động bình thường.</p>
+<p>→ <a href="./4.3.5-checkpoint_vi.html">4.3.5 Kiểm tra kết quả giai đoạn</a></p>
+</body>
+</html>

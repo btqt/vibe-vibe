@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.3.2 Delete Task</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.3.2 Chức năng 2: Xóa nhiệm vụ"
+order: 3</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.3-core-features_4.3.2-delete-task.png" src="../../../public/images/Basic/04-practice-0-to-1_4.3-core-features_4.3.2-delete-task.png" /></p>
+<h1>4.3.2 Chức năng 2: Xóa nhiệm vụ</h1>
+<blockquote>
+<p><strong>Mục tiêu bước này</strong>: Nhấp nút "Xóa" bên cạnh nhiệm vụ, để nhiệm vụ đó biến mất khỏi danh sách</p>
+</blockquote>
+<p>Mua nhầm đồ muốn gạch bỏ? Nhiệm vụ hoàn thành rồi muốn dọn dẹp? Chức năng xóa là không thể thiếu.</p>
+<h2>🎯 Chúng ta cần thực hiện điều gì</h2>
+<p>Quy trình thao tác của người dùng:</p>
+<ol>
+<li>Thấy trong danh sách nhiệm vụ có nhiều nhiệm vụ</li>
+<li>Nhấp nút "Xóa" bên cạnh một nhiệm vụ nào đó</li>
+<li>Nhiệm vụ đó biến mất khỏi danh sách</li>
+<li>Các nhiệm vụ khác không bị ảnh hưởng</li>
+</ol>
+<h2>📝 Prompt đầy đủ</h2>
+<p>Vì chúng ta đã có mã nguồn "Thêm nhiệm vụ", bây giờ là <strong>thêm chức năng trên nền tảng hiện có</strong>. Sao chép Prompt bên dưới:</p>
+<pre><code>【Trạng thái hiện tại】
+Chức năng thêm nhiệm vụ đã hoạt động bình thường.
+Bây giờ hãy thêm chức năng xóa trên nền tảng này.
+
+【Cần thực hiện】
+Khi người dùng nhấp nút &quot;Xóa&quot; bên cạnh một nhiệm vụ nào đó:
+1. Chỉ xóa đúng nhiệm vụ này
+2. Các nhiệm vụ khác trong danh sách giữ nguyên
+3. Sau khi xóa không cần thông báo xác nhận, cứ thế xóa trực tiếp
+
+【Yêu cầu kỹ thuật】
+- Thêm vào trên nền tảng mã nguồn hiện có, không viết lại toàn bộ tập tin
+- Giữ phong cách mã nguồn nhất quán
+- Thêm chú thích tiếng Việt cho các logic quan trọng
+</code></pre>
+<p>::: tip 💡 Prompt tăng cường
+Chú ý phần mở đầu của Prompt này là "Chức năng thêm nhiệm vụ đã hoạt động bình thường". Làm như vậy là nói cho AI biết <strong>ngữ cảnh hiện tại</strong>, tránh việc nó viết lại những mã đã có.
+:::</p>
+<h2>✅ Kết quả mong đợi</h2>
+<p><strong>Các bước kiểm tra</strong>:
+1. Thêm trước ba nhiệm vụ: Nhiệm vụ A, Nhiệm vụ B, Nhiệm vụ C
+2. Nhấp nút xóa bên cạnh "Nhiệm vụ B"
+3. Kiểm tra kết quả:</p>
+<table>
+<thead>
+<tr>
+<th>Mục kiểm tra</th>
+<th>Hiệu quả mong đợi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nhiệm vụ B</td>
+<td>Đã biến mất</td>
+</tr>
+<tr>
+<td>Nhiệm vụ A</td>
+<td>Vẫn còn, vị trí không đổi</td>
+</tr>
+<tr>
+<td>Nhiệm vụ C</td>
+<td>Vẫn còn, vị trí không đổi</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Kiểm tra lại</strong>:
+1. Tiếp tục nhấp nút xóa của "Nhiệm vụ A"
+2. Mong đợi: Nhiệm vụ A biến mất, chỉ còn lại Nhiệm vụ C</p>
+<h2>🔍 Điểm kiểm tra</h2>
+<ul>
+<li>[ ] Nhấp nút xóa, nhiệm vụ tương ứng biến mất</li>
+<li>[ ] Xóa một nhiệm vụ không ảnh hưởng nhiệm vụ khác</li>
+<li>[ ] Có thể xóa liên tục nhiều nhiệm vụ</li>
+<li>[ ] Sau khi xóa hết nhiệm vụ, danh sách trống (hiển thị bình thường)</li>
+</ul>
+<h2>⚠️ Khắc phục sự cố thường gặp</h2>
+<h3>Vấn đề 1: Sau khi nhấp xóa, tất cả nhiệm vụ đều biến mất</h3>
+<p><strong>Nguyên nhân có thể</strong>: Logic xóa bị sai, đã làm trống toàn bộ danh sách thay vì một nhiệm vụ đơn lẻ.</p>
+<p><strong>Prompt sửa lỗi</strong>:</p>
+<pre><code>Chức năng xóa có vấn đề: Tôi nhấp nút xóa của một nhiệm vụ xong, tất cả nhiệm vụ đều biến mất.
+Lẽ ra chỉ nên xóa đúng nhiệm vụ tôi đã nhấp.
+Hãy kiểm tra logic xóa, đảm bảo chỉ loại bỏ phần tử nhiệm vụ bị nhấp vào.
+</code></pre>
+<h3>Vấn đề 2: Nhấp nút xóa không có phản ứng</h3>
+<p><strong>Prompt sửa lỗi</strong>:</p>
+<pre><code>Nút xóa nhấp vào không có phản ứng.
+Nhiệm vụ của tôi được thêm động thông qua JavaScript (không phải viết cứng trong HTML).
+Hãy đảm bảo các phần tử được thêm động cũng có thể gắn sự kiện xóa đúng cách.
+</code></pre>
+<h3>Vấn đề 3: Xóa nhầm nhiệm vụ (Nhấp A xóa B)</h3>
+<p><strong>Prompt sửa lỗi</strong>:</p>
+<pre><code>Chức năng xóa có vấn đề: Tôi nhấp nút xóa của nhiệm vụ A, kết quả lại xóa mất nhiệm vụ B.
+Hãy kiểm tra mã, đảm bảo xóa đúng nhiệm vụ chứa nút bấm đó, chứ không phải nhiệm vụ khác.
+</code></pre>
+<h2>💡 Mẹo kỹ thuật nhỏ: Gắn sự kiện cho phần tử động</h2>
+<p>Bạn có thể gặp một vấn đề thú vị: <strong>Tại sao nút bấm có sẵn khi tải trang thì bấm được, nhưng nút của nhiệm vụ thêm vào sau lại không bấm được?</strong></p>
+<p>Điều này giống như một ví dụ ẩn dụ:</p>
+<blockquote>
+<p>Bạn dán một tờ thông báo trước cửa công ty "Có việc tìm lễ tân".<br />
+Sau đó nhân viên mới đến không nhìn thấy tờ thông báo này, nên không biết có việc thì tìm ai.</p>
+</blockquote>
+<p>Trong mã nguồn cũng vậy: Nếu bạn gắn sự kiện cho "nút xóa" ngay khi tải trang, thì chỉ có <strong>những nút tồn tại lúc đó</strong> mới phản hồi. Nút xóa của nhiệm vụ thêm vào sau "chưa từng thấy" thông báo đó.</p>
+<p><strong>Giải pháp</strong> gọi là "Ủy quyền sự kiện" (Event delegation) - không phải gắn sự kiện cho từng nút riêng lẻ, mà nói với "thùng chứa cha" của chúng:</p>
+<blockquote>
+<p>"Nếu có ai nhấp vào nút xóa bên trong bạn, hãy thực hiện thao tác xóa"</p>
+</blockquote>
+<p>Như vậy, bất kể là nhiệm vụ có sẵn hay thêm vào sau, nhấp nút xóa đều có thể hoạt động bình thường.</p>
+<p>AI thường sẽ tự động xử lý vấn đề này, nhưng nếu gặp tình huống "nhiệm vụ mới thêm không xóa được", hãy gửi Prompt sửa lỗi ở Vấn đề 2 phía trên cho AI.</p>
+<h2>🎯 Xác nhận hoàn thành</h2>
+<p>Nếu bạn đã:
+- ✅ Có thể xóa nhiệm vụ chỉ định
+- ✅ Xóa không ảnh hưởng nhiệm vụ khác
+- ✅ Nhiệm vụ thêm động cũng xóa được</p>
+<p>Chức năng xóa đã hoàn thành.</p>
+<p>Tiếp theo là chức năng cốt lõi cuối cùng: Đánh dấu nhiệm vụ hoàn thành.</p>
+<p>→ <a href="./4.3.3-complete-task_vi.html">4.3.3 Chức năng 3: Đánh dấu hoàn thành</a></p>
+</body>
+</html>

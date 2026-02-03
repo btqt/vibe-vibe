@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.4.3 Test Persistence</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.4.3 Kiểm thử tính bền vững của dữ liệu"
+order: 4</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.4-data-storage_4.4.3-test-persistence.png" src="../../../public/images/Basic/04-practice-0-to-1_4.4-data-storage_4.4.3-test-persistence.png" /></p>
+<h1>4.4.3 Kiểm thử tính bền vững của dữ liệu</h1>
+<blockquote>
+<p><strong>Mục tiêu bước này</strong>: Thông qua việc kiểm thử nhiều tình huống để xác minh chức năng lưu trữ dữ liệu đã hoàn thiện chưa</p>
+</blockquote>
+<p>Ở phần 4.4.2, chúng ta đã xác nhận sơ bộ dữ liệu vẫn còn sau khi làm mới trang. Phần này sẽ tiến hành kiểm thử toàn diện hơn, đảm bảo dữ liệu có thể được lưu chính xác trong mọi tình huống.</p>
+<h2>Phương pháp kiểm thử 5 bước</h2>
+<p>Thực hiện theo các bước sau đây để kiểm thử tính bền vững của dữ liệu một cách có hệ thống:</p>
+<h3>Bước 1: Chuẩn bị dữ liệu kiểm thử</h3>
+<ol>
+<li>Nếu hiện tại đang có nhiệm vụ, hãy xóa hết trước (bắt đầu từ trạng thái sạch sẽ)</li>
+<li>Thêm 3 nhiệm vụ:</li>
+<li>"Học Vibe Coding"</li>
+<li>"Hoàn thành dự án danh sách việc cần làm"</li>
+<li>"Ăn mừng một chút"</li>
+</ol>
+<h3>Bước 2: Sửa đổi trạng thái nhiệm vụ</h3>
+<ol>
+<li>Đánh dấu "Học Vibe Coding" là đã hoàn thành</li>
+<li>Xác nhận nó có thay đổi về mặt thị giác (có gạch ngang hoặc chuyển màu xám)</li>
+</ol>
+<h3>Bước 3: Kiểm thử làm mới trang</h3>
+<ol>
+<li>Nhấn <strong>F5</strong> hoặc <strong>Ctrl+R</strong> (Mac: Cmd+R) để làm mới trang</li>
+<li>Kiểm tra kết quả:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Mục kiểm tra</th>
+<th>Kết quả mong đợi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Số lượng nhiệm vụ</td>
+<td>3 cái</td>
+</tr>
+<tr>
+<td>"Học Vibe Coding"</td>
+<td>Vẫn ở trạng thái đã hoàn thành</td>
+</tr>
+<tr>
+<td>Hai nhiệm vụ còn lại</td>
+<td>Vẫn ở trạng thái chưa hoàn thành</td>
+</tr>
+</tbody>
+</table>
+<h3>Bước 4: Kiểm thử đóng thẻ trang</h3>
+<p>Đây là bước kiểm thử nghiêm ngặt hơn:</p>
+<ol>
+<li>Đóng hoàn toàn thẻ trình duyệt đang mở</li>
+<li>Mở lại tập tin HTML (hoặc truy cập lại địa chỉ web)</li>
+<li>Kiểm tra kết quả: Danh sách nhiệm vụ phải giống y hệt lúc chưa đóng</li>
+</ol>
+<h3>Bước 5: Kiểm thử thao tác xóa</h3>
+<ol>
+<li>Xóa nhiệm vụ "Ăn mừng một chút"</li>
+<li>Làm mới trang</li>
+<li>Kiểm tra kết quả: Chỉ nên còn lại 2 nhiệm vụ, "Ăn mừng một chút" không được xuất hiện lại</li>
+</ol>
+<h2>Làm sao xem dữ liệu gốc trong localStorage</h2>
+<p>Đôi khi cần xem trực tiếp nội dung dữ liệu được lưu trữ, có thể làm như sau:</p>
+<ol>
+<li>Nhấn <strong>F12</strong> mở công cụ nhà phát triển</li>
+<li>Nhấp thẻ <strong>Application</strong></li>
+<li>Mở rộng mục <strong>Storage &gt; Local Storage</strong> ở bên trái</li>
+<li>Nhấp vào địa chỉ trang web của bạn (như <code>file://</code> hoặc <code>localhost</code>)</li>
+<li>Tìm dòng có Key là <code>todoList</code> ở bên phải</li>
+<li>Nhấp đúp vào cột Value để xem nội dung đầy đủ</li>
+</ol>
+<p><strong>Ví dụ định dạng dữ liệu đúng</strong>:</p>
+<pre><code class="language-json">[
+  {&quot;text&quot;: &quot;Học Vibe Coding&quot;, &quot;completed&quot;: true},
+  {&quot;text&quot;: &quot;Hoàn thành dự án danh sách việc cần làm&quot;, &quot;completed&quot;: false}
+]
+</code></pre>
+<p>::: tip Gợi ý
+Nếu định dạng dữ liệu của bạn không giống hoàn toàn ví dụ trên cũng không sao, miễn là chứa hai thông tin: nội dung nhiệm vụ và trạng thái hoàn thành. Các AI khác nhau có thể dùng tên thuộc tính khác nhau (như <code>content</code> thay cho <code>text</code>, <code>done</code> thay cho <code>completed</code>).
+:::</p>
+<h2>Danh sách kiểm tra</h2>
+<p>Sau khi hoàn thành tất cả các bước kiểm thử, hãy xác nhận các mục sau đều thông qua:</p>
+<ul>
+<li>[ ] Sau khi thêm nhiệm vụ, làm mới trang nhiệm vụ vẫn còn</li>
+<li>[ ] Sau khi xóa nhiệm vụ, làm mới trang nhiệm vụ không quay lại</li>
+<li>[ ] Sau khi đánh dấu hoàn thành, làm mới trang trạng thái hoàn thành được giữ nguyên</li>
+<li>[ ] Sau khi hủy hoàn thành, làm mới trang trạng thái cập nhật đúng</li>
+<li>[ ] Đóng thẻ trang rồi mở lại, dữ liệu được bảo toàn nguyên vẹn</li>
+<li>[ ] Nhìn thấy dữ liệu <code>todoList</code> trong công cụ nhà phát triển</li>
+</ul>
+<h2>Khắc phục sự cố thường gặp</h2>
+<h3>Vấn đề 1: Sau khi làm mới tất cả nhiệm vụ đều biến mất</h3>
+<table>
+<thead>
+<tr>
+<th>Nguyên nhân có thể</th>
+<th>Phương pháp kiểm tra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logic lưu chưa thực thi</td>
+<td>Kiểm tra xem trong công cụ nhà phát triển có <code>todoList</code> không</td>
+</tr>
+<tr>
+<td>Logic đọc chưa thực thi</td>
+<td>Có <code>todoList</code> nhưng trang trắng trơn</td>
+</tr>
+<tr>
+<td>Lỗi định dạng dữ liệu</td>
+<td>Giá trị <code>todoList</code> bị lỗi hoặc là undefined</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prompt sửa lỗi chung</strong>:</p>
+<pre><code>Làm mới trang xong thì các nhiệm vụ biến mất hết.
+Trong Local Storage của công cụ nhà phát triển tôi [nhìn thấy/không nhìn thấy] dữ liệu todoList.
+Hãy giúp tôi kiểm tra logic lưu và đọc, đảm bảo:
+1. Mỗi lần nhiệm vụ thay đổi đều lưu vào localStorage
+2. Khi tải trang sẽ đọc và hiển thị dữ liệu đã lưu
+Hãy đưa cho tôi mã đầy đủ sau khi sửa lỗi.
+</code></pre>
+<h3>Vấn đề 2: Nội dung nhiệm vụ còn, nhưng trạng thái hoàn thành bị mất</h3>
+<p><strong>Nguyên nhân có thể</strong>: Khi lưu không bao gồm trạng thái <code>completed</code>.</p>
+<p><strong>Prompt sửa lỗi</strong>:</p>
+<pre><code>Làm mới trang xong nội dung nhiệm vụ vẫn còn, nhưng tất cả đều biến thành trạng thái chưa hoàn thành.
+Hãy kiểm tra logic lưu, đảm bảo mỗi đối tượng nhiệm vụ đều chứa trạng thái hoàn thành (thuộc tính completed hoặc done).
+Hãy đưa cho tôi mã đầy đủ sau khi sửa lỗi.
+</code></pre>
+<h3>Vấn đề 3: Nhiệm vụ đã xóa làm mới xong lại xuất hiện</h3>
+<p><strong>Nguyên nhân có thể</strong>: Sau thao tác xóa chưa cập nhật localStorage.</p>
+<p><strong>Prompt sửa lỗi</strong>:</p>
+<pre><code>Tôi đã xóa một nhiệm vụ, nhưng làm mới trang xong nó lại xuất hiện.
+Hãy đảm bảo sau khi xóa nhiệm vụ sẽ cập nhật ngay dữ liệu trong localStorage.
+Hãy đưa cho tôi mã đầy đủ sau khi sửa lỗi.
+</code></pre>
+<h3>Vấn đề 4: Console báo lỗi liên quan đến JSON</h3>
+<p>Các lỗi thường gặp như:
+- <code>SyntaxError: Unexpected token</code>
+- <code>JSON.parse: unexpected character</code></p>
+<p><strong>Prompt sửa lỗi</strong>:</p>
+<pre><code>Console báo lỗi: [Dán thông báo lỗi cụ thể]
+Có vẻ là vấn đề liên quan đến phân tích JSON.
+Hãy kiểm tra logic lưu và đọc dữ liệu localStorage, đảm bảo định dạng chính xác.
+Hãy đưa cho tôi mã đầy đủ sau khi sửa lỗi.
+</code></pre>
+<h2>Điểm kiểm tra bước này</h2>
+<p>Trước khi tiếp tục, hãy xác nhận:</p>
+<ul>
+<li>[ ] Đã hoàn thành tất cả các bước trong phương pháp kiểm thử 5 bước</li>
+<li>[ ] Tất cả bối cảnh kiểm thử đều thông qua</li>
+<li>[ ] Console không báo lỗi</li>
+</ul>
+<p>Sau khi thông qua tất cả, bước vào phần xác thực chức năng hoàn chỉnh cuối cùng.</p>
+<p>→ <a href="./4.4.4-final-verification_vi.html">4.4.4 Xác thực chức năng hoàn chỉnh</a></p>
+</body>
+</html>

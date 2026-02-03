@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.6.1 Project Showcase</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.6.1 Trưng bày dự án hoàn chỉnh"
+order: 2</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.6-summary_4.6.1-project-showcase.png" src="../../../public/images/Basic/04-practice-0-to-1_4.6-summary_4.6.1-project-showcase.png" /></p>
+<h1>4.6.1 Trưng bày dự án hoàn chỉnh</h1>
+<blockquote>
+<p><strong>Mục tiêu bước này</strong>: Xác nhận thành quả cuối cùng, hiểu rõ cấu trúc dự án, xây dựng nhận thức rõ ràng về tác phẩm của chính mình</p>
+</blockquote>
+<h2>Xác nhận thành quả cuối cùng</h2>
+<p>Trước khi tiếp tục, hãy dùng một quy trình kiểm thử hoàn chỉnh để xác nhận danh sách việc cần làm của bạn đã có đủ tất cả chức năng.</p>
+<h3>Kiểm thử nghiệm thu chức năng</h3>
+<p>Làm theo các bước sau đây để kiểm thử từng mục, mỗi bước đều phải nhận được kết quả như kỳ vọng:</p>
+<table>
+<thead>
+<tr>
+<th>Bước kiểm thử</th>
+<th>Thao tác</th>
+<th>Kết quả kỳ vọng</th>
+<th>Thông qua</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Tải trang</td>
+<td>Mở tập tin HTML trong trình duyệt</td>
+<td>Trang hiển thị bình thường, không báo lỗi</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>2. Thêm nhiệm vụ</td>
+<td>Nhập "Nhiệm vụ test 1", nhấp thêm</td>
+<td>Nhiệm vụ xuất hiện trong danh sách, ô nhập liệu được làm sạch</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>3. Thêm cái nữa</td>
+<td>Nhập "Nhiệm vụ test 2", nhấp thêm</td>
+<td>Trong danh sách có hai nhiệm vụ</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>4. Chặn nhập trống</td>
+<td>Ô nhập liệu để trống, nhấp thêm</td>
+<td>Không thêm bất kỳ nhiệm vụ nào</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>5. Đánh dấu hoàn thành</td>
+<td>Nhấp nút hoàn thành của "Nhiệm vụ test 1"</td>
+<td>Nhiệm vụ hiển thị gạch ngang hoặc trạng thái hoàn thành</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>6. Xóa nhiệm vụ</td>
+<td>Nhấp nút xóa của "Nhiệm vụ test 2"</td>
+<td>Nhiệm vụ biến mất khỏi danh sách</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>7. Làm mới trang</td>
+<td>Nhấn F5 làm mới trình duyệt</td>
+<td>Nhiệm vụ còn lại vẫn ở đó, trạng thái hoàn thành được giữ nguyên</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>8. Đóng mở lại</td>
+<td>Đóng thẻ trang, mở lại tập tin</td>
+<td>Dữ liệu được bảo toàn nguyên vẹn</td>
+<td>☐</td>
+</tr>
+</tbody>
+</table>
+<p>Nếu cả 8 mục trên đều thông qua, chúc mừng bạn - danh sách việc cần làm của bạn là một <strong>ứng dụng đầy đủ chức năng</strong>.</p>
+<h2>Dự án của bạn bao gồm những gì</h2>
+<p>Tuy bạn có thể chỉ nhìn thấy một tập tin HTML, nhưng nó bao hàm 3 tầng cấu thành nên một ứng dụng web hoàn chỉnh:</p>
+<pre><code>┌─────────────────────────────────────────┐
+│           Tập tin HTML của bạn           │
+│                                         │
+│  ┌─────────────────────────────────┐    │
+│  │         Tầng cấu trúc HTML       │    │
+│  │  Tiêu đề, ô nhập liệu, nút, danh sách │    │
+│  │  → Quyết định &quot;trang có phần tử nào&quot;  │    │
+│  └─────────────────────────────────┘    │
+│                                         │
+│  ┌─────────────────────────────────┐    │
+│  │         Tầng kiểu dáng CSS       │    │
+│  │  Màu sắc, phông chữ, bố cục, khoảng cách│    │
+│  │  → Quyết định &quot;trang trông thế nào&quot;   │    │
+│  └─────────────────────────────────┘    │
+│                                         │
+│  ┌─────────────────────────────────┐    │
+│  │      Tầng logic JavaScript       │    │
+│  │  Thêm, xóa, hoàn thành, lưu, đọc     │    │
+│  │  → Quyết định &quot;trang phản hồi thao tác sao&quot;│    │
+│  └─────────────────────────────────┘    │
+└─────────────────────────────────────────┘
+</code></pre>
+<p>Ba tầng này chính là cốt lõi của phát triển Front-end. Mã bạn dùng AI tạo ra, về bản chất chính là đang bảo AI viết ba tầng này như thế nào.</p>
+<h2>Thành quả của bạn vs Lập trình viên chuyên nghiệp</h2>
+<p>Bạn có thể sẽ hỏi: Thứ tôi làm ra và thứ lập trình viên chuyên nghiệp làm ra có gì khác nhau?</p>
+<table>
+<thead>
+<tr>
+<th>Khía cạnh</th>
+<th>Danh sách của bạn</th>
+<th>Ứng dụng cấp độ sản xuất chuyên nghiệp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Độ hoàn thiện chức năng</strong></td>
+<td>Chức năng cốt lõi đầy đủ</td>
+<td>Xử lý nhiều trường hợp ngoại lệ hơn</td>
+</tr>
+<tr>
+<td><strong>Lưu trữ dữ liệu</strong></td>
+<td>Lưu trữ cục bộ (localStorage)</td>
+<td>Cơ sở dữ liệu đám mây</td>
+</tr>
+<tr>
+<td><strong>Hệ thống người dùng</strong></td>
+<td>Đơn người dùng (tự mình dùng)</td>
+<td>Đa người dùng, đăng ký đăng nhập</td>
+</tr>
+<tr>
+<td><strong>Cách truy cập</strong></td>
+<td>Tập tin cục bộ</td>
+<td>Triển khai lên máy chủ, có địa chỉ web</td>
+</tr>
+<tr>
+<td><strong>Tổ chức mã nguồn</strong></td>
+<td>Tập tin đơn</td>
+<td>Nhiều tập tin, mô-đun hóa</td>
+</tr>
+<tr>
+<td><strong>Quản lý phiên bản</strong></td>
+<td>Sao lưu thủ công</td>
+<td>Kiểm soát phiên bản bằng Git</td>
+</tr>
+</tbody>
+</table>
+<p>Nhận định quan trọng: <strong>Danh sách việc cần làm của bạn hoàn chỉnh về mặt chức năng cốt lõi</strong>. Sự phức tạp của ứng dụng chuyên nghiệp chủ yếu đến từ:
+- Hỗ trợ nhiều người dùng hơn
+- Xử lý nhiều trường hợp ngoại lệ hơn
+- Cần làm việc nhóm
+- Cần bảo trì lâu dài</p>
+<p>Đối với công cụ nhỏ dùng cho cá nhân, phiên bản bạn làm đã đủ dùng rồi.</p>
+<h2>Không gian mở rộng của dự án này</h2>
+<p>Danh sách việc cần làm hiện tại của bạn là một điểm khởi đầu rất tốt. Dựa trên cơ sở kỹ thuật tương tự, bạn có thể mở rộng dần dần:</p>
+<h3>Mở rộng ngắn hạn (Dùng phương pháp tương tự)</h3>
+<table>
+<thead>
+<tr>
+<th>Chức năng mở rộng</th>
+<th>Độ phức tạp</th>
+<th>Kiến thức mới cần học</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Phân loại nhiệm vụ/Thẻ</td>
+<td>Thấp</td>
+<td>Không, tiếp tục dùng phương pháp hiện có</td>
+</tr>
+<tr>
+<td>Đánh dấu ưu tiên</td>
+<td>Thấp</td>
+<td>Không</td>
+</tr>
+<tr>
+<td>Tìm kiếm lọc</td>
+<td>Trung bình</td>
+<td>Không</td>
+</tr>
+<tr>
+<td>Chế độ tối</td>
+<td>Trung bình</td>
+<td>Không</td>
+</tr>
+<tr>
+<td>Hạn chót</td>
+<td>Trung bình</td>
+<td>Xử lý ngày tháng (AI có thể giúp bạn)</td>
+</tr>
+</tbody>
+</table>
+<h3>Mở rộng trung hạn (Cần kiến thức chương 5)</h3>
+<table>
+<thead>
+<tr>
+<th>Chức năng mở rộng</th>
+<th>Cần học</th>
+<th>Chương tương ứng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Triển khai lên mạng</td>
+<td>Triển khai Vercel</td>
+<td>5.2</td>
+</tr>
+<tr>
+<td>Quản lý phiên bản</td>
+<td>Git cơ bản</td>
+<td>5.1</td>
+</tr>
+<tr>
+<td>Chia sẻ cho bạn bè</td>
+<td>Tên miền tùy chỉnh</td>
+<td>5.2</td>
+</tr>
+</tbody>
+</table>
+<h3>Mở rộng dài hạn (Nội dung nâng cao)</h3>
+<table>
+<thead>
+<tr>
+<th>Chức năng mở rộng</th>
+<th>Cần học</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Đồng bộ đa thiết bị</td>
+<td>Cơ sở dữ liệu đám mây</td>
+</tr>
+<tr>
+<td>Đăng nhập người dùng</td>
+<td>Hệ thống xác thực</td>
+</tr>
+<tr>
+<td>Phân loại thông minh AI</td>
+<td>Tích hợp API AI</td>
+</tr>
+</tbody>
+</table>
+<h2>Gợi ý chụp ảnh màn hình thành quả</h2>
+<p>Đề nghị bạn làm ngay hai việc:</p>
+<ol>
+<li><strong>Chụp ảnh màn hình</strong>: Chụp lại danh sách việc cần làm của bạn, đây là tác phẩm đầu tiên của bạn</li>
+<li><strong>Sao lưu tập tin</strong>: Sao chép tập tin HTML ra một bản, đặt tên là <code>todo-v1-final.html</code></li>
+</ol>
+<p>Những thứ này đều là ghi chép cột mốc bạn học Vibe Coding.</p>
+<h2>Điểm kiểm tra bước này</h2>
+<ul>
+<li>[ ] 8 mục kiểm thử chức năng đều thông qua</li>
+<li>[ ] Hiểu ba tầng cấu thành dự án (HTML/CSS/JS)</li>
+<li>[ ] Hiểu rõ sự khác biệt và liên hệ giữa thành quả của mình và ứng dụng chuyên nghiệp</li>
+<li>[ ] Đã chụp ảnh màn hình hoặc sao lưu tập tin dự án</li>
+</ul>
+<p>Chúc mừng bạn đã sở hữu một tác phẩm thực sự dùng được. Tiếp theo, hãy cùng nhìn lại hành trình hoàn chỉnh để hoàn thành dự án này.</p>
+<p>→ <a href="./4.6.2-journey-review_vi.html">4.6.2 Nhìn lại hành trình trọn vẹn từ 0 đến 1</a></p>
+</body>
+</html>

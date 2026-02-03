@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.2.1 First Prompt</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.2.1 Dùng khung chương 3 để viết Prompt đầu tiên"
+order: 2</p>
+<hr />
+<p><img alt="04-practice-0-to-1_4.2-build-page_4.2.1-first-prompt.png" src="../../../public/images/Basic/04-practice-0-to-1_4.2-build-page_4.2.1-first-prompt.png" /></p>
+<h1>4.2.1 Dùng khung chương 3 để viết Prompt đầu tiên</h1>
+<blockquote>
+<p><strong>Mục tiêu bước này</strong>: Chuyển đổi "Thẻ khởi động dự án" ở phần 4.1 thành Prompt mà AI có thể hiểu được.</p>
+</blockquote>
+<h2>Từ thẻ khởi động dự án đến Prompt</h2>
+<p>Ở phần 4.1, chúng ta đã sắp xếp "Thẻ khởi động dự án" cho dự án của Tiểu Lý. Bây giờ cần chuyển đổi nó thành Prompt để AI giúp chúng ta tạo mã nguồn.</p>
+<pre><code>Thẻ khởi động dự án                 Prompt
+┌──────────────┐                ┌──────────────┐
+│ Tên dự án     │                │ Situation    │
+│ Người dùng    │  ──Chuyển đổi──→ │ Challenge    │
+│ Chức năng     │                │ Audience     │
+│ Không làm     │                │ Format       │
+│ Ràng buộc     │                │ Foundations  │
+└──────────────┘                └──────────────┘
+</code></pre>
+<p>Logic chuyển đổi:</p>
+<table>
+<thead>
+<tr>
+<th>Nội dung thẻ khởi động</th>
+<th>Vị trí Prompt tương ứng</th>
+<th>Tác dụng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tên dự án + Người dùng</td>
+<td>Situation (Tình huống)</td>
+<td>Nói cho AI biết bạn đang làm gì</td>
+</tr>
+<tr>
+<td>Danh sách chức năng cốt lõi</td>
+<td>Challenge (Thách thức)</td>
+<td>Nói cho AI biết cần làm gì hiện tại</td>
+</tr>
+<tr>
+<td>Bạn là ai</td>
+<td>Audience (Đối tượng)</td>
+<td>Để AI điều chỉnh độ phức tạp của mã</td>
+</tr>
+<tr>
+<td>Không làm + Ràng buộc kỹ thuật</td>
+<td>Foundations (Nền tảng)</td>
+<td>Nói cho AI biết giới hạn ở đâu</td>
+</tr>
+</tbody>
+</table>
+<h2>Ba phiên bản Prompt</h2>
+<p>Tùy theo thời gian và nhu cầu của bạn, có thể chọn mức độ chi tiết khác nhau của Prompt.</p>
+<h3>Phiên bản 1: Bản tối giản (Dùng khi vội)</h3>
+<p>Nếu bạn đã quen thuộc với quy trình này, hoặc chỉ muốn xem nhanh kết quả:</p>
+<pre><code>Giúp tôi làm một trang web tĩnh cho danh sách việc cần làm.
+Bao gồm: tiêu đề, ô nhập liệu, nút thêm, danh sách nhiệm vụ (có nút hoàn thành và xóa).
+Phong cách tối giản hiện đại, hiển thị tốt trên điện thoại.
+Chưa cần chức năng, chỉ cần giao diện. Dùng HTML + CSS, không dùng framework nào.
+</code></pre>
+<p>Phiên bản này khoảng 70 chữ, bao phủ được những thông tin cốt lõi nhất.</p>
+<h3>Phiên bản 2: Bản tiêu chuẩn (Khuyên dùng hàng ngày)</h3>
+<p>Sử dụng khung S.C.F. tinh gọn của chương 3:</p>
+<pre><code>【Bối cảnh】
+Tôi đang làm một trang web danh sách việc cần làm cá nhân, giúp quản lý công việc hàng ngày.
+Tôi là người mới bắt đầu lập trình, chưa có kiến thức nền tảng.
+
+【Nhiệm vụ】
+Hãy tạo trang tĩnh cho danh sách việc cần làm, bao gồm các phần tử sau:
+- Tiêu đề trang: &quot;Danh sách việc cần làm của tôi&quot;
+- Một ô nhập liệu để nhập nhiệm vụ mới
+- Một nút &quot;Thêm&quot;
+- Khu vực danh sách nhiệm vụ, hiển thị trước 3 dữ liệu giả để xem kiểu dáng
+- Mỗi nhiệm vụ có nút &quot;Hoàn thành&quot; và nút &quot;Xóa&quot;
+
+【Ràng buộc】
+- Chỉ cần trang tĩnh, tạm thời chưa cần chức năng nào
+- Sử dụng thuần HTML + CSS, không dùng framework nào
+- Phong cách hiện đại tối giản, phối màu tươi sáng
+- Thiết kế Responsive, hiển thị tốt trên điện thoại
+- Mã nguồn thêm chú thích tiếng Việt cần thiết
+</code></pre>
+<h3>Phiên bản 3: Bản đầy đủ (Khuyên dùng lần đầu)</h3>
+<p>Sử dụng khung S.C.A.F.F. toàn diện, cung cấp cho AI ngữ cảnh đầy đủ nhất:</p>
+<pre><code>【Situation - Tình huống】
+Tôi là người mới bắt đầu lập trình, chưa có kiến thức nền tảng, đang học dùng AI để làm một trang web danh sách việc cần làm cá nhân.
+Đây là dự án lập trình AI đầu tiên của tôi.
+Người dùng mục tiêu là những nhân viên mới đi làm hay quên giống như tôi, cần một công cụ quản lý nhiệm vụ đơn giản.
+
+【Challenge - Thách thức】
+Hãy giúp tôi tạo trang tĩnh cho danh sách việc cần làm, bao gồm các phần tử sau:
+1. Tiêu đề trang: &quot;Danh sách việc cần làm của tôi&quot;
+2. Khu vực nhập liệu:
+   - Một ô nhập liệu (để nhập nhiệm vụ mới)
+   - Một nút &quot;Thêm&quot;
+3. Khu vực danh sách nhiệm vụ:
+   - Hiển thị trước 3 dữ liệu giả để xem kiểu dáng (như: &quot;Hoàn thành báo cáo dự án&quot;, &quot;Mua sữa&quot;, &quot;Gọi điện cho mẹ&quot;)
+   - Mỗi nhiệm vụ hiển thị nội dung nhiệm vụ
+   - Bên phải mỗi nhiệm vụ có nút &quot;Hoàn thành&quot; và nút &quot;Xóa&quot;
+
+【Audience - Đối tượng】
+- Mã nguồn sẽ do tôi (người mới bắt đầu) đọc và chỉnh sửa
+- Hãy giữ mã nguồn đơn giản dễ hiểu
+- Thêm chú thích tiếng Việt ở các vị trí quan trọng, giúp tôi hiểu cấu trúc mã
+
+【Format - Định dạng】
+Hãy tạo một tập tin HTML hoàn chỉnh, bao gồm:
+- Cấu trúc HTML
+- Kiểu dáng CSS nhúng (viết trong thẻ &lt;style&gt;)
+- Tập tin có thể mở trực tiếp trong trình duyệt để xem kết quả
+
+【Foundations - Ràng buộc cơ bản】
+- Chỉ làm trang tĩnh, tạm thời chưa cần chức năng JavaScript
+- Không sử dụng bất kỳ framework hay thư viện bên ngoài nào (như Bootstrap, Tailwind)
+- Phong cách thiết kế: Hiện đại tối giản, tham khảo ngôn ngữ thiết kế của Apple hoặc Notion
+- Phối màu tươi sáng, tông màu chủ đạo có thể dùng xanh dương hoặc xanh lá
+- Thiết kế Responsive: Hiển thị tốt trên điện thoại (chiều rộng 375px) và máy tính
+- Trang hiển thị căn giữa, chiều rộng tối đa 500px
+</code></pre>
+<h2>Tại sao phải nói cho AI biết bạn là người mới bắt đầu?</h2>
+<p>Bạn có thể để ý, mỗi phiên bản đều nhắc đến "Tôi là người mới bắt đầu". Đây không phải là khiêm tốn, mà là một chiến lược quan trọng:</p>
+<table>
+<thead>
+<tr>
+<th>Không nói "người mới"</th>
+<th>Nói "người mới"</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI có thể dùng cú pháp và kỹ thuật cao cấp</td>
+<td>AI sẽ dùng cách viết cơ bản, trực quan</td>
+</tr>
+<tr>
+<td>Mã nguồn có thể không có chú thích</td>
+<td>AI sẽ chủ động thêm chú thích giải thích</td>
+</tr>
+<tr>
+<td>Tên biến có thể rất ngắn gọn</td>
+<td>AI sẽ dùng cách đặt tên mô tả rõ ràng hơn</td>
+</tr>
+<tr>
+<td>Gặp vấn đề bạn có thể không hiểu</td>
+<td>Mã nguồn dễ đọc và gỡ lỗi hơn</td>
+</tr>
+</tbody>
+</table>
+<p>Mẹo nhỏ này giúp AI tạo ra mã nguồn phù hợp hơn với trình độ hiện tại của bạn.</p>
+<h2>So sánh cách mô tả: Mơ hồ vs Cụ thể</h2>
+<p>Khi viết Prompt, càng cụ thể càng tốt. Hãy xem các so sánh này:</p>
+<table>
+<thead>
+<tr>
+<th>Khía cạnh</th>
+<th>Mô tả mơ hồ (Nên tránh)</th>
+<th>Mô tả cụ thể (Khuyên dùng)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Màu sắc</td>
+<td>Màu đẹp mắt</td>
+<td>Tông màu chủ đạo dùng xanh dương, như #4F46E5</td>
+</tr>
+<tr>
+<td>Bố cục</td>
+<td>Hiển thị căn giữa</td>
+<td>Chiều rộng trang tối đa 500px, căn giữa theo chiều ngang</td>
+</tr>
+<tr>
+<td>Phong cách</td>
+<td>Phong cách hiện đại</td>
+<td>Tham khảo phong cách tối giản của trang chủ Apple, thẻ bo tròn</td>
+</tr>
+<tr>
+<td>Nút</td>
+<td>Thêm vài cái nút</td>
+<td>Bên phải mỗi nhiệm vụ có hai nút "Hoàn thành" và "Xóa"</td>
+</tr>
+<tr>
+<td>Dữ liệu</td>
+<td>Hiển thị vài nhiệm vụ</td>
+<td>Dùng 3 dữ liệu giả, như "Hoàn thành báo cáo dự án" v.v.</td>
+</tr>
+</tbody>
+</table>
+<p>Tại sao mô tả cụ thể lại tốt hơn? Bởi vì khi gặp mô tả mơ hồ, AI chỉ có thể "đoán", còn mô tả cụ thể giúp AI biết chính xác bạn muốn gì.</p>
+<h2>Kiểm tra Prompt của bạn</h2>
+<p>Trước khi gửi đi, hãy dùng danh sách này để kiểm tra:</p>
+<ul>
+<li>[ ] Đã nói rõ bối cảnh dự án (làm cái gì, cho ai dùng)?</li>
+<li>[ ] Đã liệt kê các phần tử cần có trên trang?</li>
+<li>[ ] Đã chỉ định ràng buộc kỹ thuật (HTML + CSS, không dùng framework)?</li>
+<li>[ ] Đã nói rõ phong cách thiết kế và sở thích phối màu?</li>
+<li>[ ] Đã đề cập nhu cầu Responsive?</li>
+<li>[ ] Đã nói cho AI biết bạn là người mới bắt đầu, cần chú thích?</li>
+</ul>
+<h2>Chọn phiên bản nào?</h2>
+<table>
+<thead>
+<tr>
+<th>Tình huống của bạn</th>
+<th>Khuyên dùng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lần đầu làm theo hướng dẫn</td>
+<td><strong>Bản đầy đủ</strong>, để có kết quả tốt nhất</td>
+</tr>
+<tr>
+<td>Đã làm một lần, muốn ôn tập nhanh</td>
+<td>Bản tiêu chuẩn</td>
+</tr>
+<tr>
+<td>Đã rất thành thạo, muốn kiểm chứng ý tưởng nhanh</td>
+<td>Bản tối giản</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Gợi ý
+Nếu đây là lần đầu tiên bạn làm dự án lập trình AI, khuyên bạn nên dùng bản đầy đủ. Dành thêm 2 phút viết Prompt, có thể tiết kiệm rất nhiều thời gian điều chỉnh sau này.
+:::</p>
+<h2>Điểm kiểm tra bước này</h2>
+<ul>
+<li>[ ] Đã chọn phiên bản Prompt phù hợp với bản thân</li>
+<li>[ ] Đã sao chép Prompt, chuẩn bị gửi cho AI</li>
+</ul>
+<p>→ <a href="./4.2.2-generate-static_vi.html">4.2.2 Tạo trang tĩnh</a></p>
+</body>
+</html>

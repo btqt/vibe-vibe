@@ -49,10 +49,10 @@ Phần này sẽ giúp bạn xác nhận: Bạn đã đạt đến mức 60% đ�
 
 | Tiểu tiết | Chủ đề | Bạn sẽ hoàn thành | Thời gian dự kiến |
 |------|------|---------|---------|
-| [4.1.1](./4.1.1-review-chapter2.md) | Ôn tập thành quả Chương 2 | Xác định rõ "Tôi muốn làm gì" | 5 phút |
-| [4.1.2](./4.1.2-prepare-ai-ide.md) | Chuẩn bị AI IDE của bạn | Xác nhận "Công cụ dùng được" | 5 phút |
-| [4.1.3](./4.1.3-environment-check.md) | Kiểm tra môi trường | Loại bỏ vấn đề thường gặp | 3 phút |
-| [4.1.4](./4.1.4-checklist.md) | Danh sách kiểm tra cuối cùng | Xác nhận "Có thể bắt đầu rồi" | 2 phút |
+| [4.1.1](./4.1.1-review-chapter2_vi.md) | Ôn tập thành quả Chương 2 | Xác định rõ "Tôi muốn làm gì" | 5 phút |
+| [4.1.2](./4.1.2-prepare-ai-ide_vi.md) | Chuẩn bị AI IDE của bạn | Xác nhận "Công cụ dùng được" | 5 phút |
+| [4.1.3](./4.1.3-environment-check_vi.md) | Kiểm tra môi trường | Loại bỏ vấn đề thường gặp | 3 phút |
+| [4.1.4](./4.1.4-checklist_vi.md) | Danh sách kiểm tra cuối cùng | Xác nhận "Có thể bắt đầu rồi" | 2 phút |
 
 **Tổng thời gian dự kiến: 15 phút**
 
@@ -64,7 +64,7 @@ Phần này sẽ giúp bạn xác nhận: Bạn đã đạt đến mức 60% đ�
 
 ### Cách 2: Lối tắt (Thích hợp cho độc giả tự tin)
 
-Nếu bạn thỏa mãn các điều kiện sau, có thể nhảy thẳng đến [4.1.4 Danh sách kiểm tra cuối cùng](./4.1.4-checklist.md):
+Nếu bạn thỏa mãn các điều kiện sau, có thể nhảy thẳng đến [4.1.4 Danh sách kiểm tra cuối cùng](./4.1.4-checklist_vi.md):
 
 - Bạn đã hoàn thành suy nghĩ dự án ở Chương 2 (hoặc quyết định làm theo ví dụ của Tiểu Lý)
 - AI IDE của bạn đã cài đặt/mở, có thể sử dụng bình thường
@@ -76,4 +76,4 @@ Mục tiêu của công tác chuẩn bị là "Bắt đầu", chứ không phả
 
 Sẵn sàng chưa? Hãy bắt đầu công tác chuẩn bị cuối cùng.
 
-→ [4.1.1 Ôn tập thành quả Chương 2](./4.1.1-review-chapter2.md)
+→ [4.1.1 Ôn tập thành quả Chương 2](./4.1.1-review-chapter2_vi.md)
