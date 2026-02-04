@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11.02 Ai Canvas Vibecoding Journey</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<h1>AI Canvas mã nguồn mở: Hành trình thực hành Vibecoding của tôi</h1>
+<blockquote>
+<p>Tác giả: Tiểu Hòe Hoa</p>
+</blockquote>
+<p>Câu chuyện phát triển:</p>
+<ol>
+<li>Nguồn gốc ý tưởng: Datawhale trước đó có bài viết hướng dẫn dùng Nano banana làm hình minh họa cho bài báo nghiên cứu khoa học</li>
+</ol>
+<p>https://mp.weixin.qq.com/s/IG8cITKAESi-vomyQiobZg</p>
+<p>Lúc đó bài viết có hướng dẫn chi tiết các bước và prompt tương ứng</p>
+<p>Nhưng tôi nghĩ liệu có thể cấu hình một lần rồi dùng lại nhiều lần không —— thế thì chính là workflow rồi. Thế là tôi đi thử một số công cụ workflow, đã thực hiện được ý tưởng của mình trên một sản phẩm workflow nọ, nhưng bị giới hạn bởi chế độ hội viên của nó và không thể tùy chỉnh API, cộng thêm các phần mềm workflow trưởng thành khác file quá nặng (có cái cần 1-2GB), nên tôi bỏ cuộc.</p>
+<p>Sau đó lại lướt thấy phiên bản mã nguồn mở của một công cụ sáng tạo phim ảnh nào đó (tôi tìm hiểu thấy nó được phát triển bằng Gemini 3, thế là tôi bắt đầu có ý định về hướng này)</p>
+<ol>
+<li>Tìm tòi sơ bộ và xin chỉ giáo trong nhóm:</li>
+</ol>
+<p>Hôm sau đó (tối thứ tư 10/12) tôi bắt đầu dùng Gemini 3 để phát triển. Ban đầu tôi vẫn giữ thói quen làm một bước ăn ngay khi làm các dự án đơn giản trước kia (như AI làm game rắn săn mồi, xếp gạch), cố gắng để AI thực hiện tất cả chức năng phức tạp trong một lần đầu ra, nhưng tư duy giao hàng một lần này dẫn đến logic hỗn loạn (phiên bản đầu tiên). Lúc đầu tôi còn khá hí hửng, tưởng là có thể hoàn thiện dần dần, kết quả hôm đó vật lộn đến 4 giờ sáng hôm sau (hơn 8 giờ còn có tiết học buổi sáng), kết quả nhận được ngày càng loạn, tôi nhận ra có gì đó sai sai.</p>
+<p>Ngày 11/12 (Thứ năm)</p>
+<p>Buổi trưa tôi đặt câu hỏi trong nhóm giao lưu tín đồ ứng dụng WhaleAI:</p>
+<p>[Image]</p>
+<p>Sau đó được giải đáp, bảo tôi phải chia nhỏ các bước lặp lại (iterate) và ghi chép, lưu phiên bản cũng như tách các chức năng ra để làm.</p>
+<p>Tối hôm đó tôi điều chỉnh chiến lược: Ưu tiên dùng Gemini 3 chắt lọc nhu cầu thành tài liệu phát triển chi tiết, thay vì trực tiếp tạo code. Sau đó mớm (feed) các tài liệu phát triển phân bước chi tiết (phân phiên bản) và prompt tương ứng cho Gemini 3, hiệu quả thấy rõ ngay, vì phân bước và có ghi chép phiên bản, rất dễ kiểm tra xem một chức năng đơn lẻ đã được thực hiện chưa, nếu chưa thì cũng dễ dàng quay lui phiên bản (vì ảnh hưởng không lớn). Tôi bắt đầu dùng cách này, mỗi lần chỉ tập trung vào phát triển một module, ví dụ thực hiện bố cục giao diện cơ bản trước, rồi đến chức năng upload ảnh, tiếp theo là module nhập và quản lý prompt.</p>
+<ol>
+<li>Thiên la địa võng format giao thức Gemini API</li>
+</ol>
+<p>Tiếp phần trên, sau khi đổi cách làm việc, tôi dần dần thêm được kha khá chức năng, thực hiện được việc gọi api tạo văn bản và hình ảnh định dạng OpenAI, thế là tôi bắt đầu thử thêm api tạo ảnh nanobanana, kết quả phát hiện không được (sau này tôi mới biết, API của OpenAI có tính tương thích khá cao, nhiều nền tảng api cũng tương thích với giao thức định dạng này, nhưng Gemini thì khác! Đầu tiên là url của nó đã viết tên model rồi (tính trỏ duy nhất), sau đó định dạng của chính chủ và trạm trung chuyển cũng có thể khác nhau. Thế là vật lộn đến chiều 14/12 (tôi gửi hết báo lỗi cho kỹ thuật của một nền tảng api), họ bảo tôi là tạo ảnh gemini nhà họ dùng định dạng base64 và đưa cho tôi ví dụ lệnh request, thế là chat với ai mấy vòng, mới làm ra được một giải pháp tương đối tương thích.</p>
+<ol>
+<li>Triết lý thiết kế</li>
+</ol>
+<p>① Tại sao lại là thuần Frontend và html? Vì đầu năm DeepSeek bùng nổ, rất nhiều người theo đuổi việc triển khai cục bộ (local deployment), nhưng phát hiện phần cứng của mình không đủ. Phần cứng không đủ này đối với học sinh sinh viên càng khó chịu hơn, vì đa số sinh viên không thể vì triển khai cục bộ mà đi nâng cấp máy tính, rồi đành phải chuyển sang một số nền tảng AI trực tuyến, hoặc dùng một số api tự cấu hình vào phần mềm chat ai cục bộ, ví dụ cherry studio, nên tôi thấy api thân thiện hơn.</p>
+<p>Sau đó tự mình làm cái này cũng có một điểm là vì (tôi tích lũy được không ít hạn ngạch api của các nền tảng, rồi hiện tại dùng workflow ai canvas khá nhiều, nên cũng hy vọng có một phần mềm có thể tận dụng hết vật lực để sử dụng).</p>
+<p>Chọn thuần Frontend cũng là để mọi người có thể 'mở ra dùng ngay'. Hơn nữa, việc thực hiện thuần Frontend cũng đồng nghĩa với việc triển khai đơn giản. Hiện tại dự án đã mã nguồn mở, mọi người thấy phiên bản tiếp theo nên thêm chức năng gì nhất? Hoan nghênh để lại bình luận cho tôi!</p>
+<p>Địa chỉ trải nghiệm trực tuyến hiện tại: https://xhh-drawing-board.vibevibe.cn</p>
+</body>
+</html>

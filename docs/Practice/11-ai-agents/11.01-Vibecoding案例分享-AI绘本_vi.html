@@ -1,0 +1,991 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11.01 Vibecoding案例分享 Ai绘本</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<h1>🎨 Chia sẻ Case Study Vibecoding: Tạo trình tạo sách tranh AI không cần code</h1>
+<blockquote>
+<p><strong>Đối tượng</strong>: Người mới hoàn toàn không có nền tảng lập trình
+<strong>Chu kỳ dự án</strong>: Khoảng 2 tuần (vừa học vừa làm)
+<strong>Thành quả cuối cùng</strong>: Một ứng dụng AI có thể tự động chuyển đổi bất kỳ tài liệu nào thành sách tranh cho trẻ em</p>
+</blockquote>
+<h2>🖼️ Hiệu quả hiển thị</h2>
+<p><img alt="Ảnh hiệu quả sách tranh AI" src="../../public/images/Practice/11.01-20260106012640_47_179.jpg" /></p>
+<p><em>Hình trên hiển thị cuốn sách tranh trẻ em "Cuộc phiêu lưu của Cáo" do AI tự động tạo ra, bao gồm bìa, trang nội dung, trang tương tác, ảnh tham khảo nhân vật v.v.</em></p>
+<hr />
+<h2>📚 Lộ trình học tập</h2>
+<table>
+<thead>
+<tr>
+<th>Giai đoạn</th>
+<th>Mục tiêu</th>
+<th>Thời gian</th>
+<th>Độ khó</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>🎯 Giai đoạn Demo</strong></td>
+<td>5 phút chạy ứng dụng AI đầu tiên</td>
+<td>5 phút</td>
+<td>⭐</td>
+</tr>
+<tr>
+<td><strong>🚀 Giai đoạn Làm quen</strong></td>
+<td>Hoàn thành trình tạo sách tranh hoàn chỉnh</td>
+<td>1-2 ngày</td>
+<td>⭐⭐</td>
+</tr>
+<tr>
+<td><strong>⚡ Giai đoạn Tối ưu</strong></td>
+<td>Giải quyết vấn đề thực tế, nâng cao chất lượng</td>
+<td>Liên tục</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>🌊 Giai đoạn Vùng nước sâu</strong></td>
+<td>Hiểu nguyên lý, học một biết mười</td>
+<td>Nâng cao</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1>🎯 Giai đoạn 1: Demo (5 phút thấy hiệu quả)</h1>
+<blockquote>
+<p><strong>Triết lý cốt lõi</strong>: Đừng xem lý thuyết, bắt tay vào làm trước! Trong vòng 5 phút cho bạn thấy hiệu quả.</p>
+</blockquote>
+<h2>Step 1: Tải AI Editor (2 phút)</h2>
+<ol>
+<li>Mở trình duyệt, tìm kiếm <strong>"Cursor download"</strong> hoặc <strong>"Windsurf download"</strong></li>
+<li>Tải bộ cài đặt, nhấp đúp để cài đặt</li>
+<li>Đăng ký tài khoản bằng email</li>
+</ol>
+<h3>Step 2: Tạo thư mục dự án</h3>
+<p>Tìm bất kỳ chỗ nào trên máy tính, tạo một thư mục mới: <code>Sách tranh AI của tôi</code></p>
+<h3>Step 3: Copy đoạn này gửi cho AI</h3>
+<p>Mở Windsurf/Cursor, nhấn <code>Cmd+L</code> (Mac) hoặc <code>Ctrl+L</code> (Windows) để mở hộp thoại AI.</p>
+<p><strong>Copy paste đoạn này:</strong></p>
+<pre><code>Tôi muốn làm một trình tạo sách tranh AI.
+
+Hãy giúp tôi tạo phiên bản đơn giản nhất:
+1. Dùng Python + Gradio làm giao diện
+2. Người dùng nhập một đoạn mô tả văn bản
+3. Gọi AI tạo ra một bức ảnh phong cách sách tranh
+4. Hiển thị ra
+
+Trước tiên hãy giúp tôi tạo cấu trúc dự án và các file cần thiết.
+</code></pre>
+<h3>Step 4: Làm theo AI (2 phút)</h3>
+<p>AI sẽ bảo bạn:</p>
+<ul>
+<li>Tạo những file nào</li>
+<li>Cài đặt dependency gì</li>
+<li>Chạy như thế nào</li>
+</ul>
+<p><strong>Bạn chỉ cần</strong>: Nhấn nút "Apply" mà AI đưa ra, nó sẽ tự động giúp bạn tạo file.</p>
+<h3>Step 5: Tích hợp Nano Banana Pro API</h3>
+<p>Nano Banana Pro là một dịch vụ tạo ảnh AI mạnh mẽ, dùng để tạo minh họa sách tranh.</p>
+<h4>1. Xin API Key</h4>
+<ol>
+<li>Mở <a href="https://grsai.com">https://grsai.com</a> (Lưu ý: Trang web này hiện là nhà cung cấp dịch vụ mô hình nano banana pro mà tôi thấy giá cả/hiệu năng khá tốt, nếu có nhà cung cấp nào tốt hơn, hoan nghênh chia sẻ ở phần bình luận)</li>
+</ol>
+<p><img alt="alt text" src="../../public/images/Practice/11.01-image-20.png" /></p>
+<ol>
+<li>Đăng ký tài khoản và đăng nhập</li>
+<li>Vào bảng điều khiển, tạo API Key (mua điểm theo nhu cầu, theo kinh nghiệm của tôi, trong vòng 10 tệ là hoàn toàn đủ cho dự án thử nghiệm, không phải quảng cáo, chỉ là để test và tích hợp nano banana pro làm chức năng tạo ảnh)
+   <img alt="alt text" src="../../public/images/Practice/11.01-image-21.png" /></li>
+<li><strong>Quan trọng</strong>: Bảo quản kỹ API Key của bạn, đừng để lộ!</li>
+</ol>
+<h4>2. Cấu hình biến môi trường</h4>
+<p>Tại thư mục gốc dự án tạo file <code>.env</code> (nếu chưa có), thêm cấu hình sau:</p>
+<pre><code class="language-bash"># Nano Banana Pro API (Dùng cho tạo ảnh AI)
+NANO_BANANA_API_KEY=sk-7832cba5ad4e4119bbd1bf756ea721ab(đây cung cấp một api_key có thể dùng test trực tiếp, có giới hạn hạn mức, kiến nghị các bạn thực hành sau này đổi thành api_key của mình, chú ý đừng để lộ, tránh bị người khác sử dụng)
+NANO_BANANA_API_BASE=https://grsai.com
+NANO_BANANA_MODEL=nano-banana-pro
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Mục cấu hình</th>
+<th>Giải thích</th>
+<th>Giá trị mặc định</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NANO_BANANA_API_KEY</code></td>
+<td>Khóa API của bạn</td>
+<td>Bắt buộc</td>
+</tr>
+<tr>
+<td><code>NANO_BANANA_API_BASE</code></td>
+<td>Địa chỉ dịch vụ API</td>
+<td><code>https://grsai.com</code></td>
+</tr>
+<tr>
+<td><code>NANO_BANANA_MODEL</code></td>
+<td>Mô hình sử dụng</td>
+<td><code>nano-banana-pro</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Các mô hình tùy chọn:</strong></p>
+<ul>
+<li><code>nano-banana-fast</code> - Tạo nhanh, chất lượng bình thường</li>
+<li><code>nano-banana-pro</code> - Bản chuyên nghiệp (Khuyên dùng)</li>
+</ul>
+<h4>3. Để AI giúp bạn tích hợp</h4>
+<p>Copy đoạn dưới đây gửi cho AI:</p>
+<pre><code>Hãy giúp tôi tích hợp API tạo ảnh Nano Banana Pro.
+
+Thông tin API:
+- URL cơ sở: https://grsai.com
+- Giao diện vẽ: POST /v1/draw/nano-banana
+- Truy vấn kết quả: POST /v1/draw/result
+- Cách xác thực: Bearer Token (đặt trong Authorization header)
+
+Tham số request:
+- model: Tên mô hình, ví dụ &quot;nano-banana-pro&quot;
+- prompt: Mô tả ảnh
+- aspectRatio: Tỷ lệ ảnh, ví dụ &quot;16:9&quot;
+- imageSize: Kích thước ảnh, ví dụ &quot;2k&quot;
+
+Kết quả trả về là bất đồng bộ, cần polling giao diện /v1/draw/result để lấy kết quả tạo ảnh.
+
+Hãy giúp tôi:
+1. Tạo một class dịch vụ image_service.py
+2. Đọc API Key từ .env
+3. Triển khai logic tạo ảnh và chờ kết quả
+</code></pre>
+<p>AI sẽ giúp bạn tạo code tích hợp hoàn chỉnh!</p>
+<p>Nếu code AI tạo ra có lỗi, có thể mở tài liệu tích hợp: https://grsai.com/dashboard/documents/nano-banana, sau đó copy toàn bộ thông tin gọi api sang, để AI giúp bạn thực hiện logic tích hợp cụ thể, còn bạn chỉ cần cấu hình Token là được.
+<img alt="alt text" src="../../public/images/Practice/11.01-image-22.png" /></p>
+<h3>Step 6: Chạy xem hiệu quả!</h3>
+<p>AI sẽ bảo bạn lệnh chạy, thông thường là:</p>
+<pre><code class="language-bash">pip install gradio openai
+python app.py
+</code></pre>
+<p>Sau đó mở trình duyệt, truy cập <code>http://localhost:7860</code>, bạn sẽ thấy một giao diện đơn giản!</p>
+<p><strong>🎉 Chúc mừng! Bạn đã làm ra ứng dụng AI đầu tiên!</strong></p>
+<h3>Tổng kết giai đoạn Demo</h3>
+<table>
+<thead>
+<tr>
+<th>Bạn đã học được gì</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AI Editor</strong></td>
+<td>Cursor/Windsurf là "người bạn lập trình viên" của bạn</td>
+</tr>
+<tr>
+<td><strong>Phát triển hội thoại</strong></td>
+<td>Dùng ngôn ngữ tự nhiên mô tả nhu cầu, AI giúp bạn viết code</td>
+</tr>
+<tr>
+<td><strong>Kiểm chứng nhanh</strong></td>
+<td>Làm phiên bản nhỏ nhất trước, thấy hiệu quả rồi mới tiếp tục</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1>🚀 Giai đoạn 2: Bắt tay vào làm (1-2 ngày hoàn thành dự án hoàn chỉnh)</h1>
+<blockquote>
+<p>Demo ở trên chỉ là món khai vị, dưới đây là quy trình phát triển dự án hoàn chỉnh.</p>
+</blockquote>
+<h2>📖 Vibecoding là gì?</h2>
+<p><strong>Vibecoding</strong> = Dùng ngôn ngữ tự nhiên bảo AI bạn muốn gì, để AI giúp bạn viết code.</p>
+<p>Bạn không cần hiểu cú pháp lập trình, chỉ cần:</p>
+<ol>
+<li><strong>Mô tả rõ ràng ý tưởng của bạn</strong></li>
+<li><strong>Đối thoại lặp lại với AI</strong></li>
+<li><strong>Test và phản hồi vấn đề</strong></li>
+</ol>
+<p>Giống như chat với một người bạn lập trình viên, bảo cậu ấy bạn muốn làm gì, cậu ấy giúp bạn thực hiện.</p>
+<hr />
+<h2>🎯 Mục tiêu dự án</h2>
+<h3>Nỗi đau</h3>
+<ul>
+<li>Giáo viên mầm non muốn biến giáo án thành sách tranh cho trẻ xem, nhưng không biết vẽ</li>
+<li>Phụ huynh muốn biến câu chuyện con thích thành sách tranh có hình ảnh minh họa</li>
+<li>Cơ sở đào tạo muốn biến các điểm kiến thức khô khan thành sách tranh thú vị</li>
+</ul>
+<h3>Giải pháp</h3>
+<p><strong>Upload một tài liệu → AI tự động tạo ra một cuốn sách tranh hoàn chỉnh</strong></p>
+<p>Bao gồm: Đại cương câu chuyện, thiết kế nhân vật, minh họa từng trang, PPT/PDF cuối cùng</p>
+<hr />
+<h2>🛠️ Quy trình thực chiến hoàn chỉnh</h2>
+<h3>Vòng đối thoại 1: Bắt đầu từ số 0</h3>
+<p><strong>Tôi nói với AI:</strong></p>
+<blockquote>
+<p>"Tôi muốn làm một trình tạo sách tranh AI. Người dùng upload một tài liệu PDF, hệ thống tự động biến nó thành một cuốn sách tranh trẻ em. Cần có các chức năng: Phân tích tài liệu, Tạo đại cương, Tạo ảnh, Xuất PDF. Dùng Python Flask làm backend."</p>
+</blockquote>
+<p><strong>AI giúp tôi tạo:</strong></p>
+<ul>
+<li>Cấu trúc thư mục dự án</li>
+<li>File lối vào ứng dụng Flask</li>
+<li>Model cơ sở dữ liệu (lưu thông tin sách tranh)</li>
+<li>Giao diện API cơ bản</li>
+</ul>
+<h3>Vòng đối thoại 2: Hoàn thiện phân tích tài liệu</h3>
+<p><strong>Tôi nói với AI:</strong></p>
+<blockquote>
+<p>"Về phần phân tích tài liệu, tôi muốn hỗ trợ định dạng PDF, Word, TXT. PDF có thể có ảnh, cần dùng OCR nhận diện. Giúp tôi tích hợp dịch vụ OCR mineru này."</p>
+</blockquote>
+<p><strong>AI giúp tôi thực hiện:</strong></p>
+<ul>
+<li>Giao diện upload file</li>
+<li>Chọn cách phân tích khác nhau dựa trên loại file</li>
+<li>Gọi API mineru phân tích PDF</li>
+<li>Trích xuất ảnh trong tài liệu và tạo mô tả</li>
+</ul>
+<h4>Làm thế nào để xin và tích hợp mineru API?</h4>
+<p>https://mineru.net/</p>
+<p>Thần khí phân tích tài liệu toàn năng</p>
+<p>Phân tích chính xác, trích xuất hiệu quả, hỗ trợ toàn diện tự do dữ liệu AI Ready</p>
+<p>Mở trang web, đăng ký tài khoản, vào trang chủ.
+<img alt="alt text" src="../../public/images/Practice/11.01-image-14.png" /></p>
+<p>Nhấn 'API', trước tiên tiến hành xin API, "Phiếu xin MinerU API", sau khi gửi sẽ sớm nhận được thông báo thông qua.</p>
+<p><img alt="alt text" src="../../public/images/Practice/11.01-image-16.png" /></p>
+<p>Sau khi thông qua, có thể tạo API Token (chú ý, Token này phải lưu kỹ, sau này dùng đến, và đừng dễ dàng để lộ).
+<img alt="alt text" src="../../public/images/Practice/11.01-image-17.png" /></p>
+<p>mineru hiện tại mỗi ngày hỗ trợ 10000 lần gọi miễn phí, cơ bản có thể đáp ứng nhu cầu test của chúng ta!</p>
+<p>Ở giai đoạn tích hợp, copy toàn bộ nội dung về cách tích hợp API trong trang tài liệu API, để AI giúp tôi thực hiện logic tích hợp cụ thể, còn bạn chỉ cần cấu hình Token là được.
+<img alt="alt text" src="../../public/images/Practice/11.01-image-19.png" /></p>
+<h3>Vòng đối thoại 3: Thiết kế Prompt (Quan trọng nhất!)</h3>
+<p><strong>Tôi nói với AI:</strong></p>
+<blockquote>
+<p>"Prompt tạo đại cương không tốt lắm, nội dung tạo ra quá giống AI viết, không có sự ngây thơ. Tôi muốn:</p>
+<ol>
+<li>Để AI đóng vai 'Nhà thiết kế sách tranh trẻ em đẳng cấp thế giới'</li>
+<li>Mỗi trang phải có mục tiêu kể chuyện, nội dung then chốt, hình ảnh trực quan, cấu trúc bố cục</li>
+<li>Tránh AI nói nhảm, ví dụ như kiểu 'Không chỉ là X, mà là Y'</li>
+<li>Bìa phải có sức hút, bìa sau phải có cảm giác nghi thức"</li>
+</ol>
+</blockquote>
+<p><strong>AI giúp tôi tối ưu Prompt:</strong></p>
+<pre><code>Bạn là một nhà thiết kế sách tranh trẻ em và người kể chuyện đẳng cấp thế giới.
+
+Bạn tạo ra sách tranh có thể điều chỉnh theo tài liệu nguồn và đối tượng mục tiêu.
+Mọi thứ đều có câu chuyện, và bạn phải tìm ra cách kể chuyện tốt nhất.
+
+Mỗi trang bắt buộc phải bao gồm 4 phần sau:
+// NARRATIVE GOAL (Mục tiêu kể chuyện)
+// KEY CONTENT (Nội dung then chốt)
+// VISUAL (Hình ảnh trực quan)
+// LAYOUT (Cấu trúc bố cục)
+
+**Cực kỳ quan trọng (CRITICAL):**
+- Tránh định dạng &quot;Tiêu đề: Tiêu đề phụ&quot;, cái này rất &quot;AI&quot;
+- Cấm những câu sáo rỗng kiểu &quot;Không chỉ là [X], mà là [Y]&quot;
+- Bìa sau đừng dùng &quot;Cảm ơn đã xem&quot;, phải có lời kết mang tính thiết kế
+</code></pre>
+<h3>Vòng đối thoại 4: Giải quyết vấn đề nhất quán nhân vật</h3>
+<p><strong>Vấn đề tôi phát hiện:</strong></p>
+<blockquote>
+<p>"Trong sách tranh tạo ra, cùng một con cáo nhỏ ở các trang khác nhau trông khác nhau! Trang đầu màu cam, trang 3 biến thành màu đỏ rồi."</p>
+</blockquote>
+<p><strong>Tôi nói với AI:</strong></p>
+<blockquote>
+<p>"Làm sao để nhân vật giữ được sự nhất quán ở mỗi trang?"</p>
+</blockquote>
+<p><strong>AI đưa ra giải pháp:</strong></p>
+<ol>
+<li>Tạo trước một bức "Ảnh thiết lập nhân vật" (chính diện, mặt bên, các biểu cảm khác nhau)</li>
+<li>Khi tạo mỗi trang, truyền ảnh thiết lập nhân vật làm tham chiếu cho AI</li>
+<li>Nhấn mạnh trong Prompt "Bắt buộc phải giữ nhất quán với ảnh tham chiếu"</li>
+</ol>
+<p><img alt="Ảnh hiệu quả thiết lập nhân vật" src="../../public/images/Practice/11.01-20260106012659_49_179.jpg" /></p>
+<p><em>Ví dụ ảnh thiết lập nhân vật: Bao gồm tư thế toàn thân (đứng, vẫy tay, ngồi, đi), biểu cảm khuôn mặt (vui vẻ, tò mò, ngạc nhiên, kiên định), chú thích đặc điểm then chốt (kiểu tóc, mắt, trang phục)</em></p>
+<pre><code>## 🎭 Character Consistency (CRITICAL)
+You MUST maintain character consistency with the reference image.
+- Keep the same: face shape, eye color, hair style, clothing
+- Only change: pose, expression, and interaction with the scene
+</code></pre>
+<h3>Vòng đối thoại 5: Thêm tiến độ thời gian thực</h3>
+<p><strong>Tôi nói với AI:</strong></p>
+<blockquote>
+<p>"Tạo một cuốn sách tranh mất mấy phút, người dùng chờ không trải nghiệm kém lắm. Có thể hiển thị tiến độ thời gian thực không? Ví dụ 'Đang phân tích tài liệu...', 'Đang tạo trang 3...' như vậy."</p>
+</blockquote>
+<p><strong>AI giúp tôi thực hiện SSE (Server-Sent Events):</strong></p>
+<ul>
+<li>Sau khi người dùng tạo task, nhận được một task_id</li>
+<li>Frontend đăng ký nhận tiến độ qua SSE</li>
+<li>Backend mỗi khi hoàn thành một bước thì đẩy cập nhật tiến độ</li>
+<li>Mỗi khi tạo xong một bức ảnh thì hiển thị ngay lập tức</li>
+</ul>
+<h3>Vòng đối thoại 6: Hỗ trợ người dùng upload ảnh</h3>
+<p><strong>Tôi nói với AI:</strong></p>
+<blockquote>
+<p>"Có nhu cầu mới: Người dùng có thể upload ảnh của mình (ví dụ ảnh con cái), để AI hòa trộn ảnh vào minh họa sách tranh. Ví dụ vẽ một cảnh hoạt hình, nhưng bên trong có ảnh thật."</p>
+</blockquote>
+<p><strong>AI giúp tôi thiết kế giải pháp Mixed Media:</strong></p>
+<pre><code>🖼️ Reality Layer (Lớp ảnh thật)
+   └── Ảnh người dùng upload, giữ nguyên chất cảm 100% thực tế
+
+🦊 Illustration Layer (Lớp minh họa)
+   └── Nhân vật hoạt hình và bối cảnh do AI tạo ra
+
+🌓 The Glue (Lớp kết dính)
+   └── Thống nhất ánh sáng, tương tác viền
+</code></pre>
+<h3>Tổng kết giai đoạn Làm quen</h3>
+<table>
+<thead>
+<tr>
+<th>Bạn đã học được gì</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Phát triển lặp lại</strong></td>
+<td>Một vòng đối thoại giải quyết một vấn đề, từng bước hoàn thiện</td>
+</tr>
+<tr>
+<td><strong>Thiết kế Prompt</strong></td>
+<td>Từ gợi ý tốt quyết định chất lượng đầu ra của AI</td>
+</tr>
+<tr>
+<td><strong>Mô tả vấn đề</strong></td>
+<td>Gặp vấn đề phải mô tả hiện tượng, đừng đoán nguyên nhân</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1>⚡ Giai đoạn 3: Tối ưu (Giải quyết vấn đề thực tế)</h1>
+<blockquote>
+<p>Dự án chạy được rồi, nhưng sẽ gặp đủ loại vấn đề. Phần này dạy bạn cách giải quyết.</p>
+</blockquote>
+<h2>💡 Các kỹ thuật then chốt của Vibecoding</h2>
+<h3>1. Mô tả "làm cái gì" trước, rồi hãy nói "làm thế nào"</h3>
+<p>❌ Ví dụ sai:</p>
+<blockquote>
+<p>"Giúp tôi viết một route Flask, dùng phương thức POST, nhận multipart/form-data..."</p>
+</blockquote>
+<p>✅ Ví dụ đúng:</p>
+<blockquote>
+<p>"Tôi cần chức năng upload file, người dùng có thể upload file PDF, hệ thống lưu lại rồi trả về ID nhiệm vụ"</p>
+</blockquote>
+<h3>2. Gặp vấn đề, mô tả hiện tượng thay vì đoán nguyên nhân</h3>
+<p>❌ Ví dụ sai:</p>
+<blockquote>
+<p>"Connection pool của database có phải có vấn đề không?"</p>
+</blockquote>
+<p>✅ Ví dụ đúng:</p>
+<blockquote>
+<p>"Sau khi upload file, thỉnh thoảng báo lỗi 'connection timeout', khoảng 10 lần bị 2 lần"</p>
+</blockquote>
+<h3>3. Dùng ví dụ cụ thể để minh họa mong đợi</h3>
+<p>❌ Ví dụ sai:</p>
+<blockquote>
+<p>"Nội dung tạo ra chưa đủ tốt"</p>
+</blockquote>
+<p>✅ Ví dụ đúng:</p>
+<blockquote>
+<p>"Hiện tại tiêu đề tạo ra là 'Câu chuyện con cáo: Một cuộc phiêu lưu về tình bạn', tôi muốn nó ngây thơ hơn, ví dụ 'Này! Đây chính là hướng dẫn nhập môn tìm cáo mà bạn cần'"</p>
+</blockquote>
+<h3>4. Chia nhỏ các bước lặp lại, đừng nói quá nhiều một lúc</h3>
+<p>❌ Ví dụ sai:</p>
+<blockquote>
+<p>"Giúp tôi làm một hệ thống sách tranh hoàn chỉnh, phải có đăng nhập người dùng, upload file, tạo AI, xuất PDF, chia sẻ lên Wechat..."</p>
+</blockquote>
+<p>✅ Ví dụ đúng:</p>
+<blockquote>
+<p>"Chúng ta làm chức năng upload file trước. Người dùng upload một PDF, hệ thống lưu vào local, trả về đường dẫn file."</p>
+</blockquote>
+<hr />
+<h2>🚨 Hướng dẫn tránh hố: Những vấn đề tôi đã gặp và giải pháp</h2>
+<blockquote>
+<p>Những hố này tôi đều đã giẫm phải, chia sẻ ra để bạn đỡ đi đường vòng.</p>
+</blockquote>
+<h3>Hố 1: Lộ API Key</h3>
+<p><strong>Vấn đề</strong>: Viết API Key thẳng vào code, upload lên GitHub, bị người khác trộm dùng, qua một đêm mất 500 tệ.</p>
+<p><strong>Giải quyết</strong>:</p>
+<pre><code class="language-python"># ❌ Sai: Viết thẳng vào code
+api_key = &quot;sk-xxxxxxxxxxxxx&quot;
+
+# ✅ Đúng: Viết vào file .env
+# File .env (Không upload lên GitHub)
+OPENAI_API_KEY=sk-xxxxxxxxxxxxx
+
+# Trong code đọc như thế này
+import os
+api_key = os.getenv(&quot;OPENAI_API_KEY&quot;)
+</code></pre>
+<p><strong>Nhớ kỹ</strong>: Tạo file <code>.gitignore</code>, thêm <code>.env</code> vào đó.</p>
+<h3>Hố 2: Phong cách ảnh tạo ra không thống nhất</h3>
+<p><strong>Vấn đề</strong>: Trang đầu là phong cách hoạt hình, trang hai biến thành phong cách tả thực.</p>
+<p><strong>Giải quyết</strong>: Trong Prompt của mỗi bức ảnh tạo ra, đều thêm mô tả phong cách.</p>
+<pre><code class="language-python"># ❌ Sai: Chỉ mô tả nội dung
+prompt = &quot;Vẽ một con cáo trong rừng&quot;
+
+# ✅ Đúng: Nội dung + Phong cách
+prompt = &quot;&quot;&quot;
+Vẽ một con cáo trong rừng.
+
+Yêu cầu phong cách:
+- Phong cách hoạt hình 3D Disney Pixar
+- Tông màu sáng ấm áp
+- Nhân vật có mắt to, đường nét tròn trịa
+- Bối cảnh đơn giản, có ánh sáng dịu nhẹ
+&quot;&quot;&quot;
+</code></pre>
+<h3>Hố 3: Nhân vật trông khác nhau</h3>
+<p><strong>Vấn đề</strong>: Cùng một nhân vật, mỗi trang trông đều không giống nhau.</p>
+<p><strong>Giải quyết</strong>:</p>
+<ol>
+<li>Tạo trước một ảnh tham chiếu nhân vật</li>
+<li>Mỗi lần tạo trang, truyền ảnh tham chiếu cho AI</li>
+<li>Nhấn mạnh trong Prompt "Bắt buộc phải nhất quán với ảnh tham chiếu"</li>
+</ol>
+<h3>Hố 4: Tạo quá chậm, người dùng tưởng bị treo máy</h3>
+<p><strong>Vấn đề</strong>: Tạo một cuốn sách tranh mất 5 phút, người dùng nhìn màn hình trắng.</p>
+<p><strong>Giải quyết</strong>:</p>
+<ol>
+<li>Thêm thanh tiến độ</li>
+<li>Hoàn thành mỗi bước thì cập nhật trạng thái</li>
+<li>Tạo xong mỗi bức ảnh thì hiển thị ngay lập tức</li>
+</ol>
+<h3>Hố 5: Prompt quá dài, AI quên mất yêu cầu phía trước</h3>
+<p><strong>Vấn đề</strong>: Prompt viết 2000 chữ, AI chỉ nhớ mấy câu cuối.</p>
+<p><strong>Giải quyết</strong>:</p>
+<ol>
+<li>Đặt yêu cầu quan trọng nhất ở <strong>đầu và cuối</strong> Prompt</li>
+<li>Dùng <code>**in đậm**</code> hoặc <code>⚠️ Quan trọng</code> để đánh dấu yêu cầu then chốt</li>
+<li>Chia Prompt dài thành nhiều Prompt ngắn</li>
+</ol>
+<h2>🎯 Prompt Template: Copy dùng luôn</h2>
+<blockquote>
+<p>Đây là các Prompt tôi đã test kỹ, copy dùng luôn.</p>
+</blockquote>
+<h3>Template 1: Prompt tạo đại cương</h3>
+<pre><code>Bạn là một nhà thiết kế sách tranh trẻ em và người kể chuyện đẳng cấp thế giới.
+
+## Nhiệm vụ
+Dựa trên nội dung tài liệu dưới đây, thiết kế một đại cương sách tranh thiếu nhi 10-15 trang.
+
+## Nội dung tài liệu
+{Dán nội dung tài liệu vào đây}
+
+## Yêu cầu đầu ra
+Cung cấp cho mỗi trang:
+1. **Tiêu đề**: Tiêu đề mang tính kể chuyện (không phải định dạng &quot;Tiêu đề: Tiêu đề phụ&quot;)
+2. **Mục tiêu kể chuyện**: Vai trò của trang này trong câu chuyện
+3. **Nội dung then chốt**: Chữ cần hiển thị
+4. **Hình ảnh trực quan**: Bối cảnh, hành động nhân vật, biểu cảm
+5. **Bố cục**: Gợi ý bố cục
+
+## Những điều cấm
+- Cấm dùng giọng điệu giáo điều như &quot;Chúng ta hãy cùng...&quot;, &quot;Các bạn nhỏ ơi...&quot;
+- Cấm các câu kiểu AI như &quot;Không chỉ là X, mà là Y&quot;
+- Cấm kết thúc bằng &quot;Cảm ơn đã xem&quot;
+
+## Định dạng đầu ra
+Định dạng JSON, để chương trình dễ phân tích
+</code></pre>
+<h3>Template 2: Prompt tạo ảnh</h3>
+<pre><code>Bạn là một họa sĩ minh họa sách tranh trẻ em chuyên nghiệp.
+
+## Nhiệm vụ
+Vẽ minh họa cho trang thứ {số trang} của sách tranh.
+
+## Nội dung trang
+Tiêu đề: {Tiêu đề}
+Văn bản: {Nội dung}
+Bối cảnh: {Mô tả trực quan}
+
+## Yêu cầu phong cách
+- Phong cách hoạt hình 3D Disney Pixar
+- Tông màu sáng ấm áp, màu chủ đạo là cam, xanh lá, xanh dương
+- Nhân vật có mắt to, đường nét tròn trịa
+- Bối cảnh đơn giản, có ánh sáng dịu nhẹ
+- Tỷ lệ 16:9, độ phân giải 4K
+
+## Nhất quán nhân vật (Quan trọng!)
+Nhân vật chính phải giữ nhất quán với ảnh tham chiếu:
+- Giống nhau: Khuôn mặt, màu mắt, kiểu tóc, trang phục
+- Có thể thay đổi: Tư thế, biểu cảm, tương tác với bối cảnh
+
+## Cấm
+- Cấm xuất hiện ký hiệu Markdown (# * v.v.)
+- Cấm chữ bị mờ không rõ
+- Cấm phong cách đột biến
+</code></pre>
+<h3>Template 3: Prompt ảnh thiết lập nhân vật</h3>
+<pre><code>Tạo một tấm ảnh thiết lập nhân vật (Character Reference Sheet).
+
+## Thông tin nhân vật
+Tên: {Tên nhân vật}
+Mô tả: {Mô tả ngoại hình}
+
+## Yêu cầu ảnh thiết lập
+1. Hiển thị 3 góc độ của nhân vật: Chính diện, 3/4 mặt bên, mặt bên
+2. Hiển thị 3-4 loại biểu cảm: Vui vẻ, tò mò, ngạc nhiên, suy tư
+3. Hiển thị toàn thân và đặc tả khuôn mặt
+4. Sử dụng nền trắng sạch sẽ
+5. Chú thích đặc điểm then chốt (màu tóc, màu mắt, chi tiết trang phục)
+
+## Phong cách
+{Mô tả phong cách, ví dụ &quot;Phong cách hoạt hình 3D Disney Pixar&quot;}
+
+## Bố cục
+Ngang 16:9, sắp xếp giống như bản thảo thiết kế nhân vật chuyên nghiệp
+</code></pre>
+<h3>Tổng kết giai đoạn tối ưu</h3>
+<table>
+<thead>
+<tr>
+<th>Bạn đã học được gì</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Kỹ năng giao tiếp</strong></td>
+<td>Làm sao giao tiếp hiệu quả với AI</td>
+</tr>
+<tr>
+<td><strong>Kinh nghiệm tránh hố</strong></td>
+<td>Giải pháp cho các vấn đề thường gặp</td>
+</tr>
+<tr>
+<td><strong>Prompt Template</strong></td>
+<td>Mẫu từ gợi ý có thể tái sử dụng</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1>🌊 Giai đoạn 4: Vùng nước sâu (Hiểu nguyên lý, học một biết mười)</h1>
+<blockquote>
+<p>Phần này giúp bạn hiểu "tại sao", chứ không chỉ là "làm thế nào". Hiểu được tư duy thiết kế, bạn có thể học một biết mười, làm ra ứng dụng AI của riêng mình.</p>
+</blockquote>
+<h2>📊 Trình bày thành quả dự án</h2>
+<h3>Danh sách chức năng</h3>
+<table>
+<thead>
+<tr>
+<th>Chức năng</th>
+<th>Mô tả</th>
+<th>Trạng thái</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>📄 Phân tích tài liệu</td>
+<td>Hỗ trợ PDF/Word/TXT, tự động trích xuất văn bản và hình ảnh</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>🎨 Chọn phong cách</td>
+<td>Zootopia, Ghibli, Pixar và nhiều phong cách khác</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>📝 Tạo đại cương</td>
+<td>AI tự động quy hoạch cấu trúc sách tranh và nội dung mỗi trang</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>🦊 Nhất quán nhân vật</td>
+<td>Tạo ảnh tham chiếu nhân vật, đảm bảo nhân vật thống nhất toàn sách</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>🖼️ Tạo ảnh</td>
+<td>Tạo song song tất cả minh họa các trang</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>📸 Hòa trộn ảnh</td>
+<td>Hỗ trợ hòa trộn ảnh thật vào bối cảnh minh họa</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>📚 Xuất PPT</td>
+<td>Xuất file PPTX có thể chỉnh sửa chỉ với một cú click</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>🎬 Tạo hoạt hình</td>
+<td>Tùy chọn tạo video hoạt hình sách tranh (kèm thuyết minh)</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<h3>Tech Stack (Bạn không cần hiểu, AI chọn cho bạn đấy)</h3>
+<ul>
+<li><strong>Backend</strong>: Python Flask</li>
+<li><strong>Database</strong>: SQLite (Dev) / PostgreSQL (Prod)</li>
+<li><strong>Phân tích tài liệu</strong>: MinerU OCR</li>
+<li><strong>AI Model</strong>: GPT-4o (Text) + GPT-Image-1 / Gemini (Image)</li>
+<li><strong>Tạo hoạt hình</strong>: Kling AI / Tongyi Wanxiang</li>
+</ul>
+<hr />
+<h2>🏗️ Kiến trúc dự án</h2>
+<h3>Phiên bản cho người mới (Hiểu nhanh)</h3>
+<pre><code>Bạn upload một tài liệu PDF/Word
+        ↓
+   ┌─────────────────────────────────────┐
+   │  Bước 1: Phân tích tài liệu           │
+   │  Trích xuất chữ và ảnh trong tài liệu │
+   └─────────────────────────────────────┘
+        ↓
+   ┌─────────────────────────────────────┐
+   │  Bước 2: AI tạo đại cương sách tranh  │
+   │  Quyết định chia mấy trang, mỗi trang nói gì, vẽ gì │
+   └─────────────────────────────────────┘
+        ↓
+   ┌─────────────────────────────────────┐
+   │  Bước 3: AI tạo ảnh tham chiếu nhân vật │
+   │  Đảm bảo nhân vật chính mỗi trang trông giống nhau │
+   └─────────────────────────────────────┘
+        ↓
+   ┌─────────────────────────────────────┐
+   │  Bước 4: AI tạo hàng loạt minh họa mỗi trang │
+   │  Dựa vào đại cương, vẽ ra từng trang một │
+   └─────────────────────────────────────┘
+        ↓
+   ┌─────────────────────────────────────┐
+   │  Bước 5: Xuất thành phẩm              │
+   │  Đóng gói thành PPT/PDF, còn có thể tạo video hoạt hình! │
+   └─────────────────────────────────────┘
+        ↓
+   Một cuốn sách tranh AI hoàn chỉnh ra đời! 🎉
+</code></pre>
+<h3>Sơ đồ kiến trúc hệ thống</h3>
+<p><img alt="Sơ đồ kiến trúc tổng thể sách tranh AI" src="../../public/images/Practice/11.01-AI绘本整体架构图.jpg" /></p>
+<p><strong>Giải thích kiến trúc:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tầng</th>
+<th>Component</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Frontend</strong></td>
+<td>React + Vite + TypeScript</td>
+<td>Upload PDF, xem trước OCR, chỉnh sửa đại cương, xem trước/xuất sách tranh</td>
+</tr>
+<tr>
+<td><strong>Backend Controllers</strong></td>
+<td>storybook / page / export / task</td>
+<td>4 module route Blueprint</td>
+</tr>
+<tr>
+<td><strong>Services Layer</strong></td>
+<td>FileParser / AIService / ExportSvc / FileService</td>
+<td>Logic nghiệp vụ cốt lõi + TaskManager hàng đợi nhiệm vụ bất đồng bộ</td>
+</tr>
+<tr>
+<td><strong>AI Providers</strong></td>
+<td>TextProvider / ImageProvider</td>
+<td>Tầng adapter mô hình AI có thể cắm rút (pluggable)</td>
+</tr>
+<tr>
+<td><strong>Database</strong></td>
+<td>SQLAlchemy + SQLite</td>
+<td>Storybook / StorybookPage / Task / CharacterReference</td>
+</tr>
+<tr>
+<td><strong>External Services</strong></td>
+<td>MinerU / Qwen / Gemini / WebSearch / Nano Banana Pro</td>
+<td>Phân tích PDF, phân tích nội dung, tìm kiếm mạng, tạo ảnh</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Quy trình kỹ thuật hoàn chỉnh (Bản nâng cao)</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────────────────┐
+│                           Quy trình tạo sách tranh AI hoàn chỉnh             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Người dùng nhập
+├── Chủ đề/Nội dung tài liệu (parsed_content)
+├── Từ khóa phong cách (style_keyword): &quot;Zootopia&quot;, &quot;Miyazaki Hayao&quot;
+├── Ảnh tham chiếu (reference_images): Ảnh tham khảo phong cách
+└── Ảnh tư liệu (source_images): Ảnh thật cần chèn vào sách tranh
+
+        ↓
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  Stage 1: Tạo phong cách (Style Generator)                                   │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  Đầu vào:                                                                   │
+│  - theme (chủ đề)                                                           │
+│  - style_keyword (từ khóa phong cách)                                       │
+│  - reference_images (ảnh tham chiếu) ← LLM đa phương thức phân tích phong cách │
+│  - target_audience (đối tượng mục tiêu)                                     │
+│                                                                             │
+│  Đầu ra:                                                                    │
+│  - style_config JSON (thẩm mỹ thiết kế, phối màu, font chữ, yếu tố trực quan, phong cách nhân vật) │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+        ↓ style_config
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  Stage 2: Tạo đại cương (Outline Generator)                                  │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  Đầu vào:                                                                   │
+│  - parsed_content (nội dung tài liệu)                                       │
+│  - background_knowledge (kiến thức nền tìm kiếm trên mạng)                  │
+│  - style_config (từ Stage 1)                                                │
+│  - source_images (danh sách ảnh tư liệu) ← Báo cho LLM biết có bao nhiêu ảnh khả dụng │
+│  - user_prompt, target_audience, subject, theme_character                   │
+│                                                                             │
+│  Đầu ra:                                                                    │
+│  - Đại cương sách tranh hoàn chỉnh JSON                                      │
+│    - title, style_config, sections                                          │
+│    - Mỗi slide: title, narrative_goal, content, visual_description,         │
+│                  layout, embedded_images (như [&quot;IMG_1&quot;, &quot;IMG_2&quot;])           │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+        ↓ Đại cương + embedded_images
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  Stage 3: Tạo ảnh (Image Generator)                                          │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  Thực hiện với mỗi slide:                                                   │
+│                                                                             │
+│  1. Kiểm tra embedded_images có trống không                                 │
+│     ├── Có ảnh → Dùng REALITY_PATCH_TEMPLATE                                │
+│     └── Không ảnh → Dùng STANDARD_TEMPLATE                                  │
+│                                                                             │
+│  2. Ghép lệnh trực quan:                                                    │
+│     - style_config.design_aesthetic                                         │
+│     - slide.visual_description                                              │
+│     - Reality Layer / Illustration Layer / The Glue (nếu có ảnh)            │
+│                                                                             │
+│  3. Gọi API đa phương thức:                                                 │
+│     - prompt: Lệnh trực quan đã ghép                                        │
+│     - images: Ảnh thật tương ứng trong source_images (IMG_1 → source_images[0]) │
+│                                                                             │
+│  Đầu ra:                                                                    │
+│  - Ảnh tạo ra của mỗi trang (Mixed Media: Minh họa + Ảnh thật hòa trộn)     │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+        ↓
+
+Sách tranh cuối cùng (Ảnh + Chữ)
+</code></pre>
+<hr />
+<h2>🧠 Nguyên tắc thiết kế cốt lõi</h2>
+<h4>Nguyên tắc 1: Tư duy dây chuyền sản xuất —— Chia nhỏ vấn đề lớn thành các bước nhỏ</h4>
+<p><strong>Vấn đề</strong>: Trực tiếp bảo AI "biến tài liệu này thành sách tranh" quá mơ hồ, AI không biết bắt đầu từ đâu.</p>
+<p><strong>Giải quyết</strong>: Chia thành 5 bước rõ ràng, mỗi bước chỉ làm một việc.</p>
+<pre><code>❌ Tư duy sai: Một bước ăn ngay
+   &quot;AI, biến cái PDF này thành sách tranh đi&quot;
+   → AI ngơ ngác, không biết làm gì
+
+✅ Tư duy đúng: Dây chuyền sản xuất
+   Bước 1: Trích xuất chữ → Bước 2: Tạo đại cương → Bước 3: Vẽ nhân vật → Bước 4: Vẽ từng trang → Bước 5: Đóng gói
+   → Mỗi bước đều rất rõ ràng, AI có thể thực hiện chính xác
+</code></pre>
+<h4>Nguyên tắc 2: Prompt là linh hồn —— Từ gợi ý tốt quyết định tất cả</h4>
+<p><strong>So sánh</strong>: Prompt giống như công thức bạn đưa cho đầu bếp</p>
+<ul>
+<li>Công thức viết "làm món gì ngon ngon" → Đầu bếp làm đại</li>
+<li>Công thức viết "dùng ức gà, súp lơ xanh, tỏi băm, chiên sơ rồi xào, ít muối nhiều tỏi" → Đầu bếp thực hiện chính xác</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Kỹ thuật</th>
+<th>Giải thích</th>
+<th>Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nhập vai</strong></td>
+<td>Để AI vào vai chuyên gia</td>
+<td>"Bạn là nhà thiết kế sách tranh trẻ em đẳng cấp thế giới"</td>
+</tr>
+<tr>
+<td><strong>Đầu ra cấu trúc hóa</strong></td>
+<td>Quy định định dạng đầu ra</td>
+<td>"Mỗi trang bắt buộc phải bao gồm: mục tiêu kể chuyện, nội dung then chốt, hình ảnh trực quan, bố cục"</td>
+</tr>
+<tr>
+<td><strong>Ràng buộc phủ định</strong></td>
+<td>Bảo AI không được làm gì</td>
+<td>"Cấm dùng kiểu câu 'Không chỉ là X, mà là Y'"</td>
+</tr>
+</tbody>
+</table>
+<h4>Nguyên tắc 3: Kiến trúc phân tầng —— Để code như lắp lego</h4>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│  🎨 Tầng giao diện (Gradio) - Giao diện người dùng nhìn thấy  │
+└─────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────┐
+│  🔧 Tầng dịch vụ (Services) - Logic nghiệp vụ cụ thể          │
+└─────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────┐
+│  🤖 Tầng AI (Providers) - Giao tiếp với các mô hình AI khác nhau │
+└─────────────────────────────────────────────────────────────┘
+                              ↓
+┌─────────────────────────────────────────────────────────────┐
+│  💾 Tầng dữ liệu (Database) - Lưu trữ thông tin sách tranh    │
+└─────────────────────────────────────────────────────────────┘
+</code></pre>
+<p><strong>Lợi ích</strong>: Muốn đổi một mô hình AI khác? Chỉ cần sửa Tầng AI, các tầng khác không cần động vào.</p>
+<h4>Nguyên tắc 4: Xử lý bất đồng bộ —— Đừng để người dùng chờ lâu</h4>
+<pre><code>❌ Xử lý đồng bộ: Nhấn &quot;Tạo&quot; → Màn hình trắng 5 phút → Đột nhiên hiện ra tất cả
+
+✅ Xử lý bất đồng bộ: Nhấn &quot;Tạo&quot; → &quot;Đang phân tích tài liệu...&quot; → &quot;Đang tạo đại cương...&quot;
+   → &quot;Trang 1 tạo xong ✓&quot; [Hiện ảnh] → &quot;Trang 2 tạo xong ✓&quot; [Hiện ảnh]
+</code></pre>
+<hr />
+<h2>📊 Cấu trúc file dự án (Tham khảo)</h2>
+<pre><code>AI-Picture-Book/
+├── backend/                    # Code backend
+│   ├── app.py                 # Lối vào ứng dụng Flask
+│   ├── config.py              # File cấu hình
+│   ├── requirements.txt       # Dependency Python
+│   ├── .env                   # Biến môi trường (API Key để ở đây)
+│   │
+│   ├── controllers/           # Giao diện API
+│   ├── services/              # Logic nghiệp vụ
+│   ├── models/                # Model dữ liệu
+│   ├── prompts/               # Template Prompt
+│   └── utils/                 # Hàm công cụ
+│
+├── uploads/                   # File đã upload
+├── outputs/                   # Sách tranh đã tạo
+└── docs/                      # Tài liệu
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>File/Thư mục</th>
+<th>Tác dụng</th>
+<th>Cách hiểu cho người mới</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>app.py</code></td>
+<td>Lối vào chương trình</td>
+<td>Cái file nhấp đúp để chạy</td>
+</tr>
+<tr>
+<td><code>.env</code></td>
+<td>Khóa bí mật</td>
+<td>API Key để ở đây, đừng upload</td>
+</tr>
+<tr>
+<td><code>services/</code></td>
+<td>Logic</td>
+<td>Code thực sự làm việc</td>
+</tr>
+<tr>
+<td><code>prompts/</code></td>
+<td>Từ gợi ý</td>
+<td>Mẫu lệnh cho AI</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>📝 Câu hỏi thường gặp</h2>
+<h3>Q: Tôi hoàn toàn không hiểu code, có thật sự làm được không?</h3>
+<p><strong>A:</strong> Được! Mấu chốt là: mô tả nhu cầu rõ ràng, gặp vấn đề hỏi AI kịp thời, đừng sợ báo lỗi.</p>
+<h3>Q: Cần tốn bao nhiêu tiền?</h3>
+<p><strong>A:</strong> AI Editor bản miễn phí đủ dùng, giai đoạn test API tốn khoảng vài chục tệ, giai đoạn phát triển dùng máy local miễn phí.</p>
+<h3>Q: Tạo một cuốn sách tranh mất bao lâu?</h3>
+<p><strong>A:</strong> Phân tích tài liệu 10-30 giây + Tạo đại cương 20-40 giây + Tạo ảnh 2-5 phút = Tổng cộng khoảng 3-6 phút</p>
+<hr />
+<h2>🔗 Tài nguyên liên quan</h2>
+<ul>
+<li><strong>Code dự án</strong>: Ngay trong thư mục này</li>
+<li><strong>Tài liệu API</strong>: <code>docs/API_Doc_Upload_Parse.md</code></li>
+<li><strong>Tài liệu SSE</strong>: <code>docs/SSE_API_Doc.md</code></li>
+<li><strong>Thiết kế Prompt</strong>: <code>docs/AIPrompt_Full_Process.md</code></li>
+</ul>
+<hr />
+<h2>🌟 Hướng nâng cao</h2>
+<table>
+<thead>
+<tr>
+<th>Hướng</th>
+<th>Giải thích</th>
+<th>Độ khó</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Đối thoại đa vòng</strong></td>
+<td>Để người dùng và AI đối thoại sửa đổi sách tranh</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>Nhiều định dạng xuất hơn</strong></td>
+<td>Video (kèm thuyết minh), E-book (ePub)</td>
+<td>⭐⭐</td>
+</tr>
+<tr>
+<td><strong>Chợ template</strong></td>
+<td>Thiết lập sẵn nhiều template sách tranh</td>
+<td>⭐⭐⭐</td>
+</tr>
+<tr>
+<td><strong>Thương mại hóa</strong></td>
+<td>Hệ thống người dùng, chức năng trả phí</td>
+<td>⭐⭐⭐⭐</td>
+</tr>
+</tbody>
+</table>
+<h3>Tổng kết vùng nước sâu</h3>
+<table>
+<thead>
+<tr>
+<th>Bạn đã học được gì</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tư duy kiến trúc</strong></td>
+<td>Làm sao thiết kế hệ thống có khả năng mở rộng</td>
+</tr>
+<tr>
+<td><strong>Nguyên tắc thiết kế</strong></td>
+<td>Dây chuyền sản xuất, phân tầng, xử lý bất đồng bộ</td>
+</tr>
+<tr>
+<td><strong>Hướng nâng cao</strong></td>
+<td>Làm xong thì còn đi hướng nào được nữa</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>💬 Lời cuối</h2>
+<p>Vibecoding không phải là để biến bạn thành lập trình viên, mà là để bạn <strong>không cần trở thành lập trình viên cũng có thể sáng tạo phần mềm</strong>.</p>
+<p>Dự án sách tranh AI này, từ ý tưởng đến thành phẩm, toàn bộ quá trình đều hoàn thành thông qua đối thoại với AI.</p>
+<p><strong>Bạn cũng có thể làm được.</strong></p>
+<hr />
+<p><em>Tài liệu này được tạo bởi Vibecoding, dùng AI viết câu chuyện về AI 🤖</em></p>
+</body>
+</html>
