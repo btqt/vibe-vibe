@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.4.2 Feedback</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.4.2 Thu thập phản hồi"
+order: 3</p>
+<hr />
+<p><img alt="05-advanced_5.4-iteration_5.4.2-feedback.png" src="../../../public/images/Basic/05-advanced_5.4-iteration_5.4.2-feedback.png" /></p>
+<h1>5.4.2 Thu thập phản hồi: Để người dùng nói cho bạn biết</h1>
+<p>Qua bài học này, bạn sẽ nắm được:</p>
+<ul>
+<li>Tại sao nhận phản hồi lại hữu ích hơn là tự mình suy diễn</li>
+<li>Ba phương pháp thu thập phản hồi không rào cản</li>
+<li>Một mẫu ghi chép phản hồi đơn giản</li>
+<li>Cách nhờ AI giúp bạn phân tích phản hồi</li>
+</ul>
+<h2>Tại sao cần phản hồi của người khác</h2>
+<p>Công cụ bạn làm ra, bạn thấy dễ dùng, không có nghĩa là người khác cũng thấy thế.</p>
+<p>Theo khảo sát năm 2025 của ProdPad, <strong>91% người dùng cho rằng đổi mới sản phẩm nên đến từ tiếng nói của khách hàng</strong>. Nói cách khác, đóng cửa tự làm, khả năng cao sẽ tạo ra thứ mà người dùng không thực sự cần.</p>
+<p>Có thể bạn sẽ nghĩ: "Danh sách việc cần làm của tôi là để cho chính tôi dùng, đâu cần ý kiến người khác?"</p>
+<p>Thực ra không phải vậy. Kể cả là dùng cho mình, để bạn bè dùng thử cũng có thể phát hiện ra vấn đề:</p>
+<ul>
+<li>Thao tác bạn thấy "hiển nhiên", người khác có thể hoàn toàn không biết dùng thế nào</li>
+<li>Bố cục giao diện bạn quen mắt, người khác có thể thấy rất gượng gạo</li>
+<li>Tính năng bạn chưa bao giờ dùng, người khác có thể ngày nào cũng muốn dùng</li>
+</ul>
+<p><strong>Tìm vài người dùng thử, là cách nhanh nhất để phát hiện vấn đề.</strong></p>
+<h2>Phương pháp 1: Thử nghiệm người thật</h2>
+<p>Phương pháp đơn giản nhất: Gửi danh sách việc cần làm của bạn cho 3-5 người dùng thử.</p>
+<p>Có thể là:</p>
+<ul>
+<li>Người nhà (đặc biệt là người không rành công nghệ)</li>
+<li>Bạn cùng phòng hoặc đồng nghiệp</li>
+<li>Bạn bè</li>
+</ul>
+<p>Không cần nhiều, 3 người là đủ.</p>
+<h3>Gửi cho họ như thế nào</h3>
+<p>Nếu bạn đã hoàn thành việc triển khai ở bài 5.2, chỉ cần gửi trực tiếp địa chỉ web cho họ:</p>
+<blockquote>
+<p>"Tớ mới làm một công cụ danh sách việc cần làm, cậu dùng thử giúp tớ được không? Chắc chỉ mất 2 phút thôi. Địa chỉ là xxx.zeabur.app"</p>
+</blockquote>
+<p>Nếu chưa triển khai, có thể mời họ đến dùng thử trên máy tính của bạn.</p>
+<h2>Phương pháp 2: Quan sát</h2>
+<p>Quan sát cách họ dùng hữu ích hơn là hỏi trực tiếp.</p>
+<p>Khi người khác đang dùng thử, hãy chú ý quan sát:</p>
+<table>
+<thead>
+<tr>
+<th>Điểm quan sát</th>
+<th>Vấn đề có thể là</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dừng lại rất lâu, không biết bấm vào đâu</td>
+<td>Giao diện chưa đủ trực quan</td>
+</tr>
+<tr>
+<td>Hỏi bạn "cái nút này để làm gì"</td>
+<td>Chữ trên nút không đủ rõ ràng</td>
+</tr>
+<tr>
+<td>Bấm đi bấm lại một chỗ</td>
+<td>Phản hồi tương tác không rõ ràng</td>
+</tr>
+<tr>
+<td>Cau mày, thở dài</td>
+<td>Thao tác nào đó khiến họ cảm thấy nản lòng</td>
+</tr>
+<tr>
+<td>"À, hóa ra là thế này"</td>
+<td>Logic thao tác không phù hợp với trực giác</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Đừng đứng bên cạnh chỉ dẫn</strong>. Để họ tự mày mò, bạn chỉ quan sát. Như vậy mới thấy được tình trạng sử dụng chân thực.</p>
+<h2>Phương pháp 3: Hỏi trực tiếp</h2>
+<p>Sau khi quan sát xong, có thể hỏi họ ba câu hỏi:</p>
+<pre><code>1. Lần đầu mở ra, cậu có biết dùng thế nào không?
+2. Có chỗ nào khiến cậu thấy bối rối hoặc bất tiện không?
+3. Nếu có thể thêm một tính năng, cậu muốn đó là gì?
+</code></pre>
+<p>Ba câu hỏi này bao phủ:</p>
+<ul>
+<li>Tính dễ dùng (có thể làm quen nhanh không)</li>
+<li>Nỗi đau (chỗ nào chưa tốt)</li>
+<li>Nhu cầu (mong muốn có tính năng gì)</li>
+</ul>
+<h2>Mẫu ghi chép phản hồi</h2>
+<p>Dùng một bảng đơn giản để ghi lại các phản hồi thu thập được:</p>
+<table>
+<thead>
+<tr>
+<th>Nguồn phản hồi</th>
+<th>Vấn đề/Gợi ý</th>
+<th>Mức ưu tiên</th>
+<th>Trạng thái</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bạn cùng phòng</td>
+<td>Muốn có hạn chót cho nhiệm vụ</td>
+<td>P1</td>
+<td>Chờ phát triển</td>
+</tr>
+<tr>
+<td>Mẹ</td>
+<td>Nút bé quá, khó bấm</td>
+<td>P0</td>
+<td>Đã sửa</td>
+</tr>
+<tr>
+<td>Bản thân</td>
+<td>Muốn có thẻ phân loại</td>
+<td>P2</td>
+<td>Trong kế hoạch</td>
+</tr>
+<tr>
+<td>Đồng nghiệp</td>
+<td>Có chế độ tối (dark mode) không</td>
+<td>P2</td>
+<td>Trong kế hoạch</td>
+</tr>
+</tbody>
+</table>
+<h3>Định nghĩa mức ưu tiên</h3>
+<table>
+<thead>
+<tr>
+<th>Mức ưu tiên</th>
+<th>Ý nghĩa</th>
+<th>Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>P0</strong></td>
+<td>Phải sửa ngay</td>
+<td>Chức năng bị hỏng, nút không bấm được, giao diện vỡ</td>
+</tr>
+<tr>
+<td><strong>P1</strong></td>
+<td>Làm càng sớm càng tốt</td>
+<td>Vấn đề ảnh hưởng sử dụng hàng ngày, nhu cầu nhiều người phản ánh</td>
+</tr>
+<tr>
+<td><strong>P2</strong></td>
+<td>Rảnh thì làm</td>
+<td>Tính năng thêm thắt cho vui (nice-to-have), nhu cầu đặc biệt của cá nhận</td>
+</tr>
+</tbody>
+</table>
+<p>Một tiêu chuẩn phán đoán đơn giản:</p>
+<ul>
+<li><strong>Ảnh hưởng tất cả mọi người</strong> → P0 hoặc P1</li>
+<li><strong>Chỉ ảnh hưởng một số người</strong> → P1 hoặc P2</li>
+<li><strong>Không ai nhắc nhưng tự mình muốn làm</strong> → Để đó tính sau</li>
+</ul>
+<h2>Nhờ AI phân tích phản hồi giúp bạn</h2>
+<p>Nếu bạn thu thập được khá nhiều phản hồi, có thể nhờ AI giúp sắp xếp và phân tích.</p>
+<pre><code>Tôi làm một công cụ danh sách việc cần làm, đã thu thập được một số phản hồi người dùng, hãy giúp tôi phân tích:
+
+Danh sách phản hồi:
+1. Bạn cùng phòng nói muốn có nhắc nhở hạn chót nhiệm vụ
+2. Mẹ nói nút bé quá, trên điện thoại khó bấm
+3. Đồng nghiệp nói muốn có chế độ tối
+4. Bản thân tôi thấy sau khi nhiều nhiệm vụ thì khó tìm, muốn có chức năng phân loại
+5. Bạn cùng phòng còn nói hiệu ứng sau khi hoàn thành nhiệm vụ trông rất đẹp (phản hồi tích cực)
+
+Hãy giúp tôi:
+1. Sắp xếp thứ tự ưu tiên các phản hồi này
+2. Phân tích đâu là vấn đề chung, đâu là sở thích cá nhân
+3. Gợi ý tôi nên cải tiến cái nào trước
+</code></pre>
+<p>AI sẽ giúp bạn chải chuốt ra một kế hoạch hành động rõ ràng.</p>
+<h2>Hiểu lầm thường gặp</h2>
+<h3>Chỉ nghe khen, lờ đi chê</h3>
+<p>Những phản hồi kiểu "Khá tốt", "Cũng được" nghe thì sướng tai, nhưng không giúp ích gì cho việc cải tiến.</p>
+<p><strong>Phản hồi thực sự có giá trị thường là lời chê</strong>:</p>
+<ul>
+<li>"Tớ không biết xóa nhiệm vụ kiểu gì"</li>
+<li>"Màu này nhìn hơi chói mắt"</li>
+<li>"Thêm chức năng tìm kiếm được không"</li>
+</ul>
+<p>Đó mới là hướng để cải tiến.</p>
+<h3>Cố gắng làm hài lòng tất cả</h3>
+<p>Mỗi người sẽ đưa ra những nhu cầu khác nhau, thậm chí mâu thuẫn nhau. Bạn không cần phải làm hài lòng tất cả.</p>
+<p>Quay lại ba câu hỏi linh hồn ở chương 2: <strong>Công cụ của bạn rốt cuộc là làm cho ai dùng?</strong> Ưu tiên đáp ứng nhu cầu của người dùng cốt lõi.</p>
+<h2>Danh sách kiểm tra phần này</h2>
+<ul>
+<li>[ ] Tìm 3-5 người dùng thử danh sách việc cần làm của bạn</li>
+<li>[ ] Quan sát quá trình sử dụng của họ</li>
+<li>[ ] Hỏi 3 câu hỏi then chốt</li>
+<li>[ ] Dùng bảng ghi lại phản hồi thu thập được</li>
+<li>[ ] Đánh dấu mức ưu tiên cho phản hồi</li>
+</ul>
+<p>::: tip Phản hồi là món quà
+Mỗi một phản hồi, dù là chê bai hay gợi ý, đều là manh mối giúp bạn cải tiến.</p>
+<p>Người khác sẵn lòng dành thời gian nói cho bạn biết vấn đề, chứng tỏ họ quan tâm đến tác phẩm của bạn.
+:::</p>
+<p>→ <a href="./5.4.3-new-features_vi.html">5.4.3 Mở rộng tính năng: Để AI giúp bạn thêm tính năng mới</a></p>
+</body>
+</html>

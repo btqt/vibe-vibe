@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B 2 Content</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "B.2 Vấn đề CSS/Style"</h2>
+<p><img alt="99-appendix_b-2-content.png" src="../../public/images/Basic/99-appendix_b-2-content.png" /></p>
+<h1>B.2 Vấn đề CSS/Style</h1>
+<p>Vấn đề style sẽ không báo lỗi đỏ, nhưng sẽ khiến trang của bạn "trông sai sai". Phần này giúp bạn nhanh chóng định vị và giải quyết các vấn đề style thường gặp.</p>
+<h2>Style hoàn toàn không có tác dụng</h2>
+<p><strong>Hiện tượng</strong>: Bạn viết CSS, nhưng trang hoàn toàn không thay đổi gì.</p>
+<p><strong>Danh sách kiểm tra</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Mục kiểm tra</th>
+<th>Cách kiểm tra</th>
+<th>Cách giải quyết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chưa import file CSS</td>
+<td>Xem HTML có thẻ <code>&lt;link&gt;</code> không</td>
+<td>Thêm <code>&lt;link rel="stylesheet" href="style.css"&gt;</code></td>
+</tr>
+<tr>
+<td>Viết sai đường dẫn</td>
+<td>Kiểm tra đường dẫn file có đúng không</td>
+<td>Đảm bảo đường dẫn <code>href</code> tương ứng với vị trí thực tế của file</td>
+</tr>
+<tr>
+<td>Viết sai bộ chọn (selector)</td>
+<td>Kiểm tra tên class/id có khớp không</td>
+<td><code>.btn</code> (class) vs <code>#btn</code> (id), đừng nhầm lẫn</td>
+</tr>
+<tr>
+<td>Bị style khác ghi đè</td>
+<td>Dùng công cụ nhà phát triển trình duyệt để kiểm tra</td>
+<td>Tăng trọng số selector hoặc điều chỉnh thứ tự</td>
+</tr>
+<tr>
+<td>Vấn đề cache</td>
+<td>Bắt buộc tải lại trang (Force refresh)</td>
+<td>Mac: <code>Cmd+Shift+R</code>, Win: <code>Ctrl+Shift+R</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prompt sửa nhanh</strong>:</p>
+<pre><code class="language-markdown">CSS style của tôi không có tác dụng.
+
+Code HTML:
+[Dán HTML liên quan]
+
+Code CSS:
+[Dán CSS]
+
+Hãy giúp tôi kiểm tra tại sao style không có tác dụng.
+</code></pre>
+<h2>Bố cục lộn xộn</h2>
+<p><strong>Hiện tượng</strong>: Vị trí các phần tử không đúng, chen chúc nhau, chạy lệch, hoặc tràn ra ngoài.</p>
+<p><strong>Vấn đề thường gặp và cách giải quyết</strong>:</p>
+<h3>Các phần tử chen chúc nhau</h3>
+<pre><code class="language-css">/* Vấn đề: Nhiều phần tử chen chúc trên một hàng */
+/* Giải quyết: Cho phép chúng xuống dòng */
+.container {
+  display: flex;
+  flex-wrap: wrap; /* Cho phép xuống dòng */
+  gap: 10px; /* Thêm khoảng cách */
+}
+</code></pre>
+<h3>Phần tử chạy ra ngoài màn hình</h3>
+<pre><code class="language-css">/* Vấn đề: Nội dung vượt quá khung chứa */
+/* Giải quyết: Giới hạn chiều rộng, cho phép cuộn hoặc ẩn đi */
+.content {
+  max-width: 100%; /* Không vượt quá khung cha */
+  overflow: auto; /* Hiển thị thanh cuộn khi vượt quá */
+}
+</code></pre>
+<h3>Căn giữa theo chiều dọc không được</h3>
+<pre><code class="language-css">/* Cách căn giữa theo chiều dọc đơn giản nhất */
+.parent {
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  height: 100vh; /* Khung cha phải có chiều cao! */
+}
+</code></pre>
+<p>::: warning Hố thường gặp
+Căn giữa theo chiều dọc không được, 90% là do khung cha không được đặt chiều cao. <code>height: 100%</code> hoặc <code>height: 100vh</code> là giải pháp thường dùng.
+:::</p>
+<h2>Vấn đề Responsive (Tương thích thiết bị)</h2>
+<p><strong>Hiện tượng</strong>: Trên máy tính thì đẹp, lên điện thoại thì vỡ giao diện.</p>
+<p><strong>Kiểm tra nhanh</strong>:</p>
+<ol>
+<li>Có thêm thẻ meta viewport chưa?</li>
+<li>Có đang dùng phần trăm/rem thay vì px cố định không?</li>
+<li>Có viết media query không?</li>
+</ol>
+<p><strong>Mẫu Responsive cơ bản</strong>:</p>
+<pre><code class="language-html">&lt;!-- Bắt buộc phải thêm dòng này trong &lt;head&gt; --&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+</code></pre>
+<pre><code class="language-css">/* Style cơ bản (Ưu tiên điện thoại) */
+.container {
+  width: 100%;
+  padding: 15px;
+}
+
+/* Máy tính bảng trở lên */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+    margin: 0 auto;
+  }
+}
+
+/* Máy tính */
+@media (min-width: 1024px) {
+  .container {
+    width: 960px;
+  }
+}
+</code></pre>
+<h2>Bảng tra cứu nhanh lỗi style thường gặp</h2>
+<table>
+<thead>
+<tr>
+<th>Vấn đề</th>
+<th>Nguyên nhân có thể</th>
+<th>Sửa nhanh</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cỡ chữ không đúng</td>
+<td>Kế thừa style của phần tử cha</td>
+<td>Thiết lập <code>font-size</code> rõ ràng</td>
+</tr>
+<tr>
+<td>Màu sắc không đúng</td>
+<td>Trọng số selector không đủ</td>
+<td>Kiểm tra xem có bị ghi đè không, tăng trọng số lên</td>
+</tr>
+<tr>
+<td>Khoảng cách (margin/padding) không đúng</td>
+<td>Nhầm lẫn giữa margin và padding</td>
+<td>margin là lề ngoài, padding là lề trong</td>
+</tr>
+<tr>
+<td>Ảnh bị biến dạng</td>
+<td>Tỷ lệ khung hình bị phá vỡ</td>
+<td>Sử dụng <code>object-fit: cover</code></td>
+</tr>
+<tr>
+<td>Nút không bấm được</td>
+<td>Bị phần tử khác che mất</td>
+<td>Kiểm tra <code>z-index</code> và position</td>
+</tr>
+<tr>
+<td>Chữ bị tràn</td>
+<td>Khung chứa quá nhỏ</td>
+<td>Sử dụng <code>overflow: hidden</code> hoặc <code>text-overflow: ellipsis</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Dùng trình duyệt để gỡ lỗi style</h2>
+<p>Đây là cách hiệu quả nhất để giải quyết vấn đề style:</p>
+<ol>
+<li><strong>Mở công cụ nhà phát triển</strong>: Chuột phải vào trang → Kiểm tra (Inspect) (hoặc ấn F12)</li>
+<li><strong>Chọn phần tử</strong>: Nhấn vào biểu tượng "Mũi tên chọn" ở góc trên bên trái, rồi nhấn vào phần tử trên trang</li>
+<li><strong>Xem style</strong>: Bên phải sẽ hiển thị tất cả style của phần tử này</li>
+<li><strong>Sửa trực tiếp</strong>: Sửa trực tiếp giá trị CSS ở bên phải, trang web sẽ cập nhật theo thời gian thực</li>
+<li><strong>Tìm vấn đề</strong>: Xem style nào bị gạch ngang (chứng tỏ bị ghi đè)</li>
+</ol>
+<p>::: tip Mẹo nhỏ
+Sau khi chỉnh style ngon lành trong công cụ nhà phát triển, hãy copy CSS đã sửa về file code của bạn. Nhanh hơn nhiều so với việc sửa mò.
+:::</p>
+</body>
+</html>

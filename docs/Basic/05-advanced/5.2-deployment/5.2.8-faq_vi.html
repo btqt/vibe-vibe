@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.2.8 Faq</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.2.8 Các câu hỏi thường gặp về triển khai"
+order: 9</p>
+<hr />
+<p><img alt="05-advanced_5.2-deployment_5.2.8-faq.png" src="../../../public/images/Basic/05-advanced_5.2-deployment_5.2.8-faq.png" /></p>
+<h1>5.2.8 Các câu hỏi thường gặp về triển khai</h1>
+<p>Việc gặp vấn đề trong quá trình triển khai là bình thường. Dưới đây là tổng hợp các vấn đề thường gặp và giải pháp.</p>
+<h2>Bảng tra cứu nhanh</h2>
+<table>
+<thead>
+<tr>
+<th>Vấn đề</th>
+<th>Nguyên nhân có thể</th>
+<th>Cách giải quyết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Triển khai thất bại</td>
+<td>Code có lỗi cú pháp</td>
+<td>Xác nhận chạy bình thường ở máy cục bộ trước</td>
+</tr>
+<tr>
+<td>Trang trắng xóa</td>
+<td>Đường dẫn file đầu vào sai</td>
+<td>Đảm bảo <code>index.html</code> nằm ở thư mục gốc dự án</td>
+</tr>
+<tr>
+<td>Mất giao diện (style)</td>
+<td>Đường dẫn CSS dùng đường dẫn tuyệt đối</td>
+<td>Đổi sang đường dẫn tương đối (như <code>./style.css</code>)</td>
+</tr>
+<tr>
+<td>Không hiện ảnh</td>
+<td>Đường dẫn ảnh sai hoặc sai chữ hoa chữ thường</td>
+<td>Kiểm tra đường dẫn và chữ hoa chữ thường của tên file</td>
+</tr>
+<tr>
+<td>Chức năng không chạy</td>
+<td>Lỗi JavaScript</td>
+<td>Mở bảng điều khiển trình duyệt (F12) xem lỗi</td>
+</tr>
+<tr>
+<td>Đại lục không truy cập được</td>
+<td>Nhiễm độc DNS</td>
+<td>Đổi sang dùng Zeabur hoặc Maozi Cloud</td>
+</tr>
+<tr>
+<td>Tải rất chậm</td>
+<td>File tài nguyên quá lớn</td>
+<td>Nén ảnh, kiểm tra xem có file lớn không cần thiết không</td>
+</tr>
+<tr>
+<td>Cập nhật xong không thay đổi</td>
+<td>Bộ nhớ đệm trình duyệt</td>
+<td>Làm mới bắt buộc (Ctrl+F5) hoặc xóa bộ nhớ đệm</td>
+</tr>
+</tbody>
+</table>
+<h2>Giải thích chi tiết vấn đề</h2>
+<h3>Vấn đề 1: Triển khai thất bại, báo lỗi build</h3>
+<p><strong>Hiện tượng</strong>: Sau khi nhấp triển khai, trạng thái cứ hiển thị "Building" rồi chuyển thành "Failed".</p>
+<p><strong>Các bước rà soát</strong>:</p>
+<ol>
+<li>Xem nhật ký build, tìm thông tin lỗi màu đỏ</li>
+<li>Kiểm tra dự án ở máy cục bộ có chạy bình thường không</li>
+<li>Xác nhận tất cả các file cần thiết đã được đẩy lên GitHub</li>
+</ol>
+<p><strong>Nguyên nhân thường gặp</strong>:</p>
+<ul>
+<li>Code có lỗi cú pháp</li>
+<li>Thiếu file cấu hình cần thiết</li>
+<li>Phụ thuộc chưa được cài đặt đúng cách</li>
+</ul>
+<p><strong>Mẫu cầu cứu AI</strong>:</p>
+<pre><code>Tôi đang triển khai dự án trên [Zeabur/Vercel], thì bị lỗi build.
+
+Nhật ký build hiển thị lỗi này:
+[Dán thông tin lỗi màu đỏ]
+
+Dự án của tôi là [Web tĩnh thuần HTML/CSS/JS / Dự án React / ...].
+Chạy cục bộ [bình thường / cũng có vấn đề].
+
+Hãy giúp tôi phân tích nguyên nhân và đưa ra giải pháp.
+</code></pre>
+<h3>Vấn đề 2: Trang trắng xóa</h3>
+<p><strong>Hiện tượng</strong>: Triển khai thành công, nhưng mở địa chỉ web ra là trang trắng.</p>
+<p><strong>Các bước rà soát</strong>:</p>
+<ol>
+<li>Mở công cụ nhà phát triển trình duyệt (F12)</li>
+<li>Xem Console (Bảng điều khiển) có lỗi đỏ không</li>
+<li>Xem Network (Mạng) có lỗi 404 không</li>
+</ol>
+<p><strong>Nguyên nhân thường gặp</strong>:</p>
+<ul>
+<li><code>index.html</code> không nằm ở thư mục gốc</li>
+<li>Đường dẫn file JavaScript sai dẫn đến script không tải được</li>
+<li>Sử dụng đường dẫn tuyệt đối, môi trường online không tìm thấy file</li>
+</ul>
+<p><strong>Cách giải quyết</strong>:</p>
+<pre><code class="language-html">&lt;!-- Sai: Đường dẫn tuyệt đối --&gt;
+&lt;script src=&quot;/js/app.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- Đúng: Đường dẫn tương dối --&gt;
+&lt;script src=&quot;./js/app.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h3>Vấn đề 3: Mất giao diện (style)</h3>
+<p><strong>Hiện tượng</strong>: Trang hiển thị được, nhưng giao diện vỡ hoàn toàn, hoặc không có style.</p>
+<p><strong>Nguyên nhân thường gặp</strong>:</p>
+<ul>
+<li>Đường dẫn file CSS sai</li>
+<li>File CSS chưa được đẩy lên GitHub</li>
+<li>Sử dụng đường dẫn tuyệt đối</li>
+</ul>
+<p><strong>Cách giải quyết</strong>:</p>
+<pre><code class="language-html">&lt;!-- Sai --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;/style.css&quot; /&gt;
+
+&lt;!-- Đúng --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;./style.css&quot; /&gt;
+</code></pre>
+<h3>Vấn đề 4: Chức năng không hoạt động</h3>
+<p><strong>Hiện tượng</strong>: Trang hiển thị bình thường, nhưng nhấp nút không phản ứng, chức năng không chạy.</p>
+<p><strong>Các bước rà soát</strong>:</p>
+<ol>
+<li>Mở bảng điều khiển trình duyệt (F12 → Console)</li>
+<li>Xem có thông tin lỗi màu đỏ không</li>
+<li>Thử kích hoạt chức năng, xem có lỗi mới xuất hiện không</li>
+</ol>
+<p><strong>Mẫu cầu cứu AI</strong>:</p>
+<pre><code>Dự án danh sách việc cần làm của tôi sau khi triển khai, chức năng [thêm nhiệm vụ / xóa nhiệm vụ / ...] không hoạt động.
+
+Bảng điều khiển trình duyệt hiển thị lỗi này:
+[Dán thông tin lỗi]
+
+Khi chạy cục bộ chức năng vẫn bình thường.
+Hãy giúp tôi phân tích nguyên nhân.
+</code></pre>
+<h3>Vấn đề 5: Sau khi cập nhật trang web không thay đổi</h3>
+<p><strong>Hiện tượng</strong>: Code đã đẩy lên GitHub, nhưng trang web vẫn là phiên bản cũ.</p>
+<p><strong>Nguyên nhân có thể</strong>:</p>
+<ol>
+<li>Triển khai chưa hoàn tất (vào bảng điều khiển xem trạng thái)</li>
+<li>Bộ nhớ đệm trình duyệt</li>
+</ol>
+<p><strong>Cách giải quyết</strong>:</p>
+<ul>
+<li>Đợi triển khai hoàn tất (thường 1-2 phút)</li>
+<li>Làm mới bắt buộc trang: Windows nhấn <code>Ctrl+F5</code>, Mac nhấn <code>Cmd+Shift+R</code></li>
+<li>Mở chế độ ẩn danh/riêng tư để truy cập</li>
+</ul>
+<h2>Giải pháp vạn năng</h2>
+<p>Khi bạn gặp bất kỳ vấn đề triển khai nào, đều có thể dùng mẫu này để cầu cứu AI:</p>
+<pre><code>Tôi gặp vấn đề khi triển khai trang web.
+
+【Thông tin môi trường】
+- Nền tảng triển khai: [Zeabur / Vercel / Netlify / ...]
+- Loại dự án: [Thuần HTML/CSS/JS / React / Vue / ...]
+- Chạy cục bộ: [Bình thường / Có vấn đề]
+
+【Mô tả vấn đề】
+[Mô tả vấn đề cụ thể bạn gặp phải]
+
+【Thông tin lỗi】
+[Dán toàn bộ thông tin lỗi, bao gồm nhật ký build hoặc lỗi bảng điều khiển trình duyệt]
+
+【Các cách đã thử】
+[Liệt kê các cách giải quyết bạn đã thử]
+
+Hãy giúp tôi phân tích nguyên nhân và đưa ra giải pháp.
+</code></pre>
+<p>::: tip Ghi nhớ
+Gặp vấn đề đừng hoảng loạn. Vấn đề triển khai thường có thông tin lỗi rõ ràng, gửi thông tin lỗi cho AI, đa số vấn đề đều có thể giải quyết nhanh chóng.
+:::</p>
+<p>→ <a href="./5.2.9-checklist_vi.html">5.2.9 Danh sách kiểm tra phần này</a></p>
+</body>
+</html>

@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.6.4 Prepare Advanced</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.6.4 Chuẩn bị vào bản nâng cao"
+order: 5</p>
+<hr />
+<p><img alt="05-advanced_5.6-summary_5.6.4-prepare-advanced.png" src="../../../public/images/Basic/05-advanced_5.6-summary_5.6.4-prepare-advanced.png" /></p>
+<h1>5.6.4 Chuẩn bị vào bản nâng cao</h1>
+<p>Qua bài học này, bạn sẽ nhận được:</p>
+<ul>
+<li>Danh sách tự kiểm tra tốt nghiệp bản cơ bản</li>
+<li>5 tín hiệu phán đoán có cần nâng cao hay không</li>
+<li>Dự báo các mô-đun chi tiết của bản nâng cao</li>
+<li>Lộ trình nâng cấp kỹ năng từ cơ bản lên nâng cao</li>
+</ul>
+<h2>Tự kiểm tra: Bạn đã sẵn sàng chưa?</h2>
+<p>Hoàn thành bài tự kiểm tra sau, mỗi mục đánh dấu được 1 điểm:</p>
+<h3>Năng lực cốt lõi (Bắt buộc)</h3>
+<ul>
+<li>[ ] Tôi đã hoàn thành ít nhất một dự án Vibe Coding hoàn chỉnh</li>
+<li>[ ] Tôi có thể dùng khung S.C.A.F.F. viết ra Prompt rõ ràng</li>
+<li>[ ] Tôi hiểu khái niệm cơ bản về quản lý phiên bản (Commit, Push)</li>
+<li>[ ] Tôi đã triển khai thành công dự án lên internet</li>
+<li>[ ] Tôi biết ba lệnh cấm an toàn</li>
+</ul>
+<h3>Năng lực tư duy (Điểm cộng)</h3>
+<ul>
+<li>[ ] Tôi có thể dùng 3 câu hỏi linh hồn định nghĩa nhu cầu của một dự án</li>
+<li>[ ] Tôi phân biệt được chức năng nào "bắt buộc có" và "có thì tốt"</li>
+<li>[ ] Khi AI đưa đáp án sai, tôi biết cách điều chỉnh Prompt</li>
+<li>[ ] Tôi hình thành thói quen kiểm tra thông tin nhạy cảm trước khi submit</li>
+<li>[ ] Tôi nắm rõ biên giới năng lực của Vibe Coding</li>
+</ul>
+<h3>Tiêu chuẩn chấm điểm</h3>
+<table>
+<thead>
+<tr>
+<th>Điểm số</th>
+<th>Kiến nghị</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8-10 điểm</td>
+<td>Bạn đã hoàn toàn sẵn sàng, có thể vào thẳng bản nâng cao</td>
+</tr>
+<tr>
+<td>5-7 điểm</td>
+<td>Kiến nghị làm thêm 1-2 dự án cơ bản để củng cố, sau đó vào bản nâng cao</td>
+</tr>
+<tr>
+<td>0-4 điểm</td>
+<td>Kiến nghị xem lại chương 2 đến chương 5, tập trung bổ sung những điểm yếu</td>
+</tr>
+</tbody>
+</table>
+<h2>5 tín hiệu cần nâng cao</h2>
+<p>Nếu bạn gặp các tình huống sau, chứng tỏ đã đến lúc học bản nâng cao:</p>
+<h3>Tín hiệu 1: Bạn muốn chức năng đăng nhập người dùng</h3>
+<p><strong>Kịch bản</strong>: Bạn làm một sổ chi tiêu, muốn người nhà đăng nhập riêng, nhìn thấy dữ liệu riêng của họ.</p>
+<p><strong>Tại sao bản cơ bản không làm được</strong>: Đăng nhập người dùng cần backend xác thực thân phận, cần cơ sở dữ liệu lưu trữ thông tin tài khoản. localStorage chỉ có thể tồn tại trong một trình duyệt đơn lẻ.</p>
+<p><strong>Giải pháp bản nâng cao</strong>: NextAuth xác thực người dùng + Lưu trữ cơ sở dữ liệu</p>
+<h3>Tín hiệu 2: Bạn muốn đồng bộ dữ liệu đám mây</h3>
+<p><strong>Kịch bản</strong>: Bạn ghi chép việc cần làm trên máy tính công ty, về nhà muốn tiếp tục xem trên máy tính cá nhân.</p>
+<p><strong>Tại sao bản cơ bản không làm được</strong>: localStorage là lưu trữ cục bộ trình duyệt, không thể chia sẻ giữa các thiết bị, trình duyệt khác nhau.</p>
+<p><strong>Giải pháp bản nâng cao</strong>: Backend API + Cơ sở dữ liệu + Xác thực người dùng</p>
+<h3>Tín hiệu 3: Bạn muốn làm chức năng nhiều người cộng tác</h3>
+<p><strong>Kịch bản</strong>: Bạn muốn làm một danh sách mua sắm gia đình dùng chung, người nhà có thể cùng biên tập.</p>
+<p><strong>Tại sao bản cơ bản không làm được</strong>: Nhiều người thao tác cùng lúc cần đồng bộ thời gian thực, cần xử lý xung đột dữ liệu.</p>
+<p><strong>Giải pháp bản nâng cao</strong>: WebSocket giao tiếp thời gian thực + Chiến lược xử lý xung đột</p>
+<h3>Tín hiệu 4: Bạn nảy sinh tò mò "tại sao code chạy được"</h3>
+<p><strong>Kịch bản</strong>: Code AI đưa cho bạn dùng được, nhưng bạn muốn biết tại sao lại viết như thế.</p>
+<p><strong>Tại sao bản cơ bản không giảng</strong>: Mục tiêu bản cơ bản là "làm ra được đồ vật", không đi sâu vào nguyên lý.</p>
+<p><strong>Giải pháp bản nâng cao</strong>: Mô-đun Bootcamp giảng dạy hệ thống về cơ sở máy tính, nguyên lý mạng, khái niệm lập trình</p>
+<h3>Tín hiệu 5: Bạn muốn tham gia dự án nhóm</h3>
+<p><strong>Kịch bản</strong>: Bạn muốn cùng bạn bè phát triển một dự án, hoặc tham gia dự án mã nguồn mở.</p>
+<p><strong>Tại sao bản cơ bản không đủ</strong>: Cộng tác nhiều người cần quản lý nhánh, rà soát code, quy trình CI/CD.</p>
+<p><strong>Giải pháp bản nâng cao</strong>: Quy trình làm việc Git nâng cao + Thực tiễn tốt nhất trong cộng tác nhóm</p>
+<h2>Kịch bản không cần nâng cao</h2>
+<p>Cũng quan trọng không kém, hãy nhận rõ khi nào <strong>không cần</strong> nâng cao:</p>
+<table>
+<thead>
+<tr>
+<th>Kịch bản</th>
+<th>Bản cơ bản đã đủ dùng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Làm công cụ cá nhân tự dùng</td>
+<td>localStorage đáp ứng đủ nhu cầu</td>
+</tr>
+<tr>
+<td>Trang web hiển thị tĩnh (Trang chủ cá nhân, CV)</td>
+<td>Không cần backend</td>
+</tr>
+<tr>
+<td>Công cụ tính toán/chuyển đổi đơn giản</td>
+<td>Thuần Frontend là làm được</td>
+</tr>
+<tr>
+<td>Học tập và luyện tập lập trình AI</td>
+<td>Phương pháp luận bản cơ bản có thể tái sử dụng</td>
+</tr>
+<tr>
+<td>Xác minh nhanh một ý tưởng</td>
+<td>MVP không cần backend hoàn chỉnh</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Trong trường hợp bản cơ bản đã đủ dùng, không cần vội vàng nâng cao.</strong> Dùng bản cơ bản làm thêm vài dự án, nội hóa phương pháp luận, quan trọng hơn là vội vàng học công nghệ mới.</p>
+<h2>Giải nghĩa chi tiết mô-đun bản nâng cao</h2>
+<p>Nếu bạn quyết định vào bản nâng cao, dưới đây là nội dung bạn sẽ học:</p>
+<h3>Bootcamp: Cơ sở máy tính</h3>
+<table>
+<thead>
+<tr>
+<th>Bạn sẽ học</th>
+<th>Giải quyết vấn đề gì</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hệ thống file và đường dẫn</td>
+<td>Hiểu cấu trúc dự án, không còn "không tìm thấy file"</td>
+</tr>
+<tr>
+<td>Cơ bản dòng lệnh</td>
+<td>Không sợ màn hình đen, thực hiện thao tác cơ bản</td>
+</tr>
+<tr>
+<td>Cơ bản mạng (HTTP, DNS)</td>
+<td>Hiểu trang web tải như thế nào</td>
+</tr>
+<tr>
+<td>Nguyên lý bộ ba Frontend</td>
+<td>Biết vai trò của HTML/CSS/JS</td>
+</tr>
+</tbody>
+</table>
+<h3>Tech stack: Phát triển Fullstack Next.js</h3>
+<table>
+<thead>
+<tr>
+<th>Công nghệ</th>
+<th>Tác dụng</th>
+<th>Tại sao chọn nó</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Next.js</td>
+<td>Khung sườn frontend-backend nhất thể hóa</td>
+<td>Dễ học, hệ sinh thái tốt, dễ triển khai</td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td>JavaScript an toàn kiểu dữ liệu</td>
+<td>Giảm lỗi, code AI tạo ra đáng tin cậy hơn</td>
+</tr>
+<tr>
+<td>Prisma</td>
+<td>Công cụ thao tác cơ sở dữ liệu</td>
+<td>Không cần viết SQL, dùng code thao tác DB</td>
+</tr>
+<tr>
+<td>Tailwind CSS</td>
+<td>Khung sườn style</td>
+<td>Xây dựng giao diện đẹp nhanh chóng</td>
+</tr>
+</tbody>
+</table>
+<h3>Nâng cấp năng lực cốt lõi</h3>
+<table>
+<thead>
+<tr>
+<th>Kỹ năng bản cơ bản</th>
+<th>Sau khi nâng cao sẽ là</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lưu trữ localStorage</td>
+<td>Lưu trữ bền vững cơ sở dữ liệu (PostgreSQL/MySQL)</td>
+</tr>
+<tr>
+<td>Triển khai trang tĩnh</td>
+<td>Triển khai ứng dụng Fullstack (bao gồm backend)</td>
+</tr>
+<tr>
+<td>Công cụ dùng cá nhân</td>
+<td>Nền tảng cộng tác đa người dùng</td>
+</tr>
+<tr>
+<td>Kiểm thử thủ công</td>
+<td>Kiểm thử tự động + CI/CD</td>
+</tr>
+<tr>
+<td>GitHub Desktop</td>
+<td>Dòng lệnh Git + Chiến lược nhánh</td>
+</tr>
+<tr>
+<td>Ý thức an toàn cơ bản</td>
+<td>Phòng hộ an toàn Web hoàn chỉnh</td>
+</tr>
+</tbody>
+</table>
+<h3>Xem trước lộ trình học tập bản nâng cao</h3>
+<pre><code>Hành trình học tập bản nâng cao
+│
+├── Bootcamp (2-3 ngày)
+│   └── Bổ sung cơ sở máy tính, tạo nền tảng cho việc học tiếp theo
+│
+├── Chương 1-2: Khái niệm &amp; Công cụ (3-4 ngày)
+│   └── Dựng dự án Next.js + Quy trình cộng tác AI
+│
+├── Chương 3-4: Phát triển Frontend-Backend (1-2 tuần)
+│   └── Phát triển trang + Thiết kế API + Thao tác cơ sở dữ liệu
+│
+├── Chương 5-6: Sản phẩm &amp; An toàn (3-4 ngày)
+│   └── Tài liệu PRD + Xác thực người dùng + Phòng hộ an toàn
+│
+├── Chương 7-9: Thực tiễn kỹ thuật (1 tuần)
+│   └── Quy chuẩn API + Cộng tác Git + Kiểm thử
+│
+├── Chương 10-11: Triển khai vận hành (3-4 ngày)
+│   └── Docker + CI/CD + Giám sát
+│
+└── Chương 12: Chuyên đề cao cấp (Học thêm)
+    └── SEO + Giao tiếp thời gian thực + Xử lý file
+</code></pre>
+<p><strong>Tổng thời gian học tập dự kiến</strong>: 4-6 tuần (mỗi ngày 2-3 giờ)</p>
+<h2>Chuyển tiếp mượt mà từ bản cơ bản lên bản nâng cao</h2>
+<p>Bản nâng cao sẽ tái sử dụng phương pháp luận cốt lõi của bản cơ bản:</p>
+<table>
+<thead>
+<tr>
+<th>Phương pháp bản cơ bản</th>
+<th>Bản nâng cao kế thừa thế nào</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tư duy JTBD / MVP</td>
+<td>Dùng để thiết kế chức năng phức tạp hơn</td>
+</tr>
+<tr>
+<td>Khung S.C.A.F.F.</td>
+<td>Tiếp tục dùng để giao tiếp với AI</td>
+</tr>
+<tr>
+<td>Phát triển lặp lại</td>
+<td>Dùng cho phát triển dự án fullstack</td>
+</tr>
+<tr>
+<td>Ba lệnh cấm an toàn</td>
+<td>Mở rộng thành hệ thống an toàn hoàn chỉnh</td>
+</tr>
+<tr>
+<td>Quản lý phiên bản</td>
+<td>Nâng cấp thành quy trình làm việc Git chuyên nghiệp</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Mọi thứ bạn học ở bản cơ bản đều sẽ không lãng phí.</strong> Bản nâng cao là sự mở rộng và đào sâu trên nền tảng đó.</p>
+<h2>Điểm cốt lõi của bài này</h2>
+<ul>
+<li>Dùng danh sách tự kiểm tra đánh giá mức độ sẵn sàng của bản thân</li>
+<li>5 tín hiệu cho bạn biết có cần nâng cao hay không</li>
+<li>Khi bản cơ bản đủ dùng thì không cần vội nâng cao</li>
+<li>Bản nâng cao sẽ tái sử dụng phương pháp luận cốt lõi của bản cơ bản</li>
+<li>Dự kiến 4-6 tuần hoàn thành việc học bản nâng cao</li>
+</ul>
+<p>::: tip Lời cuối
+Nâng cao là một lựa chọn, không phải bắt buộc.</p>
+<p>Nếu bản cơ bản đã đáp ứng nhu cầu của bạn, hãy tiếp tục dùng nó tạo ra giá trị.</p>
+<p>Nếu bạn muốn phá vỡ biên giới, bản nâng cao đang chờ bạn.
+:::</p>
+<p>→ <a href="./5.6.5-conclusion_vi.html">5.6.5 Lời kết</a></p>
+</body>
+</html>

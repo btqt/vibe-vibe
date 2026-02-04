@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.1.3 Manual</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.1.3 Quản lý phiên bản thủ công: Đơn giản và hiệu quả"
+order: 4</p>
+<hr />
+<p><img alt="05-advanced_5.1-version-control_5.1.3-manual.png" src="../../../public/images/Basic/05-advanced_5.1-version-control_5.1.3-manual.png" /></p>
+<h1>5.1.3 Quản lý phiên bản thủ công: Đơn giản và hiệu quả</h1>
+<p>Phương pháp quản lý phiên bản đơn giản nhất: <strong>Sao chép thư mục định kỳ</strong>.</p>
+<p>Phương pháp này không cần học bất kỳ công cụ mới nào, không cần kết nối mạng, ai cũng làm được. Tuy có hơi "thủ công", nhưng cực kỳ hiệu quả.</p>
+<h2>Thao tác cơ bản</h2>
+<ol>
+<li>Tìm thư mục dự án của bạn (ví dụ <code>todo-list</code>)</li>
+<li>Sao chép toàn bộ thư mục</li>
+<li>Đặt cho bản sao một cái tên có ý nghĩa</li>
+<li>Tiếp tục phát triển trong thư mục gốc</li>
+</ol>
+<p>Chỉ đơn giản như vậy thôi.</p>
+<h2>Quy tắc đặt tên được đề xuất</h2>
+<p>Một cái tên hay có thể giúp bạn nhanh chóng tìm thấy phiên bản mình cần.</p>
+<h3>Gợi ý định dạng</h3>
+<pre><code>TênDựÁn-vPhiênBản-MôTảChứcNăng/
+</code></pre>
+<p>Hoặc thêm ngày tháng:</p>
+<pre><code>TênDựÁn-vPhiênBản-MôTảChứcNăng-NgàyTháng/
+</code></pre>
+<h3>Ví dụ về dự án danh sách việc cần làm (todo-list)</h3>
+<pre><code>todo-list/                          ← Phiên bản đang phát triển hiện tại
+todo-list-v1-co-ban/                ← Phiên bản đầu tiên có thể sử dụng
+todo-list-v2-them-xoa/              ← Đã thêm chức năng xóa
+todo-list-v3-luu-du-lieu/           ← Đã thêm localStorage
+todo-list-v4-thu-nghiem-dark-mode/  ← Bản sao lưu trước khi chuẩn bị sửa đổi lớn
+</code></pre>
+<h3>Nếu bạn thích dùng ngày tháng hơn</h3>
+<pre><code>todo-list/
+todo-list-20250107-co-ban/
+todo-list-20250108-chuc-nang-xoa/
+todo-list-20250108-luu-du-lieu/
+</code></pre>
+<h2>Khi nào nên lưu một phiên bản</h2>
+<p>Không cần phải sao lưu sau mỗi dòng code sửa đổi. Các thời điểm sau đây là quan trọng nhất:</p>
+<table>
+<thead>
+<tr>
+<th>Thời điểm</th>
+<th>Tại sao</th>
+<th>Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sau khi hoàn thành một tính năng</strong></td>
+<td>Phiên bản này chắc chắn dùng được</td>
+<td>Đã làm xong chức năng thêm nhiệm vụ</td>
+</tr>
+<tr>
+<td><strong>Trước khi chuẩn bị thay đổi lớn</strong></td>
+<td>Lỡ sửa hỏng thì có thể quay lại</td>
+<td>Chuẩn bị thêm chế độ tối (dark mode)</td>
+</tr>
+<tr>
+<td><strong>Khi kết thúc công việc trong ngày</strong></td>
+<td>Bảo vệ thành quả của ngày hôm nay</td>
+<td>Sao lưu một cái trước khi tan làm</td>
+</tr>
+<tr>
+<td><strong>Trước khi để AI sửa đổi lớn</strong></td>
+<td>AI có thể sửa sai chỗ</td>
+<td>Nhờ AI cấu trúc lại code (refactor)</td>
+</tr>
+</tbody>
+</table>
+<h2>Thực hành: Tạo bản sao lưu đầu tiên cho danh sách việc cần làm của bạn</h2>
+<p>Bây giờ hãy bắt tay vào làm ngay, tạo một bản sao lưu cho dự án danh sách việc cần làm của bạn.</p>
+<h3>Các bước</h3>
+<ol>
+<li><strong>Tìm thư mục dự án</strong></li>
+<li>Mở thư mục dự án bạn đã tạo ở chương 4</li>
+<li>
+<p>Thường nằm ở vị trí như <code>Documents/vibe-coding-projects/todo-list/</code></p>
+</li>
+<li>
+<p><strong>Sao chép thư mục</strong></p>
+</li>
+<li>Windows: Chuột phải → Sao chép (Copy), sau đó Chuột phải → Dán (Paste)</li>
+<li>
+<p>Mac: Chọn thư mục, nhấn Command+C, sau đó Command+V</p>
+</li>
+<li>
+<p><strong>Đổi tên bản sao</strong></p>
+</li>
+<li>
+<p>Đặt tên bản sao là: <code>todo-list-v1-hoan-thanh-chuong-4</code></p>
+</li>
+<li>
+<p><strong>Xác minh</strong></p>
+</li>
+<li>Xác nhận rằng bạn đang có hai thư mục</li>
+<li>Tiếp tục phát triển ở thư mục gốc</li>
+<li>Giữ nguyên bản sao làm bản lưu trữ</li>
+</ol>
+<h3>Xác nhận thành công</h3>
+<pre><code>vibe-coding-projects/
+├── todo-list/                      ← Tiếp tục phát triển ở đây
+└── todo-list-v1-hoan-thanh-chuong-4/ ← Bản sao lưu, đừng động vào nó
+</code></pre>
+<h2>Đặc điểm của phương án này</h2>
+<p><strong>Ưu điểm</strong>:</p>
+<ul>
+<li>✅ Đơn giản trực quan, ai cũng làm được</li>
+<li>✅ Không cần học công cụ mới</li>
+<li>✅ Không cần kết nối mạng</li>
+<li>✅ Sao lưu trọn vẹn, muốn khôi phục chỉ cần chép ngược lại</li>
+</ul>
+<p><strong>Hạn chế</strong>:</p>
+<ul>
+<li>❌ Chiếm dung lượng ổ cứng (nếu dự án lớn sẽ rất tốn chỗ)</li>
+<li>❌ Khó so sánh sự khác biệt giữa hai phiên bản</li>
+<li>❌ Dễ quên sao lưu</li>
+<li>❌ Không thể đồng bộ đám mây</li>
+</ul>
+<h2>Phối hợp sử dụng với tính năng lịch sử của AI IDE</h2>
+<p>Cách kết hợp được đề xuất:</p>
+<table>
+<thead>
+<tr>
+<th>Kịch bản</th>
+<th>Cách sử dụng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sửa đổi nhỏ hàng ngày</td>
+<td>Dựa vào lịch sử có sẵn của AI IDE</td>
+</tr>
+<tr>
+<td>Hoàn thành tính năng quan trọng</td>
+<td>Sao chép thủ công một bản sao lưu</td>
+</tr>
+<tr>
+<td>Trước khi sửa đổi lớn</td>
+<td>Sao chép thủ công một bản sao lưu</td>
+</tr>
+<tr>
+<td>Dự án hoàn thành mục tiêu giai đoạn</td>
+<td>Sao chép thủ công một bản sao lưu</td>
+</tr>
+</tbody>
+</table>
+<p>Như vậy vừa không phải sao lưu quá thường xuyên, vừa bảo vệ được các phiên bản quan trọng.</p>
+<p>::: tip Quan điểm cốt lõi
+Sao lưu thủ công là bảo hiểm cuối cùng. Ngay cả khi bạn đã học các công cụ cao cấp hơn, thỉnh thoảng sao lưu thủ công vẫn là một thói quen tốt.
+:::</p>
+<p>→ <a href="./5.1.4-github-desktop_vi.html">5.1.4 Giải pháp nâng cao: Nhập môn GitHub Desktop</a></p>
+</body>
+</html>

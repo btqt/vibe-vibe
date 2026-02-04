@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C 1 Content</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "C.1 Liên quan đến Lập trình AI"</h2>
+<p><img alt="99-appendix_c-1-content.png" src="../../public/images/Basic/99-appendix_c-1-content.png" /></p>
+<h1>C.1 Liên quan đến Lập trình AI</h1>
+<p>Gặp từ không biết? Tra ở đây. Mỗi thuật ngữ đều được giải thích bằng ngôn ngữ bình dân nhất.</p>
+<h2>Vibe Coding</h2>
+<p><strong>Giải thích một câu</strong>: Không viết code, dùng ngôn ngữ tự nhiên bảo AI bạn muốn gì, để AI giúp bạn sinh ra code.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như bạn bảo thợ sửa nhà "Tôi muốn một phòng khách ấm cúng", chứ không phải tự mình đi xây tường trát vữa.</p>
+<p><strong>Ví dụ</strong>:</p>
+<ul>
+<li>Bạn nói: "Làm một trang web hiển thị danh ngôn mỗi ngày, nền xanh, chữ trắng to"</li>
+<li>AI: Xuất ra code HTML/CSS/JS hoàn chỉnh</li>
+</ul>
+<h2>Spec Coding</h2>
+<p><strong>Giải thích một câu</strong>: Viết tài liệu quy tả chi tiết trước, sau đó để AI sinh ra code theo quy tả đó.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như vẽ bản vẽ thiết kế trước khi xây nhà, mỗi phòng rộng bao nhiêu, cửa sổ ở đâu đều viết rõ ràng.</p>
+<p><strong>Phân biệt với Vibe Coding</strong>:
+| | Vibe Coding | Spec Coding |
+|---|---|---|
+| Tài liệu | Không cần | Cần tài liệu chi tiết |
+| Phù hợp | Dự án đơn giản, xác minh nhanh | Dự án phức tạp, cộng tác team |
+| Đặc điểm | Nhanh, linh hoạt | Chắc chắn, dễ bảo trì |</p>
+<h2>Prompt</h2>
+<p><strong>Giải thích một câu</strong>: Chỉ thị hoặc câu hỏi bạn đưa cho AI.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như bạn ghi chú cho shipper: "Ít muối ít dầu, cho nhiều ớt". Prompt viết càng rõ, đồ AI làm ra càng đúng ý bạn.</p>
+<p><strong>Đặc điểm của Prompt tốt</strong>:</p>
+<ul>
+<li>Nói rõ muốn gì (Mục tiêu)</li>
+<li>Nói rõ cho ai dùng (Người dùng)</li>
+<li>Nói rõ không muốn gì (Hạn chế)</li>
+</ul>
+<h2>Context (Ngữ cảnh)</h2>
+<p><strong>Giải thích một câu</strong>: Thông tin nền tảng mà AI cần để hiểu nhu cầu của bạn.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như bác sĩ khám bệnh cần biết bệnh sử của bạn. Bạn cung cấp càng nhiều thông tin nền tảng, AI càng đưa ra câu trả lời chính xác.</p>
+<p><strong>Context bao gồm những gì</strong>:</p>
+<ul>
+<li>Những gì bạn đã nói trước đó</li>
+<li>Code bạn cung cấp</li>
+<li>Bối cảnh dự án bạn mô tả</li>
+<li>Tech stack bạn sử dụng</li>
+</ul>
+<h2>Context Window (Cửa sổ ngữ cảnh)</h2>
+<p><strong>Giải thích một câu</strong>: Giới hạn lượng thông tin AI có thể "nhớ" trong một lần.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như dung lượng bộ nhớ ngắn hạn của con người. Nói chuyện quá dài, AI sẽ "quên" nội dung nói lúc đầu.</p>
+<p><strong>Ảnh hưởng thực tế</strong>:</p>
+<ul>
+<li>Khi đối thoại quá dài, có thể cần giải thích lại bối cảnh</li>
+<li>Đưa quá nhiều code một lúc, AI có thể xử lý không xuể</li>
+<li>Các công cụ AI khác nhau có kích thước cửa sổ khác nhau</li>
+</ul>
+<h2>Hallucination (Ảo giác)</h2>
+<p><strong>Giải thích một câu</strong>: AI nói hươu nói vượn một cách nghiêm túc, bịa đặt thông tin không tồn tại.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như một người bạn quá nhiệt tình muốn giúp đỡ, không biết câu trả lời cũng cố bịa ra một cái.</p>
+<p><strong>Biểu hiện thường gặp</strong>:</p>
+<ul>
+<li>Bịa ra tên thư viện hoặc tên hàm không tồn tại</li>
+<li>Đưa ra code "trông có vẻ đúng nhưng thực tế không chạy được"</li>
+<li>Trích dẫn tài liệu hoặc liên kết không tồn tại</li>
+</ul>
+<p><strong>Cách đối phó</strong>:</p>
+<ul>
+<li>Giữ thái độ hoài nghi với đầu ra của AI, thông tin quan trọng cần xác minh</li>
+<li>Bảo AI giải thích code của nó, kiểm tra logic xem có thông suốt không</li>
+<li>Chạy thử code xem có chạy được không</li>
+</ul>
+<h2>Agent (Tác nhân)</h2>
+<p><strong>Giải thích một câu</strong>: Hệ thống AI có thể tự chủ hoàn thành nhiệm vụ nhiều bước.</p>
+<p><strong>Ví dụ tương tự</strong>: AI thông thường giống máy tính (bạn hỏi một câu trả lời một câu), Agent giống trợ lý (bạn giao một việc, nó tự lên kế hoạch các bước để hoàn thành).</p>
+<p><strong>Ví dụ</strong>:</p>
+<ul>
+<li>Bạn nói: "Làm giúp tôi một ứng dụng danh sách việc cần làm"</li>
+<li>Agent: Tự phân tích nhu cầu → Thiết kế cấu trúc → Viết code → Kiểm thử → Sửa lỗi</li>
+</ul>
+<h2>MCP (Model Context Protocol)</h2>
+<p><strong>Giải thích một câu</strong>: Giao thức tiêu chuẩn giúp AI kết nối với công cụ và dữ liệu bên ngoài.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như tiêu chuẩn cổng USB. Có tiêu chuẩn thống nhất, AI có thể tiện lợi "cắm vào" đủ loại công cụ để sử dụng.</p>
+<p><strong>Công dụng thực tế</strong>:</p>
+<ul>
+<li>Để AI đọc ghi file cục bộ</li>
+<li>Để AI truy cập cơ sở dữ liệu</li>
+<li>Để AI gọi API</li>
+</ul>
+<h2>Token</h2>
+<p><strong>Giải thích một câu</strong>: Đơn vị cơ bản để AI xử lý văn bản, xấp xỉ một từ tiếng Anh hoặc vài chữ Hán/Việt.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như "phút" gọi điện thoại. Bạn chat với AI tiêu tốn Token, dùng hết phải nạp tiền.</p>
+<p><strong>Về chi phí</strong>:</p>
+<ul>
+<li>Đa số công cụ tính phí theo Token</li>
+<li>Đầu vào và đầu ra đều tốn Token</li>
+<li>Tiếng Việt/Hán thường tốn nhiều Token hơn tiếng Anh</li>
+</ul>
+<p><strong>Mẹo tiết kiệm Token</strong>:</p>
+<ul>
+<li>Mô tả cố gắng ngắn gọn nhưng không mơ hồ</li>
+<li>Đừng lặp lại thông tin đã nói</li>
+<li>Một lần đối thoại giải quyết một vấn đề</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E 4 Content</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "E.4 Dự án Trực quan hóa dữ liệu (10 cái)"</h2>
+<p><img alt="99-appendix_e-4-content.png" src="../../public/images/Basic/99-appendix_e-4-content.png" /></p>
+<h1>E.4 Dự án Trực quan hóa dữ liệu (10 cái)</h1>
+<p>Biến dữ liệu thành biểu đồ để thông tin trở nên rõ ràng. Loại dự án này rất phù hợp cho những người làm phân tích dữ liệu, làm báo cáo.</p>
+<h2>1. Biểu đồ tròn chi tiêu cá nhân</h2>
+<p><strong>Độ khó</strong>: ⭐⭐ (Cơ bản)<br />
+<strong>Thời gian dự kiến</strong>: 1-2 giờ<br />
+<strong>Kỹ thuật cốt lõi</strong>: Sử dụng Chart.js, tổng hợp dữ liệu</p>
+<p><strong>Mô tả chức năng</strong>:</p>
+<ul>
+<li>Nhập dữ liệu chi tiêu</li>
+<li>Sinh biểu đồ tròn theo danh mục</li>
+<li>Hiển thị tỷ lệ phần trăm các danh mục</li>
+<li>Có thể chọn khoảng thời gian</li>
+</ul>
+<p><strong>Học được gì</strong>: Sử dụng thư viện biểu đồ, xử lý dữ liệu</p>
+<h2>2. Theo dõi cân nặng / sức khỏe</h2>
+<p><strong>Độ khó</strong>: ⭐⭐ (Cơ bản)<br />
+<strong>Thời gian dự kiến</strong>: 1-2 giờ<br />
+<strong>Kỹ thuật cốt lõi</strong>: Biểu đồ đường (Line chart), dữ liệu ngày tháng</p>
+<p><strong>Mô tả chức năng</strong>:</p>
+<ul>
+<li>Ghi lại cân nặng / số bước chân mỗi ngày</li>
+<li>Biểu đồ đường hiển thị xu hướng</li>
+<li>Hiển thị giá trị trung bình, cao nhất / thấp nhất</li>
+<li>Đường mục tiêu</li>
+</ul>
+<p><strong>Học được gì</strong>: Trực quan hóa dữ liệu chuỗi thời gian</p>
+<h2>3. Bản đồ nhiệt thói quen (Heatmap)</h2>
+<p><strong>Độ khó</strong>: ⭐⭐⭐ (Nâng cao)<br />
+<strong>Thời gian dự kiến</strong>: 2-3 giờ<br />
+<strong>Kỹ thuật cốt lõi</strong>: Heatmap, xem lịch</p>
+<p><strong>Mô tả chức năng</strong>:</p>
+<ul>
+<li>Tương tự biểu đồ đóng góp của GitHub</li>
+<li>Màu đậm nhạt thể hiện mức độ hoàn thành</li>
+<li>Bấm vào xem chi tiết ngày hôm đó</li>
+<li>Thống kê số ngày liên tục</li>
+</ul>
+<p><strong>Học được gì</strong>: Thực hiện Heatmap, CSS Grid</p>
+<h2>4. Thống kê phân bổ thời gian</h2>
+<p><strong>Độ khó</strong>: ⭐⭐⭐ (Nâng cao)<br />
+<strong>Thời gian dự kiến</strong>: 2-3 giờ<br />
+<strong>Kỹ thuật cốt lõi</strong>: Bộ đếm thời gian, biểu đồ vành khuyên (Donut chart)</p>
+<p><strong>Mô tả chức năng</strong>:</p>
+<ul>
+<li>Ghi lại thời gian dùng vào việc gì</li>
+<li>Thống kê theo phân loại (Làm việc / Học tập / Giải trí v.v.)</li>
+<li>Biểu đồ vành khuyên hiển thị tỷ lệ</li>
+<li>Thống kê Tuần / Tháng</li>
+</ul>
+<p><strong>Học được gì</strong>: Theo dõi thời gian, đa dạng hóa biểu đồ</p>
+<h2>5. Hiển thị kết quả bỏ phiếu / khảo sát</h2>
+<p><strong>Độ khó</strong>: ⭐⭐ (Cơ bản)<br />
+<strong>Thời gian dự kiến</strong>: 1-2 giờ<br />
+<strong>Kỹ thuật cốt lõi</strong>: Biểu đồ cột (Bar chart), cập nhật thời gian thực</p>
+<p><strong>Mô tả chức năng</strong>:</p>
+<ul>
+<li>Tạo các lựa chọn bỏ phiếu</li>
+<li>Người dùng bỏ phiếu</li>
+<li>Hiển thị kết quả bỏ phiếu thời gian thực</li>
+<li>Trực quan hóa bằng biểu đồ cột</li>
+</ul>
+<p><strong>Học được gì</strong>: Cập nhật dữ liệu thời gian thực, biểu đồ cột</p>
+<h2>6. Dashboard tiến độ dự án</h2>
+<p><strong>Độ khó</strong>: ⭐⭐⭐ (Nâng cao)<br />
+<strong>Thời gian dự kiến</strong>: 2-3 giờ<br />
+<strong>Kỹ thuật cốt lõi</strong>: Thanh tiến độ, kết hợp nhiều biểu đồ</p>
+<p><strong>Mô tả chức năng</strong>:</p>
+<ul>
+<li>Danh sách nhiệm vụ dự án</li>
+<li>Phần trăm tiến độ hoàn thành</li>
+<li>Thống kê đa chiều</li>
+<li>Bố cục Dashboard</li>
+</ul>
+<p><strong>Học được gì</strong>: Thiết kế Dashboard, bố cục nhiều biểu đồ</p>
+<h2>7. Biểu đồ giá Cổ phiếu / Tiền ảo đơn giản</h2>
+<p><strong>Độ khó</strong>: ⭐⭐⭐ (Nâng cao)<br />
+<strong>Thời gian dự kiến</strong>: 2-3 giờ<br />
+<strong>Kỹ thuật cốt lõi</strong>: Gọi API, dữ liệu thời gian thực</p>
+<p><strong>Mô tả chức năng</strong>:</p>
+<ul>
+<li>Nhập mã cổ phiếu / tiền điện tử</li>
+<li>Hiển thị biểu đồ xu hướng giá</li>
+<li>Biểu đồ nến (K-line) bản cơ bản</li>
+<li>Tự động làm mới</li>
+</ul>
+<p><strong>Học được gì</strong>: Gọi API, biểu đồ tài chính</p>
+<h2>8. Thống kê thời gian học tập</h2>
+<p><strong>Độ khó</strong>: ⭐⭐ (Cơ bản)<br />
+<strong>Thời gian dự kiến</strong>: 1-2 giờ<br />
+<strong>Kỹ thuật cốt lõi</strong>: Bộ đếm thời gian, biểu đồ thống kê</p>
+<p><strong>Mô tả chức năng</strong>:</p>
+<ul>
+<li>Bấm giờ học tập (Bắt đầu / Kết thúc)</li>
+<li>Ghi lại theo môn học</li>
+<li>Thống kê Ngày / Tuần / Tháng</li>
+<li>Hiển thị biểu đồ</li>
+</ul>
+<p><strong>Học được gì</strong>: Thống kê thời gian, hiển thị đa chiều</p>
+<h2>9. Biểu đồ Radar hoàn thành mục tiêu</h2>
+<p><strong>Độ khó</strong>: ⭐⭐⭐ (Nâng cao)<br />
+<strong>Thời gian dự kiến</strong>: 2-3 giờ<br />
+<strong>Kỹ thuật cốt lõi</strong>: Biểu đồ Radar, dữ liệu đa chiều</p>
+<p><strong>Mô tả chức năng</strong>:</p>
+<ul>
+<li>Thiết lập nhiều chiều mục tiêu</li>
+<li>Chấm điểm cho từng chiều</li>
+<li>Biểu đồ Radar hiển thị tình hình hoàn thành</li>
+<li>So sánh các giai đoạn khác nhau</li>
+</ul>
+<p><strong>Học được gì</strong>: Thực hiện biểu đồ Radar, phân tích đa chiều</p>
+<h2>10. Bảng dữ liệu đơn giản (Simple Dashboard)</h2>
+<p><strong>Độ khó</strong>: ⭐⭐⭐ (Nâng cao)<br />
+<strong>Thời gian dự kiến</strong>: 3-4 giờ<br />
+<strong>Kỹ thuật cốt lõi</strong>: Đa biểu đồ, thiết kế bố cục</p>
+<p><strong>Mô tả chức năng</strong>:</p>
+<ul>
+<li>Thẻ số liệu (Tổng số, Tỷ lệ tăng trưởng v.v.)</li>
+<li>Tổ hợp nhiều biểu đồ</li>
+<li>Bố cục Responsive</li>
+<li>Có thể chọn khoảng thời gian</li>
+</ul>
+<p><strong>Học được gì</strong>: Thiết kế Dashboard, cơ bản về màn hình dữ liệu lớn</p>
+<h2>Thư viện biểu đồ thường dùng</h2>
+<table>
+<thead>
+<tr>
+<th>Tên thư viện</th>
+<th>Đặc điểm</th>
+<th>Phù hợp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chart.js</td>
+<td>Đơn giản dễ dùng</td>
+<td>Nhập môn hàng đầu</td>
+</tr>
+<tr>
+<td>ECharts</td>
+<td>Chức năng mạnh mẽ</td>
+<td>Biểu đồ phức tạp</td>
+</tr>
+<tr>
+<td>D3.js</td>
+<td>Linh hoạt nhất</td>
+<td>Tùy biến cao độ</td>
+</tr>
+<tr>
+<td>ApexCharts</td>
+<td>Hiện đại đẹp mắt</td>
+<td>Chú trọng thẩm mỹ</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Lời khuyên
+Hãy bắt đầu với <strong>Chart.js</strong>, tài liệu rõ ràng, dễ làm quen nhất. Khi quen rồi hãy thử các thư viện khác.
+:::</p>
+<h2>Nguyên tắc cốt lõi của trực quan hóa dữ liệu</h2>
+<ol>
+<li><strong>Rõ ràng</strong>: Nhìn một cái hiểu ngay đang nói gì</li>
+<li><strong>Chính xác</strong>: Dữ liệu không được gây hiểu lầm</li>
+<li><strong>Thẩm mỹ</strong>: Màu sắc hài hòa, bố cục hợp lý</li>
+<li><strong>Tương tác</strong>: Di chuột vào hiển thị chi tiết</li>
+</ol>
+<p>::: warning Chú ý
+Khi làm dự án trực quan hóa dữ liệu, hãy dùng dữ liệu giả để dựng biểu đồ trước, cuối cùng hãy nối vào dữ liệu thật. Như vậy lặp lại (iterate) sẽ nhanh hơn.
+:::</p>
+</body>
+</html>

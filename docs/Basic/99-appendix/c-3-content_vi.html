@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C 3 Content</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "C.3 Liên quan đến Kỹ thuật"</h2>
+<p><img alt="99-appendix_c-3-content.png" src="../../public/images/Basic/99-appendix_c-3-content.png" /></p>
+<h1>C.3 Liên quan đến Kỹ thuật</h1>
+<p>Đây là các thuật ngữ kỹ thuật bạn sẽ gặp khi làm trang web / ứng dụng.</p>
+<h2>HTML</h2>
+<p><strong>Viết tắt của</strong>: HyperText Markup Language (Ngôn ngữ đánh dấu siêu văn bản)</p>
+<p><strong>Giải thích một câu</strong>: Định nghĩa trang web "có nội dung gì".</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như cấu trúc của ngôi nhà — đâu là phòng khách, đâu là phòng ngủ, đâu là nhà bếp.</p>
+<p><strong>Trông như thế nào</strong>:</p>
+<pre><code class="language-html">&lt;h1&gt;Đây là tiêu đề&lt;/h1&gt;
+&lt;p&gt;Đây là một đoạn văn&lt;/p&gt;
+&lt;button&gt;Đây là nút bấm&lt;/button&gt;
+</code></pre>
+<h2>CSS</h2>
+<p><strong>Viết tắt của</strong>: Cascading Style Sheets (Bảng kiểu xếp tầng)</p>
+<p><strong>Giải thích một câu</strong>: Định nghĩa trang web "trông như thế nào".</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như trang trí nội thất — tường màu gì, ghế sofa to cỡ nào, đèn đặt ở đâu.</p>
+<p><strong>Trông như thế nào</strong>:</p>
+<pre><code class="language-css">h1 {
+  color: blue; /* Màu chữ */
+  font-size: 24px; /* Cỡ chữ */
+}
+</code></pre>
+<h2>JavaScript</h2>
+<p><strong>Viết tắt</strong>: JS</p>
+<p><strong>Giải thích một câu</strong>: Để trang web "có thể chuyển động", có tương tác.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như đồ điện và công tắc trong nhà — bấm công tắc đèn sẽ sáng, ấn nút tivi sẽ mở.</p>
+<p><strong>Trông như thế nào</strong>:</p>
+<pre><code class="language-javascript">// Bấm nút xong hiện thông báo
+button.onclick = function () {
+  alert(&quot;Bạn đã bấm nút!&quot;);
+};
+</code></pre>
+<h2>Mối quan hệ giữa HTML + CSS + JS</h2>
+<pre><code class="language-mermaid">flowchart LR
+    A[HTML] --&gt;|Cấu trúc| D[Trang web hoàn chỉnh]
+    B[CSS] --&gt;|Giao diện| D
+    C[JavaScript] --&gt;|Tương tác| D
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Công nghệ</th>
+<th>Phụ trách</th>
+<th>Ví dụ tương tự</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTML</td>
+<td>Cấu trúc nội dung</td>
+<td>Khung nhà</td>
+</tr>
+<tr>
+<td>CSS</td>
+<td>Giao diện bề ngoài</td>
+<td>Trang trí nội thất</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>Hành vi tương tác</td>
+<td>Đồ điện trong nhà</td>
+</tr>
+</tbody>
+</table>
+<h2>LocalStorage</h2>
+<p><strong>Giải thích một câu</strong>: Không gian lưu trữ cục bộ do trình duyệt cung cấp, dữ liệu được lưu trên máy tính của người dùng.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như ngăn kéo trong phòng bạn, đồ bỏ vào đó, đóng cửa lại lần sau mở ra vẫn còn.</p>
+<p><strong>Đặc điểm</strong>:</p>
+<ul>
+<li>Chỉ tồn tại trong trình duyệt của người dùng đó</li>
+<li>Tải lại trang, tắt trình duyệt dữ liệu vẫn còn</li>
+<li>Đổi trình duyệt hoặc máy tính khác thì không còn dữ liệu</li>
+<li>Phù hợp lưu các thiết lập cá nhân đơn giản, ghi chép, v.v.</li>
+</ul>
+<p><strong>Ví dụ sử dụng</strong>:</p>
+<pre><code class="language-javascript">// Lưu dữ liệu
+localStorage.setItem(&quot;name&quot;, &quot;Tiểu Minh&quot;);
+
+// Lấy dữ liệu
+const name = localStorage.getItem(&quot;name&quot;); // 'Tiểu Minh'
+
+// Xóa dữ liệu
+localStorage.removeItem(&quot;name&quot;);
+</code></pre>
+<h2>JSON</h2>
+<p><strong>Viết tắt của</strong>: JavaScript Object Notation</p>
+<p><strong>Giải thích một câu</strong>: Một định dạng dữ liệu, dùng để lưu trữ và truyền tải dữ liệu.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như một "định dạng bảng biểu" thông dụng, ai cũng đọc hiểu được.</p>
+<p><strong>Trông như thế nào</strong>:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Tiểu Minh&quot;,
+  &quot;age&quot;: 25,
+  &quot;hobbies&quot;: [&quot;Đọc sách&quot;, &quot;Chạy bộ&quot;, &quot;Lập trình&quot;]
+}
+</code></pre>
+<p><strong>Công dụng thường gặp</strong>:</p>
+<ul>
+<li>Dữ liệu trả về từ API</li>
+<li>File cấu hình</li>
+<li>LocalStorage lưu trữ dữ liệu phức tạp</li>
+</ul>
+<h2>Biến môi trường (Environment Variables)</h2>
+<p><strong>Giải thích một câu</strong>: Nơi lưu giữ thông tin nhạy cảm (như khóa bí mật, mật khẩu), không viết trực tiếp vào trong code.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như két sắt. Mật khẩu để trong két sắt, chứ không dán lên cửa.</p>
+<p><strong>Tại sao quan trọng</strong>:</p>
+<ul>
+<li>Khóa bí mật viết trong code, một khi code công khai, khóa sẽ bị lộ</li>
+<li>Biến môi trường sẽ không bị upload lên GitHub</li>
+<li>Là thực tiễn tốt nhất về bảo mật</li>
+</ul>
+<p><strong>Cách dùng thông thường</strong>:</p>
+<ol>
+<li>Tạo file <code>.env</code> lưu thông tin nhạy cảm</li>
+<li>Trong code đọc qua <code>process.env.XXX</code></li>
+<li>Thêm file <code>.env</code> vào <code>.gitignore</code>, không upload lên</li>
+</ol>
+<h2>Tên miền (Domain)</h2>
+<p><strong>Giải thích một câu</strong>: Địa chỉ của trang web, để người khác tìm thấy trang web của bạn.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như số nhà của bạn. Có địa chỉ, người khác mới tìm đến nhà bạn được.</p>
+<p><strong>Cấu trúc</strong>:</p>
+<pre><code>https://www.example.com/about
+  │       │      │      │
+Giao thức Tên miền phụ Tên miền chính Đường dẫn
+</code></pre>
+<p><strong>Cách có tên miền</strong>:</p>
+<ul>
+<li>Mua tại nhà cung cấp tên miền (như Mắt Bão, Tenten, Godaddy, v.v.)</li>
+<li>Kết nối vào nền tảng triển khai của bạn</li>
+</ul>
+<h2>Thiết kế tương thích (Responsive Design)</h2>
+<p><strong>Giải thích một câu</strong>: Để trang web hiển thị bình thường trên các màn hình kích thước khác nhau.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như nước, có thể thích ứng với các vật chứa hình dạng khác nhau.</p>
+<p><strong>Cách thực hiện</strong>:</p>
+<ul>
+<li>Sử dụng phần trăm thay vì pixel cố định</li>
+<li>Sử dụng Media Query viết style cho các màn hình khác nhau</li>
+<li>Sử dụng bố cục Flexbox/Grid</li>
+</ul>
+<p><strong>Tại sao quan trọng</strong>:
+Hiện nay mọi người dùng điện thoại, máy tính bảng, máy tính để truy cập web, thiết kế tương thích đảm bảo mọi người dùng đều có trải nghiệm tốt.</p>
+</body>
+</html>

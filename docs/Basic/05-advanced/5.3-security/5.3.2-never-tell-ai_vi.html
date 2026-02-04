@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.3.2 Never Tell Ai</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.3.2 Vùng cấm: Không bao giờ nói với AI"
+order: 4</p>
+<hr />
+<p><img alt="05-advanced_5.3-security_5.3.2-never-tell-ai.png" src="../../../public/images/Basic/05-advanced_5.3-security_5.3.2-never-tell-ai.png" /></p>
+<h1>5.3.2 Vùng cấm: Những thứ không bao giờ nói với AI</h1>
+<p>Sau bài học này, bạn sẽ nắm được:</p>
+<ul>
+<li>Những thông tin nào tuyệt đối không được gửi cho AI</li>
+<li>Tại sao những thông tin này lại mang đến rủi ro</li>
+<li>Nếu đã lỡ gửi rồi thì phải làm sao</li>
+<li>Cách dùng AI xử lý các kịch bản nhạy cảm một cách an toàn</li>
+</ul>
+<h2>Danh sách cấm tuyệt đối</h2>
+<p><strong>Không bao giờ</strong> gửi những nội dung sau khi trò chuyện với AI:</p>
+<table>
+<thead>
+<tr>
+<th>Loại</th>
+<th>Ví dụ</th>
+<th>Tại sao nguy hiểm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Khóa API</td>
+<td><code>sk-abc123...</code>, <code>AKIA...</code></td>
+<td>Có thể bị dùng để tiêu thụ tài khoản của bạn, hoặc truy cập dịch vụ đám mây của bạn</td>
+</tr>
+<tr>
+<td>Chuỗi kết nối DB</td>
+<td><code>postgres://user:pass@host/db</code></td>
+<td>Kẻ tấn công có thể truy cập trực tiếp cơ sở dữ liệu của bạn</td>
+</tr>
+<tr>
+<td>Mật khẩu</td>
+<td>Bất kỳ mật khẩu thật nào</td>
+<td>Danh tính bị đánh cắp, tài khoản bị xâm nhập</td>
+</tr>
+<tr>
+<td>Khóa riêng/Chứng chỉ</td>
+<td><code>-----BEGIN RSA PRIVATE KEY-----</code></td>
+<td>Có thể dùng để giả mạo danh tính của bạn, xâm nhập hệ thống của bạn</td>
+</tr>
+<tr>
+<td>Thông tin cá nhân (PII)</td>
+<td>Số CMND/CCCD, số thẻ ngân hàng, số bảo hiểm</td>
+<td>Lộ lọt quyền riêng tư, có thể bị dùng để lừa đảo</td>
+</tr>
+<tr>
+<td>Bí mật công ty/trường học</td>
+<td>Tài liệu nội bộ, dữ liệu khách hàng, bí mật kinh doanh</td>
+<td>Lộ lọt dữ liệu, có thể vi phạm thỏa thuận bảo mật</td>
+</tr>
+<tr>
+<td>Token/Session</td>
+<td>JWT token, chứng thực đăng nhập</td>
+<td>Có thể dùng để mạo danh trạng thái đăng nhập của bạn</td>
+</tr>
+</tbody>
+</table>
+<h2>Tại sao trò chuyện với AI không an toàn</h2>
+<p>Bạn có thể nghĩ: Tôi dùng dịch vụ AI chính quy, chắc không sao đâu nhỉ?</p>
+<p>Thực tế, rủi ro đến từ nhiều phía:</p>
+<ol>
+<li><strong>Dữ liệu huấn luyện</strong>: Một số dịch vụ AI có thể dùng cuộc hội thoại để huấn luyện mô hình, thông tin của bạn có thể bị "ghi nhớ"</li>
+<li><strong>Ghi nhật ký (Log)</strong>: Nội dung hội thoại có thể được ghi lại trên máy chủ</li>
+<li><strong>Lộ lọt dữ liệu</strong>: Ngay cả công ty lớn cũng có thể xảy ra sự cố lộ lọt dữ liệu</li>
+<li><strong>Nhân viên truy cập</strong>: Trong một số trường hợp, nhân viên của nhà cung cấp dịch vụ có thể có quyền xem cuộc hội thoại</li>
+</ol>
+<p>::: danger Nguyên tắc cốt lõi
+<strong>Hãy giả định rằng bất cứ thứ gì bạn gửi cho AI đều có thể bị công khai.</strong></p>
+<p>Nếu bạn không muốn dán một thông tin nào đó lên bảng thông báo, thì đừng gửi nó cho AI.
+:::</p>
+<h2>Các kịch bản nguy hiểm thường gặp</h2>
+<h3>Kịch bản 1: Nhờ AI kiểm tra khóa</h3>
+<pre><code>❌ Cách làm sai:
+&quot;Giúp tôi kiểm tra định dạng OpenAI API Key này có đúng không: sk-proj-abc123xyz...&quot;
+
+✅ Cách làm đúng:
+&quot;Định dạng của OpenAI API Key trông như thế nào?&quot;
+</code></pre>
+<h3>Kịch bản 2: Nhờ AI gỡ lỗi kết nối</h3>
+<pre><code>❌ Cách làm sai:
+&quot;Kết nối cơ sở dữ liệu của tôi thất bại, chuỗi kết nối là postgres://admin:MyP@ssw0rd@db.example.com/mydb&quot;
+
+✅ Cách làm đúng:
+&quot;Kết nối PostgreSQL của tôi thất bại, thông tin lỗi là 'connection refused', nguyên nhân có thể là gì?&quot;
+</code></pre>
+<h3>Kịch bản 3: Nhờ AI viết file cấu hình</h3>
+<pre><code>❌ Cách làm sai:
+&quot;Giúp tôi viết một file .env, khóa Stripe của tôi là sk_live_xxx...&quot;
+
+✅ Cách làm đúng:
+&quot;Giúp tôi viết một mẫu file .env, bao gồm mục cấu hình Stripe, dùng chỗ giữ chỗ (placeholder) để biểu thị&quot;
+</code></pre>
+<h2>Nếu đã lỡ gửi rồi thì làm sao</h2>
+<p>Nếu bạn vô tình gửi thông tin nhạy cảm, hãy thực hiện ngay các bước sau:</p>
+<table>
+<thead>
+<tr>
+<th>Bước</th>
+<th>Hành động</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Thay đổi ngay lập tức</strong></td>
+<td>Thay đổi khóa/mật khẩu bị lộ, đừng đợi "khi nào rảnh tính sau"</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Kiểm tra lịch sử dùng</strong></td>
+<td>Xem nhật ký sử dụng của dịch vụ liên quan, xem có hoạt động bất thường không</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Cài đặt cảnh báo</strong></td>
+<td>Nếu dịch vụ hỗ trợ, hãy bật cảnh báo sử dụng bất thường</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Xóa hội thoại</strong></td>
+<td>Nếu dịch vụ AI hỗ trợ, hãy xóa cuộc hội thoại chứa thông tin nhạy cảm</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Ghi nhớ bài học</strong></td>
+<td>Cẩn thận hơn vào lần sau</td>
+</tr>
+</tbody>
+</table>
+<h2>Giải pháp thay thế an toàn</h2>
+<p>Vậy, làm sao để nhờ AI xử lý các kịch bản liên quan đến thông tin nhạy cảm?</p>
+<p><strong>Sử dụng chỗ giữ chỗ (Placeholder)</strong>:</p>
+<pre><code class="language-javascript">// Nhờ AI giúp bạn viết code như thế này:
+const apiKey = process.env.API_KEY; // Đọc từ biến môi trường
+const dbUrl = process.env.DATABASE_URL; // Đừng hardcode (viết cứng)
+
+// Thay vì:
+const apiKey = &quot;sk-khóa thật&quot;; // Tuyệt đối đừng làm thế này
+</code></pre>
+<p><strong>Chỉ mô tả vấn đề, không để lộ dữ liệu</strong>:</p>
+<pre><code>✅ &quot;Gọi API của tôi trả về lỗi 401, nguyên nhân có thể là gì?&quot;
+✅ &quot;Làm sao để xác minh một JWT token đã hết hạn hay chưa?&quot;
+✅ &quot;Kết nối cơ sở dữ liệu bị timeout thường rà soát thế nào?&quot;
+</code></pre>
+<p>::: tip Ghi nhớ
+AI không cần nhìn thấy khóa thật của bạn mới giúp bạn giải quyết vấn đề được.</p>
+<p>Giống như bạn hỏi bác sĩ "đau đầu thì làm sao", không cần phải đọc số bệnh án của bạn cho AI.
+:::</p>
+<p>→ <a href="./5.3.3-code-risks_vi.html">5.3.3 Mối nguy an toàn trong code</a></p>
+</body>
+</html>

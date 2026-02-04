@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.2.1 Why Deploy</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: '5.2.1 Tại sao phải "triển khai trực tuyến"'
+order: 2</p>
+<hr />
+<p><img alt="05-advanced_5.2-deployment_5.2.1-why-deploy.png" src="../../../public/images/Basic/05-advanced_5.2-deployment_5.2.1-why-deploy.png" /></p>
+<h1>5.2.1 Tại sao phải "triển khai trực tuyến"</h1>
+<p>Trong chương 4, bạn đã tự tay làm một danh sách việc cần làm. Nó có thể thêm nhiệm vụ, xóa nhiệm vụ, đánh dấu hoàn thành, và dữ liệu có thể được lưu lại. Đây đã là một công cụ thực sự có thể sử dụng được.</p>
+<p>Nhưng có một vấn đề: nó chỉ có thể chạy trên máy tính của bạn.</p>
+<p>Muốn cho bạn bè xem thứ bạn làm? Hoặc là đưa máy tính cho họ, hoặc là quay màn hình gửi qua. Muốn dùng trên điện thoại? Không làm được. Muốn dùng trên máy tính công ty? Cũng không được.</p>
+<p><strong>Triển khai</strong>, chính là đưa dự án của bạn lên internet, để nó có một địa chỉ web thực sự.</p>
+<h2>Triển khai là gì</h2>
+<p>Dùng một ví dụ so sánh để hiểu:</p>
+<ul>
+<li>Bạn phát triển cục bộ, giống như nấu ăn ở nhà, chỉ người nhà ăn được</li>
+<li>Triển khai trực tuyến, giống như mở một nhà hàng, bất kỳ ai cũng có thể đến nếm thử</li>
+</ul>
+<p>Về mặt kỹ thuật, triển khai là đưa code của bạn lên một máy chủ chạy 24 giờ. Nhưng bạn không cần tự mua máy chủ, hiện nay có rất nhiều nền tảng miễn phí giúp bạn làm việc này.</p>
+<h2>Các kịch bản sử dụng cho các nhóm người khác nhau</h2>
+<table>
+<thead>
+<tr>
+<th>Bạn là ai</th>
+<th>Làm được gì sau khi triển khai</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Học sinh/Sinh viên</td>
+<td>Đưa bài tập lên mạng, nộp một đường link cho giáo viên, chuyên nghiệp hơn chụp ảnh màn hình nhiều</td>
+</tr>
+<tr>
+<td>Người đi làm</td>
+<td>Làm một công cụ hiệu suất, dùng được cả ở công ty và ở nhà, dùng được cả trên điện thoại</td>
+</tr>
+<tr>
+<td>Làm công cụ cho người nhà</td>
+<td>Bố mẹ dùng điện thoại quét mã là mở được, không cần dạy họ cài phần mềm</td>
+</tr>
+<tr>
+<td>Người học</td>
+<td>Tích lũy hồ sơ năng lực (portfolio), mỗi dự án đều có địa chỉ thực, khi xin việc rất có giá trị</td>
+</tr>
+<tr>
+<td>Người khởi nghiệp</td>
+<td>Nhanh chóng kiểm chứng ý tưởng, để người dùng tiềm năng dùng thử, thu thập phản hồi thực tế</td>
+</tr>
+</tbody>
+</table>
+<h2>Những gì bạn nhận được sau khi triển khai</h2>
+<ul>
+<li>Một địa chỉ web thực sự (như <code>my-todo.zeabur.app</code>)</li>
+<li>Truy cập được trên mọi thiết bị, bao gồm điện thoại, máy tính bảng</li>
+<li>Có thể chia sẻ cho bất kỳ ai, chỉ cần gửi đường link</li>
+<li>Trực tuyến 24 giờ, bạn tắt máy tính người khác vẫn truy cập được</li>
+<li>Tự động đồng bộ sau khi cập nhật code, không cần thao tác thủ công</li>
+</ul>
+<h2>Triển khai đơn giản đến mức nào</h2>
+<p>Có thể bạn thấy "triển khai" nghe rất kỹ thuật, rất phức tạp. Thực tế, các nền tảng triển khai hiện nay đã đơn giản hóa quy trình đến mức tối đa.</p>
+<p>Bạn chỉ cần làm ba bước:</p>
+<ol>
+<li>Tải code lên GitHub (Nếu bạn đã làm theo bài 5.1, bước này đã xong)</li>
+<li>Đăng nhập vào nền tảng triển khai, chọn dự án của bạn</li>
+<li>Nhấn triển khai, đợi 1-3 phút</li>
+</ol>
+<p>Không cần cấu hình máy chủ, không cần nhớ các lệnh phức tạp, chỉ là vài cú nhấp chuột.</p>
+<p>::: tip Bạn gần thành công hơn bạn tưởng
+Nếu bạn đã hoàn thành danh sách việc cần làm ở chương 4, và đã tải code lên GitHub theo bài 5.1, thì bạn chỉ còn cách "để cả thế giới truy cập tác phẩm của mình" đúng 5 phút nữa thôi.
+:::</p>
+<p>→ <a href="./5.2.2-platform-guide_vi.html">5.2.2 Hướng dẫn chọn nền tảng triển khai</a></p>
+</body>
+</html>

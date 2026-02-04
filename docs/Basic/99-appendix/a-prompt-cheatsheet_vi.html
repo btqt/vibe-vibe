@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Prompt Cheatsheet</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "A. Danh sách tra cứu nhanh Prompt"</h2>
+<p><img alt="99-appendix_a-prompt-cheatsheet.png" src="../../public/images/Basic/99-appendix_a-prompt-cheatsheet.png" /></p>
+<h1>A. Danh sách tra cứu nhanh Prompt</h1>
+<p>Tài liệu tham khảo nhanh khi viết Prompt. Giải thích chi tiết xem tại <a href="/Basic/03-technique/">Chương 3: Kỹ pháp</a>.</p>
+<h2>Tra cứu nhanh khung S.C.A.F.F.</h2>
+<table>
+<thead>
+<tr>
+<th>Yếu tố</th>
+<th>Ý nghĩa</th>
+<th>Nhắc nhở một câu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>S</strong> - Situation</td>
+<td>Tình huống bối cảnh</td>
+<td>Bạn đang làm dự án gì? Dùng công nghệ gì?</td>
+</tr>
+<tr>
+<td><strong>C</strong> - Challenge</td>
+<td>Thách thức cụ thể</td>
+<td>Hiện tại đang kẹt ở đâu? Cần giải quyết vấn đề gì?</td>
+</tr>
+<tr>
+<td><strong>A</strong> - Ask</td>
+<td>Yêu cầu rõ ràng</td>
+<td>Bạn muốn AI làm gì? Đầu ra là gì?</td>
+</tr>
+<tr>
+<td><strong>F</strong> - Format</td>
+<td>Định dạng đầu ra</td>
+<td>Muốn code? Muốn giải thích? Hay muốn danh sách?</td>
+</tr>
+<tr>
+<td><strong>F</strong> - Filter</td>
+<td>Điều kiện lọc</td>
+<td>Cái gì không được làm? Có ràng buộc gì không?</td>
+</tr>
+</tbody>
+</table>
+<h2>Các điểm chính trong kịch bản thường gặp</h2>
+<h3>Tạo dự án</h3>
+<ul>
+<li>Nói rõ: Làm cái gì, cho ai dùng, tính năng cốt lõi (trong vòng 3 cái)</li>
+<li>Bắt đầu từ phiên bản đơn giản nhất trước</li>
+</ul>
+<h3>Sửa đổi code</h3>
+<ul>
+<li>Chỉ rõ vị trí: File nào, hàm nào</li>
+<li>Nói rõ: Hiện tại thế nào, muốn sửa thành thế nào</li>
+<li>Thêm một câu: "Chỉ sửa chỗ này, chỗ khác giữ nguyên"</li>
+</ul>
+<h3>Sửa lỗi (Fix bug)</h3>
+<ul>
+<li>Sao chép toàn bộ thông tin lỗi (hữu dụng gấp 100 lần so với nói "lỗi rồi")</li>
+<li>Giải thích: Lỗi xuất hiện khi thực hiện thao tác gì</li>
+</ul>
+<h3>Giải thích code</h3>
+<ul>
+<li>Dán code trực tiếp vào, hỏi "Đoạn code này đang làm gì"</li>
+<li>Có thể hỏi thêm: "Tại sao lại viết như thế này"</li>
+</ul>
+<h3>Tối ưu hóa code</h3>
+<ul>
+<li>Giải thích mục tiêu tối ưu: Dễ đọc? Hiệu năng? Hay giảm lặp lại?</li>
+<li>Để AI giải thích đã sửa những gì</li>
+</ul>
+<h2>Mẹo nhỏ nâng cao hiệu quả</h2>
+<table>
+<thead>
+<tr>
+<th>Mẹo</th>
+<th>Kịch bản áp dụng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cho 1-2 ví dụ</td>
+<td>Khi AI luôn hiểu sai ý đồ của bạn</td>
+</tr>
+<tr>
+<td>Để AI "nghĩ một chút rồi trả lời"</td>
+<td>Logic phức tạp, nhiệm vụ nhiều bước</td>
+</tr>
+<tr>
+<td>Để AI tự kiểm tra</td>
+<td>Khi không yên tâm lắm với code được tạo ra</td>
+</tr>
+<tr>
+<td>Hỏi từng bước</td>
+<td>Hỏi quá nhiều một lúc AI dễ bị loạn</td>
+</tr>
+</tbody>
+</table>
+<h2>Hãy nhớ điều này</h2>
+<blockquote>
+<p><strong>Cốt lõi của Prompt là "nói rõ ràng", không phải "ốp khuôn mẫu".</strong></p>
+<p>Sau khi học được khung tư duy, cứ dùng lời của chính bạn diễn đạt là được.</p>
+</blockquote>
+</body>
+</html>

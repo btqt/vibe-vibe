@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.3.4 Checklist</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.3.4 Danh sách kiểm tra an toàn cho người mới"
+order: 6</p>
+<hr />
+<p><img alt="05-advanced_5.3-security_5.3.4-checklist.png" src="../../../public/images/Basic/05-advanced_5.3-security_5.3.4-checklist.png" /></p>
+<h1>5.3.4 Danh sách kiểm tra an toàn cho người mới</h1>
+<p>Qua bài học này, bạn sẽ nhận được:</p>
+<ul>
+<li>Một danh sách kiểm tra an toàn có thể dùng ngay</li>
+<li>Các điểm kiểm tra quan trọng trong các tình huống khác nhau</li>
+<li>Mẹo kiểm tra nhanh thực dụng</li>
+</ul>
+<h2>Danh sách kiểm tra trước khi Commit code</h2>
+<p>Mỗi lần chuẩn bị tải code lên GitHub hoặc các nền tảng khác, hãy kiểm tra:</p>
+<ul>
+<li>[ ] <strong>Không hardcode khóa</strong>: Trong code không có bất kỳ mật khẩu, API key hoặc Token thực nào</li>
+<li>[ ] <strong>.env đã được bỏ qua</strong>: File <code>.env</code> đã được thêm vào <code>.gitignore</code></li>
+<li>[ ] <strong>Không có nhật ký nhạy cảm</strong>: Trong <code>console.log</code> hoặc câu lệnh debug không xuất ra thông tin nhạy cảm</li>
+<li>[ ] <strong>Không lộ lọt dữ liệu kiểm thử</strong>: Code kiểm thử không sử dụng dữ liệu người dùng thật hoặc khóa thật</li>
+</ul>
+<h2>Danh sách kiểm tra trước khi Triển khai</h2>
+<p>Trước khi triển khai dự án lên internet, kiểm tra thêm:</p>
+<ul>
+<li>[ ] <strong>Biến môi trường đã cấu hình</strong>: Trên nền tảng triển khai đã thiết lập đúng tất cả biến môi trường cần thiết</li>
+<li>[ ] <strong>Chế độ debug đã tắt</strong>: Môi trường production không bật chế độ debug</li>
+<li>[ ] <strong>Thông tin lỗi đã đơn giản hóa</strong>: Trang lỗi không để lộ thông tin kỹ thuật chi tiết</li>
+<li>[ ] <strong>HTTPS đã bật</strong>: Trang web sử dụng HTTPS thay vì HTTP</li>
+</ul>
+<h2>Danh sách kiểm tra định kỳ</h2>
+<p>Cách một khoảng thời gian (ví dụ hàng tháng), hãy xem lại:</p>
+<ul>
+<li>[ ] <strong>Khóa có cần luân chuyển không</strong>: Các khóa sử dụng lâu dài có nên thay đổi không</li>
+<li>[ ] <strong>Phụ thuộc có cần cập nhật không</strong>: Các thư viện dự án sử dụng có bản cập nhật an toàn nào không</li>
+<li>[ ] <strong>Phân quyền có hợp lý không</strong>: Quyền hạn của API key có giới hạn trong phạm vi cần thiết không</li>
+</ul>
+<h2>Mẹo kiểm tra nhanh</h2>
+<h3>Cách 1: Tìm kiếm từ khóa nhạy cảm</h3>
+<p>Trong trình biên tập code, dùng chức năng tìm kiếm để tìm các từ khóa này:</p>
+<pre><code>password
+secret
+api_key
+apiKey
+token
+sk-
+pk-
+AKIA
+-----BEGIN
+</code></pre>
+<p>Nếu kết quả tìm kiếm xuất hiện nội dung trông giống khóa thật (thay vì tham chiếu kiểu <code>process.env.XXX</code>), thì cần xử lý ngay.</p>
+<h3>Cách 2: Kiểm tra file sắp commit</h3>
+<p>Nếu bạn dùng Git, trước khi commit hãy chạy:</p>
+<pre><code class="language-bash">git diff --cached
+</code></pre>
+<p>Lệnh này sẽ hiển thị tất cả thay đổi bạn sắp commit. Lướt nhanh qua, xác nhận không có thông tin nhạy cảm.</p>
+<h3>Cách 3: Kiểm tra .gitignore có hiệu lực không</h3>
+<p>Xác nhận các file nhạy cảm thực sự đã được bỏ qua:</p>
+<pre><code class="language-bash">git status
+</code></pre>
+<p>Nếu file <code>.env</code> xuất hiện trong danh sách, nghĩa là nó chưa được bỏ qua đúng cách.</p>
+<h2>Xử lý vấn đề thường gặp</h2>
+<h3>Vấn đề: Tôi đã lỡ commit file .env</h3>
+<p><strong>Các bước giải quyết</strong>:</p>
+<ol>
+<li>Đầu tiên, <strong>thay đổi ngay lập tức tất cả các khóa đã bị lộ</strong> (đây là điều quan trọng nhất)</li>
+<li>Thêm <code>.env</code> vào <code>.gitignore</code></li>
+<li>Xóa file đó khỏi sự theo dõi của Git (nhưng không xóa file cục bộ):
+   <code>bash
+   git rm --cached .env</code></li>
+<li>Commit thay đổi này:
+   <code>bash
+   git commit -m "Xóa file nhạy cảm"</code></li>
+</ol>
+<p>::: warning Nhắc nhở quan trọng
+Ngay cả khi bạn xóa file, lịch sử Git vẫn lưu giữ nó. Nếu kho chứa là công khai, khóa đã bị lộ.</p>
+<p><strong>Bắt buộc phải thay đổi khóa, không có ngoại lệ.</strong>
+:::</p>
+<h3>Vấn đề: Tôi không chắc một chuỗi có phải là khóa không</h3>
+<p>Tiêu chuẩn phán đoán:</p>
+<table>
+<thead>
+<tr>
+<th>Đặc điểm</th>
+<th>Có thể là khóa</th>
+<th>Có thể không phải khóa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Độ dài</td>
+<td>Khá dài (20+ ký tự)</td>
+<td>Khá ngắn</td>
+</tr>
+<tr>
+<td>Nội dung</td>
+<td>Chữ số trông ngẫu nhiên</td>
+<td>Từ có nghĩa rõ ràng</td>
+</tr>
+<tr>
+<td>Tiền tố</td>
+<td>Có tiền tố đặc thù như <code>sk-</code>, <code>AKIA</code></td>
+<td>Tiền tố thông thường</td>
+</tr>
+<tr>
+<td>Vị trí</td>
+<td>Được gán cho biến kiểu <code>API_KEY</code></td>
+<td>Biến thông thường</td>
+</tr>
+</tbody>
+</table>
+<p>Nếu vẫn không chắc chắn, <strong>thà nhầm còn hơn bỏ sót, hãy coi nó là khóa</strong>.</p>
+<h2>Hình thành thói quen</h2>
+<p>Kiểm tra an toàn không tốn nhiều thời gian. Một khi đã thành thói quen, mỗi lần trước khi commit dành 30 giây lướt qua, là có thể tránh được phần lớn vấn đề.</p>
+<p>::: tip Một thói quen tốt
+Mỗi khi thấy trong code do AI tạo ra có chuỗi ký tự dài giống khóa, phản ứng đầu tiên nên là: "Đây là khóa thật hay là chỗ giữ chỗ?"
+:::</p>
+<p>→ <a href="./5.3.5-slopsquatting_vi.html">5.3.5 Thư viện AI đề xuất có an toàn không</a></p>
+</body>
+</html>

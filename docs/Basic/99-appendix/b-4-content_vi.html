@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B 4 Content</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "B.4 Vấn đề về Công cụ"</h2>
+<p><img alt="99-appendix_b-4-content.png" src="../../public/images/Basic/99-appendix_b-4-content.png" /></p>
+<h1>B.4 Vấn đề về Công cụ</h1>
+<p>Phần này giải quyết các vấn đề bạn có thể gặp phải khi sử dụng các công cụ lập trình AI.</p>
+<h2>AI không hiểu nhu cầu của tôi</h2>
+<p><strong>Hiện tượng</strong>: Code AI đưa hoàn toàn không phải thứ bạn muốn.</p>
+<p><strong>Nguyên nhân có thể và cách giải quyết</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Nguyên nhân</th>
+<th>Cách giải quyết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mô tả quá mơ hồ</td>
+<td>Tăng thêm chi tiết cụ thể, ví dụ kích thước, màu sắc, vị trí</td>
+</tr>
+<tr>
+<td>Nhu cầu quá phức tạp</td>
+<td>Chia nhỏ thành nhiều nhu cầu con, làm từng bước một</td>
+</tr>
+<tr>
+<td>Thiếu ngữ cảnh</td>
+<td>Nói cho AI biết cấu trúc code hiện có, tech stack đang dùng</td>
+</tr>
+<tr>
+<td>Thuật ngữ không chính xác</td>
+<td>Đổi cách diễn đạt, hoặc dùng ảnh chụp màn hình/trang web ví dụ để mô tả</td>
+</tr>
+</tbody>
+</table>
+<p><strong>So sánh ví dụ</strong>:</p>
+<pre><code class="language-markdown">❌ Mô tả không tốt:
+Làm một trang đẹp đẹp
+
+✅ Mô tả tốt:
+Làm một trang trưng bày sản phẩm.
+
+- Phần đầu là tiêu đề lớn &quot;Sổ chi tiêu thông minh&quot;, chữ trắng, nền xanh
+- Bên dưới là 3 thẻ giới thiệu tính năng, sắp xếp ngang
+- Mỗi thẻ có biểu tượng, tiêu đề, và một câu mô tả
+- Dưới cùng có nút &quot;Tải xuống ngay&quot;
+- Phong cách tổng thể tối giản hiện đại
+</code></pre>
+<h2>Code AI tạo ra không chạy được</h2>
+<p><strong>Hiện tượng</strong>: Sau khi copy code của AI, trang báo lỗi hoặc trắng trơn.</p>
+<p><strong>Danh sách kiểm tra</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Mục kiểm tra</th>
+<th>Cách giải quyết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Code không hoàn chỉnh</td>
+<td>Bảo AI "Hãy đưa ra code hoàn chỉnh"</td>
+</tr>
+<tr>
+<td>Thiếu thư viện phụ thuộc</td>
+<td>Hỏi xem cần import thư viện hay framework nào không</td>
+</tr>
+<tr>
+<td>Code cần chạy trong môi trường đặc thù</td>
+<td>Xác nhận xem là code trình duyệt hay code Node.js</td>
+</tr>
+<tr>
+<td>Cấu trúc file sai</td>
+<td>Bảo AI giải thích code nên đặt ở file nào</td>
+</tr>
+<tr>
+<td>Copy paste bị lỗi</td>
+<td>Kiểm tra xem có copy thiếu gì không</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prompt sửa nhanh</strong>:</p>
+<pre><code class="language-markdown">Code bạn đưa chạy bị lỗi.
+
+Thông báo lỗi:
+[Dán thông báo lỗi]
+
+Hãy giúp tôi sửa, và đưa ra code hoàn chỉnh có thể chạy được.
+</code></pre>
+<h2>Triển khai thất bại</h2>
+<p><strong>Hiện tượng</strong>: Chạy ở máy mình thì được, nhưng đưa lên Vercel/Netlify thì không mở được.</p>
+<p><strong>Nguyên nhân thường gặp và cách giải quyết</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Loại lỗi</th>
+<th>Nguyên nhân có thể</th>
+<th>Cách giải quyết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Build failed</td>
+<td>Code có lỗi ngữ pháp</td>
+<td>Xem log triển khai (deploy log), sửa lỗi</td>
+</tr>
+<tr>
+<td>404 Not Found</td>
+<td>Vấn đề đường dẫn file</td>
+<td>Kiểm tra tên file viết hoa viết thường, đường dẫn có đúng không</td>
+</tr>
+<tr>
+<td>Trang trắng trơn</td>
+<td>JS báo lỗi</td>
+<td>Mở console trình duyệt xem lỗi</td>
+</tr>
+<tr>
+<td>Mất style</td>
+<td>Vấn đề đường dẫn CSS</td>
+<td>Dùng đường dẫn tương đối, đảm bảo file đã được upload</td>
+</tr>
+<tr>
+<td>API không hoạt động</td>
+<td>Chưa cấu hình biến môi trường</td>
+<td>Cấu hình biến môi trường trên nền tảng triển khai</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Danh sách kiểm tra trước khi triển khai</strong>:</p>
+<ul>
+<li>[ ] Tất cả file đều đã được lưu</li>
+<li>[ ] Chạy thử nghiệm ở máy mình bình thường</li>
+<li>[ ] Tên file không dùng tiếng Việt có dấu và ký tự đặc biệt</li>
+<li>[ ] Đường dẫn dùng đường dẫn tương đối (<code>./</code> hoặc <code>../</code>)</li>
+<li>[ ] File đầu vào là <code>index.html</code></li>
+</ul>
+<h2>AI lặp đi lặp lại một đáp án sai</h2>
+<p><strong>Hiện tượng</strong>: Hỏi đi hỏi lại, AI vẫn cứ đưa ra cùng một đoạn code (sai).</p>
+<p><strong>Chiến lược giải quyết</strong>:</p>
+<h3>Chiến lược 1: Đổi cách hỏi</h3>
+<pre><code class="language-markdown">Trước đó: Hãy giúp tôi thực hiện một cái slider ảnh
+
+Sau đó: Hãy dùng JavaScript thuần thực hiện một component xoay vòng ảnh, yêu cầu:
+
+- Tự động chuyển sang ảnh tiếp theo mỗi 3 giây
+- Bên dưới có chấm tròn chỉ thị ảnh hiện tại
+- Bấm vào chấm tròn có thể nhảy đến ảnh tương ứng
+</code></pre>
+<h3>Chiến lược 2: Loại trừ rõ ràng</h3>
+<pre><code class="language-markdown">Hãy giúp tôi thực hiện xxx, nhưng đừng dùng [phương án thất bại trước đó].
+</code></pre>
+<h3>Chiến lược 3: Cung cấp thêm thông tin</h3>
+<pre><code class="language-markdown">Tôi làm theo bạn nói rồi, nhưng vẫn báo lỗi. Tình hình cụ thể:
+
+- Code của tôi: [Dán vào]
+- Thông báo lỗi: [Dán vào]
+- Các bước thao tác của tôi: [Mô tả]
+</code></pre>
+<h3>Chiến lược 4: Đổi công cụ AI khác</h3>
+<p>Các công cụ AI khác nhau có thể có "điểm mù kiến thức" khác nhau. Nếu công cụ này cứ mãi không được, thử đổi cái khác xem sao.</p>
+<h2>Vấn đề mạng / Đăng nhập</h2>
+<table>
+<thead>
+<tr>
+<th>Vấn đề</th>
+<th>Cách giải quyết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trang tải chậm</td>
+<td>Kiểm tra mạng, thử dùng VPN</td>
+</tr>
+<tr>
+<td>Không đăng nhập được</td>
+<td>Xóa cache trình duyệt, đăng nhập lại</td>
+</tr>
+<tr>
+<td>Chat không phản hồi</td>
+<td>Tải lại trang, hoặc đợi vài phút</td>
+</tr>
+<tr>
+<td>Tin nhắn không gửi được</td>
+<td>Kiểm tra xem có vượt quá giới hạn sử dụng không</td>
+</tr>
+</tbody>
+</table>
+<h2>Tư duy chung giải quyết vấn đề công cụ</h2>
+<pre><code class="language-mermaid">flowchart LR
+    A[Gặp vấn đề công cụ] --&gt; B{Là vấn đề tại code hay tại công cụ?}
+    B --&gt;|Vấn đề Code| C[Để AI giúp bạn debug]
+    B --&gt;|Vấn đề Công cụ| D{Có thể đổi cách khác không?}
+    D --&gt;|Có| E[Đổi Prompt / Đổi công cụ]
+    D --&gt;|Không| F[Tra tài liệu / Tìm kiếm / Hỏi cộng đồng]
+</code></pre>
+<p>Ghi nhớ: <strong>Công cụ là để phục vụ bạn, không phải để làm khó bạn.</strong> Đổi tư thế khác thử lại xem!</p>
+</body>
+</html>

@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B 1 Content</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "B.1 Lỗi JavaScript"</h2>
+<p><img alt="99-appendix_b-1-content.png" src="../../public/images/Basic/99-appendix_b-1-content.png" /></p>
+<h1>B.1 Lỗi JavaScript</h1>
+<p>Gặp lỗi đừng hoảng! Phần này liệt kê các lỗi JavaScript thường gặp nhất, cùng với cách giải quyết tương ứng. Khi gặp vấn đề, cứ tra bảng này là được.</p>
+<h2>Lỗi undefined</h2>
+<p><strong>Thông báo lỗi</strong>:</p>
+<pre><code>Uncaught TypeError: Cannot read properties of undefined (reading 'xxx')
+</code></pre>
+<p><strong>Giải thích dân dã</strong>: Bạn đang cố dùng một thứ "không tồn tại". Giống như bạn hỏi "số điện thoại của Tiểu Minh", nhưng người tên Tiểu Minh không tồn tại.</p>
+<p><strong>Nguyên nhân thường gặp</strong>:
+| Nguyên nhân | Code ví dụ | Cách sửa |
+|------|----------|----------|
+| Biến chưa được gán giá trị | <code>let user; console.log(user.name)</code> | Kiểm tra xem biến có giá trị hay chưa |
+| Truy cập ngoài mảng | <code>arr[10]</code> nhưng mảng chỉ có 3 phần tử | Kiểm tra độ dài mảng |
+| Sai chính tả tên thuộc tính | <code>user.nmae</code> (đúng ra là <code>name</code>) | Kiểm tra chính tả tên thuộc tính |
+| Hàm không có giá trị trả về | <code>function get() {}</code> sau đó dùng giá trị trả về | Đảm bảo hàm có <code>return</code> |</p>
+<p><strong>Prompt sửa nhanh</strong>:</p>
+<pre><code class="language-markdown">Code của tôi bị lỗi: Cannot read properties of undefined (reading 'xxx')
+
+Lỗi xuất hiện ở dòng này: [Dán dòng code bị lỗi vào]
+
+Hãy giúp tôi phân tích nguyên nhân và sửa chữa.
+</code></pre>
+<h2>Lỗi null</h2>
+<p><strong>Thông báo lỗi</strong>:</p>
+<pre><code>Uncaught TypeError: Cannot read properties of null (reading 'xxx')
+</code></pre>
+<p><strong>Giải thích dân dã</strong>: Bạn đang cố dùng một thứ "chắc chắn là rỗng". Giống như một cái hộp rỗng, nhưng bạn lại muốn lấy đồ từ bên trong ra.</p>
+<p><strong>Nguyên nhân thường gặp</strong>:
+| Nguyên nhân | Code ví dụ | Cách sửa |
+|------|----------|----------|
+| Không tìm thấy phần tử DOM | <code>document.getElementById('btn')</code> trả về null | Kiểm tra ID có đúng không, hoặc phần tử có tồn tại không |
+| API trả về null | Backend trả về <code>null</code> | Thêm phán đoán giá trị rỗng |
+| LocalStorage không có dữ liệu | <code>JSON.parse(localStorage.getItem('data'))</code> | Thêm giá trị mặc định: <code>|| []</code> |</p>
+<p><strong>Prompt sửa nhanh</strong>:</p>
+<pre><code class="language-markdown">Code của tôi bị lỗi: Cannot read properties of null
+
+Tôi muốn lấy phần tử có ID là [xxx] trên trang, nhưng nó trả về null.
+
+Hãy giúp tôi kiểm tra nguyên nhân có thể là gì.
+</code></pre>
+<h2>TypeError</h2>
+<p><strong>Thông báo lỗi</strong>:</p>
+<pre><code>Uncaught TypeError: xxx is not a function
+</code></pre>
+<p><strong>Giải thích dân dã</strong>: Bạn lấy một thứ không phải là hàm ra để dùng như hàm. Giống như bạn bảo hòn đá "hát cho tôi nghe một bài".</p>
+<p><strong>Nguyên nhân thường gặp</strong>:
+| Nguyên nhân | Code ví dụ | Cách sửa |
+|------|----------|----------|
+| Tên biến đè lên tên hàm | Định nghĩa <code>let alert = 'hi'</code>, sau đó <code>alert('hello')</code> | Tránh dùng tên hàm có sẵn để đặt tên biến |
+| Sai chính tả tên phương thức | <code>arr.pushs(1)</code> (đúng ra là <code>push</code>) | Kiểm tra chính tả tên phương thức |
+| Gọi phương thức không tồn tại | Gọi phương thức chuỗi trên số | Kiểm tra kiểu dữ liệu |</p>
+<h2>ReferenceError</h2>
+<p><strong>Thông báo lỗi</strong>:</p>
+<pre><code>Uncaught ReferenceError: xxx is not defined
+</code></pre>
+<p><strong>Giải thích dân dã</strong>: Bạn dùng một biến chưa từng được định nghĩa. Giống như bạn nói "đưa cho tôi cái xxx", nhưng trong phòng hoàn toàn không có cái đó.</p>
+<p><strong>Nguyên nhân thường gặp</strong>:
+| Nguyên nhân | Code ví dụ | Cách sửa |
+|------|----------|----------|
+| Sai chính tả tên biến | <code>consle.log</code> (đúng ra là <code>console</code>) | Kiểm tra chính tả |
+| Vấn đề phạm vi biến (scope) | Truy cập biến trong hàm từ bên ngoài hàm | Hiểu về scope, hoặc định nghĩa biến ra bên ngoài |
+| Quên import thư viện | Dùng jQuery nhưng chưa import | Đảm bảo dependencies đã được tải |</p>
+<h2>SyntaxError</h2>
+<p><strong>Thông báo lỗi</strong>:</p>
+<pre><code>Uncaught SyntaxError: Unexpected token 'xxx'
+</code></pre>
+<p><strong>Giải thích dân dã</strong>: "Ngữ pháp" code viết sai. Giống như tiếng Việt thiếu dấu chấm câu, đọc không thông.</p>
+<p><strong>Nguyên nhân thường gặp</strong>:
+| Nguyên nhân | Code ví dụ | Cách sửa |
+|------|----------|----------|
+| Thiếu dấu ngoặc | <code>if (x &gt; 1 {</code> | Bù dấu ngoặc còn thiếu |
+| Thừa dấu phẩy | <code>[1, 2, 3,]</code> (một số trường hợp) | Xóa dấu phẩy thừa |
+| Dấu nháy không khớp | <code>'hello"</code> | Dùng cặp dấu nháy giống nhau |
+| Lỗi định dạng JSON | <code>{name: 'test'}</code> đúng ra là <code>{"name": "test"}</code> | Key của JSON phải dùng dấu nháy kép |</p>
+<p>::: tip Đặc điểm của lỗi ngữ pháp
+Lỗi ngữ pháp thường báo lỗi trước khi code chạy, và trình duyệt sẽ bảo bạn biết là ở dòng nào. Nhìn kỹ dòng đó và dòng bên trên nó, vấn đề thường nằm quanh đó.
+:::</p>
+<h2>Quy trình chung để kiểm tra lỗi</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[Nhìn thấy lỗi màu đỏ] --&gt; B[Sao chép thông báo lỗi]
+    B --&gt; C[Xem lỗi ở dòng nào]
+    C --&gt; D{Có hiểu không?}
+    D --&gt;|Có| E[Tự sửa]
+    D --&gt;|Không| F[Gửi thông báo lỗi cho AI]
+    F --&gt; G[AI đưa ra giải pháp]
+    G --&gt; H[Thử xem sao]
+    H --&gt; I[Đã giải quyết được chưa?]
+    I --&gt;|Rồi| J[Tiếp tục phát triển]
+    I --&gt;|Chưa| K[Gửi lỗi mới cho AI]
+    K --&gt; G
+</code></pre>
+<p>Ghi nhớ: <strong>Báo lỗi không đáng sợ, cứ copy paste cho AI là được</strong>.</p>
+</body>
+</html>

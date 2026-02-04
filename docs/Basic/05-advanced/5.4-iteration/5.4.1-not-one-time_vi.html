@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.4.1 Not One Time</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.4.1 Dự án của bạn không phải là dùng một lần"
+order: 2</p>
+<hr />
+<p><img alt="05-advanced_5.4-iteration_5.4.1-not-one-time.png" src="../../../public/images/Basic/05-advanced_5.4-iteration_5.4.1-not-one-time.png" /></p>
+<h1>5.4.1 Dự án của bạn không phải là dùng một lần</h1>
+<p>Qua bài học này, bạn sẽ hiểu:</p>
+<ul>
+<li>Tại sao "hoàn thành" chỉ là bước khởi đầu</li>
+<li>Sản phẩm thực tế tiến hóa từng bước như thế nào</li>
+<li>Cách dùng tư duy lặp lại (iterative thinking) để lập kế hoạch cho bước tiếp theo</li>
+</ul>
+<h2>Có thể bạn đang băn khoăn</h2>
+<p>"Danh sách việc cần làm đã làm xong ở chương 4 đã dùng được rồi, còn cần sửa gì nữa không?"</p>
+<p>Suy nghĩ này rất bình thường. Từ nhỏ chúng ta làm bài tập, nộp xong là xong. Nhưng làm công cụ thì khác - <strong>công cụ tốt dùng càng nhiều càng thấy hay, chứ không phải làm một lần là xong</strong>.</p>
+<h2>Nhìn vào những sản phẩm bạn dùng hàng ngày</h2>
+<p>WeChat (hoặc Zalo/Facebook) khi mới ra mắt trông như thế nào?</p>
+<table>
+<thead>
+<tr>
+<th>Thời gian</th>
+<th>Phiên bản</th>
+<th>Tính năng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tháng 1/2011</td>
+<td>1.0</td>
+<td>Chỉ gửi tin nhắn, gửi ảnh</td>
+</tr>
+<tr>
+<td>Tháng 4/2012</td>
+<td>4.0</td>
+<td>Thêm Khoảnh khắc (Moments)</td>
+</tr>
+<tr>
+<td>Tháng 8/2013</td>
+<td>5.0</td>
+<td>Thêm Thanh toán</td>
+</tr>
+<tr>
+<td>Tháng 1/2017</td>
+<td>Mini Program</td>
+<td>Sử dụng nhiều dịch vụ mà không cần tải App</td>
+</tr>
+</tbody>
+</table>
+<p>WeChat mất 6 năm để từ một công cụ chat đơn giản trở thành một siêu nền tảng.</p>
+<p>Taobao ban đầu chỉ là một trang web sơ sài, ảnh còn mờ. Những tính năng "Gợi ý cho bạn", "Livestream bán hàng" mà bạn dùng bây giờ, đều là được thêm vào từng chút một sau này.</p>
+<p><strong>Không có sản phẩm nào một bước mà lên mây cả.</strong> Danh sách việc cần làm của bạn cũng không ngoại lệ.</p>
+<h2>Tư duy bài tập một lần vs Tư duy tiến hóa liên tục</h2>
+<table>
+<thead>
+<tr>
+<th>Tâm thế bài tập một lần</th>
+<th>Tâm thế tiến hóa liên tục</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Làm xong là mặc kệ"</td>
+<td>"Làm xong là khởi điểm"</td>
+</tr>
+<tr>
+<td>"Phải hoàn hảo ngay lần đầu"</td>
+<td>"Dùng được trước, dùng tốt sau"</td>
+</tr>
+<tr>
+<td>"Càng nhiều tính năng càng tốt"</td>
+<td>"Giải quyết xong một vấn đề rồi tính tiếp"</td>
+</tr>
+<tr>
+<td>"Có bug (lỗi) nghĩa là mình làm sai"</td>
+<td>"Có bug nghĩa là mình tìm thấy điểm cần cải thiện"</td>
+</tr>
+</tbody>
+</table>
+<p>Tâm thế thứ hai, chính là tâm thế của người kiến tạo.</p>
+<h2>Vòng lặp cải tiến: Làm → Dùng → Sửa → Làm</h2>
+<pre><code>    ┌─────────────┐
+    │  Làm một bản │
+    └──────┬──────┘
+           │
+           ▼
+    ┌─────────────┐
+    │  Dùng thử   │
+    └──────┬──────┘
+           │
+           ▼
+    ┌─────────────┐
+    │ Phát hiện vấn đề │
+    └──────┬──────┘
+           │
+           ▼
+    ┌─────────────┐
+    │  Cải tiến nó │
+    └──────┬──────┘
+           │
+           └──────────────┐
+                          │
+           ┌──────────────┘
+           │
+           ▼
+      (Quay lại &quot;Làm một bản&quot;)
+</code></pre>
+<p>Mỗi vòng quay, công cụ của bạn lại tốt lên một chút.</p>
+<p>Điều này không phải do lần đầu bạn làm không tốt, mà là <strong>có những vấn đề chỉ khi dùng rồi mới phát hiện ra</strong>.</p>
+<h2>Ôn lại ba câu hỏi linh hồn: Hướng cải tiến của bạn</h2>
+<p>Còn nhớ "Ba câu hỏi linh hồn" ở chương 2 không?</p>
+<ul>
+<li><strong>Người dùng là ai?</strong> → Ai đang dùng danh sách việc cần làm của bạn? Bản thân bạn? Gia đình? Bạn cùng phòng?</li>
+<li><strong>Nỗi đau ở đâu?</strong> → Sau một thời gian sử dụng, điểm nào khiến bạn khó chịu?</li>
+<li><strong>Tại sao chọn bạn?</strong> → So với ghi chú có sẵn trên điện thoại, cái của bạn có gì đặc biệt?</li>
+</ul>
+<p>Ba câu hỏi này vẫn hữu dụng trong giai đoạn lặp lại (iteration).</p>
+<p>Khi bạn không biết bước tiếp theo nên sửa gì, hãy tự hỏi:</p>
+<ul>
+<li>Khi tôi dùng, bước nào phiền phức nhất?</li>
+<li>Tôi ước nó làm được gì mà hiện tại chưa làm được?</li>
+</ul>
+<p>Những câu trả lời đó chính là hướng cải tiến của bạn.</p>
+<h2>Điểm cốt lõi của bài này</h2>
+<ul>
+<li>Hoàn thành phiên bản đầu tiên chỉ là bắt đầu, không phải kết thúc</li>
+<li>Công cụ tốt đều được tiến hóa dần dần qua quá trình sử dụng</li>
+<li>Mỗi lần cải tiến chỉ cần giải quyết một vấn đề</li>
+<li>Ba câu hỏi linh hồn ở chương 2 có thể giúp bạn tìm ra hướng cải tiến</li>
+</ul>
+<p>::: tip Một tâm thế tốt
+Đừng nghĩ đến việc "một lần làm ra cái hoàn hảo".</p>
+<p>Làm ra → Dùng thử → Phát hiện vấn đề → Cải tiến nó.</p>
+<p>Đó chính là thường nhật của người kiến tạo.
+:::</p>
+<p>→ <a href="./5.4.2-feedback_vi.html">5.4.2 Thu thập phản hồi: Để người dùng nói cho bạn biết</a></p>
+</body>
+</html>

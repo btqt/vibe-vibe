@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.2.2 Platform Guide</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.2.2 Hướng dẫn chọn nền tảng triển khai"
+order: 3</p>
+<hr />
+<p><img alt="05-advanced_5.2-deployment_5.2.2-platform-guide.png" src="../../../public/images/Basic/05-advanced_5.2-deployment_5.2.2-platform-guide.png" /></p>
+<h1>5.2.2 Hướng dẫn chọn nền tảng triển khai</h1>
+<p>Có rất nhiều nền tảng triển khai, nhưng đối với người mới bắt đầu, tiêu chuẩn lựa chọn rất đơn giản: <strong>Miễn phí, đơn giản, dùng được</strong>.</p>
+<p>::: warning Lưu ý cho người dùng Trung Quốc đại lục
+Tên miền mặc định của Vercel và Netlify (<code>*.vercel.app</code> / <code>*.netlify.app</code>) bị nhiễm độc DNS tại Trung Quốc đại lục, truy cập trực tiếp sẽ thất bại hoặc rất chậm.</p>
+<p><strong>Gợi ý</strong>: Người dùng đại lục ưu tiên sử dụng Zeabur, tên miền miễn phí của nó (<code>*.zeabur.app</code>) có thể truy cập bình thường.
+:::</p>
+<h2>So sánh các nền tảng triển khai phổ biến năm 2025</h2>
+<table>
+<thead>
+<tr>
+<th>Nền tảng</th>
+<th>Hạn mức miễn phí</th>
+<th>Truy cập tại Đại lục</th>
+<th>Độ khó</th>
+<th>Phù hợp nhất</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Zeabur</strong></td>
+<td>Hạn mức $5/tháng</td>
+<td>Bình thường</td>
+<td>Đơn giản</td>
+<td><strong>Ưu tiên cho người dùng Đại lục</strong></td>
+</tr>
+<tr>
+<td><strong>Vercel</strong></td>
+<td>100GB băng thông/tháng</td>
+<td>Cần proxy</td>
+<td>Đơn giản</td>
+<td>Người dùng quốc tế, dự án Next.js</td>
+</tr>
+<tr>
+<td><strong>Netlify</strong></td>
+<td>100GB băng thông/tháng</td>
+<td>Cần proxy</td>
+<td>Đơn giản</td>
+<td>Web tĩnh</td>
+</tr>
+<tr>
+<td><strong>Maozi Cloud</strong> (Mũ Vân)</td>
+<td>Hoàn toàn miễn phí</td>
+<td>Bình thường</td>
+<td>Đơn giản</td>
+<td>Người dùng Đại lục, web tĩnh</td>
+</tr>
+<tr>
+<td><strong>EdgeOne Pages</strong></td>
+<td>Miễn phí trong đợt thử nghiệm công khai</td>
+<td>Bình thường</td>
+<td>Trung bình</td>
+<td>Người dùng Tencent Cloud</td>
+</tr>
+<tr>
+<td><strong>GitHub Pages</strong></td>
+<td>Hoàn toàn miễn phí</td>
+<td>Không ổn định</td>
+<td>Trung bình</td>
+<td>Trang chủ cá nhân, trang tài liệu</td>
+</tr>
+</tbody>
+</table>
+<h2>Chi tiết hạn mức miễn phí năm 2025</h2>
+<h3>Zeabur (Đề xuất)</h3>
+<ul>
+<li>Gói dùng thử miễn phí: hạn mức $5 mỗi tháng</li>
+<li>Định giá tài nguyên: Bộ nhớ khoảng $0.00025/GB-phút (khoảng $10.8/GB-tháng)</li>
+<li>vCPU: Miễn phí</li>
+<li>Lưu lượng mạng: $0.10/GB</li>
+<li>Đặc điểm: Đội ngũ người Trung Quốc, hỗ trợ tiếng Trung, hỗ trợ Alipay</li>
+</ul>
+<p>Đối với các dự án nhỏ như danh sách việc cần làm, hạn mức miễn phí là hoàn toàn đủ dùng.</p>
+<h3>Vercel</h3>
+<ul>
+<li>Gói Hobby (Miễn phí):</li>
+<li>100GB truyền tải dữ liệu nhanh/tháng</li>
+<li>1M yêu cầu Edge/tháng</li>
+<li>4 giờ thời gian CPU/tháng</li>
+<li>Tối đa 200 dự án</li>
+<li>Hạn chế: Chỉ dành cho mục đích phi thương mại</li>
+</ul>
+<h3>Netlify</h3>
+<ul>
+<li>Gói miễn phí:</li>
+<li>100GB băng thông/tháng</li>
+<li>300 phút thời gian build/tháng</li>
+<li>Hỗ trợ kéo thả để tải lên</li>
+</ul>
+<h2>Cách chọn</h2>
+<pre><code>Bạn có ở Trung Quốc đại lục không?
+├── Có → Sử dụng Zeabur (Ưu tiên) hoặc Maozi Cloud
+└── Không → Sử dụng Vercel (Ưu tiên) hoặc Netlify
+</code></pre>
+<p>Nếu bạn không chắc chắn, cứ làm theo hướng dẫn này sử dụng <strong>Zeabur</strong>. Đây là lựa chọn thân thiện nhất với người dùng đại lục hiện nay, thao tác cũng đủ đơn giản.</p>
+<h2>Lựa chọn của hướng dẫn này</h2>
+<table>
+<thead>
+<tr>
+<th>Kịch bản</th>
+<th>Nền tảng đề xuất</th>
+<th>Lý do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Người dùng Đại lục</td>
+<td>Zeabur</td>
+<td>Tên miền miễn phí truy cập được, giao diện tiếng Trung</td>
+</tr>
+<tr>
+<td>Người dùng quốc tế</td>
+<td>Vercel</td>
+<td>Phổ biến nhất, chức năng mạnh mẽ, tự động phát hiện</td>
+</tr>
+<tr>
+<td>Web tĩnh thuần túy</td>
+<td>Maozi Cloud / Netlify</td>
+<td>Hoàn toàn miễn phí, thao tác đơn giản</td>
+</tr>
+<tr>
+<td>Đã có tên miền</td>
+<td>Vercel + Cloudflare</td>
+<td>Hiệu suất tốt nhất</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Đừng loay hoay
+Đối với dự án đầu tiên của bạn, chọn nền tảng nào cũng không khác biệt nhiều. Quan trọng nhất là chạy được trước đã, sau này có thể đổi bất cứ lúc nào.
+:::</p>
+<p>→ <a href="./5.2.3-zeabur_vi.html">5.2.3 Thực chiến triển khai Zeabur</a></p>
+</body>
+</html>

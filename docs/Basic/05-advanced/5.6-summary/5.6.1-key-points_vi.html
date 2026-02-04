@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.6.1 Key Points</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.6.1 Ôn tập các điểm cốt lõi của chương"
+order: 2</p>
+<hr />
+<p><img alt="05-advanced_5.6-summary_5.6.1-key-points.png" src="../../../public/images/Basic/05-advanced_5.6-summary_5.6.1-key-points.png" /></p>
+<h1>5.6.1 Ôn tập các điểm cốt lõi của chương</h1>
+<p>Qua bài học này, bạn sẽ nhận được:</p>
+<ul>
+<li>Sơ đồ cấu trúc kiến thức hoàn chỉnh của chương 5</li>
+<li>Bảng tra cứu các khái niệm cốt lõi (có thể lưu lại)</li>
+<li>Danh sách đối chiếu kỹ năng</li>
+</ul>
+<h2>Cấu trúc kiến thức chương 5</h2>
+<pre><code>Chương 5: Từ &quot;Dùng được&quot; đến &quot;Dùng tốt&quot;
+│
+├── 5.1 Thuốc hối hận (Quản lý phiên bản)
+│   ├── Chức năng lịch sử của AI IDE (Không rào cản)
+│   ├── Quản lý phiên bản thủ công (Đơn giản hiệu quả)
+│   └── GitHub Desktop (Chuẩn bị cho bản nâng cao)
+│
+├── 5.2 Ra biển lớn (Triển khai trực tuyến)
+│   ├── Zeabur Triển khai một cú nhấp (Ưu tiên người dùng Việt Nam/Châu Á)
+│   ├── Vercel Triển khai một cú nhấp (Người dùng quốc tế)
+│   └── Giải pháp truy cập ổn định
+│
+├── 5.3 Hào lũy (Ý thức an toàn)
+│   ├── Ba lệnh cấm tuyệt đối
+│   ├── Cấu hình .env và .gitignore
+│   ├── Phòng chống Slopsquatting
+│   └── Luôn luôn rà soát code
+│
+├── 5.4 Tái tiến hóa (Liên tục lặp lại)
+│   ├── Phương pháp thu thập phản hồi
+│   ├── Quy trình mở rộng tính năng
+│   └── Từ dự án đến Portfolio
+│
+└── 5.5 Biết biên giới (Biên giới năng lực)
+    ├── Vibe Coding sở trường gì
+    ├── Hạn chế của Vibe Coding
+    └── Nhận biết tín hiệu nâng cấp
+</code></pre>
+<h2>Bảng tra cứu khái niệm cốt lõi</h2>
+<p>Bảng này tổng hợp các khái niệm quan trọng nhất của chương 5, có thể lưu lại để dùng dần:</p>
+<table>
+<thead>
+<tr>
+<th>Khái niệm</th>
+<th>Giải thích một câu</th>
+<th>Tại sao quan trọng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Quản lý phiên bản</strong></td>
+<td>Cài "cỗ máy thời gian" cho code, có thể quay lại quá khứ bất cứ lúc nào</td>
+<td>Sửa hỏng không lo, mạnh dạn thử nghiệm</td>
+</tr>
+<tr>
+<td><strong>Commit</strong></td>
+<td>Một lần "lưu game", ghi lại trạng thái code tại thời điểm đó</td>
+<td>Mỗi lần lưu là một điểm an toàn</td>
+</tr>
+<tr>
+<td><strong>Triển khai (Deploy)</strong></td>
+<td>Đưa code từ máy lên máy chủ, để người khác truy cập được</td>
+<td>Từ "tự chơi" đến "chia sẻ với thế giới"</td>
+</tr>
+<tr>
+<td><strong>Tên miền (Domain)</strong></td>
+<td>"Số nhà" của trang web, ví dụ example.com</td>
+<td>Để người khác tìm thấy tác phẩm của bạn</td>
+</tr>
+<tr>
+<td><strong>File .env</strong></td>
+<td>File cấu hình chứa mật khóa và thông tin nhạy cảm</td>
+<td>Bảo vệ quyền riêng tư và an toàn tài khoản</td>
+</tr>
+<tr>
+<td><strong>.gitignore</strong></td>
+<td>Nói cho Git biết file nào không cần tải lên</td>
+<td>Ngăn chặn lộ lọt thông tin nhạy cảm</td>
+</tr>
+<tr>
+<td><strong>Slopsquatting</strong></td>
+<td>AI gợi ý thư viện không tồn tại, bị kẻ xấu đăng ký trước</td>
+<td>Mối đe dọa an toàn kiểu mới 2024-2025</td>
+</tr>
+<tr>
+<td><strong>Lặp lại (Iteration)</strong></td>
+<td>Dựa trên phản hồi liên tục cải tiến sản phẩm</td>
+<td>Sản phẩm tốt là sửa mà thành, không phải làm một lần là xong</td>
+</tr>
+<tr>
+<td><strong>README</strong></td>
+<td>Tài liệu hướng dẫn dự án, giới thiệu là gì, dùng thế nào</td>
+<td>Để người khác (và bản thân trong tương lai) hiểu dự án</td>
+</tr>
+</tbody>
+</table>
+<h2>Danh sách đối chiếu kỹ năng</h2>
+<p>Sau khi hoàn thành chương 5, hãy đối chiếu kiểm tra các kỹ năng bạn đã nắm được:</p>
+<h3>5.1 Quản lý phiên bản</h3>
+<table>
+<thead>
+<tr>
+<th>Kỹ năng</th>
+<th>Tiêu chuẩn nắm vững</th>
+<th>Tự đánh giá</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dùng chức năng lịch sử AI IDE</td>
+<td>Có thể tìm và khôi phục về phiên bản code trước đó</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Sao lưu dự án thủ công</td>
+<td>Biết copy cả thư mục dự án ở các mốc quan trọng</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Sử dụng GitHub Desktop</td>
+<td>Có thể hoàn thành thao tác Clone, Commit, Push</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Viết thông tin Commit rõ ràng</td>
+<td>Có thể nói rõ lần này sửa gì trong một câu</td>
+<td>☐</td>
+</tr>
+</tbody>
+</table>
+<h3>5.2 Triển khai trực tuyến</h3>
+<table>
+<thead>
+<tr>
+<th>Kỹ năng</th>
+<th>Tiêu chuẩn nắm vững</th>
+<th>Tự đánh giá</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chọn nền tảng triển khai phù hợp</td>
+<td>Biết Zeabur, Vercel phù hợp với đối tượng nào</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Hoàn thành triển khai một cú nhấp</td>
+<td>Có thể đưa dự án từ GitHub lên nền tảng</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Có được liên kết truy cập</td>
+<td>Dự án có địa chỉ web truy cập công khai</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Xác minh triển khai thành công</td>
+<td>Truy cập bình thường trên cả điện thoại và máy tính</td>
+<td>☐</td>
+</tr>
+</tbody>
+</table>
+<h3>5.3 Ý thức an toàn</h3>
+<table>
+<thead>
+<tr>
+<th>Kỹ năng</th>
+<th>Tiêu chuẩn nắm vững</th>
+<th>Tự đánh giá</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nằm lòng ba lệnh cấm</td>
+<td>Không nói cho AI mật khóa, không hardcode khóa, không tải lên .env</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Cấu hình .gitignore</td>
+<td>Biết thêm .env và node_modules vào danh sách bỏ qua</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Xác minh thư viện AI gợi ý</td>
+<td>Lên trang quản lý gói chính thức xác nhận tồn tại trước khi cài</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Thói quen rà soát code</td>
+<td>Không tin tưởng mù quáng vào code AI tạo ra</td>
+<td>☐</td>
+</tr>
+</tbody>
+</table>
+<h3>5.4 Liên tục lặp lại</h3>
+<table>
+<thead>
+<tr>
+<th>Kỹ năng</th>
+<th>Tiêu chuẩn nắm vững</th>
+<th>Tự đánh giá</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thu thập phản hồi người dùng</td>
+<td>Biết để người dùng thật dùng thử và ghi lại vấn đề</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Quy hoạch mở rộng tính năng</td>
+<td>Có thể dùng khung S.C.A.F.F. để AI thêm tính năng mới</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Sắp xếp Portfolio</td>
+<td>Có thể viết một file README rõ ràng</td>
+<td>☐</td>
+</tr>
+</tbody>
+</table>
+<h3>5.5 Nhận thức biên giới</h3>
+<table>
+<thead>
+<tr>
+<th>Kỹ năng</th>
+<th>Tiêu chuẩn nắm vững</th>
+<th>Tự đánh giá</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Biết sở trường là gì</td>
+<td>Rõ ràng Vibe Coding hợp làm công cụ cá nhân, web tĩnh</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Biết hạn chế ở đâu</td>
+<td>Rõ ràng backend phức tạp, hệ thống người dùng cần học nâng cao</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Nhận biết tín hiệu nâng cấp</td>
+<td>Biết khi nào nên học kiến thức sâu hơn</td>
+<td>☐</td>
+</tr>
+</tbody>
+</table>
+<h2>Nhắc nhở các hiểu lầm thường gặp</h2>
+<p>Dựa trên việc học các chương trước, dưới đây là một số cái hố dễ sa chân:</p>
+<table>
+<thead>
+<tr>
+<th>Hiểu lầm</th>
+<th>Cách làm đúng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Đợi code hoàn hảo rồi mới Commit"</td>
+<td>Bán thành phẩm cũng có thể Commit, sửa bất cứ lúc nào</td>
+</tr>
+<tr>
+<td>"Triển khai phiền phức, cứ dùng local đã"</td>
+<td>Triển khai chỉ mất vài phút, làm ngay bây giờ</td>
+</tr>
+<tr>
+<td>"Code AI tạo ra chắc không sao đâu"</td>
+<td>Luôn luôn rà soát, đặc biệt là phần liên quan an toàn</td>
+</tr>
+<tr>
+<td>"Bản cơ bản đơn giản quá, tôi muốn học thẳng nâng cao"</td>
+<td>Phương pháp luận của bản cơ bản là gốc rễ của nâng cao</td>
+</tr>
+<tr>
+<td>"Thứ tôi làm đơn giản quá, ngại chia sẻ"</td>
+<td>Giải quyết được vấn đề là đồ tốt, mạnh dạn chia sẻ</td>
+</tr>
+</tbody>
+</table>
+<h2>Điểm cốt lõi của bài này</h2>
+<ul>
+<li>Cốt lõi của chương 5 là khiến tác phẩm của bạn "từ dùng được đến dùng tốt"</li>
+<li>Quản lý phiên bản, Triển khai, An toàn, Lặp lại, Nhận thức biên giới — 5 năng lực không thể thiếu</li>
+<li>Đối chiếu danh sách kỹ năng để kiểm tra mức độ nắm vững của bản thân</li>
+<li>Tránh các hiểu lầm thường gặp, xây dựng thói quen đúng đắn</li>
+</ul>
+<p>→ <a href="./5.6.2-full-path_vi.html">5.6.2 Lộ trình học tập hoàn chỉnh bản cơ bản</a></p>
+</body>
+</html>

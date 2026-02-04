@@ -1,0 +1,309 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.5.2 Limitations</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.5.2 Hạn chế của Vibe Coding"
+order: 3</p>
+<hr />
+<p><img alt="05-advanced_5.5-boundaries_5.5.2-limitations.png" src="../../../public/images/Basic/05-advanced_5.5-boundaries_5.5.2-limitations.png" /></p>
+<h1>5.5.2 Hạn chế của Vibe Coding</h1>
+<p>Qua bài học này, bạn sẽ hiểu:</p>
+<ul>
+<li>5 kịch bản mà Vibe Coding "bó tay"</li>
+<li>"Vấn đề 70%" và "Bức tường 80%" là gì</li>
+<li>Tại sao biết hạn chế lại giúp bạn tự tin hơn</li>
+</ul>
+<h2>Xem số liệu trước: Code do AI tạo ra không hoàn hảo</h2>
+<p>Đây là những số liệu thực tế năm 2025, không phải để dọa bạn, mà là giúp bạn xây dựng kỳ vọng đúng đắn:</p>
+<table>
+<thead>
+<tr>
+<th>Số liệu</th>
+<th>Nguồn</th>
+<th>Ý nghĩa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>45%</strong> code do AI tạo ra không qua được kiểm tra an toàn</td>
+<td>Veracode 2025</td>
+<td>Gần một nửa số code có lỗ hổng bảo mật</td>
+</tr>
+<tr>
+<td><strong>46%</strong> lập trình viên không hoàn toàn tin tưởng code AI</td>
+<td>Index.dev 2025</td>
+<td>Lập trình viên chuyên nghiệp cũng thận trọng</td>
+</tr>
+<tr>
+<td>Lệ thuộc quá mức vào AI khiến bug tăng <strong>41%</strong></td>
+<td>Index.dev 2025</td>
+<td>Không kiểm tra mà cứ thế dùng sẽ sinh chuyện</td>
+</tr>
+<tr>
+<td>Lập trình viên dùng công cụ AI thực tế làm chậm hơn <strong>19%</strong></td>
+<td>METR 2025</td>
+<td>Nhưng họ <em>cảm thấy</em> nhanh hơn 20%</td>
+</tr>
+</tbody>
+</table>
+<p>Số liệu cuối cùng đặc biệt thú vị: Lập trình viên cảm thấy mình nhanh hơn, nhưng thực tế lại chậm hơn. Điều này cho thấy "cảm giác mượt mà" mà AI mang lại có thể là một ảo giác.</p>
+<p><strong>Điều này không có nghĩa AI vô dụng</strong>, mà là: <strong>AI là công cụ, không phải phép thuật. Cần bạn phải kiểm soát.</strong></p>
+<h2>"Vấn đề 70%": AI làm được 70%, 30% còn lại là của bạn</h2>
+<p>Kỹ sư Google Addy Osmani năm 2025 đã đưa ra quan sát:</p>
+<blockquote>
+<p>AI có thể dễ dàng hoàn thành 70% dự án — tạo code mẫu, thực hiện tính năng tiêu chuẩn, xử lý logic thông thường. Nhưng 30% còn lại mới là thách thức thực sự: logic nghiệp vụ phức tạp, xử lý biên (edge cases), quyết định kiến trúc hệ thống, tối ưu hiệu năng.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>70% AI giỏi</th>
+<th>30% cần con người</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tạo code mẫu (boilerplate)</td>
+<td>Thiết kế kiến trúc hệ thống</td>
+</tr>
+<tr>
+<td>Thực hiện tính năng tiêu chuẩn</td>
+<td>Xử lý logic nghiệp vụ phức tạp</td>
+</tr>
+<tr>
+<td>Viết thêm/xóa/sửa cơ bản</td>
+<td>Tối ưu điểm nghẽn hiệu năng</td>
+</tr>
+<tr>
+<td>Áp dụng mẫu phổ biến</td>
+<td>Xử lý trường hợp biên</td>
+</tr>
+<tr>
+<td>Ra nhanh nguyên mẫu</td>
+<td>Đảm bảo code an toàn</td>
+</tr>
+</tbody>
+</table>
+<p>Với người học bản cơ bản, tin tốt là: <strong>Phần lớn dự án bạn làm đều nằm trong phạm vi "70%"</strong>. Danh sách việc cần làm, công cụ cá nhân, trang web đơn giản — đây chính là những thứ AI giỏi nhất.</p>
+<h2>"Bức tường 80%": Sau 80%, mỗi bước đều khó hơn</h2>
+<p>Một hiện tượng phổ biến khác là "Bức tường 80%":</p>
+<blockquote>
+<p>Dùng AI làm nhanh bản đầu của dự án rất dễ, nhưng khi muốn thêm nhiều tính năng hơn, bạn sẽ thấy mỗi tính năng thêm vào đều khó hơn cái trước. Đến khoảng 80%, dự án sẽ húc vào một "bức tường".</p>
+</blockquote>
+<p><strong>Tại sao lại như vậy?</strong></p>
+<table>
+<thead>
+<tr>
+<th>Giai đoạn</th>
+<th>AI thể hiện</th>
+<th>Lý do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0-50%</td>
+<td>Rất thuận lợi</td>
+<td>Nhu cầu đơn giản, lượng code ít, AI hiểu trọn vẹn</td>
+</tr>
+<tr>
+<td>50-80%</td>
+<td>Bắt đầu vất vả</td>
+<td>Code phức tạp lên, AI bắt đầu "quên" ngữ cảnh trước đó</td>
+</tr>
+<tr>
+<td>80%+</td>
+<td>Cực kỳ khó khăn</td>
+<td>Tính năng mới ảnh hưởng tính năng cũ, AI khó nắm bắt toàn cục</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Đây không phải lỗi của bạn</strong>. Đây là hạn chế của bản thân công cụ AI — "bộ nhớ" của nó có hạn, không thể hiểu tường tận ngọn ngành dự án như con người.</p>
+<h2>5 kịch bản Vibe Coding không giỏi</h2>
+<h3>Kịch bản 1: Logic nghiệp vụ phức tạp</h3>
+<p><strong>Tại sao khó</strong>: AI không hiểu bối cảnh kinh doanh của bạn. Nó có thể viết code "trông có vẻ đúng", nhưng logic có thể sai bét.</p>
+<p><strong>Ví dụ thực tế</strong>:</p>
+<ul>
+<li>Bạn nhờ AI viết "hệ thống tích điểm thành viên"</li>
+<li>AI tạo code, nhìn thì chạy được</li>
+<li>Nhưng nó không biết quy tắc tích điểm công ty bạn có ngoại lệ: Tích đủ 100 tặng 10, ngày sinh nhật nhân đôi, điểm có hạn 1 năm...</li>
+<li>Kết quả: Code chạy, nhưng tính toán sai hết</li>
+</ul>
+<h3>Kịch bản 2: Dự án quy mô lớn</h3>
+<p><strong>Tại sao khó</strong>: "Cửa sổ ngữ cảnh" của AI có hạn. Khi dự án có vài chục file, vài nghìn dòng code, AI không thể "nhìn thấy" tất cả cùng lúc.</p>
+<table>
+<thead>
+<tr>
+<th>Quy mô dự án</th>
+<th>Số file</th>
+<th>AI thể hiện</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nhỏ (Todo list)</td>
+<td>1-3 cái</td>
+<td>Rất tốt</td>
+</tr>
+<tr>
+<td>Vừa (Blog cá nhân)</td>
+<td>5-10 cái</td>
+<td>Tạm được</td>
+</tr>
+<tr>
+<td>Lớn (Web thương mại điện tử)</td>
+<td>50+ cái</td>
+<td>Lực bất tòng tâm</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Chuyện gì sẽ xảy ra</strong>:</p>
+<ul>
+<li>Lặp code (AI quên mất bạn đã viết chức năng tương tự)</li>
+<li>Đặt tên không nhất quán (cùng một khái niệm gọi tên khác nhau)</li>
+<li>Cấu trúc hỗn loạn (không có cách tổ chức thống nhất)</li>
+</ul>
+<h3>Kịch bản 3: Chức năng an toàn trọng yếu</h3>
+<p><strong>Tại sao khó</strong>: Lỗ hổng bảo mật thường ẩn trong chi tiết, AI có xu hướng tạo code "dùng được" thay vì code "an toàn".</p>
+<p>Theo báo cáo Veracode 2025:</p>
+<ul>
+<li><strong>86%</strong> code AI tạo ra không phòng chống được tấn công XSS</li>
+<li><strong>88%</strong> code AI tạo ra không phòng chống được tấn công tiêm nhiễm nhật ký (log injection)</li>
+</ul>
+<p><strong>Vấn đề điển hình</strong>:</p>
+<ul>
+<li>Không xác thực đầu vào người dùng</li>
+<li>Không xử lý đúng dữ liệu nhạy cảm</li>
+<li>Sử dụng thư viện đã biết có lỗ hổng</li>
+</ul>
+<p>Đó là lý do tại sao bài 5.3 chuyên nói về an toàn — <strong>AI cần bạn kiểm soát ở mảng này</strong>.</p>
+<h3>Kịch bản 4: Tối ưu hiệu năng</h3>
+<p><strong>Tại sao khó</strong>: AI có xu hướng chọn cách thực hiện "đơn giản nhất", chứ không phải "hiệu quả nhất".</p>
+<p><strong>Ví dụ thực tế</strong>:</p>
+<ul>
+<li>Bạn nhờ AI viết "chức năng tìm kiếm"</li>
+<li>AI dùng cách đơn giản nhất: duyệt qua tất cả dữ liệu, so sánh từng cái một</li>
+<li>Dữ liệu ít thì không sao</li>
+<li>Dữ liệu nhiều (ví dụ 100 ngàn dòng) sẽ trở nên rất chậm</li>
+</ul>
+<p><strong>Chuyện gì sẽ xảy ra</strong>:</p>
+<ul>
+<li>Test với dữ liệu ít mọi thứ bình thường</li>
+<li>Lên môi trường thật người dùng đông, hệ thống chậm rì</li>
+<li>Bạn không biết chậm ở đâu, vì code "trông không có vấn đề gì"</li>
+</ul>
+<h3>Kịch bản 5: Gỡ lỗi (debug) phức tạp</h3>
+<p><strong>Tại sao khó</strong>: AI chỉ nhìn thấy thông tin bạn đưa cho nó, không thể "truy tìm nguồn gốc" như con người.</p>
+<table>
+<thead>
+<tr>
+<th>Bug đơn giản</th>
+<th>AI giúp được</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lỗi cú pháp</td>
+<td>Được</td>
+</tr>
+<tr>
+<td>Lỗi logic rõ ràng</td>
+<td>Được</td>
+</tr>
+<tr>
+<td>Vấn đề có thông báo lỗi rõ ràng</td>
+<td>Được</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Bug phức tạp</th>
+<th>AI khó giúp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vấn đề chập chờn lúc bị lúc không</td>
+<td>Khó</td>
+</tr>
+<tr>
+<td>Vấn đề liên quan nhiều file</td>
+<td>Khó</td>
+</tr>
+<tr>
+<td>Vấn đề cần hiểu ngữ cảnh nghiệp vụ</td>
+<td>Khó</td>
+</tr>
+<tr>
+<td>Vấn đề "sửa chỗ này hỏng chỗ kia"</td>
+<td>Khó</td>
+</tr>
+</tbody>
+</table>
+<h2>Một ví dụ hình tượng</h2>
+<p>Vibe Coding giống như cầm phần mềm phiên dịch đi du lịch nước ngoài:</p>
+<table>
+<thead>
+<tr>
+<th>Kịch bản</th>
+<th>Phần mềm phiên dịch</th>
+<th>Vibe Coding tương ứng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gọi món, hỏi đường</td>
+<td>Dùng tốt</td>
+<td>Làm công cụ cá nhân, web đơn giản</td>
+</tr>
+<tr>
+<td>Trò chuyện thường ngày</td>
+<td>Cơ bản dùng được</td>
+<td>Thực hiện chức năng tiêu chuẩn</td>
+</tr>
+<tr>
+<td>Thảo luận chuyên sâu</td>
+<td>Lực bất tòng tâm</td>
+<td>Xử lý logic nghiệp vụ phức tạp</td>
+</tr>
+<tr>
+<td>Đàm phán, diễn thuyết</td>
+<td>Gần như không thể</td>
+<td>Dự án lớn, yêu cầu an toàn cao</td>
+</tr>
+</tbody>
+</table>
+<p>Phần mềm phiên dịch giúp chuyến đi của bạn dễ dàng hơn, nhưng nếu muốn sống lâu dài, làm việc ở quốc gia đó, bạn vẫn cần học ngôn ngữ.</p>
+<p>Vibe Coding cũng vậy: Nó giúp bạn làm ra sản phẩm nhanh chóng, nhưng nếu muốn làm dự án phức tạp hơn, có thể bạn cần học thêm kiến thức lập trình.</p>
+<h2>Điểm cốt lõi của bài này</h2>
+<ul>
+<li>Code do AI tạo ra không hoàn hảo: 45% có ẩn họa an toàn, 46% chuyên gia không hoàn toàn tin tưởng</li>
+<li>"Vấn đề 70%": AI làm được 70%, 30% còn lại cần trí tuệ con người</li>
+<li>"Bức tường 80%": Dự án làm đến 80% thì mỗi bước thêm mới đều khó khăn hơn</li>
+<li>5 kịch bản không sở trường: Logic nghiệp vụ phức tạp, Dự án lớn, An toàn trọng yếu, Tối ưu hiệu năng, Debug phức tạp</li>
+<li>Biết hạn chế không phải chuyện xấu — nó giúp bạn xây dựng kỳ vọng đúng, không tự nghi ngờ bản thân khi gặp khó khăn</li>
+</ul>
+<p>::: tip Tin tốt
+Nội dung bản cơ bản bao phủ phần lớn nằm trong "vùng an toàn" của Vibe Coding. Danh sách việc cần làm, công cụ cá nhân, web đơn giản bạn làm chính là lĩnh vực AI giỏi nhất.</p>
+<p>Khi gặp hạn chế, không phải bạn kém, mà là công cụ có giới hạn. Lúc này, hoặc là đơn giản hóa nhu cầu, hoặc là chuẩn bị học thêm.
+:::</p>
+<p>→ <a href="./5.5.3-upgrade-signals_vi.html">5.5.3 Dấu hiệu nào cho báo bạn cần học thêm</a></p>
+</body>
+</html>

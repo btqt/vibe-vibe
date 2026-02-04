@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.1.1 Nightmare</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.1.1 Một kịch bản ác mộng có thật"
+order: 2</p>
+<hr />
+<p><img alt="05-advanced_5.1-version-control_5.1.1-nightmare.png" src="../../../public/images/Basic/05-advanced_5.1-version-control_5.1.1-nightmare.png" /></p>
+<h1>5.1.1 Một kịch bản ác mộng có thật</h1>
+<h2>Trải nghiệm này, người học nào cũng sẽ gặp phải</h2>
+<p>Hãy tưởng tượng kịch bản này:</p>
+<ol>
+<li>Bạn đã dành 2 giờ, cuối cùng cũng làm xong danh sách việc cần làm</li>
+<li>Trang web rất đẹp, chức năng cũng bình thường, bạn cảm thấy rất có thành tựu</li>
+<li>Muốn thêm tính năng "chế độ tối" (dark mode), để nó trông ngầu hơn</li>
+<li>Đang sửa thì trang web đột nhiên trắng xóa</li>
+<li>Bạn không nhớ đã sửa ở đâu, Ctrl+Z cũng không quay lại được</li>
+<li>Thành quả 2 giờ, cứ thế mà mất...</li>
+</ol>
+<p>Điều này không hề phóng đại. Trong cộng đồng, hầu như tuần nào cũng thấy những bài đăng cầu cứu tương tự: "Code của tôi sửa bị lỗi rồi, làm sao để khôi phục?"</p>
+<h2>Một vài tình huống phổ biến hơn</h2>
+<table>
+<thead>
+<tr>
+<th>Kịch bản</th>
+<th>Chuyện gì đã xảy ra</th>
+<th>Hậu quả</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sửa một tính năng, làm hỏng cái khác</td>
+<td>Khi thêm tính năng xóa, vô tình làm ảnh hưởng đến tính năng thêm</td>
+<td>Mất thời gian rà soát, có thể càng sửa càng rối</td>
+</tr>
+<tr>
+<td>Muốn quay lại "phiên bản hôm qua"</td>
+<td>Code hôm qua dùng được, hôm nay sửa một đống, hỏng hết</td>
+<td>Không tìm thấy phiên bản hôm qua</td>
+</tr>
+<tr>
+<td>Thử ba phương án, muốn quay lại phương án đầu tiên</td>
+<td>Phương án đầu tiên thực ra là tốt nhất, nhưng đã bị ghi đè rồi</td>
+<td>Hoặc là viết lại, hoặc là chấp nhận dùng tạm</td>
+</tr>
+<tr>
+<td>AI sửa những chỗ không nên sửa</td>
+<td>Nhờ AI sửa một file, nó tiện tay sửa luôn các file khác</td>
+<td>Không biết những chỗ nào đã bị sửa</td>
+</tr>
+</tbody>
+</table>
+<h2>Tại sao lại xảy ra chuyện này</h2>
+<p>Cách làm việc của Vibe Coding là: Bạn nói cho AI biết bạn muốn gì, AI trực tiếp sửa code.</p>
+<p>Quá trình này cực kỳ hiệu quả, nhưng có một rủi ro: <strong>Việc sửa đổi là tức thì và ghi đè</strong>.</p>
+<p>Lập trình viên truyền thống có một bộ công cụ phức tạp để quản lý lịch sử code, nhưng đối với người mới nhập môn như bạn, chi phí học các công cụ này quá cao.</p>
+<p>Tin tốt là: Bạn không cần học những thứ phức tạp đó.</p>
+<h2>Giải pháp: Cài đặt "cỗ máy thời gian" cho code</h2>
+<p><strong>Quản lý phiên bản</strong> (Version control), về bản chất chính là tạo "điểm lưu" (save point) cho code của bạn.</p>
+<p>Giống như chức năng lưu game khi chơi trò chơi:</p>
+<ul>
+<li>Trước khi đánh Boss thì lưu một lần</li>
+<li>Đánh thua có thể tải lại game chơi lại</li>
+<li>Trước khi thử kỹ năng mới thì lưu một lần</li>
+<li>Không dùng được có thể quay lại</li>
+</ul>
+<p>Code cũng giống như vậy:</p>
+<ul>
+<li>Tính năng làm xong rồi thì lưu một lần</li>
+<li>Trước khi chuẩn bị sửa lớn thì lưu một lần</li>
+<li>Sửa bị lỗi có thể quay lại</li>
+</ul>
+<p>::: tip Quan điểm cốt lõi
+Quản lý phiên bản không phải là kỹ năng cao cấp, là kỹ năng sinh tồn cơ bản.</p>
+<p>Bạn không cần trở thành chuyên gia Git. Chỉ cần biết: <strong>cách lưu, cách đọc lại bản lưu</strong>, là đủ rồi.
+:::</p>
+<h2>Tiếp theo học gì</h2>
+<p>Chúng tôi sẽ giới thiệu ba phương án, từ đơn giản đến nâng cao:</p>
+<ol>
+<li><strong>Tính năng lịch sử tích hợp sẵn của AI IDE</strong>: Đơn giản nhất, dùng được ngay</li>
+<li><strong>Sao chép thư mục thủ công</strong>: Trực quan nhất, ai cũng biết làm</li>
+<li><strong>GitHub Desktop</strong>: Chuyên nghiệp hơn, làm nền tảng cho phiên bản nâng cao</li>
+</ol>
+<p>Hãy bắt đầu từ cái đơn giản nhất.</p>
+<p>→ <a href="./5.1.2-ide-history_vi.html">5.1.2 Giải pháp không rào cản: Lịch sử tích hợp sẵn của AI IDE</a></p>
+</body>
+</html>

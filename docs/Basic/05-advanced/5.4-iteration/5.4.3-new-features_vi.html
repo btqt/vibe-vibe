@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.4.3 New Features</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.4.3 Mở rộng tính năng"
+order: 4</p>
+<hr />
+<p><img alt="05-advanced_5.4-iteration_5.4.3-new-features.png" src="../../../public/images/Basic/05-advanced_5.4-iteration_5.4.3-new-features.png" /></p>
+<h1>5.4.3 Mở rộng tính năng: Để AI giúp bạn thêm tính năng mới</h1>
+<p>Qua bài học này, bạn sẽ nắm được:</p>
+<ul>
+<li>Các hướng mở rộng tính năng thường gặp và đánh giá độ khó</li>
+<li>Viết Prompt mở rộng tính năng dùng khung tư duy đã học ở chương 3</li>
+<li>Quy trình an toàn khi thêm tính năng mới</li>
+<li>Một trường hợp thực chiến thêm tính năng hoàn chỉnh</li>
+</ul>
+<h2>Tham khảo các hướng mở rộng tính năng</h2>
+<p>Sau khi thu thập phản hồi, có thể bạn sẽ muốn thêm một số tính năng mới cho danh sách việc cần làm.</p>
+<p>Dưới đây là một số hướng mở rộng thường gặp, phân loại theo độ khó:</p>
+<h3>Tính năng cơ bản (Khuyên nên thử trước)</h3>
+<table>
+<thead>
+<tr>
+<th>Tính năng</th>
+<th>Độ khó</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thẻ phân loại nhiệm vụ</td>
+<td>⭐⭐</td>
+<td>Gán thẻ "Công việc", "Đời sống", "Học tập" cho nhiệm vụ, có thể lọc theo thẻ</td>
+</tr>
+<tr>
+<td>Đánh dấu mức ưu tiên</td>
+<td>⭐⭐</td>
+<td>Ưu tiên Cao/Trung bình/Thấp, phân biệt bằng màu sắc</td>
+</tr>
+<tr>
+<td>Chức năng tìm kiếm</td>
+<td>⭐⭐</td>
+<td>Tìm nhanh nhiệm vụ khi danh sách dài</td>
+</tr>
+<tr>
+<td>Chế độ tối (Dark mode)</td>
+<td>⭐⭐</td>
+<td>Ban đêm nhìn không bị chói mắt</td>
+</tr>
+</tbody>
+</table>
+<h3>Tính năng nâng cao (Có chút thử thách)</h3>
+<table>
+<thead>
+<tr>
+<th>Tính năng</th>
+<th>Độ khó</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nhắc nhở hạn chót</td>
+<td>⭐⭐⭐</td>
+<td>Thiết lập thời gian hết hạn, nhiệm vụ quá hạn sẽ hiện đỏ</td>
+</tr>
+<tr>
+<td>Sắp xếp nhiệm vụ</td>
+<td>⭐⭐⭐</td>
+<td>Có thể kéo thả điều chỉnh thứ tự nhiệm vụ</td>
+</tr>
+<tr>
+<td>Xuất dữ liệu</td>
+<td>⭐⭐⭐</td>
+<td>Xuất danh sách nhiệm vụ ra file</td>
+</tr>
+<tr>
+<td>Thống kê đơn giản</td>
+<td>⭐⭐⭐</td>
+<td>Hiển thị "Tuần này đã hoàn thành bao nhiêu nhiệm vụ"</td>
+</tr>
+</tbody>
+</table>
+<p>Khuyên bạn nên bắt đầu từ tính năng cơ bản. Sau khi thêm thành công một hai cái, hãy thử thách tính năng nâng cao.</p>
+<h2>Quy trình an toàn khi thêm tính năng mới</h2>
+<p>Trước khi bắt tay vào làm, có một nguyên tắc quan trọng:</p>
+<p>::: warning Quy tắc vàng
+<strong>Mỗi lần thêm tính năng mới, hãy lưu lại phiên bản hiện tại trước.</strong>
+:::</p>
+<p>Làm theo quy trình sau:</p>
+<pre><code>1. Xác nhận phiên bản hiện tại chạy bình thường
+       ↓
+2. Dùng GitHub Desktop cam kết (Commit) một lần
+       ↓
+3. Viết Prompt để AI thêm tính năng mới
+       ↓
+4. Kiểm thử tính năng mới
+       ↓
+5. Nếu thành công → Commit thêm một lần nữa
+   Nếu thất bại → Quay lui (Rollback) về phiên bản trước
+</code></pre>
+<p>Như vậy, kể cả khi tính năng mới làm hỏng dự án, bạn cũng có thể khôi phục bất cứ lúc nào. (Đây chính là tác dụng của quản lý phiên bản đã học ở bài 5.1)</p>
+<h2>Viết Prompt mở rộng tính năng dùng khung S.C.A.F.F.</h2>
+<p>Còn nhớ khung S.C.A.F.F. ở chương 3 không? Nó cũng áp dụng cho việc thêm tính năng mới.</p>
+<h3>Ôn tập khung tư duy</h3>
+<table>
+<thead>
+<tr>
+<th>Chữ cái</th>
+<th>Ý nghĩa</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>S</strong></td>
+<td>Situation (Tình huống)</td>
+<td>Dự án hiện tại như thế nào</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>Challenge (Thử thách)</td>
+<td>Tôi muốn thêm tính năng gì</td>
+</tr>
+<tr>
+<td><strong>A</strong></td>
+<td>Ask (Yêu cầu)</td>
+<td>Cụ thể cần AI làm gì</td>
+</tr>
+<tr>
+<td><strong>F</strong></td>
+<td>Format (Định dạng)</td>
+<td>Hy vọng nhận được đầu ra như thế nào</td>
+</tr>
+<tr>
+<td><strong>F</strong></td>
+<td>Filter (Bộ lọc)</td>
+<td>Có hạn chế gì không</td>
+</tr>
+</tbody>
+</table>
+<h3>Ví dụ: Thêm tính năng thẻ phân loại</h3>
+<pre><code>【Tình huống】
+Tôi có một dự án danh sách việc cần làm, hiện tại đã thực hiện được:
+- Thêm nhiệm vụ
+- Xóa nhiệm vụ
+- Đánh dấu hoàn thành
+- Sử dụng localStorage để lưu dữ liệu
+
+Công nghệ sử dụng: HTML + CSS + JavaScript (thuần frontend, không có backend)
+
+【Thử thách】
+Tôi muốn thêm chức năng &quot;thẻ phân loại&quot; cho nhiệm vụ. Người dùng có thể:
+1. Chọn một phân loại (Công việc/Đời sống/Học tập) khi tạo nhiệm vụ
+2. Lọc nhiệm vụ theo phân loại
+3. Mỗi phân loại hiển thị bằng màu sắc khác nhau
+
+【Yêu cầu】
+Hãy giúp tôi sửa code để thực hiện chức năng này.
+
+【Định dạng】
+1. Trước tiên giải thích cần sửa những phần nào
+2. Đưa ra code hoàn chỉnh sau khi sửa
+3. Hướng dẫn cách kiểm thử chức năng này
+
+【Hạn chế】
+- Giữ nguyên các chức năng hiện có
+- Sử dụng phong cách code hiện tại
+- Dữ liệu phân loại cũng phải được lưu vào localStorage
+</code></pre>
+<h2>Mẫu Prompt cho các tính năng</h2>
+<p>Dưới đây cung cấp một số mẫu Prompt cho các tính năng thường dùng, bạn có thể copy dùng trực tiếp, chỉ cần thay thế <code>[nội dung trong ngoặc vuông]</code> thành tình huống thực tế của bạn.</p>
+<h3>Đánh dấu mức ưu tiên</h3>
+<pre><code>Dự án danh sách việc cần làm của tôi cần thêm chức năng &quot;mức ưu tiên&quot;:
+- Mỗi nhiệm vụ có thể thiết lập mức ưu tiên: Cao/Trung bình/Thấp
+- Ưu tiên cao đánh dấu màu đỏ, trung bình màu vàng, thấp màu xám
+- Mức ưu tiên mặc định là &quot;Trung bình&quot;
+- Có thể sắp xếp hiển thị theo mức ưu tiên (cao ở trên cùng)
+
+Công nghệ dự án hiện tại: [HTML + CSS + JavaScript / Khác]
+Cách lưu trữ dữ liệu: [localStorage / Khác]
+
+Hãy sửa code để thực hiện chức năng này, giữ nguyên các chức năng hiện có vẫn hoạt động bình thường.
+</code></pre>
+<h3>Chức năng tìm kiếm</h3>
+<pre><code>Danh sách việc cần làm của tôi cần thêm chức năng tìm kiếm:
+- Thêm một ô tìm kiếm phía trên danh sách nhiệm vụ
+- Khi nhập từ khóa, lọc theo thời gian thực các nhiệm vụ chứa từ khóa đó
+- Khi ô tìm kiếm để trống thì hiển thị tất cả nhiệm vụ
+- Tìm kiếm không phân biệt hoa thường
+
+Công nghệ dự án hiện tại: [Công nghệ của bạn]
+
+Hãy đưa ra code thực hiện.
+</code></pre>
+<h3>Chế độ tối (Dark mode)</h3>
+<pre><code>Danh sách việc cần làm của tôi cần thêm chức năng chuyển đổi chế độ tối:
+- Thêm một nút chuyển đổi (biểu tượng mặt trời/mặt trăng) ở góc trên bên phải trang
+- Bấm vào có thể chuyển đổi giữa chế độ sáng/tối
+- Ghi nhớ lựa chọn của người dùng (lần sau mở ra vẫn giữ nguyên chế độ đó)
+
+Phối màu hiện tại:
+- Màu nền: [Trắng]
+- Màu chữ: [Đen]
+- Màu chủ đạo: [Xanh dương]
+
+Hãy đưa ra code thực hiện, bao gồm gợi ý phối màu cho chế độ tối.
+</code></pre>
+<h3>Hạn chót (Deadline)</h3>
+<pre><code>Danh sách việc cần làm của tôi cần thêm chức năng hạn chót:
+- Khi tạo nhiệm vụ có thể chọn ngày hết hạn (tùy chọn, không bắt buộc)
+- Hiển thị ngày hết hạn trên thẻ nhiệm vụ
+- Nhiệm vụ đã quá hạn hiển thị nổi bật màu đỏ
+- Nhiệm vụ hết hạn hôm nay hiển thị nổi bật màu vàng
+
+Công nghệ dự án hiện tại: [Công nghệ của bạn]
+Cách lưu trữ dữ liệu: [localStorage / Khác]
+
+Hãy đưa ra code thực hiện.
+</code></pre>
+<h2>Trường hợp thực chiến: Thêm thẻ phân loại</h2>
+<p>Dưới đây là ghi chép đối thoại hoàn chỉnh, minh họa cách thêm chức năng thẻ phân loại cho danh sách việc cần làm.</p>
+<h3>Vòng 1: Nói rõ nhu cầu</h3>
+<p>Sau khi bạn gửi Prompt (sử dụng mẫu S.C.A.F.F. ở trên), AI sẽ trả về phương án sửa đổi và code.</p>
+<h3>Vòng 2: Kiểm thử và phát hiện vấn đề</h3>
+<p>Sau khi kiểm thử, có thể bạn sẽ phát hiện vấn đề:</p>
+<pre><code>Chức năng phân loại cơ bản dùng được rồi, nhưng có một vấn đề:
+Khi chuyển bộ lọc phân loại, nếu phân loại hiện tại không có nhiệm vụ nào, trang sẽ trắng trơn, người dùng sẽ bối rối.
+
+Hãy thêm một lời nhắc, khi kết quả lọc là rỗng thì hiển thị &quot;Tạm thời không có nhiệm vụ&quot;.
+</code></pre>
+<h3>Vòng 3: Tinh chỉnh chi tiết</h3>
+<pre><code>Bây giờ lời nhắc &quot;Tạm thời không có nhiệm vụ&quot; đã hiện rồi, nhưng màu chữ nhạt quá, không rõ lắm.
+Hãy đổi màu chữ lời nhắc thành màu xám, và in đậm.
+</code></pre>
+<p>Đây chính là quá trình lặp lại: Làm một bản → Phát hiện vấn đề → Cải tiến tiếp.</p>
+<h2>Danh sách kiểm tra khi thử nghiệm tính năng mới</h2>
+<p>Mỗi lần thêm tính năng mới, hãy dùng danh sách này để xác minh:</p>
+<ul>
+<li>[ ] Tính năng mới hoạt động như mong đợi</li>
+<li>[ ] Tính năng cũ (thêm, xóa, hoàn thành nhiệm vụ) vẫn bình thường</li>
+<li>[ ] Sau khi tải lại trang (F5) dữ liệu không bị mất</li>
+<li>[ ] Hiển thị bình thường trên trình duyệt điện thoại</li>
+<li>[ ] Không có báo lỗi rõ ràng (mở Console trình duyệt để kiểm tra)</li>
+</ul>
+<p>Sau khi thông qua tất cả, nhớ dùng GitHub Desktop commit một lần, ghi lại cột mốc này.</p>
+<h2>Khi gặp vấn đề</h2>
+<p>Nếu code AI đưa ra không chạy đúng, có thể phản hồi như sau:</p>
+<pre><code>Code bạn đưa ra chạy xong xuất hiện vấn đề:
+
+【Mô tả vấn đề】
+Sau khi bấm nút lọc phân loại, trang trở thành trắng tinh, tất cả nhiệm vụ đều không hiển thị nữa.
+
+【Thông tin lỗi】
+Mở Console trình duyệt, thấy báo lỗi này:
+Uncaught TypeError: Cannot read property 'filter' of undefined
+
+【Hành vi mong đợi】
+Bấm phân loại &quot;Công việc&quot;, chỉ nên hiển thị các nhiệm vụ được đánh dấu là &quot;Công việc&quot;.
+
+Hãy giúp tôi tìm ra nguyên nhân và sửa nó.
+</code></pre>
+<p>Cung cấp mô tả vấn đề và thông tin lỗi cụ thể, AI sẽ dễ dàng giúp bạn giải quyết hơn.</p>
+<h2>Điểm cốt lõi của bài này</h2>
+<ul>
+<li>Bắt đầu từ tính năng cơ bản, thành công rồi mới thử thách cái nâng cao</li>
+<li>Trước mỗi lần sửa code hãy Commit, sửa hỏng có thể khôi phục</li>
+<li>Dùng khung S.C.A.F.F. để viết Prompt mở rộng tính năng</li>
+<li>Thêm tính năng là một quá trình lặp lại, một vòng không được thì nhiều vòng</li>
+<li>Sau khi kiểm thử thông qua nhớ Commit thêm lần nữa</li>
+</ul>
+<p>::: tip Tiến từng bước nhỏ
+Đừng thêm quá nhiều tính năng cùng lúc.</p>
+<p>Mỗi lần chỉ thêm một cái, kiểm thử thông qua rồi mới thêm cái tiếp theo.</p>
+<p>Như vậy khi xảy ra vấn đề, bạn có thể nhanh chóng định vị được là do thay đổi nào gây ra.
+:::</p>
+<p>→ <a href="./5.4.4-optimize_vi.html">5.4.4 Tối ưu hóa code: Để AI giúp bạn cải thiện chất lượng code</a></p>
+</body>
+</html>

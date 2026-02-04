@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.2.5 After Deploy</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.2.5 Các thao tác thiết thực sau khi triển khai"
+order: 6</p>
+<hr />
+<p><img alt="05-advanced_5.2-deployment_5.2.5-after-deploy.png" src="../../../public/images/Basic/05-advanced_5.2-deployment_5.2.5-after-deploy.png" /></p>
+<h1>5.2.5 Các thao tác thiết thực sau khi triển khai</h1>
+<p>Triển khai thành công chỉ là bắt đầu. Bạn sẽ liên tục cải tiến dự án của mình, cần biết cách cập nhật phiên bản trực tuyến, cách xem trạng thái triển khai, cũng như cách quay lại (rollback) khi gặp sự cố.</p>
+<h2>Cách cập nhật trang web</h2>
+<p>Đây là thao tác thường dùng nhất. Khi bạn sửa code ở máy cục bộ và muốn phiên bản trực tuyến cũng được cập nhật, bạn cần làm:</p>
+<pre><code>Sửa code cục bộ → git add → git commit → git push → Tự động triển khai
+</code></pre>
+<p>Các bước cụ thể:</p>
+<ol>
+<li>Sửa code của bạn ở máy cục bộ (ví dụ đổi màu một nút bấm)</li>
+<li>Sử dụng GitHub Desktop gửi thay đổi (Commit)</li>
+<li>Nhấp "Push origin" đẩy lên GitHub</li>
+<li>Đợi 1-2 phút</li>
+<li>Tải lại trang web của bạn, xem thay đổi</li>
+</ol>
+<p><strong>Bạn không cần</strong> đăng nhập lại nền tảng triển khai, cũng không cần nhấp bất kỳ nút triển khai nào. Zeabur và Vercel đều sẽ tự động phát hiện cập nhật code của bạn và tự động triển khai lại.</p>
+<p>Đây chính là ma thuật của "Triển khai liên tục" (Continuous Deployment).</p>
+<h2>Cách xem lịch sử triển khai</h2>
+<p>Mỗi lần triển khai sau khi cập nhật code đều để lại bản ghi. Bạn có thể xem trong bảng điều khiển của nền tảng triển khai:</p>
+<h3>Trong Zeabur</h3>
+<ol>
+<li>Đăng nhập bảng điều khiển Zeabur</li>
+<li>Nhấp vào dự án của bạn</li>
+<li>Nhấp vào dịch vụ của bạn</li>
+<li>Tìm thẻ "Lịch sử triển khai" hoặc "Deployments"</li>
+</ol>
+<p>Bạn có thể thấy:</p>
+<ul>
+<li>Thời gian mỗi lần triển khai</li>
+<li>Triển khai thành công hay thất bại</li>
+<li>Git Commit tương ứng với mỗi lần triển khai</li>
+</ul>
+<h3>Trong Vercel</h3>
+<ol>
+<li>Đăng nhập Vercel Dashboard</li>
+<li>Nhấp vào dự án của bạn</li>
+<li>Nhấp thẻ "Deployments"</li>
+</ol>
+<p>Mỗi lần Git Push đều tạo ra một bản ghi triển khai, thậm chí mỗi nhánh (branch) đều có liên kết xem trước độc lập.</p>
+<h2>Cách quay lại (rollback) phiên bản trước</h2>
+<p>Nếu sau khi cập nhật bạn phát hiện trang web bị lỗi, có thể nhanh chóng quay lại phiên bản bình thường trước đó.</p>
+<h3>Trong Zeabur</h3>
+<ol>
+<li>Tìm lịch sử triển khai</li>
+<li>Tìm bản ghi triển khai bình thường trước đó</li>
+<li>Nhấp "Triển khai lại" hoặc "Redeploy"</li>
+</ol>
+<h3>Trong Vercel</h3>
+<ol>
+<li>Tại trang Deployments tìm lần triển khai trước đó</li>
+<li>Nhấp menu ba chấm bên phải</li>
+<li>Chọn "Promote to Production"</li>
+</ol>
+<p>Việc quay lại là tức thì, thường chỉ vài giây là có hiệu lực.</p>
+<h2>Cách xem nhật ký triển khai</h2>
+<p>Khi triển khai thất bại, nhật ký (log) là chìa khóa để tìm vấn đề.</p>
+<p>Trong bản ghi triển khai, nhấp vào một lần triển khai cụ thể, có thể thấy:</p>
+<ul>
+<li>Nhật ký build: Dự án được xây dựng như thế nào</li>
+<li>Nhật ký chạy (Runtime logs): Đầu ra khi dự án đang chạy</li>
+</ul>
+<p>Nếu thấy thông tin lỗi màu đỏ, có thể sao chép cho AI giúp bạn phân tích.</p>
+<h2>Tên miền tùy chỉnh (Dự báo nâng cao)</h2>
+<p>Hiện tại bạn đang sử dụng tên miền miễn phí do nền tảng cung cấp:</p>
+<ul>
+<li>Zeabur: <code>your-project.zeabur.app</code></li>
+<li>Vercel: <code>your-project.vercel.app</code></li>
+</ul>
+<p>Nếu bạn muốn có tên miền riêng (như <code>my-todo.com</code>), cần:</p>
+<ol>
+<li>Mua tên miền (Aliyun, Tencent Cloud, Cloudflare, v.v.)</li>
+<li>Gắn tên miền trong nền tảng triển khai</li>
+<li>Cấu hình bản ghi DNS</li>
+</ol>
+<p>Các thao tác này phức tạp hơn một chút, thuộc nội dung bản nâng cao. Đối với việc học và sử dụng cá nhân, tên miền miễn phí là hoàn toàn đủ dùng.</p>
+<p>::: tip Dự báo nâng cao
+Trong bản nâng cao, bạn sẽ học cách mua và cấu hình tên miền tùy chỉnh, cũng như cách sử dụng Cloudflare để tăng tốc trang web của bạn.
+:::</p>
+<p>→ <a href="./5.2.6-china-solution_vi.html">5.2.6 Giải pháp truy cập tại Đại lục</a></p>
+</body>
+</html>

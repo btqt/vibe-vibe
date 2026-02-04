@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.3.3 Code Risks</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.3.3 Mối nguy an toàn trong code"
+order: 5</p>
+<hr />
+<p><img alt="05-advanced_5.3-security_5.3.3-code-risks.png" src="../../../public/images/Basic/05-advanced_5.3-security_5.3.3-code-risks.png" /></p>
+<h1>5.3.3 Mối nguy an toàn trong code</h1>
+<p>Sau bài học này, bạn sẽ nắm được:</p>
+<ul>
+<li>5 loại lỗi an toàn mà AI thường mắc phải</li>
+<li>Cách nhận biết các khóa bị hardcode (viết cứng) trong code</li>
+<li>Cách sử dụng file .env đúng cách</li>
+<li>Kỹ thuật cấu hình .gitignore</li>
+</ul>
+<h2>5 loại lỗi an toàn AI thường mắc phải</h2>
+<p>Theo báo cáo Veracode 2025 và phân tích từ cộng đồng an ninh mạng, code do AI tạo ra thường mắc các lỗi an toàn sau:</p>
+<h3>1. Hardcode khóa (Viết cứng)</h3>
+<p>Đây là vấn đề phổ biến nhất và cũng nguy hiểm nhất.</p>
+<pre><code class="language-javascript">// ❌ Nguy hiểm: Khóa được viết trực tiếp trong code
+const API_KEY = &quot;sk-proj-abc123xyz...&quot;;
+const DB_PASSWORD = &quot;SuperSecret123&quot;;
+
+// ✅ An toàn: Sử dụng biến môi trường
+const API_KEY = process.env.API_KEY;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+</code></pre>
+<h3>2. Bỏ qua xác thực đầu vào</h3>
+<p>Code do AI tạo ra thường giả định đầu vào là "bình thường", không thực hiện xác thực (validation).</p>
+<pre><code class="language-javascript">// ❌ Nguy hiểm: Sử dụng trực tiếp đầu vào của người dùng
+function searchUser(username) {
+  return db.query(`SELECT * FROM users WHERE name = '${username}'`);
+}
+// Kẻ tấn công có thể nhập: ' OR '1'='1  để lấy dữ liệu tất cả người dùng
+
+// ✅ An toàn: Sử dụng truy vấn tham số hóa (parameterized query)
+function searchUser(username) {
+  return db.query(&quot;SELECT * FROM users WHERE name = $1&quot;, [username]);
+}
+</code></pre>
+<h3>3. Sử dụng cấu hình mặc định không an toàn</h3>
+<pre><code class="language-javascript">// ❌ Nguy hiểm: Cho phép yêu cầu cross-origin từ mọi nguồn
+app.use(cors({ origin: &quot;*&quot; }));
+
+// ✅ An toàn: Chỉ cho phép nguồn cụ thể
+app.use(cors({ origin: &quot;https://yoursite.com&quot; }));
+</code></pre>
+<h3>4. Lộ lọt thông tin quá mức</h3>
+<pre><code class="language-javascript">// ❌ Nguy hiểm: Lộ thông tin lỗi chi tiết cho người dùng
+app.use((err, req, res, next) =&gt; {
+  res.status(500).json({
+    error: err.message,
+    stack: err.stack, // Lộ cấu trúc code
+    dbQuery: err.query, // Lộ truy vấn cơ sở dữ liệu
+  });
+});
+
+// ✅ An toàn: Chỉ trả về thông tin cần thiết
+app.use((err, req, res, next) =&gt; {
+  console.error(err); // Ghi lại thông tin chi tiết ở phía server
+  res.status(500).json({ error: &quot;Lỗi máy chủ, vui lòng thử lại sau&quot; });
+});
+</code></pre>
+<h3>5. Sử dụng thư viện lỗi thời hoặc có lỗ hổng</h3>
+<p>AI có thể đề xuất một số thư viện đã lỗi thời, tồn tại lỗ hổng đã biết. Chúng ta sẽ thảo luận chi tiết vấn đề này ở phần 5.3.5.</p>
+<h2>Cách nhận biết khóa bị hardcode</h2>
+<p>Tìm kiếm các từ khóa này trong code:</p>
+<table>
+<thead>
+<tr>
+<th>Từ khóa</th>
+<th>Có thể là gì</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>password</code>, <code>passwd</code>, <code>pwd</code></td>
+<td>Mật khẩu</td>
+</tr>
+<tr>
+<td><code>secret</code>, <code>api_key</code>, <code>apikey</code></td>
+<td>Khóa API</td>
+</tr>
+<tr>
+<td><code>token</code>, <code>auth</code>, <code>bearer</code></td>
+<td>Token xác thực</td>
+</tr>
+<tr>
+<td><code>sk-</code>, <code>pk-</code>, <code>AKIA</code></td>
+<td>Khóa của dịch vụ cụ thể (OpenAI, AWS v.v.)</td>
+</tr>
+<tr>
+<td><code>-----BEGIN</code></td>
+<td>Khóa riêng hoặc chứng chỉ</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Phương pháp kiểm tra nhanh</strong>:</p>
+<p>Tìm kiếm các mẫu này trong thư mục dự án của bạn. Nếu thấy đi theo sau là một chuỗi ký tự trông giống mật khẩu thật (thay vì <code>process.env.XXX</code>), thì cần phải cảnh giác.</p>
+<h2>Sử dụng file .env để lưu trữ thông tin nhạy cảm</h2>
+<p>File <code>.env</code> là cách thức tiêu chuẩn để lưu trữ cấu hình nhạy cảm.</p>
+<h3>Tạo file .env</h3>
+<p>Tạo file <code>.env</code> tại thư mục gốc dự án:</p>
+<pre><code class="language-bash"># Ví dụ file .env
+# Khóa API
+OPENAI_API_KEY=sk-proj-khóa-thật-của-bạn
+STRIPE_SECRET_KEY=sk_test_khóa-thật-của-bạn
+
+# Kết nối cơ sở dữ liệu
+DATABASE_URL=postgres://user:password@localhost:5432/mydb
+
+# Cấu hình khác
+NODE_ENV=development
+</code></pre>
+<h3>Đọc biến môi trường trong code</h3>
+<pre><code class="language-javascript">// JavaScript/Node.js
+const apiKey = process.env.OPENAI_API_KEY;
+</code></pre>
+<pre><code class="language-python"># Python
+import os
+api_key = os.environ.get('OPENAI_API_KEY')
+</code></pre>
+<h3>Tạo file .env.example</h3>
+<p>Để người khác (hoặc chính bạn trong tương lai) biết cần cấu hình những biến môi trường nào, hãy tạo một file <code>.env.example</code>:</p>
+<pre><code class="language-bash"># .env.example - File này có thể commit lên Git
+# Copy file này thành .env, sau đó điền giá trị thật vào
+
+OPENAI_API_KEY=điền khóa của bạn vào đây
+STRIPE_SECRET_KEY=điền khóa của bạn vào đây
+DATABASE_URL=điền chuỗi kết nối cơ sở dữ liệu vào đây
+</code></pre>
+<h2>Cấu hình .gitignore để ngăn chặn lộ lọt</h2>
+<p>File <code>.gitignore</code> nói cho Git biết những file nào không nên được tải lên.</p>
+<p>Tạo hoặc chỉnh sửa file <code>.gitignore</code> tại thư mục gốc dự án:</p>
+<pre><code class="language-bash"># File biến môi trường - Quan trọng nhất!
+.env
+.env.local
+.env.development
+.env.production
+.env*.local
+
+# Thư mục phụ thuộc
+node_modules/
+venv/
+__pycache__/
+
+# File hệ thống và bộ biên tập
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Sản phẩm build
+dist/
+build/
+*.log
+</code></pre>
+<p>::: warning Chú ý
+Nếu bạn đã từng commit file <code>.env</code> trước khi thêm vào <code>.gitignore</code>, thì chỉ thêm vào <code>.gitignore</code> là chưa đủ.</p>
+<p>Bạn cần:</p>
+<ol>
+<li>Xóa file đó khỏi lịch sử Git</li>
+<li><strong>Thay đổi ngay lập tức tất cả các khóa đã bị lộ</strong></li>
+</ol>
+<p>Bởi vì lịch sử Git có thể xem lại được, ngay cả khi file đã bị xóa.
+:::</p>
+<h2>Kiểm tra dự án danh sách việc cần làm của bạn</h2>
+<p>Xem lại danh sách việc cần làm bạn làm ở chương 4, kiểm tra các điểm sau:</p>
+<ul>
+<li>[ ] Trong code không có khóa hoặc mật khẩu bị hardcode</li>
+<li>[ ] Nếu có gọi API, khóa được đọc từ biến môi trường</li>
+<li>[ ] File <code>.env</code> (nếu có) đã được thêm vào <code>.gitignore</code></li>
+<li>[ ] Không xuất (console.log) thông tin nhạy cảm ra màn hình điều khiển</li>
+</ul>
+<p>Nếu chỉ là một danh sách việc cần làm thuần frontend (dùng localStorage), thường sẽ không có những vấn đề này. Nhưng việc hình thành thói quen kiểm tra là rất quan trọng, vì dự án sau này của bạn sẽ ngày càng phức tạp.</p>
+<p>→ <a href="./5.3.4-checklist_vi.html">5.3.4 Danh sách kiểm tra an toàn cho người mới</a></p>
+</body>
+</html>

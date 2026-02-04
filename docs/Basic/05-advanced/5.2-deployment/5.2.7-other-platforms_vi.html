@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.2.7 Other Platforms</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.2.7 Các lựa chọn triển khai khác"
+order: 8</p>
+<hr />
+<p><img alt="05-advanced_5.2-deployment_5.2.7-other-platforms.png" src="../../../public/images/Basic/05-advanced_5.2-deployment_5.2.7-other-platforms.png" /></p>
+<h1>5.2.7 Các lựa chọn triển khai khác</h1>
+<p>Ngoài Zeabur và Vercel, còn có một số nền tảng triển khai khác để lựa chọn. Dưới đây là giới thiệu sơ lược để tham khảo.</p>
+<h2>Netlify: Kéo thả để triển khai</h2>
+<p>Netlify là một nền tảng lưu trữ web tĩnh phổ biến khác, đặc điểm lớn nhất của nó là hỗ trợ "kéo thả để triển khai".</p>
+<h3>Cách sử dụng</h3>
+<ol>
+<li>Mở <a href="https://app.netlify.com/drop">Netlify Drop</a></li>
+<li>Kéo trực tiếp thư mục dự án của bạn vào trang trình duyệt</li>
+<li>Đợi vài giây, quá trình triển khai hoàn tất</li>
+<li>Nhận được một địa chỉ web <code>*.netlify.app</code></li>
+</ol>
+<blockquote>
+<p><strong>[Gợi ý hình ảnh]</strong>
+Nội dung: Trang Netlify Drop, hiển thị khu vực kéo thả
+Prompt: web interface showing drag and drop zone, file folder being dragged, clean modern design, light background, 8k --ar 16:9</p>
+</blockquote>
+<h3>Ưu nhược điểm</h3>
+<table>
+<thead>
+<tr>
+<th>Ưu điểm</th>
+<th>Nhược điểm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thao tác cực đơn giản, chỉ cần kéo thả</td>
+<td>Cập nhật cần kéo thả lại</td>
+</tr>
+<tr>
+<td>Không cần tài khoản GitHub</td>
+<td>Truy cập tại Đại lục có vấn đề</td>
+</tr>
+<tr>
+<td>Triển khai cấp giây</td>
+<td>Không phù hợp với dự án cập nhật thường xuyên</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Phù hợp</strong>: Trình diễn tạm thời, dự án dùng một lần, hoặc khi không muốn dùng Git.</p>
+<h3>Cách triển khai liên tục</h3>
+<p>Nếu muốn tự động triển khai sau khi cập nhật code, bạn có thể:</p>
+<ol>
+<li>Đăng ký tài khoản Netlify</li>
+<li>Kết nối kho chứa GitHub</li>
+<li>Cấu hình cài đặt build</li>
+</ol>
+<p>Như vậy sẽ giống như Zeabur, Vercel, tự động triển khai sau khi Push.</p>
+<h2>GitHub Pages: Hoàn toàn miễn phí</h2>
+<p>GitHub Pages là dịch vụ lưu trữ web tĩnh do GitHub cung cấp, hoàn toàn miễn phí, không cần tài khoản bổ sung nào.</p>
+<h3>Nguyên lý cơ bản</h3>
+<p>GitHub Pages sẽ xuất bản trực tiếp các file HTML trong kho chứa của bạn thành trang web.</p>
+<h3>Sơ lược cách sử dụng</h3>
+<ol>
+<li>Đảm bảo kho chứa của bạn là public (công khai)</li>
+<li>Đảm bảo có một file <code>index.html</code></li>
+<li>Vào Settings → Pages của kho chứa</li>
+<li>Chọn nhánh muốn triển khai (thường là main)</li>
+<li>Đợi vài phút, nhận được địa chỉ web <code>username.github.io/repo-name</code></li>
+</ol>
+<h3>Ưu nhược điểm</h3>
+<table>
+<thead>
+<tr>
+<th>Ưu điểm</th>
+<th>Nhược điểm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hoàn toàn miễn phí</td>
+<td>Chỉ hỗ trợ web tĩnh</td>
+</tr>
+<tr>
+<td>Tích hợp sâu với GitHub</td>
+<td>Truy cập tại Đại lục không ổn định</td>
+</tr>
+<tr>
+<td>Hỗ trợ tên miền tùy chỉnh</td>
+<td>Cấu hình hơi phức tạp</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Phù hợp</strong>: Blog cá nhân, trang tài liệu, trang chủ dự án mã nguồn mở.</p>
+<p>::: tip Dự báo nâng cao
+Cấu hình chi tiết của GitHub Pages và tự động triển khai với GitHub Actions sẽ được giảng giải trong bản nâng cao.
+:::</p>
+<h2>Railway: Hạn mức miễn phí ít hơn</h2>
+<p>Railway là nền tảng triển khai ứng dụng fullstack, hỗ trợ triển khai frontend, backend, cơ sở dữ liệu "tất cả trong một".</p>
+<p><strong>Đặc điểm</strong>:</p>
+<ul>
+<li>Hỗ trợ nhiều ngôn ngữ và framework</li>
+<li>Cung cấp dịch vụ cơ sở dữ liệu</li>
+<li>Hạn mức miễn phí $5 mỗi tháng</li>
+</ul>
+<p><strong>Trang chủ</strong>: <a href="https://railway.app/">railway.app</a></p>
+<p><strong>Phù hợp</strong>: Dự án cần dịch vụ backend. Đối với danh sách việc cần làm thuần frontend của chúng ta, dùng Railway hơi "dùng dao mổ trâu giết gà".</p>
+<h2>Render: Triển khai fullstack</h2>
+<p>Render tương tự như Railway, là một nền tảng triển khai fullstack.</p>
+<p><strong>Đặc điểm</strong>:</p>
+<ul>
+<li>Tầng miễn phí hỗ trợ web tĩnh</li>
+<li>Hỗ trợ dịch vụ backend và cơ sở dữ liệu</li>
+<li>Tự động triển khai từ Git</li>
+</ul>
+<p><strong>Trang chủ</strong>: <a href="https://render.com/">render.com</a></p>
+<h2>Cloudflare Pages: Triển khai biên (Edge)</h2>
+<p>Cloudflare Pages là dịch vụ lưu trữ web tĩnh do Cloudflare cung cấp.</p>
+<p><strong>Đặc điểm</strong>:</p>
+<ul>
+<li>Hoàn toàn miễn phí</li>
+<li>Tăng tốc mạng biên toàn cầu</li>
+<li>Tích hợp sâu với hệ sinh thái Cloudflare</li>
+</ul>
+<p><strong>Hạn chế</strong>:</p>
+<ul>
+<li>Truy cập tại Đại lục cần cấu hình thêm</li>
+<li>Cấu hình phức tạp hơn Zeabur một chút</li>
+</ul>
+<p><strong>Trang chủ</strong>: <a href="https://pages.cloudflare.com/">pages.cloudflare.com</a></p>
+<h2>Cách chọn</h2>
+<p>Đối với việc học bản cơ bản, <strong>không cần đắn đo</strong> giữa các lựa chọn này. Khuyên dùng:</p>
+<ul>
+<li>Người dùng Đại lục: Dùng Zeabur</li>
+<li>Người dùng quốc tế: Dùng Vercel</li>
+<li>Trình diễn tạm thời: Dùng Netlify Drop</li>
+</ul>
+<p>Đợi bạn học xong bản cơ bản, có nhiều nhu cầu hơn, lúc đó hãy khám phá các nền tảng khác.</p>
+<p>→ <a href="./5.2.8-faq_vi.html">5.2.8 Các câu hỏi thường gặp về triển khai</a></p>
+</body>
+</html>

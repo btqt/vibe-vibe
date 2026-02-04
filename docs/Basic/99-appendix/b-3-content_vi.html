@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B 3 Content</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "B.3 Vấn đề Tương tác"</h2>
+<p><img alt="99-appendix_b-3-content.png" src="../../public/images/Basic/99-appendix_b-3-content.png" /></p>
+<h1>B.3 Vấn đề Tương tác</h1>
+<p>Trang hiển thị được, nhưng ấn nút, nhập liệu không có phản ứng? Một này giúp bạn giải quyết các vấn đề tương tác thường gặp nhất.</p>
+<h2>Nút bấm không phản ứng</h2>
+<p><strong>Hiện tượng</strong>: Ấn vào nút, chẳng có chuyện gì xảy ra cả.</p>
+<p><strong>Danh sách kiểm tra</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Mục kiểm tra</th>
+<th>Cách kiểm tra</th>
+<th>Cách giải quyết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sự kiện chưa được gán</td>
+<td>Kiểm tra <code>onclick</code> trong HTML hoặc <code>addEventListener</code> trong JS</td>
+<td>Đảm bảo hàm xử lý sự kiện được gán đúng</td>
+</tr>
+<tr>
+<td>Viết sai tên hàm</td>
+<td>Kiểm tra tên hàm trong <code>onclick="xxx()"</code></td>
+<td>Đảm bảo khớp với tên hàm định nghĩa trong JS</td>
+</tr>
+<tr>
+<td>File JS chưa được tải</td>
+<td>Xem console có lỗi 404 không</td>
+<td>Kiểm tra đường dẫn thẻ <code>&lt;script&gt;</code></td>
+</tr>
+<tr>
+<td>JS có lỗi ngữ pháp</td>
+<td>Xem console có lỗi màu đỏ không</td>
+<td>Sửa lỗi ngữ pháp, code phía sau mới chạy được</td>
+</tr>
+<tr>
+<td>Bị phần tử khác che mất</td>
+<td>Kiểm tra bên trên nút có phần tử trong suốt không</td>
+<td>Điều chỉnh <code>z-index</code> hoặc xóa phần tử che chắn</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prompt sửa nhanh</strong>:</p>
+<pre><code class="language-markdown">Nút bấm của tôi không có phản ứng gì khi click.
+
+Code HTML của nút:
+[Dán code nút]
+
+Code hàm JS:
+[Dán code JS tương ứng]
+
+Thông báo lỗi Console (nếu có):
+[Dán thông báo lỗi]
+
+Hãy giúp tôi kiểm tra nguyên nhân.
+</code></pre>
+<h2>Gửi biểu mẫu thất bại</h2>
+<p><strong>Hiện tượng</strong>: Điền xong biểu mẫu ấn gửi, trang tải lại nhưng dữ liệu không được xử lý.</p>
+<p><strong>Nguyên nhân thường gặp và cách giải quyết</strong>:</p>
+<h3>Vấn đề trang tải lại (Refresh)</h3>
+<pre><code class="language-javascript">// Vấn đề: Sau khi gửi form trang bị tải lại
+// Giải quyết: Ngăn chặn hành vi mặc định
+form.addEventListener(&quot;submit&quot;, function (e) {
+  e.preventDefault(); // Ngăn chặn hành vi gửi form mặc định
+  // Xử lý dữ liệu ở đây
+});
+</code></pre>
+<h3>Không lấy được giá trị đầu vào</h3>
+<pre><code class="language-javascript">// Vấn đề: Giá trị lấy được là rỗng
+// Kiểm tra 1: Selector có đúng không
+const input = document.getElementById(&quot;username&quot;); // ID phải khớp
+
+// Kiểm tra 2: Cách lấy giá trị
+const value = input.value; // Chú ý là .value chứ không phải .innerText
+
+// Kiểm tra 3: Thời điểm lấy có đúng không (phải lấy sau khi người dùng nhập)
+</code></pre>
+<h3>Vấn đề định dạng dữ liệu</h3>
+<pre><code class="language-javascript">// Vấn đề: Số bị coi là chuỗi
+const age = document.getElementById(&quot;age&quot;).value; // &quot;25&quot; (Chuỗi)
+const ageNumber = parseInt(age); // 25 (Số)
+
+// Hoặc dùng Number()
+const ageNumber2 = Number(age);
+</code></pre>
+<h2>Dữ liệu không hiển thị</h2>
+<p><strong>Hiện tượng</strong>: Dữ liệu đã lưu, nhưng trên trang không nhìn thấy.</p>
+<p><strong>Các bước kiểm tra</strong>:</p>
+<pre><code class="language-mermaid">flowchart TD
+    A[Dữ liệu không hiển thị] --&gt; B{Có dữ liệu không?}
+    B --&gt;|Không| C[Kiểm tra nguồn dữ liệu]
+    C --&gt; C1[API trả về chưa?]
+    C --&gt; C2[LocalStorage có không?]
+    B --&gt;|Có| D{DOM cập nhật chưa?}
+    D --&gt;|Chưa| E[Kiểm tra logic render]
+    E --&gt; E1[innerHTML đã set chưa?]
+    E --&gt; E2[Selector đúng chưa?]
+    D --&gt;|Rồi| F[Kiểm tra CSS]
+    F --&gt; F1[Có bị ẩn không?]
+    F --&gt; F2[Có nằm ngoài vùng nhìn thấy không?]
+</code></pre>
+<p><strong>Code sửa thường gặp</strong>:</p>
+<pre><code class="language-javascript">// Kiểm tra dữ liệu có tồn tại không
+const data = localStorage.getItem(&quot;quotes&quot;);
+console.log(&quot;Dữ liệu đã lưu:&quot;, data); // Dùng console.log để kiểm tra
+
+// Đảm bảo phân tích đúng
+const quotes = JSON.parse(data) || [];
+console.log(&quot;Mảng sau khi parse:&quot;, quotes);
+
+// Đảm bảo render vào đúng vị trí
+const container = document.getElementById(&quot;list&quot;);
+if (container) {
+  container.innerHTML = quotes.map((q) =&gt; `&lt;p&gt;${q}&lt;/p&gt;`).join(&quot;&quot;);
+} else {
+  console.log(&quot;Không tìm thấy phần tử container!&quot;);
+}
+</code></pre>
+<h2>Dữ liệu đã lưu nhưng tải lại trang thì mất</h2>
+<p><strong>Hiện tượng</strong>: Thao tác dữ liệu thành công, nhưng tải lại trang thì dữ liệu biến mất.</p>
+<p><strong>Danh sách kiểm tra</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Nguyên nhân có thể</th>
+<th>Cách kiểm tra</th>
+<th>Cách giải quyết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chưa lưu trữ bền vững</td>
+<td>Kiểm tra có dùng LocalStorage không</td>
+<td>Khi dữ liệu thay đổi phải lưu vào LocalStorage</td>
+</tr>
+<tr>
+<td>Sai thời điểm lưu</td>
+<td>Kiểm tra code lưu có được thực thi không</td>
+<td>Lưu ngay sau khi dữ liệu thay đổi</td>
+</tr>
+<tr>
+<td>Sai thời điểm tải</td>
+<td>Kiểm tra khi tải trang có đọc dữ liệu không</td>
+<td>Đọc từ LocalStorage khi trang tải xong</td>
+</tr>
+<tr>
+<td>Vấn đề định dạng lưu trữ</td>
+<td>Kiểm tra định dạng dữ liệu lưu</td>
+<td>Dùng JSON.stringify để lưu, JSON.parse để lấy</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ví dụ lưu/lấy hoàn chỉnh</strong>:</p>
+<pre><code class="language-javascript">// Lưu dữ liệu
+function saveQuotes(quotes) {
+  localStorage.setItem(&quot;quotes&quot;, JSON.stringify(quotes));
+}
+
+// Đọc dữ liệu
+function loadQuotes() {
+  const data = localStorage.getItem(&quot;quotes&quot;);
+  return data ? JSON.parse(data) : [];
+}
+
+// Đọc khi trang tải xong
+document.addEventListener(&quot;DOMContentLoaded&quot;, function () {
+  const quotes = loadQuotes();
+  renderQuotes(quotes);
+});
+
+// Lưu khi thêm dữ liệu mới
+function addQuote(newQuote) {
+  const quotes = loadQuotes();
+  quotes.push(newQuote);
+  saveQuotes(quotes); // Đừng quên lưu!
+  renderQuotes(quotes);
+}
+</code></pre>
+<h2>Khẩu quyết chung để kiểm tra lỗi tương tác</h2>
+<blockquote>
+<p><strong>Xem Console</strong> → <strong>Thêm console.log</strong> → <strong>Kiểm tra thời điểm</strong> → <strong>Hỏi AI</strong></p>
+</blockquote>
+<ol>
+<li><strong>Xem Console</strong>: Có lỗi đỏ không?</li>
+<li><strong>Thêm console.log</strong>: Code chạy đến bước nào rồi? Dữ liệu là gì?</li>
+<li><strong>Kiểm tra thời điểm</strong>: Code có đang chạy đúng thời gian không?</li>
+<li><strong>Hỏi AI</strong>: Mô tả rõ code liên quan và hiện tượng</li>
+</ol>
+</body>
+</html>

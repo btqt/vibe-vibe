@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.3.5 Slopsquatting</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.3.5 Thư viện AI đề xuất có an toàn không (Slopsquatting)"
+order: 7</p>
+<hr />
+<p><img alt="05-advanced_5.3-security_5.3.5-slopsquatting.png" src="../../../public/images/Basic/05-advanced_5.3-security_5.3.5-slopsquatting.png" /></p>
+<h1>5.3.5 Thư viện AI đề xuất có an toàn không?</h1>
+<p>Qua bài học này, bạn sẽ hiểu:</p>
+<ul>
+<li>Tấn công Slopsquatting là gì</li>
+<li>Tại sao thư viện AI đề xuất có thể ẩn chứa rủi ro</li>
+<li>Cách xác minh một thư viện có an toàn không</li>
+<li>Các trường hợp gói độc hại thực tế</li>
+</ul>
+<h2>Còn nhớ "ảo giác AI" không?</h2>
+<p>Ở chương 3, chúng ta đã thảo luận việc AI đôi khi sẽ "nói hươu nói vượn một cách nghiêm túc" - đưa ra câu trả lời trông có vẻ hợp lý nhưng thực tế lại sai.</p>
+<p>Trong lĩnh vực an ninh, loại "ảo giác" này có thể gây ra hậu quả nghiêm trọng.</p>
+<p><strong>AI có thể đề xuất các gói phần mềm hoàn toàn không tồn tại.</strong></p>
+<p>Theo nghiên cứu năm 2025 của Đại học Texas và các tổ chức nghiên cứu khác:</p>
+<ul>
+<li><strong>19.7%</strong> các gói do AI đề xuất thực tế không tồn tại</li>
+<li>Tỷ lệ ảo giác của các mô hình nguồn mở lên tới <strong>21.7%</strong></li>
+<li>Ngay cả dòng GPT cũng có tỷ lệ ảo giác <strong>5.2%</strong></li>
+<li><strong>58%</strong> tên gói ảo giác sẽ lặp lại, có thể dự đoán được</li>
+</ul>
+<h2>Slopsquatting là gì?</h2>
+<p><strong>Slopsquatting</strong> là phương thức tấn công kiểu mới xuất hiện trong năm 2024-2025, tên gọi bắt nguồn từ:</p>
+<ul>
+<li><strong>Slop</strong>: Chỉ nội dung "rác" hoặc sai lệch do AI tạo ra</li>
+<li><strong>Squatting</strong>: Chiếm dụng (giống như chiếm dụng tên miền (domain squatting))</li>
+</ul>
+<p><strong>Nguyên lý tấn công</strong>:</p>
+<pre><code>1. Kẻ tấn công nghiên cứu các tên gói mà AI thường &quot;ảo giác&quot; ra
+   (Ví dụ AI thường đề xuất một gói tên là &quot;aws-helper-sdk&quot;, nhưng nó không tồn tại)
+
+2. Kẻ tấn công nhanh tay đăng ký tên gói này trước
+   (Tạo một gói &quot;aws-helper-sdk&quot; thật trên npm hoặc PyPI)
+
+3. Cấy mã độc vào trong gói
+   (Ví dụ đánh cắp biến môi trường, tải về chương trình backdoor)
+
+4. Đợi lập trình viên cắn câu
+   (Lập trình viên tin tưởng đề xuất của AI, cài đặt trực tiếp)
+
+5. Mã độc được thực thi
+   (Khóa, dữ liệu của lập trình viên bị đánh cắp)
+</code></pre>
+<h2>Trường hợp thực tế</h2>
+<h3>Trường hợp 1: Gói độc hại aiocpa (Tháng 11/2024)</h3>
+<p>Thư viện Python <strong>aiocpa</strong> (một client API thanh toán tiền mã hóa) bị phát hiện:</p>
+<ul>
+<li>Đã cấy mã độc trong phiên bản 0.1.13</li>
+<li>Sẽ gửi <strong>Crypto Pay API Token</strong> của người dùng qua Telegram Bot cho kẻ tấn công</li>
+<li>Gói này đã được tải xuống hơn <strong>12,000 lần</strong> trước khi bị phát hiện</li>
+</ul>
+<h3>Trường hợp 2: solana-systemprogram-utils (Tháng 12/2024)</h3>
+<p>Gói độc hại phát hiện trên npm:</p>
+<ul>
+<li>Giả dạng thư viện công cụ của Solana blockchain</li>
+<li>Sẽ âm thầm chuyển tiền đến địa chỉ của kẻ tấn công trong <strong>2% số giao dịch</strong></li>
+<li>Vì tỷ lệ thấp nên rất khó bị phát hiện ngay lập tức</li>
+</ul>
+<h3>Trường hợp 3: Tấn công chuỗi cung ứng GitHub Actions (Tháng 9/2025)</h3>
+<p>Cuộc tấn công mang mã hiệu <strong>GhostAction</strong>:</p>
+<ul>
+<li>Lợi dụng cấu hình GitHub Actions do công cụ lập trình AI tạo ra</li>
+<li>Đánh cắp chứng thực từ <strong>817 kho chứa</strong></li>
+<li>Hơn <strong>5,500 lập trình viên</strong> bị ảnh hưởng</li>
+</ul>
+<h2>Cách tự bảo vệ</h2>
+<h3>Bước 1: Xác minh sự tồn tại của gói</h3>
+<p>Trước khi cài đặt bất kỳ gói nào do AI đề xuất, hãy lên trang chủ chính thức xác nhận trước:</p>
+<table>
+<thead>
+<tr>
+<th>Ngôn ngữ</th>
+<th>Kho gói chính thức</th>
+<th>Website</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JavaScript/Node.js</td>
+<td>npm</td>
+<td>npmjs.com</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>PyPI</td>
+<td>pypi.org</td>
+</tr>
+<tr>
+<td>Go</td>
+<td>Go Packages</td>
+<td>pkg.go.dev</td>
+</tr>
+<tr>
+<td>Rust</td>
+<td>crates.io</td>
+<td>crates.io</td>
+</tr>
+</tbody>
+</table>
+<h3>Bước 2: Kiểm tra độ tin cậy của gói</h3>
+<p>Sau khi tìm thấy gói trong kho chính thức, hãy kiểm tra:</p>
+<table>
+<thead>
+<tr>
+<th>Chỉ số</th>
+<th>Tín hiệu an toàn</th>
+<th>Tín hiệu cảnh báo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lượt tải</td>
+<td>Lượt tải hàng tuần khá cao (vài nghìn trở lên)</td>
+<td>Lượt tải rất thấp (vài chục hoặc ít hơn)</td>
+</tr>
+<tr>
+<td>Trạng thái bảo trì</td>
+<td>Gần đây có cập nhật</td>
+<td>Hơn 2 năm không cập nhật</td>
+</tr>
+<tr>
+<td>Tác giả</td>
+<td>Tổ chức nổi tiếng hoặc có nhiều dự án</td>
+<td>Chỉ có đúng gói này, không có hoạt động khác</td>
+</tr>
+<tr>
+<td>Người phụ thuộc</td>
+<td>Được các dự án phổ biến khác sử dụng</td>
+<td>Không có dự án nào phụ thuộc</td>
+</tr>
+<tr>
+<td>Kho chứa</td>
+<td>Có kho chứa GitHub liên kết</td>
+<td>Không có kho chứa mã nguồn</td>
+</tr>
+</tbody>
+</table>
+<h3>Bước 3: Cảnh giác với các gói "mới phát hiện"</h3>
+<p>Nếu AI đề xuất một gói mà bạn chưa từng nghe tên:</p>
+<pre><code>✅ Tìm kiếm tên gói trên công cụ tìm kiếm trước
+✅ Xem có ai thảo luận trên diễn đàn kỹ thuật hoặc blog không
+✅ Kiểm tra có tài liệu chính thức không
+✅ Nếu không tìm thấy bất kỳ thông tin nào, rất có thể là ảo giác
+</code></pre>
+<h3>Bước 4: Đọc kỹ đề xuất của AI</h3>
+<p>Đôi khi AI sẽ đưa ra lời khuyên như thế này:</p>
+<pre><code class="language-javascript">// AI có thể nói:
+// &quot;Bạn có thể sử dụng thư viện super-easy-auth để xử lý xác thực&quot;
+npm install super-easy-auth
+</code></pre>
+<p><strong>Trước khi thực thi lệnh cài đặt</strong>, hãy tự hỏi:</p>
+<ul>
+<li>Mình đã nghe tên thư viện này bao giờ chưa?</li>
+<li>Lên npmjs.com tìm kiếm có tồn tại không?</li>
+<li>Lượt tải thế nào?</li>
+</ul>
+<h2>Mô hình mã nguồn mở vs Mô hình thương mại</h2>
+<p>Nghiên cứu chỉ ra rằng, tỷ lệ ảo giác của các mô hình khác nhau có sự chênh lệch lớn:</p>
+<table>
+<thead>
+<tr>
+<th>Loại mô hình</th>
+<th>Tỷ lệ ảo giác</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mô hình nguồn mở (như CodeLlama)</td>
+<td>~21.7%</td>
+<td>Cứ 5 đề xuất thì có thể có 1 cái là giả</td>
+</tr>
+<tr>
+<td>Dòng GPT</td>
+<td>~5.2%</td>
+<td>Tương đối thấp, nhưng vẫn cần cảnh giác</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dù sử dụng mô hình nào, cũng nên xác minh lại.</strong></p>
+<h2>Ghi nhớ nguyên tắc này</h2>
+<p>::: warning Nguyên tắc cốt lõi
+<strong>Gói AI đề xuất ≠ Gói tồn tại ≠ Gói an toàn</strong></p>
+<p>Trước khi cài đặt bất kỳ phụ thuộc mới nào, hãy dành 30 giây lên kho chính thức để xác minh, có thể tránh được rất nhiều rắc rối.
+:::</p>
+<p>→ <a href="./5.3.6-always-review_vi.html">5.3.6 Luôn rà soát code</a></p>
+</body>
+</html>

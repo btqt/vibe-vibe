@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.2.6 China Solution</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.2.6 Giải pháp truy cập tại Đại lục (Tùy chọn)"
+order: 7</p>
+<hr />
+<p><img alt="05-advanced_5.2-deployment_5.2.6-china-solution.png" src="../../../public/images/Basic/05-advanced_5.2-deployment_5.2.6-china-solution.png" /></p>
+<h1>5.2.6 Giải pháp truy cập cho người dùng Đại lục</h1>
+<p>Nếu bạn đang ở Trung Quốc đại lục, hoặc người dùng của bạn ở đại lục, cần đặc biệt lưu ý vấn đề truy cập. Phần này giới thiệu một số giải pháp.</p>
+<h2>Tại sao có vấn đề truy cập</h2>
+<p>Các tên miền mặc định của nền tảng nước ngoài như Vercel, Netlify (như <code>*.vercel.app</code>) bị nhiễm độc DNS, dẫn đến người dùng đại lục không thể truy cập bình thường hoặc truy cập rất chậm.</p>
+<p>Đây không phải là lỗi code của bạn, mà là vấn đề môi trường mạng.</p>
+<h2>Tổng hợp giải pháp</h2>
+<table>
+<thead>
+<tr>
+<th>Giải pháp</th>
+<th>Độ khó</th>
+<th>Chi phí</th>
+<th>Kịch bản đề xuất</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sử dụng Zeabur</td>
+<td>Đơn giản</td>
+<td>Miễn phí</td>
+<td><strong>Ưu tiên hàng đầu</strong></td>
+</tr>
+<tr>
+<td>Sử dụng Maozi Cloud</td>
+<td>Đơn giản</td>
+<td>Miễn phí</td>
+<td>Web tĩnh thuần túy</td>
+</tr>
+<tr>
+<td>EdgeOne Pages</td>
+<td>Trung bình</td>
+<td>Miễn phí (Công khai)</td>
+<td>Người dùng Tencent Cloud</td>
+</tr>
+<tr>
+<td>21YunBox</td>
+<td>Đơn giản</td>
+<td>Miễn phí</td>
+<td>Hugo và các framework tĩnh khác</td>
+</tr>
+<tr>
+<td>Cloudflare Proxy</td>
+<td>Phức tạp</td>
+<td>Cần mua tên miền</td>
+<td>Người dùng nâng cao đã dùng Vercel</td>
+</tr>
+</tbody>
+</table>
+<h2>Giải pháp 1: Dùng trực tiếp Zeabur (Đề xuất)</h2>
+<p>Giải pháp đơn giản nhất. Tên miền miễn phí của Zeabur <code>*.zeabur.app</code> có thể truy cập bình thường ở đại lục.</p>
+<p>Xem <a href="./5.2.3-zeabur_vi.html">5.2.3 Thực chiến triển khai Zeabur</a>.</p>
+<h2>Giải pháp 2: Maozi Cloud (Web tĩnh thuần túy)</h2>
+<p>Maozi Cloud là một nền tảng lưu trữ web tĩnh trong nước, tương tự như phiên bản GitHub Pages của Trung Quốc.</p>
+<p><strong>Đặc điểm</strong>:</p>
+<ul>
+<li>Hoàn toàn miễn phí</li>
+<li>Node CDN trong nước, tốc độ truy cập nhanh</li>
+<li>Hỗ trợ triển khai tự động từ GitHub</li>
+<li>Hỗ trợ tên miền tùy chỉnh</li>
+</ul>
+<p><strong>Phù hợp</strong>: Web tĩnh thuần HTML/CSS/JS (ví dụ như danh sách việc cần làm của chúng ta)</p>
+<p><strong>Trang chủ</strong>: <a href="https://www.maoziyun.com/">maoziyun.com</a></p>
+<h3>Sơ lược các bước sử dụng</h3>
+<ol>
+<li>Đăng ký tài khoản Maozi Cloud</li>
+<li>Kết nối kho chứa GitHub của bạn</li>
+<li>Chọn nhánh muốn triển khai</li>
+<li>Đợi triển khai tự động hoàn tất</li>
+<li>Nhận tên miền <code>*.maoziyun.com</code></li>
+</ol>
+<h2>Giải pháp 3: EdgeOne Pages (Tencent Cloud)</h2>
+<p>EdgeOne Pages là nền tảng triển khai frontend do Tencent Cloud ra mắt, hiện đang trong giai đoạn thử nghiệm công khai, sử dụng miễn phí.</p>
+<p><strong>Đặc điểm</strong>:</p>
+<ul>
+<li>Miễn phí trong thời gian thử nghiệm</li>
+<li>Tăng tốc mạng biên toàn cầu của Tencent Cloud</li>
+<li>Hỗ trợ Next.js, React, Vue và các framework hiện đại khác</li>
+<li>Tốc độ truy cập đại lục rất nhanh</li>
+</ul>
+<p><strong>Phù hợp</strong>: Người dùng đã có tài khoản Tencent Cloud, hoặc dự án cần tốc độ truy cập trong nước tốt hơn</p>
+<p><strong>Trang chủ</strong>: <a href="https://edgeone.ai/">edgeone.ai</a></p>
+<h3>Lưu ý</h3>
+<p>Cấu hình của EdgeOne Pages phức tạp hơn Zeabur một chút, cần làm quen với bảng điều khiển của Tencent Cloud. Nếu bạn lần đầu triển khai, khuyên dùng Zeabur trước.</p>
+<h2>Giải pháp 4: 21YunBox</h2>
+<p>21YunBox là nền tảng lưu trữ chuyên biệt cho người dùng Trung Quốc đại lục, hỗ trợ rất tốt cho các trình tạo trang tĩnh như Hugo, Jekyll.</p>
+<p><strong>Đặc điểm</strong>:</p>
+<ul>
+<li>Tăng tốc CDN trong nước</li>
+<li>Hỗ trợ triển khai từ Gitee (không cần GitHub)</li>
+<li>Chứng chỉ SSL tự động</li>
+<li>Triển khai liên tục</li>
+</ul>
+<p><strong>Trang chủ</strong>: <a href="https://www.21yunbox.com/">21yunbox.com</a></p>
+<h2>Giải pháp 5: Cloudflare Proxy (Nâng cao)</h2>
+<p>Nếu bạn đã triển khai dự án trên Vercel, nhưng muốn người dùng đại lục truy cập được, có thể giải quyết thông qua proxy của Cloudflare.</p>
+<h3>Điều kiện tiên quyết</h3>
+<ul>
+<li>Mua một tên miền riêng (khoảng 10-50 tệ/năm)</li>
+<li>Đăng ký tài khoản Cloudflare (miễn phí)</li>
+</ul>
+<h3>Sơ lược các bước</h3>
+<ol>
+<li>Đăng ký tài khoản tại Cloudflare</li>
+<li>Thêm tên miền của bạn vào Cloudflare</li>
+<li>Tại nhà đăng ký tên miền, đổi máy chủ DNS sang loại Cloudflare cung cấp</li>
+<li>Thêm tên miền tùy chỉnh trong Vercel</li>
+<li>Thêm bản ghi CNAME trỏ về Vercel trong Cloudflare</li>
+<li>Đảm bảo proxy Cloudflare đã bật (biểu tượng đám mây màu cam)</li>
+</ol>
+<h3>Ưu nhược điểm của giải pháp này</h3>
+<table>
+<thead>
+<tr>
+<th>Ưu điểm</th>
+<th>Nhược điểm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Có thể tiếp tục dùng Vercel</td>
+<td>Cần mua tên miền</td>
+</tr>
+<tr>
+<td>Có tên miền riêng chuyên nghiệp</td>
+<td>Các bước cấu hình khá nhiều</td>
+</tr>
+<tr>
+<td>Cloudflare có CDN toàn cầu</td>
+<td>Cần đợi DNS có hiệu lực</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Gợi ý bản cơ bản
+Nếu bạn mới bắt đầu học, không khuyến khích cấu hình Cloudflare ngay lúc này. Hãy dùng Zeabur hoặc Maozi Cloud để chạy trang web trước, đợi bản nâng cao hãy học kiến thức về tên miền và CDN.
+:::</p>
+<h2>Cách chọn</h2>
+<pre><code>Bạn có cần truy cập từ đại lục không?
+├── Có
+│   ├── Web tĩnh thuần túy → Maozi Cloud (Miễn phí) hoặc Zeabur
+│   ├── Cần chức năng phía server → Zeabur
+│   └── Đã có tài khoản Tencent Cloud → EdgeOne Pages
+└── Không → Dùng trực tiếp Vercel / Netlify
+</code></pre>
+<p>→ <a href="./5.2.7-other-platforms_vi.html">5.2.7 Các lự chọn triển khai khác</a></p>
+</body>
+</html>

@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C 2 Content</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "C.2 Liên quan đến Phát triển"</h2>
+<p><img alt="99-appendix_c-2-content.png" src="../../public/images/Basic/99-appendix_c-2-content.png" /></p>
+<h1>C.2 Liên quan đến Phát triển</h1>
+<p>Đây là các thuật ngữ thường dùng trong phát triển phần mềm. Không cần hiểu sâu, chỉ cần biết đại khái ý nghĩa là được.</p>
+<h2>MVP</h2>
+<p><strong>Viết tắt của</strong>: Minimum Viable Product (Sản phẩm khả thi tối thiểu)</p>
+<p><strong>Giải thích một câu</strong>: Phiên bản đơn giản nhất dùng được, chỉ bao gồm các chức năng cốt lõi nhất.</p>
+<p><strong>Ví dụ tương tự</strong>: Làm một chiếc xe đạp chạy được trước, chứ không phải vừa vào đã muốn chế tạo xe Tesla.</p>
+<p><strong>Tại sao quan trọng</strong>:</p>
+<ul>
+<li>Nhanh chóng xác minh ý tưởng có khả thi không</li>
+<li>Sớm phát hiện vấn đề</li>
+<li>Tránh lãng phí thời gian vào các chức năng không ai cần</li>
+</ul>
+<h2>PRD</h2>
+<p><strong>Viết tắt của</strong>: Product Requirement Document (Tài liệu yêu cầu sản phẩm)</p>
+<p><strong>Giải thích một câu</strong>: Tài liệu mô tả sản phẩm "làm cái gì".</p>
+<p><strong>Thường bao gồm</strong>:</p>
+<ul>
+<li>Mục tiêu sản phẩm</li>
+<li>Người dùng là ai</li>
+<li>Chức năng cốt lõi</li>
+<li>Không bao gồm cái gì</li>
+</ul>
+<p><strong>Giá trị đối với lập trình AI</strong>:
+Có PRD, AI có thể hiểu chính xác hơn nhu cầu của bạn, code sinh ra càng phù hợp với mong đợi.</p>
+<h2>Debug</h2>
+<p><strong>Giải thích một câu</strong>: Tìm và sửa lỗi trong code.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như tìm nguyên nhân tại sao đèn không sáng — do bóng hỏng? Hay chưa bật công tắc? Hay mất điện?</p>
+<p><strong>Phương pháp Debug thường gặp</strong>:</p>
+<ul>
+<li>Xem thông báo lỗi</li>
+<li>Thêm <code>console.log</code> để in giá trị biến</li>
+<li>Kiểm tra code từng dòng một</li>
+<li>Hỏi AI</li>
+</ul>
+<h2>Deploy (Triển khai)</h2>
+<p><strong>Giải thích một câu</strong>: Đưa thứ bạn làm lên mạng, để người khác truy cập được.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như biến bản thảo sách thành sách in được bày bán trên kệ.</p>
+<p><strong>Nền tảng triển khai thường dùng</strong>:</p>
+<ul>
+<li>Vercel</li>
+<li>Netlify</li>
+<li>GitHub Pages</li>
+</ul>
+<h2>Git</h2>
+<p><strong>Giải thích một câu</strong>: Công cụ quản lý phiên bản code, có thể ghi lại mỗi lần sửa đổi, quay lại bất cứ lúc nào.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như chức năng lưu game save. Chơi sai có thể load lại save quay về trạng thái trước đó.</p>
+<p><strong>Khái niệm cốt lõi</strong>:
+| Khái niệm | Giải thích |
+|------|------|
+| Repository (Kho) | Nơi chứa dự án |
+| Commit (Gửi) | Lưu lại một bản ghi sửa đổi |
+| Branch (Nhánh) | Phiên bản song song của code |
+| Push (Đẩy) | Tải code từ máy lên đám mây |
+| Pull (Kéo) | Tải code từ đám mây về máy |</p>
+<h2>GitHub</h2>
+<p><strong>Giải thích một câu</strong>: Nền tảng lưu trữ code lớn nhất, dựa trên Git.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như "Google Drive của giới code", code của bạn được lưu trên mây, truy cập mọi lúc mọi nơi.</p>
+<p><strong>Công dụng thường gặp</strong>:</p>
+<ul>
+<li>Lưu trữ và sao lưu code</li>
+<li>Cộng tác phát triển với người khác</li>
+<li>Trưng bày dự án của bạn</li>
+<li>Tìm dự án mã nguồn mở để học tập</li>
+</ul>
+<h2>API</h2>
+<p><strong>Viết tắt của</strong>: Application Programming Interface (Giao diện lập trình ứng dụng)</p>
+<p><strong>Giải thích một câu</strong>: "Ám hiệu" để các chương trình giao tiếp với nhau.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như thực đơn nhà hàng. Bạn gọi món theo thực đơn (gửi yêu cầu), nhà bếp làm cho bạn (trả về kết quả). Bạn không cần biết nhà bếp làm như thế nào.</p>
+<p><strong>Ví dụ</strong>:</p>
+<ul>
+<li>API Thời tiết: Bạn gửi yêu cầu "Thời tiết Hà Nội", nó trả về "Nắng, 30°C"</li>
+<li>API Bản đồ: Bạn gửi yêu cầu "Từ A đến B", nó trả về lộ trình</li>
+</ul>
+<h2>Framework (Khung sườn)</h2>
+<p><strong>Giải thích một câu</strong>: Bộ khung code người khác viết sẵn, bạn chỉ cần điền nội dung vào là được.</p>
+<p><strong>Ví dụ tương tự</strong>: Giống như xếp hình. Framework cung cấp cấu trúc cơ bản, bạn chỉ cần bỏ nội dung vào bên trong.</p>
+<p><strong>Framework thường gặp</strong>:
+| Framework | Công dụng |
+|------|------|
+| React / Vue | Làm giao diện web |
+| Next.js | Làm website hoàn chỉnh |
+| Express | Làm dịch vụ backend |</p>
+<h2>Frontend vs Backend</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Frontend</th>
+<th>Backend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Là gì</td>
+<td>Phần người dùng nhìn thấy</td>
+<td>Phần người dùng không nhìn thấy</td>
+</tr>
+<tr>
+<td>Ví dụ tương tự</td>
+<td>Trang trí và thực đơn của nhà hàng</td>
+<td>Nhà bếp và kho hàng</td>
+</tr>
+<tr>
+<td>Phụ trách</td>
+<td>Giao diện, tương tác, hiệu ứng</td>
+<td>Xử lý dữ liệu, lưu trữ, logic</td>
+</tr>
+<tr>
+<td>Công nghệ</td>
+<td>HTML/CSS/JS</td>
+<td>Node.js/Python/Database</td>
+</tr>
+</tbody>
+</table>
+<h2>Fullstack</h2>
+<p><strong>Giải thích một câu</strong>: Biết cả Frontend và Backend.</p>
+<p><strong>Ví dụ tương tự</strong>: Vừa biết thiết kế trang trí nhà hàng, vừa biết nấu ăn trong bếp.</p>
+<p><strong>Trong kỷ nguyên AI</strong>:
+Nhờ có AI, người bình thường cũng có thể làm ứng dụng "Fullstack" — bởi vì AI có thể giúp bạn xử lý những phần bạn không sở trường.</p>
+</body>
+</html>

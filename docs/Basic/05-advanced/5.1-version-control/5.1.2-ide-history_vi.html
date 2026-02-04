@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.1.2 Ide History</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.1.2 Giải pháp không rào cản: Tính năng lịch sử tích hợp sẵn của AI IDE"
+order: 3</p>
+<hr />
+<p><img alt="05-advanced_5.1-version-control_5.1.2-ide-history.png" src="../../../public/images/Basic/05-advanced_5.1-version-control_5.1.2-ide-history.png" /></p>
+<h1>5.1.2 Giải pháp không rào cản: Tính năng lịch sử tích hợp sẵn của AI IDE</h1>
+<p>Tin tốt: Hầu hết các công cụ lập trình AI đã tích hợp sẵn chức năng lịch sử phiên bản.</p>
+<p>Bạn không cần cài đặt phần mềm mới, không cần học khái niệm mới, chỉ cần biết tìm nó ở đâu.</p>
+<h2>Trình biên tập mã AI (Loại cần cài đặt)</h2>
+<p>Nếu bạn đang sử dụng Cursor, Windsurf, Trae hoặc các AI IDE cần cài đặt khác, chúng đều có chức năng khôi phục lịch sử.</p>
+<h3>Cursor</h3>
+<p>Cursor dựa trên VS Code, kế thừa các tính năng Local History và Timeline của nó.</p>
+<p><strong>Cách tìm lịch sử</strong>:</p>
+<ol>
+<li>Ở dưới cùng của bảng điều khiển Explorer bên trái, tìm khu vực <strong>Timeline</strong></li>
+<li>Nhấn vào để mở rộng, bạn có thể thấy tất cả các phiên bản lịch sử của file hiện tại</li>
+<li>Mỗi lần lưu sẽ tự động ghi lại một phiên bản</li>
+</ol>
+<p><strong>Cách quay lại</strong>:</p>
+<ol>
+<li>Trong Timeline, tìm thời điểm bạn muốn khôi phục</li>
+<li>Nhấn chuột phải vào phiên bản đó</li>
+<li>Chọn "Restore Contents" để khôi phục nội dung file</li>
+</ol>
+<p><strong>Một cách khác</strong>:</p>
+<ul>
+<li>Nhấn chuột phải vào file → Chọn <strong>Local History</strong> → <strong>Find Local History</strong></li>
+<li>Có thể xem lịch sử chi tiết hơn</li>
+</ul>
+<p>::: warning Lưu ý</p>
+<ul>
+<li>Timeline chỉ được lưu trên máy, đổi máy tính là mất</li>
+<li>Lịch sử có giới hạn về số lượng và thời gian</li>
+<li>Nên kết hợp sao lưu thủ công ở các mốc quan trọng
+  :::</li>
+</ul>
+<h3>Windsurf</h3>
+<p>Windsurf có tính năng <strong>Cascade Checkpoints</strong> độc đáo (Cập nhật tháng 12 năm 2025).</p>
+<p><strong>Cách tìm lịch sử</strong>:</p>
+<ol>
+<li>Mở bảng điều khiển Cascade (thường ở bên phải)</li>
+<li>Tìm tùy chọn <strong>Checkpoints</strong> hoặc <strong>Named Checkpoints</strong></li>
+<li>Có thể xem các điểm kiểm tra đã lưu trước đó</li>
+</ol>
+<p><strong>Cách quay lại</strong>:</p>
+<ol>
+<li>Chọn điểm kiểm tra bạn muốn khôi phục</li>
+<li>Nhấn nút <strong>Revert</strong></li>
+<li>Code sẽ quay trở lại trạng thái của điểm kiểm tra đó</li>
+</ol>
+<p><strong>Tính năng đặc sắc</strong>:</p>
+<ul>
+<li>Có thể đặt tên cho điểm kiểm tra, thuận tiện cho việc nhận biết</li>
+<li>Hỗ trợ chuyển đổi nhanh chóng giữa các điểm kiểm tra khác nhau</li>
+</ul>
+<h3>Trae</h3>
+<p>Trae (bao gồm bản quốc tế và bản nội địa) cung cấp tính năng <strong>Diff View</strong> để xem các thay đổi của code.</p>
+<p><strong>Cách tìm lịch sử</strong>:</p>
+<ol>
+<li>Sử dụng công cụ <strong>Diff View</strong> để xem lịch sử thay đổi code</li>
+<li>Có thể xem so sánh nội dung mỗi lần AI sửa đổi</li>
+</ol>
+<p><strong>Cách quay lại</strong>:</p>
+<ol>
+<li>Trong Diff View, xem các thay đổi cụ thể</li>
+<li>Hoàn tác thủ công các thay đổi không cần thiết</li>
+<li>Hoặc sử dụng chức năng Undo của IDE</li>
+</ol>
+<p>::: tip Gợi ý
+Chức năng lịch sử của Trae tương đối cơ bản, khuyên bạn nên kết hợp với sao lưu thủ công (xem 5.1.3).
+:::</p>
+<h3>Kiro</h3>
+<p>Kiro đã ra mắt tính năng <strong>Checkpointing</strong> vào tháng 11 năm 2025.</p>
+<p><strong>Cách tìm lịch sử</strong>:</p>
+<ol>
+<li>Mỗi khi Kiro sửa code, nó sẽ tự động tạo điểm kiểm tra</li>
+<li>Có thể thấy danh sách điểm kiểm tra trong giao diện</li>
+</ol>
+<p><strong>Cách quay lại</strong>:</p>
+<ol>
+<li>Tìm điểm kiểm tra muốn khôi phục</li>
+<li>Nhấn một cú click để quay lại</li>
+</ol>
+<p><strong>Lưu ý</strong>:</p>
+<ul>
+<li>Checkpointing chỉ khôi phục các thay đổi do Kiro thực hiện trong phiên làm việc hiện tại</li>
+<li>Không lưu trạng thái của toàn bộ kho code</li>
+<li>Thích hợp để hoàn tác nhanh các sửa đổi gần đây của AI</li>
+</ul>
+<h2>Lập trình AI trên web (Loại không cần cài đặt)</h2>
+<p>Chức năng lịch sử của các công cụ web thường hoàn thiện hơn vì dữ liệu được lưu trên đám mây.</p>
+<h3>Doubao AI Programming (AI lập trình Đậu Bao)</h3>
+<p>Lựa chọn hàng đầu cho người dùng trong nước, truy cập mượt mà.</p>
+<p><strong>Cách tìm lịch sử</strong>:</p>
+<ol>
+<li>Tìm lối vào lịch sử phiên bản trong giao diện dự án</li>
+<li>Có thể xem trạng thái dự án trước đó</li>
+</ol>
+<p><strong>Cách quay lại</strong>:</p>
+<ol>
+<li>Chọn phiên bản cần khôi phục</li>
+<li>Xác nhận thao tác khôi phục</li>
+</ol>
+<p><strong>Ưu điểm</strong>:</p>
+<ul>
+<li>Tốc độ truy cập trong nước nhanh</li>
+<li>Giao diện tiếng Trung thân thiện</li>
+<li>Hoàn toàn miễn phí</li>
+</ul>
+<h3>Bolt.new</h3>
+<p>Bolt.new có tính năng <strong>Version History</strong> hoàn thiện (Cập nhật tháng 11 năm 2025).</p>
+<p><strong>Cách tìm lịch sử</strong>:</p>
+<ol>
+<li>Ở thanh bên, tìm tùy chọn <strong>Lịch sử phiên bản</strong> hoặc <strong>History</strong></li>
+<li>Có thể thấy tất cả các phiên bản lịch sử của dự án</li>
+<li>Các phiên bản được sắp xếp theo trình tự thời gian</li>
+</ol>
+<p><strong>Cách quay lại</strong>:</p>
+<ol>
+<li>Tìm phiên bản muốn khôi phục</li>
+<li>Nhấn nút <strong>Restore</strong></li>
+<li>Dự án sẽ khôi phục về trạng thái phiên bản đó</li>
+</ol>
+<p><strong>Tính năng đặc sắc</strong>:</p>
+<ul>
+<li><strong>Bookmark</strong>: Có thể thêm dấu trang cho các phiên bản quan trọng, giúp tìm nhanh chóng</li>
+<li>Hỗ trợ xem các thay đổi cụ thể của từng phiên bản</li>
+<li>Lịch sử phiên bản được lưu trên đám mây, đổi thiết bị vẫn có thể truy cập</li>
+</ul>
+<h3>v0.dev</h3>
+<p>v0.dev đã cập nhật chức năng quản lý phiên bản vào tháng 2 năm 2025.</p>
+<p><strong>Cách tìm lịch sử</strong>:</p>
+<ol>
+<li>Trong trình biên tập có thể thấy danh sách phiên bản</li>
+<li>Mỗi lần tạo sẽ tạo ra một phiên bản mới</li>
+</ol>
+<p><strong>Cách quay lại</strong>:</p>
+<ol>
+<li>Nhấn vào phiên bản muốn khôi phục</li>
+<li>Chọn chuyển đổi hoặc khôi phục</li>
+<li>Có thể chuyển đổi nhanh giữa các phiên bản khác nhau</li>
+</ol>
+<p><strong>Đặc điểm</strong>:</p>
+<ul>
+<li>Chất lượng thành phần UI cao</li>
+<li>Chuyển đổi phiên bản mượt mà</li>
+</ul>
+<h3>Lovable</h3>
+<p>Lovable đã ra mắt <strong>Versioning 2.0</strong> vào tháng 3 năm 2025.</p>
+<p><strong>Cách tìm lịch sử</strong>:</p>
+<ol>
+<li>Mở bảng điều khiển <strong>History</strong></li>
+<li>Các bản ghi chỉnh sửa được tổ chức theo ngày, giống như Google Docs</li>
+<li>Giao diện trực quan, dễ tìm phiên bản mong muốn</li>
+</ol>
+<p><strong>Cách quay lại</strong>:</p>
+<ol>
+<li>Tìm bản chỉnh sửa muốn khôi phục</li>
+<li>Nhấn nút khôi phục</li>
+<li>Hệ thống sẽ tạo một thẻ chỉnh sửa mới (không ghi đè phiên bản hiện tại)</li>
+</ol>
+<p><strong>Tính năng đặc sắc</strong>:</p>
+<ul>
+<li><strong>Bookmarks</strong>: Thêm dấu trang cho các phiên bản quan trọng</li>
+<li><strong>Khôi phục thông minh</strong>: Tạo phiên bản mới khi khôi phục, thuận tiện cho việc theo dõi</li>
+<li><strong>Dev Mode</strong>: Có thể xem và sửa code trực tiếp trong trình biên tập Lovable</li>
+</ul>
+<h3>Replit</h3>
+<p>Chức năng lịch sử của Replit rất hoàn thiện (Cập nhật tháng 5 năm 2025).</p>
+<p><strong>Cách tìm lịch sử</strong>:</p>
+<ol>
+<li>Mở bất kỳ file nào</li>
+<li>Nhấn nút <strong>History</strong> ở góc dưới bên phải trình biên tập</li>
+<li>Có thể thấy tất cả các phiên bản lịch sử của file đó</li>
+</ol>
+<p><strong>Cách quay lại</strong>:</p>
+<ol>
+<li>Chọn phiên bản trong bảng lịch sử</li>
+<li>Có thể xem trước nội dung của phiên bản đó</li>
+<li>Xác nhận rồi khôi phục</li>
+</ol>
+<p><strong>Tính năng đặc sắc</strong>:</p>
+<ul>
+<li><strong>File History</strong>: Lịch sử của từng file riêng lẻ</li>
+<li><strong>App History</strong>: Lịch sử của toàn bộ ứng dụng (bao gồm trạng thái cơ sở dữ liệu)</li>
+<li><strong>Checkpoints</strong>: Có thể tạo điểm kiểm tra thủ công</li>
+</ul>
+<h2>Nhiệm vụ thực hành: Kiểm tra với danh sách việc cần làm của bạn</h2>
+<p>Bây giờ, hãy dùng dự án danh sách việc cần làm bạn đã làm ở chương 4 để kiểm tra chức năng lịch sử.</p>
+<h3>Các bước kiểm tra</h3>
+<ol>
+<li>
+<p><strong>Mở dự án danh sách việc cần làm của bạn</strong></p>
+</li>
+<li>
+<p><strong>Thực hiện một thay đổi nhỏ</strong></p>
+</li>
+<li>Ví dụ: sửa chữ tiêu đề</li>
+<li>
+<p>Hoặc thay đổi màu nút bấm</p>
+</li>
+<li>
+<p><strong>Lưu file</strong></p>
+</li>
+<li>
+<p><strong>Tìm chức năng lịch sử</strong></p>
+</li>
+<li>
+<p>Dựa vào công cụ bạn đang dùng, làm theo hướng dẫn bên trên để tìm lối vào lịch sử</p>
+</li>
+<li>
+<p><strong>Xem phiên bản lịch sử</strong></p>
+</li>
+<li>
+<p>Bạn sẽ nhìn thấy phiên bản trước khi thay đổi</p>
+</li>
+<li>
+<p><strong>Thử khôi phục</strong></p>
+</li>
+<li>Chọn phiên bản trước đó</li>
+<li>Xác nhận thao tác khôi phục</li>
+<li>Kiểm tra xem code có được khôi phục không</li>
+</ol>
+<h3>Xác nhận thành công</h3>
+<ul>
+<li>[ ] Đã tìm thấy lối vào chức năng lịch sử</li>
+<li>[ ] Có thể thấy danh sách các phiên bản trước đó</li>
+<li>[ ] Khôi phục thành công về phiên bản trước đó</li>
+<li>[ ] Code thực sự đã quay trở lại trạng thái trước khi thay đổi</li>
+</ul>
+<p>Nếu tất cả những điều trên đều hoàn thành, chúc mừng bạn — bạn đã học được cách "lưu game, đọc game" cơ bản nhất.</p>
+<h2>Hạn chế của giải pháp này</h2>
+<p>Mặc dù chức năng lịch sử tích hợp sẵn của AI IDE rất tiện lợi, nhưng nó có một số hạn chế:</p>
+<table>
+<thead>
+<tr>
+<th>Hạn chế</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Chỉ lưu cục bộ</strong> (Công cụ loại cài đặt)</td>
+<td>Đổi máy tính, cài lại hệ điều hành, lịch sử sẽ mất</td>
+</tr>
+<tr>
+<td><strong>Lịch sử có hạn</strong></td>
+<td>Thường chỉ giữ N phiên bản gần nhất hoặc các phiên bản trong vòng N ngày</td>
+</tr>
+<tr>
+<td><strong>Không thể đồng bộ đám mây</strong> (Công cụ loại cài đặt)</td>
+<td>Không thể đồng bộ giữa nhiều thiết bị</td>
+</tr>
+<tr>
+<td><strong>Không đủ chi tiết</strong></td>
+<td>Khó so sánh sự khác biệt cụ thể giữa hai phiên bản</td>
+</tr>
+</tbody>
+</table>
+<p>Đối với các dự án cá nhân nhỏ, những hạn chế này thường không phải là vấn đề. Nhưng nếu bạn muốn sự bảo vệ đáng tin cậy hơn, có thể kết hợp phương pháp sao lưu thủ công ở phần tiếp theo.</p>
+<p>::: tip Quan điểm cốt lõi
+Trước tiên hãy tận dụng tốt chức năng có sẵn của công cụ, đủ dùng là được. Không cần ngay từ đầu đã theo đuổi giải pháp hoàn hảo.
+:::</p>
+<p>→ <a href="./5.1.3-manual_vi.html">5.1.3 Quản lý phiên bản thủ công</a></p>
+</body>
+</html>

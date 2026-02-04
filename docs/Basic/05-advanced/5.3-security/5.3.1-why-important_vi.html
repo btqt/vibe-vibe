@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.3.1 Why Important</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.3.1 Tại sao phần này rất quan trọng"
+order: 3</p>
+<hr />
+<p><img alt="05-advanced_5.3-security_5.3.1-why-important.png" src="../../../public/images/Basic/05-advanced_5.3-security_5.3.1-why-important.png" /></p>
+<h1>5.3.1 Tại sao phần này rất quan trọng</h1>
+<h2>Trường hợp thực tế: Mất hàng nghìn đô la trong 10 phút</h2>
+<p>Đây là kịch bản lặp đi lặp lại trong năm 2024-2025:</p>
+<ol>
+<li>Lập trình viên dùng AI tạo code</li>
+<li>AI viết trực tiếp khóa API (API Key) vào trong code</li>
+<li>Code được tải lên GitHub (ngay cả kho chứa riêng tư cũng không an toàn)</li>
+<li><strong>Vài phút sau, tài khoản bị trộm sạch</strong></li>
+</ol>
+<p>Tháng 11 năm 2024, dự án blockchain Pump Science chỉ vì rò rỉ khóa trên GitHub, dẫn đến kẻ tấn công tạo ra các token lừa đảo, gây thiệt hại cho người dùng.</p>
+<h2>Sự kiện trộm cắp chứng thực quy mô lớn</h2>
+<p>Tháng 10 năm 2024, các nhà nghiên cứu an ninh phát hiện chiến dịch tấn công mang mã hiệu <strong>EMERALDWHALE</strong>:</p>
+<ul>
+<li>Kẻ tấn công đã quét khoảng <strong>500 triệu địa chỉ IP</strong></li>
+<li>Trộm hơn <strong>15,000 chứng thực dịch vụ đám mây</strong> từ các file cấu hình Git bị lộ</li>
+<li>Liên quan đến <strong>10,000+ kho chứa code riêng tư</strong></li>
+<li>Chứng thực bị trộm được dùng cho tấn công lừa đảo (phishing) và thư rác</li>
+</ul>
+<p>Những chứng thực này bao gồm khóa AWS, chuỗi kết nối cơ sở dữ liệu, API Token - đều là những thứ lập trình viên "vô tình" commit vào kho code.</p>
+<h2>Tại sao thời đại lập trình AI rủi ro cao hơn</h2>
+<p>Còn nhớ "ảo giác AI" đã nhắc đến ở chương 3 không? Trong lĩnh vực an ninh, sự "không đáng tin cậy" của AI có thể trực tiếp dẫn đến:</p>
+<table>
+<thead>
+<tr>
+<th>Hành vi của AI</th>
+<th>Hậu quả an toàn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Viết khóa vào code dưới dạng "ví dụ"</td>
+<td>Rò rỉ khóa</td>
+</tr>
+<tr>
+<td>Đề xuất gói phần mềm không tồn tại</td>
+<td>Có thể cài phải mã độc</td>
+</tr>
+<tr>
+<td>Bỏ qua xác thực đầu vào</td>
+<td>Để lại lỗ hổng an ninh</td>
+</tr>
+<tr>
+<td>Sử dụng phương thức mã hóa lỗi thời</td>
+<td>Dữ liệu dễ bị bẻ khóa</td>
+</tr>
+</tbody>
+</table>
+<p>Theo báo cáo Veracode 2025, khi AI lựa chọn giữa "cách viết an toàn" và "cách viết không an toàn", <strong>45% trường hợp nó chọn cách không an toàn</strong>.</p>
+<h2>Tin tốt</h2>
+<p><strong>Chỉ cần biết luật chơi, bạn có thể tránh được dễ dàng.</strong></p>
+<p>Các bài tiếp theo sẽ dạy bạn:</p>
+<ul>
+<li>Những điều tuyệt đối không được làm (Ba lệnh cấm lớn)</li>
+<li>Cách kiểm tra các mối nguy an toàn trong code</li>
+<li>Cách nhận biết các gói phần mềm đáng ngờ do AI đề xuất</li>
+<li>Cách hình thành thói quan rà soát an toàn</li>
+</ul>
+<p>Những kiến thức này sẽ giúp bạn an toàn hơn 90% người mới bắt đầu.</p>
+<p>→ <a href="./5.3.2-never-tell-ai_vi.html">5.3.2 Vùng cấm: Không bao giờ nói với AI</a></p>
+</body>
+</html>

@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.1.5 Practice</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.1.5 Thực hành GitHub Desktop: Thành thạo trong 10 phút"
+order: 6</p>
+<hr />
+<p><img alt="05-advanced_5.1-version-control_5.1.5-practice.png" src="../../../public/images/Basic/05-advanced_5.1-version-control_5.1.5-practice.png" /></p>
+<h1>5.1.5 Thực hành GitHub Desktop: Thành thạo trong 10 phút</h1>
+<p>Phần này sẽ dẫn bạn đi từng bước hoàn thành việc cài đặt và thao tác cơ bản với GitHub Desktop.</p>
+<h2>Bước 1: Tải về và cài đặt</h2>
+<p>Truy cập trang chủ GitHub Desktop để tải bộ cài đặt:</p>
+<p><strong>Địa chỉ trang chủ</strong>: <a href="https://desktop.github.com">desktop.github.com</a></p>
+<ul>
+<li>Tải phiên bản tương ứng với hệ điều hành của bạn (Windows/Mac)</li>
+<li>Sau khi tải xong, nhấp đúp vào bộ cài đặt, làm theo hướng dẫn để hoàn tất cài đặt</li>
+</ul>
+<p><strong>Bạn sẽ thấy</strong>: Sau khi cài đặt hoàn tất, biểu tượng GitHub Desktop xuất hiện trong danh sách ứng dụng của bạn.</p>
+<p>::: warning Lời khuyên cho người dùng trong nước
+Truy cập GitHub trong nước có thể khá chậm. Nếu tốc độ tải xuống rất chậm, bạn có thể thử:</p>
+<ol>
+<li>Đổi thời gian tải xuống (buổi sáng thường nhanh hơn)</li>
+<li>Sử dụng điểm phát sóng di động (hotspot) điện thoại</li>
+<li>Tìm kiếm "GitHub Desktop mirror" (link tải dự phòng)</li>
+</ol>
+<p>Nếu thực sự không thể tải xuống, bạn có thể tạm thời bỏ qua phần này, dùng phương pháp ở 5.1.2 và 5.1.3 trước.
+:::</p>
+<h2>Bước 2: Đăng ký/Đăng nhập tài khoản GitHub</h2>
+<p>Sau khi mở GitHub Desktop, nó sẽ nhắc bạn đăng nhập.</p>
+<p><strong>Nếu bạn chưa có tài khoản GitHub</strong>:</p>
+<ol>
+<li>Nhấp vào "Create your free account" hoặc truy cập <a href="https://github.com">github.com</a></li>
+<li>Điền tên người dùng, email, mật khẩu</li>
+<li>Hoàn tất xác minh email</li>
+</ol>
+<p><strong>Nếu bạn đã có tài khoản</strong>:</p>
+<ol>
+<li>Nhấp vào "Sign in to GitHub.com"</li>
+<li>Đăng nhập trong trang trình duyệt bật ra</li>
+<li>Cấp quyền cho GitHub Desktop truy cập tài khoản của bạn</li>
+</ol>
+<p><strong>Bạn sẽ thấy</strong>: Sau khi đăng nhập thành công, giao diện hiển thị "Let's get started!" hoặc trang chào mừng tương tự.</p>
+<h2>Bước 3: Biến danh sách việc cần làm thành kho chứa (repository)</h2>
+<p>Bây giờ chúng ta sẽ biến dự án danh sách việc cần làm đã làm ở chương 4 thành một kho chứa Git.</p>
+<h3>Cách 1: Tạo từ thư mục hiện có</h3>
+<ol>
+<li>
+<p>Nhấp vào <strong>"Create a New Repository on your Hard Drive"</strong> hoặc <strong>"Add an Existing Repository"</strong></p>
+</li>
+<li>
+<p>Nếu chọn "Create New":</p>
+</li>
+<li><strong>Name</strong>: Nhập tên kho chứa, ví dụ <code>my-todo-list</code></li>
+<li><strong>Local Path</strong>: Chọn <strong>thư mục cha</strong> của thư mục dự án của bạn</li>
+<li>Tích chọn <strong>"Initialize this repository with a README"</strong></li>
+<li>
+<p>Nhấp vào <strong>"Create Repository"</strong></p>
+</li>
+<li>
+<p>Sao chép các file trong danh sách việc cần làm của bạn vào thư mục kho chứa mới vừa tạo</p>
+</li>
+</ol>
+<h3>Cách 2: Thêm trực tiếp dự án hiện có (Khuyên dùng)</h3>
+<ol>
+<li>Nhấp vào <strong>File</strong> → <strong>Add Local Repository</strong></li>
+<li>Chọn thư mục dự án danh sách việc cần làm của bạn</li>
+<li>Nếu có thông báo "Đây không phải là kho chứa Git", nhấp vào <strong>"create a repository"</strong></li>
+<li>Xác nhận tạo</li>
+</ol>
+<p><strong>Bạn sẽ thấy</strong>: Bên trái hiển thị tên dự án của bạn, khu vực giữa hiển thị các thay đổi của file.</p>
+<h2>Bước 4: Commit lần đầu tiên (Lưu trữ)</h2>
+<p>Bây giờ dự án của bạn đã là một kho chứa Git. Hãy tạo điểm lưu trữ đầu tiên.</p>
+<ol>
+<li>Tại giao diện chính GitHub Desktop, bên trái sẽ hiển thị tất cả các file có thay đổi</li>
+<li>
+<p>Nếu là kho chứa mới, tất cả các file sẽ hiển thị là "Mới" (New)</p>
+</li>
+<li>
+<p>Tìm ô nhập <strong>Summary</strong> ở góc dưới bên trái</p>
+</li>
+<li>Nhập một câu mô tả, ví dụ: "Bản hoàn chỉnh danh sách việc cần làm chương 4"</li>
+<li>
+<p>Description có thể để trống</p>
+</li>
+<li>
+<p>Nhấp vào nút màu xanh <strong>"Commit to main"</strong></p>
+</li>
+</ol>
+<p><strong>Bạn sẽ thấy</strong>:</p>
+<ul>
+<li>Danh sách file bên trái đã trống (vì mọi thay đổi đã được lưu)</li>
+<li>Giao diện báo "No local changes"</li>
+</ul>
+<p>Chúc mừng! Bạn đã tạo được điểm lưu trữ đầu tiên.</p>
+<h2>Bước 5: Xem lịch sử (History)</h2>
+<p>Hãy xem lại bản lưu trữ vừa tạo.</p>
+<ol>
+<li>Nhấp vào thẻ <strong>"History"</strong> ở trên cùng (hoặc tìm ở bên trái)</li>
+<li>Bạn sẽ thấy một dòng thời gian, mỗi nút là một Commit</li>
+</ol>
+<p><strong>Bạn sẽ thấy</strong>:</p>
+<ul>
+<li>Commit vừa rồi xuất hiện trong danh sách</li>
+<li>Hiển thị mô tả bạn đã viết (như "Bản hoàn chỉnh danh sách việc cần làm chương 4")</li>
+<li>Bên phải hiển thị những file nào có trong lần Commit này</li>
+</ul>
+<h2>Bước 6: Giả lập làm hỏng rồi quay lại</h2>
+<p>Hãy thử nghiệm chức năng "đọc bản lưu".</p>
+<h3>6.1 Thực hiện một thay đổi trước</h3>
+<ol>
+<li>Dùng AI IDE hoặc trình soạn thảo văn bản của bạn mở file HTML của danh sách việc cần làm</li>
+<li>Sửa đại một cái gì đó (ví dụ sửa tiêu đề thành "Thử nghiệm quay lại")</li>
+<li>Lưu file</li>
+</ol>
+<h3>6.2 Tạo một bản lưu trữ mới</h3>
+<ol>
+<li>Quay lại GitHub Desktop</li>
+<li>Bạn sẽ thấy thay đổi vừa rồi hiển thị trong danh sách Changes</li>
+<li>Viết một mô tả: "Thử nghiệm thay đổi"</li>
+<li>Nhấp vào <strong>"Commit to main"</strong></li>
+</ol>
+<h3>6.3 Quay lại phiên bản trước đó</h3>
+<ol>
+<li>Nhấp vào thẻ <strong>"History"</strong></li>
+<li>Tìm Commit "Bản hoàn chỉnh danh sách việc cần làm chương 4"</li>
+<li>Nhấp chuột phải vào nó</li>
+<li>Chọn <strong>"Revert Changes in Commit"</strong> (hoặc <strong>"Revert this Commit"</strong>)</li>
+<li>Xác nhận thao tác</li>
+</ol>
+<p><strong>Bạn sẽ thấy</strong>:</p>
+<ul>
+<li>Đã tạo một Commit mới, mô tả tương tự "Revert Thử nghiệm thay đổi"</li>
+<li>Mở file HTML, tiêu đề đã khôi phục về nguyên trạng</li>
+</ul>
+<h2>Bước 7: Đẩy lên đám mây (Push)</h2>
+<p>Bước cuối cùng, tải code của bạn lên trang web GitHub.</p>
+<ol>
+<li>Nhấp vào nút <strong>"Publish repository"</strong> hoặc <strong>"Push origin"</strong> ở trên cùng</li>
+<li>Trong hộp thoại bật ra:</li>
+<li><strong>Name</strong>: Xác nhận tên kho chứa</li>
+<li><strong>Description</strong>: Có thể viết một câu mô tả (tùy chọn)</li>
+<li><strong>Keep this code private</strong>: Khuyên dùng tích chọn (giữ riêng tư)</li>
+<li>Nhấp vào <strong>"Publish Repository"</strong></li>
+</ol>
+<p><strong>Bạn sẽ thấy</strong>:</p>
+<ul>
+<li>Nút bấm đổi thành "Fetch origin"</li>
+<li>Không có thông báo lỗi</li>
+</ul>
+<h3>Xác nhận thành công</h3>
+<ol>
+<li>Mở trình duyệt, truy cập <a href="https://github.com">github.com</a></li>
+<li>Đăng nhập tài khoản của bạn</li>
+<li>Tại trang cá nhân, bạn sẽ thấy kho chứa vừa tạo</li>
+<li>Nhấp vào xem, có thể thấy các file code của bạn</li>
+</ol>
+<p>Chúc mừng! Code của bạn giờ đã có sao lưu trên đám mây. Ngay cả khi máy tính hỏng, cũng có thể tìm lại từ GitHub.</p>
+<h2>Các vấn đề thường gặp</h2>
+<table>
+<thead>
+<tr>
+<th>Vấn đề</th>
+<th>Nguyên nhân có thể</th>
+<th>Cách giải quyết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Push thất bại</td>
+<td>Vấn đề mạng</td>
+<td>Kiểm tra kết nối mạng, thử lại sau</td>
+</tr>
+<tr>
+<td>Không tìm thấy thư mục dự án</td>
+<td>Vấn đề đường dẫn</td>
+<td>Xác nhận vị trí thư mục, thêm lại</td>
+</tr>
+<tr>
+<td>Đăng nhập thất bại</td>
+<td>Vấn đề tài khoản</td>
+<td>Thử đăng nhập github.com trên trình duyệt trước</td>
+</tr>
+<tr>
+<td>Thao tác rất chậm</td>
+<td>Vấn đề mạng (thường gặp trong nước)</td>
+<td>Kiên nhẫn chờ đợi, hoặc đổi thời gian khác</td>
+</tr>
+<tr>
+<td>Báo lỗi "not a git repository"</td>
+<td>Chưa khởi tạo</td>
+<td>Làm theo Bước 3 để tạo kho chứa</td>
+</tr>
+</tbody>
+</table>
+<h2>Danh sách kiểm tra thành công</h2>
+<p>Hoàn thành tất cả các bước sau, chứng tỏ bạn đã nắm vững thao tác cơ bản của GitHub Desktop:</p>
+<ul>
+<li>[ ] Cài đặt thành công GitHub Desktop</li>
+<li>[ ] Đã đăng nhập tài khoản GitHub</li>
+<li>[ ] Đã biến dự án danh sách việc cần làm thành kho chứa</li>
+<li>[ ] Đã tạo Commit đầu tiên</li>
+<li>[ ] Đã thấy ghi chép Commit trong History</li>
+<li>[ ] Đã thử nghiệm thành công chức năng quay lại</li>
+<li>[ ] Đã đẩy code lên đám mây GitHub</li>
+<li>[ ] Đã thấy dự án của mình trên github.com</li>
+</ul>
+<p>Nếu hoàn thành tất cả, chúc mừng bạn — bạn đã học được công cụ quản lý phiên bản mà các lập trình viên chuyên nghiệp sử dụng hàng ngày!</p>
+<p>→ <a href="./5.1.6-best-practices_vi.html">5.1.6 Các phương pháp quản lý phiên bản tốt nhất</a></p>
+</body>
+</html>

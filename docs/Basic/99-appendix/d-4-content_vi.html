@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D 4 Content</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "D.4 So sánh Nền tảng Triển khai"</h2>
+<p><img alt="99-appendix_d-4-content.png" src="../../public/images/Basic/99-appendix_d-4-content.png" /></p>
+<h1>D.4 So sánh Nền tảng Triển khai</h1>
+<p>Những thứ làm xong cần đưa lên mạng để người khác truy cập được, đó gọi là "Triển khai". Dưới đây là so sánh các nền tảng triển khai miễn phí phổ biến.</p>
+<h2>Bảng so sánh tổng hợp</h2>
+<table>
+<thead>
+<tr>
+<th>Nền tảng</th>
+<th>Hạn mức miễn phí</th>
+<th>Độ khó</th>
+<th>Phù hợp</th>
+<th>Đặc sắc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Vercel</strong></td>
+<td>Hào phóng</td>
+<td>Đơn giản</td>
+<td>Frontend / Fullstack</td>
+<td>Phổ biến nhất, kết hợp hoàn hảo với Next.js</td>
+</tr>
+<tr>
+<td><strong>Netlify</strong></td>
+<td>Hào phóng</td>
+<td>Đơn giản</td>
+<td>Web tĩnh</td>
+<td>Tính năng phong phú, tính năng Form tốt</td>
+</tr>
+<tr>
+<td><strong>GitHub Pages</strong></td>
+<td>Miễn phí</td>
+<td>Đơn giản</td>
+<td>Web tĩnh</td>
+<td>Hoàn toàn miễn phí, gắn liền với GitHub</td>
+</tr>
+<tr>
+<td><strong>Railway</strong></td>
+<td>Có giới hạn</td>
+<td>Trung bình</td>
+<td>Dịch vụ Backend</td>
+<td>Phù hợp ứng dụng có Backend</td>
+</tr>
+<tr>
+<td><strong>Cloudflare Pages</strong></td>
+<td>Hào phóng</td>
+<td>Đơn giản</td>
+<td>Web tĩnh</td>
+<td>CDN toàn cầu, tốc độ nhanh</td>
+</tr>
+</tbody>
+</table>
+<h2>Giải nghĩa từng nền tảng</h2>
+<h3>Vercel</h3>
+<p><strong>Trang chủ</strong>: vercel.com</p>
+<p><strong>Giới thiệu</strong>: Nền tảng triển khai Frontend phổ biến nhất, nền tảng triển khai chính thức của Next.js.</p>
+<p><strong>Hạn mức miễn phí</strong>:</p>
+<ul>
+<li>Web tĩnh không giới hạn</li>
+<li>100GB băng thông mỗi tháng</li>
+<li>Hàm Serverless có giới hạn</li>
+</ul>
+<p><strong>Ưu điểm</strong>:</p>
+<ul>
+<li>Triển khai siêu đơn giản (Kết nối GitHub xong tự động triển khai)</li>
+<li>Tính năng xem trước rất tốt (Mỗi PR đều có link xem trước)</li>
+<li>Kết hợp hoàn hảo với Next.js</li>
+<li>CDN toàn cầu, truy cập nhanh</li>
+</ul>
+<p><strong>Nhược điểm</strong>:</p>
+<ul>
+<li>Hàm Serverless có giới hạn thời gian thực thi</li>
+<li>Truy cập trong nước có thể không ổn định</li>
+</ul>
+<p><strong>Phù hợp</strong>: Dự án Frontend, dự án Next.js</p>
+<h3>Netlify</h3>
+<p><strong>Trang chủ</strong>: netlify.com</p>
+<p><strong>Giới thiệu</strong>: Nền tảng triển khai web tĩnh giàu tính năng.</p>
+<p><strong>Hạn mức miễn phí</strong>:</p>
+<ul>
+<li>100GB băng thông mỗi tháng</li>
+<li>300 phút build mỗi tháng</li>
+<li>100 lượt gửi biểu mẫu/tháng</li>
+</ul>
+<p><strong>Ưu điểm</strong>:</p>
+<ul>
+<li>Tính năng phong phú (Form, xác thực, hàm)</li>
+<li>Giao diện thân thiện</li>
+<li>Hệ sinh thái plugin tốt</li>
+</ul>
+<p><strong>Nhược điểm</strong>:</p>
+<ul>
+<li>Bản miễn phí có giới hạn tính năng</li>
+<li>Truy cập trong nước có thể không ổn định</li>
+</ul>
+<p><strong>Phù hợp</strong>: Web tĩnh, blog, trang tài liệu</p>
+<h3>GitHub Pages</h3>
+<p><strong>Trang chủ</strong>: pages.github.com</p>
+<p><strong>Giới thiệu</strong>: Dịch vụ lưu trữ web tĩnh miễn phí do GitHub cung cấp.</p>
+<p><strong>Hạn mức miễn phí</strong>:</p>
+<ul>
+<li>Hoàn toàn miễn phí</li>
+<li>1GB lưu trữ mỗi kho</li>
+<li>100GB băng thông mỗi tháng</li>
+</ul>
+<p><strong>Ưu điểm</strong>:</p>
+<ul>
+<li>Hoàn toàn miễn phí</li>
+<li>Gắn liền trực tiếp với kho GitHub</li>
+<li>Ổn định tin cậy</li>
+</ul>
+<p><strong>Nhược điểm</strong>:</p>
+<ul>
+<li>Chỉ triển khai được web tĩnh</li>
+<li>Không có hàm Serverless</li>
+<li>Tính năng build hạn chế</li>
+</ul>
+<p><strong>Phù hợp</strong>: Blog cá nhân, tài liệu dự án, web tĩnh đơn giản</p>
+<h3>Railway</h3>
+<p><strong>Trang chủ</strong>: railway.app</p>
+<p><strong>Giới thiệu</strong>: Thích hợp triển khai ứng dụng có dịch vụ Backend.</p>
+<p><strong>Hạn mức miễn phí</strong>:</p>
+<ul>
+<li>$5 tín dụng miễn phí mỗi tháng</li>
+<li>Dùng hết phải trả tiền</li>
+</ul>
+<p><strong>Ưu điểm</strong>:</p>
+<ul>
+<li>Hỗ trợ dịch vụ Backend (Node.js, Python, v.v.)</li>
+<li>Hỗ trợ cơ sở dữ liệu</li>
+<li>Triển khai đơn giản</li>
+</ul>
+<p><strong>Nhược điểm</strong>:</p>
+<ul>
+<li>Hạn mức miễn phí khá ít</li>
+<li>Dùng hết là phải trả tiền</li>
+</ul>
+<p><strong>Phù hợp</strong>: Ứng dụng hoàn chỉnh cần Backend</p>
+<h3>Cloudflare Pages</h3>
+<p><strong>Trang chủ</strong>: pages.cloudflare.com</p>
+<p><strong>Giới thiệu</strong>: Dịch vụ lưu trữ web tĩnh do Cloudflare ra mắt.</p>
+<p><strong>Hạn mức miễn phí</strong>:</p>
+<ul>
+<li>Không giới hạn request</li>
+<li>Không giới hạn băng thông</li>
+<li>500 lần build mỗi tháng</li>
+</ul>
+<p><strong>Ưu điểm</strong>:</p>
+<ul>
+<li>Hạn mức miễn phí cực kỳ hào phóng</li>
+<li>CDN toàn cầu, tốc độ cực nhanh</li>
+<li>Tích hợp tốt với các dịch vụ khác của Cloudflare</li>
+</ul>
+<p><strong>Nhược điểm</strong>:</p>
+<ul>
+<li>Tính năng tương đối đơn giản</li>
+<li>Đường cong học tập hơi dốc</li>
+</ul>
+<p><strong>Phù hợp</strong>: Web tĩnh yêu cầu tốc độ truy cập</p>
+<h2>Gợi ý lựa chọn</h2>
+<table>
+<thead>
+<tr>
+<th>Tình huống của bạn</th>
+<th>Nền tảng đề xuất</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lần đầu triển khai, muốn đơn giản</td>
+<td>Vercel</td>
+</tr>
+<tr>
+<td>Dùng Next.js</td>
+<td>Vercel</td>
+</tr>
+<tr>
+<td>Web tĩnh thuần túy</td>
+<td>GitHub Pages / Netlify</td>
+</tr>
+<tr>
+<td>Có nhu cầu Backend</td>
+<td>Railway</td>
+</tr>
+<tr>
+<td>Cần tốc độ cao</td>
+<td>Cloudflare Pages</td>
+</tr>
+<tr>
+<td>Truy cập trong nước ổn định</td>
+<td>Cân nhắc Cloud (Vercel/Netlify có thể bị chặn)</td>
+</tr>
+</tbody>
+</table>
+<h2>Khái quát quy trình triển khai</h2>
+<pre><code class="language-mermaid">flowchart LR
+    A[Code ở máy] --&gt; B[Đẩy lên GitHub]
+    B --&gt; C[Kết nối nền tảng triển khai]
+    C --&gt; D[Tự động Build]
+    D --&gt; E[Lên sóng!]
+    E --&gt; F[Nhận đường dẫn]
+</code></pre>
+<p>Quy trình cơ bản:</p>
+<ol>
+<li>Đẩy code lên GitHub</li>
+<li>Kết nối kho GitHub tại nền tảng triển khai</li>
+<li>Nền tảng tự động phát hiện, build, triển khai</li>
+<li>Nhận được một đường dẫn truy cập được</li>
+</ol>
+<p>::: tip Lời khuyên cho người mới
+Lần đầu triển khai? Chọn <strong>Vercel</strong>. Thao tác đơn giản, tài liệu đầy đủ, cộng đồng sôi nổi. Gặp vấn đề dễ tìm câu trả lời.
+:::</p>
+</body>
+</html>

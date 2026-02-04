@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.1.4 Github Desktop</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.1.4 Giải pháp nâng cao: Nhập môn GitHub Desktop"
+order: 5</p>
+<hr />
+<p><img alt="05-advanced_5.1-version-control_5.1.4-github-desktop.png" src="../../../public/images/Basic/05-advanced_5.1-version-control_5.1.4-github-desktop.png" /></p>
+<h1>5.1.4 Giải pháp nâng cao: Nhập môn GitHub Desktop</h1>
+<p>Nếu bạn muốn quản lý phiên bản chuyên nghiệp hơn, <strong>GitHub Desktop</strong> là một điểm khởi đầu rất tốt.</p>
+<p>Nó là một công cụ giao diện đồ họa, giúp bạn sử dụng Git - công cụ quản lý phiên bản phổ biến nhất của lập trình viên - mà không cần gõ lệnh.</p>
+<h2>Hiểu trước ba khái niệm</h2>
+<p>Trước khi bắt đầu, chúng ta hãy làm rõ ba khái niệm thường bị nhầm lẫn:</p>
+<table>
+<thead>
+<tr>
+<th>Khái niệm</th>
+<th>Là gì</th>
+<th>Ví von</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Git</strong></td>
+<td>Một công cụ quản lý phiên bản</td>
+<td>Động cơ cốt lõi của cỗ máy thời gian</td>
+</tr>
+<tr>
+<td><strong>GitHub</strong></td>
+<td>Một nền tảng lưu trữ code trực tuyến</td>
+<td>Kho chứa code trên đám mây</td>
+</tr>
+<tr>
+<td><strong>GitHub Desktop</strong></td>
+<td>Trình khách giao diện đồ họa cho Git</td>
+<td>Điều khiển từ xa của cỗ máy thời gian</td>
+</tr>
+</tbody>
+</table>
+<p>Nói đơn giản:</p>
+<ul>
+<li>Git là kỹ thuật</li>
+<li>GitHub là trang web</li>
+<li>GitHub Desktop là phần mềm giúp bạn thao tác Git bằng chuột</li>
+</ul>
+<p>Bạn không cần hiểu tất cả các tính năng của Git. Chỉ cần biết: <strong>GitHub Desktop có thể giúp bạn lưu trữ, quay lại phiên bản cũ, sao lưu lên đám mây</strong>, là đủ rồi.</p>
+<h2>Tại sao chọn GitHub Desktop</h2>
+<table>
+<thead>
+<tr>
+<th>Ưu điểm</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Giao diện đồ họa</strong></td>
+<td>Thao tác bằng cách nhấp chuột, không cần nhớ lệnh</td>
+</tr>
+<tr>
+<td><strong>Miễn phí</strong></td>
+<td>Hoàn toàn miễn phí sử dụng</td>
+</tr>
+<tr>
+<td><strong>Sao lưu đám mây</strong></td>
+<td>Code được lưu trên GitHub, đổi máy tính cũng tìm lại được</td>
+</tr>
+<tr>
+<td><strong>Tiêu chuẩn ngành</strong></td>
+<td>Git là kỹ năng tiêu chuẩn của lập trình viên</td>
+</tr>
+<tr>
+<td><strong>Làm nền tảng cho nâng cao</strong></td>
+<td>Phiên bản nâng cao sẽ học thêm nhiều kỹ thuật Git hơn</td>
+</tr>
+</tbody>
+</table>
+<h2>Các khái niệm cốt lõi (So sánh với đời sống)</h2>
+<p>Trong GitHub Desktop có một số thuật ngữ chuyên ngành, nhưng thực ra rất dễ hiểu:</p>
+<table>
+<thead>
+<tr>
+<th>Thuật ngữ Git</th>
+<th>So sánh với đời sống</th>
+<th>Giải thích một câu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Repository (Kho chứa)</strong></td>
+<td>Thư mục có theo dõi phiên bản</td>
+<td>Nơi chứa dự án của bạn, mỗi thay đổi đều được ghi lại</td>
+</tr>
+<tr>
+<td><strong>Commit (Cam kết/Gửi)</strong></td>
+<td>Điểm lưu trữ</td>
+<td>Lưu trạng thái hiện tại, kèm theo một câu mô tả</td>
+</tr>
+<tr>
+<td><strong>Push (Đẩy)</strong></td>
+<td>Tải lên đám mây</td>
+<td>Đồng bộ điểm lưu trữ cục bộ lên trang web GitHub</td>
+</tr>
+<tr>
+<td><strong>Pull (Kéo)</strong></td>
+<td>Tải về từ đám mây</td>
+<td>Tải phiên bản mới nhất trên GitHub về máy</td>
+</tr>
+<tr>
+<td><strong>History (Lịch sử)</strong></td>
+<td>Bản ghi lưu trữ</td>
+<td>Danh sách tất cả các điểm lưu trữ</td>
+</tr>
+<tr>
+<td><strong>Revert (Hoàn tác/Quay lại)</strong></td>
+<td>Đọc bản lưu</td>
+<td>Khôi phục code về một điểm lưu trữ nào đó</td>
+</tr>
+</tbody>
+</table>
+<h2>Quy trình làm việc cơ bản</h2>
+<p>Quy trình hàng ngày sử dụng GitHub Desktop rất đơn giản:</p>
+<pre><code>Sửa code → Lưu file → Commit (Lưu trữ) → Push (Tải lên đám mây)
+                         ↓
+                Có thể xem lịch sử bất cứ lúc nào
+                Có thể quay lại bất kỳ điểm lưu trữ nào bất cứ lúc nào
+</code></pre>
+<p>Mỗi lần Commit giống như lưu một lần trong game. Bạn có thể có rất nhiều bản lưu, quay lại bất kỳ bản nào bất cứ lúc nào.</p>
+<h2>Chi phí học tập</h2>
+<table>
+<thead>
+<tr>
+<th>Thao tác</th>
+<th>Độ khó</th>
+<th>Thời gian học</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cài đặt phần mềm</td>
+<td>Đơn giản</td>
+<td>2 phút</td>
+</tr>
+<tr>
+<td>Tạo kho chứa (Repository)</td>
+<td>Đơn giản</td>
+<td>2 phút</td>
+</tr>
+<tr>
+<td>Gửi code (Commit)</td>
+<td>Đơn giản</td>
+<td>1 phút</td>
+</tr>
+<tr>
+<td>Xem lịch sử</td>
+<td>Đơn giản</td>
+<td>1 phút</td>
+</tr>
+<tr>
+<td>Quay lại phiên bản cũ</td>
+<td>Đơn giản</td>
+<td>1 phút</td>
+</tr>
+<tr>
+<td>Đẩy lên đám mây (Push)</td>
+<td>Đơn giản</td>
+<td>1 phút</td>
+</tr>
+</tbody>
+</table>
+<p>Tổng cộng chỉ cần 10-15 phút, bạn có thể nắm vững các thao tác cơ bản.</p>
+<h2>Kết nối với phiên bản nâng cao</h2>
+<p>GitHub Desktop được giới thiệu trong phần này là <strong>công cụ nhập môn giao diện đồ họa</strong>, mục đích là để bạn trải nghiệm lợi ích của việc quản lý phiên bản trước.</p>
+<p>::: info Dự báo phiên bản nâng cao
+Trong <strong>phiên bản nâng cao</strong>, bạn sẽ học:</p>
+<ul>
+<li><strong>Git dòng lệnh</strong>: Cách thao tác linh hoạt và mạnh mẽ hơn</li>
+<li><strong>Quản lý nhánh (Branch)</strong>: Phát triển nhiều tính năng cùng lúc, không ảnh hưởng lẫn nhau</li>
+<li><strong>Pull Request</strong>: Quy trình làm việc tiêu chuẩn khi hợp tác nhóm</li>
+<li><strong>Giải quyết xung đột</strong>: Cách xử lý khi nhiều người cùng sửa một file</li>
+</ul>
+<p>Đây đều là những kỹ năng cần thiết của lập trình viên chuyên nghiệp. Nhưng đối với phiên bản cơ bản, GitHub Desktop đã đủ dùng.
+:::</p>
+<h2>Có cần học cái này không</h2>
+<p><strong>Nếu bạn thỏa mãn bất kỳ điều kiện nào sau đây, khuyên bạn nên học</strong>:</p>
+<ul>
+<li>Muốn sao lưu đám mây, đổi máy tính cũng tìm lại được code</li>
+<li>Muốn xây dựng nền tảng cho việc học sau này</li>
+<li>Muốn trải nghiệm cách làm việc của lập trình viên chuyên nghiệp</li>
+<li>Có 15 phút thời gian</li>
+</ul>
+<p><strong>Nếu bạn tạm thời chưa có nhu cầu, có thể bỏ qua</strong>:</p>
+<ul>
+<li>Lịch sử có sẵn của AI IDE + Sao lưu thủ công đã đủ dùng</li>
+<li>Sau này cần học cũng chưa muộn</li>
+</ul>
+<p>Tiếp theo là các bước thực hành cụ thể.</p>
+<p>→ <a href="./5.1.5-practice_vi.html">5.1.5 Thực hành GitHub Desktop</a></p>
+</body>
+</html>

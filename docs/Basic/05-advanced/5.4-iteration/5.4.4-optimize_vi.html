@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.4.4 Optimize</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.4.4 Tối ưu hóa code"
+order: 5</p>
+<hr />
+<p><img alt="05-advanced_5.4-iteration_5.4.4-optimize.png" src="../../../public/images/Basic/05-advanced_5.4-iteration_5.4.4-optimize.png" /></p>
+<h1>5.4.4 Tối ưu hóa code: Để AI giúp bạn cải thiện chất lượng code</h1>
+<p>Qua bài học này, bạn sẽ nắm được:</p>
+<ul>
+<li>Khi nào thì nên tối ưu hóa code</li>
+<li>5 loại tối ưu hóa mà AI có thể giúp bạn</li>
+<li>Ý thức cơ bản về rà soát code</li>
+</ul>
+<h2>Khi nào thì nên tối ưu hóa</h2>
+<p>Trước tiên nói về một nguyên tắc quan trọng:</p>
+<p><strong>Chức năng ổn định rồi hẵng tối ưu, đừng vừa viết tính năng vừa tối ưu.</strong></p>
+<p>Tại sao?</p>
+<p>Bởi vì khi bạn đang thêm tính năng, code sẽ thay đổi liên tục. Lúc này mà tốn thời gian sắp xếp lại code, có thể tính năng tiếp theo lại phải sửa lại từ đầu.</p>
+<p>Đợi đến khi các tính năng cốt lõi của danh sách việc cần làm đã hoàn thành, kiểm thử thông qua hết rồi, lúc đó hãy tính chuyện tối ưu.</p>
+<p>Mục đích của tối ưu là:</p>
+<ul>
+<li>Để code dễ đọc hơn (sau này chính bạn quay lại xem còn hiểu)</li>
+<li>Giảm thiểu các vấn đề tiềm ẩn</li>
+<li>Để code chạy nhanh hơn (đối với dự án nhỏ, cái này thường không phải trọng tâm)</li>
+</ul>
+<h2>5 loại tối ưu hóa mà AI có thể giúp bạn</h2>
+<p>Bạn không cần tự mình biết viết code xịn hơn, có thể để AI giúp bạn kiểm tra và cải thiện.</p>
+<h3>1. Kiểm tra lặp code</h3>
+<pre><code>Hãy kiểm tra code của tôi, có logic nào bị lặp lại không?
+Nếu có, hãy giúp tôi tách nó ra thành một hàm có thể tái sử dụng.
+
+[Dán code của bạn]
+</code></pre>
+<p><strong>Tại sao quan trọng</strong>: Code lặp lại nghĩa là nếu muốn sửa một logic nào đó, bạn phải sửa ở nhiều chỗ. Dễ bị sót, sinh ra bug.</p>
+<h3>2. Cải thiện đặt tên biến</h3>
+<pre><code>Hãy kiểm tra cách đặt tên biến và hàm trong code của tôi, có chỗ nào chưa đủ rõ ràng không?
+Hãy đưa ra gợi ý cải thiện, để code dễ đọc hơn.
+
+[Dán code của bạn]
+</code></pre>
+<p><strong>Ví dụ</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Trước cải thiện</th>
+<th>Sau cải thiện</th>
+<th>Lý do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>a</code>, <code>b</code>, <code>x</code></td>
+<td><code>taskName</code>, <code>dueDate</code></td>
+<td>Tên có ý nghĩa, nhìn là biết cái gì</td>
+</tr>
+<tr>
+<td><code>data</code></td>
+<td><code>todoList</code></td>
+<td>Cụ thể hơn</td>
+</tr>
+<tr>
+<td><code>fn1</code></td>
+<td><code>addNewTask</code></td>
+<td>Mô tả chức năng của hàm</td>
+</tr>
+</tbody>
+</table>
+<h3>3. Thêm chú thích tiếng Việt</h3>
+<pre><code>Hãy thêm chú thích tiếng Việt cho đoạn code này, giải thích:
+1. Mỗi hàm dùng để làm gì
+2. Khối code then chốt đang xử lý logic gì
+3. Những chỗ khó hiểu
+
+[Dán code của bạn]
+</code></pre>
+<p><strong>Tại sao quan trọng</strong>: Một tháng sau bạn xem lại code của chính mình, nếu không có chú thích có thể sẽ hoàn toàn không hiểu gì. Chú thích là viết cho chính mình trong tương lai.</p>
+<h3>4. Kiểm tra bug tiềm ẩn</h3>
+<pre><code>Hãy kiểm tra code của tôi, có vấn đề hoặc bug tiềm ẩn nào không?
+Đặc biệt chú ý:
+1. Trường hợp biên có thể gây báo lỗi
+2. Xử lý khi dữ liệu trống
+3. Xác thực đầu vào của người dùng
+
+[Dán code của bạn]
+</code></pre>
+<p><strong>Ví dụ vấn đề thường gặp</strong>:</p>
+<ul>
+<li>Người dùng chưa nhập gì đã bấm nút thêm</li>
+<li>Hiển thị khi danh sách nhiệm vụ trống</li>
+<li>Xử lý khi định dạng dữ liệu không đúng</li>
+</ul>
+<h3>5. Gợi ý tối ưu hiệu năng</h3>
+<pre><code>Hãy kiểm tra code của tôi, có chỗ nào có thể tối ưu hiệu năng không?
+Dự án của tôi là một danh sách việc cần làm, dữ liệu không lớn (nhiều nhất vài chục nhiệm vụ).
+Chỉ đưa ra gợi ý tối ưu có ý nghĩa với quy mô này của tôi.
+
+[Dán code của bạn]
+</code></pre>
+<p><strong>Giải thích cho dự án nhỏ</strong>: Đối với dự án nhỏ như danh sách việc cần làm, hiệu năng thường không thành vấn đề. Đừng tối ưu quá mức (premature optimization). Nếu AI đưa ra gợi ý tối ưu quá phức tạp, có thể tạm thời chưa cần làm.</p>
+<h2>Một Prompt rà soát code hoàn chỉnh</h2>
+<p>Nếu bạn muốn AI thực hiện rà soát code toàn diện, có thể dùng mẫu này:</p>
+<pre><code>Hãy giúp tôi rà soát đoạn code này, đưa ra gợi ý cải tiến từ các góc độ sau:
+
+1. Cấu trúc code: Có logic lặp lại không? Có thể đơn giản hóa thế nào?
+2. Tính dễ đọc: Đặt tên biến đã rõ ràng chưa? Có cần thêm chú thích không?
+3. Tính ổn định: Có trường hợp biên nào có thể gây lỗi không?
+4. Tính an toàn: Có vấn đề an toàn nào rõ ràng không?
+
+Hãy sắp xếp gợi ý theo mức độ ưu tiên (nói cái quan trọng nhất trước), và đưa ra phương án sửa đổi cụ thể.
+
+Code như sau:
+[Dán code của bạn]
+</code></pre>
+<h2>Ý thức cơ bản về rà soát code</h2>
+<p>Ở bài 5.3 chúng ta đã nhắc đến, code do AI tạo ra không phải lúc nào cũng an toàn.</p>
+<p>Theo báo cáo năm 2025 của Veracode, <strong>45% code do AI tạo ra không vượt qua được kiểm tra an toàn</strong>.</p>
+<p>Điều này không có nghĩa là AI không tốt, mà là: <strong>Bạn cần có ý thức rà soát cơ bản đối với code AI đưa ra</strong>.</p>
+<h3>Khi rà soát hãy chú ý những điểm này</h3>
+<table>
+<thead>
+<tr>
+<th>Điểm chú ý</th>
+<th>Nội dung kiểm tra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>An toàn dữ liệu</td>
+<td>Trong code có lộ lọt thông tin nhạy cảm (mật khẩu, khóa API) không</td>
+</tr>
+<tr>
+<td>Xác thực đầu vào</td>
+<td>Dữ liệu người dùng nhập vào có được kiểm tra không</td>
+</tr>
+<tr>
+<td>Xử lý lỗi</td>
+<td>Khi xảy ra lỗi có bị crash không, có đưa ra lời nhắc cho người dùng không</td>
+</tr>
+<tr>
+<td>Chức năng đúng đắn</td>
+<td>Logic AI thực hiện có nhất quán với mong đợi của bạn không</td>
+</tr>
+</tbody>
+</table>
+<p>Nếu đọc code không hiểu lắm cũng không sao. Ít nhất hãy làm được:</p>
+<ul>
+<li><strong>Chạy thử nghiệm</strong>, xem chức năng có bình thường không</li>
+<li><strong>Xem các phần then chốt</strong>, ví dụ chỗ xử lý đầu vào của người dùng</li>
+<li><strong>Có thắc mắc thì hỏi AI</strong>: "Đoạn code này đang làm gì? Có vấn đề gì không?"</li>
+</ul>
+<h2>Tối ưu không bằng viết lại</h2>
+<p>Lời nhắc quan trọng cuối cùng:</p>
+<p><strong>Tối ưu là cải tiến từng bước nhỏ trên nền code hiện có, không phải đập đi xây lại.</strong></p>
+<p>Nếu AI gợi ý bạn "dùng khung X viết lại toàn bộ dự án", thì đó thường không phải là điều bạn cần làm lúc này.</p>
+<p>Đối với dự án giai đoạn học tập, giữ cho code hiện tại chạy được là tốt rồi. Đợi bạn làm nhiều dự án hơn, tích lũy nhiều kinh nghiệm hơn, tự nhiên sẽ biết khi nào nên dùng giải pháp tốt hơn.</p>
+<h2>Danh sách kiểm tra phần này</h2>
+<ul>
+<li>[ ] Chức năng cốt lõi ổn định rồi mới tính đến tối ưu</li>
+<li>[ ] Đã nhờ AI kiểm tra vấn đề lặp code</li>
+<li>[ ] Đã nhờ AI cải thiện cách đặt tên biến</li>
+<li>[ ] Đã thêm chú thích tiếng Việt cho code then chốt</li>
+<li>[ ] Có ý thức rà soát cơ bản đối với code do AI tạo ra</li>
+</ul>
+<p>::: tip Code là để cho người đọc
+Viết code không chỉ là để chương trình chạy được.</p>
+<p>Code tốt, người khác (bao gồm cả bạn trong tương lai) có thể đọc hiểu nhanh chóng.</p>
+<p>Chú thích và đặt tên rõ ràng, là sự tử tế dành cho chính mình trong tương lai.
+:::</p>
+<p>→ <a href="./5.4.5-portfolio_vi.html">5.4.5 Từ dự án đến Portfolio</a></p>
+</body>
+</html>

@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.2.4 Vercel</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.2.4 Thực chiến triển khai Vercel (Người dùng quốc tế/Có tên miền)"
+order: 5</p>
+<hr />
+<p><img alt="05-advanced_5.2-deployment_5.2.4-vercel.png" src="../../../public/images/Basic/05-advanced_5.2-deployment_5.2.4-vercel.png" /></p>
+<h1>5.2.4 Thực chiến triển khai Vercel: Người dùng quốc tế/Có tên miền</h1>
+<p>Vercel là một trong những nền tảng triển khai frontend phổ biến nhất toàn cầu, đặc biệt phù hợp với các framework frontend hiện đại như Next.js, React. Quy trình phát hiện và triển khai tự động của nó rất thông minh, gần như không cần cấu hình gì.</p>
+<p>::: warning Lưu ý cho người dùng Trung Quốc đại lục
+Tên miền miễn phí của Vercel <code>*.vercel.app</code> không thể truy cập bình thường tại Trung Quốc đại lục. Nếu bạn ở Đại lục và không có tên miền tùy chỉnh, đề xuất sử dụng Zeabur (xem 5.2.3).</p>
+<p>Bài này phù hợp với các độc giả sau:</p>
+<ul>
+<li>Bạn đang ở nước ngoài</li>
+<li>Bạn có tên miền riêng, chuẩn bị dùng Cloudflare để proxy</li>
+<li>Bạn muốn tìm hiểu cách dùng Vercel để chuẩn bị cho tương lai
+  :::</li>
+</ul>
+<h2>Gói Hobby của Vercel năm 2025 (Miễn phí)</h2>
+<table>
+<thead>
+<tr>
+<th>Tài nguyên</th>
+<th>Giới hạn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Truyền tải dữ liệu nhanh</td>
+<td>100GB/tháng</td>
+</tr>
+<tr>
+<td>Yêu cầu Edge</td>
+<td>1 triệu lần/tháng</td>
+</tr>
+<tr>
+<td>Thời gian CPU</td>
+<td>4 giờ/tháng</td>
+</tr>
+<tr>
+<td>Số lượng dự án</td>
+<td>Tối đa 200 cái</td>
+</tr>
+<tr>
+<td>Số lần triển khai mỗi ngày</td>
+<td>100 lần</td>
+</tr>
+<tr>
+<td>Thời gian build</td>
+<td>Tối đa 45 phút mỗi lần</td>
+</tr>
+</tbody>
+</table>
+<p>Đối với dự án cá nhân, các hạn mức này là hoàn toàn đủ dùng.</p>
+<h2>Chuẩn bị</h2>
+<ul>
+<li>[ ] Dự án đã tải lên GitHub</li>
+<li>[ ] Có tài khoản GitHub</li>
+<li>[ ] (Tùy chọn) Có tên miền riêng</li>
+</ul>
+<h2>Thao tác từng bước (Step by Step)</h2>
+<h3>Bước 1: Truy cập Vercel và đăng nhập</h3>
+<p>Mở trình duyệt, truy cập <a href="https://vercel.com">vercel.com</a>.</p>
+<p>Nhấp vào "Sign Up" hoặc "Log In" ở góc trên bên phải, chọn "Continue with GitHub".</p>
+<blockquote>
+<p><strong>[Gợi ý hình ảnh]</strong>
+Nội dung: Trang chủ Vercel, làm nổi bật tùy chọn đăng nhập GitHub
+Prompt: modern landing page illustration, GitHub login button highlighted, dark theme with purple accents, clean design, professional, 8k --ar 16:9</p>
+</blockquote>
+<p><strong>Bạn sẽ thấy</strong>: Trang ủy quyền GitHub. Nhấp "Authorize Vercel".</p>
+<h3>Bước 2: Vào bảng điều khiển</h3>
+<p>Sau khi đăng nhập, bạn sẽ thấy Dashboard của Vercel.</p>
+<p>Nếu là người dùng mới, trang sẽ hướng dẫn bạn tạo dự án đầu tiên.</p>
+<h3>Bước 3: Nhập dự án</h3>
+<p>Nhấp nút "Add New...", chọn "Project".</p>
+<p>Hoặc nhấp trực tiếp "Import Project".</p>
+<p><strong>Bạn sẽ thấy</strong>: Một trang cho phép bạn chọn kho chứa Git.</p>
+<h3>Bước 4: Chọn kho chứa</h3>
+<p>Trong khu vực "Import Git Repository", bạn sẽ thấy danh sách kho chứa GitHub của mình.</p>
+<p>Nếu không thấy kho chứa, nhấp "Adjust GitHub App Permissions" để đi ủy quyền.</p>
+<p>Tìm dự án danh sách việc cần làm của bạn, nhấp "Import".</p>
+<blockquote>
+<p><strong>[Gợi ý hình ảnh]</strong>
+Nội dung: Trang danh sách kho chứa, làm nổi bật nút Import
+Prompt: dashboard interface showing repository list, import button highlighted, modern UI design, dark theme, clean layout, 8k --ar 16:9</p>
+</blockquote>
+<h3>Bước 5: Cấu hình dự án</h3>
+<p>Vercel sẽ tự động phát hiện loại dự án của bạn.</p>
+<p>Đối với danh sách việc cần làm của chúng ta (thuần HTML/CSS/JS), thường không cần cấu hình gì cả.</p>
+<p>Kiểm tra các cài đặt sau:</p>
+<ul>
+<li><strong>Framework Preset</strong>: Nếu là thuần HTML, chọn "Other"</li>
+<li><strong>Root Directory</strong>: Giữ mặc định (<code>.</code>)</li>
+<li><strong>Build Command</strong>: Để trống (dự án thuần tĩnh không cần build)</li>
+<li><strong>Output Directory</strong>: Để trống hoặc điền <code>.</code></li>
+</ul>
+<p><strong>Bạn sẽ thấy</strong>: Trang cấu hình, phần lớn các tùy chọn đã được điền tự động.</p>
+<h3>Bước 6: Triển khai</h3>
+<p>Sau khi xác nhận cấu hình không có lỗi, nhấp nút "Deploy".</p>
+<p>Vercel sẽ bắt đầu build và triển khai dự án của bạn. Quá trình này thường mất 30 giây đến 2 phút.</p>
+<p><strong>Bạn sẽ thấy</strong>:</p>
+<ul>
+<li>Nhật ký build theo thời gian thực</li>
+<li>Trạng thái từ "Building" chuyển thành "Ready"</li>
+<li>Xuất hiện hoạt ảnh chúc mừng và hình xem trước</li>
+</ul>
+<h3>Bước 7: Nhận địa chỉ web</h3>
+<p>Sau khi triển khai thành công, Vercel sẽ cấp cho bạn một địa chỉ web, định dạng tương tự:</p>
+<pre><code>https://your-project-name.vercel.app
+</code></pre>
+<p>Nhấp vào liên kết này, xem trang web của bạn.</p>
+<p>::: warning Nhắc lại lần nữa
+Nếu bạn ở Trung Quốc đại lục, liên kết này có thể không truy cập được. Giải pháp xem tại <a href="./5.2.6-china-solution_vi.html">5.2.6 Giải pháp truy cập tại Đại lục</a>.
+:::</p>
+<h2>Danh sách kiểm tra thành công</h2>
+<ul>
+<li>[ ] Trạng thái triển khai hiển thị "Ready"</li>
+<li>[ ] Nhấp liên kết mở được trang web (truy cập từ nước ngoài)</li>
+<li>[ ] Các chức năng của trang bình thường</li>
+<li>[ ] Trong Vercel Dashboard có thể thấy dự án</li>
+</ul>
+<h2>Tính năng đặc sắc của Vercel</h2>
+<p>Vercel có một số tính năng rất hữu ích, hãy tìm hiểu qua:</p>
+<table>
+<thead>
+<tr>
+<th>Tính năng</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Preview Deployments</td>
+<td>Mỗi lần Push đều sẽ tạo ra một liên kết xem trước</td>
+</tr>
+<tr>
+<td>HTTPS tự động</td>
+<td>Tất cả các trang web tự động bật HTTPS</td>
+</tr>
+<tr>
+<td>Mạng biên (Edge Network)</td>
+<td>Tăng tốc CDN toàn cầu</td>
+</tr>
+<tr>
+<td>Rollback</td>
+<td>Một nút quay lại phiên bản trước đó</td>
+</tr>
+</tbody>
+</table>
+<h2>Gặp vấn đề? Để AI giúp bạn</h2>
+<pre><code>Tôi gặp vấn đề khi triển khai dự án trên Vercel:
+
+[Dán thông tin lỗi]
+
+Dự án là một trang web tĩnh thuần HTML/CSS/JavaScript.
+Hãy giúp tôi phân tích nguyên nhân.
+</code></pre>
+<p>→ <a href="./5.2.5-after-deploy_vi.html">5.2.5 Các thao tác thiết thực sau khi triển khai</a></p>
+</body>
+</html>

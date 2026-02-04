@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.3.0 Scary Numbers</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.3.0 Thực trạng an toàn năm 2025: Những con số giật mình"
+order: 2</p>
+<hr />
+<p><img alt="05-advanced_5.3-security_5.3.0-scary-numbers.png" src="../../../public/images/Basic/05-advanced_5.3-security_5.3.0-scary-numbers.png" /></p>
+<h1>5.3.0 Thực trạng an toàn năm 2025: Những con số giật mình</h1>
+<blockquote>
+<p>Đây không phải là chuyện giật gân, mà là số liệu thực tế được công bố bởi các tổ chức uy tín trong năm 2024-2025.</p>
+</blockquote>
+<p>Qua bài học này, bạn sẽ hiểu:</p>
+<ul>
+<li>Rủi ro an toàn của code do AI tạo ra phổ biến như thế nào</li>
+<li>Vấn đề rò rỉ khóa (key) nghiêm trọng đến mức nào</li>
+<li>Tại sao phải coi trọng an toàn ngay bây giờ</li>
+</ul>
+<h2>Rủi ro an toàn của code do AI tạo ra</h2>
+<p>Nguồn: Veracode 2025 GenAI Code Security Report</p>
+<p>Veracode đã kiểm tra hơn 100 mô hình ngôn ngữ lớn trong năm 2025, phân tích code Java, Python, JavaScript, C# do chúng tạo ra. Kết quả rất đáng lo ngại:</p>
+<table>
+<thead>
+<tr>
+<th>Số liệu</th>
+<th>Ý nghĩa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>45%</strong></td>
+<td>Code do AI tạo ra không vượt qua được kiểm tra an toàn</td>
+</tr>
+<tr>
+<td><strong>72%</strong></td>
+<td>Tỷ lệ thất bại an toàn của code Java (cao nhất trong các ngôn ngữ)</td>
+</tr>
+<tr>
+<td><strong>86%</strong></td>
+<td>Tỷ lệ AI không thể phòng thủ tấn công Cross-site Scripting (XSS)</td>
+</tr>
+<tr>
+<td><strong>88%</strong></td>
+<td>Tỷ lệ AI không thể phòng thủ tấn công Log Injection</td>
+</tr>
+</tbody>
+</table>
+<p>Đáng chú ý hơn là: <strong>Mô hình mới hơn, lớn hơn không tạo ra code an toàn hơn</strong>. Hiệu suất an toàn gần như không được cải thiện trong vài năm qua.</p>
+<h2>Khủng hoảng rò rỉ khóa (Key Leaks)</h2>
+<p>Nguồn: GitHub 2025, GitGuardian 2025, Verizon DBIR 2025</p>
+<table>
+<thead>
+<tr>
+<th>Số liệu</th>
+<th>Nguồn</th>
+<th>Ý nghĩa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>39 triệu</strong></td>
+<td>GitHub 2025</td>
+<td>Số lượng khóa bị rò rỉ phát hiện trên GitHub trong năm 2024</td>
+</tr>
+<tr>
+<td><strong>23.8 triệu</strong></td>
+<td>GitGuardian 2025</td>
+<td>Số chứng thực bị rò rỉ mới trong các kho chứa công khai năm 2024 (tăng 25% so với cùng kỳ)</td>
+</tr>
+<tr>
+<td><strong>70%</strong></td>
+<td>GitGuardian 2025</td>
+<td>Tỷ lệ khóa bị rò rỉ năm 2022 đến nay vẫn còn hiệu lực</td>
+</tr>
+<tr>
+<td><strong>35%</strong></td>
+<td>GitGuardian 2025</td>
+<td>Tỷ lệ kho chứa riêng tư chứa khóa văn bản rõ (plaintext)</td>
+</tr>
+<tr>
+<td><strong>94 ngày</strong></td>
+<td>Verizon DBIR 2025</td>
+<td>Thời gian trung bình để sửa chữa khóa bị rò rỉ</td>
+</tr>
+</tbody>
+</table>
+<p>Điều này có nghĩa là: Kẻ tấn công có trung bình <strong>cửa sổ thời gian 3 tháng</strong> để khai thác các khóa bị rò rỉ.</p>
+<h2>Các công ty hàng đầu cũng không thoát nạn</h2>
+<table>
+<thead>
+<tr>
+<th>Số liệu</th>
+<th>Ý nghĩa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>65%</strong></td>
+<td>Các công ty AI hàng đầu trong danh sách Forbes AI 50 từng rò rỉ chứng thực trên GitHub</td>
+</tr>
+<tr>
+<td><strong>$4.88 triệu</strong></td>
+<td>Chi phí trung bình cho sự cố rò rỉ dữ liệu liên quan đến rò rỉ chứng thực (IBM 2024)</td>
+</tr>
+</tbody>
+</table>
+<p>Nếu ngay cả những công ty công nghệ tiên tiến nhất cũng mắc sai lầm, thì lập trình viên bình thường càng cần phải cảnh giác.</p>
+<h2>Mối đe dọa mới nổi: Tấn công ảo giác gói (Package Hallucination)</h2>
+<p>Nguồn: Nghiên cứu chung của Đại học Texas, Đại học Oklahoma, Virginia Tech (2025)</p>
+<table>
+<thead>
+<tr>
+<th>Số liệu</th>
+<th>Ý nghĩa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>19.7%</strong></td>
+<td>Các gói phần mềm do AI đề xuất thực tế không tồn tại</td>
+</tr>
+<tr>
+<td><strong>21.7%</strong></td>
+<td>Tỷ lệ ảo giác gói của các mô hình mã nguồn mở</td>
+</tr>
+<tr>
+<td><strong>5.2%</strong></td>
+<td>Tỷ lệ ảo giác gói của dòng mô hình GPT (tương đối thấp)</td>
+</tr>
+<tr>
+<td><strong>58%</strong></td>
+<td>Tên gói ảo giác sẽ lặp lại, kẻ tấn công có thể dự đoán</td>
+</tr>
+</tbody>
+</table>
+<p>Kẻ tấn công đã bắt đầu lợi dụng lỗ hổng này: Đăng ký các tên gói mà AI thường "ảo giác" ra, cấy mã độc vào, đợi lập trình viên cắn câu.</p>
+<h2>Những con số này có ý nghĩa gì</h2>
+<p>::: warning Thông điệp cốt lõi
+Những con số này không phải để dọa bạn, mà là nói cho bạn một sự thật:</p>
+<p><strong>Rủi ro an toàn của lập trình AI là hiện hữu, không phải chuyện "để sau hãy tính".</strong></p>
+<p>Nhưng tin tốt là: Chỉ cần hiểu luật chơi, phần lớn rủi ro đều có thể tránh được dễ dàng.
+:::</p>
+<p>Các bài tiếp theo sẽ chỉ cho bạn cách làm cụ thể.</p>
+<p>→ <a href="./5.3.1-why-important_vi.html">5.3.1 Tại sao phần này rất quan trọng</a></p>
+</body>
+</html>

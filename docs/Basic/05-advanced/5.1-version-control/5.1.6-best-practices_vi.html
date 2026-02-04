@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.1.6 Best Practices</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "5.1.6 Các phương pháp quản lý phiên bản tốt nhất"
+order: 7</p>
+<hr />
+<p><img alt="05-advanced_5.1-version-control_5.1.6-best-practices.png" src="../../../public/images/Basic/05-advanced_5.1-version-control_5.1.6-best-practices.png" /></p>
+<h1>5.1.6 Các phương pháp quản lý phiên bản tốt nhất</h1>
+<p>Sau khi đã học được các thao tác cơ bản của công cụ, tiếp theo là một số kỹ thuật để quản lý phiên bản hiệu quả hơn.</p>
+<h2>Cách viết thông tin Commit</h2>
+<p>Mỗi lần Commit đều cần viết một câu mô tả. Mô tả tốt sẽ giúp bạn nhanh chóng tìm thấy phiên bản mình cần.</p>
+<h3>Cách viết tốt</h3>
+<pre><code>✅ &quot;Thêm chức năng xóa nhiệm vụ&quot;
+✅ &quot;Sửa lỗi mất dữ liệu sau khi tải lại trang&quot;
+✅ &quot;Điều chỉnh màu nút bấm thành màu xanh&quot;
+✅ &quot;Bản hoàn chỉnh chương 4&quot;
+✅ &quot;Bản sao lưu trước khi chuẩn bị thêm dark mode&quot;
+</code></pre>
+<p>Đặc điểm:</p>
+<ul>
+<li>Nói rõ <strong>đã làm cái gì</strong></li>
+<li>Đọc một cái là hiểu ngay</li>
+</ul>
+<h3>Cách viết không tốt</h3>
+<pre><code>❌ &quot;Sửa một số thứ&quot;
+❌ &quot;update&quot;
+❌ &quot;fix&quot;
+❌ &quot;...&quot;
+❌ &quot;1&quot;
+</code></pre>
+<p>Vấn đề:</p>
+<ul>
+<li>Không nhìn ra đã làm gì</li>
+<li>Hoàn toàn không giúp ích khi tìm lại phiên bản sau này</li>
+</ul>
+<h3>Nguyên tắc đơn giản</h3>
+<p><strong>Dùng một câu để mô tả "lần sửa đổi này đã làm gì"</strong>.</p>
+<p>Không cần viết quá trang trọng, miễn là bản thân sau này đọc lại vẫn hiểu là được.</p>
+<h2>Bao lâu thì Commit một lần</h2>
+<p><strong>Nguyên tắc: Hoàn thành một chức năng nhỏ thì Commit</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Cách làm</th>
+<th>Ưu nhược điểm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sửa mỗi dòng đều Commit</td>
+<td>❌ Quá thường xuyên, lịch sử quá rối</td>
+</tr>
+<tr>
+<td>Làm xong một chức năng thì Commit</td>
+<td>✅ Khuyên dùng, độ lớn vừa phải</td>
+</tr>
+<tr>
+<td>Viết một đống rồi mới Commit</td>
+<td>❌ Có vấn đề khó quay lại, không tìm ra điểm lỗi</td>
+</tr>
+</tbody>
+</table>
+<h3>Thời điểm Commit được đề xuất</h3>
+<ul>
+<li>Đã thêm một chức năng mới</li>
+<li>Đã sửa một lỗi</li>
+<li>Đã điều chỉnh kiểu dáng/bố cục</li>
+<li>Đã cấu trúc lại code (refactor)</li>
+<li>Chuẩn bị tan làm/nghỉ ngơi</li>
+</ul>
+<p>Đừng đợi đến khi "hoàn hảo" rồi mới Commit. Bán thành phẩm cũng có thể Commit, dù sao cũng có thể tiếp tục sửa bất cứ lúc nào.</p>
+<h2>File nào nên/không nên gửi đi (submit)</h2>
+<p>Có những file nên đưa vào quản lý phiên bản, có những file không nên.</p>
+<h3>Những file nên gửi đi</h3>
+<ul>
+<li>Code bạn viết (HTML, CSS, JavaScript, v.v.)</li>
+<li>File cấu hình dự án</li>
+<li>Tài liệu và hướng dẫn</li>
+</ul>
+<h3>Những file không nên gửi đi</h3>
+<table>
+<thead>
+<tr>
+<th>Loại</th>
+<th>Ví dụ</th>
+<th>Tại sao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thư mục gói phụ thuộc</td>
+<td><code>node_modules/</code></td>
+<td>Quá lớn, có thể cài đặt lại</td>
+</tr>
+<tr>
+<td>Cấu hình môi trường</td>
+<td><code>.env</code></td>
+<td>Có thể chứa mật khẩu và thông tin nhạy cảm</td>
+</tr>
+<tr>
+<td>File hệ thống</td>
+<td><code>.DS_Store</code> (Mac)</td>
+<td>Không liên quan đến dự án</td>
+</tr>
+<tr>
+<td>Sản phẩm biên dịch</td>
+<td><code>dist/</code>, <code>build/</code></td>
+<td>Có thể tạo lại</td>
+</tr>
+</tbody>
+</table>
+<h3>Sử dụng file .gitignore</h3>
+<p>Tạo một file có tên <code>.gitignore</code> tại thư mục gốc của dự án, viết vào đó những file/thư mục cần bỏ qua:</p>
+<pre><code># Phụ thuộc
+node_modules/
+
+# Cấu hình môi trường
+.env
+.env.local
+
+# File hệ thống
+.DS_Store
+Thumbs.db
+
+# Sản phẩm biên dịch
+dist/
+build/
+</code></pre>
+<p>GitHub Desktop sẽ tự động bỏ qua những file này, không đưa chúng vào quản lý phiên bản.</p>
+<p>::: tip Mẹo
+Nếu bạn đang dùng dự án HTML/CSS/JS đơn giản (ví dụ danh sách việc cần làm), tạm thời chưa cần lo lắng về <code>.gitignore</code>. File này chỉ dùng đến khi dự án trở nên phức tạp hơn.
+:::</p>
+<h2>So sánh và lựa chọn ba phương án</h2>
+<table>
+<thead>
+<tr>
+<th>Phương án</th>
+<th>Chi phí học tập</th>
+<th>Độ tin cậy</th>
+<th>Sao lưu đám mây</th>
+<th>Kịch bản phù hợp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lịch sử tích hợp của AI IDE</td>
+<td>Không</td>
+<td>Trung bình</td>
+<td>Không (trừ bản web)</td>
+<td>Sửa đổi nhỏ hàng ngày</td>
+</tr>
+<tr>
+<td>Sao chép thư mục thủ công</td>
+<td>Không</td>
+<td>Cao</td>
+<td>Không</td>
+<td>Sao lưu các mốc quan trọng</td>
+</tr>
+<tr>
+<td>GitHub Desktop</td>
+<td>Thấp</td>
+<td>Cao</td>
+<td>Có</td>
+<td>Dự án dài hạn, muốn học kỹ năng chuyên nghiệp</td>
+</tr>
+</tbody>
+</table>
+<h3>Nhóm kết hợp được đề xuất</h3>
+<p><strong>Phương án an tâm nhất</strong>:</p>
+<ol>
+<li>Hàng ngày dựa vào lịch sử có sẵn của AI IDE</li>
+<li>Khi hoàn thành chức năng quan trọng thì sao lưu thủ công một thư mục</li>
+<li>Sau khi hoàn thành dự án thì cân nhắc tải lên GitHub</li>
+</ol>
+<p><strong>Muốn chuyên nghiệp hơn chút</strong>:</p>
+<ol>
+<li>Dùng GitHub Desktop ngay từ đầu</li>
+<li>Mỗi khi hoàn thành một chức năng thì Commit</li>
+<li>Cuối mỗi ngày thì Push lên đám mây</li>
+</ol>
+<h2>Danh sách kiểm tra phần này</h2>
+<p>Sau khi học xong phần này, hãy xác nhận bạn đã nắm được các nội dung sau:</p>
+<ul>
+<li>[ ] Biết tìm chức năng lịch sử của AI IDE ở đâu</li>
+<li>[ ] Có thể sử dụng chức năng lịch sử để quay lại phiên bản trước đó</li>
+<li>[ ] Biết cách sao lưu dự án bằng cách sao chép thư mục thủ công</li>
+<li>[ ] Biết khi nào nên lưu một phiên bản</li>
+<li>[ ] (Tùy chọn) Đã cài đặt GitHub Desktop</li>
+<li>[ ] (Tùy chọn) Đã tải thành công dự án lên GitHub</li>
+<li>[ ] (Tùy chọn) Biết cách viết thông tin Commit</li>
+</ul>
+<h2>Chúc mừng bạn</h2>
+<p>Từ giờ trở đi, code của bạn đã có "cỗ máy thời gian" bảo vệ.</p>
+<p>Bất kể là lịch sử có sẵn của AI IDE, hay sao lưu thủ công, hay GitHub Desktop — bạn đã nắm được khả năng bảo vệ thành quả lao động của mình.</p>
+<p>Điều này có nghĩa là:</p>
+<ul>
+<li>Bạn có thể mạnh dạn thử nghiệm tính năng mới, không sợ sửa hỏng</li>
+<li>Bạn có thể để AI thực hiện các sửa đổi mang tính thử nghiệm, không ưng ý thì quay lại</li>
+<li>Thành quả 2 giờ của bạn sẽ không vì một sai lầm nhỏ mà đổ sông đổ bể</li>
+</ul>
+<p><strong>Đây không phải là điểm kết thúc, mà là điểm khởi đầu mới.</strong></p>
+<p>Tiếp theo, chúng ta sẽ đưa danh sách việc cần làm của bạn lên internet, để cả thế giới đều có thể truy cập.</p>
+<p>::: tip Khích lệ
+Từ "code sửa hỏng là mất hết" đến "có thể quay lại bất cứ lúc nào" — đây là một sự chuyển đổi tư duy quan trọng.</p>
+<p>Bạn đã biết cách bảo vệ thành quả của mình hơn rất nhiều người mới bắt đầu. Hãy tiếp tục tiến lên!
+:::</p>
+<p>→ <a href="../5.2-deployment/">5.2 Mở mang tầm mắt: Đưa trang web lên internet</a></p>
+</body>
+</html>
