@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "Chương 5: 3 trạng thái vận hành của code và nguyên lý build"</h2>
+<h1>Chương 5: 3 trạng thái vận hành của code và nguyên lý build</h1>
+<h2>Lời tựa</h2>
+<p>Bạn nghe thực tập sinh công ty bên cạnh kể một câu chuyện. Cậu ta ngày đầu đi làm, leader bảo chuẩn bị một bản demo chạy local. Cậu ta hăm hở chạy <code>pnpm dev</code>, mọi thứ bình thường.</p>
+<p>Nhưng khi leader hỏi: "Bản demo local này tôi có xem được không?", cậu thực tập sinh mới phát hiện —— <strong>trên máy leader không có cấu hình database của cậu, mà chế độ Dev cũng không thích hợp để demo</strong>.</p>
+<p>Leader bảo: "Phát triển local dùng chế độ Dev, tiện cho cậu debug. Nhưng cái để cho người dùng xem thì phải <code>pnpm build</code> ra bản production, rồi deploy lên server."</p>
+<p>Cậu thực tập sinh mới vỡ lẽ, hóa ra code có <strong>môi trường chạy khác nhau</strong>: Local dev dùng Dev, cho người dùng xem là bản Build xong deploy lên server. Bạn nghe chuyện này xong, cảm thấy chương này phải học cho kỹ.</p>
+<h3>3 trạng thái</h3>
+<p>Để tránh bị nhầm lẫn khi đi sâu vào phát triển, sư phụ đặc biệt phổ cập cho bạn về <strong>3 trạng thái vòng đời</strong> của code.</p>
+<p>Đầu tiên là <strong>Dev (Chế độ phát triển)</strong>, chính là <code>pnpm dev</code> bạn hay dùng. Nó giống như <strong>làm nháp</strong>. Ở chế độ này, khi bạn sửa code và lưu, trình duyệt <strong>không cần</strong> refresh toàn trang, mà chỉ thay thế một mảnh component nhỏ vừa sửa. Có nghĩa là nếu bạn đang điền một cái form dài dằng dặc, sửa lại style xong, nội dung đã điền trong form <strong>không bị mất</strong>. Nhưng cái giá phải trả là tốc độ chạy khá chậm, và chứa một đống thông tin debug dùng để báo lỗi.</p>
+<p>Thứ hai là <strong>Build (Chế độ xây dựng)</strong>, khi bạn chuẩn bị online, cần chạy <code>pnpm build</code>. Quá trình này giống như <strong>đem bản nháp đi dàn trang in thành sách</strong>. Nó sẽ nén, tối ưu, phiên dịch tất cả code TypeScript, React bạn viết, cuối cùng sinh ra một thư mục <code>.next</code> (hoặc <code>dist</code>) trong dự án. Code trong này dung lượng cực nhỏ, chạy cực nhanh, là bản chính thức chuyên dành cho người dùng.</p>
+<p>Cuối cùng là <strong>Production (Chế độ sản xuất)</strong>, chạy <code>pnpm start</code> (hoặc <code>next start</code>). Đây là <strong>mô phỏng môi trường online chính thức</strong> ngay trên local, dùng để chạy cái "bản chính thức" vừa sinh ra từ bước <code>build</code>. Thông thường trước khi online, bạn sẽ dùng chế độ này để kiểm tra lần cuối xem có Bug không.</p>
+<h3>Lưu là có hiệu lực</h3>
+<p>Có thể bạn tò mò: Tại sao ở chế độ Dev cứ lưu file là trình duyệt tự refresh? Cái này gọi là <strong>Hot Reload (Tải lại nóng)</strong>.</p>
+<p>Công cụ phát triển sẽ nghe ngóng sự thay đổi của file ở hậu đài. Một khi phát hiện có sửa đổi, nó sẽ tự động refresh trình duyệt hoặc chỉ cập nhật phần thay đổi. Việc này giúp bạn không cần mỗi lần đều phải F5 thủ công, hiệu suất phát triển tăng vọt.</p>
+<p>Còn ở chế độ Build hoặc Production, code đã được đóng gói tối ưu, không có cơ chế nghe ngóng này, nên sửa xong cần build lại. Hiểu được sự khác biệt này, bạn sẽ biết tại sao thỉnh thoảng sửa code mà không thấy có tác dụng —— có thể là đang chạy sai chế độ.</p>
+<h3>package.json</h3>
+<p>Lúc này, có thể bạn sẽ thắc mắc: <strong>Tại sao gõ <code>pnpm dev</code> là chạy được dự án?</strong> Sư phụ bảo bạn mở file <strong><code>package.json</code></strong> ở thư mục gốc ra. Ông bảo, đây là <strong>file cấu hình cốt lõi</strong> của dự án Node.js, quản lý metadata, script và dependency của dự án.</p>
+<ul>
+<li>
+<p><strong>Quản lý Script (Scripts)</strong>: Trong trường <code>scripts</code>, định nghĩa các lệnh chạy thường dùng của dự án. Khi bạn gõ <code>pnpm dev</code> trong terminal, trình quản lý gói sẽ tra bảng, thấy nó tương ứng với lệnh <code>next dev</code> và thực thi lệnh đó. Đây là lý do tại sao các lệnh tầng dưới phức tạp có thể được đơn giản hóa thành <code>dev</code> hay <code>build</code> ngắn gọn. <strong>Sư phụ tiện mồm nhắc luôn, đây cũng là chỗ để tùy chỉnh "số phòng".</strong> Còn nhớ cái lỗi chiếm dụng cổng phiền phức ở chương 1 không? Bạn hoàn toàn có thể sửa lệnh ở đây thành <code>next dev -p 4000</code>. Như vậy, lần sau chạy <code>pnpm dev</code>, ứng dụng sẽ khởi động luôn ở cổng 4000, tránh xa cổng 3000 đông đúc.</p>
+</li>
+<li>
+<p><strong>Quản lý Dependency (Dependencies)</strong>: Danh sách <code>dependencies</code> ghi lại rõ ràng các thư viện bên thứ 3 (như React, Next.js, Drizzle) và phiên bản cụ thể mà dự án bắt buộc phải cài để chạy được. Việc này đảm bảo người khác (hoặc server) khi lấy code về, có thể thông qua <code>pnpm install</code> để cài đặt các thư viện y hệt, khôi phục hoàn hảo môi trường phát triển của bạn.</p>
+</li>
+</ul>
+<h3>Sản phẩm Build (Build Artifcats)</h3>
+<p>Build xong, bạn định tìm file <code>index.html</code> trong thư mục để click đúp mở ra, giống như hồi chương 1. Sư phụ bảo sản phẩm build nằm trong thư mục <code>.next</code> (hoặc <code>dist</code>), nhưng bạn lục tung thư mục <code>.next</code> lên cũng chỉ thấy một đống file <code>.js</code> và <code>.json</code> lằng nhằng như "ma trận". Sư phụ bảo, <strong>Next.js Fullstack Framework dùng trong hướng dẫn này, bản chất là một "chương trình" chạy trên Node.js, chứ không phải "file" đơn giản</strong>. Nó cần kết nối database, xử lý API request, render trang web từ phía server, mấy cái này đều không thể tách rời sự hỗ trợ của <strong>môi trường server</strong>.</p>
+<p>Tất nhiên, có một số ngữ cảnh bạn có thể phát triển <strong>dự án tĩnh thuần túy</strong> (ví dụ dùng Vite + Vue/React), dự án kiểu này đóng gói xong đúng là sẽ sinh ra một file <code>index.html</code> trong thư mục <code>dist</code>. Nhưng để dẫn dắt bạn đi hết quy trình Fullstack trọn vẹn gồm database, auth..., chúng ta chọn Next.js. Có điều phải nhớ, kể cả là file tĩnh thuần túy do Vite đóng gói, thường cũng không thể click đúp mở trực tiếp. Vì ứng dụng hiện đại sử dụng <strong>đường dẫn tuyệt đối</strong> (như <code>/assets/app.js</code>) để dẫn tài nguyên, mà mở click đúp thì lại dùng <strong>giao thức file</strong> (<code>file:///</code>), dẫn đến việc trình duyệt không tìm thấy tài nguyên.</p>
+<p>Vì thế, xin hãy nhớ kỹ: <strong>Đừng bao giờ click đúp mở trực tiếp file code sau khi build, hãy luôn truy cập ứng dụng thông qua Web Server (như <code>pnpm start</code> của Next.js hoặc <code>pnpm preview</code> của dự án Vite).</strong></p>
+<h3>Cache (Bộ nhớ đệm)</h3>
+<p>Như đã nói, chế độ Dev có Hot Reload, sửa code lưu cái là trình duyệt tự cập nhật, thường không bị vấn đề cache.</p>
+<p>Nhưng ở <strong>chế độ Production</strong> (chạy <code>pnpm start</code>) hoặc <strong>khi truy cập trang web đã deploy</strong>, bạn có thể gặp chuyện lạ do <strong>trình duyệt cache</strong>. Ví dụ bạn đổi nút bấm từ xanh sang đỏ, <code>pnpm build</code> lại rồi truy cập, nút bấm vẫn trơ ra màu xanh. Bạn suy sụp, tưởng mình lọt vào vũ trụ song song.</p>
+<p>Hóa ra, để tải nhanh hơn, trình duyệt đã lưu các file CSS/JS cũ vào local. Bạn học được 3 tuyệt chiêu: Một là <strong>bắt buộc refresh</strong> (giữ <code>Ctrl</code> + <code>Shift</code> + <code>R</code>); Hai là mở chế độ ẩn danh; Ba là mở F12 Developer Tools, trong tab Network tích vào <strong>"Disable cache"</strong>.</p>
+<p>Nếu bắt buộc refresh mà vẫn không được, có thể là vấn đề <strong>cache build</strong>, cần xóa thư mục <code>.next</code> đi rồi <code>pnpm run build</code> lại.</p>
+<p>Còn một cái hố hay bị bỏ quên: Sửa file <code>.env</code> xong bắt buộc phải khởi động lại service (Ctrl+C rồi npm run dev), biến môi trường mới có hiệu lực. <strong>【Xem chi tiết Chương 6】</strong> sẽ giải thích kỹ tại sao biến môi trường được load khi khởi động tiến trình, nên lúc chạy mà sửa file thì nó không tự cập nhật.</p>
+<hr />
+<h2>Điều hướng chương</h2>
+<pre><code>- 5.1 Rà soát bẫy Cache (./01-cache-traps.md) 🔴
+- 5.2 Ba chế độ vận hành (./02-runtime-modes.md) 🟢
+- 5.3 Hướng dẫn thực dụng package.json (./03-package-json-guide.md) 🟢
+- 5.4 Sản phẩm Build và Web Server (./04-build-artifacts-server.md) 🟢
+</code></pre>
+</body>
+</html>

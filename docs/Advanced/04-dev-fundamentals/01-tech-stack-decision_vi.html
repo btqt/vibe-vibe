@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01 Tech Stack Decision</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.1 Khung quyết định Tech Stack"
+description: "Lựa chọn công nghệ phù hợp một cách hệ thống"
+chapter: "Chương 4"
+priority: "🟡"</p>
+<hr />
+<h1>4.1 Khung quyết định Tech Stack 🟡</h1>
+<blockquote>
+<p><strong>Đọc xong phần này, bạn sẽ thu hoạch được:</strong></p>
+<ul>
+<li>Hiểu nguyên tắc cốt lõi của việc quyết định Tech Stack</li>
+<li>Nắm vững tư duy lựa chọn "Nhu cầu đi trước"</li>
+<li>Học cách đánh giá tính khả thi và độ phức tạp của giải pháp kỹ thuật</li>
+<li>Hiểu các kịch bản áp dụng của các giải pháp kỹ thuật phổ biến</li>
+</ul>
+<p>Sau khi chốt PRD mới tiến hành chọn Tech Stack. Làm rõ "làm cái gì" trước, rồi mới quyết định "dùng cái gì để làm".</p>
+</blockquote>
+<hr />
+<h2>Nguyên tắc cốt lõi của quyết định Tech Stack</h2>
+<p>Quyết định Tech Stack là điểm mấu chốt của phát triển sản phẩm. Chọn công nghệ phù hợp giúp phát triển một vốn bốn lời, chọn sai công nghệ sẽ rước thêm độ phức tạp không đáng có.</p>
+<p>Nhiều người khi chọn công nghệ dễ rơi vào bẫy "sùng bái công nghệ" —— chạy theo công nghệ mới nhất, ngầu nhất, mà bỏ qua nhu cầu thực tế. Tư duy này đặc biệt nguy hiểm trong thời đại AI, vì AI hỗ trợ tốt nhất cho các công nghệ chính thống, trưởng thành; công nghệ ít người dùng có thể khiến AI không hiểu code hoặc đưa ra phương án sai.</p>
+<p>Nguyên tắc cốt lõi của quyết định Tech Stack là: <strong>Nhu cầu rõ ràng → Đánh giá độ phức tạp → Chọn phương án khả thi tối thiểu</strong>.</p>
+<p>Hiểu logic tiến hóa của Tech Stack giúp bạn đưa ra lựa chọn sáng suốt hơn. Sự phát triển của ngôn ngữ lập trình và khung công nghệ thể hiện rõ đặc trưng "phân tầng chồng lớp", mỗi tầng cung cấp khả năng trừu tượng hóa mạnh mẽ hơn tầng trước đó.</p>
+<h3>Thế giới ngôn ngữ lập trình</h3>
+<p>Hãy tưởng tượng bạn bước vào một nhà hàng, thực đơn có hàng chục món khác nhau. Thế giới ngôn ngữ lập trình cũng vậy —— có hàng chục ngôn ngữ để chọn, mỗi loại có đặc sắc và kịch bản áp dụng riêng. Hiểu câu chuyện của chúng sẽ giúp bạn hiểu tại sao một số công nghệ trở thành lựa chọn hàng đầu trong lĩnh vực cụ thể.</p>
+<p><strong>C và C++</strong> là nền đá tảng của thế giới máy tính. Chúng ra đời trong thời đại hệ điều hành cần giao tiếp trực tiếp với phần cứng. Nếu bạn muốn phát triển engine game cần hiệu năng cực hạn, hoặc viết code chạy trên thiết bị nhúng, C/C++ vẫn là lựa chọn tốt nhất. Hệ điều hành Linux, nhân Windows, hầu hết engine game đều xây dựng trên chúng. Nhưng cái giá là hiệu suất phát triển thấp —— bạn phải tự quản lý bộ nhớ, xử lý nhiều chi tiết tầng thấp.</p>
+<p><strong>Java</strong> chiếm vị trí chủ đạo trong thế giới doanh nghiệp. Lời hứa "viết một lần, chạy mọi nơi" (Write Once, Run Anywhere) khiến nó trở thành lựa chọn hàng đầu cho các hệ thống lớn. Hệ thống backend của Alibaba, Amazon, hay nghiệp vụ cốt lõi của ngân hàng đa số chạy trên Java. Nó cung cấp hệ sinh thái trưởng thành và an toàn kiểu dữ liệu nghiêm ngặt, nhưng cũng đồng nghĩa với code dài dòng hơn và chu kỳ phát triển chậm hơn.</p>
+<p><strong>Python</strong> là tình yêu của các nhà khoa học dữ liệu. Cú pháp ngắn gọn thanh thoát của nó giúp các nhà khoa học và nghiên cứu viên nhanh chóng kiểm chứng ý tưởng. Backend của Instagram và YouTube đều có bóng dáng Python, việc huấn luyện mô hình của OpenAI cũng dùng lượng lớn Python. Nhưng năng lực Frontend của Python khá yếu, nếu muốn làm Fullstack, bạn cần học thêm một bộ công nghệ khác.</p>
+<p><strong>Go</strong> do Google phát triển, thiết kế riêng cho kỷ nguyên Cloud Native. Docker và Kubernetes đều viết bằng Go. Mô hình đồng thời (concurrency) của nó thanh thoát, tốc độ biên dịch nhanh, thích hợp xây dựng dịch vụ mạng hiệu năng cao. ByteDance và nhiều công ty khác dùng Go lượng lớn ở Backend.</p>
+<p><strong>Rust</strong> là ngôi sao mới trong lĩnh vực lập trình hệ thống. Nó hứa hẹn cung cấp hiệu năng cấp C++ đồng thời đảm bảo an toàn bộ nhớ. Trình duyệt Firefox, một số component của Discord, hạ tầng của Cloudflare đang dùng Rust. Nhưng đường cong học tập (learning curve) khá dốc, không phù hợp phát triển prototype nhanh.</p>
+<p><strong>JavaScript và TypeScript</strong> thống trị thế giới Web. Ban đầu chỉ là ngôn ngữ kịch bản trong trình duyệt, nhưng với sự xuất hiện của Node.js, nó mở rộng sang phía Server. TypeScript bổ sung hệ thống kiểu (type system) trên nền JavaScript, giúp việc bảo trì dự án lớn dễ dàng hơn. Netflix, Stripe, Vercel đều xây dựng trên hệ sinh thái TypeScript.</p>
+<h3>Lựa chọn của chúng ta: Tại sao lại là TypeScript + Next.js?</h3>
+<p>Đối mặt với quá nhiều lựa chọn, bạn có thể hỏi: Tại sao hướng dẫn này chọn TypeScript + Next.js?</p>
+<p>Hãy xuất phát từ nhu cầu thực tế. Giả sử bạn là một lập trình viên độc lập, hoặc ở trong một team nhỏ, mục tiêu là nhanh chóng kiểm chứng ý tưởng sản phẩm. Bạn cần một Tech Stack có thể xử lý cả giao diện Frontend và logic Backend, đường cong học tập không quá dốc, và phải có cộng đồng hỗ trợ phong phú.</p>
+<p>C/C++/Rust bị loại đầu tiên. Chúng quá tầng thấp (low-level), bạn phải xử lý quản lý bộ nhớ, tối ưu biên dịch... những thứ này tốn quá nhiều thời gian đối với việc làm sản phẩm nhanh.</p>
+<p>Java và Go là ngôn ngữ Backend xuất sắc, nhưng bạn phải học riêng công nghệ Frontend. Điều này đồng nghĩa với 2 bộ chuỗi công cụ (toolchain), 2 tư duy, 2 quy trình deploy. Với team nhỏ, độ phức tạp này là gánh nặng không cần thiết.</p>
+<p>Python là lựa chọn hàng đầu cho khoa học dữ liệu, nhưng không chạy được trên trình duyệt. Nếu muốn làm Web App, lại phải học thêm JavaScript để xử lý Frontend, lại quay về vấn đề 2 bộ công nghệ.</p>
+<p>PHP và Ruby từng là lựa chọn hot cho Web Dev, nhưng hệ sinh thái đang co lại. Quan trọng hơn, dữ liệu huấn luyện của các mô hình AI cho chúng không phong phú bằng JavaScript, nghĩa là chất lượng code AI sinh ra có thể không ổn định.</p>
+<p>Điểm độc đáo của TypeScript là nó thống nhất Frontend và Backend. Bạn dùng cùng một ngôn ngữ viết giao diện và viết API, định nghĩa kiểu dữ liệu có thể chia sẻ ở cả hai đầu. Khi bạn nhờ AI sinh code, nó không cần chuyển đổi giữa các mô hình ngôn ngữ khác nhau, code sinh ra nhất quán và chính xác hơn.</p>
+<p>Next.js đơn giản hóa việc phát triển Fullstack hơn nữa. Nó tích hợp React Frontend, API routing, kết nối CSDL, quy trình deploy lại với nhau. Bạn không cần cấu hình công cụ build phức tạp, không cần xử lý vấn đề cross-origin (CORS), thậm chí không cần quản lý server —— Vercel có thể deploy một chạm (one-click deploy).</p>
+<p>Đó là lý do chúng ta chọn TypeScript + Next.js. Nó không chỉ là một lựa chọn công nghệ, mà là phương thức sản xuất hiệu quả nhất cho lập trình viên cá nhân trong kỷ nguyên AI.</p>
+<hr />
+<h2>Lựa chọn Tech Stack trong kỷ nguyên AI</h2>
+<p>Trong thời đại AI hỗ trợ phát triển (AI-Assisted Development), lựa chọn Tech Stack có thêm chiều kích cân nhắc mới. Hãy tưởng tượng bạn hợp tác với một trợ lý kiến thức uyên bác nhưng thi thoảng nói linh tinh —— độ thân thiện với AI (AI-friendliness) mô tả mức độ quen thuộc của trợ lý này với một công nghệ. Các công nghệ chủ đạo như JavaScript, Python có dữ liệu huấn luyện khổng lồ, AI biết các thực hành tốt nhất (best practices) và bẫy thường gặp của chúng; còn công nghệ ít người dùng hoặc framework mới toanh, AI có thể "bịa" ra các API không tồn tại.</p>
+<p>Khi bạn dùng Tech Stack thống nhất, sự hiểu ngữ cảnh của AI sẽ liền mạch hơn. Nếu Frontend React, Backend Python, Database MongoDB, AI phải chuyển đổi giữa 3 mô hình kỹ thuật, rất dễ sinh ra lệch lạc. Còn dùng thống nhất hệ sinh thái TypeScript —— Next.js làm cả Frontend lẫn Backend, PostgreSQL làm Database —— AI có thể làm việc trong một ngữ cảnh liền mạch, code sinh ra nhất quán và chính xác hơn. Định nghĩa kiểu dữ liệu chia sẻ Frontend-Backend, AI sẽ không nhầm tên trường; AI có thể hiểu toàn bộ dự án một lần, sinh code xuyên suốt các component. Những cải thiện tưởng nhỏ này tích tiểu thành đại sẽ nâng cao hiệu suất phát triển đáng kể.</p>
+<p>Trước đây, chọn công nghệ thường là trò chơi đánh đổi: Chọn Java nghĩa là ổn định kiểu doanh nghiệp nhưng phát triển chậm; chọn Python là phát triển nhanh nhưng hiệu năng hạn chế; chọn JavaScript là Fullstack thống nhất nhưng thiếu an toàn kiểu dữ liệu. Sự kết hợp TypeScript và Next.js phá vỡ sự đánh đổi này —— nó cung cấp an toàn kiểu cấp doanh nghiệp, hiện thực hóa ngôn ngữ thống nhất Fullstack, thích ứng kỷ nguyên AI, giải phóng sức sản xuất của lập trình viên cá nhân. Đó là lý do hướng dẫn này chọn TypeScript + Next.js làm Tech Stack cốt lõi.</p>
+<hr />
+<h2>Khung quyết định: 3 câu hỏi</h2>
+<p>Khi đối mặt với việc chọn công nghệ, trả lời 3 câu hỏi này có thể nhanh chóng thu hẹp phạm vi:</p>
+<p><strong>Câu 1: Dự án này bản chất cần làm gì?</strong></p>
+<ul>
+<li>Hiển thị nội dung là chính → Web tĩnh hoặc Framework thuần Frontend</li>
+<li>Cần người dùng đăng nhập → Cần năng lực Backend</li>
+<li>Cần lưu trữ bền vững → Cần Database</li>
+<li>Cần năng lực AI → Cần tích hợp AI API</li>
+</ul>
+<p><strong>Câu 2: Quy mô người dùng và lượng truy cập (concurrency) dự kiến bao nhiêu?</strong></p>
+<ul>
+<li>Cá nhân dùng hoặc quy mô nhỏ → Chọn giải pháp đơn giản</li>
+<li>Dự kiến quy mô vừa → Cần cân nhắc khả năng mở rộng (scalability)</li>
+<li>Dự kiến quy mô lớn → Cần thiết kế kiến trúc</li>
+</ul>
+<p><strong>Câu 3: Nền tảng kỹ thuật của team (hoặc cá nhân) là gì?</strong></p>
+<ul>
+<li>Quen JavaScript/TypeScript → Chọn Next.js</li>
+<li>Quen Python → Chọn FastAPI/Flask</li>
+<li>Học mới hoàn toàn → Chọn Tech Stack được AI hỗ trợ tốt nhất</li>
+</ul>
+<hr />
+<h2>Bảng tra cứu giải pháp kỹ thuật phổ biến</h2>
+<h3>Frontend Framework</h3>
+<table>
+<thead>
+<tr>
+<th>Giải pháp</th>
+<th>Ngữ cảnh áp dụng</th>
+<th>Ngữ cảnh không áp dụng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Next.js</strong></td>
+<td>Cần Backend, SEO, phát triển Fullstack</td>
+<td>Chỉ hiển thị tĩnh thuần túy</td>
+</tr>
+<tr>
+<td><strong>Vite + React</strong></td>
+<td>Thuần Frontend, ứng dụng SPA</td>
+<td>Cần SSR/SEO</td>
+</tr>
+<tr>
+<td><strong>Thuần HTML/CSS</strong></td>
+<td>Trang tĩnh cực giản</td>
+<td>Ứng dụng tương tác phức tạp</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Tại sao khuyên dùng Next.js?</p>
+<ul>
+<li>AI hiểu cấu trúc dự án của nó rất sâu, sinh code chính xác</li>
+<li>Hỗ trợ phát triển Fullstack, Frontend-Backend thống nhất công nghệ</li>
+<li>Deploy tiện lợi (Vercel one-click)</li>
+<li>Hệ sinh thái trưởng thành, giải pháp cho các vấn đề phong phú</li>
+</ul>
+<p>:::</p>
+<h3>Database (Cơ sở dữ liệu)</h3>
+<table>
+<thead>
+<tr>
+<th>Giải pháp</th>
+<th>Ngữ cảnh áp dụng</th>
+<th>Ngữ cảnh không áp dụng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PostgreSQL</strong></td>
+<td>Dữ liệu quan hệ, cần transaction</td>
+<td>Lưu trữ Key-Value cực giản</td>
+</tr>
+<tr>
+<td><strong>Supabase</strong></td>
+<td>Phát triển nhanh, cần Auth/Storage sẵn</td>
+<td>Cần Backend tùy chỉnh hoàn toàn</td>
+</tr>
+<tr>
+<td><strong>Neon</strong></td>
+<td>Kiến trúc Serverless, nhu cầu nhẹ nhàng</td>
+<td>Cần chức năng Backend trọn gói</td>
+</tr>
+<tr>
+<td><strong>SQLite</strong></td>
+<td>Phát triển cục bộ, nhu cầu cực giản</td>
+<td>Nhiều người dùng ghi đồng thời</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Tại sao khuyên dùng PostgreSQL?</p>
+<p>PostgreSQL là CSDL mã nguồn mở mạnh mẽ nhất:</p>
+<ul>
+<li>Quan hệ + JSONB + pgvector extension</li>
+<li>Vừa xử lý dữ liệu cấu trúc, vừa lưu được dữ liệu bán cấu trúc</li>
+<li>Hỗ trợ tìm kiếm vector, thích hợp cho ứng dụng AI</li>
+<li>AI hiểu nó sâu sắc, sinh code mô hình dữ liệu chính xác</li>
+</ul>
+<p>:::</p>
+<h3>Giải pháp Deploy (Triển khai)</h3>
+<table>
+<thead>
+<tr>
+<th>Giải pháp</th>
+<th>Ngữ cảnh áp dụng</th>
+<th>Đặc điểm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Vercel</strong></td>
+<td>Dự án Next.js, phân phối toàn cầu</td>
+<td>Deploy không cần cấu hình, tự động CI/CD, hỗ trợ Edge Functions</td>
+</tr>
+<tr>
+<td><strong>EdgeOne Pages</strong></td>
+<td>Cần node trong nước, Edge Computing</td>
+<td>Tăng tốc toàn cầu Tencent Cloud, hỗ trợ Pages Functions và Node.js runtime</td>
+</tr>
+<tr>
+<td><strong>Cloud Server (VPS)</strong></td>
+<td>Kiểm soát hoàn toàn, ứng dụng phức tạp</td>
+<td>Phải tự cấu hình môi trường và vận hành (Ops)</td>
+</tr>
+<tr>
+<td><strong>Docker</strong></td>
+<td>Cần nhất quán môi trường, kiến trúc đa dịch vụ</td>
+<td>Đóng gói container, đảm bảo môi trường Dev và Prod giống hệt nhau</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Vercel vs EdgeOne Pages</p>
+<p><strong>Vercel</strong> là nền tảng deploy "chính chủ" của Next.js, cung cấp:</p>
+<ul>
+<li>Tự động deploy không cấu hình, tích hợp liền mạch với Git repo</li>
+<li>Tăng tốc CDN toàn cầu, tự động phân phối tài nguyên tĩnh</li>
+<li>Hỗ trợ Serverless Functions và Edge Functions</li>
+<li>Hạn mức miễn phí hào phóng, hợp dự án cá nhân và team nhỏ</li>
+</ul>
+<p><strong>EdgeOne Pages</strong> là nền tảng deploy vùng biên của Tencent Cloud:</p>
+<ul>
+<li>Phủ sóng node trong nước (TQ/VN), hợp với ngữ cảnh cần tăng tốc nội địa</li>
+<li>Hỗ trợ Pages Functions (tính toán vùng biên) và Node.js runtime</li>
+<li>Cung cấp KV Storage, hỗ trợ phát triển ứng dụng Fullstack</li>
+<li>Tích hợp sâu với hệ sinh thái Tencent Cloud (SSL, CDN...)</li>
+</ul>
+<p>Gợi ý lựa chọn: Người dùng chủ yếu ở trong nước chọn EdgeOne Pages; Cần phân phối toàn cầu hoặc dùng sâu tính năng Next.js thì chọn Vercel.</p>
+<p>:::</p>
+<hr />
+<h2>Tech Stack theo quy mô công ty</h2>
+<p>Lựa chọn công nghệ thường liên quan đến quy mô công ty và đặc điểm nghiệp vụ:</p>
+<table>
+<thead>
+<tr>
+<th>Quy mô công ty</th>
+<th>Tech Stack</th>
+<th>Lý do lựa chọn</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Startup</strong><br>（0-50 người）</td>
+<td>Next.js + PostgreSQL + Vercel</td>
+<td>Tốc độ dev nhanh, thống nhất công nghệ, thân thiện AI, deploy đơn giản</td>
+</tr>
+<tr>
+<td><strong>Công ty vừa</strong><br>（50-500 người）</td>
+<td>Java/Go Backend + React Frontend + Cloud DB</td>
+<td>Hiệu năng kiểm soát được, nhân sự dồi dào, khả năng bảo trì tốt</td>
+</tr>
+<tr>
+<td><strong>Công ty lớn</strong><br>（trên 500 người）</td>
+<td>Đa ngôn ngữ song hành: Java (TMĐT), Go (Cloud Native), C++ (nhạy cảm hiệu năng)</td>
+<td>Các line nghiệp vụ khác nhau chọn công nghệ phù hợp nhất, team hạ tầng tự build framework</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Bổ sung nguyên lý kỹ thuật (Đọc thêm)</h2>
+<p>Nếu bạn muốn hiểu sâu hơn nguyên lý đằng sau công nghệ, có thể đọc phần này. Kiến thức này không bắt buộc để làm, nhưng giúp hiểu logic chọn công nghệ.</p>
+<h3>Biên dịch (Compiled) vs Thông dịch (Interpreted)</h3>
+<p>Hiểu cách thực thi của ngôn ngữ giúp chọn công nghệ phù hợp:</p>
+<table>
+<thead>
+<tr>
+<th>Loại</th>
+<th>Ngôn ngữ tiêu biểu</th>
+<th>Cách thực thi</th>
+<th>Đặc điểm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Biên dịch</strong></td>
+<td>C, C++, Go, Rust</td>
+<td>Biên dịch thành mã máy trước, rồi chạy</td>
+<td>Tốc độ chạy nhanh, deploy đơn giản</td>
+</tr>
+<tr>
+<td><strong>Thông dịch</strong></td>
+<td>Python, Ruby, JavaScript</td>
+<td>Trình thông dịch chạy từng dòng</td>
+<td>Hiệu suất dev cao, linh hoạt</td>
+</tr>
+<tr>
+<td><strong>Hỗn hợp</strong></td>
+<td>Java, C#</td>
+<td>Biên dịch thành bytecode, chạy trên máy ảo</td>
+<td>Cân bằng hiệu năng và đa nền tảng</td>
+</tr>
+</tbody>
+</table>
+<h3>Máy ảo và Đa nền tảng</h3>
+<p>Ngôn ngữ hỗn hợp (như Java) cần biên dịch thành mã trung gian trước, rồi chạy trên <strong>Máy ảo (VM)</strong>. Máy ảo như cây cầu —— cùng một mã trung gian có thể chạy trên Windows, Mac hay Linux, miễn là hệ thống đó cài máy ảo tương ứng. Đây là nguyên lý của "Write Once, Run Anywhere".</p>
+<p>Tư tưởng này mở rộng sang lĩnh vực deploy. <strong>Docker</strong> áp dụng khái niệm tương tự: Nó đóng gói code ứng dụng, runtime, thư viện phụ thuộc và cấu hình vào một "Container". Dù deploy lên môi trường Dev, Test hay Prod, hành vi của ứng dụng trong container đều nhất quán.</p>
+<p>Với Fullstack Dev, giá trị của Docker rất đơn giản: <strong>Nó giải quyết vấn đề "ở máy tôi chạy được mà"</strong>. Khi cộng tác nhóm, không cần lo "cấu hình môi trường của cậu khác tớ". Chỉ cần dùng chung một Docker image, môi trường chạy của mọi người là như nhau.</p>
+<p>Trong Web Dev hiện đại, JavaScript/TypeScript dùng một cách linh hoạt: Khi Dev thì dùng sự tiện lợi của thông dịch, khi Deploy thì qua công cụ build (như Webpack, Vite) để tối ưu biên dịch, sinh ra code phù hợp môi trường Production.</p>
+<h3>Bài học từ sự tiến hóa công nghệ</h3>
+<p>Sự tiến hóa phân tầng này không phải quan hệ thay thế đơn giản, mà là sự chồng lớp năng lực. Mỗi tầng công nghệ mới đều xây trên nền tảng tầng trước, giải quyết vấn đề mà tầng trước không giải quyết hiệu quả được. Khi chọn công nghệ, hiểu tư duy phân tầng này giúp bạn phán đoán: Công nghệ mới này là đổi mới thực sự, hay chỉ là "bình cũ rượu mới"? Cái trước mang lại giá trị dài hạn, cái sau thường chỉ tăng chi phí học tập.</p>
+<p>Ví dụ, TypeScript không thay thế JavaScript, mà thêm tầng "lưới an toàn" (hệ thống kiểu) lên trên nó; Next.js không thay thế React, mà bổ sung năng lực Server-side Rendering, Routing... lên trên React. Công nghệ mới thực sự có giá trị thường là sự đổi mới đứng trên vai người khổng lồ, chứ không phải đập đi xây lại cái bánh xe.</p>
+<hr />
+<h2>Quy trình ra quyết định</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[Phân tích nhu cầu] --&gt; B{Cần Backend?}
+    B --&gt;|Có| C[Next.js Fullstack]
+    B --&gt;|Không| D{Cần SEO?}
+    D --&gt;|Có| C
+    D --&gt;|Không| E[Vite thuần Frontend]
+
+    C --&gt; F{Cần Database?}
+    F --&gt;|Có| G[PostgreSQL]
+    F --&gt;|Không| H[Lưu trữ file]
+
+    E --&gt; I[Hosting tĩnh]
+
+    G --&gt; J{Quy mô dự kiến?}
+    J --&gt;|Nhỏ/Vừa| K[Supabase/Neon]
+    J --&gt;|Lớn| L[Tự dựng/Cloud DB]
+
+    H --&gt; M{Quy mô người dùng?}
+    M --&gt;|Nhỏ| N[Local Storage]
+    M --&gt;|Vừa/Lớn| O[Cloud Storage]
+</code></pre>
+<hr />
+<h2>Câu hỏi thường gặp</h2>
+<h3>Q1: Giai đoạn PRD có cần chốt hết chi tiết kỹ thuật không?</h3>
+<p>Không cần. Giai đoạn PRD chốt hướng đi lớn là được: Dùng framework gì (Next.js), Database gì (PostgreSQL), Deploy đâu (Vercel). Việc chọn thư viện cụ thể, thiết kế component có thể điều chỉnh trong lúc dev. Quy hoạch quá kỹ sẽ phí thời gian, vì nhu cầu thực tế lúc dev hay thay đổi.</p>
+<h3>Q2: Không chắc chức năng muốn làm có hiện thực hóa được không, làm sao?</h3>
+<p>Hỏi AI trước. Gửi mô tả chức năng cho AI, hỏi "Chức năng này dùng Next.js làm được không? Đại khái cần kỹ thuật gì?". AI sẽ cho bạn biết tính khả thi và lộ trình kỹ thuật. Nếu AI bảo "cần dùng WebRTC" hay "cần dịch vụ bản đồ bên thứ 3", bạn sẽ biết cần nghiên cứu thêm mấy cái đó.</p>
+<h3>Q3: Cần học xong TypeScript rồi mới bắt đầu được không?</h3>
+<p>Không cần. Bạn có thể vừa làm vừa học. Gặp cú pháp không hiểu thì hỏi AI: "Dòng code này nghĩa là gì?", "Biến này thêm type thế nào?". Dự án thực tế là người thầy tốt nhất —— bạn học để làm ra chức năng, hiệu quả hơn nhiều so với xem hết giáo trình rồi mới động tay. Hướng dẫn này giả định bạn là trang giấy trắng (zero-basis), mọi code đều sẽ có giải thích.</p>
+<h3>Q4: Tech Stack này làm App điện thoại được không?</h3>
+<p>Next.js bản thân là làm web, nhưng web mở được trên trình duyệt điện thoại. Nếu muốn làm App Native (loại tải từ App Store), có vài lựa chọn:</p>
+<ul>
+<li><strong>Capacitor</strong>: Đóng gói web thành App Native, hỗ trợ iOS và Android, code gần như không cần sửa</li>
+<li><strong>PWA</strong>: Progressive Web App, Next.js hỗ trợ sẵn, người dùng có thể "cài" web lên màn hình chính điện thoại</li>
+<li><strong>React Native</strong>: Cần học công nghệ mới, nhưng hiệu năng tốt hơn</li>
+</ul>
+<p>Để kiểm chứng MVP, bản Web thường là đủ rồi. Đợi kiểm chứng thành công hẵng tính làm App Native.</p>
+<hr />
+<h2>Trọng điểm cốt lõi</h2>
+<ul>
+<li>✅ Cốt lõi của chọn Tech Stack là "Nhu cầu đi trước" chứ không phải "Kỹ thuật đi trước"</li>
+<li>✅ Trả lời 3 câu hỏi để nhanh chóng xác định hướng đi công nghệ</li>
+<li>✅ Chọn công nghệ chủ đạo, trưởng thành, ổn định, thân thiện với AI</li>
+<li>✅ Tránh thiết kế thái quá (over-engineering) và chạy theo công nghệ mới nhất</li>
+<li>✅ Thống nhất Tech Stack giúp nâng cao độ chính xác khi AI hiểu code</li>
+<li>✅ Hoàn thành chọn Tech Stack ở giai đoạn PRD, tránh phải làm lại</li>
+</ul>
+<p>Tech Stack chốt xong rồi, tiếp theo là hiểu quan hệ giữa PRD và tài liệu kỹ thuật.</p>
+<hr />
+<h2>Nội dung liên quan</h2>
+<ul>
+<li>Trước đó: <a href="../03-prd-doc-driven/04-coding-agents_vi.html">3.4 Từ PRD đến Code</a></li>
+<li>Chi tiết: <a href="./02-prd-and-tech-docs_vi.html">4.2 Quan hệ giữa PRD và Tài liệu kỹ thuật</a></li>
+</ul>
+</body>
+</html>

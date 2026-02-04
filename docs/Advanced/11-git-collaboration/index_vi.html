@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "Chương 11: Kiểm soát phiên bản Git và Cộng tác đa nền tảng"</h2>
+<h1>Chương 11: Kiểm soát phiên bản Git và Cộng tác đa nền tảng</h1>
+<h2>Lời tựa</h2>
+<p>Tính năng ngày càng phong phú, kho lưu trữ Git cục bộ của bạn đã tích lũy một chồng dày hồ sơ lưu trữ. Một ngày nọ, bạn thân của bạn cũng định tham gia cùng làm với bạn.</p>
+<p>Có thể bạn nghĩ một mình là cân được hết. Thực tế là: một mình thường bị phân tán sự chú ý, còn team nhỏ 2-3 người —— người lo giao diện Frontend, người lo API Backend, người lo viết Test —— ngược lại chạy nhanh hơn. Cốt lõi của cộng tác Git, chính là để mỗi người tập trung vào lãnh địa của mình, đồng thời giữ cho code được đồng bộ.</p>
+<p>Bây giờ, để bạn bè có thể lấy được code của bạn, sư phụ bảo, bạn cần đồng bộ những hồ sơ lưu trữ cục bộ này lên đám mây.</p>
+<h3>Kho lưu trữ đám mây và Chứng thực</h3>
+<p>Ông giới thiệu cho bạn các nền tảng lưu trữ code (như <strong>GitHub</strong> hoặc <strong>Gitee</strong>). Bản chất của cộng tác thực ra rất đơn giản: Bạn đã dùng AI rèn luyện thói quen commit cục bộ tốt trên máy mình rồi (Commit cục bộ nhắc đến ở Chương 2), giờ chỉ cần thêm một bước thao tác nữa.</p>
+<p><strong>Chứng thực SSH</strong>: Sư phụ khuyên dùng <strong>Chứng thực SSH</strong> an toàn và tiện lợi hơn, sau khi tạo cặp khóa (key pair), không cần nhập mật khẩu mỗi lần thao tác nữa. Chương này sẽ giảng giải chi tiết nguyên lý SSH và các bước cấu hình.</p>
+<p>Trước khi bắt đầu đẩy code, bạn cần đăng ký một tài khoản trên GitHub. Đăng ký thì đơn giản, nhưng <strong>đăng nhập trong terminal</strong> thường là cửa ải đầu tiên của người mới. Khi bạn chạy <code>git push</code> lần đầu, terminal sẽ yêu cầu bạn cung cấp chứng thực. Sư phụ đặc biệt dặn dò:</p>
+<ul>
+<li><strong>Đừng nhập mật khẩu đăng nhập GitHub của bạn</strong>: GitHub đã bỏ tính năng đăng nhập terminal bằng mật khẩu từ lâu rồi.</li>
+<li><strong>Sử dụng Access Token (Thẻ bài)</strong>: Bạn cần vào cài đặt trên trang web GitHub để sinh một thẻ bài (Token), coi nó như mật khẩu để điền vào.</li>
+<li><strong>Hoặc khuyên dùng cách SSH</strong>: Sinh một cặp khóa SSH (khóa công khai đưa cho GitHub, khóa riêng giữ cho mình), như vậy mỗi lần đẩy code đều không cần nhập mật khẩu, vừa an toàn vừa tiện.</li>
+<li><strong>Lưu trữ chứng thực cục bộ</strong>: Nếu bạn dùng cách HTTPS (nhập tài khoản mật khẩu/token), Git thường sẽ chu đáo lưu chứng thực của bạn vào "Trình quản lý chứng thực" của hệ thống, như vậy bạn cũng không cần nhập tay mỗi lần.</li>
+</ul>
+<p>Sau khi chứng thực thông qua, quy trình sẽ trơn tru:</p>
+<ul>
+<li><strong><code>git push</code> (Đẩy)</strong>: Upload hồ sơ lưu trữ cục bộ của bạn lên kho đám mây.</li>
+<li><strong><code>git pull</code> (Kéo)</strong>: Bạn của bạn ở đầu bên kia, tải tiến độ mới nhất trên mây về máy tính của họ.</li>
+</ul>
+<p>Cách này đáng tin cậy hơn nhiều so với việc gửi file nén cho nhau, vì Git có thể ghi lại chính xác từng dòng code do ai sửa vào lúc nào.</p>
+<h3>Cộng tác đa nền tảng</h3>
+<p>Tuy nhiên, khi máy tính Windows của bạn gặp máy tính Mac của bạn bè, bạn dẫm phải 3 cái hố cộng tác đa nền tảng kinh điển.</p>
+<p><strong>Một: .gitignore</strong></p>
+<p>Ở chương 6, chúng ta đã cấu hình <code>.gitignore</code> vì lý do bảo mật. Ở giai đoạn cộng tác, file này có ý nghĩa mới: <strong>Phòng ngừa ô nhiễm môi trường của đồng đội</strong>. Nếu bạn lỡ tay upload <code>node_modules</code>, bạn của bạn khi kéo code về sẽ tải xuống hàng ngàn gói dependency không tương thích với hệ thống máy tính của họ, dẫn đến dự án không chạy nổi. Về việc những nội dung nào tuyệt đối không được commit, xem chi tiết ở mục "Cảnh báo an toàn Git" bên dưới.</p>
+<p><strong>Hai: Tương thích đa nền tảng</strong></p>
+<p>Dự án của bạn sang máy Mac của bạn bè thì báo lỗi "Không tìm thấy file". Rõ ràng bạn viết là <code>import Button from './button'</code>, tên file là <code>Button.tsx</code>, chạy trên máy Windows của bạn ngon lành cành đào.</p>
+<p>Sư phụ bảo, cộng tác đa nền tảng sẽ gặp 3 vấn đề kinh điển: File rác hệ thống, Chữ hoa chữ thường trong tên file, Khác biệt dấu xuống dòng và Dấu phân cách đường dẫn. Xem chi tiết ở mục "Ba nguyên tắc cộng tác đa nền tảng" bên dưới.</p>
+<p>Cấu hình xong mấy cái này, cộng tác đa nền tảng sẽ mượt mà hơn nhiều.</p>
+<p><strong>Ba: Dấu phân cách đường dẫn</strong></p>
+<p>Là người dùng Windows, bạn còn dẫm phải một cái hố tàng hình. Đường dẫn bạn copy trực tiếp từ File Explorer chứa dấu gạch chéo ngược <code>\</code>, ví dụ <code>src\components\Button</code>. Cái này vào trong code sẽ bị nhận diện là ký tự thoát (escape character), dẫn đến báo lỗi. Còn hệ thống Linux/Mac sử dụng dấu gạch chéo thuận <code>/</code>. Do đó, khi viết code tham chiếu đường dẫn, hãy luôn thủ công dùng dấu gạch chéo thuận <code>/</code>. Các công cụ hiện đại như Node.js sẽ tự động xử lý tính tương thích của nó trên các hệ thống khác nhau.</p>
+<p>Cấu hình xong những thứ này, việc cộng tác của bạn và đồng đội sẽ trơn tru hơn nhiều. Mỗi lần sửa code xong, nhớ thực hiện Git Workflow theo thứ tự (xem chi tiết mục "Thực hành tốt nhất về Git Workflow" bên dưới). Đồng đội bên kia dùng <code>git pull</code> là lấy được sửa đổi mới nhất của bạn.</p>
+<h3>Git Workflow tự động hóa</h3>
+<p>Tuy nhiên, sư phụ nhắc nhở, "bộ ba tiêu chuẩn" này là chuẩn bị cho con người thao tác thủ công. Đã là dùng AI lập trình, bạn hoàn toàn có thể giao việc này cho AI:</p>
+<blockquote>
+<p><strong>"Mỗi lần hoàn thành tính năng hoặc sửa Bug xong, tự động thực hiện git add, git commit (kèm mô tả tiếng Việt) và git push."</strong></p>
+</blockquote>
+<p>Như vậy bạn hoàn toàn không cần nhớ mấy lệnh này, AI sẽ tự động xử lý giúp bạn vào thời điểm thích hợp.</p>
+<h3>Xem lịch sử và sự khác biệt</h3>
+<p>Đôi khi bạn muốn xem "AI rốt cuộc đã sửa cái gì" hoặc "code hôm qua viết thế nào", trực tiếp bảo AI so sánh ghi chép Git là được. Sư phụ giải thích cho bạn vài lệnh hữu dụng:</p>
+<ul>
+<li><strong><code>git log</code></strong>: Xem lịch sử commit, hiển thị tất cả hồ sơ lưu trữ. Nếu chỉ muốn xem 5 cái gần nhất, dùng <code>git log -5</code>.</li>
+<li><strong><code>git diff</code></strong>: Xem sửa đổi hiện tại chưa commit —— nghĩa là, AI sửa code xong nhưng chưa lưu hồ sơ, bạn có thể dùng lệnh này kiểm tra xem nó sửa gì.</li>
+<li><strong><code>git diff HEAD~1</code></strong>: So sánh với phiên bản trước, xem lần commit gần nhất đã sửa gì.</li>
+<li><strong><code>git show &lt;commit-id&gt;</code></strong>: Xem nội dung chi tiết của một lần commit cụ thể.</li>
+</ul>
+<h3>Rollback (Quay lui)</h3>
+<p>Chương 2 có nhắc đến Git là "thuốc hối hận" của bạn. Dưới đây là 3 ngữ cảnh:</p>
+<p><strong>Ngữ cảnh 1: Sửa sai rồi, nhưng chưa commit</strong></p>
+<p>Bạn phát hiện code AI vừa sửa nát bét, nhưng nó chưa thực hiện <code>git commit</code>. Cách đơn giản nhất:</p>
+<ul>
+<li><strong><code>git checkout -- &lt;đường dẫn file&gt;</code></strong>: Hủy bỏ sửa đổi của file nào đó, khôi phục về trạng thái của lần commit trước.</li>
+<li>Hoặc trực tiếp bảo AI: "<strong>Hủy bỏ tất cả sửa đổi đối với file xxx</strong>".</li>
+</ul>
+<p><strong>Ngữ cảnh 2: Đã commit rồi, nhưng muốn quay lại phiên bản trước</strong></p>
+<p>AI vừa commit xong, bạn chạy dự án thấy toang. Bạn muốn quay lại phiên bản chạy được trước đó:</p>
+<ul>
+<li><strong><code>git reset --hard HEAD~1</code></strong>: Quay lui về commit trước đó, vứt bỏ tất cả sửa đổi hiện tại.</li>
+<li><strong><code>git reset --hard &lt;commit-id&gt;</code></strong>: Quay lui về một phiên bản cụ thể nào đó.</li>
+</ul>
+<p><strong>Ngữ cảnh 3: Đã push lên đám mây rồi</strong></p>
+<p>Tình huống phiền phức nhất: Code lỗi đã <code>git push</code> lên kho từ xa rồi. Lúc này <code>git reset</code> sẽ vô hiệu, vì lịch sử local và lịch sử cloud của bạn không khớp nhau nữa.</p>
+<p>Sư phụ dạy bạn một lệnh an toàn hơn:</p>
+<ul>
+<li><strong><code>git revert &lt;commit-id&gt;</code></strong>: Tạo một commit mới, dùng để "hủy bỏ" các sửa đổi của commit được chỉ định. Như vậy lịch sử ghi chép vẫn liên tục, không làm gián đoạn kho đám mây.</li>
+</ul>
+<p>Bạn hoàn toàn có thể giao những thao tác này cho AI. Ví dụ trực tiếp nói: "<strong>Rollback về phiên bản chạy được trước đó</strong>" hoặc "<strong>Hủy bỏ lần commit gần nhất</strong>", AI sẽ tự động thực hiện lệnh chính xác.</p>
+<h3>Branch (Nhánh)</h3>
+<p>Dự án càng lớn, bạn có thể muốn thử nghiệm một tính năng mới, nhưng lại sợ làm hỏng code hiện có. Lúc này cần dùng đến <strong>Branch (Nhánh)</strong>.</p>
+<p>Sư phụ dùng một ví dụ để giải thích Branch: Giống như "slot lưu game". Tuyến chính gọi là <code>main</code> hoặc <code>master</code>, bạn có thể mở một nhánh mới ví dụ <code>feature-login</code>, tha hồ quậy trên tính năng mới. Quậy hỏng thì quay về tuyến chính; quậy xong thì hợp nhất nhánh mới vào tuyến chính.</p>
+<p>Lệnh cốt lõi:</p>
+<ul>
+<li><strong><code>git branch &lt;tên nhánh&gt;</code></strong>: Tạo nhánh mới.</li>
+<li><strong><code>git checkout &lt;tên nhánh&gt;</code></strong>: Chuyển sang nhánh chỉ định. Cách viết hiện đại là <code>git switch &lt;tên nhánh&gt;</code>.</li>
+<li><strong><code>git checkout -b &lt;tên nhánh&gt;</code></strong>: Tạo và chuyển sang nhánh mới luôn, một lệnh xong ngay.</li>
+<li><strong><code>git merge &lt;tên nhánh&gt;</code></strong>: Hợp nhất nhánh chỉ định vào nhánh hiện tại.</li>
+</ul>
+<p>Trong ngữ cảnh cộng tác, nhánh rất quan trọng: Mỗi người phát triển trên nhánh riêng của mình, làm xong mới hợp nhất vào tuyến chính, như vậy sẽ không ảnh hưởng lẫn nhau.</p>
+<h3>Pull Request - Rà soát code</h3>
+<p>Sư phụ bảo, trong cộng tác team thực tế, trực tiếp merge nhánh vào tuyến chính là cách làm nguy hiểm. Bạn có thể vô tình đưa Bug vào, hoặc chất lượng code không đủ tốt, ảnh hưởng đến sự ổn định của toàn dự án.</p>
+<p>Thế là, <strong>Pull Request (gọi tắt là PR)</strong> ra đời. Nghĩa đen của PR là "Yêu cầu kéo", nhưng hiểu chính xác hơn là "Yêu cầu hợp nhất". Khi bạn phát triển xong tính năng trên nhánh của mình, không phải merge trực tiếp, mà là khởi tạo một PR, nói rằng: "Này, tôi làm xong tính năng mới rồi, nhờ các bạn kiểm tra code giúp, không vấn đề gì thì hợp nhất vào nhé."</p>
+<p>Giá trị cốt lõi của quy trình này là <strong>Code Review (Rà soát code)</strong>: Người khác trong team xem code của bạn, đưa ra gợi ý cải tiến, phát hiện vấn đề tiềm ẩn. Nghiên cứu chỉ ra rằng, Code Review tốt có thể giảm hơn 80% lỗi. Trong thời đại lập trình AI, bạn có thể để AI làm <strong>Self-Review</strong> trước khi tạo PR, kiểm tra lỗi logic, lỗ hổng bảo mật, vấn đề hiệu năng, phong cách code..., như vậy chất lượng PR nộp lên sẽ cao hơn.</p>
+<p>PR còn mang lại 2 lợi ích: <strong>Kiểm tra tự động</strong> (Nền tảng tự động chạy test, không qua thì không cho merge) và <strong>Ghi chép thảo luận</strong> (Bình luận ngay dưới dòng code cụ thể, tất cả thảo luận được lưu lại).</p>
+<p>Sư phụ nói, tuy với team nhỏ hoặc dự án cá nhân, PR có vẻ hơi rườm rà. Nhưng khi bạn bắt đầu cộng tác với người khác, đặc biệt là tham gia dự án nguồn mở, PR là quy trình làm việc không thể thiếu. Có điều mới bắt đầu không cần quá xoắn xuýt chiến lược phân nhánh, cứ rèn thói quen tự động commit trên tuyến chính trước đã, đợi độ phức tạp của dự án tăng lên hẵng áp dụng quản lý nhánh.</p>
+<h3>Giải quyết xung đột (Conflict)</h3>
+<p>Đã là cộng tác thì khó tránh khỏi tình huống xung đột: Khi bạn và bạn bè cùng sửa một dòng code trong cùng một file, Git không biết nên nghe ai.</p>
+<p>Trong thời đại Vibecoding, bạn không cần đối mặt với mấy ký hiệu <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> đau đầu rồi luống cuống tay chân nữa. Bạn chỉ cần gửi <strong>nội dung file chứa đánh dấu xung đột</strong> cho AI, rồi bảo nó:</p>
+<blockquote>
+<p><strong>"Giải quyết xung đột Git này. Giữ lại logic của tôi và logic mới nhất từ remote, nếu logic xung đột, hãy lấy của tôi làm chuẩn (hoặc lấy remote làm chuẩn)."</strong></p>
+</blockquote>
+<p>AI sẽ giúp bạn hợp nhất code hoàn hảo, bạn chỉ cần copy code đã sửa về, commit lại lần nữa là xong.</p>
+<p>Thông qua Git, bạn và bạn bè có thể đồng bộ code rồi. Nhưng sư phụ bảo, ngoài code ra, rất nhiều "kiến thức ngầm" của team bạn —— quy ước đặt tên, quy trình làm việc, kỹ năng debug —— cũng cần được chia sẻ. Những cái này còn có thể thông qua <strong>Agent Skills</strong> để mã hóa thành các đơn vị kiến thức tái sử dụng được. Commit Skills lên Git, đồng đội kéo code về, AI của họ sẽ tự động học được những quy ước team này. Về việc phát triển và sử dụng Skills, chúng ta sẽ giảng giải ở các nội dung sau.</p>
+<p>::: tip Thực hành tốt nhất về Git Workflow</p>
+<p><strong>Bộ ba phát triển hàng ngày</strong>:</p>
+<pre><code class="language-bash">git add .                    # Tạm lưu tất cả thay đổi
+git commit -m &quot;mô tả&quot;        # Commit vào local
+git push                     # Đẩy lên remote
+</code></pre>
+<p><strong>Quy chuẩn thông tin Commit (Conventional Commits)</strong>:</p>
+<ul>
+<li><code>feat:</code> Tính năng mới</li>
+<li><code>fix:</code> Sửa Bug</li>
+<li><code>docs:</code> Cập nhật tài liệu</li>
+<li><code>style:</code> Định dạng code</li>
+<li><code>refactor:</code> Tái cấu trúc</li>
+<li><code>test:</code> Kiểm thử</li>
+<li><code>chore:</code> Xây dựng/Công cụ</li>
+</ul>
+<p><strong>Ví dụ</strong>:</p>
+<pre><code class="language-bash">git commit -m &quot;feat(auth): Thêm tính năng đăng nhập người dùng&quot;
+git commit -m &quot;fix(api): Sửa lỗi timeout interface đăng nhập&quot;
+</code></pre>
+<p>:::</p>
+<p>::: tip Nguyên tắc vàng trong cộng tác team</p>
+<p><strong>Ba nguyên tắc cộng tác đa nền tảng</strong>:</p>
+<ol>
+<li><strong>Cấu hình .gitignore</strong>: Ngăn chặn ô nhiễm môi trường đồng đội</li>
+<li>❌ Tuyệt đối không commit: <code>node_modules</code>, <code>.env</code>, file khóa bí mật</li>
+<li>❌ Rác hệ thống: <code>.DS_Store</code>, <code>Thumbs.db</code></li>
+<li>
+<p>✅ Dùng bản mẫu: github/gitignore</p>
+</li>
+<li>
+<p><strong>Thống nhất dấu xuống dòng</strong>: Tránh diff giả</p>
+</li>
+</ol>
+<p><code>bash
+   # Cấu hình Git
+   git config --global core.autocrlf input   # Mac/Linux
+   git config --global core.autocrlf true    # Windows</code></p>
+<ol>
+<li><strong>Thống nhất dấu phân cách đường dẫn</strong>: Luôn dùng <code>/</code>
+   <code>javascript
+   // ✅ Đúng
+   import { Button } from "src/components/Button";
+   // ❌ Sai
+   import { Button } from "src\\components\\Button";</code>
+   :::</li>
+</ol>
+<p>::: warning Cảnh báo an toàn Git</p>
+<p><strong>⚠️ Nội dung TUYỆT ĐỐI KHÔNG commit</strong>:</p>
+<ul>
+<li>❌ API Key, Token, Chứng chỉ</li>
+<li>❌ Mật khẩu Database, Chuỗi kết nối</li>
+<li>❌ Khóa riêng (<code>.pem</code>, <code>.key</code>, <code>id_rsa</code>)</li>
+<li>❌ File biến môi trường (<code>.env</code>, <code>.env.local</code>)</li>
+<li>❌ Thông tin nhạy cảm cá nhân</li>
+</ul>
+<p><strong>Danh sách kiểm tra</strong>:</p>
+<pre><code class="language-bash"># Kiểm tra trước khi commit
+git diff --cached --name-only | grep -E '\.(env|pem|key)$'
+</code></pre>
+<p><strong>Nếu lỡ commit rồi? Thu hồi ngay</strong>:</p>
+<pre><code class="language-bash"># Xóa triệt để khỏi lịch sử (Thao tác nguy hiểm)
+# Khuyên dùng BFG Repo-Cleaner hoặc git filter-repo (nhanh và an toàn hơn filter-branch)
+# Ví dụ dùng BFG:
+# bfg --delete-files .env
+# git reflog expire --expire=now --all
+# git gc --prune=now --aggressive
+git push origin --force --all
+</code></pre>
+<p>:::</p>
+<p>::: tip Tra cứu nhanh vấn đề cộng tác thường gặp</p>
+<table>
+<thead>
+<tr>
+<th>Vấn đề</th>
+<th>Nguyên nhân</th>
+<th>Giải pháp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Push thất bại</strong></td>
+<td>Remote có commit mới</td>
+<td><code>git pull --rebase</code></td>
+</tr>
+<tr>
+<td><strong>Pull xung đột</strong></td>
+<td>Hai người sửa cùng một chỗ</td>
+<td>Xem chương "Giải quyết xung đột"</td>
+</tr>
+<tr>
+<td><strong>Windows commit CRLF</strong></td>
+<td>Chưa cấu hình autocrlf</td>
+<td><code>git config core.autocrlf true</code></td>
+</tr>
+<tr>
+<td><strong>Không tìm thấy file</strong></td>
+<td>Vấn đề chữ hoa thường</td>
+<td>Thống nhất đặt tên chữ thường</td>
+</tr>
+<tr>
+<td><strong>node_modules ô nhiễm</strong></td>
+<td>Chưa cấu hình .gitignore</td>
+<td>Thêm <code>node_modules/</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gợi ý giải quyết xung đột</strong>:</p>
+<pre><code>&quot;Gửi nội dung xung đột cho AI, bảo: Giải quyết xung đột Git này,
+giữ lại logic của tôi và logic mới nhất từ remote, nếu logic xung đột, hãy lấy của tôi làm chuẩn&quot;
+</code></pre>
+<p>:::</p>
+<h2>Điều hướng tiểu tiết</h2>
+<pre><code>- 11.1 Dòng chảy dữ liệu Git (./01-git-data-flow.md) 🔴 - Hiểu mô hình 3 vùng của Git và sự luân chuyển dữ liệu
+- 11.2 Tạo kho GitHub/Gitee (./02-create-repo.md) 🔴 - Tạo và cấu hình kho code đám mây từ con số 0
+- 11.3 Chi tiết SSH (./03-ssh-details.md) 🔴 - Hiểu nguyên lý SSH, cấu hình và khắc phục sự cố
+- 11.4 Vấn đề cộng tác đa nền tảng (./04-cross-platform-issues.md) 🔴 - Giải quyết khác biệt cộng tác giữa Windows, Mac, Linux
+- 11.5 Lệnh Git thường dùng (./05-git-commands.md) 🔴 - Nắm vững các lệnh Git thường dùng nhất trong phát triển hàng ngày
+- 11.6 Thực chiến thao tác Rollback (./06-rollback-practice.md) 🔴 - Nắm vững giải pháp cho các ngữ cảnh rollback khác nhau
+- 11.7 Quản lý nhánh (./07-branch-management.md) 🔴 - Hiểu mô hình nhánh và chiến lược cộng tác team
+- 11.8 Thực chiến giải quyết xung đột (./08-conflict-resolution.md) 🔴 - Bình tĩnh đối phó với xung đột hợp nhất Git
+- 11.9 Quy trình Pull Request (./09-pull-request-workflow.md) 🔴 - Hiểu quy trình PR và rà soát code
+- 11.10 Chia sẻ kiến thức team bằng Skills (./10-team-skills-sharing.md) 🟡 - Sử dụng Skills để mã hóa và chia sẻ quy chuẩn team
+- 11.11 Cộng tác team bằng Agent Skills (./11-agent-skills-collaboration.md) 🟡 - Sử dụng Agent Skills xây dựng luồng công việc team thông minh
+</code></pre>
+</body>
+</html>

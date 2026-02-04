@@ -1,0 +1,415 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02 Prd And Tech Docs</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.2 Mối quan hệ giữa PRD và Tài liệu kỹ thuật"
+description: "Hiểu sự phân công giữa tài liệu sản phẩm và tài liệu kỹ thuật"
+chapter: "Chương 4"
+priority: "🟢"</p>
+<hr />
+<h1>4.2 Mối quan hệ giữa PRD và Tài liệu kỹ thuật 🟢</h1>
+<blockquote>
+<p><strong>Đọc xong phần này, bạn sẽ thu hoạch được:</strong></p>
+<ul>
+<li>Hiểu sự phân công rõ ràng giữa PRD và tài liệu kỹ thuật</li>
+<li>Nắm vững 5 thành phần kiến tạo nên tài liệu kỹ thuật</li>
+<li>Học cách ghi nhận các quyết định kỹ thuật thành tài liệu</li>
+<li>Hiểu giá trị của tài liệu trong phát triển với AI</li>
+</ul>
+<p>Sau khi PRD lặp đến bản 5, phương án sản phẩm cơ bản đã chốt, ngoài việc chải chuốt logic nghiệp vụ, còn cần ghi lại phương án thực hiện kỹ thuật cụ thể, đó chính là tài liệu kỹ thuật.</p>
+</blockquote>
+<hr />
+<h2>Dẫn nhập</h2>
+<p>PRD trả lời câu hỏi "Làm cái gì", nhưng code sẽ không trực tiếp mọc ra từ PRD. Trước khi bắt tay viết code, bạn cần một bản <strong>tài liệu kỹ thuật</strong> —— nó là cây cầu nối từ PRD đến code, là "bản hướng dẫn sử dụng" để AI hiểu cấu trúc hệ thống của bạn.</p>
+<p>Một bản tài liệu kỹ thuật hoàn chỉnh sẽ giúp AI biết:</p>
+<ul>
+<li>Hệ thống có những dữ liệu nào, quan hệ giữa chúng ra sao</li>
+<li>Frontend và Backend giao tiếp qua những giao diện (interface) nào</li>
+<li>Hệ thống cấu thành từ những component nào, quy trình nghiệp vụ chạy thế nào</li>
+<li>Phụ thuộc vào những dịch vụ bên ngoài nào</li>
+</ul>
+<p>Không có những ngữ cảnh này, AI chỉ có thể đoán mò, code sinh ra thường không khớp với kỳ vọng.</p>
+<hr />
+<h2>Phân công giữa PRD và Tài liệu kỹ thuật</h2>
+<p>Hai bên phân công rõ ràng: PRD trả lời "Làm cái gì" (What), tài liệu kỹ thuật trả lời "Làm thế nào" (How).</p>
+<h3>PRD (Tài liệu nhu cầu sản phẩm)</h3>
+<table>
+<thead>
+<tr>
+<th>Nội dung</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Người dùng mục tiêu</td>
+<td>Ai sẽ dùng sản phẩm này</td>
+</tr>
+<tr>
+<td>Chức năng cốt lõi</td>
+<td>Sản phẩm cần hiện thực hóa tính năng gì</td>
+</tr>
+<tr>
+<td>Tương tác người dùng</td>
+<td>Người dùng thao tác thế nào để hoàn thành nhiệm vụ</td>
+</tr>
+<tr>
+<td>Trường hợp biên</td>
+<td>Xử lý tình huống bất thường thế nào</td>
+</tr>
+<tr>
+<td>Quy trình nghiệp vụ</td>
+<td>Luồng thao tác trọn vẹn của người dùng</td>
+</tr>
+</tbody>
+</table>
+<h3>Tài liệu kỹ thuật</h3>
+<table>
+<thead>
+<tr>
+<th>Nội dung</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mô hình dữ liệu</td>
+<td>Có những bảng nào, trường nào, quan hệ gì</td>
+</tr>
+<tr>
+<td>Thiết kế API</td>
+<td>Danh sách interface và phân công trách nhiệm</td>
+</tr>
+<tr>
+<td>Kiến trúc/Lưu đồ</td>
+<td>Quan hệ giữa các component hệ thống và luồng nghiệp vụ</td>
+</tr>
+<tr>
+<td>Tích hợp bên thứ 3</td>
+<td>Dịch vụ bên ngoài và cách kết nối</td>
+</tr>
+<tr>
+<td>Quyết định kỹ thuật</td>
+<td>Lý do chọn công nghệ và các đánh đổi then chốt</td>
+</tr>
+</tbody>
+</table>
+<h3>Quan hệ giữa hai bên</h3>
+<pre><code class="language-mermaid">graph LR
+    A[PRD&lt;br/&gt;Làm cái gì] --&gt; B[Tài liệu kỹ thuật&lt;br/&gt;Làm thế nào]
+    B --&gt; C[Hiện thực code&lt;br/&gt;Làm thực tế]
+
+    style A fill:#e1f5fe
+    style B fill:#fff3e0
+    style C fill:#e8f5e9
+</code></pre>
+<p>Mỗi thực thể nghiệp vụ trong PRD đều nên tìm thấy sự tương ứng trong mô hình dữ liệu; mỗi điểm chức năng trong PRD đều nên tìm thấy interface tương ứng trong thiết kế API. Quan hệ tương ứng này là tiêu chuẩn để kiểm tra tính toàn vẹn của tài liệu kỹ thuật.</p>
+<hr />
+<h2>5 thành phần kiến tạo tài liệu kỹ thuật</h2>
+<p>Tài liệu kỹ thuật không phải bài điền vào chỗ trống, mà là ghi chép của quá trình tư duy. 5 thành phần dưới đây bao phủ góc nhìn kỹ thuật trọn vẹn từ dữ liệu đến interface, từ kiến trúc đến sự phụ thuộc. Chúng phối hợp với nhau, tạo thành nền tảng ngữ cảnh để AI hiểu hệ thống.</p>
+<h3>1. Mô hình dữ liệu (Data Model)</h3>
+<p>Mô hình dữ liệu là sự ánh xạ kỹ thuật của các khái niệm nghiệp vụ trong PRD. Nó mô tả hệ thống lưu trữ dữ liệu gì, cấu trúc dữ liệu ra sao, và quan hệ giữa các dữ liệu.</p>
+<p><strong>Tại sao cần:</strong></p>
+<ul>
+<li>Là ngữ cảnh cơ sở để AI sinh code database</li>
+<li>Là khế ước dữ liệu (contract) để Frontend và Backend kết nối</li>
+<li>Quyết định khả năng mở rộng của hệ thống</li>
+</ul>
+<p><strong>Cần ghi lại:</strong></p>
+<ul>
+<li>Có những bảng nào (tương ứng thực thể nghiệp vụ trong PRD)</li>
+<li>Trường của mỗi bảng (tương ứng thuộc tính thực thể)</li>
+<li>Quan hệ giữa các bảng (một-nhiều, nhiều-nhiều)</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<pre><code class="language-markdown">## Mô hình dữ liệu
+
+### Bảng người dùng (users)
+
+- id: Khóa chính
+- email: Email (duy nhất)
+- name: Tên hiển thị
+- created_at: Thời gian tạo
+
+### Bảng bài viết (posts)
+
+- id: Khóa chính
+- title: Tiêu đề
+- content: Nội dung
+- author_id: ID tác giả (Khóa ngoại, liên kết với users)
+- created_at: Thời gian tạo
+
+Quan hệ: Một người dùng có thể có nhiều bài viết (Một-Nhiều)
+</code></pre>
+<p>::: tip ORM Schema chính là tài liệu</p>
+<p>Khi dùng ORM như Drizzle, bản thân file định nghĩa Schema chính là tài liệu mô hình dữ liệu. Nó hiển thị trực quan cấu trúc bảng, kiểu trường và quan hệ bảng, AI cũng có thể hiểu chính xác.</p>
+<p>Thiết kế và hiện thực database cụ thể xem chương 8.</p>
+<p>:::</p>
+<h3>2. Thiết kế API</h3>
+<p>Thiết kế API định nghĩa các interface mà hệ thống cung cấp ra bên ngoài, là khế ước cộng tác giữa Frontend và Backend.</p>
+<p><strong>Tại sao cần:</strong></p>
+<ul>
+<li>Là ranh giới phân công Frontend-Backend</li>
+<li>Là căn cứ để AI sinh code interface</li>
+<li>Định nghĩa API rõ ràng giúp giảm chi phí giao tiếp</li>
+</ul>
+<p><strong>Cần ghi lại:</strong></p>
+<ul>
+<li>Đường dẫn interface và phương thức HTTP</li>
+<li>Trách nhiệm của interface (làm gì)</li>
+<li>Tham số request và giá trị trả về (mô tả vắn tắt)</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<pre><code class="language-markdown">## Thiết kế API
+
+### Liên quan bài viết
+
+- GET /api/posts - Lấy danh sách bài viết
+- GET /api/posts/:id - Lấy bài viết đơn lẻ
+- POST /api/posts - Tạo bài viết (Cần login)
+- PATCH /api/posts/:id - Cập nhật bài viết (Cần chính chủ)
+- DELETE /api/posts/:id - Xóa bài viết (Cần chính chủ)
+
+### Liên quan bình luận
+
+- GET /api/posts/:id/comments - Lấy bình luận bài viết
+- POST /api/posts/:id/comments - Đăng bình luận (Cần login)
+</code></pre>
+<p>::: tip Học tiếp</p>
+<p>Chi tiết giao thức HTTP, chuẩn RESTful, ý nghĩa mã trạng thái sẽ được giảng giải kỹ trong bài "4.4 Cơ bản về API và HTTP".</p>
+<p>:::</p>
+<h3>3. Kiến trúc / Lưu đồ</h3>
+<p>Sơ đồ kiến trúc hiển thị quan hệ các thành phần hệ thống, lưu đồ hiển thị sự luân chuyển của logic nghiệp vụ.</p>
+<p><strong>Tại sao cần:</strong></p>
+<ul>
+<li>Để AI nhanh chóng hiểu cấu trúc tổng thể hệ thống</li>
+<li>Giúp thành viên team thiết lập nhận thức chung</li>
+<li>Phát hiện sự thiếu sót hoặc mâu thuẫn trong thiết kế</li>
+</ul>
+<p><strong>Ví dụ sơ đồ kiến trúc:</strong></p>
+<pre><code class="language-mermaid">graph TB
+    A[Trình duyệt người dùng] --&gt; B[Next.js Frontend]
+    B --&gt; C[Next.js API Routes]
+    C --&gt; D[PostgreSQL Database]
+    C --&gt; E[OpenAI API]
+
+    style A fill:#e1f5fe
+    style B fill:#c8e6c9
+    style C fill:#fff9c4
+    style D fill:#ffccbc
+    style E fill:#f8bbd9
+</code></pre>
+<p><strong>Ví dụ lưu đồ (Quy trình đặt hàng):</strong></p>
+<pre><code class="language-mermaid">flowchart TD
+    A[Người dùng gửi đơn] --&gt; B{Còn hàng không}
+    B --&gt;|Có| C[Tạo đơn hàng]
+    B --&gt;|Không| D[Báo hết hàng]
+    C --&gt; E[Trừ tồn kho]
+    E --&gt; F[Khởi tạo thanh toán]
+    F --&gt; G{Thanh toán thành công}
+    G --&gt;|Có| H[Cập nhật trạng thái Đã thanh toán]
+    G --&gt;|Không| I[Hủy đơn/Hoàn tồn kho]
+</code></pre>
+<p>::: tip Học tiếp</p>
+<p>Kiến trúc tách biệt Frontend-Backend, nguyên lý hoạt động của Fullstack Framework sẽ được giảng giải kỹ trong bài "4.5 Khái niệm tách biệt Frontend-Backend".</p>
+<p>:::</p>
+<h3>4. Tích hợp bên thứ 3</h3>
+<p>Ghi lại các dịch vụ bên ngoài mà hệ thống phụ thuộc và cách kết nối.</p>
+<p><strong>Tại sao cần:</strong></p>
+<ul>
+<li>Dịch vụ bên ngoài là sự mở rộng năng lực hệ thống</li>
+<li>Cần ghi lại cấu hình then chốt và giới hạn (như rate limit)</li>
+<li>Tiện cho việc tra soát vấn đề tích hợp</li>
+</ul>
+<p><strong>Cần ghi lại:</strong></p>
+<ul>
+<li>Dùng những dịch vụ bên ngoài nào</li>
+<li>Dùng để làm gì</li>
+<li>Mục cấu hình then chốt (tên biến môi trường)</li>
+<li>Giới hạn rate limit, timeout...</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<pre><code class="language-markdown">## Tích hợp bên thứ 3
+
+### OpenAI API
+
+- Mục đích: Chức năng đối thoại AI
+- Biến môi trường: OPENAI_API_KEY
+- Giới hạn: 60 request/phút
+
+### AMAP (Cao Đức)
+
+- Mục đích: Hiển thị vị trí địa lý
+- Biến môi trường: AMAP_KEY
+</code></pre>
+<p>::: tip Học tiếp</p>
+<p>Các bước cụ thể tích hợp API, xử lý lỗi, thực hành bảo mật sẽ được giảng giải kỹ trong bài "4.7 Thực chiến tích hợp API".</p>
+<p>:::</p>
+<h3>5. Ghi chép quyết định kỹ thuật</h3>
+<p>Ghi lại các lựa chọn công nghệ then chốt và lý do ra quyết định.</p>
+<p><strong>Tại sao cần:</strong></p>
+<ul>
+<li>Tránh việc sau này lật lại thảo luận cùng một vấn đề</li>
+<li>Giúp thành viên mới hiểu tại sao hệ thống lại thiết kế như thế</li>
+<li>Cung cấp bối cảnh cho việc tái cấu trúc (refactoring) hoặc mở rộng sau này</li>
+</ul>
+<p><strong>Cần ghi lại:</strong></p>
+<ul>
+<li>Lựa chọn Tech Stack (kết nối với Khung quyết định Tech Stack 4.1)</li>
+<li>Sự đánh đổi then chốt (ví dụ Supabase vs Neon)</li>
+<li>Các phương án đã từ bỏ và lý do</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<pre><code class="language-markdown">## Quyết định kỹ thuật
+
+### Tech Stack: Next.js + PostgreSQL
+
+- Lý do: Framework Fullstack hiệu suất phát triển cao, AI hiểu Next.js tốt nhất
+- Phương án dự phòng: Vite + Express (Bỏ qua vì: Phải bảo trì 2 dự án)
+
+### Database Hosting: Neon
+
+- Lý do: Nhẹ, kiến trúc Serverless, phối hợp tốt với Drizzle
+- Phương án dự phòng: Supabase (Bỏ qua vì: Tạm thời chưa cần các tính năng phụ trợ như Auth)
+</code></pre>
+<hr />
+<h2>Giá trị của tài liệu trong kỷ nguyên AI</h2>
+<p>Trong thời đại AI hỗ trợ phát triển, giá trị của tài liệu kỹ thuật được phóng đại. Trước đây, tài liệu chủ yếu cho người xem —— giúp thành viên team hiểu hệ thống, hoặc để ghi nhớ cho chính mình. Giờ đây, nó có thêm một độc giả quan trọng: AI.</p>
+<p>AI cần ngữ cảnh mới làm việc chính xác được. Khi bạn bảo nó "giúp tôi viết chức năng đăng nhập", nếu không có tài liệu nói rõ bảng user có trường nào, format trả về của API đăng nhập là gì, AI chỉ có thể đoán mò. Đoán mò nghĩa là thử sai, thử sai nghĩa là lãng phí thời gian.</p>
+<p>Một bản tài liệu kỹ thuật rõ ràng, tương đương với việc đưa cho AI một cuốn "Hướng dẫn sử dụng hệ thống". Nó biết cấu trúc dữ liệu, sẽ sinh ra code phù hợp kiến trúc; nó biết quy chuẩn API, sẽ viết ra interface Frontend-Backend khớp nhau. Tài liệu càng rõ, AI càng ít phải đoán, hiệu suất phát triển càng cao.</p>
+<p>::: tip Tài liệu là ngữ cảnh của AI</p>
+<p>Tài liệu kỹ thuật cung cấp ngữ cảnh được cấu trúc hóa, để AI biết "dùng công nghệ gì", "cấu trúc dữ liệu thế nào", "interface định nghĩa ra sao". Không có tài liệu, AI chỉ có thể suy luận ngược từ code, hiệu quả thấp hơn, lỗi nhiều hơn.</p>
+<p>:::</p>
+<hr />
+<h2>Đồng bộ Tài liệu và Code</h2>
+<p>Viết xong tài liệu kỹ thuật chưa phải là hết việc. Kẻ thù lớn nhất của tài liệu là sự lỗi thời —— quy chuẩn viết hôm nay, tuần sau code thay đổi, tài liệu trở thành "hồ sơ lịch sử". Giữ tài liệu đồng bộ với code là tiền đề để tài liệu kỹ thuật phát huy giá trị.</p>
+<p>Bí quyết giữ đồng bộ là <strong>"Thay đổi tức cập nhật"</strong>: Mỗi lần sửa code, hãy tự hỏi sự thay đổi này có ảnh hưởng đến mô tả trong tài liệu không? Nếu có, cập nhật ngay. Thói quen này một khi hình thành, chi phí bảo trì tài liệu thấp hơn nhiều so với việc xử lý vấn đề do tài liệu không nhất quán mang lại.</p>
+<p>Hậu quả của việc tài liệu và code lệch pha:</p>
+<ul>
+<li>Thành viên mới hiểu kiến trúc theo tài liệu, nhưng phát hiện cấu trúc code hoàn toàn khác</li>
+<li>AI dựa vào thiết kế API cũ để sinh code, dẫn đến tích hợp thất bại</li>
+<li>Vài tháng sau xem lại dự án, bị chính tài liệu của mình làm cho hoang mang</li>
+</ul>
+<p><strong>Cách làm kiến nghị:</strong></p>
+<ol>
+<li>Viết tài liệu trước rồi mới viết code — Tài liệu là quá trình tư duy</li>
+<li>Thay đổi tức cập nhật — Sửa code xong cập nhật tài liệu ngay</li>
+<li>Review định kỳ — Kiểm tra xem tài liệu có khớp với code thực tế không</li>
+</ol>
+<hr />
+<h2>Thực hành tinh gọn: Tài liệu khả thi tối thiểu</h2>
+<p>Với cá nhân hoặc team nhỏ, không nhất thiết phải câu nệ hình thức, có thể gộp PRD và tài liệu kỹ thuật thành <strong>Tài liệu dự án</strong>. Nhưng cần phân biệt rõ đâu là tư duy tầng sản phẩm, đâu là quyết định tầng kỹ thuật.</p>
+<p><strong>Dù dự án lớn nhỏ, 5 thành phần sau không thể lược bỏ:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Thành phần</th>
+<th>Tại sao không thể bỏ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mô hình dữ liệu</td>
+<td>AI cần biết lưu dữ liệu gì</td>
+</tr>
+<tr>
+<td>Thiết kế API</td>
+<td>Frontend-Backend cần biết giao tiếp thế nào</td>
+</tr>
+<tr>
+<td>Kiến trúc/Lưu đồ</td>
+<td>AI cần hiểu cấu trúc hệ thống và logic nghiệp vụ</td>
+</tr>
+<tr>
+<td>Tích hợp bên thứ 3</td>
+<td>AI cần biết sự phụ thuộc bên ngoài và cấu hình</td>
+</tr>
+<tr>
+<td>Quyết định kỹ thuật</td>
+<td>AI cần hiểu lý do chọn công nghệ, tránh đi lệch hướng</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Có thể đơn giản hóa:</strong></p>
+<ul>
+<li>Mức độ chi tiết: Dự án nhỏ có thể dùng bảng thay cho đoạn văn dài</li>
+<li>Hình thức tài liệu: Có thể dùng comment, README thay cho tài liệu độc lập</li>
+<li>Công cụ vẽ: Có thể dùng mô tả văn bản thay cho biểu đồ phức tạp</li>
+</ul>
+<p><strong>Cách tổ chức đơn giản:</strong></p>
+<pre><code class="language-markdown"># Tài liệu dự án
+
+## 1. Phần Sản phẩm
+
+### 1.1 Bối cảnh nhu cầu
+
+### 1.2 Chức năng cốt lõi
+
+### 1.3 User Story
+
+## 2. Phần Kỹ thuật
+
+### 2.1 Tech Stack
+
+### 2.2 Mô hình dữ liệu
+
+### 2.3 Thiết kế API
+
+### 2.4 Sơ đồ kiến trúc
+
+### 2.5 Tích hợp bên thứ 3
+
+### 2.6 Phương án Deploy
+</code></pre>
+<hr />
+<h2>Câu hỏi thường gặp</h2>
+<h3>Q1: Tài liệu cần viết chi tiết đến mức nào?</h3>
+<p>Lấy tiêu chuẩn "để AI hiểu được" làm thước đo. Mô hình dữ liệu phải rõ bảng và trường, API phải liệt kê interface và trách nhiệm, sơ đồ kiến trúc phải hiển thị quan hệ các thành phần. Chi tiết hiện thực cụ thể (như cú pháp Drizzle, mã trạng thái HTTP) không cần triển khai ở bài 4.2, các chương sau sẽ nói.</p>
+<h3>Q2: Có thể để AI sinh tài liệu kỹ thuật không?</h3>
+<p>Được. Sau khi chốt PRD, hãy bảo AI dựa vào nhu cầu sinh ra khung phương án kỹ thuật, rồi nhân sự review và bổ sung. Phần quyết định kỹ thuật cần bạn đích thân xác nhận, vì liên quan đến sự thấu hiểu nghiệp vụ và sự đánh đổi (trade-off).</p>
+<h3>Q3: Code thay đổi, quên cập nhật tài liệu thì sao?</h3>
+<p>Hãy tập thói quen thay đổi là cập nhật. Hoặc nhờ AI giúp: Bảo nó "Tao sửa mô hình dữ liệu rồi, cập nhật tài liệu kỹ thuật giúp tao".</p>
+<h3>Q4: Sơ đồ kiến trúc và lưu đồ có bắt buộc dùng công cụ chuyên nghiệp vẽ không?</h3>
+<p>Không cần. Dùng mô tả văn bản, hình vẽ ASCII, hoặc cú pháp Mermaid đơn giản đều được. Mấu chốt là diễn đạt rõ cấu trúc hệ thống và quy trình nghiệp vụ.</p>
+<hr />
+<h2>Trọng điểm cốt lõi</h2>
+<ul>
+<li>✅ PRD trả lời "Làm cái gì", Tài liệu kỹ thuật trả lời "Làm thế nào"</li>
+<li>✅ 5 thành phần tài liệu kỹ thuật: Mô hình dữ liệu, Thiết kế API, Kiến trúc/Lưu đồ, Tích hợp bên thứ 3, Quyết định kỹ thuật</li>
+<li>✅ 5 thành phần này không thể bỏ, nhưng có thể đơn giản hóa mức độ chi tiết</li>
+<li>✅ Giữ tài liệu đồng bộ với code, tránh "bản đồ cũ kỹ"</li>
+<li>✅ Tài liệu là nguồn ngữ cảnh quan trọng của AI</li>
+<li>✅ Chi tiết hiện thực cụ thể xem các chương sau</li>
+</ul>
+<p>Hiểu tác dụng và thành phần của tài liệu kỹ thuật rồi, tiếp theo là tìm hiểu các cấu kiện cơ bản của lập trình.</p>
+<hr />
+<h2>Nội dung liên quan</h2>
+<ul>
+<li>Trước đó: <a href="../03-prd-doc-driven/03-prd-template-guide_vi.html">3.3 Thực chiến viết PRD</a></li>
+<li>Trước đó: <a href="./01-tech-stack-decision_vi.html">4.1 Khung quyết định Tech Stack</a></li>
+<li>Chi tiết: <a href="./03-programming-basics_vi.html">4.3 Cách đọc hiểu code AI sinh ra</a></li>
+<li>Chi tiết: <a href="./04-api-and-http_vi.html">4.4 Cơ bản về API và HTTP</a></li>
+<li>Chi tiết: <a href="./05-frontend-backend-separation_vi.html">4.5 Khái niệm tách biệt Frontend-Backend</a></li>
+<li>Chi tiết: <a href="./06-config-formats_vi.html">4.6 Định dạng file cấu hình</a></li>
+<li>Chi tiết: <a href="./07-api-integration_vi.html">4.7 Thực chiến tích hợp API</a></li>
+<li>Chi tiết: <a href="../08-data-persistence-database/index_vi.html">Chương 8: Dữ liệu bền vững và Cơ sở dữ liệu</a></li>
+</ul>
+</body>
+</html>

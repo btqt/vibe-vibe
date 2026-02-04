@@ -1,0 +1,295 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05 Debugging Tips</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "2.5 Tâm pháp debug hiệu quả"
+description: "Log đầy đủ và sửa lỗi vòng lặp"
+chapter: "Chương 2"</p>
+<hr />
+<h1>2.5 Tâm pháp debug hiệu quả 🟢</h1>
+<blockquote>
+<p><strong>Đọc xong phần này, bạn sẽ thu hoạch được:</strong></p>
+<ul>
+<li>Nắm vững công thức giao tiếp debug AI hiệu quả</li>
+<li>Học cách cung cấp nhật ký lỗi (log) đầy đủ và ngữ cảnh</li>
+<li>Hiểu mô hình sửa lỗi vòng lặp, lặp lại liên tục cho đến khi vấn đề được giải quyết</li>
+<li>Biết chiêu cuối "Để AI tự build"</li>
+</ul>
+<p>Lời nói đầu đã nhắc đến "Tâm pháp debug": Cung cấp nhật ký báo lỗi đầy đủ và mô hình sửa lỗi vòng lặp.</p>
+</blockquote>
+<h2>Kiến thức tiền đề</h2>
+<p>::: tip Debug là gì</p>
+<p>Debug (Gỡ lỗi) là quá trình phát hiện và sửa chữa lỗi code.
+:::</p>
+<p>::: tip Nhật ký lỗi là gì</p>
+<p>Nhật ký lỗi (Error Log) là thông tin chi tiết được xuất ra khi chương trình bị crash hoặc gặp ngoại lệ, bao gồm loại lỗi, vị trí, ngăn xếp (stack)...
+:::</p>
+<p>::: tip Stack là gì</p>
+<p>Ngăn xếp (Stack Trace) là chuỗi gọi hàm khi xảy ra lỗi, hiển thị lỗi phát sinh từ dòng nào, hàm nào, được gọi qua các tầng nào. Nó giúp bạn truy vết nguồn gốc lỗi.
+:::</p>
+<hr />
+<h2>Công thức giao tiếp debug: Log đầy đủ + Các bước thao tác + Kết quả kỳ vọng</h2>
+<p>Khi debug, <strong>nếu bạn không chắc vấn đề ở đâu</strong>, bạn không cần:</p>
+<ul>
+<li>❌ Phân tích nguyên nhân lỗi</li>
+<li>❌ Đoán vấn đề có thể xảy ra</li>
+<li>❌ Thử đủ các phương pháp sửa lỗi</li>
+</ul>
+<p><strong>Bạn chỉ cần</strong>:</p>
+<ul>
+<li>✅ Cung cấp nhật ký lỗi đầy đủ</li>
+<li>✅ Nói rõ bạn đã thao tác gì</li>
+<li>✅ Cho AI biết kết quả bạn kỳ vọng</li>
+</ul>
+<p><strong>AI sẽ tự động</strong>:</p>
+<ul>
+<li>Phân tích loại lỗi và nguyên nhân gốc rễ</li>
+<li>Tìm kiếm vấn đề tương tự và giải pháp</li>
+<li>Thử nhiều phương pháp sửa lỗi</li>
+<li>Xác minh xem sửa lỗi có hiệu quả không</li>
+</ul>
+<p><strong>Mấu chốt</strong>: Cho AI đủ ngữ cảnh, đừng để nó đoán bạn đã làm gì.</p>
+<p><strong>Ví dụ</strong>:</p>
+<pre><code class="language-bash"># ❌ Đừng làm thế này
+&quot;Báo lỗi rồi, xem giúp tôi với&quot;
+&quot;Code không chạy được&quot;
+
+# ✅ Thế này là đủ
+Tôi chạy pnpm dev để khởi động dự án, terminal báo lỗi:
+
+[Nhật ký lỗi đầy đủ]
+
+Kết quả tôi kỳ vọng là: Server phát triển khởi động bình thường, có thể truy cập tại localhost:3000
+Giúp tôi phân tích và sửa vấn đề này
+
+# Nếu lần đầu chưa giải quyết được
+Đã sửa theo cách của bạn, giờ xuất hiện lỗi mới:
+
+[Nhật ký lỗi mới]
+
+Hãy tiếp tục phân tích
+</code></pre>
+<p><strong>Mô hình sửa lỗi vòng lặp</strong>:</p>
+<pre><code class="language-mermaid">graph TB
+    A[Thử sửa lỗi] --&gt; B{Đã giải quyết chưa?}
+    B --&gt;|Rồi| C[Hoàn thành]
+    B --&gt;|Chưa| D[Mô tả tình huống mới + Log mới]
+    D --&gt; A
+    C --&gt; E[Thường 2-3 vòng]
+</code></pre>
+<hr />
+<h2>Chiêu cuối: Để AI tự Build</h2>
+<p>Còn một cách đỡ tốn sức hơn: <strong>Vứt cả dự án cho AI, bảo nó tự chạy một lượt</strong>.</p>
+<pre><code class="language-bash"># Nói trong công cụ AI:
+&quot;Hãy giúp tôi chạy pnpm install &amp;&amp; pnpm build, nếu gặp lỗi hãy tự sửa, cho đến khi build thành công&quot;
+</code></pre>
+<p><strong>Tại sao hiệu quả</strong>:</p>
+<ul>
+<li>AI nhìn thấy lỗi thực tế trực tiếp, không cần bạn tường thuật lại</li>
+<li>Các vấn đề nhỏ (xung đột phiên bản, thiếu dependency, sai đường dẫn) AI thường tự giải quyết được</li>
+<li>Bạn chỉ cần xem kết quả, đỡ phải giao tiếp qua lại</li>
+</ul>
+<p><strong>Ngữ cảnh áp dụng</strong>:</p>
+<ul>
+<li>Tiếp nhận dự án mới, không biết bắt đầu từ đâu</li>
+<li>Sửa mãi vẫn báo lỗi, càng sửa càng loạn</li>
+<li>CI/CD tạch, mà local không tái hiện được</li>
+</ul>
+<p><strong>Lưu ý</strong>:</p>
+<ul>
+<li>Đảm bảo code đã git commit, AI có sửa hỏng cũng rollback được</li>
+<li>Lần build đầu có thể cần sửa nhiều vòng, kiên nhẫn chờ đợi</li>
+<li>Nếu AI rơi vào vòng lặp chết (sửa đi sửa lại một chỗ), hãy kịp thời ngắt lời</li>
+</ul>
+<hr />
+<h2>Case thực chiến</h2>
+<h3>Case 1: Lỗi kiểu dữ liệu (Type error)</h3>
+<p><strong>Nhật ký lỗi</strong>:</p>
+<pre><code>Type error: 'user' is possibly 'undefined'.
+  at App (app/page.tsx:15:10)
+</code></pre>
+<p><strong>❌ Mô tả sai</strong>:</p>
+<pre><code>&quot;Lỗi kiểu rồi, xem giúp tôi&quot;
+</code></pre>
+<p><strong>✅ Mô tả đúng</strong>:</p>
+<pre><code>TypeScript báo lỗi:
+
+File: app/page.tsx
+Dòng: 15
+Lỗi: 'user' is possibly 'undefined'
+
+Code:
+const user = await getUser();
+return &lt;div&gt;{user.name}&lt;/div&gt;;  // line 15
+
+Làm sao xử lý tình huống có thể là undefined?
+</code></pre>
+<p><strong>AI phân tích</strong>:</p>
+<pre><code>user có thể là undefined, cần:
+1. Thêm kiểm tra kiểu
+2. Cung cấp giá trị mặc định
+3. Hoặc sử dụng optional chaining
+</code></pre>
+<hr />
+<h3>Case 2: Lỗi runtime</h3>
+<p><strong>Nhật ký lỗi</strong>:</p>
+<pre><code>Error: connect ECONNREFUSED 127.0.0.1:5432
+    at Connection.&lt;anonymous&gt; (node_modules/pg/lib/client.js:89:17)
+    at Socket.emit (events.js:315:13)
+</code></pre>
+<p><strong>❌ Mô tả sai</strong>:</p>
+<pre><code>&quot;Kết nối cơ sở dữ liệu thất bại&quot;
+</code></pre>
+<p><strong>✅ Mô tả đúng</strong>:</p>
+<pre><code>Lỗi kết nối cơ sở dữ liệu:
+
+Lỗi: connect ECONNREFUSED 127.0.0.1:5432
+
+Môi trường:
+- Môi trường phát triển
+- PostgreSQL lẽ ra đang chạy cục bộ
+- Trong .env thì DATABASE_URL=&quot;postgresql://localhost:5432/mydb&quot;
+
+Nguyên nhân có thể:
+1. PostgreSQL chưa bật?
+2. Sai port?
+3. Cấu hình .env sai?
+</code></pre>
+<p><strong>AI phân tích</strong>:</p>
+<pre><code>ECONNREFUSED biểu thị dịch vụ chưa chạy.
+Kiểm tra:
+1. PostgreSQL đã khởi động chưa
+2. Port có đúng không (mặc định 5432)
+3. Chạy lệnh kiểm tra:
+   Mac/Linux: brew services list
+   Windows: sc query postgresql-x64-[version]
+</code></pre>
+<hr />
+<h3>Case 3: Lỗi build</h3>
+<p><strong>Nhật ký lỗi</strong>:</p>
+<pre><code>✘ [ERROR] Could not resolve &quot;./components/Button&quot;
+
+    app/page.tsx:3:24:
+      3 │ import { Button } from &quot;./components/Button&quot;;
+        ╩                         ~~~~~~~~~~~~~~~~~~~~
+    This file does not exist.
+</code></pre>
+<p><strong>❌ Mô tả sai</strong>:</p>
+<pre><code>&quot;Build thất bại rồi&quot;
+</code></pre>
+<p><strong>✅ Mô tả đúng</strong>:</p>
+<pre><code>Lỗi build:
+
+Could not resolve &quot;./components/Button&quot;
+
+Vị trí file: app/page.tsx:3:24
+import { Button } from &quot;./components/Button&quot;;
+
+Tình huống thực tế:
+- Dự án sử dụng shadcn/ui
+- Component Button lẽ ra ở components/ui/button.tsx
+
+Làm sao sửa đường dẫn import?
+</code></pre>
+<hr />
+<h2>Tra cứu nhanh mẫu lỗi thường gặp</h2>
+<table>
+<thead>
+<tr>
+<th>Loại lỗi</th>
+<th>Thông tin điển hình</th>
+<th>Hướng giải quyết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lỗi kiểu</td>
+<td><code>Type 'X' is not assignable to type 'Y'</code></td>
+<td>Kiểm tra định nghĩa kiểu, dùng ép kiểu (assertion) hoặc sửa kiểu</td>
+</tr>
+<tr>
+<td>Lỗi giá trị rỗng</td>
+<td><code>Cannot read property 'X' of undefined</code></td>
+<td>Thêm kiểm tra null, optional chaining, giá trị mặc định</td>
+</tr>
+<tr>
+<td>Lỗi import</td>
+<td><code>Module not found: Can't resolve 'X'</code></td>
+<td>Cài dependency, sửa đường dẫn, kiểm tra export</td>
+</tr>
+<tr>
+<td>Lỗi mạng</td>
+<td><code>ECONNREFUSED / ENOTFOUND</code></td>
+<td>Kiểm tra trạng thái dịch vụ, URL, kết nối mạng</td>
+</tr>
+<tr>
+<td>Chiếm dụng port</td>
+<td><code>Address already in use :3000</code></td>
+<td>Tắt tiến trình chiếm port hoặc đổi port</td>
+</tr>
+<tr>
+<td>Lỗi quyền hạn</td>
+<td><code>EACCES / Permission denied</code></td>
+<td>Kiểm tra quyền file, dùng sudo hoặc đổi quyền</td>
+</tr>
+<tr>
+<td>Lỗi cú pháp</td>
+<td><code>Unexpected token / SyntaxError</code></td>
+<td>Kiểm tra chính tả cú pháp, chú ý khớp ngoặc và dấu nháy</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Triết lý cốt lõi</h2>
+<p><strong>Debug là quá trình bác sĩ chẩn bệnh</strong>.</p>
+<pre><code class="language-mermaid">graph LR
+    A[Triệu chứng đầy đủ] --&gt; B[Chẩn đoán chính xác]
+    C[Mô tả mơ hồ] --&gt; D[Đoán mò]
+
+    B --&gt; E[Điều trị nhanh]
+    D --&gt; F[Thử sai liên tục]
+</code></pre>
+<p><strong>Ghi nhớ</strong>:</p>
+<ol>
+<li><strong>Log đầy đủ</strong>: Đừng cắt bớt, thông tin stack rất quan trọng</li>
+<li><strong>Các bước thao tác</strong>: Nói rõ bạn làm gì mới kích hoạt lỗi</li>
+<li><strong>Kết quả kỳ vọng</strong>: Cho AI biết bạn muốn gì</li>
+<li><strong>Sửa lỗi vòng lặp</strong>: Đừng bỏ cuộc, thường 2-3 vòng là xong</li>
+<li><strong>Phản hồi kết quả</strong>: Mỗi lần sửa xong hãy báo lại tình hình mới cho AI</li>
+</ol>
+<p><strong>Công thức debug</strong>:</p>
+<pre><code>Nhật ký lỗi đầy đủ
++ Các bước thao tác (Bạn đã làm gì)
++ Kết quả kỳ vọng (Bạn muốn gì)
+= Giải pháp nhanh chóng
+</code></pre>
+<p><strong>Công thức chiêu cuối</strong>:</p>
+<pre><code>git commit bảo lưu hiện trường
++ Để AI tự chạy build
++ Gặp lỗi để nó tự sửa
++ = Nhàn hạ
+</code></pre>
+<hr />
+<h2>Nội dung liên quan</h2>
+<ul>
+<li>Trước đó: 2.2 VibeCoding Quy trình làm việc chi tiết</li>
+</ul>
+</body>
+</html>

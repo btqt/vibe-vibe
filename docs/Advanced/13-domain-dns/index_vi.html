@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "Chương 13: Nguyên lý phân giải tên miền và Kết nối mạng"</h2>
+<h1>Chương 13: Tên miền, DNS và HTTPS</h1>
+<h2>Lời tựa</h2>
+<p>Bạn chuẩn bị deploy dự án của mình lên mạng công cộng. Nếu bạn dùng nền tảng nước ngoài (như Vercel), link nhận được có thể truy cập trực tiếp, nhưng bạn bè ở trong nước mở sẽ rất chậm. Nếu bạn dùng nền tảng trong nước (như Tencent Cloud EdgeOne Pages hay Aliyun ESA Functions &amp; Pages), tình hình sẽ phức tạp hơn một chút.</p>
+<p>Sư phụ bảo bạn, các nền tảng trong nước vì yêu cầu tuân thủ nội dung, nên có hạn chế đối với việc truy cập tên miền mặc định. Lấy EdgeOne Pages làm ví dụ, nó cung cấp 3 vùng tăng tốc tùy chọn:</p>
+<ul>
+<li><strong>Vùng khả dụng Trung Quốc đại lục</strong>: Tốc độ nhanh nhất, nhưng thêm tên miền tùy chỉnh <strong>bắt buộc phải hoàn thành ICP Filing (Bắc án/Cấp phép)</strong>, nếu không chỉ dùng được link xem trước có hiệu lực 3 tiếng.</li>
+<li><strong>Vùng khả dụng toàn cầu (gồm thềm lục địa TQ)</strong>: Cũng cần Bắc án, link xem trước cũng chỉ có hiệu lực 3 tiếng.</li>
+<li><strong>Vùng khả dụng toàn cầu (không gồm thềm lục địa TQ)</strong>: <strong>Không cần Bắc án</strong>, mạng ngoài Trung Quốc đại lục có thể truy cập trực tiếp, nhưng truy cập từ trong nước sẽ bị hạn chế.</li>
+</ul>
+<p>Bạn chọn <strong>Vùng khả dụng toàn cầu (không gồm thềm lục địa TQ)</strong>, như vậy không cần đợi Bắc án là có thể online ngay. Sư phụ nhắc bạn: Tuy tên miền mặc định của vùng này có hạn chế truy cập, nhưng <strong>sau khi liên kết tên miền tùy chỉnh là có thể truy cập bình thường</strong>, hơn nữa không cần Bắc án.</p>
+<p>Khi bạn gửi tên miền mặc định do nền tảng cấp cho bạn bè, họ lại chụp màn hình báo: <strong>403</strong> hoặc không mở được. Bạn hoảng, tưởng mình deploy thất bại. Sư phụ nhân cơ hội phổ cập nhanh cho bạn kiến thức thường thức về <strong>Mã trạng thái HTTP</strong> (HTTP Status Code) —— gặp lỗi đừng hoảng, <strong>chỉ cần nhìn chữ số đầu tiên</strong>, là phán đoán được lỗi của ai:</p>
+<ul>
+<li><strong>2xx (như 200 OK)</strong>: <strong>Thành công</strong>. Mọi thứ bình thường, cả hai bên đều vui vẻ.</li>
+<li><strong>3xx (như 301 Moved)</strong>: <strong>Chuyển hướng</strong>. Chuyển nhà rồi, sang địa chỉ mới tìm nhé.</li>
+<li><strong>4xx (như 404/403)</strong>: <strong>Lỗi Client (Lỗi của bạn)</strong>.</li>
+<li><code>404</code>: Số điện thoại bạn gọi là số không đúng (nhập sai địa chỉ).</li>
+<li><code>403</code>: Gọi thông rồi nhưng bị dập máy (không có quyền truy cập).</li>
+<li><strong>5xx (như 500/502)</strong>: <strong>Lỗi Server (Lỗi của nó)</strong>. Code bị nổ, hoặc server sập rồi.</li>
+</ul>
+<p>Hóa ra, lỗi 403 lần này là do tên miền mặc định của nền tảng trong nước mặc định bật bảo vệ xác thực để <strong>tuân thủ nội dung</strong>. Bạn hiểu ra: <strong>Muốn cho người khác xem ổn định, bắt buộc phải liên kết một tên miền tùy chỉnh thuộc về chính mình.</strong></p>
+<h3>Tên miền tùy chỉnh</h3>
+<p>Bạn nghe nói trên mạng có tên miền cấp 2 cho nhận miễn phí, nghĩ bụng tiết kiệm được bao nhiêu hay bấy nhiêu. Sư phụ nghiêm túc ngăn bạn lại: <strong>"Làm sản phẩm, tên miền chính là mặt tiền."</strong> Những tên miền miễn phí này thường cực kỳ không ổn định, có thể bị thu hồi bất cứ lúc nào, hơn nữa dễ bị trình duyệt đánh dấu là trang web không an toàn. Thế là bạn quyết định đi mua một tên miền cấp cao (TLD) đàng hoàng (như <code>.com</code>).</p>
+<h3>Tên miền và Tài sản thương hiệu</h3>
+<p>Sư phụ bổ sung: "<strong>Ba điều kiện của tên miền tốt</strong>: Ngắn, dễ nhớ, dễ đánh vần. Ví dụ <code>zoom.com</code>, <code>dropbox.com</code> đều là các case kinh điển. <strong>Chiến lược đầu tư tên miền</strong>: Khi đăng ký tên miền phải cân nhắc chi phí gia hạn, một số tên miền cấp cao (như <code>.io</code>) phí gia hạn rất đắt. Ngoài ra, để bảo vệ nhãn hiệu, nên đăng ký nhiều biến thể như <code>.com</code>, <code>.net</code>, <code>.vn</code>... để tránh bị đầu cơ.</p>
+<p>Tên miền là số nhà trong thời đại số, tên miền tốt là tài nguyên khan hiếm.</p>
+<h3>Giới thiệu nhà cung cấp dịch vụ Cloud</h3>
+<p>Sư phụ tiện thể phổ cập cho bạn về các nhà cung cấp dịch vụ Cloud chủ lưu. Có thể bạn đã nghe qua những cái tên này: <strong>Aliyun (Alibaba Cloud), Tencent Cloud, AWS (Amazon Web Services), Huawei Cloud</strong>, v.v.</p>
+<p>Họ là những ông lớn về hạ tầng đám mây, cung cấp dải sản phẩm cloud một trạm (one-stop):</p>
+<ul>
+<li><strong>Tính toán</strong>: Máy chủ ảo (ECS/CVM)</li>
+<li><strong>Lưu trữ</strong>: Lưu trữ đối tượng (OSS/COS)</li>
+<li><strong>Cơ sở dữ liệu</strong>: Database trên mây (RDS)</li>
+<li><strong>Mạng</strong>: Tăng tốc CDN, Cân bằng tải (Load Balancing)</li>
+<li><strong>An ninh</strong>: Tường lửa, Chống DDoS</li>
+</ul>
+<p>So với các nền tảng Deploy mới nổi (EdgeOne Pages, ESA Functions &amp; Pages, Vercel...), nhà cung cấp Cloud truyền thống có chức năng toàn diện hơn, nhưng cấu hình cũng phức tạp hơn. Chúng phù hợp cho dự án cấp doanh nghiệp hoặc kịch bản cần tổ hợp nhiều dịch vụ cloud. Đối với cá nhân phát triển hoặc kiểm chứng MVP, sư phụ khuyên nên dùng nền tảng Deploy đơn giản trước, đợi sản phẩm lớn mạnh rồi hãy tính chuyện di dời sang Cloud truyền thống.</p>
+<h3>Phân giải DNS</h3>
+<p>Trong quá trình cấu hình, cuối cùng bạn cũng hiểu <strong>Phân giải DNS</strong> là gì. Bạn hiểu ra DNS giống như <strong>danh bạ điện thoại</strong> của Internet, tác dụng của nó là dịch cái tên miền dễ nhớ (tên người) của bạn thành địa chỉ IP mà máy móc hiểu được (số điện thoại).</p>
+<p>Sư phụ dạy bạn cấu hình 2 loại bản ghi phổ biến nhất:</p>
+<ul>
+<li><strong>Bản ghi A</strong>: Trỏ trực tiếp đến một <strong>địa chỉ IP</strong> cụ thể.</li>
+<li><em>Ngữ cảnh</em>: Ví dụ sau này bạn mua một con Cloud Server, có một IP công khai cố định là <code>1.2.3.4</code>, bạn dùng bản ghi A để trỏ tên miền vào đó.</li>
+<li><strong>Bản ghi CNAME</strong>: Trỏ đến <strong>một tên miền khác</strong> (biệt danh).</li>
+<li><em>Ngữ cảnh</em>: EdgeOne cấp cho bạn địa chỉ truy cập là một chuỗi dài <code>your-project.pages.eo</code>. Bạn dùng CNAME để trỏ <code>www.example.com</code> của bạn vào đó. Việc này cũng giống như bạn cài đặt chuyển cuộc gọi, người khác gọi vào tên miền của bạn, tự động chuyển tiếp đến máy chủ của EdgeOne.</li>
+</ul>
+<p>Trang web của bạn cuối cùng cũng có thân phận hợp pháp trên Internet.</p>
+<h3>Chứng chỉ HTTPS</h3>
+<p>Các nền tảng Deploy hiện đại hỗ trợ <strong>Chứng chỉ HTTPS</strong> miễn phí (thường là Let's Encrypt), nó sẽ treo một cái <strong>ổ khóa xanh</strong> trên thanh địa chỉ trình duyệt của bạn, đảm bảo dữ liệu truyền tải giữa người dùng và trang web của bạn được mã hóa, không bị kẻ gian nghe lén.</p>
+<p>Tuy nhiên các nền tảng trong nước (như EdgeOne Pages) thường cần bạn <strong>bấm nút xin cấp thủ công</strong> —— tìm mục cấu hình HTTPS trong trang quản lý tên miền, bấm nút "Xin cấp chứng chỉ miễn phí" là được. Sau khi xin cấp thành công sẽ <strong>tự động gia hạn</strong>, bạn không cần lo vấn đề hết hạn.</p>
+<p>Nền tảng nước ngoài (như Vercel) thường sẽ tự động xin cấp chứng chỉ sau khi bạn liên kết tên miền tùy chỉnh, đỡ lo hơn một chút.</p>
+<h3>Lời kết</h3>
+<p>Cuối cùng, sư phụ báo cho bạn một tin tốt. Dự án của bạn đã đi hết vòng khép kín hoàn chỉnh của phát triển Fullstack, có thể gửi bài tham dự <strong>Phần thực hành của hướng dẫn này</strong>. Nếu được chọn, người phụ trách liên quan của trang web này sẽ phân bổ cho bạn một <strong>tên miền cấp 2 độc quyền</strong> và cung cấp <strong>hỗ trợ tài nguyên Cloud</strong> nhất định.</p>
+<p>Như vậy, bạn có thể tập trung vào code và sáng tạo, không cần phiền não về những việc lặt vặt như mua tên miền, phân giải và vận hành nữa.</p>
+<hr />
+<h3>Tên miền Việt Nam (.vn)</h3>
+<p>Nếu bạn phát triển sản phẩm hướng đến người dùng Việt Nam, tên miền quốc gia <strong>.vn</strong> là lựa chọn uy tín nhất.</p>
+<ul>
+<li><strong>Ưu điểm</strong>: Thương hiệu nhận diện cao tại Việt Nam, được pháp luật Việt Nam bảo vệ, hỗ trợ SEO tốt cho tìm kiếm tại Việt Nam.</li>
+<li><strong>Lưu ý</strong>: Thủ tục đăng ký cần cung cấp CCCD/CMND (cá nhân) hoặc Giấy phép kinh doanh (tổ chức) và cần thực hiện khai báo sử dụng theo quy định của VNNIC.</li>
+</ul>
+<hr />
+<h3>Mục lục chương này</h3>
+<pre><code>1. **13.1 Lựa chọn nền tảng Deploy và Truy cập** 🟢
+   Hiểu sự khác biệt giữa nền tảng deploy trong và ngoài nước, lựa chọn vùng tăng tốc, và hạn chế truy cập của tên miền mặc định.
+
+2. **13.2 Hướng dẫn mua tên miền** 🟡
+   Cách chọn và mua một tên miền tốt, bao gồm chiến lược tên miền, chọn nhà đăng ký và tối ưu chi phí.
+
+3. **13.3 Cấu trúc tên miền** 🟢
+   Hiểu cấu trúc phân cấp và thành phần của tên miền, bao gồm tên miền gốc (root), tên miền cấp cao (TLD), tên miền cấp 2 (SLD) và tên miền con (subdomain).
+
+4. **13.4 Thực chiến phân giải DNS** 🔴
+   Bắt tay cấu hình phân giải DNS, hiểu ngữ cảnh sử dụng và phương pháp cấu hình bản ghi A và CNAME.
+
+5. **13.5 Thường thức về Mã trạng thái HTTP** 🔴
+   Hiểu mã trạng thái HTTP, gặp báo lỗi không hoảng. Học cách định vị nhanh vấn đề thông qua mã trạng thái.
+
+6. **13.6 HTTPS và Giao thức mạng** 🟡
+   Hiểu nguyên lý hoạt động của HTTP, HTTPS, SSL/TLS, và tại sao bắt buộc phải bật HTTPS.
+
+7. **13.7 Lựa chọn vùng phục vụ** 🟡
+   Cách chọn vùng phục vụ và node mạng phù hợp, hiểu sự khác biệt và chiến lược lựa chọn giữa Cấp phép (Bắc án/ICP) và Miễn cấp phép.
+
+8. **13.8 Thực chiến cấu hình chứng chỉ SSL** 🔴
+   Thực thao tác cấu hình chứng chỉ SSL, bật HTTPS, bao gồm xin cấp và tự động gia hạn chứng chỉ miễn phí Let's Encrypt.
+</code></pre>
+</body>
+</html>

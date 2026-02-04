@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "Chương 7: Biến môi trường và cơ chế bảo mật"</h2>
+<h1>Chương 7: Biến môi trường và cơ chế bảo mật</h1>
+<h2>Lời tựa</h2>
+<p>Trước khi bắt đầu xử lý dữ liệu, sư phụ nghiêm mặt ngăn bạn lại. Ông phát hiện bạn đang định viết thẳng API Key của nền tảng AI và mật khẩu database vào trong code. Ông bảo, đây là điều đại kỵ trong giới lập trình. Mạng Internet bây giờ đầy rẫy crawler đi tuần tra 24/7, chuyên quét các kho code công khai trên GitHub. Nếu code của bạn chứa khóa bí mật dạng văn bản rõ (plaintext), thường chỉ vài giây sau khi commit, hạn mức API của bạn sẽ bị trộm sạch, thậm chí gánh khoản nợ khổng lồ, nghe mà toát mồ hôi hột.</p>
+<h3>Biến môi trường .env</h3>
+<p>Bạn đã biết sơ qua về việc dùng file <code>.env</code> để chuyên chứa những thông tin nhạy cảm này. Bạn hiểu thế nào là biến môi trường —— chỉ chương trình đang chạy mới biết, chứ không bị viết toạc ra trên mặt code.</p>
+<h3>Danh sách chặn .gitignore</h3>
+<p>Nhưng chỉ tạo file <code>.env</code> thôi chưa đủ, vì nếu bạn lỡ tay gõ <code>git add .</code>, file này vẫn sẽ bị đóng gói upload lên GitHub. Sư phụ chỉ vào cái file bắt đầu bằng dấu chấm <strong><code>.gitignore</code></strong> ở thư mục gốc dự án, bảo đây mới là phòng tuyến cuối cùng ngăn bạn phá sản. Bạn có thể hiểu nó là <strong>danh sách chặn</strong> của Git. Phàm là những cái tên được viết trong file này, Git sẽ <strong>bỏ qua</strong> khi quét các thay đổi của dự án.</p>
+<p>Sư phụ bảo bạn nhất định phải kiểm tra xem trong đó có chứa mấy loại file phổ biến này không:</p>
+<ul>
+<li><strong>Cấu hình nhạy cảm</strong>: Như <code>.env</code>, đây là "chìa khóa thật" tuyệt đối không được upload.</li>
+<li><strong>Gói dependency</strong>: Như <code>node_modules/</code>, cái thư mục khổng lồ chứa hàng vạn gói dependency bên thứ 3 này, đồng đội chỉ cần chạy lệnh cài đặt là tải lại được, không cần upload.</li>
+<li><strong>Sản phẩm build</strong>: Như <code>.next/</code> hoặc <code>dist/</code>, đây là file tạm sinh ra sau khi biên dịch code, không cần lưu trữ.</li>
+<li><strong>Rác hệ thống</strong>: Như <code>.DS_Store</code> (file cache của Mac) hoặc <code>Thumbs.db</code> (cache hình thu nhỏ của Windows), upload lên chỉ tổ làm bạn trông thiếu chuyên nghiệp.</li>
+<li><strong>Log lỗi</strong>: Như <code>npm-debug.log</code>, đây là ghi chép hiện trường khi báo lỗi, thường cũng không cần chia sẻ.</li>
+</ul>
+<p>Nếu bạn thực sự lỡ tay, chưa cấu hình <code>.gitignore</code> mà đã commit file nhạy cảm lên rồi, thì chỉ xóa file rồi commit lại là vô dụng, vì trong lịch sử Git vẫn tra ra được. Lúc này, bạn có thể cầu cứu AI: <strong>"Tôi lỡ tay commit mật khẩu vào lịch sử Git rồi, xin hãy giúp tôi viết lệnh xóa sạch nó đi."</strong> AI sẽ hướng dẫn bạn dùng các lệnh phức tạp để sửa chữa sai lầm. Tất nhiên, để an toàn tuyệt đối, sau khi rửa sạch lịch sử, tốt nhất vẫn là lên trang chủ <strong>đổi Key mới (Reset Key)</strong>.</p>
+<h3>Bản mẫu .env.example</h3>
+<p>Đã chặn <code>.env</code> rồi, thì sau này đồng đội kéo code về sao biết cần cấu hình những biến nào? Lúc này cần dùng đến <strong><code>.env.example</code></strong>. Nếu nói <code>.env</code> là két sắt chứa chìa khóa thật, thì <code>.env.example</code> là cái khuôn đúc chìa khóa rỗng. Bạn chỉ liệt kê tên biến vào đó (ví dụ <code>DATABASE_URL=</code>), nhưng không điền giá trị cụ thể. File này cần commit lên GitHub, đồng đội kéo code về, chỉ cần copy một bản đổi tên thành <code>.env</code>, rồi điền Key của họ vào là dự án chạy được.</p>
+<h3>Cấu hình chưa hiệu lực</h3>
+<p>Cấu hình xong .gitignore, chìa khóa của bạn đã an toàn. Nhưng sư phụ nhắc nhở, nếu bạn dùng MCP Server, thông tin kết nối của chúng cũng chứa chứng thực nhạy cảm, cũng cần quản lý qua biến môi trường, chứ không được viết chết trong file cấu hình. Cấu hình bảo mật cho MCP chúng ta sẽ nói kỹ ở các chương sau.</p>
+<p>Cấu hình xong xuôi, bạn dẫm ngay phải một cái hố to: Bạn đã cấu hình Key trong <code>.env</code>, code cũng viết logic gọi rồi, nhưng chương trình vẫn báo lỗi <code>undefined</code> hoặc hiện tượng lạ. Bạn kiểm tra chính tả, kiểm tra đường dẫn file, thậm chí bắt đầu hoài nghi nhân sinh. Cuối cùng sư phụ thốt ra một câu xanh rờn: "<strong>Sửa file cấu hình thì phải khởi động lại terminal service.</strong>" Bạn ngậm ngùi tắt tiến trình terminal (Ctrl+C) rồi chạy lại <code>pnpm dev</code>, mọi thứ bình thường. Bạn hiểu sâu sắc cái sự "hiệu lực trễ" của cấu hình biến môi trường —— vì biến môi trường được nạp vào bộ nhớ ngay khoảnh khắc chương trình khởi động, đang chạy mà sửa file thì giá trị cũ trong bộ nhớ sẽ không tự cập nhật.</p>
+<h3>Server và Client</h3>
+<p>Theo đà phát triển Next.js, bạn lại gặp một hiện tượng quỷ dị: Bạn định nghĩa <code>API_KEY</code> trong <code>.env</code>, ở phía server (API Route) thì đọc được, nhưng ở component Frontend (React Component) in ra lại là <code>undefined</code>. Sư phụ bảo, đây là <strong>cơ chế bảo mật</strong> Next.js thiết kế để phòng ngừa bạn làm điều ngốc nghếch, tiện thể bổ túc cho bạn khái niệm <strong>Server (Phía chủ)</strong> và <strong>Client (Phía khách)</strong>.</p>
+<ul>
+<li><strong>Server (Phía chủ)</strong>: Thường chỉ <strong>máy chủ deploy trên cloud</strong> (hoặc tiến trình Node.js chạy ngầm ở local của bạn). Nơi này chạy code Backend, kết nối trực tiếp database. Vì người dùng không thể tiếp xúc trực tiếp với nội bộ cái máy này, nên đọc khóa riêng (Private Key, API Key) ở đây là rất an toàn. Mặc định, biến trong <code>.env</code> <strong>chỉ khả dụng ở phía Server</strong>.</li>
+<li><strong>Client (Phía khách)</strong>: Chỉ <strong>thiết bị của người dùng</strong>, ví dụ trình duyệt trên máy tính người dùng, App trên điện thoại. Code Frontend cuối cùng là chạy trong máy tính hoặc điện thoại của người dùng. Bất cứ dữ liệu nào gửi xuống Client, người dùng đều có thể dùng biện pháp kỹ thuật (ví dụ F12 Developer Tools của trình duyệt) để xem được. Nếu để lộ API Key ở Client, thì cũng ngang với dán mật mã két sắt lên cổng lớn.</li>
+</ul>
+<p>Cho nên, nếu bạn thực sự cần dùng thông tin không nhạy cảm ở Frontend (ví dụ tiêu đề website, địa chỉ API công khai), bạn bắt buộc phải thêm tiền tố <strong><code>NEXT_PUBLIC_</code></strong> vào trước tên biến (ví dụ <code>NEXT_PUBLIC_ANALYTICS_ID</code>). Chỉ những biến có tiền tố này, công cụ Build mới cho phép nó được gửi từ phía Server an toàn xuống thiết bị của người dùng.</p>
+<h3>Cross-Origin (Xuyên miền) —— Cơ chế bảo mật của trình duyệt</h3>
+<p>Có lúc bạn sẽ gặp một lỗi lạ: Rõ ràng địa chỉ API đúng, nhưng lại báo lỗi "Request xuyên miền bị chặn" (CORS policy).</p>
+<p>Sư phụ giải thích: <strong>Đây là cơ chế bảo mật của trình duyệt</strong>. Giả sử website hiện tại là <code>a.com</code>, nó gửi request lấy dữ liệu từ <code>b.com</code>, trình duyệt sẽ chặn lại. Vì nếu không chặn, trang web độc hại có thể mạo danh bạn gửi request đến trang web khác, ví dụ trang ngân hàng, thế thì nguy hiểm quá.</p>
+<p>Cho nên giới hạn xuyên miền là để bảo vệ an toàn cho người dùng. Giải pháp nằm ở phía Backend: Bảo AI cấu hình CORS (Cross-Origin Resource Sharing), chỉ định rõ cho phép những tên miền nào truy cập API của bạn. Hiểu khái niệm này, gặp báo lỗi sẽ không bị ngơ ngác, biết là vấn đề cấu hình Backend chứ không phải code viết sai.</p>
+<h3>Biến môi trường trên Cloud</h3>
+<p>Cuối cùng, bạn có thể sẽ hỏi: Online rồi thì làm gì có file <code>.env</code> nữa? Sư phụ bảo, trên các nền tảng deploy sau này đều có trang cài đặt biến môi trường chuyên biệt. Bạn chỉ cần điền từng nội dung trong <code>.env</code> local vào đó là được. Việc này giống như chuyển tiền từ két sắt ở nhà (local <code>.env</code>) sang két sắt ngân hàng (cấu hình Cloud), tuy vị trí thay đổi nhưng bản chất không đổi.</p>
+<h3>Middleware (Phần mềm trung gian)</h3>
+<p>Bạn đã học được cách bảo vệ khóa, cũng hiểu sự khác biệt giữa Server và Client. Nhưng một ngày nọ, bạn chợt nhận ra một vấn đề: <strong>Frontend ẩn lối vào chỉ là bịt tai trộm chuông, bảo vệ định tuyến Backend mới là phòng tuyến thực sự.</strong></p>
+<p>Ví dụ, bạn làm một trang quản trị <code>/admin</code>, trên giao diện Frontend bạn giấu lối vào rất kỹ, nhưng nhập tay <code>/admin</code> trên thanh địa chỉ trình duyệt thì lại vào thẳng trang quản trị! Điều này có nghĩa là bất kỳ ai cũng có thể truy cập trang nhạy cảm của bạn.</p>
+<p>Sư phụ bảo, trong Next.js, không cần viết logic phán đoán ở từng trang, chỉ cần đặt một file <strong><code>middleware.ts</code></strong> ở thư mục gốc dự án. Nó giống như <strong>thủ môn</strong> của website —— mỗi một request (dù là truy cập trang hay gọi API) trước khi đến được server, đều phải qua nó kiểm tra trước.</p>
+<p>Bạn bảo AI viết một đoạn logic đơn giản:</p>
+<blockquote>
+<p>"Chặn tất cả các đường dẫn bắt đầu bằng <code>/admin</code>. Nếu người dùng chưa đăng nhập (thiếu Session), hoặc vai trò người dùng không phải admin, đá ngay về trang đăng nhập."</p>
+</blockquote>
+<p>Vài dòng code, bịt kín lỗ hổng truy cập trái phép. Bạn thực sự hiểu ý nghĩa của vòng khép kín Fullstack —— <strong>An toàn không dựa vào may mắn, mà dựa vào logic chặt chẽ.</strong></p>
+<h3>Sự tiến hóa của phương thức xác thực</h3>
+<p>Sư phụ thuận miệng nhắc một câu: <strong>Website đời đầu dùng Session, ứng dụng hiện đại đa số dùng Token (như JWT)</strong>.</p>
+<ul>
+<li><strong>Session (Phiên)</strong>: Server ghi lại trạng thái người dùng trong bộ nhớ hoặc database, trình duyệt mang theo một cái ID qua Cookie. Server dựa vào ID tra ra thông tin người dùng. Nhược điểm là Server phải lưu trữ, và khi có nhiều Server thì chia sẻ rất phiền phức.</li>
+<li><strong>Token (Thẻ bài)</strong>: Server cấp một cái "thẻ bài" đã mã hóa cho trình duyệt, bên trong chứa thông tin người dùng. Trình duyệt mỗi lần gửi request đều mang theo thẻ bài, Server giải mã xác thực là xong. Ưu điểm là không cần lưu trữ, dễ mở rộng.</li>
+</ul>
+<p>Tin tốt là, AI biết nên dùng cách nào, Next.js cũng có giải pháp xác thực chín muồi (như NextAuth). Bạn chỉ cần hiểu: Xác thực là quá trình "chứng minh bạn là bạn", chi tiết kỹ thuật cứ giao cho AI.</p>
+<h3>An toàn xuyên suốt chu kỳ phát triển</h3>
+<p>Bạn học được cách cấu hình biến môi trường, học được bảo vệ định tuyến bằng Middleware, cảm thấy dự án đã rất an toàn rồi. Nhưng sư phụ bảo, đây mới chỉ là phần nổi của tảng băng chìm.</p>
+<p>Ứng dụng hiện đại đối mặt với mối đe dọa an ninh xa hơn nhiều so với "lộ mật khẩu" hay "truy cập trái phép". Nếu ứng dụng của bạn sử dụng AI Agents, nó có thể bị tấn công <strong>Prompt Injection</strong> —— kẻ tấn công thông qua đầu vào được thiết kế tinh vi, lừa AI thực hiện thao tác bạn không muốn, ví dụ tiết lộ dữ liệu nhạy cảm. Còn một mối đe dọa kín đáo hơn: <strong>Lộ chứng thực (Credentials Leak)</strong>. Nếu bạn lỡ tay commit API Key vào kho Git, dù sau đó bạn xóa đi, nhưng những chứng thực này vẫn lưu trong lịch sử Git, ai truy cập vào kho cũng xem được.</p>
+<p>Bảo vệ an toàn không phải chuyện làm một lần là xong, mà phải xuyên suốt cả chu kỳ phát triển. Tin tốt là, mấy cái này đều có thể bảo AI làm hộ —— bạn có thể bảo AI rà soát code, tìm ra vấn đề bảo mật tiềm ẩn. Bạn bắt đầu hình thành tư duy "an toàn trên hết", khi viết code sẽ vô thức nghĩ: "Chỗ này có rủi ro bảo mật không?", "Cái khóa này có nên để vào biến môi trường không?", "Cái route này có cần thêm Middleware bảo vệ không?". Bạn không còn coi an toàn là chuyện "vuốt đuôi", mà hòa nhập nó vào từng khâu của quy trình phát triển.</p>
+<p><strong>Ý thức an toàn có 3 tầng</strong>:</p>
+<p><strong>Tầng 1: An toàn cơ bản</strong> (Trọng điểm chương này). Biến môi trường, .gitignore, bảo vệ định tuyến Middleware. Đây là bài nhập môn bắt buộc, không làm thì coi như "cởi truồng chạy rông".</p>
+<p><strong>Tầng 2: An toàn ứng dụng</strong>. Khi sản phẩm online, bạn phải đối mặt với mối đe dọa phức tạp hơn. Gồm: <strong>Chống SQL Injection</strong> (dùng ORM tự động xử lý, như Drizzle), <strong>Chống tấn công XSS</strong> (React mặc định escape + xác thực đầu vào), <strong>Chống tấn công CSRF</strong> (Next.js tích hợp sẵn xác thực Token), <strong>Mã hóa dữ liệu nhạy cảm</strong> (mã hóa trường trong database), <strong>Quét lỗ hổng dependency</strong> (định kỳ chạy <code>pnpm audit</code>). Nghe thì đáng sợ, nhưng chỉ cần chọn đúng Tech Stack (như Next.js + Drizzle), phần lớn đã được tích hợp sẵn.</p>
+<p><strong>Tầng 3: An toàn chuyên sâu</strong>. Quét lỗ hổng, kiểm thử xâm nhập (Penetration Test), kiểm toán an ninh. Đây là nội dung nâng cao, khi sản phẩm của bạn có người dùng thật, cần định kỳ thực hiện.</p>
+<p>An toàn không phải cấu hình một lần, mà là ý thức xuyên suốt chu kỳ phát triển. Mỗi khi viết một dòng code, đều phải tự hỏi: Cái này có an toàn không?"</p>
+<p>::: danger Cái giá phải trả thực sự của sự cố an ninh</p>
+<p><strong>Các sự cố an ninh nghiêm trọng những năm gần đây:</strong></p>
+<ol>
+<li><strong>Sự cố lộ Key GitHub (2021)</strong></li>
+<li>Hàng ngàn kho code để lộ Key AWS/GCP</li>
+<li>Tổn thất trung bình: khoảng 360,000 NDT / tài khoản (~1.2 tỷ VNĐ)</li>
+<li>
+<p>Kẻ tấn công phát hiện và lợi dụng Key bị lộ trong vòng 5 phút</p>
+</li>
+<li>
+<p><strong>Bài học của một công ty khởi nghiệp</strong></p>
+</li>
+</ol>
+<p><code>bash
+   # Câu chuyện có thật
+   Developer lỡ tay commit .env vào kho công khai
+   → 2 tiếng sau phát hiện phí API bất thường
+   → OpenAI phát sinh hóa đơn khoảng 86,000 NDT (~300 triệu VNĐ)
+   → Tài khoản công ty bị trộm dùng
+   → Không gánh nổi chi phí, dự án chấm dứt</code></p>
+<ol>
+<li><strong>Phản ứng dây chuyền của lộ dữ liệu</strong></li>
+<li>Lộ Key → Database bị truy cập</li>
+<li>Lộ dữ liệu người dùng → Kiện tụng pháp lý</li>
+<li>Mất uy tín thương hiệu → Mất người dùng</li>
+<li>Phạt vi phạm quy định → Công ty phá sản
+     :::
+     ::: tip Quy trình phát triển an toàn</li>
+</ol>
+<p><strong>Hòa nhập an toàn vào từng giai đoạn:</strong></p>
+<p><strong>Giai đoạn phân tích nhu cầu</strong></p>
+<ul>
+<li>Nhận diện dữ liệu và chức năng nhạy cảm</li>
+<li>Đánh giá rủi ro an ninh</li>
+<li>Xây dựng yêu cầu bảo mật</li>
+</ul>
+<p><strong>Giai đoạn thiết kế</strong></p>
+<ul>
+<li>Thiết kế kiến trúc an toàn</li>
+<li>Chọn Tech Stack an toàn</li>
+<li>Quy hoạch kiểm soát truy cập</li>
+</ul>
+<p><strong>Giai đoạn phát triển</strong></p>
+<ul>
+<li>Dùng biến môi trường quản lý Key</li>
+<li>Thực thi bảo vệ định tuyến Middleware</li>
+<li>Viết code an toàn</li>
+</ul>
+<p><strong>Giai đoạn kiểm thử</strong></p>
+<ul>
+<li>Test case an ninh</li>
+<li>Kiểm thử xâm nhập</li>
+<li>Quét lỗ hổng dependency</li>
+</ul>
+<p><strong>Giai đoạn triển khai</strong></p>
+<ul>
+<li>Xác minh cấu hình biến môi trường</li>
+<li>Bật HTTPS</li>
+<li>Cấu hình Header HTTP an toàn</li>
+</ul>
+<p><strong>Giai đoạn bảo trì</strong></p>
+<ul>
+<li>Kiểm toán an ninh định kỳ</li>
+<li>Luân chuyển Key (Key Rotation)</li>
+<li>Giám sát log an ninh
+  :::
+  ::: warning Các mục phải kiểm tra ngay lập tức</li>
+</ul>
+<p><strong>Trước khi tiếp tục, hãy kiểm tra ngay:</strong></p>
+<pre><code class="language-bash"># 1. Kiểm tra xem .env có bị theo dõi không
+git ls-files | grep &quot;.env&quot;
+
+# 2. Kiểm tra thông tin nhạy cảm trong lịch sử Git
+git log --all --source -- &quot;*env*&quot;
+git log --all --source -- &quot;*password*&quot;
+git log --all --source -- &quot;*api*key*&quot;
+
+# 3. Kiểm tra file chưa theo dõi ở nhánh hiện tại
+git status
+
+# 4. Kiểm tra cấu hình .gitignore
+cat .gitignore | grep -E &quot;\.env|node_modules&quot;
+</code></pre>
+<p><strong>Nếu phát hiện bất kỳ vấn đề nào, xử lý ngay:</strong></p>
+<ol>
+<li>Dừng công việc hiện tại</li>
+<li>Đọc nội dung liên quan trong chương này</li>
+<li>Sửa chữa vấn đề bảo mật</li>
+<li>Thu hồi Key đã bị lộ (nếu có)</li>
+<li>Sinh Key mới</li>
+<li>Xác minh hiệu quả sửa chữa</li>
+</ol>
+<p>:::</p>
+<h3>Mục lục chương này</h3>
+<pre><code>#### 7.1 Cấu hình file .env (./01-env-config.md)
+Quy tắc cơ bản, quy định đặt tên, phương pháp cấu hình biến môi trường, và rà soát lỗi thường gặp.
+
+#### 7.2 Chi tiết Server vs Client (./02-server-vs-client.md)
+Sự khác biệt giữa phía chủ và phía khách, quy tắc truy cập biến môi trường, so sánh phương thức render.
+
+#### 7.3 Server-Side Rendering vs Client-Side Rendering (./03-ssr-vs-csr.md)
+Sự khác biệt giữa SSR, CSR, SSG, quá trình Hydration, chiến lược tối ưu hiệu năng.
+
+#### 7.4 Thực hành tốt nhất .gitignore (./04-gitignore-best-practices.md)
+Tác dụng, cú pháp của .gitignore, danh sách kiểm tra an toàn, và cách xử lý file nhạy cảm.
+
+#### 7.5 Đồng bộ biến môi trường lên Cloud (./05-sync-env-to-cloud.md)
+Cách cấu hình biến môi trường trên Vercel, Railway, Docker, quy trình deploy tự động hóa.
+
+#### 7.6 Bảo vệ định tuyến Middleware (./06-middleware-protection.md) 🔴
+Sử dụng Next.js Middleware thực hiện bảo vệ định tuyến, xác thực ủy quyền, giới hạn tốc độ...
+
+#### 7.7 Danh sách kiểm tra an toàn (./07-security-checklist.md)
+Danh sách kiểm tra an toàn trọn vẹn, bao gồm các phương diện biến môi trường, Git, xác thực, định tuyến, dữ liệu, truyền tải, dependency, log, deploy...
+
+#### 7.8 Bảo vệ an ninh nâng cao (./08-advanced-security.md) 🟡
+Phòng chống CSRF, XSS, SQL Injection, giới hạn tốc độ, chính sách an ninh nội dung (CSP), mã hóa dữ liệu nhạy cảm, an ninh ứng dụng AI...
+</code></pre>
+</body>
+</html>

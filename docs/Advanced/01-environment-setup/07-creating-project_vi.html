@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07 Creating Project</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "1.7 Tạo dự án"
+description: "Từ quy tắc đặt tên thư mục đến tạo mẫu dự án"
+chapter: "Chương 1"</p>
+<hr />
+<h1>1.7 Tạo dự án</h1>
+<blockquote>
+<p><strong>Đọc xong phần này, bạn sẽ thu hoạch được:</strong></p>
+<ul>
+<li>Nắm vững quy tắc đặt tên thư mục, tránh các vấn đề phát triển do đường dẫn tiếng Trung (hoặc có dấu)</li>
+<li>Học cách sử dụng công cụ tạo dự án (scaffold) chính thức để nhanh chóng tạo cấu trúc dự án chuẩn</li>
+<li>Hiểu cấu trúc thư mục của dự án Next.js</li>
+</ul>
+</blockquote>
+<p>Sai lầm dễ mắc phải nhất của người mới là: Nhận được code do AI sinh ra, rồi tạo thủ công từng file một. Cách làm đúng là sử dụng mẫu dự án, để AI thông qua lệnh tạo dự án giúp bạn tạo ra cấu trúc chuẩn.</p>
+<h2>Công tác chuẩn bị</h2>
+<h3>Tạo thư mục dự án</h3>
+<p>Trước khi tạo dự án, hãy tạo một thư mục với <strong>đường dẫn tiếng Anh</strong> trong trình quản lý tệp.</p>
+<p><strong>Quan trọng</strong>: Mỗi cấp trong đường dẫn đầy đủ đều không được có tiếng Trung (tiếng Việt có dấu) hoặc dấu cách.</p>
+<table>
+<thead>
+<tr>
+<th>Ví dụ sai</th>
+<th>Nguyên nhân</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>C:/Users/Trương Tam/projects</code></td>
+<td>Tên người dùng là tiếng Việt/Trung/có dấu</td>
+</tr>
+<tr>
+<td><code>C:/Users/Li/my project</code></td>
+<td>Tên thư mục có dấu cách</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Ví dụ đúng</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>C:/Users/YourName/projects</code></td>
+<td>Toàn tiếng Anh, không dấu cách</td>
+</tr>
+<tr>
+<td><code>/Users/yourname/projects</code></td>
+<td>Thư mục người dùng macOS</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cấu trúc thư mục đề xuất</strong>:</p>
+<pre><code>my-projects/          ← Thư mục tổng
+├── my-first-app/     ← Dự án 1
+├── blog-app/         ← Dự án 2
+└── store-app/        ← Dự án 3
+</code></pre>
+<h3>Mở Terminal trong thư mục</h3>
+<p>Sau khi tạo xong thư mục, cần mở terminal tại đó để thực thi lệnh.</p>
+<table>
+<thead>
+<tr>
+<th>Hệ thống</th>
+<th>Thao tác</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Windows</strong></td>
+<td>Chuột phải vào chỗ trống trong thư mục → "Open in Terminal" (Mở trong Terminal)</td>
+</tr>
+<tr>
+<td><strong>Windows bản cũ</strong></td>
+<td>Giữ <code>Shift + Chuột phải</code> → "Open PowerShell window here"</td>
+</tr>
+<tr>
+<td><strong>Mac</strong></td>
+<td>Finder → Services → New Terminal at Folder</td>
+</tr>
+<tr>
+<td><strong>IDE</strong></td>
+<td>Cursor/VS Code/Trae: File → Open Folder, terminal tích hợp sẽ tự động định vị</td>
+</tr>
+</tbody>
+</table>
+<h3>Đường dẫn tệp là gì</h3>
+<p>Đường dẫn tệp là vị trí của tệp trong hệ thống tệp. Khi bảo AI "sửa src/app/page.tsx", AI cần thông qua đường dẫn để tìm tệp này.</p>
+<p><strong>Đường dẫn tuyệt đối</strong>: Đường dẫn đầy đủ bắt đầu từ thư mục gốc</p>
+<pre><code>Windows:  C:\Users\YourName\projects\my-app\package.json
+macOS:    /Users/yourname/projects/my-app/package.json
+</code></pre>
+<p><strong>Đường dẫn tương đối</strong>: Đường dẫn bắt đầu từ thư mục hiện tại</p>
+<pre><code>./package.json        # package.json nằm trong thư mục hiện tại
+../other-project      # other-project nằm ở thư mục cấp cha
+src/app/page.tsx      # src/app/page.tsx nằm trong thư mục hiện tại
+</code></pre>
+<h2>Quy tắc đặt tên</h2>
+<p>Công cụ phát triển hỗ trợ không tốt cho đường dẫn tiếng Trung/Việt có dấu, dễ dẫn đến đủ loại báo lỗi kỳ lạ.</p>
+<table>
+<thead>
+<tr>
+<th>Ví dụ đúng</th>
+<th>Ví dụ sai</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>my-project</code></td>
+<td><code>Dự án của tôi</code>、<code>my project</code></td>
+</tr>
+<tr>
+<td><code>user-profile</code></td>
+<td><code>user profile</code>、<code>hồ sơ người dùng</code></td>
+</tr>
+<tr>
+<td><code>app.tsx</code></td>
+<td><code>ứng dụng.tsx</code>、<code>app file.tsx</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Quy tắc</strong>:</p>
+<ul>
+<li>✅ Sử dụng chữ cái tiếng Anh viết thường</li>
+<li>✅ Sử dụng dấu gạch nối <code>-</code> để phân cách từ</li>
+<li>❌ Tránh ký tự tiếng Trung/Việt, dấu cách, ký tự đặc biệt</li>
+</ul>
+<p>::: tip Tại sao không được dùng tiếng Trung/Việt?</p>
+<p><strong>Báo lỗi thường gặp</strong>: <code>ENOENT: no such file or directory</code>, <code>MODULE_NOT_FOUND</code></p>
+<p>Đường dẫn tiếng Việt/Trung có thể dẫn đến vấn đề bảng mã (encoding), lỗi phân giải đường dẫn, vấn đề tương thích công cụ.</p>
+<p>:::</p>
+<h2>Tạo dự án</h2>
+<p>Các framework hiện đại đều cung cấp công cụ tạo dự án (scaffold) chính thức, chỉ cần một lệnh là tạo được dự án chuẩn.</p>
+<pre><code class="language-bash"># Tạo dự án Next.js (my-app là tên dự án, có thể sửa)
+pnpm create next-app@latest my-app
+
+# Tạo dự án Vite + React
+pnpm create vite@latest my-app -- --template react
+</code></pre>
+<p>Khi tạo sẽ hỏi các tùy chọn cấu hình:</p>
+<ul>
+<li><strong>TypeScript</strong>: Khuyên chọn Yes</li>
+<li><strong>ESLint</strong>: Khuyên chọn Yes</li>
+<li><strong>Tailwind CSS</strong>: Chọn tùy nhu cầu</li>
+<li><strong>src directory</strong>: Khuyên chọn Yes (Code đặt trong thư mục src/, cấu trúc rõ ràng hơn)</li>
+<li><strong>App Router</strong>: Khuyên chọn Yes</li>
+</ul>
+<p>::: tip Không muốn nhớ lệnh?</p>
+<p>Nếu không nhớ được lệnh, có thể sao chép trực tiếp lệnh mẫu trong giáo trình này. Nhưng lệnh rất đơn giản, khuyên bạn nên nhớ:</p>
+<pre><code class="language-bash">pnpm create next-app@latest my-app
+</code></pre>
+<p>:::</p>
+<h2>Cấu trúc dự án Next.js</h2>
+<p>Sau khi tạo xong, bạn sẽ thấy cấu trúc như sau:</p>
+<pre><code>my-next-app/
+├── src/
+│   ├── app/                 # Trang và API
+│   │   ├── page.tsx         # Trang chủ
+│   │   ├── layout.tsx       # Bố cục toàn cục
+│   │   └── api/             # Giao diện API
+│   │
+│   ├── components/          # UI Component
+│   └── lib/                 # Hàm tiện ích
+│
+├── public/                  # Tài nguyên tĩnh (Ảnh, Font)
+├── package.json             # Quản lý phụ thuộc
+└── tsconfig.json            # Cấu hình TypeScript
+</code></pre>
+<p><strong>Hiểu đơn giản</strong>:</p>
+<ul>
+<li><code>src/app/</code> - Đặt file trang web và giao diện</li>
+<li><code>src/components/</code> - Đặt các UI component có thể tái sử dụng</li>
+<li><code>src/lib/</code> - Đặt các hàm công cụ/tiện ích</li>
+<li><code>public/</code> - Đặt ảnh và tài nguyên tĩnh</li>
+<li><code>package.json</code> - Quản lý thư viện</li>
+<li><code>tsconfig.json</code> - Cấu hình TypeScript</li>
+</ul>
+<p>::: tip Code đặt ở đâu?</p>
+<p>Khi AI bảo "tạo trang danh sách người dùng", hãy tạo <code>users/page.tsx</code> trong <code>src/app/</code>.</p>
+<p>Khi AI bảo "tạo một component nút bấm", hãy tạo <code>Button.tsx</code> trong <code>src/components/</code>.</p>
+<p>:::</p>
+<h2>Cách tiện lợi hơn: Sử dụng /project-init</h2>
+<p>::: tip Sắp ra mắt</p>
+<p>Giáo trình này cung cấp skill <code>/project-init</code>, có thể tự động hóa toàn bộ quy trình khởi tạo dự án.</p>
+<p><strong>Nó làm được gì</strong>:</p>
+<ol>
+<li><strong>Kiểm tra môi trường</strong>: Tự động kiểm tra phiên bản Node.js, pnpm đã cài chưa</li>
+<li><strong>Đề xuất mẫu thông minh</strong>: Dựa trên nhu cầu của bạn (PRD, bản thiết kế, ý tưởng chức năng) để đề xuất Tech Stack phù hợp</li>
+<li><strong>Mẫu cài sẵn</strong>:</li>
+<li>Cấu hình đề xuất (Thuần Frontend)</li>
+<li>SaaS Fullstack (Kèm Database, Xác thực, Thanh toán)</li>
+<li>Trang tiếp thị/Landing Page</li>
+<li>Trang quản trị/Dashboard</li>
+<li>SPA nhẹ nhàng</li>
+<li><strong>Kiểm tra tương thích</strong>: Tự động xử lý phiên bản React, Tailwind v4, xung đột thư viện component...</li>
+<li><strong>Cài đặt tự động</strong>: Lệnh phi tương tác, một click tạo dự án</li>
+</ol>
+<p><strong>Ví dụ sử dụng</strong>:</p>
+<blockquote>
+<p>Dùng /project-init tạo một dự án SaaS cần đăng nhập người dùng và cơ sở dữ liệu</p>
+</blockquote>
+<p>Nó sẽ hướng dẫn bạn hoàn thành kiểm tra môi trường, phân tích nhu cầu, chọn mẫu, cài đặt dependency, cấu hình biến môi trường... toàn bộ quy trình.</p>
+<p>Sau khi giáo trình phát hành chính thức, sẽ cung cấp phương pháp cài đặt. Muốn tìm hiểu thêm về Skills, xem chi tiết <a href="../02-ai-tuning-guide/03-mcp-and-skills_vi.html">2.3 Hệ thống Skills</a>.</p>
+<p>:::</p>
+<h2>Khởi động dự án</h2>
+<pre><code class="language-bash"># Vào thư mục dự án (my-app sửa thành tên dự án bạn đã tạo)
+cd my-app
+
+# Khởi động server phát triển
+pnpm dev
+</code></pre>
+<p>Mở trình duyệt truy cập <code>http://localhost:3000</code>, thấy trang chào mừng là tạo thành công.</p>
+<h2>Câu hỏi thường gặp</h2>
+<h3>Q: Tôi nên dùng mẫu nào?</h3>
+<table>
+<thead>
+<tr>
+<th>Loại dự án</th>
+<th>Mẫu đề xuất</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ứng dụng Fullstack</td>
+<td>Next.js</td>
+</tr>
+<tr>
+<td>Frontend SPA</td>
+<td>Vite + React</td>
+</tr>
+<tr>
+<td>Web tĩnh</td>
+<td>Astro</td>
+</tr>
+</tbody>
+</table>
+<p>Giáo trình này sử dụng <strong>Next.js + TypeScript + Tailwind CSS</strong>, đây là giải pháp Fullstack phù hợp cho AI hỗ trợ phát triển.</p>
+<h3>Q: Đã lỡ dùng đường dẫn tiếng Trung/Việt rồi thì sao?</h3>
+<p>Thao tác trong trình quản lý tệp:</p>
+<ol>
+<li>Xóa thư mục <code>node_modules</code></li>
+<li>Tạo thư mục tiếng Anh mới</li>
+<li>Sao chép các file còn lại sang thư mục mới</li>
+<li>Chạy <code>pnpm install</code> trong thư mục mới</li>
+</ol>
+<h3>Q: Có thể để AI tạo từng file một không?</h3>
+<p>Không khuyến khích. Để AI tạo từng file dễ bị sót, tốn thời gian, có thể cấu hình sai. <strong>Cách làm đúng</strong>: Dùng scaffold tạo dự án chuẩn trước, rồi để AI sửa trên cấu trúc có sẵn.</p>
+<h2>Triết lý cốt lõi</h2>
+<p><strong>Sử dụng mẫu, thay vì bắt đầu từ con số 0</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Cách thức</th>
+<th>Kết quả</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tạo bằng scaffold</td>
+<td>Cấu trúc chuẩn, cấu hình sẵn, một click khởi động</td>
+</tr>
+<tr>
+<td>Tạo thủ công</td>
+<td>Dễ sót file, sai cấu hình, lãng phí thời gian</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Danh sách kiểm tra tạo dự án</strong>:</p>
+<ul>
+<li>[ ] Tên dự án không chứa tiếng Trung/Việt và dấu cách</li>
+<li>[ ] Sử dụng scaffold chính thức</li>
+<li>[ ] Hiểu công dụng của từng thư mục</li>
+<li>[ ] Dự án khởi động bình thường</li>
+</ul>
+<h2>Nội dung liên quan</h2>
+<ul>
+<li>Xem chi tiết: <a href="./05-nodejs-and-pnpm_vi.html">1.5 Môi trường Node.js và Quản lý gói</a></li>
+<li>Xem chi tiết: <a href="./08-localhost-and-ports_vi.html">1.8 Localhost và Cổng</a></li>
+<li>Tiếp theo: <a href="../02-ai-tuning-guide/">Chương 2 Hướng dẫn huấn luyện AI</a></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05 Nodejs And Pnpm</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "1.5 Môi trường Node.js và Quản lý gói"
+description: "Sử dụng nvm để cài đặt Node.js, cấu hình trình quản lý gói pnpm"
+chapter: "Chương 1"</p>
+<hr />
+<h1>1.5 Môi trường Node.js và Quản lý gói</h1>
+<blockquote>
+<p><strong>Đọc xong phần này, bạn sẽ thu hoạch được:</strong></p>
+<ul>
+<li>Nắm vững phương pháp sử dụng nvm để cài đặt và quản lý nhiều phiên bản Node.js</li>
+<li>Học cách cấu hình và sử dụng trình quản lý gói pnpm để quản lý các gói phụ thuộc (dependency)</li>
+<li>Hiểu tác dụng của các tệp cấu hình cốt lõi như package.json, pnpm-lock.yaml</li>
+</ul>
+</blockquote>
+<p>Phần này sẽ hoàn thành việc xây dựng môi trường Node.js hoàn chỉnh: sử dụng nvm cài đặt Node.js LTS, cấu hình trình quản lý gói pnpm.</p>
+<p>::: tip Làm sao để thực thi các lệnh bên dưới?</p>
+<p>Các lệnh trong khối code màu xám bên dưới cần được thực thi trong <strong>Terminal</strong>. Nếu bạn chưa quen với terminal, vui lòng đọc trước <a href="./04-terminal-basics_vi.html">1.4 Nhập môn Terminal</a>.</p>
+<p>:::</p>
+<h2>Khái niệm cơ bản</h2>
+<p><strong>Node.js</strong> là môi trường chạy JavaScript, giúp JS có thể chạy trên server. Các công cụ xây dựng frontend hiện đại đều dựa vào nó.</p>
+<p><strong>LTS</strong> (Long Term Support) là phiên bản hỗ trợ dài hạn, ổn định hơn bản Current, được khuyến nghị dùng cho phát triển.</p>
+<p><strong>nvm</strong> (Node Version Manager) cho phép bạn cài đặt và chuyển đổi nhiều phiên bản Node.js trên cùng một máy tính.</p>
+<p><strong>pnpm</strong> là trình quản lý gói, dùng để cài đặt các gói phụ thuộc cho dự án. So với npm, nó nhanh hơn và tiết kiệm dung lượng đĩa hơn.</p>
+<h2>Các bước cài đặt</h2>
+<h3>Người dùng Windows</h3>
+<h4>Phương án A: Sử dụng nvm (Khuyến nghị)</h4>
+<p><strong>Tải xuống nvm</strong>: https://nvm.uihtm.com/nvm-1.2.2-setup.zip</p>
+<p>Sau khi cài đặt xong, <strong>mở cửa sổ PowerShell mới</strong>, thực thi:</p>
+<p>::: tip Làm sao để sao chép dán lệnh?</p>
+<ol>
+<li>Bấm vào <strong>nút sao chép ở góc trên bên phải</strong> khối code</li>
+<li>Trong PowerShell <strong>nhấp chuột phải</strong> (Ctrl+V có thể không có tác dụng)</li>
+<li>Nhấn Enter để thực thi</li>
+</ol>
+<p>:::</p>
+<pre><code class="language-powershell">nvm install lts; nvm use lts; npm config set registry https://registry.npmmirror.com/; npm install -g pnpm; pnpm setup; pnpm config set registry https://registry.npmmirror.com/; node -v; pnpm -v
+</code></pre>
+<blockquote>
+<p>Lệnh này cài đặt Node.js 24 LTS → Cấu hình nguồn (mirror) trong nước (nếu cần, ở đây giữ nguyên mirror TQ vì tốc độ thường tốt hơn npm gốc, hoặc bạn có thể bỏ qua bước set registry nếu mạng tốt) → Cài đặt pnpm → Cấu hình nguồn pnpm. Lệnh có thể thực thi lặp lại.</p>
+</blockquote>
+<h4>Phương án B: Cài đặt Node.js trực tiếp</h4>
+<p><strong>Tải xuống Node.js</strong>: https://npmmirror.com/mirrors/node/v24.13.0/node-v24.13.0-x64.msi</p>
+<p>Nhấp đúp cài đặt, <strong>mở cửa sổ PowerShell mới</strong> thực thi:</p>
+<pre><code class="language-powershell">npm config set registry https://registry.npmmirror.com/; npm install -g pnpm; pnpm setup; pnpm config set registry https://registry.npmmirror.com/; node -v; pnpm -v
+</code></pre>
+<h3>Người dùng Mac / Linux</h3>
+<p><strong>Chú ý</strong>: Người dùng Mac trước khi cài nvm bắt buộc phải chạy <code>xcode-select --install</code>.</p>
+<pre><code class="language-bash"># Cài đặt một chạm (Tự động nhận diện Shell, tính lũy đẳng, cài xong cần khởi động lại terminal)
+export NVM_DIR=&quot;$HOME/.nvm&quot; &amp;&amp; RC=&quot;${ZSH_VERSION:+$HOME/.zshrc}&quot; &amp;&amp; [ -z &quot;$RC&quot; ] &amp;&amp; RC=&quot;$HOME/.bashrc&quot;
+[ ! -d &quot;$NVM_DIR&quot; ] &amp;&amp; git clone https://gitee.com/mirrors/nvm.git &quot;$NVM_DIR&quot; &amp;&amp; cd &quot;$NVM_DIR&quot; &amp;&amp; git checkout v0.40.3 &amp;&amp; cd - &gt;/dev/null
+grep -q &quot;NVM_DIR&quot; &quot;$RC&quot; || printf '\nexport NVM_DIR=&quot;$HOME/.nvm&quot;\n[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; . &quot;$NVM_DIR/nvm.sh&quot;\nexport NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/\nexport PNPM_HOME=&quot;$HOME/.local/share/pnpm&quot;\nexport PATH=&quot;$PNPM_HOME:$PATH&quot;\n' &gt;&gt; &quot;$RC&quot;
+export NVM_NODEJS_ORG_MIRROR=https://npmmirror.com/mirrors/node/ &amp;&amp; [ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; . &quot;$NVM_DIR/nvm.sh&quot;
+nvm install --lts &amp;&amp; nvm use --lts &amp;&amp; nvm alias default &quot;lts/*&quot;
+npm config set registry https://registry.npmmirror.com/ &amp;&amp; npm install -g pnpm &amp;&amp; pnpm config set registry https://registry.npmmirror.com/
+pnpm setup &gt;/dev/null 2&gt;&amp;1 &amp;&amp; export PNPM_HOME=&quot;$HOME/.local/share/pnpm&quot; &amp;&amp; export PATH=&quot;$PNPM_HOME:$PATH&quot;
+echo &quot;✅ Node: $(node -v) / pnpm: $(pnpm -v)&quot;
+</code></pre>
+<h2>Các lệnh pnpm thường dùng</h2>
+<table>
+<thead>
+<tr>
+<th>Lệnh</th>
+<th>Tác dụng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pnpm init</code></td>
+<td>Khởi tạo dự án</td>
+</tr>
+<tr>
+<td><code>pnpm install</code></td>
+<td>Cài đặt tất cả phụ thuộc</td>
+</tr>
+<tr>
+<td><code>pnpm add xxx</code></td>
+<td>Cài đặt phụ thuộc sản xuất (xxx thay bằng tên gói, ví dụ React)</td>
+</tr>
+<tr>
+<td><code>pnpm add -D xxx</code></td>
+<td>Cài đặt phụ thuộc phát triển (xxx thay bằng tên gói, ví dụ TypeScript)</td>
+</tr>
+<tr>
+<td><code>pnpm remove xxx</code></td>
+<td>Gỡ cài đặt gói</td>
+</tr>
+<tr>
+<td><code>pnpm dev</code></td>
+<td>Chạy script (tương đương pnpm run dev)</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Phân biệt add và add -D?</p>
+<ul>
+<li><strong>add xxx</strong>: Phụ thuộc sản xuất, cần thiết khi dự án chạy</li>
+<li><strong>add -D xxx</strong>: Phụ thuộc phát triển, chỉ cần khi dev</li>
+</ul>
+<p>Nếu không chắc, hãy để AI quyết định dùng cái nào.</p>
+<p>:::</p>
+<h2>Tại sao cần nvm?</h2>
+<p>Các dự án khác nhau có thể cần phiên bản Node.js khác nhau:</p>
+<pre><code class="language-mermaid">graph TB
+    A[Máy tính của bạn] --&gt; B[nvm]
+    B --&gt; C[Node.js 20.x]
+    B --&gt; D[Node.js 24.x]
+    C --&gt; E[Dự án cũ A]
+    D --&gt; F[Dự án mới B]
+</code></pre>
+<p><strong>Khi nào cần chuyển đổi phiên bản</strong>: Bảo trì dự án cũ, kiểm tra tính tương thích. Đa số dự án mới cứ dùng bản LTS mới nhất là được.</p>
+<h2>Tại sao chọn pnpm?</h2>
+<table>
+<thead>
+<tr>
+<th>Đặc tính</th>
+<th>npm</th>
+<th>pnpm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tốc độ</td>
+<td>Chuẩn</td>
+<td><strong>Nhanh hơn 2-3 lần</strong></td>
+</tr>
+<tr>
+<td>Dung lượng đĩa (10 dự án)</td>
+<td>~5GB</td>
+<td><strong>~1.5GB</strong></td>
+</tr>
+</tbody>
+</table>
+<p>pnpm sử dụng <strong>Hard link (liên kết cứng)</strong> để tất cả dự án chia sẻ cùng một bản sao tệp phụ thuộc, thay vì mỗi dự án lại sao chép một bản.</p>
+<h2>Các tệp cấu hình cốt lõi</h2>
+<h3>package.json</h3>
+<p>Tệp mô tả dự án, ghi lại các gói phụ thuộc và script:</p>
+<pre><code class="language-json">{
+  &quot;dependencies&quot;: {
+    &quot;react&quot;: &quot;^18.0.0&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;typescript&quot;: &quot;^5.0.0&quot;
+  }
+}
+</code></pre>
+<h3>pnpm-lock.yaml</h3>
+<p>Tệp khóa tự động sinh ra, ghi lại phiên bản chính xác của từng gói phụ thuộc. Đảm bảo phiên bản mọi người cài đặt là <strong>hoàn toàn nhất quán</strong>, tránh vấn đề "máy tôi chạy được còn máy bạn thì không".</p>
+<p><strong>Lưu ý</strong>:</p>
+<ul>
+<li>Tự động sinh ra, <strong>đừng sửa thủ công</strong></li>
+<li>Bắt buộc phải commit lên Git</li>
+</ul>
+<h3>.nvmrc (Tùy chọn)</h3>
+<p>Chỉ định phiên bản Node.js khuyến nghị cho dự án:</p>
+<pre><code class="language-bash"># Nội dung file .nvmrc
+24
+</code></pre>
+<p>Đa số dự án không có file này, dùng bản LTS mới nhất là được. Khi có file này, chạy <code>nvm use</code> để tự động chuyển đổi.</p>
+<h2>Câu hỏi thường gặp</h2>
+<h3>Q: nvm báo lỗi <code>command not found</code></h3>
+<p>Cần tải lại cấu hình hoặc khởi động lại terminal:</p>
+<pre><code class="language-bash">source ~/.zshrc   # Nếu dùng zsh
+source ~/.bashrc  # Nếu dùng bash
+</code></pre>
+<h3>Q: Làm sao xem dự án cần phiên bản Node.js nào?</h3>
+<p>Xem trường <code>engines</code> trong <code>package.json</code>, hoặc file <code>.nvmrc</code> ở thư mục gốc dự án.</p>
+<h3>Q: Dự án npm có thể chuyển sang pnpm không?</h3>
+<p>Được, hoàn toàn tương thích:</p>
+<pre><code class="language-bash">rm -rf node_modules package-lock.json
+pnpm install
+</code></pre>
+<blockquote>
+<p><strong>Lệnh này làm gì</strong>: Xóa thư mục dependency và file khóa của npm, sau đó dùng pnpm cài đặt lại.</p>
+</blockquote>
+<h2>Triết lý cốt lõi</h2>
+<p><strong>nvm giải quyết xung đột phiên bản, pnpm nâng cao hiệu suất cài đặt</strong>.</p>
+<ul>
+<li>✅ Đa dự án có thể dùng phiên bản Node.js khác nhau</li>
+<li>✅ pnpm tái sử dụng dependency, cài đặt nhanh, tiết kiệm dung lượng</li>
+<li>✅ pnpm chế độ nghiêm ngặt, tránh "dependency ma" (phantom dependencies)</li>
+</ul>
+<h2>Nội dung liên quan</h2>
+<ul>
+<li>Xem chi tiết: <a href="./04-terminal-basics_vi.html">1.4 Nhập môn Terminal</a></li>
+<li>Xem chi tiết: <a href="https://nvm.uihtm.com/">Trang chủ nvm tiếng Trung</a> (Hoặc trang chủ gốc)</li>
+<li>Trước đó: <a href="./02-tech-stack_vi.html">1.2 Khái niệm Tech Stack</a></li>
+</ul>
+</body>
+</html>

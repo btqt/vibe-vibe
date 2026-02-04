@@ -1,0 +1,710 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04 Project Config</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "2.4 Cấu hình quy tắc dự án"
+description: "CLAUDE.md và file quy tắc dự án, để AI hiểu quy chuẩn dự án"
+chapter: "Chương 2"
+priority: "🟡"</p>
+<hr />
+<h1>2.4 Cấu hình quy tắc dự án 🟡</h1>
+<blockquote>
+<p><strong>Đọc xong phần này, bạn sẽ thu hoạch được:</strong></p>
+<ul>
+<li>Hiểu tác dụng và ngữ cảnh sử dụng của file cấu hình dự án</li>
+<li>Nắm vững phương pháp cấu hình CLAUDE.md và settings.json</li>
+<li>Học phương án chia sẻ cấu hình cho cộng tác nhóm/phát triển đa máy</li>
+<li>Hiểu cách xử lý thông tin nhạy cảm trong cấu hình</li>
+</ul>
+<p><strong>Phần này thường có thể bỏ qua</strong>. Khi phát triển cá nhân, AI có thể hiểu dự án từ đối thoại và tài liệu dự án, không cần cấu hình thêm.</p>
+<p><strong>Cộng tác nhóm/Phát triển đa máy</strong>: Khi cần thống nhất môi trường, quy chuẩn, MCP, Plugin... nội dung phần này rất hữu ích.</p>
+</blockquote>
+<p>::: warning Phát triển cá nhân thường không cần cấu hình</p>
+<p>Trước khi hì hục cấu hình file, hãy hiểu rằng:</p>
+<ol>
+<li><strong>AI có ký ức</strong>: Những sở thích bạn nói với AI trong đối thoại, nó sẽ nhớ</li>
+<li><strong>Tài liệu dự án đã đủ</strong>: README + Tài liệu dự án ở chương 3 thường đủ để AI hiểu dự án</li>
+<li><strong>Cấu hình là bổ sung</strong>: Chỉ khi AI liên tục quên quy tắc nào đó, mới cân nhắc viết vào file cấu hình</li>
+</ol>
+<p>:::</p>
+<h2>Khi nào cần cấu hình</h2>
+<pre><code class="language-mermaid">graph TB
+    A[Bắt đầu dùng AI] --&gt; B{Cá nhân/Team?}
+    B --&gt;|Cá nhân| C[Nói sở thích trong đối thoại]
+    B --&gt;|Team/Đa máy| D[Cần cấu hình]
+
+    C --&gt; E{AI nhớ chưa?}
+    E --&gt;|Rồi| F[Không cần cấu hình]
+    E --&gt;|Chưa| G[Nhắc lại]
+    G --&gt; H{Vẫn quên nhiều lần?}
+    H --&gt;|Không| F
+    H --&gt;|Có| I[Cân nhắc file cấu hình]
+
+    D --&gt; J[Thống nhất cấu hình]
+    J --&gt; K[Commit lên Git]
+    K --&gt; L[Mọi người pull về tự động hiệu lực]
+
+    style F fill:#c8e6c9
+    style I fill:#fff3e0
+    style D fill:#e3f2fd
+    style J fill:#e3f2fd
+</code></pre>
+<p><strong>Ngữ cảnh điển hình cần cấu hình</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Ngữ cảnh</th>
+<th>Cần cấu hình không</th>
+<th>Giải pháp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dự án cá nhân, AI nhớ sở thích của bạn</td>
+<td>❌ Không cần</td>
+<td>Nói trong đối thoại là được</td>
+</tr>
+<tr>
+<td>Dự án cá nhân, có README rõ ràng</td>
+<td>❌ Không cần</td>
+<td>Để AI đọc README trước</td>
+</tr>
+<tr>
+<td><strong>Cộng tác nhóm/Đa máy</strong></td>
+<td>✅ <strong>Cần</strong></td>
+<td><strong>Thống nhất cấu hình, commit lên Git</strong></td>
+</tr>
+<tr>
+<td>AI liên tục quên quy tắc nào đó</td>
+<td>✅ Đề xuất</td>
+<td>Viết vào file cấu hình</td>
+</tr>
+<tr>
+<td>Cần thống nhất môi trường MCP/Plugin</td>
+<td>✅ Cần</td>
+<td>Cấu hình settings.json</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Cộng tác nhóm/Đa máy</p>
+<p>Đây là <strong>ngữ cảnh sử dụng quan trọng nhất của phần này</strong>:</p>
+<ul>
+<li><strong>Đa máy</strong>: Giữ sự nhất quán giữa máy ở nhà và công ty</li>
+<li><strong>Cộng tác nhóm</strong>: Đảm bảo hành vi AI của mọi thành viên đồng nhất</li>
+<li><strong>Thống nhất môi trường</strong>: Chia sẻ cấu hình MCP Server, Plugin, Hooks...</li>
+</ul>
+<p>:::</p>
+<h2>Cách đơn giản hơn: Để AI tự viết</h2>
+<p>Thay vì hì hục viết cấu hình thủ công, hãy để AI giúp bạn:</p>
+<p><strong>Cách 1: Để AI tham khảo tài liệu chính thức</strong></p>
+<pre><code>Hãy dựa trên tài liệu chính thức của Claude Code, tạo file cấu hình hoàn chỉnh cho dự án team tôi.
+
+Dự án của tôi:
+- Next.js 16 + TypeScript
+- Sử dụng shadcn/ui
+- Dùng pnpm package manager
+- Team 5 người, cần thống nhất quy chuẩn
+
+Hãy sinh:
+1. CLAUDE.md mô tả dự án
+2. .claude/settings.json cấu hình quyền hạn
+</code></pre>
+<p><strong>Cách 2: Để AI tham khảo hướng dẫn này</strong></p>
+<pre><code>Hãy dựa trên nội dung phần 2.4 của &quot;Cẩm nang điều giáo AI&quot;, tạo file cấu hình cho dự án team tôi.
+
+Thông tin dự án:
+[Dán mô tả dự án của bạn]
+
+Tình hình team:
+- Team Frontend, sử dụng TypeScript + React
+- Cần thống nhất phong cách code và MCP Server
+</code></pre>
+<p>:::</p>
+<p>AI biết cách viết file cấu hình, bạn chỉ cần cung cấp thông tin dự án.</p>
+<p>:::</p>
+<h2>Bản chất của file cấu hình</h2>
+<pre><code class="language-mermaid">graph LR
+    A[File cấu hình] --&gt; B[AI đọc]
+    B --&gt; C[Hiểu dự án]
+    C --&gt; D[Sinh code đúng quy chuẩn]
+
+    E[Không cấu hình] --&gt; F[AI đoán]
+    F --&gt; G[Phong cách không nhất quán]
+
+    H[README] --&gt; C
+    I[Tài liệu dự án] --&gt; C
+
+    style H fill:#e3f2fd
+    style I fill:#e3f2fd
+</code></pre>
+<p><strong>Nguyên tắc cốt lõi</strong>: File cấu hình, README, tài liệu dự án —— về bản chất đều là <strong>cách để AI hiểu dự án</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Cách</th>
+<th>File</th>
+<th>Tác dụng</th>
+<th>Sự cần thiết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tài liệu dự án</strong></td>
+<td>README, tài liệu chương 3</td>
+<td>Mô tả dự án hoàn chỉnh</td>
+<td>✅ Khuyên dùng</td>
+</tr>
+<tr>
+<td><strong>File cấu hình</strong></td>
+<td>CLAUDE.md, .cursorrules</td>
+<td>Mô tả quy chuẩn ngắn gọn</td>
+<td>⚠️ Cá nhân không bắt buộc, Team cần</td>
+</tr>
+<tr>
+<td><strong>Giao tiếp đối thoại</strong></td>
+<td>Nói trực tiếp với AI</td>
+<td>Thể hiện nhanh sở thích</td>
+<td>✅ Đơn giản nhất</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Nhận thức then chốt</p>
+<p><strong>File cấu hình dự án</strong> (dù tên là gì) bản chất đều giống nhau:</p>
+<ul>
+<li>Đều là hướng dẫn sử dụng dự án viết cho AI xem</li>
+<li>Nội dung cốt lõi: Tech stack + Quy chuẩn code + Hành vi bị cấm</li>
+<li>Chỉ là công cụ khác nhau dùng tên file khác nhau</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Công cụ</th>
+<th>Tên file</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Code</td>
+<td><code>CLAUDE.md</code></td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td><code>.cursorrules</code></td>
+</tr>
+<tr>
+<td>Qoder/Trae</td>
+<td><code>.iderules</code></td>
+</tr>
+</tbody>
+</table>
+<p>:::</p>
+<h2>Template CLAUDE.md</h2>
+<p>Nếu thực sự cần file cấu hình, càng ngắn gọn càng tốt:</p>
+<pre><code class="language-markdown"># Dự án: [Tên dự án]
+
+## Tech Stack
+
+Next.js 16 + TypeScript + Tailwind + shadcn/ui
+
+## Quy chuẩn
+
+- Cấm dùng any, strict mode
+- Component đặt tên PascalCase
+- Dùng pnpm
+
+## Cấm
+
+- Không cài dependency mới
+- Không sửa .env
+</code></pre>
+<p><strong>Cách tạo</strong>:</p>
+<ul>
+<li>Claude Code: Tạo <code>CLAUDE.md</code> ở thư mục gốc dự án</li>
+<li>Cursor/Qoder/Trae: Cấu hình file quy tắc trong phần cài đặt IDE</li>
+</ul>
+<p>::: details Template đầy đủ</p>
+<pre><code class="language-markdown"># Mô tả dự án
+
+## Tổng quan dự án
+
+[Một câu mô tả dự án làm gì]
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Ngôn ngữ**: TypeScript (Strict mode)
+- **Database**: Drizzle ORM + PostgreSQL
+- **Style**: Tailwind CSS
+- **Component**: shadcn/ui
+
+## Quy chuẩn code
+
+- Cấm kiểu `any`
+- Component dùng PascalCase, hàm dùng camelCase
+- Sử dụng pnpm (đừng dùng npm/yarn)
+
+## Hành vi bị cấm
+
+- ❌ Không cài dependency mới trừ khi được yêu cầu rõ ràng
+- ❌ Không sửa file .env
+- ❌ Không xóa file test
+
+## Cấu trúc thư mục
+
+app/ # Page và API
+components/ # Component
+lib/ # Hàm tiện ích
+</code></pre>
+<p>:::</p>
+<h2>Cấu hình cộng tác nhóm ⭐</h2>
+<p>::: tip Trọng tâm phần này</p>
+<p>Cộng tác nhóm/Phát triển đa máy là ngữ cảnh sử dụng quan trọng nhất của file cấu hình. Bằng cách submit cấu hình lên Git, đảm bảo hành vi AI của mọi thành viên là nhất quán.</p>
+<p>:::</p>
+<h3>Những cấu hình nào nên commit lên Git</h3>
+<pre><code class="language-bash"># ✅ Nên commit
+.claude/settings.json      # Cấu hình hệ thống cấp dự án (không chứa thông tin nhạy cảm)
+.mcp.json                   # Cấu hình MCP Server (không chứa thông tin nhạy cảm)
+CLAUDE.md                  # Mô tả dự án (Claude Code)
+.cursorrules               # Quy chuẩn code (Cursor)
+.iderules                  # Quy chuẩn code (Qoder/Trae)
+.claude/skills/            # Skills của team (xem phần 2.3)
+
+# ❌ Không nên commit
+.env                       # Biến môi trường (chứa khóa bí mật)
+node_modules/              # Gói phụ thuộc
+~/.claude/settings.json    # Cấu hình cấp người dùng (khóa cá nhân)
+</code></pre>
+<h3>Xử lý thông tin nhạy cảm</h3>
+<p><strong>Phương pháp: Cấu hình phân tầng</strong></p>
+<ul>
+<li><strong>Cấu hình cấp dự án</strong> (<code>.claude/settings.json</code>): Commit lên Git, không chứa khóa bí mật</li>
+<li><strong>Cấu hình cấp người dùng</strong> (<code>~/.claude/settings.json</code>): Không commit, chứa khóa bí mật cá nhân</li>
+</ul>
+<p>::: details Ví dụ cấu hình</p>
+<p><strong>Cấu hình cấp người dùng</strong> (<code>~/.claude/settings.json</code>, không commit):</p>
+<pre><code class="language-json">{
+  &quot;env&quot;: {
+    &quot;GITHUB_TOKEN&quot;: &quot;ghp_xxx&quot;,
+    &quot;OPENAI_API_KEY&quot;: &quot;sk_xxx&quot;
+  }
+}
+</code></pre>
+<p><strong>Cấu hình cấp dự án</strong> (<code>.claude/settings.json</code>, commit lên Git):</p>
+<pre><code class="language-json">{
+  &quot;permissions&quot;: {
+    &quot;defaultMode&quot;: &quot;plan&quot;
+  }
+}
+</code></pre>
+<p>:::</p>
+<p>::: tip Nguyên tắc an toàn</p>
+<ul>
+<li>✅ Cấu hình dự án: Commit lên Git, không chứa khóa</li>
+<li>✅ Cấu hình người dùng: Không commit, chứa khóa cá nhân</li>
+<li>❌ Đừng viết bất kỳ khóa bí mật nào vào file cấu hình dự án</li>
+</ul>
+<p>:::</p>
+<h2>Giải thích chi tiết settings.json</h2>
+<p>::: details settings.json là gì</p>
+<p>settings.json là file cấu hình hệ thống của Claude Code, kiểm soát chế độ quyền hạn, biến môi trường, Hooks, MCP Server...</p>
+<p><strong>Khác biệt với CLAUDE.md</strong>:</p>
+<ul>
+<li><code>CLAUDE.md</code>: Hướng dẫn sử dụng dự án viết cho AI đọc</li>
+<li><code>settings.json</code>: Cấu hình hệ thống kiểm soát hành vi công cụ</li>
+</ul>
+<p><strong>Vị trí file cấu hình</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Cấp độ</th>
+<th>Vị trí</th>
+<th>Phạm vi</th>
+<th>Ưu tiên</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cấp dự án</strong></td>
+<td><code>.claude/settings.json</code></td>
+<td>Dự án hiện tại</td>
+<td>Cao</td>
+</tr>
+<tr>
+<td><strong>Cấp người dùng</strong></td>
+<td><code>~/.claude/settings.json</code></td>
+<td>Tất cả dự án</td>
+<td>Thấp</td>
+</tr>
+<tr>
+<td><strong>Cấp cục bộ</strong></td>
+<td><code>.claude/settings.local.json</code></td>
+<td>Phát triển cục bộ</td>
+<td>Cao nhất</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Quy tắc ưu tiên</strong>: Cấp cục bộ &gt; Cấp dự án &gt; Cấp người dùng.</p>
+<p>:::</p>
+<p>::: details Cấu trúc cấu hình</p>
+<pre><code class="language-json">{
+  &quot;permissions&quot;: {
+    &quot;defaultMode&quot;: &quot;plan&quot;
+  },
+  &quot;hooks&quot;: {},
+  &quot;env&quot;: {}
+}
+</code></pre>
+<p><strong>Lựa chọn chế độ quyền hạn</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Chế độ</th>
+<th>Giải thích</th>
+<th>Ngữ cảnh áp dụng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>plan</code></td>
+<td>Chế độ kế hoạch, phân tích chỉ đọc</td>
+<td>Review code, học tập</td>
+</tr>
+<tr>
+<td><code>acceptEdits</code></td>
+<td>Tự động chấp nhận chỉnh sửa</td>
+<td>Phát triển nhanh</td>
+</tr>
+<tr>
+<td><code>bypassPermissions</code></td>
+<td>Bỏ qua kiểm tra quyền</td>
+<td>Tin tưởng tuyệt đối</td>
+</tr>
+</tbody>
+</table>
+<p>:::</p>
+<p>::: details Cấu hình Hooks</p>
+<p>Hooks tự động thực thi script tại sự kiện cụ thể, xem chi tiết 2.2 Quy trình làm việc VibeCoding - Tự động hóa Hooks (./02-vibecoding-workflow_vi.md).</p>
+<p><strong>Cấu trúc cơ bản</strong>:</p>
+<pre><code class="language-json">{
+  &quot;hooks&quot;: {
+    &quot;PostToolUse&quot;: [
+      {
+        &quot;matcher&quot;: &quot;Write|Edit&quot;,
+        &quot;hooks&quot;: [
+          {
+            &quot;type&quot;: &quot;command&quot;,
+            &quot;command&quot;: &quot;\&quot;$CLAUDE_PROJECT_DIR\&quot;/.claude/hooks/format.sh&quot;
+          }
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+<p><strong>Sự kiện thường dùng</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Sự kiện</th>
+<th>Thời điểm kích hoạt</th>
+<th>Cần matcher không</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PreToolUse</code></td>
+<td>Trước khi gọi công cụ</td>
+<td>✅ Cần</td>
+</tr>
+<tr>
+<td><code>PostToolUse</code></td>
+<td>Sau khi gọi công cụ</td>
+<td>✅ Cần</td>
+</tr>
+<tr>
+<td><code>UserPromptSubmit</code></td>
+<td>Khi người dùng gửi prompt</td>
+<td>❌ Không cần</td>
+</tr>
+<tr>
+<td><code>SessionStart</code></td>
+<td>Khi bắt đầu phiên</td>
+<td>❌ Không cần</td>
+</tr>
+<tr>
+<td><code>Notification</code></td>
+<td>Khi gửi thông báo</td>
+<td>❌ Không cần</td>
+</tr>
+<tr>
+<td><code>Stop</code></td>
+<td>Khi Agent chính hoàn thành phản hồi</td>
+<td>❌ Không cần</td>
+</tr>
+</tbody>
+</table>
+<p>:::</p>
+<p>::: details Cấu hình MCP Server</p>
+<p>Cấu hình MCP Server giúp AI kết nối dịch vụ bên ngoài.</p>
+<p><strong>Cấu hình cấp dự án</strong> (<code>.mcp.json</code>, khuyên dùng):</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;github&quot;: {
+      &quot;type&quot;: &quot;http&quot;,
+      &quot;url&quot;: &quot;https://api.githubcopilot.com/mcp/&quot;
+    },
+    &quot;postgres&quot;: {
+      &quot;type&quot;: &quot;stdio&quot;,
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;-y&quot;, &quot;@modelcontextprotocol/server-postgres&quot;],
+      &quot;env&quot;: {
+        &quot;DATABASE_URL&quot;: &quot;${DATABASE_URL}&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<p><strong>Cấu hình trong settings.json</strong> (Cách cũ, vẫn hỗ trợ):</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;github&quot;: {
+      &quot;type&quot;: &quot;http&quot;,
+      &quot;url&quot;: &quot;https://api.githubcopilot.com/mcp/&quot;
+    }
+  }
+}
+</code></pre>
+<p><strong>MCP Server thường dùng</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>MCP</th>
+<th>Chức năng</th>
+<th>Cần cấu hình</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GitHub</strong></td>
+<td>Thao tác kho code</td>
+<td>GitHub Token</td>
+</tr>
+<tr>
+<td><strong>PostgreSQL</strong></td>
+<td>Truy vấn CSDL</td>
+<td>Chuỗi kết nối</td>
+</tr>
+<tr>
+<td><strong>Brave Search</strong></td>
+<td>Tìm kiếm mạng</td>
+<td>API Key</td>
+</tr>
+<tr>
+<td><strong>Filesystem</strong></td>
+<td>Truy cập hệ thống file</td>
+<td>Đường dẫn cho phép</td>
+</tr>
+</tbody>
+</table>
+<p>:::</p>
+<h3>Template cấu hình Team</h3>
+<p>::: details Template Frontend Team</p>
+<pre><code class="language-json">// .claude/settings.json
+{
+  &quot;permissions&quot;: {
+    &quot;defaultMode&quot;: &quot;acceptEdits&quot;,
+    &quot;disallowedTools&quot;: [&quot;Bash(rm -rf:*)&quot;, &quot;Bash(write .env:*)&quot;]
+  },
+  &quot;env&quot;: {
+    &quot;PACKAGE_MANAGER&quot;: &quot;pnpm&quot;
+  },
+  &quot;hooks&quot;: {
+    &quot;PostToolUse&quot;: [
+      {
+        &quot;matcher&quot;: &quot;Write|Edit&quot;,
+        &quot;hooks&quot;: [
+          {
+            &quot;type&quot;: &quot;command&quot;,
+            &quot;command&quot;: &quot;pnpm format --write \&quot;$CLAUDE_PROJECT_DIR\&quot;/@file_path&quot;
+          }
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+<pre><code class="language-json">// .mcp.json
+{
+  &quot;mcpServers&quot;: {
+    &quot;filesystem&quot;: {
+      &quot;type&quot;: &quot;stdio&quot;,
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [
+        &quot;-y&quot;,
+        &quot;@modelcontextprotocol/server-filesystem&quot;,
+        &quot;$CLAUDE_PROJECT_DIR&quot;
+      ]
+    }
+  }
+}
+</code></pre>
+<p>:::</p>
+<p>::: details Template Backend Team</p>
+<pre><code class="language-json">// .claude/settings.json
+{
+  &quot;permissions&quot;: {
+    &quot;defaultMode&quot;: &quot;plan&quot;,
+    &quot;disallowedTools&quot;: [&quot;Bash(DROP TABLE:*)&quot;, &quot;Bash(DELETE FROM:*)&quot;]
+  }
+}
+</code></pre>
+<pre><code class="language-json">// .mcp.json
+{
+  &quot;mcpServers&quot;: {
+    &quot;postgres&quot;: {
+      &quot;type&quot;: &quot;stdio&quot;,
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;-y&quot;, &quot;@modelcontextprotocol/server-postgres&quot;],
+      &quot;env&quot;: {
+        &quot;DATABASE_URL&quot;: &quot;${DATABASE_URL}&quot;,
+        &quot;PG_READONLY&quot;: &quot;true&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<p>:::</p>
+<h2>Quy trình công việc cộng tác nhóm</h2>
+<pre><code class="language-mermaid">flowchart TD
+    A[Team thảo luận quy chuẩn] --&gt; B[Tạo file cấu hình]
+    B --&gt; C[Submit lên Git]
+    C --&gt; D[Team member pull về]
+    D --&gt; E[AI tự động đọc cấu hình]
+    E --&gt; F[Hành vi của mọi người nhất quán]
+
+    G[Thành viên mới gia nhập] --&gt; D
+
+    style C fill:#e3f2fd
+    style E fill:#c8e6c9
+    style F fill:#c8e6c9
+</code></pre>
+<p><strong>Thao tác thực tế</strong>:</p>
+<pre><code class="language-bash"># 1. Trưởng nhóm tạo cấu hình
+vim CLAUDE.md
+vim .claude/settings.json
+vim .mcp.json
+
+# 2. Submit lên Git
+git add CLAUDE.md .claude/ .mcp.json
+git commit -m &quot;docs: Thêm cấu hình team AI&quot;
+git push origin main
+
+# 3. Thành viên team pull về
+git pull origin main
+
+# 4. AI tự động đọc, không cần thao tác thêm
+</code></pre>
+<h2>Triết lý cốt lõi</h2>
+<p><strong>Cấu hình là phương tiện, không phải mục đích</strong></p>
+<pre><code class="language-mermaid">graph LR
+    A[Mục tiêu: AI hiểu dự án] --&gt; B[Cách 1: Đối thoại]
+    A --&gt; C[Cách 2: README]
+    A --&gt; D[Cách 3: File cấu hình]
+    A --&gt; E[Cách 4: Tài liệu dự án]
+
+    B --&gt; F[Chọn cách đơn giản nhất]
+    C --&gt; F
+    D --&gt; F
+    E --&gt; F
+
+    G[Cộng tác nhóm] --&gt; D
+    H[Phát triển đa máy] --&gt; D
+
+    style B fill:#c8e6c9
+    style C fill:#c8e6c9
+    style D fill:#e3f2fd
+</code></pre>
+<p><strong>Ghi nhớ</strong>:</p>
+<ol>
+<li><strong>Đối thoại ưu tiên</strong>: Giao tiếp trước, cấu hình sau</li>
+<li><strong>Tài liệu làm chủ</strong>: README và tài liệu dự án đầy đủ hơn</li>
+<li><strong>Cấu hình bổ trợ</strong>: Chỉ bắt buộc khi cộng tác nhóm</li>
+<li><strong>Để AI giúp bạn</strong>: Đưa tài liệu cho AI, để nó tự sinh cấu hình</li>
+</ol>
+<h2>Câu hỏi thường gặp</h2>
+<h3>Q1: CLAUDE.md và .cursorrules có khác nhau không?</h3>
+<p><strong>A</strong>: Bản chất giống nhau, chỉ khác tên file.</p>
+<table>
+<thead>
+<tr>
+<th>Công cụ</th>
+<th>Tên file</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Code</td>
+<td><code>CLAUDE.md</code></td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td><code>.cursorrules</code></td>
+</tr>
+<tr>
+<td>Qoder/Trae</td>
+<td><code>.iderules</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nội dung cốt lõi đều là</strong>: Tech stack + Quy chuẩn code + Hành vi bị cấm</p>
+<h3>Q2: Sửa settings.json xong không có tác dụng?</h3>
+<p><strong>A</strong>: Kiểm tra các điểm sau:</p>
+<ol>
+<li><strong>Định dạng JSON</strong>: Đảm bảo đúng định dạng</li>
+<li><strong>Vị trí file</strong>: Xác nhận là cấp dự án hay cấp người dùng</li>
+<li><strong>Độ ưu tiên</strong>: Cấp cục bộ sẽ ghi đè cấp dự án</li>
+</ol>
+<h3>Q3: Cộng tác nhóm làm sao thống nhất cấu hình?</h3>
+<p><strong>A</strong>: Submit lên Git, mọi người pull về tự động có hiệu lực.</p>
+<pre><code class="language-bash"># Submit cấu hình
+git add CLAUDE.md .claude/settings.json .mcp.json
+git commit -m &quot;docs: Thêm cấu hình team AI&quot;
+git push
+
+# Thành viên pull về
+git pull
+</code></pre>
+<h3>Q4: Xử lý khóa cá nhân thế nào?</h3>
+<p><strong>A</strong>: Sử dụng cấu hình phân tầng.</p>
+<ul>
+<li><strong>Cấp dự án</strong> (<code>.claude/settings.json</code>): Submit lên Git, không chứa khóa</li>
+<li><strong>Cấp người dùng</strong> (<code>~/.claude/settings.json</code>): Không submit, chứa khóa cá nhân</li>
+<li>Sử dụng <code>${VAR_NAME}</code> tham chiếu biến môi trường</li>
+</ul>
+<h2>Nội dung liên quan</h2>
+<ul>
+<li>Trước đó: 2.2 Quy trình làm việc VibeCoding chi tiết</li>
+<li>Xem chi tiết: 2.3 MCP, Plugin và Skills</li>
+<li>Xem chi tiết: 10.10 Skills Chia sẻ kiến thức team</li>
+<li>Xem chi tiết: 10.11 Agent Skills Cộng tác team</li>
+<li>Sau đó: Chương 3 PRD Tài liệu lèo lái phát triển</li>
+</ul>
+</body>
+</html>

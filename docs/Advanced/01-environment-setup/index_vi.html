@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "Chương 1: Xây dựng môi trường và Cơ sở chạy mã"</h2>
+<p><img alt="01-environment-setup_index.png" src="../../public/images/Advanced/01-environment-setup_index.png" /></p>
+<h1>Chương 1: Xây dựng môi trường và Cơ sở chạy mã</h1>
+<h2>Lời mở đầu</h2>
+<p>Bạn có một chiếc máy tính mới, bên trong sạch sẽ tinh tươm, ngoài trình duyệt ra thì chẳng có gì cả. Bạn không biết viết code, nhưng bạn thấy dạo này AI rất hot, trong lòng có một ý tưởng App tuyệt vời, định lên mạng chỉ huy AI giúp bạn làm một cái Demo.</p>
+<h3>Định dạng code</h3>
+<p>Khúc mắc đầu tiên bạn gặp phải là <strong>định dạng code mà AI đưa ra</strong>. Đôi khi, AI sẽ đưa trực tiếp cho bạn một đoạn code dài, bảo bạn lưu thành <code>index.html</code>. Bạn làm theo, tạo file mới, dán, lưu, nhấp đúp mở ra, trình duyệt thực sự hiện lên một trang web biết chuyển động. Bạn rất vui, tưởng lập trình cũng chỉ có thế. Loại file này thường nhét cả cấu trúc (HTML), kiểu dáng (CSS) và logic (JavaScript) vào chung một chỗ, thích hợp làm demo đơn giản.</p>
+<p>Nhưng khi bạn yêu cầu chức năng phức tạp hơn, AI bắt đầu đưa cho bạn code có đuôi <code>.ts</code> hoặc <code>.tsx</code>, còn nhắc đến những từ như <code>import</code>, <code>React</code>. Bạn cũng lưu file như trước, nhấp đúp mở ra, nhưng phát hiện không mở được, hoặc hiển thị một đống code không hiểu gì. Bạn ngơ ngác, sao code không chạy được nữa?</p>
+<p>Bạn khó hiểu hỏi: "Đã có AI giúp tôi viết code rồi, sao còn phải học mấy cái này?"</p>
+<p>Người thầy già nói: "AI có thể viết code, nhưng 'làm sao để nó chạy được' thì cần bạn hiểu. Giống như điều hướng vậy: có thể chỉ đường cho bạn, nhưng trước tiên bạn phải biết lái xe. Xây dựng môi trường không phải là rào cản, mà là bước đầu tiên để bạn cộng tác với AI."</p>
+<p>→ <strong><a href="./01-code-formats_vi.html">1.1 Sự tiến hóa của định dạng code</a></strong> sẽ đưa bạn đi từ HTML tệp đơn đến phát triển mô-đun hóa hiện đại.</p>
+<hr />
+<p>::: details 🎮 Bấm để trải nghiệm: Demo tương tác
+Dưới đây là một demo tương tác tinh tế, bao gồm chức năng bộ đếm, đồng hồ bấm giờ và chuyển đổi cơ số:</p>
+<p><InteractiveDemo /></p>
+<blockquote>
+<p>💡 <strong>Đây chính là trải nghiệm phát triển Frontend hiện đại</strong>: Giao diện tinh tế, hoạt hình mượt mà, tương tác phong phú. Sử dụng phím tắt ↑↓ để điều chỉnh giá trị, R để đặt lại, H để chuyển đổi lịch sử.
+:::</p>
+</blockquote>
+<h3>TypeScript và Node.js</h3>
+<p>Người thầy già bảo bạn, đó là vì phát triển hiện đại sử dụng <strong>TypeScript</strong> (gọi tắt là TS), nó chặt chẽ hơn JavaScript thông thường, phù hợp để làm dự án lớn. Tuy nhiên, trình duyệt không hiểu TS, nó cần một "phiên dịch viên" (trình biên dịch) để dịch TS sang JavaScript mà trình duyệt hiểu được. Trình biên dịch này cũng như các công cụ build cần môi trường <strong>Node.js</strong> để chạy. Nếu không cài Node.js, máy tính của bạn sẽ không thể chạy các công cụ build code hiện đại này.</p>
+<p>→ <strong><a href="./02-tech-stack_vi.html">1.2 Khái niệm Tech Stack</a></strong> và <strong><a href="./03-browser-server_vi.html">1.3 Cơ bản về Trình duyệt và Server</a></strong> sẽ giúp bạn xây dựng những nhận thức này.</p>
+<h3>Quản lý phiên bản nvm</h3>
+<p>Bạn hào hứng đi tải Node.js, nhưng người thầy già cũng giống như trang chủ Nodejs, ngăn bạn lại. Ông ấy khuyên bạn cài <strong>nvm</strong> (Node Version Manager). Vì Node.js cập nhật thường xuyên, các dự án khác nhau có thể cần phiên bản khác nhau, nvm giúp bạn chuyển đổi phiên bản dễ dàng mà không cần gỡ đi cài lại nhiều lần. Bạn cài đặt phiên bản LTS (Hỗ trợ dài hạn, ổn định) mới nhất thông qua nvm, và dưới sự giới thiệu của người thầy già, bạn đổi sang <strong>nguồn mirror trong nước</strong> (để giải quyết vấn đề tải chậm), cuối cùng cũng sở hữu cái gọi là môi trường chạy.</p>
+<p>→ <strong><a href="./04-terminal-basics_vi.html">1.4 Nhập môn Terminal</a></strong> sẽ dạy bạn nắm vững các thao tác dòng lệnh cơ bản, <strong><a href="./05-nodejs-and-pnpm_vi.html">1.5 Môi trường Node.js và Quản lý gói</a></strong> sẽ đưa bạn hoàn thành các cấu hình này.</p>
+<hr />
+<p>::: details 🔄 Bấm để trải nghiệm: Trình quản lý phiên bản Node
+Thử chuyển đổi các phiên bản Node.js khác nhau, trải nghiệm sự tiện lợi của nvm:</p>
+<p><NodeVersionManager /></p>
+<blockquote>
+<p>💡 <strong>Bài tập</strong>: Bấm vào các phiên bản khác nhau để chuyển đổi, quan sát sự thay đổi của phiên bản hiện tại. Thử cài đặt một phiên bản chưa cài đặt.</p>
+<p>🎯 <strong>Khái niệm cốt lõi</strong>: nvm giúp bạn quản lý nhiều phiên bản Node.js trên cùng một máy tính, các dự án khác nhau có thể sử dụng phiên bản khác nhau mà không xung đột.
+:::</p>
+</blockquote>
+<h3>Terminal (Cửa sổ lệnh)</h3>
+<p>Tiếp theo, bạn tiếp xúc với <strong>Terminal</strong> (như CMD, PowerShell của Windows hoặc Terminal của Mac). Nó không phải công cụ hacker bí ẩn gì cả, mà là một cách thức trực tiếp đối thoại với hệ điều hành thông qua chỉ thị văn bản. So với dùng chuột bấm biểu tượng, terminal có thể thực hiện các nhiệm vụ phức tạp chính xác hơn, nhanh hơn.</p>
+<p>Khoảnh khắc dễ sụp đổ nhất của người mới, chính là gõ xong lệnh enter thì thấy <code>command not found</code>. Lỗi này thực ra có tư duy bài bản để kiểm tra: kiểm tra chính tả lệnh trước, sau đó xác nhận công cụ đã cài chưa, rồi kiểm tra thư mục hiện tại có đúng không. Xây dựng tư duy kiểm tra này quan trọng hơn ghi nhớ thông tin lỗi cụ thể.</p>
+<hr />
+<p>::: details 🖥️ Bấm để trải nghiệm: Terminal Pro
+Thử nhập lệnh trong trình giả lập terminal chuyên nghiệp bên dưới:</p>
+<p><TerminalPro /></p>
+<blockquote>
+<p>💡 <strong>Bài tập</strong>: Thử nhập <code>ls</code> để xem tệp tin, sau đó nhập <code>cd Documents</code> để chuyển thư mục, rồi dùng <code>pwd</code> để xem đường dẫn hiện tại.</p>
+<p>🎨 <strong>Giải thích màu sắc</strong>: Xanh dương=Thư mục, Xanh lá=Tệp thực thi, Xanh lơ=Liên kết, Trắng=Tệp thường</p>
+<p>⌨️ <strong>Phím tắt</strong>: <code>Tab</code> Tự động hoàn thành | <code>↑↓</code> Lệnh lịch sử | <code>Ctrl+L</code> Xóa màn hình | <code>Ctrl+C</code> Hủy bỏ
+:::</p>
+</blockquote>
+<h3>Gói mã nguồn mở</h3>
+<p>Có môi trường rồi, người thầy già bảo bạn, phát triển phần mềm hiện đại rất ít khi viết từ con số 0. Giống như xây nhà không cần tự nung gạch, bạn có thể trực tiếp sử dụng code mà lập trình viên toàn thế giới đóng góp —— tức là <strong>gói mã nguồn mở</strong>. React giúp bạn lo giao diện, Axios giúp bạn lo yêu cầu mạng, Day.js giúp bạn xử lý thời gian, Zod giúp bạn xác thực dữ liệu... Những gói code có sẵn này giúp bạn tập trung vào logic nghiệp vụ, thay vì lặp lại việc phát minh lại bánh xe.</p>
+<hr />
+<p>::: details 📦 Bấm để trải nghiệm: Hệ sinh thái gói nguồn mở
+Khám phá các gói nguồn mở thường dùng trong hệ sinh thái npm:</p>
+<p><PackageEcosystem /></p>
+<blockquote>
+<p>💡 <strong>Bài tập</strong>: Bấm phân loại để lọc các loại gói khác nhau, bấm vào thẻ để xem chi tiết và mô phỏng cài đặt.</p>
+<p>🎯 <strong>Khái niệm cốt lõi</strong>: npm sở hữu hơn 2 triệu gói nguồn mở, bao phủ gần như mọi nhu cầu phát triển, tăng tốc đáng kể hiệu quả phát triển.
+:::</p>
+</blockquote>
+<h3>Trình quản lý gói pnpm</h3>
+<p>Vậy, làm sao để cài đặt gói code người khác viết sẵn? Bạn cần một <strong>trình quản lý gói</strong>. Node.js có sẵn một cái gọi là <strong>npm</strong>, nhưng nó cài đặt dependency bằng cách sao chép, chiếm dụng lượng lớn dung lượng đĩa. Hiện nay khuyến nghị dùng <strong>pnpm</strong> hơn —— thông qua kỹ thuật hard link và symbolic link, có thể tiết kiệm khoảng 50%-70% dung lượng đĩa, và tốc độ cài đặt nhanh hơn đáng kể.</p>
+<p>Trong phát triển AI, bạn sẽ thường xuyên tạo dự án mới để thử các hướng đi khác nhau, pnpm giúp bạn tiết kiệm lượng lớn thời gian chờ đợi và không gian lưu trữ.</p>
+<p>→ <strong><a href="./05-nodejs-and-pnpm_vi.html">1.5 Môi trường Node.js và Quản lý gói</a></strong> sẽ giảng giải chi tiết cách cài đặt cấu hình nvm và pnpm.</p>
+<hr />
+<p>::: details 📦 Bấm để trải nghiệm: Quá trình cài đặt pnpm
+Xem pnpm cài đặt dependency dự án như thế nào:</p>
+<p><TypeScriptCompiler /></p>
+<blockquote>
+<p>💡 <strong>Bài tập</strong>: Bấm nút "Cài đặt", quan sát 4 bước cài đặt dependency của pnpm.</p>
+<p>🎯 <strong>Khái niệm cốt lõi</strong>: pnpm chia sẻ dependency thông qua kỹ thuật hard link, tiết kiệm 50%-70% dung lượng đĩa so với npm.
+:::</p>
+</blockquote>
+<h3>Mô hình và Công cụ</h3>
+<p>Cài xong môi trường, bạn cầm trong tay danh sách công cụ khổng lồ, đối mặt với đủ loại mô hình, trình biên tập và công cụ CLI, bạn hoàn toàn chóng mặt.</p>
+<p>Qua sự giới thiệu của người thầy già, cuối cùng bạn cũng hiểu: <strong>Mô hình quyết định tốc độ và giới hạn năng lực code, công cụ quyết định phương thức và hiệu suất hiện thực hóa code.</strong></p>
+<p>Nói về mô hình, có thể bạn sẽ thấy Claude năng lực mạnh nhất thì cứ dùng nó hết đi. Nhưng người thầy già nhắc bạn: <strong>Mô hình nội địa rẻ và truy cập nhanh</strong>. Ví dụ GLM 4.7, tổng lượng dùng mỗi tháng lên đến hàng tỷ tokens, tính ra cực kỳ tối ưu chi phí. Ý thức về chi phí này rất quan trọng trong phát triển AI Native, nếu không khi quy mô tăng lên hóa đơn sẽ làm bạn sốc.</p>
+<p>→ <strong><a href="./06-models-and-tools_vi.html">1.6 Mô hình và Công cụ</a></strong> sẽ giới thiệu chi tiết cách lựa chọn và cấu hình các loại công cụ phát triển.</p>
+<h3>Đặt tên thư mục</h3>
+<p>Bây giờ, bạn đã sở hữu môi trường phát triển hiện đại hoàn chỉnh, có thể xử lý bất kỳ code TS nào do AI sinh ra. Người thầy già đặc biệt dặn dò: <strong>Khi tạo dự án mới, nhất định phải tạo một thư mục không chứa tiếng Trung (tiếng Việt), dấu cách</strong>. Đây là vì nhiều công cụ phát triển tầng dưới hỗ trợ không tốt cho ký tự phi Latin, đường dẫn tiếng Trung/Việt thường là nguồn gốc của đủ loại báo lỗi kỳ lạ.</p>
+<p>→ <strong><a href="./07-creating-project_vi.html">1.7 Tạo dự án</a></strong> sẽ dạy bạn từ quy tắc đặt tên thư mục đến tạo mẫu dự án.</p>
+<hr />
+<p>::: details 📁 Bấm để trải nghiệm: Cấu trúc tệp dự án
+Khám phá cấu trúc tệp của một dự án điển hình, tìm hiểu quy tắc đặt tên:</p>
+<p><FileSystemTree /></p>
+<blockquote>
+<p>💡 <strong>Bài tập</strong>: Bấm thư mục để mở rộng/thu gọn, xem cấu trúc dự án. Chú ý quan sát gợi ý quy tắc đặt tên ở dưới đáy.</p>
+<p>⚠️ <strong>Nhắc nhở quan trọng</strong>: Thư mục và tên tệp nên tránh sử dụng tiếng Trung/Việt và dấu cách, để phòng ngừa công cụ báo lỗi.
+:::</p>
+</blockquote>
+<h3>Localhost và Cổng</h3>
+<p>Code đều ở local rồi, nhưng bạn hoàn toàn không biết làm sao để chạy nó lên. Bạn thăm dò gửi file cho AI, hỏi nó: "Tôi phải khởi động dự án này thế nào?" AI bảo bạn, cần chạy <code>pnpm install</code> cài đặt dependency trước, sau đó chạy <code>pnpm dev</code> khởi động server phát triển. Bạn làm theo, màn hình cuối cùng dừng lại ở <code>http://localhost:3000</code>.</p>
+<p>Bạn nhìn chằm chằm địa chỉ này, người thầy già bổ túc cho bạn một bài cơ bản về mạng: <strong>Localhost</strong> cũng chính là <strong>127.0.0.1</strong>, trong thế giới mạng, nó đại diện cho "máy tính của chính bạn". Nếu ví máy tính của bạn là một tòa nhà, IP là địa chỉ tòa nhà, thì cổng chính là <strong>số phòng</strong> cụ thể. Ứng dụng web của bạn lúc này đang ngồi trong căn phòng số 3000, đợi trình duyệt của bạn đến gõ cửa.</p>
+<p>Bạn kích động bấm vào liên kết này, trang web thực sự hiện ra! Người thầy già thuận miệng nói thêm một câu, tuy công cụ phát triển hiện nay đều rất thông minh —— nếu bạn mở thêm một dự án, thường chúng sẽ tự động chuyển sang phòng 3001 —— nhưng trong <strong>môi trường sản xuất</strong>, quy tắc rất nghiêm ngặt: <strong>Một cổng cùng lúc chỉ có thể chứa một chương trình</strong>. Nếu bạn thấy báo lỗi đỏ lòm <code>EADDRINUSE</code>, đừng hoảng, bảo AI đổi cho bạn một cổng khác là được.</p>
+<p>→ <strong><a href="./08-localhost-and-ports_vi.html">1.8 Localhost và Cổng</a></strong> sẽ giảng giải chi tiết về những kiến thức mạng cơ bản này.</p>
+<hr />
+<p>::: details 🌐 Bấm để trải nghiệm: Trực quan hóa Localhost và Cổng
+Chọn một cổng khả dụng, trải nghiệm quá trình kết nối localhost:</p>
+<p><NetworkPorts /></p>
+<blockquote>
+<p>💡 <strong>Bài tập</strong>: Bấm vào cổng màu xanh lá (khả dụng), sau đó bấm nút "Kết nối". Thử bấm vào cổng màu đỏ (bị chiếm dụng) xem chuyện gì xảy ra.</p>
+<p>🎯 <strong>Khái niệm cốt lõi</strong>: localhost (127.0.0.1) đại diện cho máy tính của bạn, số cổng là "số phòng" mà ứng dụng đang chạy.
+:::</p>
+</blockquote>
+<hr />
+<h3>Bắt tay thực hành</h3>
+<p>Sau khi cài xong môi trường theo bài 1.5, tạo một thư mục tiếng Anh mới, mở công cụ AI lên và bảo nó: "Giúp tôi tạo một dự án Next.js tại đây", sau đó làm theo hướng dẫn của nó để thực thi lệnh, cuối cùng mở <code>localhost:3000</code> trên trình duyệt —— bạn đã chính thức bước vào thế giới lập trình AI!</p>
+</body>
+</html>

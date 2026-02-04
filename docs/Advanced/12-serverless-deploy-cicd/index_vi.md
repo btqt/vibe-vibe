@@ -1,0 +1,144 @@
+---
+title: "Chương 12: Triển khai Serverless và Tự động hóa CI/CD"
+---
+
+# Chương 12: Triển khai Serverless và Tự động hóa CI/CD
+
+## Lời tựa
+
+Bạn chuẩn bị online rồi, nghe nói phải mua server, nhưng ví bạn thì lép kẹp, lại còn chẳng muốn đánh vật với vận hành Linux.
+
+### Triển khai chi phí 0 đồng
+
+Sư phụ giới thiệu cho bạn một bộ giải pháp khởi nghiệp 0 đồng: Chọn một **Nền tảng Deploy** + một **Dịch vụ Hosting Database**.
+
+**Nền tảng Deploy** chịu trách nhiệm chạy code Frontend và Backend của bạn, cung cấp môi trường **Serverless (Không máy chủ)**. Lưu ý, Serverless không phải là không có máy chủ, mà là **bạn không cần quản lý máy chủ**. Bạn chỉ việc viết code, việc mở rộng, bảo trì nền tảng sẽ lo hết.
+
+Các nền tảng Deploy phổ biến:
+
+- **Tencent Cloud EdgeOne Pages**: Truy cập tốt từ Trung Quốc, dựa trên mạng biên (edge network) toàn cầu của Tencent, kết nối GitHub là tự động deploy, hỗ trợ Next.js rất tốt.
+- **Aliyun ESA Functions & Pages**: Nền tảng phát triển Fullstack một trạm của Alibaba Cloud, tích hợp sâu Git Workflow, tốc độ truy cập trong nước nhanh.
+- **Vercel**: Nền tảng deploy chính chủ của Next.js, trải nghiệm cực tốt, nhưng truy cập từ Trung Quốc/VN đôi khi chậm, phù hợp khách hàng quốc tế hoặc dự án có tên miền riêng.
+- **Cloudflare Pages**: Tăng tốc CDN toàn cầu, hạn mức miễn phí hào phóng, hỗ trợ Edge Functions.
+- **GitHub Pages**: Hosting web tĩnh đơn giản nhất, phù hợp dự án thuần Frontend.
+
+**Hosting Database** chịu trách nhiệm lưu trữ dữ liệu. Sư phụ khuyên bạn dùng **Neon** —— dịch vụ chuyên về bản thân PostgreSQL trên cloud, kiến trúc Serverless, tự động co giãn theo nhu cầu. Quan trọng nhất, nó là PostgreSQL tiêu chuẩn, bạn dùng **Drizzle ORM** kết nối qua chuỗi kết nối chuẩn, hoàn toàn không bị trói buộc bởi nhà cung cấp. Như vậy ngày nào đó bạn muốn đổi nhà cung cấp database, chỉ cần sửa `DATABASE_URL` là xong, đây gọi là **duy trì tính độc lập của kiến trúc**.
+
+Nếu bạn cần nhiều tính năng Backend hơn (như Auth, Storage, Realtime), cũng có thể cân nhắc **Supabase**. Bản chất nó là **PostgreSQL trên mây** cộng thêm một bộ dịch vụ Backend. Nhưng sư phụ nhắc bạn, cố gắng dùng Drizzle ORM kết nối trực tiếp database, thay vì lạm dụng JS SDK độc quyền của Supabase, như vậy mới giữ được sự linh hoạt khi di dời.
+
+### Tự động hóa CI/CD
+
+Sư phụ còn nhắc đến một từ nghe rất cao siêu: **CI/CD (Continuous Integration/Continuous Deployment - Tích hợp liên tục/Triển khai liên tục)**. Nghe thì phức tạp, nhưng trong quy trình phát triển hiện đại, nó đồng nghĩa với **"Tự động hóa"**.
+
+Trước đây, deploy web cần: `Đóng gói thủ công -> Upload lên server -> SSH vào server -> Khởi động lại dịch vụ`. Bây giờ, quy trình biến thành:
+
+1. Bạn chạy `git push` ở local để đẩy code lên GitHub.
+2. GitHub tự động báo cho nền tảng Deploy: "Ê, có code mới nè!"
+3. Nền tảng Deploy nhận tín hiệu, tự động kéo code mới nhất, tải dependency, chạy build, phát hành online.
+
+Ban không cần hiểu lệnh vận hành phức tạp, **Lưu là Phát hành**.
+
+CI/CD biến việc deploy thành "Lưu là Phát hành". Sư phụ bảo, triết lý "khi code thay đổi tự động kích hoạt thao tác" này hoàn toàn nhất quán với **Hooks** chúng ta nhắc đến khi dev. Ở local, Hooks tự động chạy test và format; trên cloud, CI/CD tự động chạy build và deploy. Chúng tạo thành một vòng khép kín tự động hóa hoàn chỉnh.
+
+**Vòng đời Deploy**: Quy trình deploy hoàn chỉnh gồm vài giai đoạn —— bạn viết code ở local, đẩy lên GitHub thì tự động kích hoạt build, build thành công sẽ sinh ra một link xem trước (preview link, các nền tảng trong nước thường có hiệu lực 3 tiếng), xác nhận không vấn đề gì thì hợp nhất vào nhánh chính (main branch) là chính thức online. Khi bản ghi deploy vượt quá số lượng nhất định, bản cũ sẽ bị đánh dấu vô hiệu, giúp tiết kiệm không gian lưu trữ.
+
+### Cấu hình Deploy
+
+Trước khi bắt đầu deploy, sư phụ bảo bạn cần hiểu vài tham số cấu hình cốt lõi. Tuy các nền tảng hiện đại có thể tự nhận diện nhiều loại dự án, nhưng hiểu các tham số này giúp bạn biết cách tra cứu khi gặp sự cố.
+
+**Cài đặt Build**:
+
+- **Framework Preset**: Chọn framework bạn dùng (như Next.js), nền tảng sẽ tự động điền cấu hình đề xuất.
+- **Root Directory**: Vị trí code trong kho, mặc định là thư mục gốc `./`.
+- **Build Command**: Mặc định là `npm run build` hoặc `pnpm build`.
+- **Output Directory**: Vị trí chứa sản phẩm sau khi build, Next.js thường là `.next` hoặc `out`.
+- **Node Version**: Nền tảng cài sẵn nhiều phiên bản Node (như 18, 20, 22, 24), hướng dẫn này dùng bản lớn 24.
+
+**Biến môi trường**: Sau khi deploy cần cấu hình riêng. Các nền tảng thường hỗ trợ import hàng loạt —— copy trực tiếp nội dung file `.env` paste vào, nền tảng sẽ tự nhận diện. Lưu ý sửa đổi biến môi trường chỉ có hiệu lực với lần deploy mới, không ảnh hưởng deploy cũ.
+
+### Tránh hố khi Deploy
+
+Bạn đã biết cách liên kết dự án GitHub vào nền tảng Deploy, bấm nút "Deploy", lần build đầu tiên bắt đầu.
+
+**Hố 1: Phiên bản Node.js không khớp**
+
+Chữ **Failed** đỏ lòm giáng cho bạn một đòn đau. Xem log, phát hiện do bản Node quá cũ. Nền tảng Deploy mặc định có thể để bản Node cũ, trong khi dự án Next.js của bạn cần bản mới hơn. Bạn cần vào cài đặt của nền tảng chỉnh Node.js Version thành phiên bản giống local (hướng dẫn này là 24), rồi deploy lại.
+
+**Hố 2: Biến môi trường mất tích**
+
+Sửa xong version, build thành công rồi, nhưng vào web toàn báo lỗi. Bạn chợt nhớ kiến thức chương 6: **File `.env` bị `.gitignore` chặn ở ngoài cửa rồi!** Trên GitHub làm gì có mật khẩu database với API Key của bạn. Bạn cần vào trang "Biến môi trường" của nền tảng, copy từng dòng trong `.env` local paste vào.
+
+Các nền tảng thường hỗ trợ import hàng loạt —— dán cả nội dung file `.env` vào là nó tự nhận.
+
+Cấu hình xong biến, bạn hào hứng truy cập lại, trang web cuối cùng cũng hiện ra bình thường. Vì bạn vẫn luôn dùng database trên cloud, code và dữ liệu đều ở đó, deploy chỉ là đổi một chỗ khác để chạy code mà thôi.
+
+**Deploy thành công**
+
+Sau khi cấu hình ổn thỏa, nền tảng Deploy sinh cho bạn một link truy cập. Bạn kích động bấm vào, trang web chạy trên mạng công cộng rồi, cuối cùng cũng có cái link để gửi cho bạn bè.
+
+### Phát hành kiểu Grayscale (Canary) —— Giảm thiểu rủi ro
+
+Sau khi deploy thành công, sư phụ nhắc đến một chiến lược nâng cao: "Nếu sản phẩm của cậu có lượng người dùng lớn, trực tiếp đẩy tính năng mới rủi ro rất cao. Lỡ có Bug nghiêm trọng là ảnh hưởng tất cả người dùng."
+
+Cách làm **Phát hành Grayscale (Xám/Canary)** là: Đẩy phiên bản mới cho 10% người dùng trước, quan sát vài ngày không vấn đề gì thì mở rộng lên 50%, cuối cùng là toàn lượng. Giống như cho ăn thử trong phạm vi nhỏ, xác nhận an toàn mới quảng bá diện rộng.
+
+Cách này giúp bạn kịp thời cắt lỗ khi phát hiện vấn đề, thay vì để tất cả người dùng cùng chịu rủi ro một lúc. Tin tốt là, một số nền tảng Deploy hỗ trợ tính năng này, bảo AI cấu hình giúp là được.
+
+Giai đoạn dự án cá nhân chưa cần phức tạp thế, nhưng hiểu khái niệm này giúp hiểu cách làm của các ông lớn —— tại sao có lúc bạn được dùng tính năng mới, lúc thì không, là vì bạn đang ở trong các nhóm Grayscale khác nhau.
+
+### Nền tảng tự động tối ưu
+
+Deploy thành công, sư phụ báo tin vui: **Các nền tảng này đã giúp bạn tối ưu hiệu năng rất nhiều rồi**.
+
+Ví dụ ảnh tự động nén sang định dạng hiệu quả hơn, code tự động chia nhỏ để tải theo nhu cầu, tài nguyên tĩnh được phân phối đến các node tăng tốc toàn cầu. Bạn không cần tự cấu hình mấy cái này, nền tảng mặc định làm sẵn cho bạn.
+
+Tất nhiên, nếu sản phẩm có lượng người dùng cực lớn, những tối ưu mặc định này có thể chưa đủ. Lúc đó hẵng tính đến chiến lược tối ưu sâu hơn. Nhưng ở giai đoạn đầu, cài đặt mặc định của nền tảng là quá đủ dùng rồi.
+
+### CDN
+
+Sư phụ tiện thể nhắc đến một khái niệm quan trọng: **CDN (Content Delivery Network - Mạng phân phối nội dung)**. Khi bạn deploy web lên mạng công cộng, có thể bạn sẽ thấy —— truy cập trong nước nhanh, nước ngoài chậm (hoặc ngược lại). Đó là do khoảng cách vật lý giới hạn tốc độ truyền tải, dữ liệu đi vòng nửa vòng trái đất cần có thời gian.
+
+Nguyên lý của CDN là đặt các "máy chủ đệm (cache server)" ở khắp nơi trên thế giới. Khi người dùng truy cập web của bạn, CDN sẽ tự động trả về nội dung từ máy chủ gần người dùng nhất, chứ không phải lần nào cũng gọi về máy chủ gốc. Giống như mở chi nhánh khắp nơi, người dùng đến chi nhánh gần nhất thay vì phải về trụ sở chính.
+
+Các nền tảng Deploy hiện đại (EdgeOne, ESA, Vercel, Cloudflare...) đều tích hợp sẵn CDN, bạn không cần cấu hình thêm. Hiểu nguyên lý này, bạn sẽ biết tại sao web có thể truy cập nhanh trên toàn cầu.
+
+### Ba lớp phòng thủ Cache
+
+Sư phụ nói: "Cache có ở khắp nơi, nó làm web nhanh hơn." Bạn sẽ gặp 3 loại cache:
+
+1. **Cache trình duyệt**: Tài nguyên đã truy cập được lưu ở local, lần sau khỏi tải lại. Chương 4 bạn đã trải nghiệm rồi —— sửa code xong refresh vẫn thấy cái cũ, là do cache đấy.
+2. **Cache CDN**: Cache ở các node toàn cầu vừa giảng ở trên, gần người dùng nhất.
+3. **Cache Server**: Kết quả tính toán hoặc truy vấn database được lưu trong bộ nhớ server, tránh tính toán lặp lại.
+
+Đa phần cache là tự động. Tư tưởng cốt lõi của cache rất đơn giản: **Cất những thứ hay dùng đi, lần sau lôi ra dùng luôn**. Đôi khi web cập nhật mà người dùng không thấy, có thể là do cache chưa làm mới, xóa cache hoặc buộc tải lại (Ctrl+Shift+R) là giải quyết được.
+
+### Tối ưu chi phí
+
+Sản phẩm online một thời gian, bạn mở hóa đơn ra xem, con số làm tim đập thình thịch. Sư phụ bảo, lúc này cần xây dựng **ý thức tối ưu chi phí**.
+
+Về quyết định deploy, sư phụ bảo phải chia giai đoạn. Giai đoạn MVP (<1000 user) dùng Serverless khởi đầu với chi phí 0 đồng, đừng tối ưu quá sớm. Giai đoạn tăng trưởng (1000-10000 user) đánh giá kiến trúc hỗn hợp, nếu chi phí tăng quá nhanh hẵng tính chuyện tự dựng (self-host). Giai đoạn doanh nghiệp (>10000 user) mới cần vì lý do tuân thủ quy định hoặc hiệu năng mà tự dựng server. **Tối ưu quá sớm là nguồn gốc của mọi tội lỗi**, đừng lo lắng vấn đề của giai đoạn 3 khi đang ở giai đoạn 1.
+
+Chi phí mô hình AI cũng đáng tối ưu. Tác vụ đơn giản dùng mô hình nội địa giá rẻ (như GLM, DeepSeek), suy luận phức tạp dùng Claude. Một ứng dụng AI nọ thông qua điều hướng thông minh (70% GLM + 30% Claude), chi phí API giảm được 80%. Mấu chốt là khớp độ phức tạp của tác vụ với năng lực của mô hình, đừng dùng dao mổ trâu giết gà.
+
+Sư phụ còn nhắc bạn chú ý **bẫy hạn mức miễn phí**: Rất nhiều nền tảng cho hạn mức miễn phí chỉ đủ để test, một khi có người dùng thật, chi phí sẽ tăng theo cấp số nhân. Nhớ cài đặt cảnh báo hóa đơn (ví dụ "quá 250k gửi mail nhắc"), định kỳ xem lượng dùng, để trong lòng có số. Hạn mức miễn phí là để trải nghiệm, không phải để chạy nghiệp vụ sản xuất lâu dài.
+
+Còn về các thực hành kỹ thuật liên quan đến SRE như giám sát vận hành, phân tích log, chúng ta sẽ giảng chi tiết trong phần vận hành Cloud Server sau này.
+
+### Điều hướng tiểu tiết
+
+```
+- 12.1 Serverless chi tiết (./01-serverless-details.md) 🔴 - Hiểu nguyên lý và ứng dụng kiến trúc Serverless
+- 12.2 Lựa chọn nền tảng Deploy (./02-deploy-platform-selection.md) 🟡 - So sánh EdgeOne/ESA/Vercel/CF Pages
+- 12.3 Khái niệm CDN (./03-cdn-concepts.md) 🔴 - Nguyên lý và ứng dụng mạng phân phối nội dung
+- 12.4 Thực chiến Deploy EdgeOne Pages (./04-edgeone-deploy.md) 🔴 - Deploy trên nền tảng Tencent Cloud EdgeOne
+- 12.5 Thực chiến Deploy ESA (./05-esa-deploy.md) 🟡 - Deploy trên nền tảng Aliyun ESA
+- 12.6 Khắc phục lỗi Build (./06-build-troubleshooting.md) 🟡 - Giải quyết thất bại khi build và vấn đề hiệu năng
+- 12.7 Cấu hình CI/CD (./07-cicd-config.md) 🔴 - Cấu hình tích hợp và triển khai liên tục
+- 12.8 Hooks và triết lý CI-CD (./08-hooks-cicd-philosophy.md) 🟡 - Tự động hóa thao tác khi code thay đổi
+- 12.9 Headless Mode (./09-headless-mode.md) 🟢 - Hiểu trình duyệt không đầu và render phía server
+- 12.10 Tránh hố khi Deploy (./10-deploy-pitfalls.md) 🔴 - Vấn đề deploy thường gặp và giải pháp
+- 12.11 Khung quyết định Deploy (./11-deploy-decision-framework.md) 🔴 - Cách chọn phương án deploy phù hợp
+- 12.12 Ý thức nhập môn SRE (./12-sre-intro.md) 🟢 - Cơ bản về Kỹ thuật Độ tin cậy Trang web
+- 12.13 Chiến lược tối ưu chi phí (./13-cost-optimization.md) 🟡 - Tối ưu chi phí deploy và sử dụng
+- 12.14 Khả năng quan sát và Log (./14-observability-logs.md) 🟡 - Giám sát, nhật ký và truy vết
+```

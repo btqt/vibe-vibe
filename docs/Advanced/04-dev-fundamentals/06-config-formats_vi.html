@@ -1,0 +1,440 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06 Config Formats</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.6 Định dạng file cấu hình"
+description: "Hiểu định dạng cấu hình JSON và YAML"
+chapter: "Chương 4"
+priority: "🟢"</p>
+<hr />
+<h1>4.6 Định dạng file cấu hình 🟢</h1>
+<blockquote>
+<p><strong>Đọc xong phần này, bạn sẽ thu hoạch được:</strong></p>
+<ul>
+<li>Hiểu cú pháp và công dụng của JSON và YAML</li>
+<li>Nắm vững phương pháp đọc viết hai định dạng này</li>
+<li>Biết kịch bản áp dụng của chúng trong phát triển</li>
+<li>Hiểu giá trị của dữ liệu cấu trúc hóa đối với AI</li>
+</ul>
+<p>JSON và YAML là "tiếng phổ thông" của thời đại kỹ thuật số —— ngôn ngữ chung để giao tiếp giữa các hệ thống khác nhau.</p>
+</blockquote>
+<hr />
+<h2>Dữ liệu cấu trúc hóa là gì</h2>
+<p>Dữ liệu cấu trúc hóa là cách biểu diễn dữ liệu được tổ chức theo quy tắc nghiêm ngặt. Chúng giúp máy tính có thể phân tích và hiểu dữ liệu một cách chính xác.</p>
+<p>So với ngôn ngữ tự nhiên, định dạng dạng cấu trúc có các đặc điểm:</p>
+<ul>
+<li>Định dạng thống nhất, không gây hiểu lầm</li>
+<li>Dễ dàng cho chương trình phân tích (parse) và tạo mới (generate)</li>
+<li>Dùng chung được trên nhiều ngôn ngữ, nền tảng</li>
+<li>AI có thể hiểu chính xác</li>
+</ul>
+<p>Hiểu giá trị của dữ liệu cấu trúc hóa có thể nhìn từ góc độ tiến hóa của ngôn ngữ lập trình. Các ngôn ngữ đời đầu khá gần với mã máy, lập trình viên phải xử lý trực tiếp địa chỉ bộ nhớ và dữ liệu nhị phân. Khi ngôn ngữ bậc cao xuất hiện, dữ liệu được trừu tượng hóa thành các khái niệm biến, đối tượng, mảng, lập trình viên có thể mô tả dữ liệu theo cách tự nhiên hơn. JSON và YAML đại diện cho tầng trừu tượng cao nhất của sự phát triển này —— chúng không phải cú pháp của một ngôn ngữ cụ thể nào, mà là "ngôn ngữ chung" mà mọi ngôn ngữ hiện đại đều hiểu. Dù bạn dùng Dictionary của Python, Object của JavaScript, hay Struct của Go, cuối cùng đều có thể chuyển đổi không sứt mẻ sang định dạng JSON để ngôn ngữ khác đọc hiểu. Tính phổ quát này là nền tảng để hệ sinh thái phần mềm hiện đại có thể kết nối với nhau.</p>
+<p>::: tip Sở thích đọc của AI</p>
+<p>So với ngôn ngữ tự nhiên tản mạn, định dạng cấu trúc rõ ràng là loại "hướng dẫn sử dụng" mà AI thích đọc nhất. Khi bạn viết nhu cầu hoặc cấu hình bằng JSON/YAML, độ chính xác trong cách hiểu của AI sẽ tăng vọt.</p>
+<p>:::</p>
+<hr />
+<h2>Định dạng JSON</h2>
+<p><strong>JSON (JavaScript Object Notation)</strong> là định dạng trao đổi dữ liệu phổ biến nhất.</p>
+<h3>Quy tắc cú pháp</h3>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Trương Tam&quot;,
+  &quot;age&quot;: 25,
+  &quot;email&quot;: &quot;zhang@example.com&quot;,
+  &quot;address&quot;: {
+    &quot;city&quot;: &quot;Bắc Kinh&quot;,
+    &quot;district&quot;: &quot;Triều Dương&quot;
+  },
+  &quot;hobbies&quot;: [&quot;Đọc sách&quot;, &quot;Bơi lội&quot;, &quot;Lập trình&quot;]
+}
+</code></pre>
+<p><strong>Giải thích quy tắc</strong>:</p>
+<ul>
+<li>Dùng ngoặc nhọn <code>{}</code> biểu thị đối tượng (Object)</li>
+<li>Dùng ngoặc vuông <code>[]</code> biểu thị mảng (Array)</li>
+<li>Dữ liệu tổ chức theo cặp "Khóa: Giá trị" (Key: Value)</li>
+<li>Khóa bắt buộc phải bao quanh bởi dấu ngoặc kép</li>
+<li>Các cặp khóa-giá trị phân cách bằng dấu phẩy</li>
+</ul>
+<h3>Kiểu dữ liệu</h3>
+<table>
+<thead>
+<tr>
+<th>Kiểu</th>
+<th>Ví dụ</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chuỗi (String)</td>
+<td><code>"hello"</code></td>
+<td>Bao quanh bởi dấu ngoặc kép</td>
+</tr>
+<tr>
+<td>Số (Number)</td>
+<td><code>123</code>, <code>3.14</code></td>
+<td>Số nguyên hoặc số thực</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td><code>true</code>, <code>false</code></td>
+<td>Đúng/Sai</td>
+</tr>
+<tr>
+<td>Mảng (Array)</td>
+<td><code>[1, 2, 3]</code></td>
+<td>Danh sách dữ liệu có thứ tự</td>
+</tr>
+<tr>
+<td>Đối tượng (Object)</td>
+<td><code>{"key": "value"}</code></td>
+<td>Tập hợp các cặp Key-Value</td>
+</tr>
+<tr>
+<td>Null</td>
+<td><code>null</code></td>
+<td>Giá trị rỗng</td>
+</tr>
+</tbody>
+</table>
+<h3>Lợi thế của JSON</h3>
+<table>
+<thead>
+<tr>
+<th>Lợi thế</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tính phổ quát</strong></td>
+<td>Mọi ngôn ngữ lập trình đều hỗ trợ</td>
+</tr>
+<tr>
+<td><strong>Tính dễ đọc</strong></td>
+<td>Con người có thể đọc hiểu dễ dàng</td>
+</tr>
+<tr>
+<td><strong>Gọn nhẹ</strong></td>
+<td>Định dạng súc tích, không lãng phí dung lượng</td>
+</tr>
+<tr>
+<td><strong>Chuẩn Web</strong></td>
+<td>Định dạng chuẩn của API HTTP</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip JSON là tiếng phổ thông thời kỹ thuật số</p>
+<p>Dù bạn dùng Python viết Backend, dùng JavaScript viết Frontend, hay nhờ AI viết code, thì mọi người đều dùng JSON để truyền tải dữ liệu. Nếu không dùng JSON, mỗi ngôn ngữ có thể sẽ dùng định dạng "phương ngữ" của riêng mình, giống như thời xưa mỗi vùng nói một tiếng vậy, giao tiếp rất khó khăn.</p>
+<p>:::</p>
+<hr />
+<h2>Định dạng YAML</h2>
+<p><strong>YAML (YAML Ain't Markup Language)</strong> là một định dạng cấu hình nhân tính hóa hơn.</p>
+<h3>Quy tắc cú pháp</h3>
+<pre><code class="language-yaml"># Thông tin người dùng
+name: Trương Tam
+age: 25
+email: zhang@example.com
+
+# Thông tin địa chỉ
+address:
+  city: Bắc Kinh
+  district: Triều Dương
+
+# Danh sách sở thích
+hobbies:
+  - Đọc sách
+  - Bơi lội
+  - Lập trình
+</code></pre>
+<p><strong>Giải thích quy tắc</strong>:</p>
+<ul>
+<li>Dùng thụt đầu dòng (indent) để biểu thị cấp bậc (dùng dấu cách, không dùng Tab)</li>
+<li>Cặp Key-Value phân cách bằng dấu hai chấm</li>
+<li>Phần tử mảng biểu thị bằng dấu gạch ngang <code>-</code></li>
+<li>Dấu <code>#</code> mở đầu cho chú thích (comment)</li>
+</ul>
+<h3>Lợi thế của YAML</h3>
+<table>
+<thead>
+<tr>
+<th>Lợi thế</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dễ đọc hơn</strong></td>
+<td>Tự nhiên như viết danh sách liệt kê</td>
+</tr>
+<tr>
+<td><strong>Hỗ trợ chú thích</strong></td>
+<td>Có thể thêm text giải thích</td>
+</tr>
+<tr>
+<td><strong>Súc tích</strong></td>
+<td>Không cần ngoặc nhọn, ngoặc kép, dấu phẩy</td>
+</tr>
+<tr>
+<td><strong>Hợp làm cấu hình</strong></td>
+<td>Thường dùng cho file cấu hình hệ thống</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip YAML vs JSON</p>
+<p>YAML giống "danh sách liệt kê", JSON giống "bảng biểu". Viết cấu hình dùng YAML thoải mái hơn, truyền dữ liệu dùng JSON chuẩn mực hơn.</p>
+<p>:::</p>
+<hr />
+<h2>CSV: Định dạng file phẳng</h2>
+<p>Khi bàn về dữ liệu cấu trúc hóa, <strong>CSV (Comma-Separated Values)</strong> là định dạng đơn giản nhất. Nó dùng văn bản thuần túy để lưu trữ dữ liệu dạng bảng, mỗi dòng là một bản ghi, các trường phân cách bằng dấu phẩy.</p>
+<p><strong>Ví dụ CSV</strong>:</p>
+<pre><code class="language-csv">name,email,age
+Trương Tam,zhang@example.com,25
+Lý Tứ,li@example.com,30
+</code></pre>
+<p><strong>Đặc điểm của CSV</strong>:</p>
+<ul>
+<li><strong>Đơn giản</strong>: Trình soạn thảo văn bản nào cũng mở được</li>
+<li><strong>Tương thích tốt</strong>: Excel, Google Sheets đều import trực tiếp được</li>
+<li><strong>Dung lượng nhỏ</strong>: Không có các ký tự đánh dấu định dạng dư thừa</li>
+</ul>
+<p><strong>Hạn chế của CSV</strong>:</p>
+<ul>
+<li>Chỉ biểu diễn được bảng 2 chiều (hàng và cột)</li>
+<li>Không hỗ trợ cấu trúc lồng nhau (nested)</li>
+<li>Không có kiểu dữ liệu (tất cả đều là chuỗi)</li>
+<li>Xử lý các mối quan hệ phức tạp rất yếu</li>
+</ul>
+<p><strong>CSV vs JSON/YAML</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Đặc tính</th>
+<th>CSV</th>
+<th>JSON/YAML</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cấu trúc</td>
+<td>Bảng 2 chiều</td>
+<td>Lồng nhau tùy ý</td>
+</tr>
+<tr>
+<td>Kiểu dữ liệu</td>
+<td>Không</td>
+<td>Chuỗi, Số, Boolean...</td>
+</tr>
+<tr>
+<td>Biểu diễn quan hệ</td>
+<td>Yếu</td>
+<td>Mạnh</td>
+</tr>
+<tr>
+<td>Ngữ cảnh sử dụng</td>
+<td>Xuất dữ liệu đơn giản, trao đổi bảng biểu</td>
+<td>File cấu hình, dữ liệu API, cấu trúc phức tạp</td>
+</tr>
+</tbody>
+</table>
+<p>Khi bạn cần xuất dữ liệu từ bảng tính, hoặc trao đổi dữ liệu đơn giản với đồng nghiệp dùng Excel, CSV rất phù hợp. Nhưng để phát triển Web App, JSON và YAML là lựa chọn tốt hơn vì chúng biểu diễn được cấu trúc dữ liệu phức tạp hơn.</p>
+<hr />
+<h2>So sánh hai định dạng</h2>
+<table>
+<thead>
+<tr>
+<th>Đặc tính</th>
+<th>JSON</th>
+<th>YAML</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cú pháp</td>
+<td>Nghiêm ngặt, cần ngoặc và dấu phẩy</td>
+<td>Thoáng, dựa vào thụt đầu dòng</td>
+</tr>
+<tr>
+<td>Chú thích</td>
+<td>Không hỗ trợ</td>
+<td>Hỗ trợ <code>#</code></td>
+</tr>
+<tr>
+<td>Tính dễ đọc</td>
+<td>Khá</td>
+<td>Tốt hơn</td>
+</tr>
+<tr>
+<td>Ngữ cảnh sử dụng</td>
+<td>Truyền dữ liệu, API</td>
+<td>File cấu hình</td>
+</tr>
+<tr>
+<td>Tốc độ phân tích</td>
+<td>Nhanh hơn</td>
+<td>Chậm hơn chút</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Ví dụ ứng dụng thực tế</h2>
+<h3>JSON: Dữ liệu người dùng</h3>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;user_123&quot;,
+  &quot;name&quot;: &quot;Trương Tam&quot;,
+  &quot;email&quot;: &quot;zhang@example.com&quot;,
+  &quot;avatar&quot;: &quot;https://example.com/avatar.jpg&quot;,
+  &quot;location&quot;: {
+    &quot;country&quot;: &quot;Trung Quốc&quot;,
+    &quot;province&quot;: &quot;Bắc Kinh&quot;,
+    &quot;city&quot;: &quot;Bắc Kinh&quot;
+  },
+  &quot;birthday&quot;: &quot;1990-01-15&quot;,
+  &quot;phone&quot;: &quot;+86 138 0000 0000&quot;
+}
+</code></pre>
+<h3>YAML: Cấu hình ứng dụng</h3>
+<pre><code class="language-yaml"># Cấu hình ứng dụng
+app:
+  name: &quot;Blog Của Tôi&quot;
+  version: &quot;1.0.0&quot;
+  port: 3000
+
+# Cấu hình Database
+database:
+  host: &quot;localhost&quot;
+  port: 5432
+  name: &quot;blog_db&quot;
+  user: &quot;admin&quot;
+  password: &quot;${DB_PASSWORD}&quot; # Tham chiếu biến môi trường
+
+# Công tắc tính năng
+features:
+  enable_comments: true
+  enable_analytics: false
+</code></pre>
+<h3>JSON: Phản hồi API</h3>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;posts&quot;: [
+      {
+        &quot;id&quot;: &quot;1&quot;,
+        &quot;title&quot;: &quot;Bài viết đầu tiên&quot;,
+        &quot;author&quot;: &quot;Trương Tam&quot;
+      },
+      {
+        &quot;id&quot;: &quot;2&quot;,
+        &quot;title&quot;: &quot;Bài viết thứ hai&quot;,
+        &quot;author&quot;: &quot;Lý Tứ&quot;
+      }
+    ],
+    &quot;total&quot;: 2,
+    &quot;page&quot;: 1
+  }
+}
+</code></pre>
+<h3>YAML: Cấu hình CI/CD</h3>
+<pre><code class="language-yaml"># Cấu hình GitHub Actions
+name: Deploy
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cài đặt dependency
+        run: pnpm install
+      - name: Build
+        run: pnpm build
+      - name: Deploy
+        run: pnpm deploy
+</code></pre>
+<hr />
+<h2>Sử dụng trong phát triển</h2>
+<h3>package.json (JSON)</h3>
+<p>File cấu hình của dự án Node.js, định nghĩa dependency và script của dự án:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;my-project&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;scripts&quot;: {
+    &quot;dev&quot;: &quot;next dev&quot;,
+    &quot;build&quot;: &quot;next build&quot;,
+    &quot;start&quot;: &quot;next start&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;next&quot;: &quot;^14.0.0&quot;,
+    &quot;react&quot;: &quot;^18.0.0&quot;
+  }
+}
+</code></pre>
+<h3>tsconfig.json (JSON)</h3>
+<p>File cấu hình TypeScript:</p>
+<pre><code class="language-json">{
+  &quot;compilerOptions&quot;: {
+    &quot;target&quot;: &quot;ES2020&quot;,
+    &quot;module&quot;: &quot;ESNext&quot;,
+    &quot;jsx&quot;: &quot;preserve&quot;,
+    &quot;strict&quot;: true,
+    &quot;esModuleInterop&quot;: true
+  },
+  &quot;include&quot;: [&quot;src/**/*&quot;],
+  &quot;exclude&quot;: [&quot;node_modules&quot;]
+}
+</code></pre>
+<hr />
+<h2>Câu hỏi thường gặp</h2>
+<h3>Q1: Muốn viết chú thích trong JSON thì làm thế nào?</h3>
+<p>Chuẩn JSON không hỗ trợ chú thích. Nếu cần chú thích, có thể dùng JSONC (JSON with Comments) hoặc chuyển sang dùng YAML.</p>
+<h3>Q2: Thụt đầu dòng trong YAML dùng dấu cách (Space) hay Tab?</h3>
+<p>Bắt buộc dùng dấu cách, không được dùng Tab. Thường dùng 2 dấu cách cho một cấp thụt đầu dòng.</p>
+<h3>Q3: Chọn JSON hay YAML khi nào?</h3>
+<ul>
+<li>Truyền dữ liệu, phản hồi API: Dùng JSON</li>
+<li>File cấu hình: Ưu tiên YAML</li>
+<li>Cần viết chú thích: Dùng YAML</li>
+<li>Web API: Dùng JSON</li>
+</ul>
+<h3>Q4: Viết sai định dạng thì sao?</h3>
+<p>Đa số trình soạn thảo code đều có chức năng kiểm tra cú pháp. Nhờ AI sửa giúp cũng là một cách hay, nó sẽ chỉ ra lỗi cụ thể và đưa ra định dạng đúng.</p>
+<hr />
+<h2>Trọng điểm cốt lõi</h2>
+<ul>
+<li>✅ JSON và YAML là định dạng chuẩn của dữ liệu cấu trúc hóa</li>
+<li>✅ JSON là định dạng dữ liệu chung cho Web API</li>
+<li>✅ YAML thích hợp hơn để viết file cấu hình</li>
+<li>✅ Định dạng cấu trúc hóa giúp AI hiểu nhu cầu chính xác hơn</li>
+<li>✅ JSON dùng ngoặc và dấu phẩy, YAML dùng thụt đầu dòng</li>
+<li>✅ Chọn định dạng tùy thuộc vào ngữ cảnh sử dụng</li>
+</ul>
+<p>Hiểu các định dạng cấu hình rồi, tiếp theo sẽ học cách áp dụng những kiến thức này vào thực tế —— tích hợp API bên ngoài.</p>
+<hr />
+<h2>Nội dung liên quan</h2>
+<ul>
+<li>Trước đó: <a href="./02-prd-and-tech-docs_vi.html">4.2 Mối quan hệ giữa PRD và Tài liệu kỹ thuật</a></li>
+<li>Trước đó: <a href="./05-frontend-backend-separation_vi.html">4.5 Khái niệm tách biệt Frontend-Backend</a></li>
+<li>Chi tiết: <a href="./07-api-integration_vi.html">4.7 Thực chiến tích hợp API</a></li>
+<li>Chi tiết: <a href="./08-readme-structure_vi.html">4.8 Cấu trúc bản hướng dẫn dự án</a></li>
+</ul>
+</body>
+</html>

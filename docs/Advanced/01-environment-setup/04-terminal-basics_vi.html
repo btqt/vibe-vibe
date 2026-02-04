@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04 Terminal Basics</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "1.4 Nhập môn Terminal"
+description: "Nắm vững các thao tác dòng lệnh cơ bản"
+chapter: "Chương 1"</p>
+<hr />
+<h1>1.4 Nhập môn Terminal</h1>
+<blockquote>
+<p><strong>Đọc xong phần này, bạn sẽ thu hoạch được:</strong></p>
+<ul>
+<li>Nắm vững các thao tác cơ bản trên terminal (mở, điều hướng tệp, thực thi lệnh)</li>
+<li>Hiểu sự khác biệt giữa Terminal, Shell và Dòng lệnh (CLI)</li>
+<li>Nắm vững phím tắt terminal và thao tác sao chép dán</li>
+<li>Hiểu tác dụng của biến môi trường và PATH</li>
+<li>Học được quy trình bài bản để kiểm tra lỗi khi lệnh báo lỗi</li>
+</ul>
+<p>Terminal được nhắc đến trong lời nói đầu, là cách thức đối thoại với hệ điều hành thông qua chỉ thị văn bản.</p>
+</blockquote>
+<h2>Kiến thức tiền đề</h2>
+<p>::: tip Phân biệt Terminal, Shell, Dòng lệnh</p>
+<p>Ba khái niệm này thường bị nhầm lẫn, thực ra chúng ở các tầng khác nhau:</p>
+<ul>
+<li><strong>Terminal (Thiết bị đầu cuối/Giao diện dòng lệnh)</strong>: Là cái <strong>cửa sổ giao diện</strong> bạn nhìn thấy, dùng để nhập lệnh. Trên Windows gọi là PowerShell/CMD, trên Mac gọi là Terminal/iTerm2</li>
+<li><strong>Shell (Vỏ)</strong>: Là <strong>trình thông dịch lệnh</strong> ẩn sau terminal, đọc đầu vào của bạn và thực thi. Phổ biến là bash, zsh (Mặc định của Mac), PowerShell (Windows)</li>
+<li><strong>Dòng lệnh (CLI)</strong>: Là <strong>cách thức</strong> thao tác máy tính thông qua chỉ thị văn bản, hiệu quả và chính xác hơn so với giao diện đồ họa</li>
+</ul>
+<p>:::</p>
+<p>::: tip Tại sao Windows lại khuyến nghị PowerShell?</p>
+<p>Windows có hai loại terminal: CMD (kiểu cũ) và PowerShell (hiện đại).</p>
+<p>PowerShell có chức năng mạnh mẽ hơn, câu lệnh thống nhất hơn (ví dụ <code>ls</code> cũng dùng được trong PowerShell), và là terminal hiện đại được Microsoft chính thức khuyến nghị. <strong>Mọi lệnh Windows trong giáo trình này đều lấy PowerShell làm chuẩn</strong>.</p>
+<p>:::</p>
+<h2>Khái niệm cốt lõi</h2>
+<p>Terminal là giao diện làm việc chính của lập trình viên. Hiểu các thao tác cơ bản của terminal:</p>
+<pre><code class="language-mermaid">graph TB
+    A[Người dùng nhập lệnh] --&gt; B{Loại lệnh}
+    B --&gt;|Thao tác tệp| C[ls/cd/mkdir]
+    B --&gt;|Chạy chương trình| D[pnpm dev/node]
+    B --&gt;|Quản lý hệ thống| E[nvm/npm/which]
+
+    C --&gt; F[Kết quả thực thi]
+    D --&gt; F
+    E --&gt; F
+</code></pre>
+<h2>Các bước thực chiến</h2>
+<h3>Mở Terminal</h3>
+<p><strong>Mac</strong>:</p>
+<ul>
+<li>Nhấn <code>Command + Space</code>, nhập "Terminal"</li>
+<li>Hoặc trong Finder → Ứng dụng → Tiện ích → Terminal</li>
+</ul>
+<p><strong>Windows</strong>:</p>
+<ul>
+<li>Nhấn <code>Win + R</code>, nhập <code>powershell</code> hoặc <code>Windows Terminal</code></li>
+<li>Hoặc chuột phải vào thư mục → "Mở trong Terminal" (Open in Terminal)</li>
+</ul>
+<p><strong>Terminal tích hợp trong VS Code</strong>: Nhấn menu: Terminal (Cửa sổ lệnh) → New Terminal (Cửa sổ lệnh mới), khuyến nghị mở trực tiếp trong thư mục dự án</p>
+<h3>Dấu nhắc lệnh là gì?</h3>
+<p>Sau khi mở terminal, bạn sẽ thấy một dòng chữ có ký hiệu ở phía trước:</p>
+<pre><code class="language-bash">user@MacBook ~ $     # Dấu nhắc lệnh của Mac/Linux là $
+PS C:\Users\user&gt;    # Dấu nhắc lệnh của Windows PowerShell là &gt;
+</code></pre>
+<p>Cái này gọi là <strong>dấu nhắc lệnh (prompt)</strong>, <strong>không phải là một phần của câu lệnh</strong>, khi nhập lệnh đừng sao chép cả nó vào.</p>
+<p><code>$</code> biểu thị bạn đang dùng bash/zsh Shell, <code>&gt;</code> biểu thị bạn đang dùng PowerShell. Các ví dụ lệnh phía sau sẽ lược bỏ những dấu nhắc lệnh này.</p>
+<h3>Thao tác Sao chép Dán</h3>
+<p><strong>Windows PowerShell</strong>:</p>
+<ul>
+<li><strong>Dán</strong>: Chuột phải vào cửa sổ (Dán trực tiếp, Ctrl+V có thể không có tác dụng)</li>
+<li><strong>Sao chép</strong>: Bôi đen văn bản rồi chuột phải</li>
+</ul>
+<p><strong>Mac Terminal</strong>:</p>
+<ul>
+<li><strong>Sao chép</strong>: <code>Command + C</code></li>
+<li><strong>Dán</strong>: <code>Command + V</code></li>
+<li><strong>Dán từ nơi khác</strong>: <code>Command + Shift + V</code> (đôi khi cần dùng)</li>
+</ul>
+<h3>Thao tác tệp cơ bản</h3>
+<p>Những lệnh này dùng chung được trên Mac, Linux, Windows PowerShell:</p>
+<pre><code class="language-bash"># Xem thư mục hiện tại
+pwd
+
+# Liệt kê tệp tin
+ls          # Mac/Linux/PowerShell
+dir         # Windows CMD
+
+# Chuyển thư mục
+cd folder-name
+cd ..         # Quay lại cấp cha
+cd ~          # Quay lại thư mục chính của người dùng (Mac/Linux PowerShell)
+
+# Tạo thư mục
+mkdir folder-name
+</code></pre>
+<h3>Phím tắt Terminal</h3>
+<table>
+<thead>
+<tr>
+<th>Phím tắt</th>
+<th>Tác dụng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ctrl + C</code></td>
+<td>Dừng chương trình đang chạy</td>
+</tr>
+<tr>
+<td><code>Ctrl + L</code></td>
+<td>Xóa màn hình (tương đương nhập <code>clear</code>)</td>
+</tr>
+<tr>
+<td><code>↑ / ↓</code></td>
+<td>Duyệt lại các lệnh lịch sử</td>
+</tr>
+<tr>
+<td><code>Tab</code></td>
+<td>Tự động hoàn thành tên tệp hoặc lệnh</td>
+</tr>
+<tr>
+<td><code>Ctrl + A</code></td>
+<td>Di chuyển con trỏ về đầu dòng</td>
+</tr>
+<tr>
+<td><code>Ctrl + E</code></td>
+<td>Di chuyển con trỏ về cuối dòng</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Hai công dụng của Ctrl + C</p>
+<p>Trong terminal, <code>Ctrl + C</code> có hai tác dụng:</p>
+<ol>
+<li><strong>Dừng chương trình đang chạy</strong> (như server phát triển)</li>
+<li><strong>Ngắt đầu vào hiện tại</strong> (Nếu bạn đang nhập dở một dòng lệnh và muốn bỏ đi để nhập lại)</li>
+</ol>
+<p>:::</p>
+<h3>Biến môi trường và PATH</h3>
+<p>::: tip Biến môi trường là gì</p>
+<p>Biến môi trường là thông tin cấu hình mà hệ điều hành lưu trữ, các chương trình có thể lấy cài đặt hệ thống thông qua chúng. Ví dụ <code>PATH</code> là một biến môi trường, bảo cho hệ thống biết đi đâu để tìm các chương trình thực thi.</p>
+<p>:::</p>
+<p>Khi bạn nhập các lệnh như <code>node</code>, <code>pnpm</code>, hệ thống làm sao tìm thấy chúng?</p>
+<pre><code class="language-mermaid">sequenceDiagram
+    participant User as Người dùng nhập lệnh
+    participant Shell as Trình thông dịch Shell
+    participant PATH as Biến môi trường PATH
+    participant Program as Chương trình thực thi
+
+    User-&gt;&gt;Shell: Nhập &quot;pnpm&quot;
+    Shell-&gt;&gt;PATH: Tìm kiếm thư mục trong PATH
+    PATH--&gt;&gt;Shell: Trả về danh sách thư mục
+    Shell-&gt;&gt;Program: Tìm thấy tệp thực thi pnpm
+    Program--&gt;&gt;User: Thực thi lệnh
+</code></pre>
+<p><strong>Nguyên lý hoạt động của PATH</strong>:</p>
+<ol>
+<li>Bạn nhập <code>pnpm</code></li>
+<li>Shell tìm kiếm tệp có tên <code>pnpm</code> lần lượt trong các thư mục được liệt kê trong PATH</li>
+<li>Tìm thấy thì thực thi tệp đó</li>
+<li>Nếu tìm hết các thư mục mà không thấy, sẽ báo <code>command not found</code></li>
+</ol>
+<p>::: tip Không tìm thấy lệnh thì làm sao?</p>
+<p>Nếu nhập lệnh mà báo <code>command not found</code>, chứng tỏ công cụ chưa được cài hoặc chưa có trong PATH.</p>
+<p>Làm theo bài tiếp theo (1.5 Môi trường Node.js và Quản lý gói) để hoàn tất cài đặt, lệnh sẽ sử dụng được bình thường.</p>
+<p>:::</p>
+<h3>Phần mềm CLI và Tham số lệnh</h3>
+<p><strong>Phần mềm CLI là gì?</strong></p>
+<p>Phần mềm CLI (Command Line Interface) không có menu và nút bấm, mọi thứ hoàn thành thông qua nhập lệnh. Có thể bạn sẽ thắc mắc: <strong>Tại sao công cụ phát triển lại thích cách thức thô sơ này?</strong></p>
+<p>Nguyên nhân rất đơn giản: Nhập lệnh nhanh hơn nhiều so với bấm menu, lệnh có thể kèm tham số để kiểm soát hành vi chính xác, hơn nữa có thể viết thành script để tự động thực thi, chiếm ít bộ nhớ hơn. Khi bạn thành thạo rồi, sẽ thấy hiệu suất vượt xa giao diện đồ họa.</p>
+<p><strong>Nhập môn tham số lệnh</strong></p>
+<p>Phía sau lệnh thường đi kèm tham số để sửa đổi hành vi. Tham số có hai định dạng:</p>
+<ul>
+<li><strong>Tham số ngắn</strong>: Một dấu gạch ngang cộng chữ cái, như <code>-v</code> (version), <code>-h</code> (help)</li>
+<li><strong>Tham số dài</strong>: Hai dấu gạch ngang cộng từ vựng, như <code>--version</code>, <code>--help</code></li>
+</ul>
+<pre><code class="language-bash"># Xem phiên bản (tham số ngắn)
+node -v
+pnpm -v
+
+# Xem trợ giúp (tham số dài)
+git --help
+npm --help
+</code></pre>
+<p>Tham số ngắn và dài có hiệu quả như nhau, tham số ngắn nhập nhanh hơn, tham số dài dễ đọc hơn. Đa số lệnh hỗ trợ cả hai hình thức.</p>
+<h2>Câu hỏi thường gặp</h2>
+<h3>Q1: Làm sao để chạy nhiều lệnh cùng lúc?</h3>
+<p>Dùng <code>&amp;&amp;</code> nối các lệnh, chỉ khi lệnh trước thành công mới chạy lệnh sau:</p>
+<pre><code class="language-bash"># Dọn dẹp và cài đặt lại
+rm -rf node_modules &amp;&amp; pnpm install
+</code></pre>
+<p>Dùng <code>;</code> (hoặc xuống dòng) nối các lệnh, bất kể lệnh trước thành công hay không đều chạy lệnh sau:</p>
+<pre><code class="language-bash">mkdir new-folder ; cd new-folder    # new-folder là tên thư mục ví dụ
+</code></pre>
+<h3>Q2: Terminal hiển thị tiếng Trung bị lỗi font?</h3>
+<p>Sửa cài đặt mã hóa của terminal.</p>
+<ul>
+<li><strong>Mac</strong>: Terminal → Tùy chọn (Preferences) → Hồ sơ (Profiles) → Nâng cao (Advanced) → Mã hóa ký tự (Character encoding) → UTF-8</li>
+<li><strong>Windows</strong>: Thuộc tính PowerShell (Properties) → Font → Chọn font hỗ trợ tiếng Trung (hoặc tiếng Việt/Unicode)</li>
+</ul>
+<h3>Q3: Làm sao mở terminal của thư mục hiện tại trong VS Code?</h3>
+<p>Bấm menu: Terminal (Cửa sổ lệnh) → New Terminal (Cửa sổ lệnh mới)</p>
+<h2>Kiểm tra lỗi lệnh</h2>
+<p>Khi gặp <code>command not found</code> hoặc các báo lỗi khác, hãy kiểm tra lần lượt theo thứ tự sau:</p>
+<p>::: details 🔧 Bấm để trải nghiệm: Quy trình kiểm tra lỗi lệnh
+<TerminalTroubleshoot /></p>
+<blockquote>
+<p>💡 <strong>Bài tập</strong>: Làm theo các bước nhập lệnh đúng để kiểm tra vấn đề. Bắt đầu từ kiểm tra chính tả, dần dần xác minh cài đặt công cụ, vị trí thư mục v.v.</p>
+<p>🎯 <strong>Khái niệm cốt lõi</strong>: Khi lệnh báo lỗi, kiểm tra theo thứ tự: Chính tả → Cài đặt → Thư mục → PATH → Khác biệt hệ thống.
+:::</p>
+</blockquote>
+<h3>Danh sách kiểm tra</h3>
+<p><strong>1. Kiểm tra chính tả</strong></p>
+<pre><code class="language-bash"># Lỗi thường gặp
+pnpm instal  # Lỗi: thiếu chữ l
+l s          # Lỗi: ở giữa có dấu cách
+
+# Cách viết đúng
+pnpm install
+ls
+</code></pre>
+<p><strong>2. Xác nhận công cụ đã cài đặt</strong></p>
+<pre><code class="language-bash"># Xem phiên bản (xác nhận có thể thực thi)
+node -v
+pnpm -v
+</code></pre>
+<p>Nếu báo lệnh không tồn tại, cần cài đặt trước.</p>
+<p><strong>3. Xác nhận đang ở đúng thư mục</strong></p>
+<pre><code class="language-bash"># Xem thư mục hiện tại
+pwd
+
+# Kiểm tra xem có package.json không
+ls package.json
+</code></pre>
+<p><strong>4. Tải lại terminal</strong></p>
+<p>Vừa cài công cụ hoặc sửa PATH xong, cần khởi động lại terminal:</p>
+<pre><code class="language-bash"># Mac: Tải lại cấu hình
+source ~/.zshrc
+
+# Hoặc tắt terminal đi mở lại
+</code></pre>
+<p>::: tip Không chắc vấn đề nằm ở đâu?</p>
+<p>Gửi trực tiếp thông tin báo lỗi cho AI, nó sẽ nói cho bạn biết nguyên nhân cụ thể và cách giải quyết.</p>
+<p>Bạn không cần ghi nhớ tất cả các lỗi, chỉ cần biết thứ tự kiểm tra.</p>
+<p>:::</p>
+<h2>Nội dung liên quan</h2>
+<ul>
+<li>Xem chi tiết: [1.5 Môi trường Node.js và Quản lý gói]</li>
+</ul>
+</body>
+</html>

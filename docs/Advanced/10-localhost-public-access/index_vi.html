@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<h2>title: "Chương 10: Localhost và Truy cập công khai"</h2>
+<h1>Chương 10: Localhost và Truy cập công khai</h1>
+<h2>Lời tựa</h2>
+<p>Bạn nhìn trang web hoàn hảo trên máy tính, muốn cho bạn bè trầm trồ một chút. Bạn tự tin copy địa chỉ <code>http://localhost:3000</code> trên thanh địa chỉ trình duyệt gửi cho bạn bè qua Zalo. Một phút sau, bạn bè nhắn lại một dấu chấm hỏi: "Không mở được, sao thế?"</p>
+<p>Khoảnh khắc đó, bạn đỏ mặt tía tai. Cuối cùng bạn cũng hiểu được sự khác biệt giữa môi trường local và mạng Internet.</p>
+<h3>Các tầng mạng</h3>
+<p>Để giải quyết vấn đề này, Sư phụ từ góc độ <strong>khả năng truy cập của địa chỉ IP</strong>, phân chia cho bạn ba tầng mạng:</p>
+<ul>
+<li><strong>Local Loopback (Localhost / 127.0.0.1)</strong>: <code>localhost</code> trong mạng máy tính được gọi là <strong>địa chỉ loopback (hoàn ngược)</strong>, nó mãi mãi trỏ về <strong>chính thiết bị phát ra request</strong>. Khi bạn gửi đường link này cho bạn bè, trình duyệt của họ sẽ thử truy cập <strong>máy tính của chính họ</strong>. Vì máy tính của họ không chạy dịch vụ Next.js của bạn, nên trình duyệt sẽ báo lỗi "Kết nối bị từ chối" ngay lập tức. Đây là một môi trường đơn máy cách ly vật lý.</li>
+<li><strong>Mạng cục bộ (LAN / Intranet)</strong>: Đây là mạng nội bộ do router của bạn dựng lên. Tuy mạng Internet bên ngoài không thể truy cập trực tiếp, nhưng các thiết bị kết nối vào cùng một WiFi/dây mạng (như điện thoại, máy tính bảng) là thông nhau. Một khâu quan trọng của phát triển Fullstack là debug trên máy thật. Bạn không cần mỗi lần đều phải deploy lên mạng công khai, chỉ cần cho điện thoại truy cập IP mạng cục bộ của máy tính, là có thể lập tức test thao tác cảm ứng và bố cục Responsive trên máy thật.</li>
+<li><strong>Xem IP</strong>:<ul>
+<li>Windows: Nhập <code>ipconfig</code> trong terminal</li>
+<li>macOS: Nhập <code>ifconfig</code> trong terminal hoặc xem trong System Settings</li>
+<li>Linux: Nhập <code>ip addr</code> hoặc <code>ip a</code> (khuyên dùng), hoặc <code>ifconfig</code> (cần cài net-tools)
+  Tìm địa chỉ có định dạng <code>192.168.x.x</code> hoặc <code>10.x.x.x</code>.</li>
+</ul>
+</li>
+<li><strong>Test truy cập</strong>: Nhập <code>http://192.168.x.x:3000</code> vào trình duyệt điện thoại.</li>
+<li><strong>Khắc phục sự cố</strong>: Nếu không truy cập được, 90% trường hợp là do tường lửa máy tính chặn kết nối đến (inbound connection). Tạm thời tắt tường lửa hoặc cho phép Node.js giao tiếp thường sẽ giải quyết được vấn đề.</li>
+<li><strong>Mạng diện rộng (WAN / Internet)</strong>: Đây mới là Internet thực sự. Muốn cho người dùng ở môi trường mạng khác nhau (ví dụ bạn bè ở thành phố bên cạnh) truy cập trang web của bạn, bạn cần một IP công khai. Thông thường, việc này đòi hỏi bạn deploy code lên Cloud Server hoặc nền tảng Hosting có IP công khai.</li>
+</ul>
+<h3>Chia sẻ</h3>
+<p>Bạn nhận ra, Localhost chỉ là điểm khởi đầu của phát triển. Muốn phá vỡ sự cách ly vật lý, để người khác nhìn thấy hoặc tham gia dự án, bạn cần thiết lập các con đường khác nhau tùy theo đối tượng mục tiêu:</p>
+<p><strong>Kịch bản 1: Hướng tới người dùng sử dụng (Deployment)</strong> Nếu bạn muốn bạn bè hoặc người dùng trực tiếp <strong>sử dụng</strong> sản phẩm của bạn, bạn cần tiến hành <strong>Triển khai ứng dụng (Deploy)</strong>. Thông qua việc đóng gói code (Build) và phát hành lên Vercel, Tencent Cloud EdgeOne hoặc Cloud Server truyền thống, bạn sẽ có được một tên miền công khai (như <code>https://my-app.com</code>). Người dùng thông qua tên miền là truy cập được ứng dụng, không cần quan tâm code bên dưới.</p>
+<p><strong>Kịch bản 2: Hướng tới cộng tác viên phát triển (Git)</strong> Nếu bạn muốn bạn bè <strong>tham gia phát triển</strong>, hoặc nhờ cao thủ Review code giúp, bạn cần tiến hành <strong>Đồng bộ code</strong>. Thông qua việc đẩy mã nguồn lên nền tảng quản lý code như GitHub, Gitee, người cộng tác có thể kéo (Pull) code về máy tính của họ. Lúc này, họ chạy dự án trên môi trường Localhost của chính họ, từ đó hiện thực hóa việc cộng tác phát triển đa thiết bị.</p>
+<p><strong>Kịch bản 3: Demo và Test nhanh</strong> Trong giai đoạn phát triển, có thể bạn cần cho bạn bè ở xa xem nhanh hiệu quả, nhưng lại không muốn deploy chính thức, lúc này công cụ <strong>Xuyên ngầm (Tunneling)</strong> sẽ phát huy tác dụng.</p>
+<p>Sư phụ bảo, bản chất của xuyên ngầm là đào một đường hầm giữa máy tính local của bạn và mạng công khai. Người dùng bên ngoài truy cập một địa chỉ tạm thời, lưu lượng sẽ được chuyển tiếp qua đường hầm này đến máy tính local của bạn.</p>
+<p>Ưu điểm của cách này là nhanh, không cần deploy. Nhược điểm cũng rất rõ ràng: Địa chỉ hay thay đổi, tốc độ không ổn định, máy tính của bạn phải luôn bật. Nó phù hợp để demo nhanh trong giai đoạn phát triển, chứ không hợp làm phương thức truy cập lâu dài.</p>
+<p>Nếu bạn muốn sản phẩm được mọi người truy cập ổn định, thì cần phương án deploy chính thức.</p>
+<p>Hiểu rõ những điều này, bạn không còn chấp niệm với việc gửi link <code>localhost</code> nữa, mà quay người đi sâu vào việc học <strong>Git</strong> —— bởi vì trước khi phát hành ứng dụng cho toàn thế giới, việc đầu tiên cần giải quyết là quản lý an toàn và đồng bộ phiên bản code.</p>
+<p>::: tip Thực hành tốt nhất về An ninh mạng</p>
+<p><strong>Mô hình phòng thủ 3 lớp</strong>:</p>
+<ol>
+<li><strong>Localhost</strong>: Chỉ máy mình, cách ly vật lý, an toàn nhất</li>
+<li><strong>Mạng cục bộ (LAN)</strong>: Thiết bị cùng mạng truy cập được, cần tường lửa kiểm soát</li>
+<li><strong>Mạng công khai (Public)</strong>: Bất kỳ ai cũng truy cập được, cần xác thực danh tính nghiêm ngặt và mã hóa</li>
+</ol>
+<p><strong>Nguyên tắc then chốt</strong>:</p>
+<ul>
+<li>✅ Môi trường phát triển dùng localhost</li>
+<li>✅ Môi trường test dùng mạng cục bộ + xác thực danh tính</li>
+<li>✅ Môi trường sản xuất dùng HTTPS + mật khẩu mạnh</li>
+<li>❌ Không bao giờ để lộ dữ liệu nhạy cảm khi dùng công cụ xuyên ngầm
+  :::</li>
+</ul>
+<p>::: tip Bảng tra nhanh quyết định kịch bản chia sẻ</p>
+<table>
+<thead>
+<tr>
+<th>Đối tượng mục tiêu</th>
+<th>Phương án đề xuất</th>
+<th>Công cụ</th>
+<th>Chi phí</th>
+<th>Thời lượng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bản thân (đa thiết bị)</td>
+<td>Truy cập LAN</td>
+<td>-</td>
+<td>Miễn phí</td>
+<td>Tạm thời</td>
+</tr>
+<tr>
+<td>Demo cho bạn bè</td>
+<td>Xuyên ngầm (Tunneling)</td>
+<td>ngrok/cpolar</td>
+<td>Miễn phí</td>
+<td>Vài tiếng</td>
+</tr>
+<tr>
+<td>Người dùng sử dụng</td>
+<td>Triển khai ứng dụng</td>
+<td>Vercel/Cloud Server</td>
+<td>Trả phí</td>
+<td>Lâu dài</td>
+</tr>
+<tr>
+<td>Cộng tác viên</td>
+<td>Quản lý mã nguồn</td>
+<td>GitHub</td>
+<td>Miễn phí</td>
+<td>Lâu dài</td>
+</tr>
+</tbody>
+</table>
+<p>:::</p>
+<p>::: warning Cảnh báo an toàn khi xuyên ngầm</p>
+<p><strong>Khi sử dụng công cụ xuyên ngầm</strong>:</p>
+<ul>
+<li>⚠️ Thêm bảo vệ mật khẩu: <code>ngrok http 3000 --auth="user:pass"</code></li>
+<li>⚠️ Giới hạn IP truy cập: <code>ngrok http 3000 --cidr-allow=203.0.113.0/24</code></li>
+<li>⚠️ Đóng ngay sau khi demo xong</li>
+<li>⚠️ Không truyền tải dữ liệu nhạy cảm (Mật khẩu, Token)</li>
+<li>⚠️ Không để lộ trang quản trị (Admin panel)</li>
+</ul>
+<p>:::</p>
+</body>
+</html>

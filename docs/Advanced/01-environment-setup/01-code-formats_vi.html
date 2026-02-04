@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01 Code Formats</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "1.1 Sự tiến hóa của định dạng code"
+description: "Mô hình phát triển từ tệp đơn đến mô-đun hóa"
+chapter: "Chương 1"</p>
+<hr />
+<h1>1.1 Sự tiến hóa của định dạng code</h1>
+<blockquote>
+<p><strong>Đọc xong phần này, bạn sẽ thu hoạch được:</strong></p>
+<ul>
+<li>Hiểu cách HTML, CSS, JavaScript phối hợp hoạt động để xây dựng trang web</li>
+<li>Hiểu quá trình tiến hóa định dạng code từ tệp đơn đến mô-đun hóa, TypeScript</li>
+<li>Biết khi nào dùng định dạng đơn giản, khi nào dùng định dạng phức tạp</li>
+<li>Hiểu tại sao code do AI sinh ra cần môi trường chạy cụ thể</li>
+</ul>
+<p>AI nhắc đến trong lời nói đầu đôi khi đưa ra file <code>.html</code>, đôi khi đưa ra file <code>.ts</code>, đó là vì định dạng code tiến hóa theo độ phức tạp của dự án.</p>
+</blockquote>
+<h2>Cấu trúc ba tầng của trang web</h2>
+<p>Trang web giống như một chiếc bánh sandwich, được cấu tạo bởi 3 tầng:</p>
+<pre><code class="language-mermaid">graph TB
+    A[Tầng cấu trúc HTML] --&gt; B[&quot;Tiêu đề/Nút bấm&quot;]
+    C[Tầng kiểu dáng CSS] --&gt; D[&quot;Màu sắc/Phông chữ&quot;]
+    E[Tầng hành vi JavaScript] --&gt; F[&quot;Sự kiện click&quot;]
+
+    B --&gt; G[Trang web hiển thị cuối cùng]
+    D --&gt; G
+    F --&gt; G
+
+    style A fill:#e3f2fd
+    style C fill:#fff3e0
+    style E fill:#f3e5f5
+</code></pre>
+<p><strong>Một ví dụ hoàn chỉnh</strong>:</p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;style&gt;
+      /* CSS: Tầng kiểu dáng — Trông như thế nào */
+      .box {
+        background: #f0f0f0;
+        padding: 20px;
+      }
+      .count {
+        font-size: 24px;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;!-- HTML: Tầng cấu trúc — Có nội dung gì --&gt;
+    &lt;div class=&quot;box&quot;&gt;
+      &lt;span class=&quot;count&quot;&gt;0&lt;/span&gt;
+      &lt;button&gt;Tăng&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+      /* JavaScript: Tầng hành vi — Tương tác ra sao */
+      let count = 0;
+      document.querySelector(&quot;button&quot;).addEventListener(&quot;click&quot;, () =&gt; {
+        count++;
+        document.querySelector(&quot;.count&quot;).textContent = count;
+      });
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Viết cả ba loại code này trong một file <code>.html</code>, chính là <strong>định dạng tệp đơn</strong> — nhấp đúp là chạy được, không cần cài đặt bất cứ thứ gì.</p>
+<h2>Tại sao trang web đã lưu có cái không mở được?</h2>
+<p>Có thể bạn đã thử dùng <code>Ctrl + S</code> lưu một trang web yêu thích, mở lại thì gặp các tình huống khác nhau:</p>
+<table>
+<thead>
+<tr>
+<th>Hiện tượng</th>
+<th>Nguyên nhân</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hoàn toàn bình thường</strong></td>
+<td>Định dạng tệp đơn, toàn bộ code nằm trong một HTML</td>
+</tr>
+<tr>
+<td><strong>Có giao diện nhưng không bấm được</strong></td>
+<td>CSS ở trong máy, JS tải từ server, ngắt mạng là hỏng</td>
+</tr>
+<tr>
+<td><strong>Giao diện trắng trơn</strong></td>
+<td>CSS và JS đều tải từ server, trong máy chỉ có cái vỏ rỗng</td>
+</tr>
+<tr>
+<td><strong>Hoàn toàn không mở được</strong></td>
+<td>Ứng dụng đơn trang hiện đại, cần server mới chạy được</td>
+</tr>
+</tbody>
+</table>
+<p>Các trang web hiện đại (như Weibo, Bilibili) dùng framework như React/Next.js để phát triển: code tách biệt ở các file khác nhau, nội dung lấy động qua JS, cái lưu về chỉ là cái vỏ HTML rỗng.</p>
+<pre><code class="language-mermaid">graph LR
+    A[Trang web truyền thống] --&gt; B[Tất cả code&lt;br/&gt;nằm trong một HTML]
+    B --&gt; C[Lưu xong mở offline được]
+
+    D[Trang web hiện đại] --&gt; E[Code tách biệt&lt;br/&gt;Cần server]
+    E --&gt; F[Lưu xong chỉ có vỏ rỗng]
+</code></pre>
+<h2>Bốn giai đoạn của định dạng code</h2>
+<pre><code class="language-mermaid">graph LR
+    A[&quot;HTML tệp đơn&lt;br/&gt;(Cấu trúc+Kiểu dáng+Logic)&quot;] --&gt; B[&quot;Tách biệt file&lt;br/&gt;(HTML+CSS+JS)&quot;]
+    B --&gt; C[&quot;Mô-đun hóa&lt;br/&gt;(import/export)&quot;]
+    C --&gt; D[&quot;Kỹ thuật hóa TypeScript&lt;br/&gt;(Kiểu+Build)&quot;]
+</code></pre>
+<p>::: details 🎮 Bấm để trải nghiệm: Lịch sử tiến hóa định dạng code
+<CodeFormatEvolution /></p>
+<blockquote>
+<p>💡 <strong>Bài tập</strong>: Bấm và các giai đoạn khác nhau trên trục thời gian, quan sát xem định dạng code tiến hóa từ ngôn ngữ máy sang JavaScript hiện đại như thế nào.</p>
+<p>🎯 <strong>Khái niệm cốt lõi</strong>: Định dạng code ngày càng gần với ngôn ngữ loài người, nhưng trước khi chạy cần nhiều bước chuyển đổi hơn.
+:::</p>
+</blockquote>
+<h3>Giai đoạn 1: HTML tệp đơn</h3>
+<p>Tất cả code nằm trong một file <code>.html</code>.</p>
+<p><strong>Kịch bản áp dụng</strong>: Demo đơn giản, học khái niệm, nguyên mẫu nhanh</p>
+<p><strong>Hạn chế</strong>: Code vượt quá 200 dòng là rất khó bảo trì</p>
+<h3>Giai đoạn 2: Tách biệt file</h3>
+<p>Cấu trúc (HTML), kiểu dáng (CSS), logic (JS) tách riêng:</p>
+<pre><code>project/
+├── index.html
+├── style.css
+└── script.js
+</code></pre>
+<p><strong>Kịch bản áp dụng</strong>: Code vượt quá 200 dòng, hoặc nhiều trang chia sẻ kiểu dáng</p>
+<p><strong>Hạn chế</strong>: Quan hệ phụ thuộc file cần quản lý thủ công, không dùng được gói npm</p>
+<h3>Giai đoạn 3: Mô-đun hóa</h3>
+<p>Sử dụng <code>import</code>/<code>export</code> tổ chức code:</p>
+<pre><code class="language-javascript">// utils.js
+export function formatDate(date) {
+  return date.toISOString();
+}
+
+// app.js
+import { formatDate } from &quot;./utils.js&quot;;
+</code></pre>
+<p><strong>Kịch bản áp dụng</strong>: Code có logic lặp lại, hoặc cộng tác nhiều người</p>
+<p><strong>Hạn chế</strong>: Trình duyệt cần công cụ build hỗ trợ</p>
+<h3>Giai đoạn 4: Kỹ thuật hóa TypeScript</h3>
+<p>Sử dụng TypeScript + Công cụ build:</p>
+<pre><code class="language-typescript">// utils.ts
+export function formatDate(date: Date): string {
+  return date.toISOString();
+}
+</code></pre>
+<p><strong>Kịch bản áp dụng</strong>: Logic phức tạp, cộng tác nhiều người, dự án bảo trì lâu dài</p>
+<p><strong>Tại sao AI thích dùng TypeScript?</strong></p>
+<ul>
+<li>Hệ thống kiểu giảm thiểu lỗi</li>
+<li>AI giỏi sinh code an toàn về kiểu hơn</li>
+<li>Tiêu chuẩn của phát triển frontend hiện đại</li>
+</ul>
+<p>::: danger TypeScript không thể chạy trực tiếp</p>
+<p>Code TypeScript <strong>không thể chạy trực tiếp trên trình duyệt</strong>, bắt buộc phải qua biên dịch:</p>
+<pre><code>File .ts/.tsx → Trình biên dịch TypeScript → File .js → Trình duyệt thực thi
+</code></pre>
+<p><strong>Khi phát triển</strong>: <code>pnpm dev</code> tự động biên dịch
+<strong>Khi online</strong>: <code>pnpm build</code> đóng gói tối ưu hóa</p>
+<p>:::</p>
+<h2>Cách chọn định dạng code</h2>
+<table>
+<thead>
+<tr>
+<th>Độ phức tạp dự án</th>
+<th>Định dạng đề xuất</th>
+<th>Cách chạy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Demo đơn giản, script dùng một lần</td>
+<td>HTML tệp đơn</td>
+<td>Mở trực tiếp</td>
+</tr>
+<tr>
+<td>Dự án vừa và nhỏ</td>
+<td>JS mô-đun hóa</td>
+<td>Cần build</td>
+</tr>
+<tr>
+<td>Ứng dụng phức tạp, cộng tác nhiều người</td>
+<td>TypeScript + Framework</td>
+<td>Cần dev server</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nguyên tắc</strong>: Dùng được giải pháp đơn giản thì không dùng giải pháp phức tạp, nhưng đừng cố ép dùng giải pháp đơn giản cho dự án phức tạp.</p>
+<p>Cho AI biết nhu cầu của bạn, nó sẽ chọn định dạng phù hợp:</p>
+<pre><code>&quot;Sinh một bộ đếm HTML tệp đơn&quot; → Tệp đơn, nhấp đúp là chạy
+&quot;Sinh một ứng dụng quản lý tác vụ&quot; → Dự án TypeScript, cần pnpm dev
+</code></pre>
+<h2>Câu hỏi thường gặp</h2>
+<h3>Q1: TypeScript và JavaScript khác gì nhau?</h3>
+<p>TypeScript là bản nâng cấp của JavaScript, thêm vào kiểm tra kiểu (type checking).</p>
+<pre><code class="language-typescript">// TypeScript chỉ ra lỗi khi viết code
+const count: number = &quot;hello&quot;; // ❌ Trình biên tập báo đỏ
+
+// JavaScript chạy rồi mới báo lỗi
+const count = &quot;hello&quot;;
+count.toFixed(2); // 💥 Crash khi chạy
+</code></pre>
+<p>Bạn không cần nhớ cú pháp, chỉ cần biết:</p>
+<ul>
+<li>File <code>.ts</code> hoặc <code>.tsx</code> cần chạy thông qua <code>pnpm dev</code></li>
+<li>Thấy chú thích kiểu như <code>: string</code>, biết đó là TypeScript là được</li>
+</ul>
+<h3>Q2: Tại sao không dùng mãi HTML tệp đơn?</h3>
+<p>Dự án phức tạp dùng tệp đơn không thể bảo trì. Tưởng tượng một file HTML 1000 dòng, sửa kiểu dáng phải tìm thẻ <code>&lt;style&gt;</code> ở dòng 500 —— đúng là thảm họa. Mô-đun hóa giúp mỗi file chỉ phụ trách một việc.</p>
+<h3>Q3: Code AI sinh ra không chạy được thì làm sao?</h3>
+<p>Đầu tiên phán đoán loại code:</p>
+<p><strong>HTML tệp đơn</strong>:</p>
+<pre><code class="language-bash"># Nhấp đúp trực tiếp, hoặc
+open index.html      # Mac
+start index.html     # Windows
+</code></pre>
+<p><strong>Dự án TypeScript</strong>:</p>
+<pre><code class="language-bash">pnpm install   # Cài đặt phụ thuộc
+pnpm dev       # Khởi động server phát triển
+</code></pre>
+<p>Nếu vẫn báo lỗi, gửi thông tin lỗi cho AI, nó sẽ cho bạn biết nguyên nhân cụ thể.</p>
+<h2>Nội dung liên quan</h2>
+<ul>
+<li>Xem chi tiết: [1.2 Khái niệm Tech Stack]</li>
+<li>Xem chi tiết: [1.3 Cơ bản về Trình duyệt và Server]</li>
+<li>Tiếp theo: [1.5 Môi trường Node.js và Quản lý gói]</li>
+</ul>
+</body>
+</html>

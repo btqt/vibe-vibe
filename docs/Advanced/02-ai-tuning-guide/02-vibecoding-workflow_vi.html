@@ -1,0 +1,1766 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02 Vibecoding Workflow</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "2.2 Quy trình làm việc VibeCoding"
+description: "Nắm vững quy trình tiêu chuẩn và kỹ thuật Prompt của phát triển AI Native"
+chapter: "Chương 2"</p>
+<hr />
+<h1>2.2 Quy trình làm việc VibeCoding</h1>
+<blockquote>
+<p><strong>Đọc xong phần này, bạn sẽ thu hoạch được:</strong></p>
+<ul>
+<li>Nắm vững quy trình làm việc 5 bước tiêu chuẩn của VibeCoding: Khám phá → Quy hoạch → Thực thi → Kiểm chứng → Gửi (Commit)</li>
+<li>Hiểu tư duy phát triển Agent Native, học cách chuyển từ tư duy "Làm thế nào" sang tư duy hướng sản phẩm "Làm cái gì"</li>
+<li>Học cách viết Prompt (câu nhắc) chất lượng cao: Mô tả nhiệm vụ trực tiếp, cung cấp ngữ cảnh, đưa ra ràng buộc cụ thể</li>
+<li>Nắm vững các phương thức tương tác cốt lõi của Claude Code như chế độ quyền hạn, lệnh gạch chéo, tính năng điểm kiểm tra (checkpoint)</li>
+<li>Hiểu cơ chế cộng tác đa Agent song song, học cách tận dụng năng lực tự động hóa của AI để nâng cao hiệu quả phát triển</li>
+</ul>
+<p>"Workflow (Luồng công cụ)" được nhắc đến trong lời nói đầu chính là cốt lõi của Vibecoding, cũng như quy trình phát triển tiêu chuẩn của VibeCoding.</p>
+</blockquote>
+<h2>Kiến thức tiền đề</h2>
+<p>::: tip Claude Code là gì</p>
+<p>Claude Code là một công cụ dòng lệnh AI, có thể trực tiếp đọc tệp dự án, thực thi lệnh, tự động sửa đổi code và hoàn thành nhiệm vụ.
+:::</p>
+<p>::: tip Quy trình làm việc là gì</p>
+<p>Quy trình làm việc (Workflow) là quy trình tiêu chuẩn hóa để hoàn thành nhiệm vụ. Quy trình làm việc phát triển AI bao gồm các khâu: khám phá, lập kế hoạch, viết code, gửi đi, v.v.
+:::</p>
+<p>::: tip Prompt (Câu nhắc) là gì</p>
+<p>Prompt (Câu nhắc) là chỉ thị văn bản gửi cho AI, mô tả nhiệm vụ bạn mong muốn AI hoàn thành. <strong>Prompt tốt là một phần của quy trình làm việc</strong>.
+:::
+::: details Bấm để xem Tư duy phát triển Agent Native</p>
+<p><strong>Agent Native</strong> = Tư duy phát triển lấy AI Agent làm trung tâm</p>
+<p>Trong phát triển truyền thống, AI là công cụ hỗ trợ (Copilot); trong Agent Native, AI là người thực thi tự chủ (Autopilot).</p>
+<h4>Tư duy truyền thống vs Agent Native</h4>
+<table>
+<thead>
+<tr>
+<th>Khía cạnh</th>
+<th>Phát triển AI hỗ trợ truyền thống</th>
+<th>Phát triển Agent Native</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Vai trò cốt lõi</strong></td>
+<td>Người viết code, AI giúp đỡ</td>
+<td>AI là chủ đạo, code là chi tiết thực hiện của AI</td>
+</tr>
+<tr>
+<td><strong>Cách làm việc</strong></td>
+<td>AI là Copilot</td>
+<td>AI là Autopilot</td>
+</tr>
+<tr>
+<td><strong>Mô hình tương tác</strong></td>
+<td>Người viết Prompt chỉ huy AI</td>
+<td>AI chủ động đặt câu hỏi, lập kế hoạch, thực thi</td>
+</tr>
+<tr>
+<td><strong>Hình thái đầu ra</strong></td>
+<td>AI tạo đoạn code, người tích hợp</td>
+<td>AI tự chủ hoàn thành nhiệm vụ trọn vẹn</td>
+</tr>
+<tr>
+<td><strong>Điểm bạn quan tâm</strong></td>
+<td>Viết code thế nào</td>
+<td>Viết sản phẩm gì</td>
+</tr>
+</tbody>
+</table>
+<h4>Ba nguyên tắc lớn của Agent Native</h4>
+<pre><code class="language-mermaid">graph TB
+    A[Agent Native] --&gt; B[&quot;Dẫn dắt bởi ý định: Bảo AI 'Làm cái gì'&quot;]
+    A --&gt; C[&quot;Cộng tác bất đồng bộ: AI làm việc liên tục&quot;]
+    A --&gt; D[&quot;Tin tưởng nhưng kiểm chứng: Cơ chế kiểm tra nhanh&quot;]
+
+    B --&gt; E[&quot;Đừng quản 'Làm thế nào'&quot;]
+    C --&gt; F[&quot;Đặt mục tiêu xong có thể Offline&quot;]
+    D --&gt; G[&quot;Mặc định tin tưởng, phát hiện vấn đề mới sửa&quot;]
+</code></pre>
+<p><strong>1. Dẫn dắt bởi ý định</strong></p>
+<p>Nói cho AI biết mục tiêu, để nó tự quyết định cách thực hiện:</p>
+<pre><code class="language-bash">❌ Tư duy truyền thống:
+&quot;Giúp tôi viết một hàm, nhận tham số mảng, dùng vòng lặp for duyệt qua,
+gặp cái nào lớn hơn 10 thì push vào mảng mới...&quot;
+
+✅ Agent Native:
+&quot;Lọc các phần tử lớn hơn 10 trong mảng, trả về mảng mới&quot;
+</code></pre>
+<p><strong>2. Cộng tác bất đồng bộ</strong></p>
+<p>AI có thể làm việc khi bạn đang ngủ:</p>
+<pre><code class="language-bash"># Bạn thiết lập mục tiêu, AI tự chủ thực thi
+&quot;Hiện thực hóa chức năng bình luận người dùng, bao gồm:
+1. Database schema (Model Comment)
+2. CRUD API
+3. Form bình luận Frontend
+4. Hiển thị danh sách bình luận
+
+Làm xong báo tôi, tôi đi làm việc khác đây.&quot;
+</code></pre>
+<p><strong>3. Tin tưởng nhưng kiểm chứng</strong></p>
+<p>Đừng kiểm tra code của AI từng dòng một, mà hãy:</p>
+<pre><code class="language-mermaid">graph LR
+    A[AI sinh ra] --&gt; B{Chức năng bình thường?}
+    B --&gt;|Có| C[Chấp nhận]
+    B --&gt;|Không| D[Bảo AI vấn đề]
+    D --&gt; A
+</code></pre>
+<p><strong>Cách kiểm chứng</strong>:</p>
+<ul>
+<li>Kiểm thử chức năng: Chạy thử xem dùng được không</li>
+<li>Kiểm tra kiểu: <code>tsc</code> có báo lỗi không</li>
+<li>Review code: Chỉ xem logic then chốt, không xem chi tiết triển khai</li>
+</ul>
+<h4>Từ Lập trình viên đến Người biên soạn (Orchestrator)</h4>
+<p>Thời đại Agent Native, vai trò của bạn chuyển đổi:</p>
+<pre><code class="language-mermaid">graph TD
+    A[Lập trình viên truyền thống] --&gt; B[Tự tay làm]
+    B --&gt; C[Viết từng dòng code]
+    C --&gt; D[Debug từng Bug]
+
+    E[Agent Native] --&gt; F[Biên soạn Agent]
+    F --&gt; G[Định nghĩa mục tiêu]
+    G --&gt; H[Kiểm chứng kết quả]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Lập trình viên truyền thống</th>
+<th>Người biên soạn Agent Native</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Viết code tay</td>
+<td>Mô tả nhu cầu</td>
+</tr>
+<tr>
+<td>Sửa từng cái</td>
+<td>Phản hồi vấn đề</td>
+</tr>
+<tr>
+<td>Quan tâm cú pháp</td>
+<td>Quan tâm sản phẩm</td>
+</tr>
+<tr>
+<td>Là thợ thủ công</td>
+<td>Là chỉ huy</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ghi nhớ</strong>: Code là chi tiết thực hiện, sản phẩm mới là mục đích. Agent Native giải phóng bạn khỏi "Làm thế nào", để tập trung vào "Làm cái gì".</p>
+<p>:::</p>
+<h2>Khái niệm cốt lõi</h2>
+<h3>Triết lý cốt lõi của Vibecoding</h3>
+<pre><code>Vibecoding = Prompt (Câu nhắc) + Workflow (Luồng công cụ)
+</code></pre>
+<p><strong>Prompt bảo AI làm cái gì</strong>
+<strong>Workflow quyết định làm như thế nào</strong></p>
+<pre><code class="language-mermaid">graph TB
+    A[Nhiệm vụ] --&gt; B[&quot;Prompt: Mô tả nhu cầu&quot;]
+    B --&gt; C[&quot;Workflow: Quy trình thực thi&quot;]
+
+    C --&gt; D[Khám phá cấu trúc dự án]
+    C --&gt; E[Quy hoạch bước thực hiện]
+    C --&gt; F[Viết code]
+    C --&gt; G[Kiểm thử xác minh]
+    C --&gt; H[Gửi code]
+
+    D --&gt; I[Đầu ra chất lượng cao]
+    E --&gt; I
+    F --&gt; I
+    G --&gt; I
+    H --&gt; I
+</code></pre>
+<h3>Nguyên tắc cốt lõi của Prompt</h3>
+<p>AI là trợ lý lập trình mạnh mẽ, nó hiểu thuật ngữ kỹ thuật, quen thuộc các loại framework, có thể phân tích code nhanh chóng.</p>
+<p><strong>Chìa khóa giao tiếp là: Trực tiếp, cụ thể, có ngữ cảnh.</strong></p>
+<p>❌ <strong>Vòng vo</strong>:</p>
+<pre><code>&quot;Bạn là một kỹ sư Fullstack thâm niên, tinh thông các loại công nghệ...&quot;
+</code></pre>
+<p>→ AI không cần đóng vai, nó biết nó làm được gì</p>
+<p>✅ <strong>Nói thẳng vào việc</strong>:</p>
+<pre><code>&quot;Kiểm tra vấn đề an toàn kiểu dữ liệu của component React này&quot;
+</code></pre>
+<p>→ Một câu nói rõ muốn làm gì</p>
+<p>❌ <strong>Mô tả mơ hồ</strong>:</p>
+<pre><code>&quot;Giúp tôi tối ưu code một chút&quot;
+</code></pre>
+<p>→ AI không biết tối ưu theo hướng nào</p>
+<p>✅ <strong>Nhu cầu cụ thể</strong>:</p>
+<pre><code>&quot;Tối ưu hiệu suất tải trang đăng nhập:
+1. Thêm lazy load ảnh
+2. Tải trễ tài nguyên không quan trọng
+3. Sử dụng dynamic import của Next.js&quot;
+</code></pre>
+<p>→ Mục tiêu tối ưu và cách thực hiện rõ ràng</p>
+<h2>Nguyên tắc Prompt</h2>
+<h3>Đặc điểm của Prompt tốt</h3>
+<pre><code class="language-mermaid">graph TB
+    A[Prompt tốt] --&gt; B[&quot;Ngữ cảnh nhiệm vụ rõ ràng&quot;]
+    A --&gt; C[&quot;Yêu cầu đầu ra cụ thể&quot;]
+    A --&gt; D[&quot;Cung cấp lối thoát&quot;]
+
+    B --&gt; E[&quot;Đừng để AI đoán&quot;]
+    C --&gt; F[&quot;Đừng nói nước đôi&quot;]
+    D --&gt; G[&quot;Đừng ép bịa đặt&quot;]
+</code></pre>
+<h3>So sánh Prompt: Kém vs Khuyên dùng</h3>
+<table>
+<thead>
+<tr>
+<th>Loại</th>
+<th>Kém</th>
+<th>Khuyên dùng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Đóng vai</strong></td>
+<td>"Bạn là kỹ sư Fullstack 20 năm kinh nghiệm, tinh thông React, Vue, Angular, Node.js, Python..."</td>
+<td>Nói thẳng nhiệm vụ: "Hiện thực hóa chức năng đăng nhập người dùng"</td>
+</tr>
+<tr>
+<td><strong>Chỉ thị mơ hồ</strong></td>
+<td>"Giúp tôi tối ưu code một chút"</td>
+<td>"Tối ưu hiệu suất tải trang đăng nhập: thêm lazy load ảnh, tải trễ tài nguyên không quan trọng"</td>
+</tr>
+<tr>
+<td><strong>Không giới hạn</strong></td>
+<td>"Viết một hệ thống thương mại điện tử hoàn chỉnh"</td>
+<td>"Hiện thực hóa chức năng bình luận người dùng, bao gồm: form bình luận, hiển thị danh sách, lưu trữ dữ liệu"</td>
+</tr>
+<tr>
+<td><strong>Ép buộc</strong></td>
+<td>"Bạn phải đưa ra câu trả lời đúng, không được nói không biết"</td>
+<td>"Nếu không chắc chắn, hãy nói rõ 'tôi không chắc', thay vì bịa ra câu trả lời"</td>
+</tr>
+<tr>
+<td><strong>Nhiệm vụ cụ thể</strong></td>
+<td>"Giúp tôi viết chức năng đăng nhập"</td>
+<td>"Hiện thực hóa chức năng đăng nhập: username + password, sử dụng Next.js 16 App Router, Drizzle ORM + PostgreSQL, bao gồm xác thực form và xử lý lỗi"</td>
+</tr>
+<tr>
+<td><strong>Cung cấp ngữ cảnh</strong></td>
+<td>"Sửa cái Bug này"</td>
+<td>"Sửa Bug: File app/login/page.tsx, vấn đề: người dùng đăng nhập xong không chuyển hướng về trang chủ, kỳ vọng: chuyển hướng về /dashboard"</td>
+</tr>
+<tr>
+<td><strong>Chỉ thị phải cụ thể</strong></td>
+<td>"Thêm test"</td>
+<td>"Viết test case cho app/login/page.tsx, framework: Playwright, bao phủ các tình huống: sai mật khẩu, tài khoản không tồn tại, lỗi mạng"</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nguyên tắc cốt lõi</strong>:</p>
+<ul>
+<li>Đừng để AI đoán → Cung cấp ngữ cảnh rõ ràng</li>
+<li>Đừng nói nước đôi → Đưa ra yêu cầu cụ thể</li>
+<li>Đừng ép bịa đặt → Cho AI một lối thoát "không chắc chắn"</li>
+</ul>
+<h3>Để AI hỏi lại nhiều lần</h3>
+<pre><code>&quot;Tôi muốn phát triển một ứng dụng quản lý tác vụ.
+Hãy hỏi lại tôi nhiều lần, cho đến khi bạn hoàn toàn hiểu nhu cầu của tôi.
+Đừng đoán, hãy hỏi thẳng.&quot;
+</code></pre>
+<h3>Mẫu Prompt</h3>
+<h4>Mẫu sinh code</h4>
+<pre><code>&quot;Hiện thực hóa [Tên chức năng]
+
+Tech Stack:
+- Next.js [Phiên bản]
+- TypeScript
+- Drizzle ORM
+- [Công nghệ khác]
+
+Nhu cầu:
+1. [Nhu cầu cụ thể 1]
+2. [Nhu cầu cụ thể 2]
+3. [Nhu cầu cụ thể 3]
+
+Lưu ý:
+- Tuân thủ phong cách code hiện có của dự án
+- Không thêm dependency mới trừ khi cần thiết
+- Bao gồm xử lý lỗi&quot;
+</code></pre>
+<h4>Mẫu sửa Bug</h4>
+<pre><code>&quot;Sửa Bug
+
+Đường dẫn file: [Đường dẫn đầy đủ]
+Thông tin lỗi:
+[Log báo lỗi đầy đủ]
+
+Code hiện tại:
+[Đoạn code liên quan]
+
+Hành vi kỳ vọng: [Mô tả]
+Hành vi thực tế: [Mô tả]
+
+Hãy phân tích nguyên nhân và cung cấp phương án sửa lỗi&quot;
+</code></pre>
+<h2>Quy trình làm việc tiêu chuẩn</h2>
+<h3>Năng lực tự động hóa của AI</h3>
+<p>Trước khi bắt đầu quy trình làm việc, hãy nhớ: <strong>AI có thể tự động xử lý rất nhiều tác vụ</strong>.</p>
+<p>::: info Claude Code vs Các công cụ AI khác</p>
+<p><strong>Sự khác biệt then chốt</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Đặc tính</th>
+<th>Claude Code</th>
+<th>Cursor/Windsurf</th>
+<th>ChatGPT Web</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ngữ cảnh dự án</strong></td>
+<td>✅ Tự động đọc toàn bộ dự án</td>
+<td>✅ Tự động đọc</td>
+<td>❌ Dán thủ công</td>
+</tr>
+<tr>
+<td><strong>Thực thi lệnh</strong></td>
+<td>✅ Chạy trực tiếp bash</td>
+<td>✅ Tích hợp terminal</td>
+<td>❌ Copy vào terminal</td>
+</tr>
+<tr>
+<td><strong>Sửa đổi file</strong></td>
+<td>✅ Tự động sửa nhiều file</td>
+<td>✅ Sửa nhiều file</td>
+<td>⚠️ Copy từng cái</td>
+</tr>
+<tr>
+<td><strong>Quản lý phiên bản</strong></td>
+<td>✅ Tự động commit</td>
+<td>✅ Tích hợp Git</td>
+<td>❌ Thao tác tay</td>
+</tr>
+<tr>
+<td><strong>Quy trình làm việc</strong></td>
+<td>✅ Quy trình tiêu chuẩn hóa</td>
+<td>⚠️ Cần làm thủ công</td>
+<td>❌ Đối thoại tùy ý</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tại sao Claude Code phù hợp với Vibecoding hơn</strong>:</p>
+<ol>
+<li>CLI Native: Dòng lệnh là môi trường tự nhiên của lập trình viên</li>
+<li>Mức độ tự động hóa cao: Giảm thao tác thủ công</li>
+<li>Quy trình tiêu chuẩn hóa: Khám phá → Quy hoạch → Hiện thực → Kiểm chứng → Gửi</li>
+<li>Ngữ cảnh hoàn chỉnh: Hiểu toàn bộ cấu trúc dự án
+   :::</li>
+</ol>
+<pre><code class="language-mermaid">graph TB
+    A[&quot;Việc bạn cần làm&quot;] --&gt; B[&quot;Mô tả mục tiêu nhiệm vụ&quot;]
+    A --&gt; C[&quot;Cung cấp ngữ cảnh cần thiết&quot;]
+    A --&gt; D[&quot;Kiểm chứng kết quả và phản hồi&quot;]
+
+    E[&quot;Việc AI tự động làm&quot;] --&gt; F[Khám phá cấu trúc dự án]
+    E --&gt; G[&quot;Chọn công cụ phù hợp&quot;]
+    E --&gt; H[&quot;Xử lý lỗi thử lại&quot;]
+    E --&gt; I[&quot;Sinh thông tin commit&quot;]
+</code></pre>
+<p><strong>Năng lực tự động hóa của AI</strong>:</p>
+<ul>
+<li>✅ Tự động khám phá cấu trúc dự án (Bạn không cần bảo nó xem file nào)</li>
+<li>✅ Tự động chọn công cụ phù hợp (Read, Edit, Bash)</li>
+<li>✅ Tự động xử lý lỗi (Thất bại sẽ thử lại hoặc đổi phương án)</li>
+<li>✅ Tự động sinh thông tin commit (Dựa trên nội dung sửa đổi)</li>
+<li>✅ Tự động nhận diện quan hệ phụ thuộc (Biết sửa đổi sẽ ảnh hưởng đến file nào)</li>
+</ul>
+<p><strong>Việc bạn cần làm</strong>:</p>
+<ul>
+<li>Mô tả rõ ràng mục tiêu nhiệm vụ</li>
+<li>Cung cấp ngữ cảnh cần thiết</li>
+<li>Kiểm chứng kết quả và phản hồi</li>
+</ul>
+<p><strong>Không cần làm</strong>:</p>
+<ul>
+<li>❌ Chỉ định bước cụ thể ("Đọc file A trước, rồi đọc file B")</li>
+<li>❌ Bảo nó dùng công cụ nào ("Dùng công cụ Read để đọc")</li>
+<li>❌ Tự tổ hợp lệnh ("Chạy git add rồi git commit")</li>
+<li>❌ Tự xử lý lỗi ("Nếu thất bại thì thử lại")</li>
+</ul>
+<h3>Chế độ quyền hạn (Permission Mode)</h3>
+<p>::: tip Chế độ quyền hạn là gì</p>
+<p>Chế độ quyền hạn kiểm soát xem AI có cần bạn xác nhận trước khi thực hiện thao tác hay không, cân bằng giữa hiệu quả và an toàn.</p>
+<p>:::</p>
+<h4>Ba loại chế độ quyền hạn</h4>
+<table>
+<thead>
+<tr>
+<th>Chế độ</th>
+<th>Phím tắt</th>
+<th>Đặc điểm</th>
+<th>Ngữ cảnh áp dụng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Default</strong></td>
+<td>Shift+Tab chuyển vòng</td>
+<td>Tự động duyệt thao tác an toàn, hỏi khi thao tác nguy hiểm</td>
+<td>Phát triển hàng ngày (Khuyên dùng)</td>
+</tr>
+<tr>
+<td><strong>Plan</strong></td>
+<td>Shift+Tab</td>
+<td>Chỉ cho phép thao tác đọc</td>
+<td>Review code, khám phá</td>
+</tr>
+<tr>
+<td><strong>Accept Edits</strong></td>
+<td>Shift+Tab</td>
+<td>Thao tác sửa cần xác nhận, còn lại tự động</td>
+<td>Ngữ cảnh sửa đổi mức tin tưởng cao</td>
+</tr>
+</tbody>
+</table>
+<h4>Chế độ Default (Khuyên dùng)</h4>
+<p>Thao tác chỉ đọc (đọc file, tìm kiếm code, xem trạng thái, liệt kê file) tự động duyệt, thao tác sửa đổi (sửa file, xóa file, chạy lệnh, yêu cầu mạng, Git push) cần xác nhận.</p>
+<p><strong>Tùy chọn cửa sổ quyền hạn</strong>:</p>
+<ul>
+<li><strong>Yes</strong>: Đồng ý thao tác này</li>
+<li><strong>Yes, don't ask again for this tool</strong>: Đồng ý lần này, và lần sau thao tác tương tự không hỏi nữa</li>
+<li><strong>No, and tell AI what to do differently</strong>: Từ chối và bảo AI đổi cách khác</li>
+</ul>
+<h4>Chế độ Plan (Review code)</h4>
+<p>Chỉ cho phép thao tác chỉ đọc, mọi thao tác sửa đổi đều bị chặn.</p>
+<p><strong>Ngữ cảnh áp dụng</strong>:</p>
+<ul>
+<li>Review code</li>
+<li>Tìm hiểu cấu trúc kho code</li>
+<li>Phân tích mang tính khám phá</li>
+</ul>
+<h4>Chế độ Accept Edits (Sửa hiệu quả)</h4>
+<p>Thao tác sửa đổi cần xác nhận, các thao tác khác tự động duyệt.</p>
+<pre><code class="language-bash"># Hành vi ví dụ
+&quot;Đọc file cấu hình&quot;
+&quot;Chạy test&quot;
+# AI thực thi trực tiếp (Thao tác phi chỉnh sửa)
+
+&quot;Sửa chữ ký hàm&quot;
+&quot;Xóa file này&quot;
+# AI sẽ hỏi (Thao tác chỉnh sửa cần xác nhận)
+</code></pre>
+<p><strong>Ngữ cảnh áp dụng</strong>:</p>
+<ul>
+<li>Cần chạy lệnh/test thường xuyên</li>
+<li>Cẩn trọng với việc sửa file</li>
+<li>Quy trình làm việc tự động hóa mức tin tưởng cao</li>
+</ul>
+<h4>Chuyển đổi chế độ</h4>
+<pre><code class="language-bash"># Phím tắt
+Shift+Tab  # Chuyển đổi vòng giữa 3 chế độ
+</code></pre>
+<h3>Lệnh tương tác thường dùng</h3>
+<p>Trong Claude Code, lệnh bắt đầu bằng <code>/</code> gọi là lệnh gạch chéo (slash command), dùng để thực thi nhanh các thao tác cụ thể:</p>
+<table>
+<thead>
+<tr>
+<th>Lệnh</th>
+<th>Chức năng</th>
+<th>Ngữ cảnh sử dụng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>/clear</strong></td>
+<td>Xóa ngữ cảnh hội thoại</td>
+<td>Khi bắt đầu nhiệm vụ mới</td>
+</tr>
+<tr>
+<td><strong>/model</strong></td>
+<td>Chuyển đổi mô hình AI</td>
+<td>Cần năng lực mạnh hơn thì chuyển sang Opus</td>
+</tr>
+<tr>
+<td><strong>/status</strong></td>
+<td>Xem hạn mức sử dụng và tính phí</td>
+<td>Kiểm tra hạn mức còn lại</td>
+</tr>
+<tr>
+<td><strong>/config</strong></td>
+<td>Mở giao diện cấu hình</td>
+<td>Sửa cài đặt</td>
+</tr>
+<tr>
+<td><strong>/resume</strong></td>
+<td>Khôi phục phiên làm việc gần nhất</td>
+<td>Tiếp tục công việc trước đó sau khi khởi động lại</td>
+</tr>
+<tr>
+<td><strong>/rewind</strong></td>
+<td>Khôi phục về checkpoint trước</td>
+<td>Code sửa sai cần quay lại</td>
+</tr>
+<tr>
+<td><strong>/agents</strong></td>
+<td>Quản lý Agent</td>
+<td>Tạo/Xem Agent tùy chỉnh</td>
+</tr>
+<tr>
+<td><strong>/init</strong></td>
+<td>Sinh template CLAUDE.md</td>
+<td>Cấu hình nhanh dự án mới</td>
+</tr>
+<tr>
+<td><strong>/compact</strong></td>
+<td>Nén ngữ cảnh hội thoại</td>
+<td>Tinh giản khi ngữ cảnh quá nhiều</td>
+</tr>
+<tr>
+<td><strong>/export</strong></td>
+<td>Xuất lịch sử hội thoại</td>
+<td>Chia sẻ hoặc lưu hội thoại</td>
+</tr>
+<tr>
+<td><strong>/statusline</strong></td>
+<td>Tùy chỉnh hiển thị thanh trạng thái</td>
+<td>Ẩn/Hiện thông tin trạng thái</td>
+</tr>
+<tr>
+<td><strong>/vim</strong></td>
+<td>Bật gán phím Vim</td>
+<td>Người dùng quen Vim</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ngữ cảnh thường dùng</strong>:</p>
+<pre><code class="language-bash"># Xóa ngữ cảnh khi mở nhiệm vụ mới
+/clear
+
+# Xem hạn mức còn lại
+/status
+
+# Chuyển sang mô hình mạnh hơn
+/model opus
+
+# Khôi phục về trạng thái trước đó
+/rewind
+</code></pre>
+<h3>Lệnh CLI và Tùy chọn khởi động</h3>
+<p>::: details Lệnh cơ bản (Nên đọc)</p>
+<table>
+<thead>
+<tr>
+<th>Lệnh</th>
+<th>Mô tả</th>
+<th>Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>claude</strong></td>
+<td>Khởi động REPL tương tác</td>
+<td><code>claude</code></td>
+</tr>
+<tr>
+<td><strong>claude "query"</strong></td>
+<td>Khởi động REPL với Prompt ban đầu</td>
+<td><code>claude "Giải thích dự án này"</code></td>
+</tr>
+<tr>
+<td><strong>claude -p "query"</strong></td>
+<td>Truy vấn rồi thoát (Headless mode)</td>
+<td><code>claude -p "Kiểm tra lỗi kiểu dữ liệu code"</code></td>
+</tr>
+<tr>
+<td><strong>claude -c</strong></td>
+<td>Tiếp tục hội thoại lần trước</td>
+<td><code>claude -c</code></td>
+</tr>
+<tr>
+<td><strong>claude -r "id"</strong></td>
+<td>Khôi phục phiên chỉ định</td>
+<td><code>claude -r "abc123"</code></td>
+</tr>
+<tr>
+<td><strong>claude --continue</strong></td>
+<td>Tải hội thoại gần nhất</td>
+<td><code>claude --continue</code></td>
+</tr>
+<tr>
+<td><strong>claude --resume</strong></td>
+<td>Hiển thị trình chọn phiên</td>
+<td><code>claude --resume</code></td>
+</tr>
+</tbody>
+</table>
+<p>:::</p>
+<p>::: details Tùy chọn khởi động thường dùng</p>
+<table>
+<thead>
+<tr>
+<th>Tùy chọn</th>
+<th>Chức năng</th>
+<th>Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>-p "query"</strong></td>
+<td>Thực thi truy vấn rồi thoát</td>
+<td><code>claude -p "Chạy test"</code></td>
+</tr>
+<tr>
+<td><strong>--model</strong></td>
+<td>Chỉ định mô hình</td>
+<td><code>claude --model opus</code></td>
+</tr>
+<tr>
+<td><strong>--permission-mode</strong></td>
+<td>Thiết lập chế độ quyền hạn</td>
+<td><code>claude --permission-mode plan</code></td>
+</tr>
+<tr>
+<td><strong>--add-dir</strong></td>
+<td>Thêm thư mục làm việc</td>
+<td><code>claude --add-dir ../shared</code></td>
+</tr>
+</tbody>
+</table>
+<p>:::</p>
+<p>::: details Phím tắt và Kiểm soát nhập liệu (Nên đọc)</p>
+<table>
+<thead>
+<tr>
+<th>Phím tắt</th>
+<th>Chức năng</th>
+<th>Ngữ cảnh</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ctrl+C</strong></td>
+<td>Hủy nhập liệu hoặc việc đang sinh</td>
+<td>Ngắt tiêu chuẩn</td>
+</tr>
+<tr>
+<td><strong>Ctrl+D</strong></td>
+<td>Thoát phiên</td>
+<td>Tín hiệu EOF</td>
+</tr>
+<tr>
+<td><strong>Ctrl+L</strong></td>
+<td>Xóa màn hình terminal</td>
+<td>Giữ lịch sử hội thoại</td>
+</tr>
+<tr>
+<td><strong>Ctrl+R</strong></td>
+<td>Tìm kiếm ngược lịch sử lệnh</td>
+<td>Tìm lệnh trước đây</td>
+</tr>
+<tr>
+<td><strong>Esc+Esc</strong></td>
+<td>Quay lui code/hội thoại</td>
+<td>Khôi phục về trạng thái trước</td>
+</tr>
+<tr>
+<td><strong>Tab</strong></td>
+<td>Chuyển đổi tư duy mở rộng</td>
+<td>Bật/Tắt chế độ suy nghĩ</td>
+</tr>
+<tr>
+<td><strong>Shift+Tab</strong></td>
+<td>Chuyển đổi chế độ quyền hạn</td>
+<td>Chuyển đổi vòng chế độ quyền hạn</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Phương pháp nhập đa dòng</strong>:
+| Phím tắt | Ngữ cảnh |
+|--------|--------|
+| <strong>\ + Enter</strong> | Áp dụng cho mọi terminal |
+| <strong>Option+Enter</strong> (macOS) | Mặc định macOS |
+| <strong>Shift+Enter</strong> | Khả dụng sau khi cấu hình |</p>
+<p><strong>Tiền tố lệnh nhanh</strong>:
+| Tiền tố | Chức năng | Ví dụ |
+|------|------|------|
+| <strong>#</strong> | Lối tắt bộ nhớ, thêm vào CLAUDE.md | <code># Thêm ngữ cảnh dự án</code> |
+| <strong>/</strong> | Lệnh gạch chéo | <code>/clear</code> |
+| <strong>!</strong> | Chế độ Bash, chạy lệnh trực tiếp | <code>! npm test</code> |
+| <strong>@</strong> | Tham chiếu đường dẫn file | <code>@src/app/page.tsx</code> |</p>
+<p>:::</p>
+<p>::: details Nâng cao: Cờ CLI cao cấp</p>
+<p><strong>Danh sách cờ CLI đầy đủ</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Cờ</th>
+<th>Mô tả</th>
+<th>Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--add-dir</code></td>
+<td>Thêm thư mục làm việc phụ</td>
+<td><code>claude --add-dir ../apps</code></td>
+</tr>
+<tr>
+<td><code>--agents</code></td>
+<td>Định nghĩa Agent dạng JSON</td>
+<td><code>claude --agents '{...}'</code></td>
+</tr>
+<tr>
+<td><code>--allowedTools</code></td>
+<td>Danh sách công cụ cho phép</td>
+<td><code>claude --allowedTools "Read,Bash"</code></td>
+</tr>
+<tr>
+<td><code>--disallowedTools</code></td>
+<td>Danh sách công cụ bị cấm</td>
+<td><code>claude --disallowedTools "Edit"</code></td>
+</tr>
+<tr>
+<td><code>--system-prompt</code></td>
+<td>Thay thế toàn bộ Prompt hệ thống</td>
+<td><code>claude --system-prompt "..."</code></td>
+</tr>
+<tr>
+<td><code>--system-prompt-file</code></td>
+<td>Tải Prompt hệ thống từ file</td>
+<td><code>claude -p --system-prompt-file ./prompt.txt</code></td>
+</tr>
+<tr>
+<td><code>--append-system-prompt</code></td>
+<td>Nối thêm vào Prompt mặc định</td>
+<td><code>claude --append-system-prompt "..."</code></td>
+</tr>
+<tr>
+<td><code>--output-format</code></td>
+<td>Định dạng đầu ra (text/json/stream-json)</td>
+<td><code>claude -p --output-format json</code></td>
+</tr>
+<tr>
+<td><code>--input-format</code></td>
+<td>Định dạng đầu vào (text/stream-json)</td>
+<td><code>claude -p --input-format stream-json</code></td>
+</tr>
+<tr>
+<td><code>--verbose</code></td>
+<td>Bật log chi tiết</td>
+<td><code>claude --verbose</code></td>
+</tr>
+<tr>
+<td><code>--max-turns</code></td>
+<td>Giới hạn số lượt</td>
+<td><code>claude -p --max-turns 3</code></td>
+</tr>
+<tr>
+<td><code>--dangerously-skip-permissions</code></td>
+<td>Bỏ qua nhắc quyền hạn</td>
+<td><code>claude --dangerously-skip-permissions</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Phân biệt cờ Prompt hệ thống</strong>:
+| Cờ | Hành vi | Chế độ | Ca kíp sử dụng |
+|------|------|------|------|
+| <code>--system-prompt</code> | <strong>Thay thế</strong> toàn bộ mặc định | Tương tác + In | Kiểm soát hoàn toàn hành vi |
+| <code>--system-prompt-file</code> | <strong>Thay thế</strong> bằng nội dung file | Chỉ in | Tải từ file |
+| <code>--append-system-prompt</code> | <strong>Nối</strong> vào mặc định | Tương tác + In | Thêm chỉ thị cụ thể |</p>
+<p>:::</p>
+<p>::: details Nâng cao: Chế độ Vim</p>
+<p>Sử dụng <code>/vim</code> để bật hoặc cấu hình vĩnh viễn qua <code>/config</code>.</p>
+<p><strong>Chuyển đổi chế độ</strong>:
+| Lệnh | Thao tác | Từ chế độ |
+|------|------|----------|
+| <code>Esc</code> | Vào chế độ NORMAL | INSERT |
+| <code>i</code> | Chèn trước con trỏ | NORMAL |
+| <code>a</code> | Chèn sau con trỏ | NORMAL |
+| <code>o</code> | Mở dòng ở dưới | NORMAL |</p>
+<p><strong>Điều hướng (Chế độ NORMAL)</strong>:
+| Lệnh | Thao tác |
+|------|------|
+| <code>h/j/k/l</code> | Trái/Xuống/Lên/Phải |
+| <code>w</code> | Từ tiếp theo |
+| <code>b</code> | Từ trước đó |
+| <code>0/$</code> | Đầu dòng/Cuối dòng |
+| <code>gg/G</code> | Đầu/Cuối input |</p>
+<p>:::</p>
+<p>::: details Nâng cao: Lệnh Bash chạy ngầm</p>
+<p><strong>Cơ chế chạy ngầm</strong>:</p>
+<ul>
+<li>Chạy lệnh bất đồng bộ, trả về ID nhiệm vụ ngay lập tức</li>
+<li>Đầu ra được đệm, có thể truy xuất bằng công cụ BashOutput</li>
+<li>Tự động dọn dẹp khi Claude Code thoát</li>
+</ul>
+<p><strong>Lệnh chạy ngầm thường gặp</strong>:</p>
+<ul>
+<li>Công cụ build (webpack, vite, make)</li>
+<li>Trình quản lý gói (npm, yarn, pnpm)</li>
+<li>Trình chạy test (jest, pytest)</li>
+<li>Server phát triển</li>
+</ul>
+<p><strong>Nhấn Ctrl+B</strong> để chuyển cuộc gọi Bash thông thường sang chạy ngầm.</p>
+<p><strong>Chế độ Bash (Tiền tố !)</strong>:</p>
+<pre><code class="language-bash">! npm test
+! git status
+! ls -la
+</code></pre>
+<ul>
+<li>Thêm lệnh và đầu ra vào ngữ cảnh hội thoại</li>
+<li>Hiển thị tiến trình thời gian thực</li>
+<li>Hỗ trợ Ctrl+B chạy ngầm</li>
+</ul>
+<p>:::</p>
+<p>::: details Nâng cao: Định dạng cấu hình Agent</p>
+<p><strong>Cờ <code>--agents</code> nhận JSON</strong> (thường không cần dùng tay, lệnh <code>/agents</code> sẽ tự xử lý):</p>
+<pre><code class="language-bash">claude --agents '{
+  &quot;code-reviewer&quot;: {
+    &quot;description&quot;: &quot;Expert code reviewer&quot;,
+    &quot;prompt&quot;: &quot;You are a senior code reviewer&quot;,
+    &quot;tools&quot;: [&quot;Read&quot;, &quot;Grep&quot;, &quot;Glob&quot;, &quot;Bash&quot;],
+    &quot;model&quot;: &quot;sonnet&quot;
+  }
+}'
+</code></pre>
+<p><strong>Trường bắt buộc</strong>:</p>
+<ul>
+<li><code>description</code>: Khi nào gọi (ngôn ngữ tự nhiên)</li>
+<li><code>prompt</code>: Prompt hệ thống</li>
+</ul>
+<p><strong>Trường tùy chọn</strong>:</p>
+<ul>
+<li><code>tools</code>: Mảng công cụ khả dụng</li>
+<li><code>model</code>: Bí danh mô hình (sonnet/opus/haiku)</li>
+</ul>
+<p>:::</p>
+<h3>Quy trình 5 bước</h3>
+<p>::: tip Quy trình là gợi ý không phải bắt buộc</p>
+<p>Quy trình 5 bước VibeCoding là một <strong>mô hình thực hành được đề xuất</strong>, phù hợp với đa số ngữ cảnh phát triển. Nhưng bạn có thể điều chỉnh linh hoạt theo tình hình thực tế:</p>
+<ul>
+<li>✅ <strong>Khuyên tuân thủ</strong>: Chức năng phức tạp, dự án lạ, cộng tác nhóm</li>
+<li>🔄 <strong>Có thể đơn giản hóa</strong>: Sửa đổi đơn giản, dự án quen thuộc, phát triển cá nhân</li>
+<li>⚡ <strong>Có thể bỏ qua</strong>: Sửa đổi cực nhỏ, sửa lỗi rõ ràng</li>
+</ul>
+<p><strong>Nguyên tắc cốt lõi</strong>: Sau khi hiểu mục đích mỗi bước, hãy áp dụng linh hoạt, đừng thực hiện máy móc.</p>
+<p>:::</p>
+<h4>1. Khám phá cấu trúc dự án</h4>
+<p><strong>Mục đích</strong>: Tìm hiểu tổ chức code hiện có, tránh làm lại việc đã có</p>
+<pre><code class="language-bash"># Để AI khám phá dự án
+&quot;Khám phá cấu trúc dự án này, cho tôi biết:
+1. Tech stack sử dụng
+2. Cách tổ chức file
+3. Các module chức năng hiện có
+4. Tác dụng của các file cấu hình&quot;
+</code></pre>
+<p><strong>Ví dụ đầu ra</strong>:</p>
+<pre><code>Dự án sử dụng Next.js 16 + TypeScript + Drizzle
+- app/: Trang và API
+- components/: Component tái sử dụng
+- src/db/: Mô hình CSDL
+</code></pre>
+<h4>2. Quy hoạch bước thực hiện</h4>
+<p><strong>Mục đích</strong>: Nghĩ kỹ rồi mới làm, giảm thiểu làm lại</p>
+<pre><code class="language-bash">&quot;Tôi muốn thêm chức năng bình luận người dùng.
+Hãy quy hoạch bước thực hiện, bao gồm:
+1. Cần tạo những file nào
+2. Cần sửa những file hiện có nào
+3. Thay đổi schema CSDL
+4. Trình tự thực hiện&quot;
+</code></pre>
+<p><strong>Ví dụ đầu ra</strong>:</p>
+<pre><code>Các bước:
+1. Cập nhật Drizzle schema (Thêm model Comment)
+2. Chạy npx drizzle-kit push
+3. Tạo API route (app/api/comments/route.ts)
+4. Tạo component bình luận (components/CommentForm.tsx)
+5. Tích hợp vào trang chi tiết
+</code></pre>
+<h4>3. Viết code</h4>
+<p><strong>Mục đích</strong>: Hiện thực hóa chức năng theo kế hoạch</p>
+<p><strong>Năng lực tự động chia nhỏ của AI</strong>:</p>
+<p>Nhiệm vụ phức tạp sẽ tự động được chia nhỏ:</p>
+<pre><code class="language-bash"># Bạn chỉ cần nói
+&quot;Hiện thực hóa chức năng bình luận người dùng&quot;
+
+# AI sẽ tự động chia thành:
+1. Cập nhật Drizzle schema
+2. Chạy migrate database
+3. Tạo API endpoint
+4. Viết component Frontend
+5. Tích hợp vào trang
+6. Test kiểm chứng
+</code></pre>
+<p>Bạn không cần chỉ định thủ công từng bước, AI sẽ:</p>
+<ul>
+<li>Nhận diện quan hệ phụ thuộc nhiệm vụ</li>
+<li>Xác định trình tự thực hiện</li>
+<li>Xử lý xong song các phần độc lập</li>
+<li>Kiểm chứng kết quả từng bước</li>
+</ul>
+<p><strong>Đương nhiên, bạn cũng có thể thực hiện từng bước</strong>:</p>
+<pre><code class="language-bash">&quot;Làm theo bước 1, cập nhật Drizzle schema&quot;
+</code></pre>
+<pre><code class="language-bash">&quot;Làm theo bước 2, sinh và chạy migrate&quot;
+</code></pre>
+<pre><code class="language-bash">&quot;Làm theo bước 3, tạo API bình luận&quot;
+</code></pre>
+<h4>4. Kiểm thử xác minh</h4>
+<p><strong>Mục đích</strong>: Đảm bảo chức năng bình thường</p>
+<pre><code class="language-bash">&quot;Test chức năng bình luận:
+1. Xác minh API có thể tạo bình luận bình thường
+2. Xác minh bình luận hiển thị chính xác
+3. Xác minh xử lý lỗi&quot;
+</code></pre>
+<h4>5. Gửi code (Commit)</h4>
+<p><strong>Mục đích</strong>: Thiết lập bản ghi phiên bản</p>
+<pre><code class="language-bash">&quot;Chức năng bình luận phát triển xong, commit code&quot;
+</code></pre>
+<p>::: tip Để AI tự động bảo trì bản ghi Git</p>
+<p>AI phát triển rất mạnh mẽ, có thể vì sửa một Bug mà phá hỏng chức năng cũ. Do đó cần bản ghi phiên bản tần suất cao để bảo vệ thành quả.</p>
+<p><strong>Thêm chỉ thị này vào quy tắc dự án hoặc CLAUDE.md</strong>:</p>
+<blockquote>
+<p><strong>"Mỗi khi bạn hoàn thành phát triển một chức năng độc lập, hoặc sửa xong một Bug và kiểm chứng thông qua, hãy tự động chạy git commit để gửi code, và sinh một câu commit message tiếng Việt ngắn gọn."</strong></p>
+</blockquote>
+<p>Từ đó, quy trình phát triển biến thành:</p>
+<ul>
+<li>AI viết xong chức năng đăng nhập -&gt; Tự động lưu</li>
+<li>AI viết xong trang chủ -&gt; Tự động lưu</li>
+<li>AI làm hỏng code -&gt; Quay lui về phiên bản trước bất cứ lúc nào</li>
+</ul>
+<p><strong>Tại sao cần tự động commit</strong>:</p>
+<ul>
+<li>AI có thể vì sửa 1 vấn đề mà phá hỏng 3 chức năng cũ</li>
+<li>Không có kiểm soát phiên bản, sửa sai có thể khiến thành quả trước đó không khôi phục được</li>
+<li>Bạn không cần nhớ mỗi lần commit thủ công, AI tự xử lý</li>
+</ul>
+<p>:::</p>
+<h4>6. Tính năng Checkpoint (Điểm kiểm tra)</h4>
+<p><strong>Mục đích</strong>: Tự động theo dõi sửa đổi file, hỗ trợ quay lui nhanh</p>
+<p>Claude Code tự động theo dõi sửa đổi file, hỗ trợ quay lui nhanh.</p>
+<p><strong>Tự động tạo</strong>: Tự động tạo checkpoint mỗi lần gửi prompt, không cần lưu thủ công</p>
+<p><strong>Phương pháp quay lui</strong>:
+Nhấn <code>Esc+Esc</code> hoặc chạy <code>/rewind</code>, chọn:</p>
+<ul>
+<li>Chỉ hội thoại: Quay lui tin nhắn người dùng, giữ lại thay đổi code</li>
+<li>Chỉ code: Khôi phục thay đổi file, giữ lại hội thoại</li>
+<li>Code và hội thoại: Khôi phục cả hai</li>
+</ul>
+<p>::: details Nâng cao: Nguyên lý làm việc của Checkpoint</p>
+<p><strong>Tự động theo dõi</strong>:</p>
+<ul>
+<li>Mỗi prompt người dùng tạo một checkpoint mới</li>
+<li>Checkpoint tồn tại dai dẳng giữa các phiên làm việc</li>
+<li>Tự động dọn dẹp sau 30 ngày (có thể cấu hình)</li>
+</ul>
+<p><strong>Hạn chế</strong>:</p>
+<ul>
+<li>Thay đổi lệnh Bash (rm, mv, cp) không thể quay lui</li>
+<li>Sửa đổi bên ngoài không thể quay lui</li>
+<li>Checkpoint dùng để khôi phục nhanh, Git dùng cho lịch sử vĩnh viễn</li>
+</ul>
+<p>:::</p>
+<h2>Hiểu về Agent</h2>
+<h3>Agent là gì</h3>
+<p><strong>Agent</strong> = Bản thân AI</p>
+<p>Bản thân AI chính là một <strong>Agent</strong>, công việc của nó là:</p>
+<ul>
+<li>Hiểu ý định và nhu cầu của bạn</li>
+<li>Ra quyết định (dùng công cụ gì, làm gì trước làm gì sau)</li>
+<li>Điều phối các công cụ để hoàn thành nhiệm vụ</li>
+</ul>
+<p>Có thể hiểu Agent là một <strong>người thực thi nhiệm vụ</strong>:</p>
+<ul>
+<li>Nhận chỉ thị của bạn (Prompt)</li>
+<li>Gọi các công cụ để hoàn thành nhiệm vụ</li>
+<li>Trả về kết quả thực thi</li>
+</ul>
+<p><strong>Khác biệt với đối thoại AI thông thường</strong>:
+| AI đối thoại thường | Agent |
+|-------------|--------|
+| Chỉ có thể chat | Có thể gọi công cụ |
+| Trả lời thụ động | Ra quyết định chủ động |
+| Tương tác đơn lượt | Thực thi liên tục |</p>
+<h3>Agent tùy chỉnh là gì</h3>
+<p><strong>Agent tùy chỉnh</strong> = Agent chuyên dụng bạn tạo ra</p>
+<p>Agent tùy chỉnh là "trợ lý chuyên môn" mà Agent chính có thể gọi. Mỗi Agent tùy chỉnh:</p>
+<ul>
+<li>Có mục đích và lĩnh vực chuyên môn cụ thể</li>
+<li>Có cửa sổ ngữ cảnh độc lập (không làm ô nhiễm hội thoại chính)</li>
+<li>Có prompt hệ thống tùy chỉnh (huấn luyện chuyên biệt)</li>
+<li>Có thể giới hạn quyền truy cập công cụ</li>
+</ul>
+<p><strong>Lợi thế khi sử dụng Agent tùy chỉnh</strong>:
+| Lợi thế | Giải thích |
+|------|------|
+| <strong>Giữ gìn ngữ cảnh</strong> | Hội thoại chính giữ ngắn gọn, Agent tùy chỉnh xử lý độc lập nhiệm vụ phức tạp |
+| <strong>Phân công chuyên môn</strong> | Tối ưu cho nhiệm vụ cụ thể (như review code, debug) |
+| <strong>Xử lý song song</strong> | Nhiều Agent có thể làm việc cùng lúc, nâng cao hiệu suất |
+| <strong>Quyền hạn linh hoạt</strong> | Có thể giới hạn Agent chỉ được dùng công cụ nhất định, tăng tính bảo mật |</p>
+<p><strong>Các loại Agent</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Loại</th>
+<th>Giải thích</th>
+<th>Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tích hợp chính thức</strong></td>
+<td>Hệ thống có sẵn, tự động gọi</td>
+<td>Plan (Dành riêng cho chế độ kế hoạch)</td>
+</tr>
+<tr>
+<td><strong>Người dùng tùy chỉnh</strong></td>
+<td>Agent chuyên dụng bạn tạo</td>
+<td>code-reviewer, debugger</td>
+</tr>
+<tr>
+<td><strong>Agent chung</strong></td>
+<td>Agent chung mà công cụ Task gọi</td>
+<td>general-purpose, Explore</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Agent tích hợp chính thức: Plan</p>
+<p><strong>Plan Agent</strong> là Agent chuyên dụng có sẵn của Claude Code, dành riêng cho <strong>chế độ kế hoạch (Plan Mode)</strong>:</p>
+<ul>
+<li><strong>Mô hình</strong>: Sử dụng Sonnet để phân tích mạnh mẽ hơn</li>
+<li><strong>Công cụ</strong>: Read, Glob, Grep, Bash (Khám phá kho code)</li>
+<li><strong>Mục đích</strong>: Tìm kiếm file, phân tích cấu trúc code, thu thập ngữ cảnh</li>
+<li><strong>Tự động gọi</strong>: Tự động sử dụng khi nghiên cứu kho code trong chế độ kế hoạch</li>
+</ul>
+<p><strong>Nguyên lý làm việc</strong>:</p>
+<pre><code>Bạn: [Ở chế độ Plan] Giúp tôi tái cấu trúc module xác thực
+Tôi: Để tôi nghiên cứu cách thực hiện xác thực của bạn trước đã...
+[Gọi nội bộ Plan Agent khám phá các file liên quan xác thực]
+[Plan Agent tìm kiếm kho code và trả về phát hiện]
+Tôi: Dựa trên nghiên cứu, đây là phương án đề xuất của tôi...
+</code></pre>
+<p>:::</p>
+<h3>Tạo Agent tùy chỉnh</h3>
+<p>Sử dụng lệnh <code>/agents</code> để tạo Agent tùy chỉnh của riêng bạn.</p>
+<p><strong>Bước 0: Nhập <code>/agents</code> trong Claude và Enter</strong></p>
+<hr />
+<p><strong>Bước 1: Chọn phương thức tạo (Creation Method)</strong></p>
+<p>Ở đây quyết định "bộ não" của Agent (Prompt hệ thống) được sinh ra thế nào.</p>
+<table>
+<thead>
+<tr>
+<th>Tùy chọn</th>
+<th>Ý nghĩa</th>
+<th>Ngữ cảnh áp dụng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Generate with Claude</strong></td>
+<td>Để Claude giúp bạn sinh</td>
+<td>Khuyên dùng 90% trường hợp. Mô tả nhu cầu bằng ngôn ngữ tự nhiên, Claude tự động chuyển thành Prompt chuyên nghiệp</td>
+</tr>
+<tr>
+<td><strong>Manual configuration</strong></td>
+<td>Cấu hình thủ công</td>
+<td>Người dùng cao cấp. Đã có Prompt viết sẵn, hoặc cần kiểm soát chính xác từng ký tự</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Lối tắt: Sửa trực tiếp trong đối thoại</p>
+<p>Sau khi tạo Agent, bạn có thể dùng <code>@Tên_Agent</code> ngay trong đối thoại để sửa hoặc sử dụng nó:</p>
+<pre><code class="language-bash"># Nói thẳng nhu cầu của bạn cho AI
+&quot;@code-reviewer sau này khi kiểm tra code, đặc biệt chú ý vấn đề bảo mật&quot;
+
+@dịch_thuật_agent Dịch đoạn này sang tiếng Anh, nhưng giữ nguyên thuật ngữ kỹ thuật
+</code></pre>
+<p>AI sẽ tự động cập nhật cấu hình của Agent, không cần sửa file cấu hình thủ công.</p>
+<p>:::</p>
+<hr />
+<p>::: details Quy trình đầy đủ (Bước 2 đến bước cuối)</p>
+<p><strong>Bước 2: Chọn mô hình tầng dưới (Select Model)</strong></p>
+<p>Quyết định "IQ", tốc độ và chi phí khi Agent chạy.</p>
+<table>
+<thead>
+<tr>
+<th>Tùy chọn</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sonnet</strong></td>
+<td>Cân bằng hiệu năng và tốc độ</td>
+</tr>
+<tr>
+<td><strong>Opus</strong></td>
+<td>Năng lực mạnh nhất, chi phí cao hơn</td>
+</tr>
+<tr>
+<td><strong>Haiku</strong></td>
+<td>Tốc độ nhanh nhất, nhiệm vụ đơn giản</td>
+</tr>
+<tr>
+<td><strong>Inherit from parent</strong></td>
+<td>Thừa kế mô hình cha, thay đổi theo đối thoại chính</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Bước 3: Chọn quyền hạn công cụ (Select Tools)</strong></p>
+<p>Quyết định Agent <strong>có thể làm gì</strong> (Chìa khóa của kiểm soát an toàn).</p>
+<table>
+<thead>
+<tr>
+<th>Tùy chọn</th>
+<th>Quyền hạn</th>
+<th>Ngữ cảnh áp dụng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>All tools</strong></td>
+<td>Toàn quyền</td>
+<td>Agent cần năng lực đầy đủ</td>
+</tr>
+<tr>
+<td><strong>Read-only tools</strong></td>
+<td>Quyền chỉ đọc</td>
+<td>Review code, phân tích tài liệu</td>
+</tr>
+<tr>
+<td><strong>Edit tools</strong></td>
+<td>Quyền chỉnh sửa</td>
+<td>Sửa code, tạo file</td>
+</tr>
+<tr>
+<td><strong>Execution tools</strong></td>
+<td>Quyền thực thi</td>
+<td>Chạy lệnh terminal (Rủi ro cao nhất)</td>
+</tr>
+<tr>
+<td><strong>MCP tools</strong></td>
+<td>Công cụ bên ngoài</td>
+<td>Gọi dịch vụ kết nối qua MCP Server</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Bước 4: Chọn vị trí lưu trữ (Choose Location)</strong></p>
+<p>Quyết định Agent có thể được nhìn thấy và sử dụng <strong>ở đâu</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Tùy chọn</th>
+<th>Ý nghĩa</th>
+<th>Ngữ cảnh áp dụng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Project (.claude/agents/)</strong></td>
+<td>Riêng tư cấp dự án</td>
+<td>Agent phục vụ riêng cho dự án hiện tại</td>
+</tr>
+<tr>
+<td><strong>Personal (~/.claude/agents/)</strong></td>
+<td>Toàn cục cấp người dùng</td>
+<td>Công cụ chung (dịch, gửi mail...), dùng ở đâu cũng được</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Bước 5: Chọn màu nền (Choose background color)</strong></p>
+<p>Cài đặt trực quan thuần túy, dùng để phân biệt các Agent khác nhau trong terminal. Khuyên dùng phân loại theo chức năng:</p>
+<ul>
+<li><strong>Đỏ</strong>: Thao tác nguy hiểm (Xóa file)</li>
+<li><strong>Xanh dương</strong>: Hỗ trợ tra cứu</li>
+<li><strong>Hồng/Tím</strong>: Viết lách sáng tạo</li>
+</ul>
+<hr />
+<p><strong>Bước cuối: Xác nhận và lưu (Confirm and save)</strong></p>
+<table>
+<thead>
+<tr>
+<th>Phím</th>
+<th>Thao tác</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>s</code> hoặc <code>Enter</code></td>
+<td>Lưu và tạo</td>
+</tr>
+<tr>
+<td><code>e</code></td>
+<td>Lưu xong vào ngay trình chỉnh sửa (tinh chỉnh Prompt)</td>
+</tr>
+<tr>
+<td><code>Esc</code></td>
+<td>Hủy tạo</td>
+</tr>
+</tbody>
+</table>
+<p>:::</p>
+<h2>Cộng tác đa Agent song song</h2>
+<p>::: tip Cộng tác đa Agent là gì</p>
+<p>Claude Code sẽ <strong>tự động bật đa Agent</strong> để xử lý song song các nhiệm vụ độc lập, mỗi Agent có cửa sổ ngữ cảnh riêng, tập trung hoàn thành công việc cụ thể.</p>
+<p><strong>Hai phương thức</strong>:</p>
+<ol>
+<li><strong>Tự động song song</strong>: Tôi nhận diện nhiệm vụ độc lập, tự động tạo Agent chung để xử lý song song</li>
+<li><strong>Cộng tác chuyên môn</strong>: Gọi Agent tùy chỉnh bạn đã tạo (như code-reviewer)</li>
+</ol>
+<p>:::</p>
+<h3>Tự động kích hoạt</h3>
+<p>Claude Code dựa trên mô tả nhiệm vụ để <strong>chủ động ủy quyền nhiệm vụ</strong>, sử dụng <strong>công cụ Task</strong> tạo Agent chung để xử lý song song:</p>
+<ul>
+<li>Từ khóa trong mô tả nhiệm vụ: <strong>"song song", "đồng thời", "đa Agent"</strong></li>
+<li>Trường <code>description</code> trong cấu hình Agent tùy chỉnh</li>
+<li>Ngữ cảnh hiện tại và công cụ khả dụng</li>
+</ul>
+<p>::: tip Công cụ Task</p>
+<p>Khi Claude Code nhận diện được nhiệm vụ độc lập, sẽ tự động dùng <strong>công cụ Task</strong> tạo Agent chung để xử lý song song.</p>
+<p><strong>Agent chung vs Agent tùy chỉnh</strong>:
+| Loại | Cách gọi | Công dụng |
+|------|----------|------|
+| <strong>Agent chung</strong> | Công cụ Task tự động tạo | Nhiệm vụ chung (khám phá, tìm kiếm, đọc file) |
+| <strong>Agent tùy chỉnh</strong> | Lệnh <code>/agents</code> tạo | Lĩnh vực cụ thể (Review code, debug, test) |</p>
+<p><strong>Đặc điểm</strong>:</p>
+<ul>
+<li>Hiệu quả hơn khi xử lý đọc và tìm kiếm lượng lớn file</li>
+<li>Nhiều Agent chung có thể làm việc song song, tăng tốc độ</li>
+<li>Không cần cấu hình trước, Claude tự tạo</li>
+</ul>
+<p>:::</p>
+<h3>Nhiều Agent song song</h3>
+<table>
+<thead>
+<tr>
+<th>Từ khóa</th>
+<th>Hiệu quả</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>"Song song"</strong></td>
+<td>Thực thi nhiều nhiệm vụ độc lập cùng lúc</td>
+</tr>
+<tr>
+<td><strong>"Đồng thời"</strong></td>
+<td>Nhiều Agent cùng làm việc</td>
+</tr>
+<tr>
+<td><strong>"Đa Agent"</strong></td>
+<td>Chỉ định rõ dùng nhiều Agent cộng tác</td>
+</tr>
+</tbody>
+</table>
+<p>::: info Giải thích năng lực song song</p>
+<p><strong>Năng lực song song của Claude</strong>:</p>
+<p>Trong một phản hồi đơn lẻ, Claude tối đa có thể gọi song song <strong>5-10 công cụ độc lập/Agent con</strong>.</p>
+<p>Điều này có nghĩa là nếu bạn có nhiều nhiệm vụ độc lập (ví dụ đồng thời đọc nhiều file, thực thi nhiều tìm kiếm độc lập...), Claude có thể phát đi tất cả yêu cầu trong một tin nhắn, nâng cao hiệu quả đáng kể.</p>
+<p><strong>Ví dụ 1</strong>: Nghiên cứu song song nhiều tài liệu kỹ thuật</p>
+<pre><code>Nhiệm vụ: Tìm hiểu 3 phương án lưu trữ dữ liệu Prisma, Drizzle, Supabase
+
+Cách tuần tự:
+Đọc tài liệu Prisma → Chờ → Đọc tài liệu Drizzle → Chờ → Đọc tài liệu Supabase → Chờ → Tổng kết so sánh
+
+Cách song song:
+1 tin nhắn → Đồng thời khởi tạo 3 yêu cầu nghiên cứu tài liệu → Thu thập tất cả thông tin → Tạo báo cáo so sánh
+</code></pre>
+<p><strong>Ví dụ 2</strong>: Viết song song nhiều component liên quan</p>
+<pre><code>Nhiệm vụ: Phát triển nhiều module chức năng của trang cài đặt người dùng
+
+Cách tuần tự:
+Viết upload avatar → Chờ → Viết đổi mật khẩu → Chờ → Viết tùy chọn thông báo → Chờ → Test tích hợp
+
+Cách song song:
+1 tin nhắn → Đồng thời khởi động 3 Agent viết riêng 3 module → Thu thập tất cả code → Test tích hợp thống nhất
+</code></pre>
+<p><strong>Thực hành tốt nhất</strong>:</p>
+<ul>
+<li>Đảm bảo giữa các nhiệm vụ không có quan hệ phụ thuộc</li>
+<li>Dùng từ khóa "đồng thời", "song song" trong Prompt</li>
+<li>Để Claude tự nhận diện nhiệm vụ nào có thể song song</li>
+</ul>
+<p>:::</p>
+<h3>Ví dụ sử dụng</h3>
+<pre><code class="language-bash"># Tự động song song - AI tự nhận diện nhiệm vụ độc lập
+&quot;Đồng thời làm 3 việc này:
+1. Viết Backend API (Xác thực người dùng)
+2. Viết Frontend UI (Form đăng nhập)
+3. Viết Database schema (Bảng User)&quot;
+
+# Chỉ định dùng đa Agent
+&quot;Sử dụng đa Agent phát triển song song các module nhiệm vụ:
+- Team Backend làm CRUD API
+- Team Frontend làm danh sách nhiệm vụ và form
+- Team Database làm Task model&quot;
+</code></pre>
+<p>::: details Nâng cao: Khôi phục đối thoại trước đó</p>
+<p><strong>Hai tùy chọn</strong>:</p>
+<ul>
+<li><code>--continue</code>: Tự động tiếp tục đối thoại gần nhất</li>
+<li><code>--resume</code>: Hiển thị trình chọn đối thoại</li>
+</ul>
+<p><strong>Ví dụ sử dụng</strong>:</p>
+<pre><code class="language-bash"># Tiếp tục đối thoại gần nhất
+claude --continue
+
+# Tiếp tục với prompt cụ thể
+claude --continue -p &quot;Hiển thị tiến độ của chúng ta&quot;
+
+# Hiển thị trình chọn đối thoại
+claude --resume
+
+# Tiếp tục ở chế độ không tương tác
+claude --continue -p &quot;Chạy lại test&quot;
+</code></pre>
+<p><strong>Nguyên lý làm việc</strong>:</p>
+<ol>
+<li>Đối thoại tự động lưu cục bộ</li>
+<li>Khi khôi phục sẽ tải toàn bộ lịch sử tin nhắn</li>
+<li>Trạng thái công cụ và kết quả được giữ lại</li>
+<li>Ngữ cảnh được khôi phục nguyên vẹn</li>
+</ol>
+<p>:::</p>
+<p>::: details Nâng cao: Phiên làm việc song song và Git Worktrees</p>
+<p><strong>Ngữ cảnh sử dụng</strong>: Xử lý nhiều nhiệm vụ cùng lúc, cách ly code hoàn toàn</p>
+<p><strong>Tạo worktree</strong>:</p>
+<pre><code class="language-bash"># Tạo với nhánh mới
+git worktree add ../project-feature-a -b feature-a
+
+# Tạo với nhánh hiện có
+git worktree add ../project-bugfix bugfix-123
+</code></pre>
+<p><strong>Chạy AI trong mỗi worktree</strong>:</p>
+<pre><code class="language-bash">cd ../project-feature-a
+claude
+</code></pre>
+<p><strong>Quản lý worktrees</strong>:</p>
+<pre><code class="language-bash"># Liệt kê tất cả worktrees
+git worktree list
+
+# Xóa worktree
+git worktree remove ../project-feature-a
+</code></pre>
+<p><strong>Lợi thế</strong>:</p>
+<ul>
+<li>Mỗi thư mục làm việc hoàn toàn cách ly</li>
+<li>Thay đổi không ảnh hưởng lẫn nhau</li>
+<li>Chia sẻ cùng lịch sử Git</li>
+</ul>
+<p>:::</p>
+<p>::: details Nâng cao: Cách dùng tiện ích kiểu Unix</p>
+<p><strong>Thêm vào quy trình kiểm chứng</strong>:</p>
+<pre><code class="language-json">// package.json
+{
+  &quot;scripts&quot;: {
+    &quot;lint:claude&quot;: &quot;claude -p 'Bạn là linter. Kiểm tra thay đổi so với main, báo cáo lỗi chính tả. Mỗi dòng một tên file và số dòng, dòng thứ hai mô tả vấn đề. Không trả về văn bản khác.'&quot;
+  }
+}
+</code></pre>
+<p><strong>Đầu vào đầu ra dạng ống (Pipeline)</strong>:</p>
+<pre><code class="language-bash"># Dữ liệu dạng ống
+cat build-error.txt | claude -p 'Giải thích ngắn gọn nguyên nhân gốc rễ của lỗi build' &gt; output.txt
+
+# Kiểm soát định dạng đầu ra
+cat data.txt | claude -p 'Tóm tắt dữ liệu' --output-format text &gt; summary.txt
+cat code.py | claude -p 'Phân tích bug code' --output-format json &gt; analysis.json
+cat log.txt | claude -p 'Phân tích lỗi log' --output-format stream-json
+</code></pre>
+<p><strong>Định dạng đầu ra</strong>:</p>
+<ul>
+<li><code>text</code>: Phản hồi văn bản thuần (mặc định)</li>
+<li><code>json</code>: Mảng JSON của nhật ký đối thoại đầy đủ</li>
+<li><code>stream-json</code>: Luồng đối tượng JSON thời gian thực</li>
+</ul>
+<p>:::</p>
+<h3>Con người trong vòng lặp (Human in the loop)</h3>
+<p>AI có thể tự chủ hoàn thành nhiều nhiệm vụ, nhưng các trường hợp sau <strong>khuyên nên giữ sự xem xét của con người</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Ngữ cảnh</th>
+<th>Nguyên nhân</th>
+<th>Cách làm khuyên dùng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Triển khai môi trường sản xuất</strong></td>
+<td>Ảnh hưởng tất cả người dùng</td>
+<td>AI sinh phương án, người duyệt rồi thực thi</td>
+</tr>
+<tr>
+<td><strong>Thay đổi cấu trúc CSDL</strong></td>
+<td>Khó rollback, ảnh hưởng dữ liệu</td>
+<td>Review schema trước, rồi mới chạy migrate</td>
+</tr>
+<tr>
+<td><strong>Code liên quan bảo mật</strong></td>
+<td>Lỗ hổng hậu quả nghiêm trọng</td>
+<td>Review code là bắt buộc</td>
+</tr>
+<tr>
+<td><strong>Logic thanh toán/tài chính</strong></td>
+<td>Liên quan an toàn tiền bạc</td>
+<td>Test + Xác minh kép</td>
+</tr>
+<tr>
+<td><strong>Đường dẫn quan trọng hiệu năng</strong></td>
+<td>Ảnh hưởng trải nghiệm người dùng</td>
+<td>Test hiệu năng + So sánh benchmark</td>
+</tr>
+<tr>
+<td><strong>Thay đổi tương thích API</strong></td>
+<td>Ảnh hưởng tích hợp bên thứ 3</td>
+<td>Quản lý phiên bản + Cơ chế thông báo</td>
+</tr>
+</tbody>
+</table>
+<p>::: warning Nhắc nhở cho người mới</p>
+<p>Nếu bạn là người mới học lập trình, gặp các ngữ cảnh trên mà <strong>không chắc xử lý thế nào</strong>:</p>
+<ol>
+<li><strong>Đừng một mình gánh rủi ro</strong></li>
+<li>Tìm người có kinh nghiệm trong team giúp review</li>
+<li>Xác minh ở môi trường test trước</li>
+<li>
+<p>Hỏi AI điểm rủi ro và lưu ý</p>
+</li>
+<li>
+<p><strong>Tin tưởng lũy tiến</strong></p>
+</li>
+<li>Bắt đầu từ nhiệm vụ đơn giản để AI tự hoàn thành</li>
+<li>Nhiệm vụ phức tạp/rủi ro cao tăng dần sự xem xét của con người</li>
+<li>
+<p>Xây dựng checklist đảm bảo các điểm then chốt đều được kiểm tra</p>
+</li>
+<li>
+<p><strong>Kênh tìm kiếm sự giúp đỡ</strong></p>
+</li>
+<li>Thành viên senior trong team</li>
+<li>Cộng đồng kỹ thuật (Stack Overflow, GitHub Issues)</li>
+<li>Để AI giải thích rủi ro: "Làm thế này có rủi ro gì?"</li>
+</ol>
+<p>:::</p>
+<p>::: details Tín hiệu cần người review</p>
+<p><strong>Cảnh giác khi AI đề xuất</strong>:</p>
+<ul>
+<li>AI nói "Có thể phá hỏng XXX"</li>
+<li>AI đề xuất xóa lượng lớn code</li>
+<li>AI sửa đổi file cấu hình cốt lõi</li>
+<li>AI đề xuất tái cấu trúc module cốt lõi</li>
+</ul>
+<p><strong>Đề xuất thao tác</strong>:</p>
+<ol>
+<li>Yêu cầu AI giải thích nguyên nhân thay đổi</li>
+<li>Kiểm tra danh sách file bị ảnh hưởng</li>
+<li>Cân nhắc test trên nhánh trước</li>
+<li>Cần thiết thì tìm ý kiến thứ hai</li>
+</ol>
+<p>:::</p>
+<h2>Tự động hóa Hooks</h2>
+<p>::: tip Hooks là gì</p>
+<p><strong>Hooks</strong> = Lệnh Shell tự động thực thi tại sự kiện cụ thể</p>
+<p>Khi Claude Code kích hoạt sự kiện nào đó (như gọi công cụ, người dùng gửi prompt), có thể tự động thực thi kịch bản lệnh bạn đăng ký.</p>
+<p><strong>Công dụng thường gặp</strong>:</p>
+<ul>
+<li>Tự động format sau khi viết code xong (chạy prettier/eslint)</li>
+<li>Chặn xác nhận trước khi AI muốn xóa file quan trọng</li>
+<li>Tự động chạy test trước khi commit code</li>
+</ul>
+<p>:::</p>
+<p>::: warning Nhắc nhở an toàn</p>
+<p>Hooks sẽ thực thi lệnh Shell với quyền hạn người dùng của bạn, <strong>trước khi cấu hình hãy hiểu nó đang làm gì</strong>.</p>
+<p><strong>Khuyên dùng cho người mới</strong>:</p>
+<ul>
+<li>🟢 Bắt đầu từ ngữ cảnh đơn giản (như tự động format)</li>
+<li>🟡 Ngữ cảnh phức tạp tìm người có kinh nghiệm giúp đỡ</li>
+<li>🔴 Chỉ sử dụng Hooks từ nguồn đáng tin cậy</li>
+</ul>
+<p>:::</p>
+<h3>Sử dụng Hooks</h3>
+<p><strong>Chạy <code>/hooks</code> mở giao diện cấu hình tương tác</strong>, đây là cách tạo được khuyên dùng nhất.</p>
+<p><strong>Quy trình cấu hình</strong>:</p>
+<ol>
+<li>Chọn loại sự kiện Hook:</li>
+<li><code>PreToolUse</code> - Trước khi gọi công cụ</li>
+<li><code>PostToolUse</code> - Sau khi gọi công cụ</li>
+<li><code>PostToolUseFailure</code> - Sau khi công cụ thực thi thất bại</li>
+<li><code>Notification</code> - Khi gửi thông báo</li>
+<li>
+<p><code>UserPromptSubmit</code> - Khi người dùng gửi prompt (Khuyên dùng)</p>
+</li>
+<li>
+<p>Cấu hình hành vi Hook:</p>
+</li>
+<li>Chọn điều kiện kích hoạt (matcher)</li>
+<li>Viết lệnh Shell thực thi</li>
+<li>
+<p>Thiết lập thời gian timeout (mặc định 60 giây)</p>
+</li>
+<li>
+<p>Lưu và hiệu lực</p>
+</li>
+</ol>
+<p>::: info Giải thích quan trọng</p>
+<ul>
+<li><strong>Mỗi sự kiện có thể đăng ký nhiều Hooks</strong>, thực thi song song</li>
+<li><strong>Sửa đổi ngoài thư mục <code>/hooks</code> cần khởi động lại</strong> mới có hiệu lực</li>
+<li><strong>Thời gian timeout</strong>: 60 giây</li>
+<li><strong>Quyền hạn</strong>: Thực thi với quyền hạn người dùng đầy đủ của bạn</li>
+</ul>
+<p>:::</p>
+<h3>Ngữ cảnh thường dùng</h3>
+<table>
+<thead>
+<tr>
+<th>Ngữ cảnh</th>
+<th>Sự kiện</th>
+<th>Thời điểm kích hoạt</th>
+<th>Lệnh thực thi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tự động format</td>
+<td>PostToolUse</td>
+<td>Sau khi Write/Edit</td>
+<td><code>prettier --write $FILE</code></td>
+</tr>
+<tr>
+<td>Bảo vệ file nhạy cảm</td>
+<td>PreToolUse</td>
+<td>Khi muốn sửa .env</td>
+<td>Chặn và cảnh báo</td>
+</tr>
+<tr>
+<td>Chạy test</td>
+<td>UserPromptSubmit</td>
+<td>Khi gửi prompt chứa "test"</td>
+<td><code>npm test</code></td>
+</tr>
+<tr>
+<td>Thêm ngữ cảnh</td>
+<td>UserPromptSubmit</td>
+<td>Trước mỗi lần gửi prompt</td>
+<td>Tự động tải thông tin dự án</td>
+</tr>
+</tbody>
+</table>
+<p>::: details Nâng cao: Giải thích file cấu hình</p>
+<p><strong>Lưu ý</strong>: Nội dung dưới đây chỉ để tham khảo, <strong>thường không cần sửa file cấu hình thủ công</strong>.</p>
+<p>Vị trí cấu hình (Ưu tiên từ cao xuống thấp):</p>
+<ul>
+<li><code>.claude/settings.local.json</code> - Cài đặt dự án cục bộ (không commit)</li>
+<li><code>.claude/settings.json</code> - Cài đặt dự án</li>
+<li><code>~/.claude/settings.json</code> - Cài đặt toàn cục người dùng</li>
+</ul>
+<p><strong>Đối chiếu sự kiện thường dùng</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Sự kiện</th>
+<th>Thời điểm kích hoạt</th>
+<th>Công dụng điển hình</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PreToolUse</code></td>
+<td>Trước khi gọi công cụ</td>
+<td>Xác thực, sửa đổi đầu vào, kiểm soát quyền hạn</td>
+</tr>
+<tr>
+<td><code>PostToolUse</code></td>
+<td>Sau khi gọi công cụ</td>
+<td>Format, thông báo, xác minh kết quả</td>
+</tr>
+<tr>
+<td><code>PostToolUseFailure</code></td>
+<td>Sau khi công cụ thất bại</td>
+<td>Xử lý lỗi, thao tác rollback</td>
+</tr>
+<tr>
+<td><code>SessionStart</code></td>
+<td>Khi bắt đầu phiên</td>
+<td>Tải môi trường, cài dependency</td>
+</tr>
+<tr>
+<td><code>SessionEnd</code></td>
+<td>Khi kết thúc phiên</td>
+<td>Dọn dẹp, ghi thống kê</td>
+</tr>
+<tr>
+<td><code>UserPromptSubmit</code></td>
+<td>Khi người dùng gửi prompt</td>
+<td>Xác thực prompt, thêm ngữ cảnh</td>
+</tr>
+</tbody>
+</table>
+<p>:::</p>
+<p>::: details Ví dụ thực tế</p>
+<h4>Tự động format</h4>
+<pre><code class="language-json">{
+  &quot;hooks&quot;: {
+    &quot;PostToolUse&quot;: [
+      {
+        &quot;matcher&quot;: &quot;Write|Edit&quot;,
+        &quot;hooks&quot;: [
+          {
+            &quot;type&quot;: &quot;command&quot;,
+            &quot;command&quot;: &quot;\&quot;$CLAUDE_PROJECT_DIR\&quot;/.claude/hooks/format-code.sh&quot;
+          }
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+<p>Ngoài thực thi lệnh (<code>type: "command"</code>), còn có thể dùng LLM ra quyết định thông minh (<code>type: "prompt"</code>).</p>
+<p><strong>Ngữ cảnh áp dụng</strong>: Cần hiểu nội dung rồi mới quyết định có cho qua hay không.</p>
+<h4>Bảo vệ file nhạy cảm</h4>
+<pre><code class="language-python">#!/usr/bin/env python3
+# .claude/hooks/protect-files.py
+
+import json, sys
+
+data = json.load(sys.stdin)
+path = data.get('tool_input', {}).get('file_path', '')
+
+# Chặn ghi vào file nhạy cảm
+if any(p in path for p in ['.env', '.key', '.pem']):
+    print(&quot;Được bảo vệ: Không cho phép ghi vào file nhạy cảm&quot;, file=sys.stderr)
+    sys.exit(2)
+</code></pre>
+<p>:::</p>
+<p>::: details Nâng cao: Định dạng Đầu vào Đầu ra Hook</p>
+<p><strong>Đầu vào</strong> (Nhận JSON qua stdin):</p>
+<pre><code class="language-json">{
+  &quot;session_id&quot;: &quot;ID phiên&quot;,
+  &quot;cwd&quot;: &quot;Thư mục làm việc hiện tại&quot;,
+  &quot;hook_event_name&quot;: &quot;Tên sự kiện&quot;,
+  &quot;tool_name&quot;: &quot;Tên công cụ&quot;,
+  &quot;tool_input&quot;: {...}
+}
+</code></pre>
+<p><strong>Phương thức đầu ra</strong>:</p>
+<ul>
+<li>Mã thoát: 0=Thành công, 2=Chặn thao tác</li>
+<li>Đầu ra JSON: Có thể trả về các trường decision, reason...</li>
+</ul>
+<p>:::</p>
+<h2>Lưu ý an toàn</h2>
+<p>::: warning Lưu ý an toàn</p>
+<p><strong>Đừng gửi thông tin nhạy cảm cho AI</strong>:</p>
+<ul>
+<li>❌ Khóa API, mật khẩu</li>
+<li>❌ Chuỗi kết nối CSDL sản xuất</li>
+<li>❌ Dữ liệu riêng tư người dùng</li>
+</ul>
+<p><strong>Sử dụng biến môi trường</strong>:</p>
+<pre><code class="language-bash"># File .env (Đừng commit lên Git)
+DATABASE_URL=&quot;postgresql://...&quot;
+OPENAI_API_KEY=&quot;sk-...&quot;
+
+# .gitignore
+.env
+</code></pre>
+<p><strong>Đừng để AI sửa file cấu hình nhạy cảm</strong>:</p>
+<ul>
+<li>.env ở thư mục gốc dự án</li>
+<li>Khóa SSH</li>
+<li>Cấu hình môi trường sản xuất
+  :::</li>
+</ul>
+<h2>Triết lý cốt lõi</h2>
+<p><strong>Workflow giúp phát triển AI có thể dự đoán, có thể tái hiện</strong>.</p>
+<pre><code class="language-mermaid">graph TB
+    A[&quot;Không Workflow&quot;] --&gt; B[&quot;Nghĩ đâu làm đó&quot;]
+    B --&gt; C[&quot;Làm lại nhiều&quot;]
+    B --&gt; D[&quot;Chất lượng không ổn định&quot;]
+
+    E[&quot;Có Workflow&quot;] --&gt; F[&quot;Tư duy cấu trúc hóa&quot;]
+    F --&gt; G[&quot;Tỷ lệ thông qua một lần cao&quot;]
+    F --&gt; H[&quot;Chất lượng ổn định&quot;]
+</code></pre>
+<p><strong>Nhớ kỹ ngũ bộ khúc quy trình làm việc</strong>: Khám phá → Quy hoạch → Thực thi → Kiểm chứng → Gửi (Áp dụng linh hoạt tùy tình hình)</p>
+<p>::: tip Ứng dụng linh hoạt</p>
+<ul>
+<li><strong>Nhiệm vụ phức tạp</strong>: Tuân thủ nghiêm ngặt 5 bước, giảm thiểu làm lại</li>
+<li><strong>Sửa đổi đơn giản</strong>: Có thể bỏ qua khám phá, thực thi trực tiếp</li>
+<li><strong>Sửa lỗi khẩn cấp</strong>: Tối thiểu hóa quy trình, giải quyết nhanh chóng</li>
+</ul>
+<p>Mấu chốt là có ý thức suy nghĩ xem mỗi bước có cần thiết không, chứ không phải thực hiện máy móc.</p>
+<p>:::</p>
+<h2>Danh sách tự kiểm tra Prompt</h2>
+<p>Kiểm tra trước khi gửi Prompt:</p>
+<ul>
+<li>[ ] Mô tả nhiệm vụ rõ ràng cụ thể</li>
+<li>[ ] Đã cung cấp ngữ cảnh cần thiết</li>
+<li>[ ] Làm rõ định dạng đầu ra</li>
+<li>[ ] Đã cho AI lối thoát "không chắc chắn"</li>
+<li>[ ] Bao gồm các điều kiện ràng buộc cần thiết</li>
+<li>[ ] Tránh thiết lập vai trò dài dòng</li>
+<li>[ ] Không chứa thông tin nhạy cảm (API Key, Mật khẩu...)</li>
+</ul>
+<h2>Câu hỏi thường gặp</h2>
+<h3>Q1: Prompt càng dài càng tốt sao?</h3>
+<p><strong>A</strong>: Không phải.</p>
+<p>Chất lượng của Prompt nằm ở <strong>chính xác</strong>, không phải ở độ dài.</p>
+<p><strong>Prompt ngắn gọn nhưng cụ thể</strong> &gt; <strong>Prompt dài dòng nhưng mơ hồ</strong></p>
+<h3>Q2: AI vẫn bịa đặt câu trả lời thì sao?</h3>
+<p><strong>A</strong>: Tăng cường ràng buộc:</p>
+<pre><code>&quot;Chỉ sử dụng các dependency đã có trong dự án.
+Nếu cần chức năng mới, hãy bảo tôi trước.
+Đừng bịa ra API không tồn tại.&quot;
+</code></pre>
+<h3>Q3: Tại sao không để AI viết code trực tiếp luôn?</h3>
+<p><strong>A</strong>: Viết trực tiếp dễ phải làm lại.</p>
+<p>Khám phá → Quy hoạch → Viết code, quy trình này giúp bạn:</p>
+<ul>
+<li>Tránh phát minh lại bánh xe</li>
+<li>Phát hiện vấn đề tiềm ẩn</li>
+<li>Giữ phong cách code nhất quán</li>
+</ul>
+<h3>Q4: Quy trình làm việc có chậm quá không?</h3>
+<p><strong>A</strong>: Không.</p>
+<p>Nhìn thì nhiều bước, thực tế giảm thời gian làm lại. Hiệu suất tổng thể cao hơn.</p>
+<p><strong>So sánh</strong>:</p>
+<ul>
+<li>Viết trực tiếp: 10 phút, làm lại 30 phút</li>
+<li>Theo quy trình: 15 phút, một lần thông qua</li>
+</ul>
+<h3>Q5: Khi nào nên dừng đối thoại?</h3>
+<p><strong>A</strong>: Tín hiệu:</p>
+<ul>
+<li>Liên tục 3 vòng không có tiến triển</li>
+<li>AI bắt đầu lặp lại đề xuất giống nhau</li>
+<li>Vấn đề cần thêm thông tin (như xem log môi trường sản xuất)</li>
+</ul>
+<p><strong>Chiến lược</strong>: Chuyển đổi mô hình hoặc đổi tư duy</p>
+<h2>Nội dung liên quan</h2>
+<ul>
+<li>Xem chi tiết: 2.3 MCP, Plugin và Skills</li>
+<li>Xem chi tiết: 2.4 Cấu hình quy tắc dự án</li>
+<li>Trước đó: 2.1 Kinh tế học trong lập trình AI</li>
+<li>Sau đó: 2.5 Tâm pháp debug hiệu quả</li>
+</ul>
+</body>
+</html>

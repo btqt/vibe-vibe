@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03 Browser Server</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "1.3 Cơ bản về Trình duyệt và Server"
+description: "Hiểu về môi trường chạy của ứng dụng Web"
+chapter: "Chương 1"</p>
+<hr />
+<h1>1.3 Cơ bản về Trình duyệt và Server</h1>
+<blockquote>
+<p><strong>Đọc xong phần này, bạn sẽ thu hoạch được:</strong></p>
+<ul>
+<li>Hiểu trách nhiệm cơ bản của trình duyệt và server cùng cách thức hợp tác</li>
+<li>Nắm vững sự khác biệt giữa môi trường phát triển (localhost) và môi trường sản xuất (production)</li>
+<li>Hiểu tại sao TypeScript cần biên dịch cũng như vai trò của Node.js</li>
+<li>Phân biệt vị trí chạy của code phía client (client-side) và code phía server (server-side)</li>
+</ul>
+<p>"Trình duyệt không hiểu TypeScript" được nhắc đến trong lời nói đầu, là do trách nhiệm của trình duyệt và server khác nhau.</p>
+</blockquote>
+<h2>Khái niệm cơ bản</h2>
+<p><strong>Trình duyệt</strong> (Chrome, Firefox, Safari) chạy trên máy tính người dùng, chỉ có thể hiểu HTML, CSS, JavaScript.</p>
+<p><strong>Server</strong> là máy tính từ xa, chạy phần mềm máy chủ Web (như Nginx, Apache), phản hồi yêu cầu của trình duyệt và trả về dữ liệu.</p>
+<p><strong>Client</strong> (Máy khách) = Thiết bị người dùng (Trình duyệt, App điện thoại), <strong>Server</strong> (Máy chủ) = Bên cung cấp dịch vụ (Máy chủ, API).</p>
+<h2>Quy trình làm việc của ứng dụng Web</h2>
+<pre><code class="language-mermaid">sequenceDiagram
+    participant Người_dùng
+    participant Trình_duyệt
+    participant Server
+
+    Người_dùng-&gt;&gt;Trình_duyệt: Nhập địa chỉ web
+    Trình_duyệt-&gt;&gt;Server: Gửi yêu cầu (Request)
+    Server-&gt;&gt;Trình_duyệt: Trả về HTML/Dữ liệu (Response)
+    Trình_duyệt-&gt;&gt;Người_dùng: Hiển thị trang
+</code></pre>
+<p>::: details 🌐 Bấm để trải nghiệm: Tương tác giữa Trình duyệt và Server
+<BrowserServerFlow /></p>
+<blockquote>
+<p>💡 <strong>Bài tập</strong>: Bấm "Phát demo" để xem quy trình yêu cầu - phản hồi hoàn chỉnh, sau đó bấm vào trình duyệt hoặc server để xem khả năng của từng bên.</p>
+<p>🎯 <strong>Khái niệm cốt lõi</strong>: Trình duyệt gửi yêu cầu, server xử lý và trả về dữ liệu, trình duyệt lại render thành trang web.
+:::</p>
+</blockquote>
+<h2>Trình duyệt vs Server</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Trình duyệt (Client)</th>
+<th>Server (Server-side)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Trách nhiệm</strong></td>
+<td>Render trang, thực thi tương tác, yêu cầu dữ liệu</td>
+<td>Xử lý nghiệp vụ, truy vấn cơ sở dữ liệu, trả về kết quả</td>
+</tr>
+<tr>
+<td><strong>Lưu trữ</strong></td>
+<td>Cookie, LocalStorage</td>
+<td>Hệ thống tệp (File system), Cơ sở dữ liệu</td>
+</tr>
+<tr>
+<td><strong>Có thể chạy</strong></td>
+<td>HTML, CSS, JavaScript</td>
+<td>Node.js, Python, Go</td>
+</tr>
+<tr>
+<td><strong>Không thể chạy</strong></td>
+<td>TypeScript, Ngôn ngữ backend</td>
+<td>API trình duyệt (DOM, Window...)</td>
+</tr>
+</tbody>
+</table>
+<h2>Tại sao cần Node.js</h2>
+<p>Code TypeScript cần biên dịch mới có thể chạy trên trình duyệt, quá trình biên dịch này cần một môi trường chạy:</p>
+<pre><code class="language-mermaid">graph LR
+    A[Code TypeScript] --&gt; B[Môi trường chạy Node.js]
+    B --&gt; C[Công cụ biên dịch]
+    C --&gt; D[Code JavaScript]
+    D --&gt; E[Thực thi trên trình duyệt]
+</code></pre>
+<p><strong>Vai trò của Node.js</strong>:</p>
+<ul>
+<li>Chạy công cụ build trên máy tính của bạn</li>
+<li>Biên dịch TypeScript thành JavaScript</li>
+<li>Đóng gói code (Bundle)</li>
+<li>Khởi động server phát triển (Development Server)</li>
+</ul>
+<p>::: tip Phát triển Frontend hiện đại đều cần Node.js</p>
+<p>Liên quan đến các trường hợp sau thì bắt buộc phải cài đặt:</p>
+<ul>
+<li>Dự án TypeScript (cần biên dịch)</li>
+<li>Sử dụng gói npm (cần quản lý phụ thuộc)</li>
+<li>Chạy công cụ build (Vite, Webpack, Next.js)</li>
+<li>Phát triển cục bộ (Khởi động dev server)</li>
+</ul>
+<p>:::</p>
+<h2>Môi trường phát triển vs Môi trường sản xuất</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Môi trường phát triển (Localhost)</th>
+<th>Môi trường sản xuất (Công khai)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Vị trí</strong></td>
+<td>Máy tính của bạn</td>
+<td>Máy chủ từ xa</td>
+</tr>
+<tr>
+<td><strong>Địa chỉ</strong></td>
+<td><code>localhost:3000</code></td>
+<td><code>https://example.com</code></td>
+</tr>
+<tr>
+<td><strong>Code</strong></td>
+<td>Chưa nén, kèm thông tin debug</td>
+<td>Đã nén, làm rối (obfuscated)</td>
+</tr>
+<tr>
+<td><strong>Lỗi</strong></td>
+<td>Hiển thị ngăn xếp chi tiết (stack trace)</td>
+<td>Chỉ hiển thị thông tin cần thiết</td>
+</tr>
+<tr>
+<td><strong>Cập nhật</strong></td>
+<td>Hot Reload (Tự động làm mới)</td>
+<td>Cần triển khai lại (Re-deploy)</td>
+</tr>
+</tbody>
+</table>
+<h2>Sự khác biệt về môi trường chạy</h2>
+<p><strong>Server có thể truy cập</strong>: Hệ thống tệp, cơ sở dữ liệu, biến môi trường, tất cả các yêu cầu mạng.</p>
+<p><strong>Trình duyệt chỉ có thể truy cập</strong>: Nội dung trang, thiết bị người dùng (quyền hạn chế), yêu cầu cùng nguồn (same-origin).</p>
+<p>::: tip Code chạy ở đâu?</p>
+<p>Khi viết code phải rõ ràng code được thực thi ở đâu:</p>
+<ul>
+<li><strong>Code Frontend</strong>: Chạy trên trình duyệt, người dùng có thể thấy</li>
+<li><strong>Code Backend</strong>: Chạy trên server, người dùng không thấy</li>
+<li><strong>API Route</strong>: Next.js đặc biệt, vừa có thể truy cập tài nguyên server, vừa có thể phản hồi yêu cầu frontend</li>
+</ul>
+<p>:::</p>
+<h2>Nội dung liên quan</h2>
+<ul>
+<li>Xem chi tiết: [1.1 Sự tiến hóa của định dạng code]</li>
+<li>Xem chi tiết: [1.2 Khái niệm Tech Stack]</li>
+<li>Tiếp theo: [1.5 Môi trường Node.js và Quản lý gói]</li>
+<li>Xem chi tiết: [Chương 10 Localhost và Truy cập công khai]</li>
+</ul>
+</body>
+</html>

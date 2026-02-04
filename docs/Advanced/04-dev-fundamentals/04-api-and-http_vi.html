@@ -1,0 +1,411 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04 Api And Http</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "4.4 Cơ bản về API và HTTP"
+description: "Nắm vững nguyên lý hoạt động của API và giao thức HTTP"
+chapter: "Chương 4"
+priority: "🟢"</p>
+<hr />
+<h1>4.4 Cơ bản về API và HTTP 🟢</h1>
+<blockquote>
+<p><strong>Đọc xong phần này, bạn sẽ thu hoạch được:</strong></p>
+<ul>
+<li>Hiểu khái niệm và tác dụng của API</li>
+<li>Nắm vững nguyên lý cơ bản của giao thức HTTP</li>
+<li>Học cách hiểu cấu trúc của HTTP Request và Response</li>
+<li>Nắm vững ý nghĩa của các mã trạng thái HTTP (Status Code) phổ biến</li>
+<li>Hiểu quy trình tương tác cơ bản giữa Frontend và Backend</li>
+</ul>
+<p>Giao thức HTTP là "ngôn ngữ" tương tác Frontend-Backend, hiểu nguyên lý hoạt động của nó giúp bạn định vị vấn đề nhanh hơn.</p>
+</blockquote>
+<hr />
+<h2>Dẫn nhập</h2>
+<p>Bài trước bạn đã học cách đọc hiểu logic code cơ bản. Nhưng một ứng dụng hoàn chỉnh không chỉ là code chạy trên máy —— nó cần giao tiếp với server, lấy dữ liệu, gửi thao tác. Sự giao tiếp này được thực hiện thông qua <strong>API</strong> và <strong>giao thức HTTP</strong>.</p>
+<p>Hiểu nguyên lý hoạt động của HTTP, giúp bạn mô tả nhu cầu chính xác hơn khi cộng tác với AI, và cũng có năng lực tra soát khi gặp sự cố.</p>
+<hr />
+<h2>API là gì</h2>
+<p><strong>API (Application Programming Interface, Giao diện lập trình ứng dụng)</strong> là quy ước giao tiếp giữa các phần mềm khác nhau.</p>
+<p>Trong phát triển Web, API thường chỉ <strong>Web API</strong> hoặc <strong>HTTP API</strong>, tức là giao diện giao tiếp thông qua giao thức HTTP. Frontend gọi API của Backend để lấy dữ liệu hoặc gửi thao tác.</p>
+<p>::: tip API giống như Hàm (Function)</p>
+<p>Còn nhớ bài trước nói về hàm không? API về bản chất chính là <strong>hàm từ xa (remote function)</strong>.</p>
+<ul>
+<li><strong>Hàm</strong>: Định nghĩa trong code, nhận tham số, trả về kết quả</li>
+<li><strong>API</strong>: Định nghĩa trên server, nhận HTTP Request (tham số), trả về HTTP Response (kết quả)</li>
+</ul>
+<p>Gọi API cũng giống như gọi hàm:</p>
+<ul>
+<li>Gọi hàm: <code>calculatePrice(100, 2)</code> → Trả về <code>200</code></li>
+<li>Gọi API: <code>GET /api/price?unit=100&amp;quantity=2</code> → Trả về <code>{ "total": 200 }</code></li>
+</ul>
+<p>Sự khác biệt duy nhất: Hàm chạy ở máy cục bộ, API chạy trên server từ xa.
+:::</p>
+<p>::: tip Ví dụ nhà hàng</p>
+<p>Hãy tưởng tượng API như thực đơn nhà hàng:</p>
+<ul>
+<li>Frontend là Khách hàng</li>
+<li>Backend là Nhà bếp</li>
+<li>API là Thực đơn —— cho khách biết có thể gọi món gì, tên món là gì</li>
+<li>HTTP Request là Phục vụ bàn —— mang order của khách vào bếp, và bưng món ăn ra</li>
+</ul>
+<p>:::</p>
+<hr />
+<h2>Quy trình giao tiếp HTTP</h2>
+<p>Giao tiếp HTTP dựa trên mô hình <strong>Request - Response</strong> (Yêu cầu - Phản hồi). Có thể tưởng tượng HTTP Request như một phong bì thư gửi đi xa: Trên phong bì ghi địa chỉ người nhận (URL), bên trong chứa lời bạn muốn nói (Request Body), và một số nhãn dán mô tả tính chất bức thư (Headers). Server nhận thư xong, mở ra đọc, viết một bức thư hồi âm (Response), rồi gửi lại cho bạn.</p>
+<p>Ví dụ này giúp hiểu bản chất của HTTP: Nó là một <strong>giao thức văn bản</strong>, mọi thông tin đều được truyền dưới dạng văn bản con người đọc được. Khi bạn mở bảng Network trong công cụ Developer Tools của trình duyệt, những dòng request bạn thấy thực chất chính là danh sách chi tiết của những "phong bì thư" này.</p>
+<pre><code class="language-mermaid">sequenceDiagram
+    participant Frontend as Trình duyệt/Frontend
+    participant Backend as Server/API
+
+    Frontend-&gt;&gt;Backend: Gửi HTTP Request
+    Backend-&gt;&gt;Backend: Xử lý yêu cầu
+    Backend-&gt;&gt;Frontend: Trả về HTTP Response
+    Frontend-&gt;&gt;Frontend: Cập nhật trang web
+</code></pre>
+<ol>
+<li>Frontend gửi HTTP Request</li>
+<li>Server nhận và xử lý yêu cầu</li>
+<li>Server trả về HTTP Response</li>
+<li>Frontend dựa vào phản hồi để cập nhật trang web</li>
+</ol>
+<hr />
+<h2>Cấu thành của HTTP Request</h2>
+<p>Một HTTP Request hoàn chỉnh bao gồm 4 phần cốt lõi:</p>
+<h3>Phương thức (Method)</h3>
+<p>Bảo cho server biết bạn muốn làm loại việc gì:</p>
+<table>
+<thead>
+<tr>
+<th>Phương thức</th>
+<th>Tác dụng</th>
+<th>Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GET</strong></td>
+<td>Đọc dữ liệu</td>
+<td>Lấy danh sách bài viết</td>
+</tr>
+<tr>
+<td><strong>POST</strong></td>
+<td>Tạo dữ liệu</td>
+<td>Gửi form đăng ký</td>
+</tr>
+<tr>
+<td><strong>PUT/PATCH</strong></td>
+<td>Sửa dữ liệu</td>
+<td>Cập nhật hồ sơ cá nhân</td>
+</tr>
+<tr>
+<td><strong>DELETE</strong></td>
+<td>Xóa dữ liệu</td>
+<td>Xóa một bài viết</td>
+</tr>
+</tbody>
+</table>
+<h3>URL (Đường dẫn)</h3>
+<p>Chỉ định địa chỉ tài nguyên cần thao tác:</p>
+<pre><code>https://api.example.com/users/123
+│       │                │      │
+│       │                │      └── ID người dùng
+│       │                └── Đường dẫn tài nguyên
+│       └── Tên miền
+└── Giao thức
+</code></pre>
+<h3>Headers (Thông tin đầu mục)</h3>
+<p>Mang theo siêu dữ liệu (metadata), như xác thực danh tính, định dạng dữ liệu:</p>
+<table>
+<thead>
+<tr>
+<th>Header thường gặp</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Authorization</td>
+<td>Token xác thực danh tính</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>Định dạng dữ liệu của request body</td>
+</tr>
+<tr>
+<td>Accept</td>
+<td>Định dạng dữ liệu mong muốn nhận về</td>
+</tr>
+</tbody>
+</table>
+<h3>Body (Thân nội dung)</h3>
+<p>Nội dung dữ liệu thực tế gửi đi, thường dùng định dạng JSON:</p>
+<pre><code class="language-json">{
+  &quot;title&quot;: &quot;Tiêu đề bài viết&quot;,
+  &quot;content&quot;: &quot;Nội dung bài viết&quot;
+}
+</code></pre>
+<hr />
+<h2>Cấu thành của HTTP Response</h2>
+<p>HTTP Response cũng bao gồm nhiều phần:</p>
+<h3>Mã trạng thái (Status Code)</h3>
+<p>Ba chữ số, biểu thị kết quả xử lý yêu cầu. Thiết kế mã trạng thái tuân theo quy luật đơn giản: Chữ số đầu tiên biểu thị loại phản hồi, hai chữ số sau biểu thị chi tiết. Thiết kế này giúp bạn dù gặp mã lạ cũng đoán được đại khái tình hình dựa vào số đầu.</p>
+<table>
+<thead>
+<tr>
+<th>Mã trạng thái</th>
+<th>Ý nghĩa</th>
+<th>Ngữ cảnh thường gặp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>200 OK</strong></td>
+<td>Thành công</td>
+<td>Yêu cầu hoàn thành thành công</td>
+</tr>
+<tr>
+<td><strong>201 Created</strong></td>
+<td>Đã tạo</td>
+<td>POST tạo tài nguyên thành công</td>
+</tr>
+<tr>
+<td><strong>204 No Content</strong></td>
+<td>Không nội dung</td>
+<td>DELETE xóa thành công</td>
+</tr>
+<tr>
+<td><strong>400 Bad Request</strong></td>
+<td>Yêu cầu lỗi</td>
+<td>Định dạng tham số sai</td>
+</tr>
+<tr>
+<td><strong>401 Unauthorized</strong></td>
+<td>Chưa xác thực</td>
+<td>Thiếu token hoặc token vô hiệu</td>
+</tr>
+<tr>
+<td><strong>403 Forbidden</strong></td>
+<td>Cấm truy cập</td>
+<td>Có token nhưng không đủ quyền</td>
+</tr>
+<tr>
+<td><strong>404 Not Found</strong></td>
+<td>Không tìm thấy</td>
+<td>Tài nguyên không tồn tại</td>
+</tr>
+<tr>
+<td><strong>429 Too Many Requests</strong></td>
+<td>Quá nhiều yêu cầu</td>
+<td>Bị giới hạn tần suất (rate limit)</td>
+</tr>
+<tr>
+<td><strong>500 Internal Server Error</strong></td>
+<td>Lỗi server</td>
+<td>Server nội bộ bị lỗi</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Mẹo nhớ nhanh Status Code</p>
+<ul>
+<li><strong>2xx</strong>: Thành công rồi</li>
+<li><strong>4xx</strong>: Lỗi tại bạn (Client gửi request sai)</li>
+<li><strong>5xx</strong>: Lỗi tại server (Backend bị lỗi)</li>
+</ul>
+<p>:::</p>
+<h3>Headers (Đầu mục phản hồi)</h3>
+<p>Chứa metadata của phản hồi:</p>
+<table>
+<thead>
+<tr>
+<th>Header thường gặp</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Type</td>
+<td>Định dạng dữ liệu của response body</td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td>Độ dài byte của response body</td>
+</tr>
+</tbody>
+</table>
+<h3>Body (Thân phản hồi)</h3>
+<p>Nội dung dữ liệu server trả về:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;123&quot;,
+  &quot;title&quot;: &quot;Tiêu đề bài viết&quot;,
+  &quot;content&quot;: &quot;Nội dung bài viết&quot;,
+  &quot;createdAt&quot;: &quot;2025-01-28T10:00:00Z&quot;
+}
+</code></pre>
+<hr />
+<h2>Ví dụ hoàn chỉnh: Sửa nickname người dùng</h2>
+<p>Dưới đây là ví dụ về một cặp HTTP Request và Response hoàn chỉnh:</p>
+<p><strong>Request:</strong></p>
+<pre><code class="language-http">PATCH /api/users/123 HTTP/1.1
+Host: api.example.com
+Authorization: Bearer your_token_here
+Content-Type: application/json
+
+{
+  &quot;nickname&quot;: &quot;Nickname Mới&quot;
+}
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code class="language-http">HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  &quot;id&quot;: &quot;123&quot;,
+  &quot;nickname&quot;: &quot;Nickname Mới&quot;,
+  &quot;updatedAt&quot;: &quot;2025-01-28T10:00:00Z&quot;
+}
+</code></pre>
+<hr />
+<h2>Tra soát vấn đề thường gặp</h2>
+<p>Hiểu cấu trúc HTTP giúp định vị vấn đề nhanh chóng:</p>
+<table>
+<thead>
+<tr>
+<th>Hiện tượng</th>
+<th>Nguyên nhân khả nghi</th>
+<th>Cách kiểm tra</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>401 Unauthorized</td>
+<td>Token vô hiệu hoặc hết hạn</td>
+<td>Kiểm tra Authorization Header</td>
+</tr>
+<tr>
+<td>404 Not Found</td>
+<td>Sai đường dẫn URL</td>
+<td>Kiểm tra path request có đúng không</td>
+</tr>
+<tr>
+<td>Dữ liệu hiển thị lỗi</td>
+<td>Tên trường không khớp</td>
+<td>Kiểm tra format dữ liệu trả về có khớp code Frontend không</td>
+</tr>
+<tr>
+<td>429 Too Many Requests</td>
+<td>Chạm ngưỡng rate limit</td>
+<td>Giảm tần suất request hoặc thêm logic thử lại (retry)</td>
+</tr>
+<tr>
+<td>Lỗi mạng</td>
+<td>Server không phản hồi hoặc rớt mạng</td>
+<td>Kiểm tra kết nối mạng và trạng thái server</td>
+</tr>
+</tbody>
+</table>
+<h3>Dữ liệu không khớp định dạng</h3>
+<p>Kể cả khi Status Code là 200 OK, vấn đề định dạng dữ liệu vẫn có thể khiến code lỗi:</p>
+<ul>
+<li>Tên trường không khớp: Backend trả <code>userName</code>, Frontend dùng <code>username</code></li>
+<li>Kiểu dữ liệu không khớp: Backend trả chuỗi <code>"123"</code>, Frontend cần số <code>123</code></li>
+<li>Cấu trúc không khớp: Backend trả mảng, Frontend cần đối tượng</li>
+</ul>
+<p>AI biết cách xử lý chuyển đổi định dạng và ánh xạ trường, gặp loại lỗi này cứ bảo nó "Dữ liệu định dạng không khớp" là được.</p>
+<p>Hiểu bản chất văn bản của giao thức HTTP rất có ích cho việc debug. Khi bạn xem một request trong Developer Tools, bạn thấy Headers, Status Code, Response Body, tất cả đều là thành phần của giao thức HTTP. Chúng truyền tải trên mạng dưới dạng văn bản thuần túy, chỉ là được trình duyệt sắp xếp lại cho dễ đọc. Nếu dùng công cụ dòng lệnh như curl, bạn sẽ thấy bộ mặt nguyên thủy của chúng —— những dòng văn bản thuần túy, mỗi dòng cách nhau bởi dấu xuống dòng, Headers và Body cách nhau bởi một dòng trống. Sự minh bạch này có nghĩa là bạn có thể nhìn thấy chính xác từng bit thông tin trao đổi giữa Frontend và Backend, không có hộp đen nào cả.</p>
+<hr />
+<h2>Định dạng dữ liệu JSON</h2>
+<p>JSON (JavaScript Object Notation) là định dạng dữ liệu phổ biến nhất cho Web API.</p>
+<p><strong>Đặc điểm của JSON</strong>:</p>
+<ul>
+<li>Dùng ngoặc nhọn <code>{}</code> biểu thị đối tượng (Object)</li>
+<li>Dùng ngoặc vuông <code>[]</code> biểu thị mảng (Array)</li>
+<li>Dữ liệu tổ chức theo cặp "Key: Value"</li>
+<li>Key bắt buộc phải bao quanh bởi dấu ngoặc kép</li>
+</ul>
+<p><strong>Ví dụ</strong>:</p>
+<pre><code class="language-json">{
+  &quot;users&quot;: [
+    {
+      &quot;id&quot;: &quot;1&quot;,
+      &quot;name&quot;: &quot;Trương Tam&quot;,
+      &quot;email&quot;: &quot;truong@example.com&quot;
+    },
+    {
+      &quot;id&quot;: &quot;2&quot;,
+      &quot;name&quot;: &quot;Lý Tứ&quot;,
+      &quot;email&quot;: &quot;ly@example.com&quot;
+    }
+  ],
+  &quot;total&quot;: 2,
+  &quot;page&quot;: 1
+}
+</code></pre>
+<p>::: tip JSON là ngôn ngữ chung</p>
+<p>JSON là "tiếng phổ thông" giữa các ngôn ngữ lập trình. Python, JavaScript, Java, Go... đều có thể dễ dàng phân tích và tạo file JSON, điều này khiến nó trở thành tiêu chuẩn dữ liệu cho Web API.</p>
+<p>:::</p>
+<hr />
+<h2>Tương tác Frontend-Backend</h2>
+<pre><code class="language-mermaid">graph LR
+    A[Frontend&lt;br/&gt;React/Next.js] --&gt;|HTTP Request| B[API&lt;br/&gt;Backend Interface]
+    B --&gt;|Query/Write| C[Database&lt;br/&gt;PostgreSQL]
+    C --&gt;|Trả dữ liệu| B
+    B --&gt;|HTTP Response| A
+
+    style A fill:#e1f5fe
+    style B fill:#fff3e0
+    style C fill:#e8f5e9
+</code></pre>
+<hr />
+<h2>Câu hỏi thường gặp</h2>
+<h3>Q1: Có cần nhớ hết HTTP Status Code không?</h3>
+<p>Không cần. Nhớ mấy cái hay gặp nhất (200, 401, 404, 500) là đủ dùng, còn lại tra Google là ra.</p>
+<h3>Q2: GET và POST khác nhau gì?</h3>
+<p>GET dùng để đọc dữ liệu, tham số thường nằm trên URL; POST dùng để tạo dữ liệu, tham số nằm trong Body. GET có thể được cache, POST thì không.</p>
+<h3>Q3: Test API thế nào?</h3>
+<p>Có thể dùng các công cụ sau:</p>
+<ul>
+<li>Trình duyệt Developer Tools (tab Network)</li>
+<li>Postman hoặc Insomnia (Công cụ test API chuyên dụng)</li>
+<li>Công cụ dòng lệnh curl</li>
+<li>Nhờ AI viết code test</li>
+</ul>
+<h3>Q4: HTTPS và HTTP khác nhau gì?</h3>
+<p>HTTPS là HTTP có mã hóa, dữ liệu truyền đi được mã hóa an toàn hơn. Website hiện đại đều nên dùng HTTPS.</p>
+<hr />
+<h2>Trọng điểm cốt lõi</h2>
+<ul>
+<li>✅ API là giao diện giao tiếp Frontend-Backend</li>
+<li>✅ HTTP dựa trên mô hình "Request - Response"</li>
+<li>✅ HTTP Request gồm: Method, URL, Headers, Body</li>
+<li>✅ HTTP Response gồm: Status Code, Headers, Body</li>
+<li>✅ 2xx Thành công, 4xx Lỗi phía khách, 5xx Lỗi phía chủ</li>
+<li>✅ JSON là định dạng dữ liệu chuẩn của Web API</li>
+<li>✅ Hiểu cấu trúc HTTP giúp định vị vấn đề nhanh chóng</li>
+</ul>
+<p>Hiểu kiến thức cơ bản về giao tiếp HTTP rồi, tiếp theo sẽ tìm hiểu khái niệm tách biệt Frontend-Backend.</p>
+<hr />
+<h2>Nội dung liên quan</h2>
+<ul>
+<li>Trước đó: <a href="../01-environment-setup/03-browser-server_vi.html">1.3 Cơ bản về Trình duyệt và Server</a></li>
+<li>Trước đó: <a href="./03-programming-basics_vi.html">4.3 Cách đọc hiểu code AI sinh ra</a></li>
+<li>Chi tiết: <a href="./05-frontend-backend-separation_vi.html">4.5 Khái niệm tách biệt Frontend-Backend</a></li>
+</ul>
+</body>
+</html>

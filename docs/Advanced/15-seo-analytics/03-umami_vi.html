@@ -1,0 +1,450 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03 Umami</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "15.3 Triển khai thống kê Umami"
+description: "Sử dụng 1Panel để triển khai hệ thống thống kê Umami"
+chapter: "Chương 15"
+priority: "🟡"</p>
+<hr />
+<h1>15.3 Triển khai thống kê Umami 🟡</h1>
+<blockquote>
+<p><strong>Đọc xong phần này, bạn sẽ gặt hái được:</strong></p>
+<ul>
+<li>Hiểu giá trị và tác dụng của thống kê trang web</li>
+<li>Nắm vững phương pháp triển khai Umami bằng 1Panel</li>
+<li>Học cách cấu hình và sử dụng Umami để theo dõi dữ liệu</li>
+<li>Hiểu tầm quan trọng của việc bảo vệ quyền riêng tư</li>
+</ul>
+<p>Online không phải là kết thúc, mà là sự khởi đầu của sự thấu hiểu. Thống kê dữ liệu giúp bạn hiểu người dùng: Họ từ đâu đến? Dùng thiết bị gì? Tính năng nào được ưa chuộng?</p>
+</blockquote>
+<hr />
+<h2>Tại sao cần thống kê trang web?</h2>
+<p>Thống kê trang web trả lời các câu hỏi cốt lõi của vận hành sản phẩm.</p>
+<table>
+<thead>
+<tr>
+<th>Câu hỏi</th>
+<th>Dữ liệu thống kê</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Có bao nhiêu người truy cập?</td>
+<td>Lượt xem trang, Khách truy cập duy nhất</td>
+</tr>
+<tr>
+<td>Họ từ đâu đến?</td>
+<td>Nguồn trang web, Từ khóa tìm kiếm</td>
+</tr>
+<tr>
+<td>Dùng thiết bị gì?</td>
+<td>Loại thiết bị, Hệ điều hành, Trình duyệt</td>
+</tr>
+<tr>
+<td>Trang nào được ưa chuộng?</td>
+<td>Xếp hạng xem trang</td>
+</tr>
+<tr>
+<td>Người dùng dừng lại bao lâu?</td>
+<td>Thời lượng phiên, Tỷ lệ thoát</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Sự kết hợp giữa dữ liệu và phản hồi</p>
+<p>Dữ liệu cho bạn biết "chuyện gì đã xảy ra", phản hồi người dùng cho bạn biết "tại sao nó xảy ra". Kết hợp cả hai mới đưa ra được quyết định tốt hơn.</p>
+<p>:::</p>
+<hr />
+<h2>Giới thiệu Umami</h2>
+<p><strong>Umami</strong> là công cụ phân tích trang web mã nguồn mở, chú trọng quyền riêng tư.</p>
+<table>
+<thead>
+<tr>
+<th>Đặc tính</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mã nguồn mở</strong></td>
+<td>Code công khai, có thể tự triển khai</td>
+</tr>
+<tr>
+<td><strong>Thân thiện riêng tư</strong></td>
+<td>Không dùng Cookie, tuân thủ GDPR</td>
+</tr>
+<tr>
+<td><strong>Nhẹ</strong></td>
+<td>Script nhỏ hơn 1KB</td>
+</tr>
+<tr>
+<td><strong>Đơn giản</strong></td>
+<td>Giao diện tinh gọn, dễ sử dụng</td>
+</tr>
+<tr>
+<td><strong>Miễn phí</strong></td>
+<td>Tự triển khai không tốn thêm phí</td>
+</tr>
+</tbody>
+</table>
+<h3>Umami vs Google Analytics</h3>
+<table>
+<thead>
+<tr>
+<th>So sánh</th>
+<th>Umami</th>
+<th>Google Analytics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cách triển khai</td>
+<td>Tự lưu trữ (Self-host)</td>
+<td>Dịch vụ đám mây</td>
+</tr>
+<tr>
+<td>Quyền riêng tư</td>
+<td>Không theo dõi danh tính cá nhân</td>
+<td>Theo dõi người dùng chi tiết</td>
+</tr>
+<tr>
+<td>Kích thước script</td>
+<td>&lt; 1KB</td>
+<td>~45KB</td>
+</tr>
+<tr>
+<td>Giao diện</td>
+<td>Đơn giản</td>
+<td>Chức năng phức tạp</td>
+</tr>
+<tr>
+<td>Quyền sở hữu dữ liệu</td>
+<td>Kiểm soát hoàn toàn</td>
+<td>Thuộc về Google</td>
+</tr>
+<tr>
+<td>Đường cong học tập</td>
+<td>Thấp</td>
+<td>Cao</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Triển khai Umami bằng 1Panel</h2>
+<p>Nếu đã hoàn thành thiết lập VPS và 1Panel ở chương 14, triển khai Umami chỉ mất vài phút.</p>
+<h3>Các bước triển khai</h3>
+<ol>
+<li><strong>Đăng nhập 1Panel</strong></li>
+</ol>
+<p>Truy cập <code>https://ip-server-cua-ban:port</code>, đăng nhập bảng quản trị.</p>
+<ol>
+<li><strong>Vào Cửa hàng ứng dụng</strong></li>
+</ol>
+<p>Chọn "App Store" ở menu bên trái, tìm kiếm "Umami".</p>
+<ol>
+<li><strong>Cài đặt Umami</strong></li>
+</ol>
+<p>Bấm cài đặt, cấu hình tham số cơ bản:
+   - Tên ứng dụng: umami
+   - Tên container: umami
+   - Cổng: 3001 (hoặc tùy chỉnh)</p>
+<ol>
+<li><strong>Cấu hình Database</strong></li>
+</ol>
+<p>Umami cần database PostgreSQL:
+   - Có thể dùng dịch vụ database của 1Panel để tạo
+   - Hoặc dùng database bên ngoài</p>
+<ol>
+<li><strong>Hoàn tất cài đặt</strong></li>
+</ol>
+<p>Đợi container khởi động, truy cập <code>http://server-cua-ban:3001</code>.</p>
+<h3>Đăng nhập lần đầu</h3>
+<p>Thông tin đăng nhập mặc định:</p>
+<ul>
+<li>Tên người dùng: admin</li>
+<li>Mật khẩu: umami</li>
+</ul>
+<p><strong>Quan trọng</strong>: Đăng nhập xong đổi mật khẩu ngay!</p>
+<hr />
+<h2>Cấu hình Umami</h2>
+<h3>Tạo trang web</h3>
+<p>Sau khi đăng nhập, thêm trang web đầu tiên:</p>
+<ol>
+<li>Bấm "Settings" → "Websites"</li>
+<li>Bấm "Add website"</li>
+<li>Điền thông tin:</li>
+<li>Name: Tên trang web</li>
+<li>Domain: Tên miền (như <code>example.com</code>)</li>
+<li>Bấm lưu</li>
+</ol>
+<h3>Lấy mã theo dõi</h3>
+<p>Sau khi thêm trang web sẽ hiện mã theo dõi:</p>
+<pre><code class="language-html">&lt;script
+  defer
+  src=&quot;https://url-umami-cua-ban/script.js&quot;
+  data-website-id=&quot;id-website-cua-ban&quot;
+&gt;&lt;/script&gt;
+</code></pre>
+<h3>Tích hợp vào Next.js</h3>
+<p>Tích hợp mã theo dõi vào dự án Next.js:</p>
+<pre><code class="language-typescript">// app/layout.tsx
+import Script from 'next/script';
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    &lt;html lang=&quot;vi&quot;&gt;
+      &lt;head&gt;
+        &lt;Script
+          defer
+          src=&quot;https://url-umami-cua-ban/script.js&quot;
+          data-website-id=&quot;id-website-cua-ban&quot;
+        /&gt;
+      &lt;/head&gt;
+      &lt;body&gt;{children}&lt;/body&gt;
+    &lt;/html&gt;
+  );
+}
+</code></pre>
+<p>Hoặc sử dụng biến môi trường:</p>
+<pre><code class="language-typescript">&lt;Script
+  defer
+  src={process.env.NEXT_PUBLIC_UMAMI_URL}
+  data-website-id={process.env.NEXT_PUBLIC_UMAMI_ID}
+/&gt;
+</code></pre>
+<hr />
+<h2>Giải mã các chỉ số cốt lõi</h2>
+<p>Bảng điều khiển Umami hiển thị các chỉ số cốt lõi sau.</p>
+<h3>Chỉ số truy cập</h3>
+<table>
+<thead>
+<tr>
+<th>Chỉ số</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pageviews</strong></td>
+<td>Tổng lượt xem trang</td>
+</tr>
+<tr>
+<td><strong>Unique Visitors</strong></td>
+<td>Số khách truy cập duy nhất</td>
+</tr>
+<tr>
+<td><strong>Visits</strong></td>
+<td>Số lượt truy cập (phiên/session)</td>
+</tr>
+<tr>
+<td><strong>Bounce Rate</strong></td>
+<td>Tỷ lệ thoát (tỷ lệ truy cập trang đơn)</td>
+</tr>
+</tbody>
+</table>
+<h3>Nguồn lưu lượng</h3>
+<table>
+<thead>
+<tr>
+<th>Nguồn</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Search</strong></td>
+<td>Công cụ tìm kiếm</td>
+</tr>
+<tr>
+<td><strong>Social</strong></td>
+<td>Mạng xã hội</td>
+</tr>
+<tr>
+<td><strong>Direct</strong></td>
+<td>Truy cập trực tiếp</td>
+</tr>
+<tr>
+<td><strong>Referral</strong></td>
+<td>Link từ trang web khác</td>
+</tr>
+</tbody>
+</table>
+<h3>Thông tin thiết bị</h3>
+<table>
+<thead>
+<tr>
+<th>Chỉ số</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Browser</strong></td>
+<td>Loại trình duyệt</td>
+</tr>
+<tr>
+<td><strong>OS</strong></td>
+<td>Hệ điều hành</td>
+</tr>
+<tr>
+<td><strong>Device</strong></td>
+<td>Loại thiết bị (Desktop/Mobile)</td>
+</tr>
+<tr>
+<td><strong>Screen</strong></td>
+<td>Độ phân giải màn hình</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Theo dõi sự kiện (Event Tracking)</h2>
+<p>Ngoài xem trang, còn có thể theo dõi sự kiện tùy chỉnh.</p>
+<h3>Theo dõi click nút</h3>
+<pre><code class="language-typescript">// Theo dõi click nút chia sẻ
+import { umami } from &quot;@umami/node&quot;;
+
+umami.track(&quot;share&quot;, {
+  platform: &quot;twitter&quot;,
+  content: &quot;article-slug&quot;,
+});
+</code></pre>
+<p>Hoặc dùng cách nguyên bản:</p>
+<pre><code class="language-typescript">// Theo dõi sự kiện chung
+window.umami?.track(&quot;share&quot;, {
+  platform: &quot;twitter&quot;,
+  content: &quot;article-slug&quot;,
+});
+</code></pre>
+<h3>Các loại sự kiện thường gặp</h3>
+<table>
+<thead>
+<tr>
+<th>Sự kiện</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>signup</code></td>
+<td>Đăng ký người dùng</td>
+</tr>
+<tr>
+<td><code>login</code></td>
+<td>Đăng nhập người dùng</td>
+</tr>
+<tr>
+<td><code>purchase</code></td>
+<td>Hoàn tất mua hàng</td>
+</tr>
+<tr>
+<td><code>download</code></td>
+<td>Tải xuống file</td>
+</tr>
+<tr>
+<td><code>share</code></td>
+<td>Chia sẻ nội dung</td>
+</tr>
+<tr>
+<td><code>cta_click</code></td>
+<td>Click nút kêu gọi hành động (CTA)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Chỉ số chính vs Chỉ số hư danh (Vanity Metrics)</h2>
+<p>Phân biệt chỉ số có ý nghĩa và chỉ số vô nghĩa.</p>
+<table>
+<thead>
+<tr>
+<th>Chỉ số chính</th>
+<th>Chỉ số hư danh</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tỷ lệ giữ chân</td>
+<td>Tổng lượt xem</td>
+</tr>
+<tr>
+<td>Tỷ lệ chuyển đổi</td>
+<td>Tổng số khách</td>
+</tr>
+<tr>
+<td>Người dùng hoạt động (Active Users)</td>
+<td>Thời gian ở lại trang</td>
+</tr>
+<tr>
+<td>Doanh thu</td>
+<td>Số fan mạng xã hội</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Tập trung vào chỉ số có giá trị hành động</p>
+<p>Chọn chỉ số có thể chỉ dẫn hành động. Nếu nhìn một dữ liệu xong bạn không biết phải làm gì, thì đó có thể là chỉ số hư danh.</p>
+<p>:::</p>
+<hr />
+<h2>Bảo vệ quyền riêng tư</h2>
+<p>Thiết kế của Umami chú trọng bảo vệ quyền riêng tư.</p>
+<h3>Tuân thủ GDPR</h3>
+<p>Umami không lưu trữ thông tin nhận dạng cá nhân:</p>
+<ul>
+<li>Không dùng Cookie</li>
+<li>Không theo dõi người dùng cá nhân</li>
+<li>Không thu thập dữ liệu định danh</li>
+<li>Kiểm soát dữ liệu hoàn toàn</li>
+</ul>
+<h3>Cài đặt riêng tư</h3>
+<p>Trong cài đặt Umami có thể:</p>
+<ul>
+<li>Bật băm IP (ẩn danh một phần)</li>
+<li>Thiết lập thời hạn lưu giữ dữ liệu</li>
+<li>Vô hiệu hóa một số tính năng theo dõi</li>
+</ul>
+<hr />
+<h2>Câu hỏi thường gặp</h2>
+<h3>Q1: Dùng đồng thời Umami và Google Analytics được không?</h3>
+<p>Được, nhưng không cần thiết. Chọn một cái thôi, dùng nhiều cái sẽ tăng gánh nặng tải trang.</p>
+<h3>Q2: Dữ liệu bao lâu cập nhật?</h3>
+<p>Dữ liệu thời gian thực trễ khoảng 1-2 phút. Bảng điều khiển tự động làm mới.</p>
+<h3>Q3: Làm thế nào xuất dữ liệu?</h3>
+<p>Umami hỗ trợ chức năng xuất dữ liệu. Trong cài đặt có thể chọn định dạng xuất và khoảng thời gian.</p>
+<h3>Q4: Quản lý nhiều website thế nào?</h3>
+<p>Thêm nhiều website trong Umami, mỗi website có mã theo dõi và ID độc lập.</p>
+<hr />
+<h2>Trọng tâm phần này</h2>
+<ul>
+<li>✅ Thống kê trang web giúp hiểu hành vi người dùng</li>
+<li>✅ Umami là công cụ thống kê nguồn mở, thân thiện riêng tư</li>
+<li>✅ 1Panel có thể triển khai Umami bằng một cú nhấp chuột</li>
+<li>✅ Chỉ số cốt lõi gồm lượng truy cập, nguồn, thiết bị</li>
+<li>✅ Theo dõi sự kiện giúp giám sát hành vi người dùng cụ thể</li>
+<li>✅ Tập trung vào chỉ số chính thay vì chỉ số hư danh</li>
+<li>✅ Bảo vệ quyền riêng tư là yêu cầu cơ bản của công cụ thống kê hiện đại</li>
+</ul>
+<p>Sau khi triển khai thống kê, tiếp theo hãy tìm hiểu yêu cầu tuân thủ pháp lý.</p>
+<hr />
+<h2>Nội dung liên quan</h2>
+<ul>
+<li>Trước đó: <a href="../14-vps-ops-deploy/index_vi.html">Chương 14: Vận hành VPS và Deploy</a></li>
+<li>Trước đó: <a href="./01-opengraph-sharing_vi.html">15.1 Chia sẻ Open Graph</a></li>
+<li>Chi tiết: <a href="./04-legal_vi.html">15.4 Thực hành tuân thủ pháp lý</a></li>
+</ul>
+</body>
+</html>

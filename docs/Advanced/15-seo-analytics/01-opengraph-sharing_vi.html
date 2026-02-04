@@ -1,0 +1,391 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01 Opengraph Sharing</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "15.1 Open Graph và Chia sẻ mạng xã hội"
+description: "Giao thức Open Graph và tối ưu hóa cho nền tảng xã hội"
+chapter: "Chương 15"
+priority: "🔴"</p>
+<hr />
+<h1>15.1 Open Graph và Chia sẻ mạng xã hội 🔴</h1>
+<blockquote>
+<p><strong>Đọc xong phần này, bạn sẽ gặt hái được:</strong></p>
+<ul>
+<li>Hiểu tác dụng và nguyên lý của giao thức Open Graph</li>
+<li>Nắm vững cách cấu hình OG trong Next.js</li>
+<li>Học cách thiết kế ảnh OG hiệu quả</li>
+<li>Hiểu chiến lược tối ưu cho các nền tảng mạng xã hội khác nhau</li>
+<li>Nắm vững tích hợp tính năng chia sẻ và theo dõi dữ liệu</li>
+</ul>
+<p>Hãy tưởng tượng bạn chia sẻ link trang web được thiết kế tâm huyết lên mạng xã hội, nhưng nếu chỉ hiện ra một đường link màu xanh, không có bất kỳ hình ảnh xem trước nào, tỷ lệ click sẽ cực thấp. Giao thức Open Graph chính là để giải quyết vấn đề này.</p>
+</blockquote>
+<hr />
+<h2>Open Graph là gì?</h2>
+<p><strong>Open Graph (OG)</strong> là một giao thức siêu dữ liệu (metadata) do Facebook giới thiệu, giúp trang web hiển thị thông tin xem trước phong phú khi được chia sẻ trên mạng xã hội.</p>
+<p>Khi bạn chia sẻ link lên WeChat, Twitter (X), LinkedIn, Facebook, Zalo, v.v., các nền tảng này sẽ cào (crawl) thẻ OG của trang web để tạo ra thẻ (card) chia sẻ.</p>
+<h3>Tác dụng của thẻ OG</h3>
+<table>
+<thead>
+<tr>
+<th>Có thẻ OG</th>
+<th>Không có thẻ OG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thẻ xem trước đẹp mắt</td>
+<td>Chỉ có link màu xanh</td>
+</tr>
+<tr>
+<td>Tiêu đề, mô tả, hình ảnh</td>
+<td>Chỉ có URL</td>
+</tr>
+<tr>
+<td>Tỷ lệ click cao</td>
+<td>Tỷ lệ click thấp</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Tầm quan trọng của chia sẻ mạng xã hội</p>
+<p>Chia sẻ mạng xã hội là nguồn lưu lượng quan trọng của sản phẩm hiện đại. Sức hấp dẫn thị giác quyết định trực tiếp đến tỷ lệ click, ấn tượng đầu tiên ảnh hưởng đến quyết định của người dùng. Tối ưu OG không phải là tùy chọn, mà là cơ sở hạ tầng của tiếp thị.</p>
+<p>:::</p>
+<hr />
+<h2>Các thẻ Open Graph cơ bản</h2>
+<p>Giao thức OG định nghĩa một nhóm thẻ <code>&lt;meta&gt;</code>, đặt trong phần <code>&lt;head&gt;</code> của HTML:</p>
+<h3>Các thẻ OG cốt lõi</h3>
+<table>
+<thead>
+<tr>
+<th>Thẻ</th>
+<th>Giải thích</th>
+<th>Ví dụ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>og:title</code></td>
+<td>Tiêu đề thẻ chia sẻ</td>
+<td>"Tên sản phẩm của tôi"</td>
+</tr>
+<tr>
+<td><code>og:description</code></td>
+<td>Mô tả thẻ chia sẻ</td>
+<td>"Một câu nói rõ giá trị sản phẩm"</td>
+</tr>
+<tr>
+<td><code>og:image</code></td>
+<td>URL hình ảnh thẻ chia sẻ</td>
+<td>"https://..."</td>
+</tr>
+<tr>
+<td><code>og:url</code></td>
+<td>URL chuẩn của trang</td>
+<td>"https://..."</td>
+</tr>
+<tr>
+<td><code>og:type</code></td>
+<td>Loại nội dung</td>
+<td>"website" hoặc "article"</td>
+</tr>
+</tbody>
+</table>
+<p>::: tip Nhờ AI giúp bạn cấu hình</p>
+<p>Cần cấu hình thẻ OG cho dự án Next.js? Bạn có thể nói thế này:</p>
+<blockquote>
+<p>"Giúp tôi cấu hình metadata trong app/layout.tsx, thêm cài đặt openGraph, bao gồm title, description, url và một ảnh kích thước 1200x630."</p>
+</blockquote>
+<p>:::</p>
+<hr />
+<h2>Cấu hình OG trong Next.js</h2>
+<p>Next.js cung cấp nhiều cách để cấu hình thẻ OG.</p>
+<h3>Cách 1: Metadata API</h3>
+<p>Cấu hình trường <code>openGraph</code> trong đối tượng <code>metadata</code> tại <code>layout.tsx</code> hoặc <code>page.tsx</code>.</p>
+<h3>Cách 2: File ảnh OG (Khuyên dùng)</h3>
+<p>Next.js hỗ trợ tự động sinh thẻ OG bằng cách đặt file có tên quy định:</p>
+<pre><code>app/
+├── opengraph-image.jpg      # Ảnh OG chính
+├── twitter-image.jpg        # Ảnh đặc thù cho Twitter
+└── (routes)/
+    └── about/
+        └── opengraph-image.jpg  # Ảnh OG cho trang cụ thể
+</code></pre>
+<p>Các tên file được hỗ trợ:</p>
+<ul>
+<li><code>opengraph-image.{jpg,png,webp}</code></li>
+<li><code>twitter-image.{jpg,png,webp}</code></li>
+</ul>
+<p>::: tip Tại sao khuyên dùng cách file?</p>
+<p>Cách dùng file trực quan hơn, dùng công cụ thiết kế sinh ảnh xong bỏ vào là được. Next.js sẽ tự động xử lý mọi chi tiết kỹ thuật.</p>
+<p>:::</p>
+<h3>Cách 3: Sinh ảnh OG động</h3>
+<p>Next.js có thể dùng code để sinh ảnh OG động. Sử dụng <code>ImageResponse</code> của <code>next/og</code>, trả về JSX chứa tiêu đề và style trong file <code>app/opengraph-image.tsx</code>.</p>
+<p>::: tip Nhờ AI giúp bạn sinh ảnh OG</p>
+<p>Cần sinh ảnh OG động có tiêu đề? Bạn có thể nói:</p>
+<blockquote>
+<p>"Giúp tôi tạo file sinh ảnh OG động app/opengraph-image.tsx, kích thước 1200x630, nền trắng, tiêu đề căn giữa. Sử dụng ImageResponse của next/og."</p>
+</blockquote>
+<p>:::</p>
+<hr />
+<h2>Thiết kế ảnh OG hiệu quả</h2>
+<p>Ảnh OG là cốt lõi của thẻ chia sẻ, thiết kế tốt có thể tăng đáng kể tỷ lệ click.</p>
+<h3>Kích thước đề xuất</h3>
+<table>
+<thead>
+<tr>
+<th>Nền tảng</th>
+<th>Kích thước đề xuất</th>
+<th>Yêu cầu tối thiểu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Facebook</td>
+<td>1200 x 630</td>
+<td>600 x 315</td>
+</tr>
+<tr>
+<td>Twitter</td>
+<td>1200 x 675</td>
+<td>600 x 335</td>
+</tr>
+<tr>
+<td>LinkedIn</td>
+<td>1200 x 627</td>
+<td>1200 x 627</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Đề xuất chung</strong>: 1200 x 630 pixel, tỷ lệ 16:9</p>
+<h3>Nguyên tắc thiết kế</h3>
+<table>
+<thead>
+<tr>
+<th>Nguyên tắc</th>
+<th>Giải thích</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ngắn gọn rõ ràng</strong></td>
+<td>Tiêu đề ngắn, làm nổi bật thông tin cốt lõi</td>
+</tr>
+<tr>
+<td><strong>Nhất quán thương hiệu</strong></td>
+<td>Sử dụng màu sắc và font chữ thương hiệu</td>
+</tr>
+<tr>
+<td><strong>Chất lượng cao</strong></td>
+<td>Tránh ảnh mờ, vỡ hạt</td>
+</tr>
+<tr>
+<td><strong>Vùng an toàn cho chữ</strong></td>
+<td>Nội dung quan trọng tránh mép (có thể bị cắt)</td>
+</tr>
+<tr>
+<td><strong>Độ tương phản</strong></td>
+<td>Đảm bảo chữ rõ ràng dễ đọc</td>
+</tr>
+</tbody>
+</table>
+<h3>Công cụ thiết kế đề xuất</h3>
+<ul>
+<li>Canva: Có sẵn mẫu ảnh OG</li>
+<li>Figma: Công cụ thiết kế chuyên nghiệp</li>
+<li>Photoshop: Phần mềm thiết kế truyền thống</li>
+<li>Trình tạo trực tuyến: Như OG Image Generator</li>
+</ul>
+<hr />
+<h2>Chiến lược tối ưu cho từng nền tảng</h2>
+<p>Mỗi mạng xã hội hỗ trợ OG có chút khác biệt, cần tối ưu theo đặc thù.</p>
+<h3>Thẻ Twitter/X</h3>
+<p>Twitter hỗ trợ thẻ <code>twitter:card</code> chuyên biệt:</p>
+<pre><code class="language-html">&lt;meta name=&quot;twitter:card&quot; content=&quot;summary_large_image&quot; /&gt;
+&lt;meta name=&quot;twitter:site&quot; content=&quot;@yourusername&quot; /&gt;
+&lt;meta name=&quot;twitter:title&quot; content=&quot;Tiêu đề&quot; /&gt;
+&lt;meta name=&quot;twitter:description&quot; content=&quot;Mô tả&quot; /&gt;
+&lt;meta name=&quot;twitter:image&quot; content=&quot;https://...&quot; /&gt;
+</code></pre>
+<p>Các loại thẻ:</p>
+<ul>
+<li><code>summary</code>: Thẻ ảnh nhỏ</li>
+<li><code>summary_large_image</code>: Thẻ ảnh lớn (Khuyên dùng)</li>
+<li><code>player</code>: Trình phát video</li>
+</ul>
+<h3>Tối ưu chia sẻ WeChat/Zalo</h3>
+<p>WeChat/Zalo hỗ trợ OG có giới hạn, đề xuất:</p>
+<ul>
+<li>Đảm bảo <code>og:title</code> và <code>og:description</code> đầy đủ</li>
+<li>Sử dụng ảnh HTTPS</li>
+<li>Ảnh đừng quá nhỏ (Khuyên dùng &gt; 300KB nhưng ko quá 5MB)</li>
+<li>Zalo: Quan tâm Zalo Developer để cấu hình chi tiết hơn nếu cần</li>
+</ul>
+<h3>Tối ưu LinkedIn</h3>
+<p>LinkedIn tuân thủ nghiêm ngặt chuẩn OG, đảm bảo:</p>
+<ul>
+<li><code>og:image</code> kích thước đúng (1200 x 627)</li>
+<li>URL ảnh có thể truy cập công khai</li>
+<li>Tránh dùng tham số phá cache (cache busting)</li>
+</ul>
+<hr />
+<h2>Tích hợp tính năng chia sẻ</h2>
+<p>Thêm nút chia sẻ mạng xã hội vào website.</p>
+<h3>Định dạng URL chia sẻ</h3>
+<table>
+<thead>
+<tr>
+<th>Nền tảng</th>
+<th>URL chia sẻ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Twitter</td>
+<td><code>https://twitter.com/intent/tweet?text=Tiêu đề&amp;url=URL</code></td>
+</tr>
+<tr>
+<td>Facebook</td>
+<td><code>https://www.facebook.com/sharer/sharer.php?u=URL</code></td>
+</tr>
+<tr>
+<td>LinkedIn</td>
+<td><code>https://www.linkedin.com/sharing/share-offsite/?url=URL</code></td>
+</tr>
+<tr>
+<td>Sao chép link</td>
+<td>Dùng Clipboard API</td>
+</tr>
+</tbody>
+</table>
+<h3>Component chia sẻ React</h3>
+<p>Tạo một Client Component, chứa liên kết chia sẻ các nền tảng và chức năng sao chép link.</p>
+<p>URL chia sẻ:</p>
+<ul>
+<li>Twitter: <code>https://twitter.com/intent/tweet?text=Tiêu đề&amp;url=URL</code></li>
+<li>Facebook: <code>https://www.facebook.com/sharer/sharer.php?u=URL</code></li>
+<li>LinkedIn: <code>https://www.linkedin.com/sharing/share-offsite/?url=URL</code></li>
+</ul>
+<p>Sử dụng <code>navigator.clipboard.writeText()</code> để sao chép link vào clipboard.</p>
+<p>::: tip Nhờ AI giúp bạn tạo component chia sẻ</p>
+<p>Cần nút chia sẻ mạng xã hội? Bạn có thể nói:</p>
+<blockquote>
+<p>"Giúp tôi tạo một React Client Component tên ShareButtons, nhận tham số title và url. Bao gồm 3 link chia sẻ Twitter, Facebook, LinkedIn (mở tab mới), và một nút sao chép link. Sao chép thành công hiện 'Đã sao chép!', sau 2 giây khôi phục. Sử dụng layout flex gap-4 của Tailwind CSS."</p>
+</blockquote>
+<p>:::</p>
+<h3>Cập nhật OG động</h3>
+<p>Đối với trang động (như bài viết blog), sử dụng hàm <code>generateMetadata</code>, dựa vào tham số route (như <code>params.slug</code>) để lấy thông tin bài viết từ database, thiết lập thẻ OG động.</p>
+<p>::: tip Nhờ AI giúp bạn cấu hình OG động</p>
+<p>Cần cấu hình OG động cho bài viết blog? Bạn có thể nói:</p>
+<blockquote>
+<p>"Giúp tôi tạo hàm generateMetadata trong app/blog/[slug]/page.tsx. Lấy bài viết từ hàm <code>getPost(slug)</code> trong <code>lib/posts.ts</code>, trả về metadata bao gồm title, description, ogImage (ảnh bìa bài viết), loại openGraph đặt là 'article'."</p>
+</blockquote>
+<p>:::</p>
+<hr />
+<h2>Theo dõi dữ liệu chia sẻ</h2>
+<p>Hiểu hiệu quả chia sẻ giúp tối ưu chiến lược.</p>
+<h3>Theo dõi tham số UTM</h3>
+<p>Thêm tham số UTM vào URL chia sẻ để theo dõi nguồn:</p>
+<ul>
+<li><code>utm_source</code>: Nền tảng nguồn (như twitter)</li>
+<li><code>utm_medium</code>: Loại phương tiện (như social)</li>
+<li><code>utm_campaign</code>: Tên chiến dịch</li>
+</ul>
+<h3>Theo dõi sự kiện Umami</h3>
+<p>Sử dụng <code>window.umami.track('eventName', properties)</code> để theo dõi sự kiện click nút chia sẻ.</p>
+<hr />
+<h2>Kiểm thử và Gỡ lỗi</h2>
+<p>Sau khi cấu hình, cần kiểm tra hiệu quả chia sẻ.</p>
+<h3>Công cụ kiểm thử</h3>
+<table>
+<thead>
+<tr>
+<th>Công cụ</th>
+<th>Link</th>
+<th>Chức năng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Facebook Debugger</td>
+<td>developers.facebook.com/tools/debug/</td>
+<td>Kiểm tra thẻ OG</td>
+</tr>
+<tr>
+<td>Twitter Card Validator</td>
+<td>cards-dev.twitter.com/validator</td>
+<td>Kiểm tra thẻ Twitter</td>
+</tr>
+<tr>
+<td>LinkedIn Post Inspector</td>
+<td>linkedin.com/post-inspector/</td>
+<td>Kiểm tra xem trước LinkedIn</td>
+</tr>
+<tr>
+<td>Zalo Debugger</td>
+<td>developers.zalo.me/tools/debug-sharing</td>
+<td>Kiểm tra chia sẻ Zalo</td>
+</tr>
+</tbody>
+</table>
+<h3>Xóa Cache</h3>
+<p>Mạng xã hội sẽ cache thông tin chia sẻ, sau khi cập nhật OG cần:</p>
+<ol>
+<li>Sử dụng tính năng "Scrape Again" (Thu thập lại) của công cụ gỡ lỗi</li>
+<li>Hoặc thêm tham số như <code>?v=2</code> vào sau URL để buộc làm mới</li>
+</ol>
+<hr />
+<h2>Câu hỏi thường gặp</h2>
+<h3>Q1: Ảnh OG không hiện thì làm sao?</h3>
+<p>Kiểm tra:</p>
+<ol>
+<li>URL ảnh có truy cập công khai được không</li>
+<li>Định dạng ảnh có đúng không (JPG/PNG)</li>
+<li>Ảnh có quá lớn không (Khuyên dùng &lt; 5MB)</li>
+<li>Dùng công cụ gỡ lỗi (Debugger) để xem lỗi cụ thể</li>
+</ol>
+<h3>Q2: Các trang khác nhau dùng ảnh OG khác nhau được không?</h3>
+<p>Được. Tạo file <code>opengraph-image.{jpg,png}</code> tương ứng cho mỗi route, hoặc ghi đè metadata trong <code>page.tsx</code> cấp trang.</p>
+<h3>Q3: Tại sao chia sẻ Zalo/WeChat không hiện ảnh?</h3>
+<p>Zalo/WeChat có cơ chế riêng, có thể cần đảm bảo kích thước ảnh đủ lớn, hoặc tên miền không bị chặn.</p>
+<h3>Q4: Làm thế nào để tăng tỷ lệ chia sẻ?</h3>
+<ol>
+<li>Tối ưu ảnh OG cho hấp dẫn</li>
+<li>Sử dụng tiêu đề và mô tả thu hút hơn</li>
+<li>Bản thân nội dung phải có giá trị chia sẻ</li>
+<li>Đơn giản hóa quy trình chia sẻ, một nút bấm là xong</li>
+</ol>
+<hr />
+<h2>Trọng tâm phần này</h2>
+<ul>
+<li>✅ Giao thức Open Graph giúp hiển thị thông tin xem trước phong phú khi chia sẻ web</li>
+<li>✅ Next.js hỗ trợ cấu hình OG qua metadata API và qua file ảnh</li>
+<li>✅ Kích thước ảnh OG khuyến nghị là 1200 x 630</li>
+<li>✅ Các nền tảng mạng xã hội khác nhau có yêu cầu tối ưu riêng</li>
+<li>✅ Nút chia sẻ cần đơn giản hóa, bấm là xong</li>
+<li>✅ Sử dụng tham số UTM để theo dõi hiệu quả chia sẻ</li>
+</ul>
+<p>Sau khi tối ưu OG, tiếp theo hãy tìm hiểu cấu hình SEO cơ bản.</p>
+<hr />
+<h2>Nội dung liên quan</h2>
+<ul>
+<li>Chi tiết: <a href="./02-seo-guide_vi.html">15.2 SEO Toàn tập</a></li>
+<li>Trước đó: <a href="../14-vps-ops-deploy/index_vi.html">Chương 14: Vận hành VPS và Deploy</a></li>
+</ul>
+</body>
+</html>

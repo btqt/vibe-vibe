@@ -1,0 +1,501 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03 Prd Template Guide</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+    </style>
+</head>
+<body>
+<hr />
+<p>title: "3.3 Thực chiến viết PRD"
+description: "Từ ý tưởng đến tài liệu cấu trúc hóa"
+chapter: "Chương 3"
+priority: "🔴"</p>
+<hr />
+<h1>3.3 Thực chiến viết PRD 🔴</h1>
+<blockquote>
+<p><strong>Đọc xong phần này, bạn sẽ thu hoạch được:</strong></p>
+<ul>
+<li>Hiểu cấu trúc 5 phần của PRD và tác dụng của chúng</li>
+<li>Nắm vững nguyên tắc lặp lại "một năm chín bản" (bản 1, bản 5, bản 9)</li>
+<li>Học cách dùng Markdown và Mermaid viết PRD thân thiện với AI</li>
+<li>Nắm vững phương pháp xử lý trường hợp biên và quản lý phạm vi</li>
+</ul>
+<p>Lời nói đầu đã nhắc đến: PRD là quy chuẩn thực thi của AI, cũng là sự thể hiện năng lực định nghĩa vấn đề.</p>
+</blockquote>
+<hr />
+<h2>Giá trị của PRD</h2>
+<p>Trong phát triển AI, tác dụng của PRD khác với phát triển truyền thống. Truyền thống thì PRD chủ yếu cho team xem; còn trong phát triển AI, PRD quan trọng hơn là để cung cấp ngữ cảnh hoàn chỉnh cho AI, để nó không cần đoán mò ý đồ của bạn.</p>
+<p>PRD là "Nguồn sự thật duy nhất" (Single Source of Truth). Khi ý tưởng được mô tả rõ ràng trong PRD, đầu ra của AI sẽ ổn định hơn nhiều, cũng không gặp vấn đề bùng nổ nhu cầu.</p>
+<p>Quá trình viết PRD cũng là quá trình rèn luyện năng lực định nghĩa vấn đề. Nhiều người trực tiếp bảo AI "làm cho tôi chức năng này", kết quả sửa đi sửa lại nhiều lần. Nhưng nếu viết rõ mục tiêu, người dùng, bối cảnh nghiệp vụ và logic tương tác trước, AI thường làm đúng ngay lần đầu.</p>
+<p>Giá trị của sự rèn luyện này vượt xa một lần phát triển đơn lẻ. Khi bạn buộc phải dùng văn bản mô tả rõ ràng một nhu cầu, bạn sẽ phát hiện nhiều chỗ mơ hồ trước đó. Bạn có thể tưởng mình có tầm nhìn rõ ràng về sản phẩm, nhưng khi thực sự đặt bút, mới nhận ra nhiều chi tiết chưa từng được suy nghĩ nghiêm túc. Viết PRD ép bạn đối diện những khoảng trắng này, hoặc đưa ra quyết định dứt khoát, hoặc thừa nhận cần thêm thông tin. Sự rèn luyện tư duy này sẽ giúp bạn nhạy bén và quyết đoán hơn trong các quyết định sản phẩm sau này.</p>
+<hr />
+<h2>Cấu trúc 5 phần của PRD</h2>
+<p>PRD chia làm 5 phần cốt lõi, tương ứng với nguyên tắc lặp lại "một năm chín bản":</p>
+<table>
+<thead>
+<tr>
+<th>Phần</th>
+<th>Tương ứng bản thảo</th>
+<th>Nội dung cốt lõi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Phần 0: Thông tin tài liệu</strong></td>
+<td>Luôn ghi lại</td>
+<td>Phiên bản, giai đoạn, lịch sử cập nhật</td>
+</tr>
+<tr>
+<td><strong>Phần 1: Bối cảnh &amp; Mục tiêu</strong></td>
+<td>Bản 1</td>
+<td>Tại sao làm, làm cho ai, giải quyết vấn đề gì</td>
+</tr>
+<tr>
+<td><strong>Phần 2: Tổng quan giải pháp</strong></td>
+<td>Bản 5</td>
+<td>Quy trình nghiệp vụ, quy trình chức năng, kiến trúc thông tin</td>
+</tr>
+<tr>
+<td><strong>Phần 3: Giải pháp chi tiết</strong></td>
+<td>Bản 9</td>
+<td>Mô tả tương tác, trường hợp biên, nhu cầu phi chức năng</td>
+</tr>
+<tr>
+<td><strong>Phần 4: Kế hoạch lên sóng</strong></td>
+<td>Bản 9</td>
+<td>Lịch trình, release từng phần (gray release)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nguyên tắc "Một Năm Chín bản"</strong>: Bản 1 nghĩ rõ "tại sao", bản 5 nghĩ rõ "là gì", bản 9 nghĩ rõ "làm thế nào". Mỗi bước đều có review và chỉnh sửa, tránh để đến cuối mới phát hiện vấn đề lớn.</p>
+<p>Nhịp điệu lặp lại này có cơ sở tâm lý học. Con người khi đối mặt vấn đề phức tạp thường rơi vào "tê liệt phân tích" —— muốn một lần nghĩ thông suốt mọi chi tiết, kết quả không nhích được bước nào. Nguyên tắc "một năm chín bản" thông qua việc ép buộc phân giai đoạn, để bạn ở mỗi giai đoạn chỉ tập trung vào chiều kích cụ thể. Bản 1, bạn không cần lo hiện thực hóa kỹ thuật, chỉ cần xác nhận hướng đi đúng; bản 5, bạn không cần xoắn màu cái nút, chỉ cần xác nhận quy trình hợp lý. Cách tư duy phân tầng này giúp việc xử lý vấn đề phức tạp trở nên quản lý được.</p>
+<p>Một lợi ích khác dễ bị bỏ qua là mỗi bản thảo đều là một "điểm kiểm tra có thể quay lui". Nếu bản 5 phát hiện hướng đi có vấn đề, bạn có thể quay về bản 1 xem xét lại; nếu bản 9 phát hiện phương án kỹ thuật không khả thi, bạn có thể quay về bản 5 điều chỉnh quy trình. Sự lặp lại có cấu trúc này giúp lỗi lầm được phát hiện và sửa chữa từ sớm, thay vì tích tụ đến cuối mới bùng nổ.</p>
+<hr />
+<h2>Phần 0: Thông tin tài liệu</h2>
+<p>Phần này ghi lại trạng thái phiên bản và lịch sử lặp lại của tài liệu.</p>
+<h3>Trạng thái tài liệu</h3>
+<ul>
+<li><strong>Phiên bản hiện tại</strong>: Ví dụ "Bản 5.1" — 5 là lần thảo, 1 là phiên bản vi chỉnh của lần thảo đó</li>
+<li><strong>Giai đoạn hiện tại</strong>: Review nhu cầu / Đang thiết kế UI / Đang phát triển / Đã lên sóng</li>
+<li><strong>Các bên liên quan cốt lõi</strong>: Phụ trách sản phẩm, dev, thiết kế, test...</li>
+</ul>
+<p>Thông tin phiên bản giúp AI biết đây là "bản nháp" hay "bản chốt". Bản chốt cần chi tiết hơn, bản nháp có thể để TBD (To Be Determined - Chờ xác định).</p>
+<h3>Lịch sử cập nhật</h3>
+<p>Ghi lại quá trình lặp từ 1.1 đến 9.1:</p>
+<table>
+<thead>
+<tr>
+<th>Số phiên bản</th>
+<th>Trạng thái phiên bản</th>
+<th>Nội dung cập nhật</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.1</td>
+<td>Bản review nội bộ</td>
+<td>Sơ bộ trình bày bối cảnh, mục tiêu và giá trị cốt lõi</td>
+</tr>
+<tr>
+<td>5.1</td>
+<td>Bản review dự án</td>
+<td>Bổ sung quy trình nghiệp vụ cốt lõi, lưu đồ chức năng</td>
+</tr>
+<tr>
+<td>9.1</td>
+<td>Bản chốt trước dev</td>
+<td>Hợp nhất thiết kế UI, bổ sung trường hợp biên, phương án tracking</td>
+</tr>
+</tbody>
+</table>
+<p>Lịch sử cập nhật giúp AI biết những gì đã ổn định, những gì có thể còn thay đổi.</p>
+<hr />
+<h2>Phần 1: Bối cảnh và Mục tiêu nhu cầu</h2>
+<p>Đây là linh hồn của PRD, tương ứng nội dung cốt lõi của Bản 1.</p>
+<h3>Tổng quan dự án</h3>
+<p>Dùng một hai câu tóm tắt sản phẩm là gì.</p>
+<table>
+<thead>
+<tr>
+<th>Tổng quan tốt</th>
+<th>Tổng quan tồi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Một trang web to-do list cực giản dùng cho cá nhân</td>
+<td>Một ứng dụng to-do list</td>
+</tr>
+</tbody>
+</table>
+<p>Tổng quan mơ hồ dẫn đến AI làm phiên bản phức tạp. Tổng quan cụ thể giúp thiết lập ranh giới nhanh chóng.</p>
+<p>Viết tổng quan là nghệ thuật nén thông tin. Bạn cần trong dung lượng cực ngắn, truyền tải đặc trưng bản chất của sản phẩm. "Một trang web to-do list cực giản dùng cho cá nhân" chứa nhiều thông tin then chốt: "dùng cho cá nhân" nói rõ là công cụ cá nhân chứ không phải cộng tác nhóm; "cực giản" nói rõ tính năng hạn chế, giao diện đơn giản; "trang web" nói rõ hình thái kỹ thuật. Những thông tin này cùng nhau tạo nên một ranh giới rõ ràng, để AI biết cái gì nên làm, cái gì không.</p>
+<h3>Vấn đề cốt lõi</h3>
+<p>Trả lời 3 câu hỏi:</p>
+<ol>
+<li><strong>Chân dung người dùng mục tiêu</strong>: Ai dùng? (Đặc điểm cụ thể, không phải "tất cả mọi người")</li>
+<li><strong>Ngữ cảnh người dùng</strong>: Dùng khi nào, ở đâu, tình huống nào?</li>
+<li><strong>Nỗi đau cốt lõi</strong>: Giải pháp hiện tại có vấn đề gì?</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Sót thông tin</th>
+<th>Hậu quả</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Không nói ai dùng</td>
+<td>Có thể làm thành bản phức tạp "ai cũng dùng được"</td>
+</tr>
+<tr>
+<td>Không nói ngữ cảnh</td>
+<td>Có thể dùng công nghệ không phù hợp (mobile làm thành desktop)</td>
+</tr>
+<tr>
+<td>Không nói nỗi đau</td>
+<td>Có thể làm tính năng "hoàn hảo" nhưng giải quyết nhu cầu giả</td>
+</tr>
+</tbody>
+</table>
+<h3>Câu chuyện người dùng (User Story)</h3>
+<p>Mô tả nhu cầu từ góc nhìn người dùng:</p>
+<blockquote>
+<p>Là một <strong>[Vai trò]</strong>, tôi muốn <strong>[Hoàn thành nhiệm vụ gì đó]</strong>, để <strong>[Đạt được giá trị gì đó]</strong></p>
+</blockquote>
+<p>Cách này gần gũi với người dùng hơn là "tôi muốn làm một tính năng". Định dạng User Story bắt buộc tư duy từ góc độ người dùng, thay vì góc độ chức năng.</p>
+<p>Giá trị của User Story nằm ở việc nó thiết lập một "khung đồng cảm". Khi bạn viết "Là một giám đốc kinh doanh, tôi muốn tạo báo cáo tuần nhanh chóng, để tiết kiệm thời gian chiều thứ sáu", bạn buộc phải hình dung một con người cụ thể, trong bối cảnh cụ thể, đối mặt với phiền toái cụ thể. Sự hình dung này giúp bạn thoát khỏi góc độ hiện thực hóa kỹ thuật, xuất phát từ hoàn cảnh thực của người dùng để suy nghĩ giải pháp. Nhiều khi, ta tưởng người dùng cần tính năng nào đó, nhưng thực ra họ cần giá trị đằng sau tính năng đó. User Story giúp bạn phát hiện nhu cầu thực sự này.</p>
+<h3>Quản lý phạm vi nhu cầu</h3>
+<p>Làm rõ "làm những gì" và "không làm những gì".</p>
+<p><strong>In-Scope (Trong phạm vi)</strong>: Các điểm chức năng chắc chắn làm</p>
+<p><strong>Out-of-Scope (Ngoài phạm vi)</strong>: Các điểm chức năng chắc chắn <strong>không làm</strong></p>
+<p>Quản lý phạm vi nên hoàn thành ở bước 3.2 Xác nhận nhu cầu với AI. Ở đây chỉ là ghi lại kết quả thảo luận.</p>
+<table>
+<thead>
+<tr>
+<th>Không viết Out-of-Scope</th>
+<th>Viết Out-of-Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI có thể tự động thêm "tính năng thường gặp"</td>
+<td>AI biết rõ ranh giới</td>
+</tr>
+<tr>
+<td>Phạm vi cứ thế phình to</td>
+<td>Giữ sản phẩm tập trung</td>
+</tr>
+</tbody>
+</table>
+<h3>Danh sách nhu cầu và độ ưu tiên</h3>
+<p>Phân rã nhu cầu vĩ mô thành các điểm nhu cầu cụ thể, và đánh dấu độ ưu tiên:</p>
+<table>
+<thead>
+<tr>
+<th>ID Nhu cầu</th>
+<th>Module</th>
+<th>Mô tả</th>
+<th>Độ ưu tiên</th>
+<th>Trạng thái</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R001</td>
+<td>Thêm task</td>
+<td>Người dùng có thể thêm task chờ làm</td>
+<td>Cao</td>
+<td>Đang quy hoạch</td>
+</tr>
+<tr>
+<td>R002</td>
+<td>Xóa task</td>
+<td>Người dùng có thể xóa task</td>
+<td>Cao</td>
+<td>Đang quy hoạch</td>
+</tr>
+<tr>
+<td>R003</td>
+<td>Lịch sử</td>
+<td>Xem task lịch sử</td>
+<td>Thấp</td>
+<td>Cân nhắc V2.0</td>
+</tr>
+</tbody>
+</table>
+<p>Độ ưu tiên giúp AI biết cái gì là cốt lõi (P0), cái gì có thể lùi lại.</p>
+<hr />
+<h2>Phần 2: Tổng quan giải pháp</h2>
+<p>Tương ứng Bản 5, dùng phương thức trực quan hóa hiển thị toàn cảnh sản phẩm.</p>
+<h3>Lưu đồ quy trình nghiệp vụ cốt lõi</h3>
+<p>Dùng Mermaid mô tả quy trình hoàn chỉnh người dùng hoàn thành nhiệm vụ cốt lõi.</p>
+<pre><code class="language-mermaid">graph TD
+    A[Người dùng mở web] --&gt; B{Có dữ liệu cũ?}
+    B -- Có --&gt; C[Hiện danh sách task]
+    B -- Không --&gt; D[Hiện trạng thái rỗng]
+    D --&gt; E[Nhập task + Bấm thêm]
+    E --&gt; F[Task xuất hiện trong danh sách]
+    F --&gt; G[Bấm đánh dấu]
+    G --&gt; H[Task hiện gạch ngang]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Chỉ có chữ</th>
+<th>Có lưu đồ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI có thể hiểu sai thứ tự bước</td>
+<td>AI nhìn cái hiểu ngay quy trình</td>
+</tr>
+<tr>
+<td>Có thể gây hiểu lầm</td>
+<td>Trực quan hóa không gây hiểu lầm</td>
+</tr>
+</tbody>
+</table>
+<p>Lưu đồ giúp AI hiểu chính xác logic nghiệp vụ, giảm thiểu hiểu lầm.</p>
+<p>Một giá trị khác của lưu đồ là nó phơi bày điểm mù trong tư duy của bạn. Khi cố gắng dùng hình vẽ mô tả một quy trình, những bước "hiển nhiên" sẽ trở nên cụ thể và hữu hình. Bạn có thể phát hiện mình chưa từng nghĩ nghiêm túc "nếu người dùng chưa đăng nhập thì sao", hoặc "khi tải dữ liệu thất bại trang hiển thị thế nào". Lưu đồ bắt buộc bạn cân nhắc từng nhánh rẽ, từng điểm quyết định, sự xem xét có cấu trúc này thường phát hiện được những chi tiết quan trọng bị sót trong mô tả văn bản.</p>
+<h3>Kiến trúc thông tin</h3>
+<p>Liệt kê cấu trúc trang và quan hệ phân cấp của sản phẩm:</p>
+<ul>
+<li><strong>Trang chủ</strong></li>
+<li>Thanh điều hướng</li>
+<li>Danh sách task</li>
+<li><strong>Trang cài đặt</strong></li>
+<li>Cài đặt giao diện</li>
+<li>Quản lý dữ liệu</li>
+</ul>
+<p>Kiến trúc thông tin giúp AI hiểu sản phẩm có những trang nào, tổ chức ra sao.</p>
+<hr />
+<h2>Phần 3: Giải pháp chi tiết</h2>
+<p>Tương ứng Bản 9, là phần chi tiết nhất, là căn cứ trực tiếp để AI viết code.</p>
+<h3>Prototype trang và mô tả tương tác</h3>
+<p>Mô tả quy trình tương tác trọn vẹn của mỗi trang:</p>
+<ol>
+<li><strong>Trạng thái khởi tạo</strong>: Trang mới tải xong trông thế nào</li>
+<li><strong>Thao tác kích hoạt</strong>: Người dùng làm gì</li>
+<li><strong>Trạng thái thành công</strong>: Thành công xong hiển thị gì</li>
+<li><strong>Trạng thái thất bại</strong>: Thất bại xong hiển thị gì</li>
+<li><strong>Trạng thái rỗng</strong>: Không có dữ liệu hiển thị gì</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Chỉ viết "Người dùng có thể thêm task"</th>
+<th>Viết logic tương tác đầy đủ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI không biết thêm ở đâu, hiển thị thế nào</td>
+<td>AI biết vị trí ô nhập, kiểu nút, danh sách cập nhật ra sao</td>
+</tr>
+</tbody>
+</table>
+<h3>Xử lý trường hợp biên</h3>
+<p>Đây là phần người mới dễ bỏ sót nhất.</p>
+<p>Việc bỏ sót trường hợp biên thường không phải do cẩu thả, mà do "thiên kiến đường đi thông thường". Khi tưởng tượng cảnh người dùng dùng sản phẩm, não bộ tự động điền vào quy trình lý tưởng nhất: Người dùng mở app, hoàn thành thao tác, hài lòng rời đi. Nhưng trải nghiệm người dùng thực tế đầy rẫy bất ngờ —— mạng chập chờn, trượt tay bấm nhầm, cuộc gọi bất thình lình. Những tình huống bất thường này không phải "ngoại lệ", mà là một phần bình thường của trải nghiệm người dùng. Một hệ thống chỉ xử lý tình huống bình thường sẽ tỏ ra cực kỳ mong manh trong môi trường thực tế.</p>
+<table>
+<thead>
+<tr>
+<th>Trường hợp biên</th>
+<th>Không viết thì sao</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Người dùng bấm nhanh nút 2 lần</td>
+<td>Có thể submit trùng lặp</td>
+</tr>
+<tr>
+<td>Khi mạng lỗi</td>
+<td>Người dùng không biết chuyện gì xảy ra</td>
+</tr>
+<tr>
+<td>Khi dữ liệu rỗng</td>
+<td>Có thể hiển thị trắng trơn hoặc báo lỗi</td>
+</tr>
+<tr>
+<td>Người dùng thoát giữa chừng</td>
+<td>Có thể mất dữ liệu</td>
+</tr>
+</tbody>
+</table>
+<p>Xử lý trường hợp biên thường gặp:</p>
+<ul>
+<li>Bấm nhanh nút "Thêm" → Xử lý debounce, trong 0.5s chỉ phản hồi 1 lần</li>
+<li>Request mạng thất bại → Hiện Toast nhắc: "Lỗi mạng, vui lòng thử lại"</li>
+<li>Danh sách task rỗng → Hiện hình minh họa trạng thái rỗng: "Chưa có task nào, thêm cái đi"</li>
+</ul>
+<h3>Nhu cầu phi chức năng</h3>
+<table>
+<thead>
+<tr>
+<th>Loại nhu cầu</th>
+<th>Tại sao quan trọng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hiệu năng</td>
+<td>Không viết → AI có thể làm rất nặng, load chậm</td>
+</tr>
+<tr>
+<td>Tương thích</td>
+<td>Không viết → Có thể chỉ hỗ trợ Chrome, người dùng Safari khóc thét</td>
+</tr>
+<tr>
+<td>Tracking dữ liệu</td>
+<td>Không viết → Lên sóng xong không biết tình hình sử dụng</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>Phần 4: Kế hoạch lên sóng</h2>
+<p>Định nghĩa vòng đời của nhu cầu.</p>
+<h3>Lịch trình lên sóng</h3>
+<table>
+<thead>
+<tr>
+<th>Giai đoạn</th>
+<th>Ngày</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Review nhu cầu</td>
+<td>YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>Thiết kế UI/UX</td>
+<td>YYYY-MM-DD ~ YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>Giai đoạn Dev</td>
+<td>YYYY-MM-DD ~ YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>Dự kiến lên sóng</td>
+<td>YYYY-MM-DD</td>
+</tr>
+</tbody>
+</table>
+<p>Lịch trình lên sóng giúp AI biết dòng thời gian dự án, quy hoạch thứ tự phát triển hợp lý.</p>
+<hr />
+<h2>Markdown và Mermaid</h2>
+<p>PRD nên viết bằng Markdown, và vẽ lưu đồ bằng Mermaid.</p>
+<p><strong>Lợi thế của Markdown</strong>:</p>
+<ul>
+<li>Định dạng thống nhất, dễ quản lý phiên bản</li>
+<li>AI hiểu Markdown tốt nhất</li>
+<li>Hỗ trợ block code, bảng biểu, danh sách phong phú</li>
+</ul>
+<p><strong>Lợi thế của Mermaid</strong>:</p>
+<ul>
+<li>Văn bản tức biểu đồ, sửa chữa tiện lợi</li>
+<li>AI hiểu chính xác lưu đồ</li>
+<li>Hỗ trợ lưu đồ, biểu đồ tuần tự, biểu đồ trạng thái...</li>
+</ul>
+<p>Bảo AI "dùng Mermaid vẽ cái lưu đồ" là được, không cần nhớ cú pháp.</p>
+<hr />
+<h2>Để AI sinh PRD</h2>
+<p>Sau khi xác nhận AI hiểu đúng ở bước 3.2, hãy để nó dựa trên template sinh PRD:</p>
+<blockquote>
+<p>Hãy dựa trên thảo luận của chúng ta, dùng template PRD để sinh tài liệu. Nếu trường nào chúng ta chưa thảo luận, hãy đánh dấu TBD (chờ xác định).</p>
+</blockquote>
+<p>Trách nhiệm sau khi sinh:</p>
+<ol>
+<li><strong>Kiểm tra PRD do AI sinh</strong> — Xác nhận mỗi trường đều dựa trên thảo luận, không phải AI đoán</li>
+<li><strong>Bổ sung trường TBD</strong> — Với phần "chờ xác định", bổ sung chi tiết hoặc xác nhận "không cần"</li>
+<li><strong>Sửa chữa hiểu lầm</strong> — Phát hiện chỗ không khớp với thảo luận, sửa ngay lập tức</li>
+</ol>
+<hr />
+<h2>PRD Tốt vs PRD Tồi</h2>
+<h3>PRD Tồi</h3>
+<pre><code class="language-markdown"># To-do List
+
+Làm một chức năng to-do list, người dùng có thể thêm task, tick hoàn thành.
+</code></pre>
+<p><strong>Vấn đề</strong>:</p>
+<ul>
+<li>Không nói người dùng là ai → Có thể làm thành bản cho team</li>
+<li>Không nói chức năng cốt lõi → Có thể thêm đống chức năng thừa</li>
+<li>Không nói Out-of-Scope → Có thể thêm đăng nhập, đồng bộ cloud</li>
+<li>Không nói trường hợp biên → Bấm nhanh bị submit trùng</li>
+<li>Không có lưu đồ → AI có thể hiểu sai logic nghiệp vụ</li>
+</ul>
+<h3>PRD Tốt</h3>
+<pre><code class="language-markdown"># To-do List Cực Giản
+
+## 1.1 Tổng quan dự án
+
+Một trang web to-do list cực giản dùng cho cá nhân, chỉ có chức năng thêm và tick.
+
+## 1.2 Vấn đề cốt lõi
+
+- **Người dùng mục tiêu**: Chính tôi (Dân văn phòng, mỗi ngày xử lý 5-10 task)
+- **Ngữ cảnh người dùng**: Sáng mở máy tính, xem nhanh hôm nay làm gì
+- **Nỗi đau cốt lõi**: Giấy nhớ dễ mất, Note điện thoại mở ra phiền
+
+## 1.5 Phạm vi nhu cầu
+
+**In-Scope**: Thêm task, xem danh sách, tick hoàn thành, xóa task
+**Out-of-Scope**: Đăng ký đăng nhập, đồng bộ cloud, phân loại tag
+
+## 2.1 Quy trình nghiệp vụ cốt lõi
+
+[Lưu đồ Mermaid]
+
+## 3.1 Xử lý trường hợp biên
+
+- Bấm nhanh &quot;Thêm&quot; → Debounce 0.5s
+- Danh sách rỗng → Hiện &quot;Chưa có task&quot;
+- F5 trang → Dữ liệu không mất (localStorage)
+</code></pre>
+<hr />
+<h2>Câu hỏi thường gặp</h2>
+<h3>Q1: PRD cần viết chi tiết đến đâu?</h3>
+<p><strong>A</strong>: Bản 1 có thể sơ lược, Bản 5 cần có lưu đồ, Bản 9 cần bao gồm trường hợp biên. Nguyên tắc là: AI đọc xong không cần hỏi lại "nút này đặt đâu", "thất bại thì xử lý thế nào" nữa.</p>
+<h3>Q2: Có thể vừa phát triển vừa viết PRD không?</h3>
+<p><strong>A</strong>: Không khuyến khích. PRD là sự thể hiện của ý tưởng, viết PRD trước khi dev là để nghĩ cho thông. Vừa làm vừa viết dễ dẫn đến "viết tới viết lui thấy sai sai", chi phí làm lại càng cao.</p>
+<h3>Q3: PRD viết xong là không được sửa nữa hả?</h3>
+<p><strong>A</strong>: Không phải. PRD nên cập nhật theo sự thay đổi nhu cầu. Mỗi lần thay đổi lớn đều cần cập nhật số phiên bản và lịch sử cập nhật.</p>
+<h3>Q4: Dự án nhỏ cũng cần viết PRD à?</h3>
+<p><strong>A</strong>: Cần. Dự án nhỏ có thể viết đơn giản, nhưng cấu trúc phải đầy đủ. PRD dự án đơn giản có thể chỉ vài trăm chữ, nhưng vẫn bao gồm 5 phần.</p>
+<hr />
+<h2>Trọng điểm cốt lõi</h2>
+<ul>
+<li>✅ PRD có 5 phần lớn, tương ứng nguyên tắc lặp lại "một năm chín bản"</li>
+<li>✅ <strong>Lưu đồ quy trình nghiệp vụ cốt lõi</strong> giúp AI hiểu chính xác logic</li>
+<li>✅ <strong>Xử lý trường hợp biên</strong> là phần người mới hay sót nhất</li>
+<li>✅ <strong>Out-of-Scope</strong> ngăn chặn AI tự do phóng tác</li>
+<li>✅ Kiểm tra PRD do AI sinh, đảm bảo dựa trên thảo luận chứ không đoán mò</li>
+<li>✅ Để AI đánh dấu TBD cho những chỗ chưa thảo luận, đừng để nó đoán bừa</li>
+</ul>
+<p>PRD viết xong rồi, tiếp theo là hiểu xem AI thực thi nó thế nào.</p>
+<hr />
+<h2>Nội dung liên quan</h2>
+<ul>
+<li>Trước đó: <a href="./02-discuss-with-ai_vi.html">3.2 Xác nhận nhu cầu với AI</a></li>
+<li>Chi tiết: <a href="./04-coding-agents_vi.html">3.4 Từ PRD đến Code</a></li>
+</ul>
+</body>
+</html>
