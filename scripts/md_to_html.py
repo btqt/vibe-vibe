@@ -20,28 +20,58 @@ import re
 import argparse
 import sys
 import markdown
+from pygments.formatters import HtmlFormatter
 
-HTML_TEMPLATE = """
+
+def _get_pygments_css():
+    """Generate inline CSS for Pygments 'friendly' theme."""
+    formatter = HtmlFormatter(style='friendly', cssclass='codehilite')
+    return formatter.get_style_defs('.codehilite')
+
+
+PYGMENTS_CSS = _get_pygments_css()
+
+HTML_TEMPLATE = """\
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title}</title>
+    <title>__TITLE__</title>
     <style>
-        body {{ font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; color: #333; }}
-        pre {{ background: #f4f4f4; padding: 15px; border-radius: 5px; overflow-x: auto; }}
-        code {{ background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: monospace; }}
-        a {{ color: #007bff; text-decoration: none; }}
-        a:hover {{ text-decoration: underline; }}
-        table {{ border-collapse: collapse; width: 100%; margin: 20px 0; }}
-        th, td {{ border: 1px solid #ddd; padding: 8px; text-align: left; }}
-        th {{ background-color: #f2f2f2; }}
-        img {{ max-width: 100%; height: auto; }}
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; max-width: 1100px; margin: 0 auto; padding: 20px; color: #333; }
+        pre { background: #f4f4f4; padding: 15px; border-radius: 5px; white-space: pre-wrap; word-wrap: break-word; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; font-family: 'Operator Mono Lig', monospace; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        img { max-width: 100%; height: auto; }
+
+        /* --- Pygments: friendly theme (inline, no CDN) --- */
+        __PYGMENTS_CSS__
+
+        /* Override: keep gray bg + wrap */
+        .codehilite { background: #f4f4f4 !important; padding: 15px; border-radius: 5px; overflow: visible; }
+        .codehilite pre { background: #f4f4f4 !important; white-space: pre-wrap; word-wrap: break-word; margin: 0; font-family: 'Operator Mono', monospace; }
+
+        /* Operator Mono italic: comments, docstrings, keywords */
+        .codehilite .c,
+        .codehilite .c1,
+        .codehilite .cm,
+        .codehilite .cs,
+        .codehilite .cp  { font-style: italic; }
+        .codehilite .k,
+        .codehilite .kd,
+        .codehilite .kn,
+        .codehilite .kr,
+        .codehilite .kc  { font-style: italic; }
+        .codehilite .sd  { font-style: italic; } /* docstring */
     </style>
 </head>
 <body>
-{content}
+__CONTENT__
 </body>
 </html>
 """
@@ -230,8 +260,20 @@ def rewrite_links(content):
 def convert_markdown_to_html(content):
     """
     Converts markdown content to HTML string.
+    Uses codehilite (Pygments) for syntax highlighting — no CDN needed.
     """
-    html_body = markdown.markdown(content, extensions=['extra', 'tables', 'fenced_code'])
+    html_body = markdown.markdown(
+        content,
+        extensions=['extra', 'tables', 'fenced_code', 'codehilite'],
+        extension_configs={
+            'codehilite': {
+                'linenums': False,
+                'guess_lang': True,
+                'pygments_style': 'friendly',
+                'css_class': 'codehilite',
+            }
+        }
+    )
     return html_body
 
 def main():
@@ -274,7 +316,12 @@ def main():
             # Wrap in template
             filename = os.path.basename(file_path)
             title = filename.replace('_vi.md', '').replace('-', ' ').title()
-            full_html = HTML_TEMPLATE.format(title=title, content=html_body)
+            full_html = (
+                HTML_TEMPLATE
+                .replace('__TITLE__', title)
+                .replace('__CONTENT__', html_body)
+                .replace('__PYGMENTS_CSS__', PYGMENTS_CSS)
+            )
             
             # Determine output filename
             output_path = os.path.splitext(file_path)[0] + '.html'
