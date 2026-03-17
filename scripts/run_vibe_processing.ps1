@@ -16,13 +16,19 @@
 
 [CmdletBinding()]
 param (
-    [Parameter(Mandatory=$true, Position=0, HelpMessage="Please specify the root directory to scan.")]
+    [Parameter(Mandatory = $true, Position = 0, HelpMessage = "Please specify the root directory to scan.")]
     [string]$TargetDir
 )
 
-# Get the directory of the current script
-$ScriptDir = $PSScriptRoot
+# Get the real directory of the current script, resolving symlinks and junctions
+$item = Get-Item $PSCommandPath
+$ScriptDir = switch ($item.LinkType) {
+    { $_ -in "SymbolicLink", "Junction" } { Split-Path -Parent $item.Target }
+    Default { $PSScriptRoot }
+}
 
+Write-Host "Script Directory: $ScriptDir" -ForegroundColor Cyan
+pause
 Write-Host "--------------------------------------------------" -ForegroundColor Cyan
 Write-Host "Starting Vibe Vibe processing workflow..." -ForegroundColor Cyan
 Write-Host "Target Directory: $TargetDir" -ForegroundColor Cyan
@@ -50,12 +56,14 @@ if (Test-Path $Script1Path) {
     # Check exit code (0 is success)
     if ($LASTEXITCODE -eq 0) {
         Write-Host "[OK] $Script1 completed successfully." -ForegroundColor Green
-    } else {
+    }
+    else {
         Write-Host "[ERROR] $Script1 encountered an error (Exit code: $LASTEXITCODE)." -ForegroundColor Red
         # Uncomment to stop on error
         # exit $LASTEXITCODE 
     }
-} else {
+}
+else {
     Write-Host "[WARN] File $Script1 not found at $Script1Path" -ForegroundColor Red
 }
 
@@ -76,11 +84,13 @@ if (Test-Path $Script2Path) {
     # Check exit code
     if ($LASTEXITCODE -eq 0) {
         Write-Host "[OK] $Script2 completed successfully." -ForegroundColor Green
-    } else {
+    }
+    else {
         Write-Host "[ERROR] $Script2 encountered an error (Exit code: $LASTEXITCODE)." -ForegroundColor Red
         exit $LASTEXITCODE
     }
-} else {
+}
+else {
     Write-Host "[WARN] File $Script2 not found at $Script2Path" -ForegroundColor Red
 }
 
